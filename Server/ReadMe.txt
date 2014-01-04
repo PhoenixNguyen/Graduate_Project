@@ -1,0 +1,1 @@
+make for manager on browser

@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<META HTTP-EQUIV="Refresh" CONTENT="0;URL=showMap.action">
+<!--META HTTP-EQUIV="Refresh" CONTENT="0;URL=showMap"-->
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,6 +14,6 @@
     </head>
     <body>
         <h1>Hello World!</h1> <br/>
-        <a href="showMap.action">Show map</a>
+        <a href="showMap">Show map</a>
     </body>
 </html>

@@ -28,7 +28,12 @@
             function initialize() {
                 var mapOptions = {
                     zoom: 10,
-                    center: new google.maps.LatLng(-33.9, 151.2)
+                    center: new google.maps.LatLng(21.018638
+
+                        , 105.7806179
+
+
+                )
                 }
                 var map = new google.maps.Map(document.getElementById('googleMap'),
                         mapOptions);
@@ -43,10 +48,10 @@
              */
                    
             var beaches = [
-                    <s:iterator value="listCustomer" status="stat">
-                    ['<s:property value="mDoiTuong"/>', <s:property value="mXCoordinates"/>, <s:property value="mYCoordinates"/>, 1],
+                    <s:iterator value="listCustomer" status="status">
+                            ['<s:property value="mDoiTuong"/>', <s:property value="mXCoordinates"/>, <s:property value="mYCoordinates"/>, <s:property value="%{#status.index}"/>],
 
-                </s:iterator>
+                    </s:iterator>
             ];
 
             function setMarkers(map, locations) {
@@ -81,6 +86,20 @@
                     int tmp = -1;
                 %>
                 <s:set name="tmp" value="0"/>
+                
+                    var contentString = [
+                        <s:iterator value="listCustomer" status="status">
+                                '<s:property value="mDoiTuong"/>' +'<br/>'+ 
+                                        '<s:property value="mMaDoiTuong"/>' +'<br/>'+
+                                        '<s:property value="mTinhThanh"/>'+'<br/>'+
+                                        '<s:property value="mDiaChi"/>' +'<br/>'+
+                                        '<s:property value="mDienThoai"/>' +'<br/>'+
+                                        '<s:property value="mFax"/>' +'<br/>',
+
+                    </s:iterator>       
+                    ];
+                
+                
                 for (var i = 0; i < locations.length; i++) {
                     
                     var beach = locations[i];
@@ -94,28 +113,20 @@
 //                        ,
 //                        zIndex: beach[3]
                     });
-                    var tmp = 1;
+                    var tmp = beach[3];
                     
                     <%
                         int user_data = 1;
                         tmp++;
                         pageContext.setAttribute("id_customer", tmp);
                     %>
-                    <s:set name="id" value="%{#tmp ++}"/>
+                    <s:set name="id" value="%{#tmp }"/>
                     //Show info window -------------------------------------------------
                     //listCustomer.get(#id).getmDoiTuong()
-                    var contentString = 
-                        '<div id="content">'+
-                        '<p><b>Khách hàng: <s:property value="<%= tmp %>"/></b><br/>\n\
-                        Mã khách hàng: <s:property value="mMaDoiTuong"/><br/>\n\
-                        Tỉnh thành: <s:property value="mTinhThanh"/><br/>\n\
-                        Địa chỉ: <s:property value="mDiaChi"/><br/>\n\
-                        Điện thoại: <s:property value="mDienThoai"/><br/>\n\
-                        Fax: <s:property value="mFax"/><br/>'
-                        '</p>'
-                        '</div>';
+                    
+                        
                     var infowindow = new google.maps.InfoWindow({
-                        content: contentString
+                        content: contentString[tmp]
                     });
 
                     google.maps.event.addListener(marker, 'click', function() {

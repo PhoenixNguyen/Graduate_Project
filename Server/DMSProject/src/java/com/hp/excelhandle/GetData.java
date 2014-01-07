@@ -95,15 +95,15 @@ public class GetData {
             rows = sheet.getPhysicalNumberOfRows();
 
             int cols = 0; // No of columns (max)
-            int tmp = 0;
+            int temp = 0;
 
             // This trick ensures that we get the data properly even if it doesn't start from first few rows
             for(int i = 0; i < 10 || i < rows; i++) {
                 row = sheet.getRow(i);
                 if(row != null) {
-                    tmp = sheet.getRow(i).getPhysicalNumberOfCells();
-                    if(tmp > cols) 
-                        cols = tmp;
+                    temp = sheet.getRow(i).getPhysicalNumberOfCells();
+                    if(temp > cols) 
+                        cols = temp;
                 }
             }
 
@@ -123,7 +123,42 @@ public class GetData {
                     //Init Customer Object
                     Customer custumer = new Customer();
                     custumer.setmXCoordinates(row.getCell(ConfigFile.X_COORDINATES_COL).getNumericCellValue());
-                    custumer.setmXCoordinates(row.getCell(ConfigFile.Y_COORDINATES_COL).getNumericCellValue());
+                    custumer.setmYCoordinates(row.getCell(ConfigFile.Y_COORDINATES_COL).getNumericCellValue());
+                    
+                    
+                    int tmp = 0;
+                    custumer.setmStt(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmTinhThanh(row.getCell(tmp++).getStringCellValue());
+                    custumer.setmTuyenBanHangThu(row.getCell(tmp++).getStringCellValue());
+                    custumer.setmMaNhanVien(row.getCell(tmp++).getStringCellValue());
+                    
+                    custumer.setmX(row.getCell(tmp++).getStringCellValue());
+                    custumer.setmMaDoiTuong(row.getCell(tmp++).getStringCellValue());
+                    custumer.setmDoiTuong(row.getCell(tmp++).getStringCellValue());
+                    custumer.setmNoDKy(row.getCell(tmp++).getNumericCellValue());
+                    
+                    custumer.setmCoDKy(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmNoTKy(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmTienBan(row.getCell(tmp++).getNumericCellValue());
+                    
+                    custumer.setmCoTKy(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmCKGG(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmNhapLai(row.getCell(tmp++).getNumericCellValue());
+                    
+                    custumer.setmNoCKy(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmCoCKy(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmDoanhThu(row.getCell(tmp++).getNumericCellValue());
+                    
+                    custumer.setmPhanTramNoChiaThu(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmNoToiDa(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmDaiDien(row.getCell(tmp++).getStringCellValue());
+                    
+                    custumer.setmDiaChi(row.getCell(tmp++).getStringCellValue());
+                    custumer.setmDienThoai(row.getCell(tmp++).getStringCellValue());
+                    custumer.setmFax(row.getCell(tmp++).getStringCellValue());
+                    
+                    custumer.setmGhiChu(row.getCell(tmp++).getStringCellValue());
+                    
                     
                     listCustomer.add(custumer);
                     System.out.println("Add Object " + i);
@@ -139,9 +174,9 @@ public class GetData {
     }
     
     public static void main(String [] arg){
-        GetData data= new GetData("database/customer.xls");
+        GetData data= new GetData("web/database/customer.xls");
         Customer cus = data.loadCustomer().get(0);
         
-        System.out.println("Customer 1: X:" + cus.getmXCoordinates() +", Y: "+ cus.getmYCoordinates());
+        System.out.println("Customer 1: "+ cus.getmMaDoiTuong() +" X:" + cus.getmXCoordinates() +", Y: "+ cus.getmYCoordinates());
     }
 }

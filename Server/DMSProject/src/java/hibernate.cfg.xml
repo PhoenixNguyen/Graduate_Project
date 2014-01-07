@@ -10,6 +10,6 @@
         <property name="hibernate.connection.password"></property>
         <property name="show_sql">true</property>
     
-    <!--mapping class="vn.aptech.domain.User" /-->
+        <mapping class="com.hp.excelhandle.Customer" />
   </session-factory>
 </hibernate-configuration>

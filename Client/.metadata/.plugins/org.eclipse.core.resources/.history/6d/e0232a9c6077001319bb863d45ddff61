@@ -24,9 +24,6 @@ public class MainActivity extends Activity implements LocationListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        bt = (Button)this.findViewById(R.id.button1);
         bt.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -35,7 +32,7 @@ public class MainActivity extends Activity implements LocationListener{
 				
 			}
 		});
-        
+        setContentView(R.layout.activity_main);
         
         // Getting LocationManager object
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);        

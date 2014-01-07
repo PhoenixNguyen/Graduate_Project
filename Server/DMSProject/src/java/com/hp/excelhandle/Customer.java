@@ -11,7 +11,7 @@ package com.hp.excelhandle;
  * @author HP
  */
 public class Customer extends Object{
-    private int mStt;
+    private double mStt;
     private String mTinhThanh;
     private String mTuyenBanHangThu;
     private String mMaNhanVien;
@@ -28,7 +28,7 @@ public class Customer extends Object{
     private double mNoCKy;
     private double mCoCKy;
     private double mDoanhThu;
-    private int mPhanTramNoChiaThu;
+    private double mPhanTramNoChiaThu;
     private double mNoToiDa;
     private String mDaiDien;
     private String mDiaChi;
@@ -39,11 +39,11 @@ public class Customer extends Object{
     private double mXCoordinates;
     private double mYCoordinates;
 
-    public int getmStt() {
+    public double getmStt() {
         return mStt;
     }
 
-    public void setmStt(int mStt) {
+    public void setmStt(double mStt) {
         this.mStt = mStt;
     }
 
@@ -175,11 +175,11 @@ public class Customer extends Object{
         this.mDoanhThu = mDoanhThu;
     }
 
-    public int getmPhanTramNoChiaThu() {
+    public double getmPhanTramNoChiaThu() {
         return mPhanTramNoChiaThu;
     }
 
-    public void setmPhanTramNoChiaThu(int mPhanTramNoChiaThu) {
+    public void setmPhanTramNoChiaThu(double mPhanTramNoChiaThu) {
         this.mPhanTramNoChiaThu = mPhanTramNoChiaThu;
     }
 

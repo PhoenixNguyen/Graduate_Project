@@ -24,20 +24,49 @@
             var arr = new Array();
             function initialize() {
                 var i;
-                var Customers = [
-                    <s:iterator value="listCustomer" status="status">
+                var Locations = [
                     {
-                        mXCoordinates: <s:property value="mXCoordinates"/>,
-                        mYCoordinates: <s:property value="mYCoordinates"/>,
-                        mMaDoiTuong: '<s:property value="mMaDoiTuong:"/>'
-                        
+                        mXCoordinates: 48.856614,
+                        mYCoordinates: 2.3522219000000177,
+                        mMaDoiTuong: 'Paris',
+                        mDoiTuong: '25.5',
+                        mTinhThanh: 'Non-Commodity',
+                        mDiaChi: 'Paris',
+                        mDienThoai: 'Paris',
+                        mFax: 'Paris'
                     },
-                    </s:iterator>
+                    {
+                        lat: 55.7512419,
+                        lon: 37.6184217,
+                        address: 'Moscow',
+                        gval: '11.5',
+                        aType: 'Non-Commodity',
+                        title: 'Moscow',
+                        descr: 'Moscow Airport'
+                    },
+                    {
+                        lat: -9.481553000000002,
+                        lon: 147.190242,
+                        address: 'Port Moresby',
+                        gval: '1',
+                        aType: 'Oil',
+                        title: 'Papua New Guinea',
+                        descr: 'Papua New Guinea 123123123'
+                    },
+                    {
+                        lat: 20.5200,
+                        lon: 77.7500,
+                        address: 'Indore',
+                        gval: '1',
+                        aType: 'Oil',
+                        title: 'Indore, India',
+                        descr: 'Airport India'
+                    }
                 ];
 
                 var myOptions = {
-                    zoom: 16,
-                    center: new google.maps.LatLng(21.0286380, 105.7806179),
+                    zoom: 2,
+                    center: new google.maps.LatLng(51.9000, 8.4731),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
@@ -46,20 +75,8 @@
                 var infowindow = new google.maps.InfoWindow({
                     content: ''
                 });
-                
-                var contentString = [
-                        <s:iterator value="listCustomer" status="status">
-                                'Khách hàng: <s:property value="mDoiTuong"/>' +'<br/>'+ 
-                                'Mã khách hàng: <s:property value="mMaDoiTuong"/>' +'<br/>'+
-                                'Tỉnh thành: <s:property value="mTinhThanh"/>'+'<br/>'+
-                                'Địa chỉ: <s:property value="mDiaChi"/>' +'<br/>'+
-                                'Điện thoại: <s:property value="mDienThoai"/>' +'<br/>'+
-                                'Fax: <s:property value="mFax"/>' +'<br/>',
 
-                    </s:iterator>       
-                    ];
-                    
-                for (i = 0; i < Customers.length; i++) {
+                for (i = 0; i < Locations.length; i++) {
                     size = 15;
                     var img = new google.maps.MarkerImage('images/marker.jpg',
                             new google.maps.Size(size, 2 * size),
@@ -69,12 +86,12 @@
 
                     var marker = new google.maps.Marker({
                         map: map,
-                        title: Customers[i].title,
-                        position: new google.maps.LatLng(Customers[i].mXCoordinates, Customers[i].mYCoordinates),
+                        title: Locations[i].title,
+                        position: new google.maps.LatLng(Locations[i].lat, Locations[i].lon),
                         icon: img
                     });
-                    
-                    bindInfoWindow(marker, map, infowindow, contentString[i], Customers[i].mMaDoiTuong);
+
+                    bindInfoWindow(marker, map, infowindow, "<p>" + Locations[i].descr + "</p>", Locations[i].title);
 
                 }
 

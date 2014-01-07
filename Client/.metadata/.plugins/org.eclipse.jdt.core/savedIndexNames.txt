@@ -1,1 +1,0 @@
-INDEX VERSION 1.126+F:\hoctap\hoc tap ky 10\Graduate_Project\Client\.metadata\.plugins\org.eclipse.jdt.core

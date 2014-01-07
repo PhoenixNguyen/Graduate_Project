@@ -82,7 +82,7 @@
                 %>
                 <s:set name="tmp" value="0"/>
                 for (var i = 0; i < locations.length; i++) {
-                    <s:iterator value="listCustomer" status="stat">
+                    
                     var beach = locations[i];
                     var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
                     var marker = new google.maps.Marker({
@@ -101,12 +101,12 @@
                         tmp++;
                         pageContext.setAttribute("id_customer", tmp);
                     %>
-                    <s:set name="id" value="%{#tmp++}"/>
+                    <s:set name="id" value="%{#tmp ++}"/>
                     //Show info window -------------------------------------------------
                     //listCustomer.get(#id).getmDoiTuong()
                     var contentString = 
                         '<div id="content">'+
-                        '<p><b>Khách hàng: <s:property value="mDoiTuong"/></b><br/>\n\
+                        '<p><b>Khách hàng: <s:property value="<%= tmp %>"/></b><br/>\n\
                         Mã khách hàng: <s:property value="mMaDoiTuong"/><br/>\n\
                         Tỉnh thành: <s:property value="mTinhThanh"/><br/>\n\
                         Địa chỉ: <s:property value="mDiaChi"/><br/>\n\
@@ -124,7 +124,7 @@
                         
                     });
                     //------------------------------------------------------------------
-                    </s:iterator>
+                    
                 }
             }
             

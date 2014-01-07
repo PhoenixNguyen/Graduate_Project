@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+    
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
@@ -10,30 +10,31 @@
         android:layout_centerHorizontal="true"
         android:text="@string/str_tv_location"
         android:textStyle="bold" />
-
+    
     <TextView
         android:id="@+id/tv_longitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_location"
         android:layout_centerHorizontal="true" />
-
+    
     <TextView
         android:id="@+id/tv_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_longitude"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_latitude"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp" 
-        android:text="@string/reset"
-        android:onClick="UpdateLocation"
-        />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_latitude"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp" 
+            android:text="@string/reset"
+           
+            />
+        	
 
 </RelativeLayout>

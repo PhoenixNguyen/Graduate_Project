@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+F:\hoctap\hoc tap ky 10\Graduate_Project\Client\.metadata\.plugins\org.eclipse.jdt.core
+2112370923.index
+487592060.index

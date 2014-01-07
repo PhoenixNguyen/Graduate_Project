@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 			@Override
 			public void onClick(View v) {
-				
+				tvLongitude.setText(text)
 			}
 		});
 		setContentView(R.layout.activity_main);

@@ -4,3 +4,5 @@
 /Server/DMSProject/struts-2/lib/
 /Server/DMSProject/poi-3.9/lib/
 /Client/.metadata/
+/Client/DMSProject/bin/*
+/Client/DMSProject/project.properties

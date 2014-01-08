@@ -20,6 +20,9 @@
 
         <link type="text/css" rel="stylesheet" href="css/map/view-map.css"/>
 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/view-data-script.js"></script>
         <script type="text/javascript" src="js/view-map.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
         </script>
@@ -96,6 +99,15 @@
                 });
             }
             google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+        
+        <script>
+            $(document).ready(function(){
+                $(".category-wrapper").click(function(){
+                  $(".hide").fadeToggle();
+
+                });
+              });
         </script>
         <script type="text/template" id="template-pois">
             <ul class="left-poi-list">
@@ -202,10 +214,11 @@
             <!--SEARCH-->
 
             <div id="header" class="clearfix">
-                <h1 class="logo"><a href="" class="hide-text" target="_blank">DMS</a> 
+                <h1 class="logo"><a href="http://localhost:8080/DMSProject" class="hide-text" target="_blank">DMS</a> 
                     <span>
                         Quản lý khách hàng			
-                    </span></h1>
+                    </span>
+                </h1>
 
                 <div class="right-app">
                     <a href="" class="android-app" target="_blank"></a>
@@ -227,23 +240,23 @@
                             </li>
 
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
-                            <li class="category-wrapper"><a href="#">Tất cả địa điểm</a>
+                            <li class="category-wrapper"><a href="#">Tỉnh thành</a>
 
                                 <div class="hide"><span class="arrow-up"></span>
                                     <div class="combo-wrapper wrapper-poitype">
-                                        <select name="poitype" class="select-box hide">
-                                            <option value="" selected="selected">Tất cả địa điểm</option>
-                                            <option value="1">Nhà hàng</option>
-                                            <option value="1">Cuộc sống về đêm</option>
+<!--                                        <select name="poitype" class="select-box hide">
+                                            <option value="" selected="selected">Tỉnh thành</option>
+                                            <option value="1">Hà Nội</option>
+                                            <option value="1">Hải Phòng</option>
 
-                                        </select>
+                                        </select>-->
                                         <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Tất cả địa điểm">
+                                        <input type="text" placeholder="Tất cả khách hàng">
                                         <div class="combo-values poitype">
                                             <ul>
-                                                <li data-index="0" class="selected">Tất cả địa điểm</li>
-                                                <li data-index="1">Nhà hàng</li>
-                                                <li data-index="2">Cuộc sống về đêm</li>
+                                                <li data-index="0" class="selected">Tỉnh thành</li>
+                                                <li data-index="1">Hà Nội</li>
+                                                <li data-index="2">Hải Phòng</li>
 
                                             </ul>
                                         </div>
@@ -251,21 +264,6 @@
                                 </div>
                             </li>
 
-                            <li class="advance-text "> |</li>
-                            <li class="category-wrapper "><a href="#">
-                                    Hà Nội									</a>
-
-                                <div class="hide"><span class="arrow-up"></span>
-                                    <div class="combo-wrapper wrapper-citys"><select name="citys" class="select-box min-width-140 hide">
-                                            <option value="20.925111944444000%2C105.727879722220000%2C21.092853888889000%2C105.916919722220000" selected="selected">
-                                                Hà Nội									</option>
-
-                                        </select><a href="#" class="combo-show"><span>show</span></a><input type="text" placeholder="Hà Nội"><div class="combo-values citys"><ul><li data-index="0" class="selected">
-                                                    Hà Nội									</li>
-
-                                            </ul></div></div>
-                                </div>
-                            </li>
                         </ul>
                     </form>
                 </div>
@@ -273,7 +271,7 @@
 
             <!--FINISH SEARCH-->
         </div>
-        <div id="googleMap" style="width:1000px;height:480px;"></div>
+        <div id="googleMap" style="width:1000px;height:510px;"></div>
 
         <div id="info" >
 
@@ -288,7 +286,7 @@
                                     <div class="poi-photo">
 
                                         <a href="/poi/details/9364987525237228693">
-                                            <img src="http://poipic.coccoc.vn/poi/previews/p1_f650dcec-fa55-4955-a85c-2923dfb96f14.jpg" data-original="http://poipic.coccoc.vn/poi/previews/p1_f650dcec-fa55-4955-a85c-2923dfb96f14.jpg" width="64" height="64">
+                                            <img src="pulpit.jpg" data-original="pulpit.jpg" width="64" height="64">
                                         </a>
 
                                     </div>
@@ -303,6 +301,7 @@
                                     </div>
                                 </div>
                             </li>
+                            
 
                         </ul>
                         <div id="left-content-pagination">
@@ -317,9 +316,11 @@
                     </div>
                     <div class="article-share">
                         <span>Chia sẻ:</span>
-                        <a target="_blank" class="facebook hide-text" rel="facebook" href="http://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fnhanha.coccoc.com%2F">Facebook</a>
-                        <a target="_blank" class="twitter hide-text" rel="twitter" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fnhanha.coccoc.com%2F&amp;source=tweetbutton&amp;text=Nh%C3%A0+Nh%C3%A0+c%E1%BB%A7a+C%E1%BB%91c+C%E1%BB%91c+l%C3%A0+d%E1%BB%8Bch+v%E1%BB%A5+gi%C3%BAp+b%E1%BA%A1n+t%C3%ACm+ki%E1%BA%BFm+v%C3%A0+kh%C3%A1m+ph%C3%A1+c%C3%A1c+%C4%91%E1%BB%8Ba+%C4%91i%E1%BB%83m+t%E1%BA%A1i+Vi%E1%BB%87t+Nam+nh%C6%B0+nh%C3%A0+h%C3%A0ng%2C+qu%C3%A1n+caf%C3%A9%2C...&amp;url=http%3A%2F%2Fnhanha.coccoc.com%2F">Twitter</a>
-                        <a target="_blank" class="zingme hide-text" rel="zingme" href="http://link.apps.zing.vn/pro/view/conn/share?u=http%3A%2F%2Fnhanha.coccoc.com%2F">Zing me</a>
+                        <a target="_blank" class="facebook hide-text" rel="facebook" href="">Facebook</a>
+                        <a target="_blank" class="twitter hide-text" rel="twitter" href="">Twitter</a>
+                        <a target="_blank" class="zingme hide-text" rel="zingme" href="">Zing me</a>
+                        
+                        
                     </div>
                 </div>
             </div>

@@ -17,6 +17,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View map detail</title>
+        
+        <link type="text/css" rel="stylesheet" href="css/map/view-map.css"/>
+        
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
         </script>
 
@@ -36,7 +39,7 @@
                 ];
 
                 var myOptions = {
-                    zoom: 16,
+                    zoom: 14,
                     center: new google.maps.LatLng(21.0286380, 105.7806179),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
@@ -49,12 +52,13 @@
                 
                 var contentString = [
                         <s:iterator value="listCustomer" status="status">
-                                'Khách hàng: <s:property value="mDoiTuong"/>' +'<br/>'+ 
+                                '<div id="boxShow"><img class= "ImageWrap" border="0" src="images/pulpit.jpg" alt="Pulpit rock" >'+
+                                '<p class= "TextWrap"><b>Khách hàng: <s:property value="mDoiTuong"/></b>' +'<br/><br/>'+ 
                                 'Mã khách hàng: <s:property value="mMaDoiTuong"/>' +'<br/>'+
                                 'Tỉnh thành: <s:property value="mTinhThanh"/>'+'<br/>'+
                                 'Địa chỉ: <s:property value="mDiaChi"/>' +'<br/>'+
                                 'Điện thoại: <s:property value="mDienThoai"/>' +'<br/>'+
-                                'Fax: <s:property value="mFax"/>' +'<br/>',
+                                'Fax: <s:property value="mFax"/>' +'<br/></p></div>',
 
                     </s:iterator>       
                     ];
@@ -81,13 +85,13 @@
             }
 
             function bindInfoWindow(marker, map, infowindow, html, Ltitle) {
-                google.maps.event.addListener(marker, 'mouseover', function() {
+                google.maps.event.addListener(marker, 'click', function() {
                     infowindow.setContent(html);
                     infowindow.open(map, marker);
 
                 });
                 google.maps.event.addListener(marker, 'mouseout', function() {
-                    infowindow.close();
+                    //infowindow.close();
 
                 });
             }
@@ -96,17 +100,24 @@
     </head>
 
     <body>
-        <div id="googleMap" style="width:1000px;height:580px;"></div>
+        <div id="head" style="height:60px;">
+            <h1>Bản đồ thông tin khách hàng.</h1>
+        </div>
+        <div id="googleMap" style="width:1000px;height:480px;"></div>
 
-        <p>
-            <s:iterator value="listCustomer">
-                [<s:property value="mDoiTuong"/>, <s:property value="mXCoordinates"/>, <s:property value="mYCoordinates"/>, 4], <br/>
+    <frame name = "frame_name1" src = "URL1"></frame>
+        <div id="info" >
+            <s:iterator value="listCustomer" status="status">
+                        <div id="infoShow"><img class= "infoImageWrap" border="0" src="images/pulpit.jpg" alt="Pulpit rock" >
+                        <p class= "infoTextWrap"><b>Khách hàng: <s:property value="mDoiTuong"/></b> <br/><br/>
+                        Mã khách hàng: <s:property value="mMaDoiTuong"/><br/>
+                        Tỉnh thành: <s:property value="mTinhThanh"/><br/>
+                        Địa chỉ: <s:property value="mDiaChi"/><br/>
+                        Điện thoại: <s:property value="mDienThoai"/><br/>
+                        Fax: <s:property value="mFax"/><br/></p></div>
 
-            </s:iterator>
-
-            <br/>
-
-            <s:property value="%{#attr.id_customer}"/>
-        </p>
+            </s:iterator>  
+        </div>
+        
     </body>
 </html>

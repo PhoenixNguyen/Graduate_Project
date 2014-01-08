@@ -1,0 +1,67 @@
+/*IN MAP*/
+#boxShow{
+    width: 440px;
+    height: 220px;
+}
+
+.TextWrap{
+    float: right;
+    margin: 10px;
+    
+    width: 200px;
+    height: 200px;
+}
+
+.ImageWrap{
+    float: left;
+    margin: 10px;
+    margin-right: 10px;
+    
+    width: 200px;
+    height: 200px;
+}
+
+/*HEAD PAGE*/
+#head{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/*LEFT PAGE - INFOMATION */
+#info{
+    float: left;
+    margin-right: 10px;
+    
+    
+    width:300px;
+    height:480px;
+    bottom: 10px;
+    display: block;
+}
+
+.infoTextWrap{
+    float: right;
+    margin: 10px;
+    
+    width: 150px;
+    height: 100px;
+}
+
+.infoImageWrap{
+    float: left;
+    margin: 10px;
+    margin-right: 10px;
+    
+    width: 100px;
+    height: 100px;
+}
+
+/*RIGHT PAGE - GOOFLE MAP*/
+#googleMap{
+    float: right;
+    margin: 10px;
+    
+    height:auto;
+    bottom: 10px;
+}

@@ -18,12 +18,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View map detail</title>
 
-        <link type="text/css" rel="stylesheet" href="css/map/view-map.css"/>
+        <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/view-data-script.js"></script>
-        <script type="text/javascript" src="js/view-map.js"></script>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/view-data-script.js"></script>
+        <script type="text/javascript" src="../js/view-map.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
         </script>
 
@@ -56,7 +56,7 @@
 
                 var contentString = [
             <s:iterator value="listCustomer" status="status">
-                    '<div id="boxShow"><img class= "ImageWrap" border="0" src="images/pulpit.jpg" alt="Pulpit rock" >' +
+                    '<div id="boxShow"><img class= "ImageWrap" border="0" src="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" alt="Pulpit rock" >' +
                             '<p class= "TextWrap"><b>Khách hàng: <s:property value="mDoiTuong"/></b>' + '<br/><br/>' +
                             'Mã khách hàng: <s:property value="mMaDoiTuong"/>' + '<br/>' +
                             'Tỉnh thành: <s:property value="mTinhThanh"/>' + '<br/>' +
@@ -68,7 +68,7 @@
 
                 for (i = 0; i < Customers.length; i++) {
                     size = 15;
-                    var img = new google.maps.MarkerImage('images/marker.jpg',
+                    var img = new google.maps.MarkerImage('../images/marker.jpg',
                             new google.maps.Size(size, 2 * size),
                             new google.maps.Point(0, 0),
                             new google.maps.Point(size / 2, size / 2)
@@ -214,7 +214,7 @@
             <!--SEARCH-->
 
             <div id="header" class="clearfix">
-                <h1 class="logo"><a href="http://localhost:8080/DMSProject" class="hide-text" target="">DMS</a> 
+                <h1 class="logo"><a href="" class="hide-text" target="">DMS</a> 
                     <span>
                         Quản lý khách hàng			
                     </span>
@@ -291,8 +291,8 @@
                                 <div class="poi-content">
                                     <div class="poi-photo">
 
-                                        <a href="/poi/details/9364987525237228693">
-                                            <img src="images/pulpit.jpg" data-original="images/pulpit.jpg" width="64" height="64">
+                                        <a href="">
+                                            <img src="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" data-original="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" width="64" height="64">
                                         </a>
 
                                     </div>

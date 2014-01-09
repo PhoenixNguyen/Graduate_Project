@@ -14,6 +14,6 @@
     </head>
     <body>
         <h1>Hello World!</h1> <br/>
-        <a href="showMap?page=0">Show map</a>
+        <a href="map/showMap?page=0">Show map</a>
     </body>
 </html>

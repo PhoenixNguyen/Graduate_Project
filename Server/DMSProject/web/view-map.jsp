@@ -214,7 +214,7 @@
             <!--SEARCH-->
 
             <div id="header" class="clearfix">
-                <h1 class="logo"><a href="http://localhost:8080/DMSProject" class="hide-text" target="_blank">DMS</a> 
+                <h1 class="logo"><a href="http://localhost:8080/DMSProject" class="hide-text" target="">DMS</a> 
                     <span>
                         Quản lý khách hàng			
                     </span>
@@ -280,37 +280,47 @@
                 <div class="scroll-left-panel">
                     <div id="left-panel-content">
                         <ul class="left-poi-list">
-
+                    
+                            <%
+                                int page2 = Integer.parseInt(request.getParameter("page")) * 10;
+                                pageContext.setAttribute("first", page2);
+                            %>
+                            <s:subset source="listCustomer" start="%{#attr.first}"  count="10">
+                            <s:iterator  status="status" >
                             <li data-poi-id="18299">
                                 <div class="poi-content">
                                     <div class="poi-photo">
 
                                         <a href="/poi/details/9364987525237228693">
-                                            <img src="pulpit.jpg" data-original="pulpit.jpg" width="64" height="64">
+                                            <img src="images/pulpit.jpg" data-original="images/pulpit.jpg" width="64" height="64">
                                         </a>
 
                                     </div>
                                     <h2 class="poi-title">
-                                        <a href="/poi/details/9364987525237228693">Cafe Lê La</a></h2>
+                                        <a href=""><s:property value="mDoiTuong"/></a></h2>
                                     <div class="poi-infos">
 
-                                        <strong>Địa chỉ:</strong> 134, Hồng Mai, Q. Hai Bà Trưng, Hà Nội
+                                        <strong>Địa chỉ:</strong> <s:property value="mDiaChi"/>
 
-                                        <br><strong>Điện thoại:</strong> (84-91) 7 759 194
+                                        <br><strong>Điện thoại:</strong> <s:property value="mDienThoai"/>
 
                                     </div>
                                 </div>
                             </li>
-                            
+                            </s:iterator>
+                            </s:subset>
 
                         </ul>
                         <div id="left-content-pagination">
 
                             <ul class="pagination-block">
-                                <li data-page="0" class="goto-page active"><a href="#">1</a></li>
-                                <li data-page="1" class="goto-page "><a href="#">2</a></li>
-                                <li data-page="1" class="goto-page"><a href="#">&gt;</a></li>
-
+                                <li data-page="1" class="goto-page"><a href="?page=<%=Integer.parseInt(request.getParameter("page")) -1 %>">&lt;</a></li>
+                                <s:iterator  value="listCustomer" status="status" >
+                                <s:if test="#status.index < (listCustomer.size() -1)/10+1">
+                                <li data-page="0" class="goto-page active"><a href="?page=<s:property value="#status.index"/>"><s:property value="#status.index"/></a></li>
+                                </s:if>
+                                </s:iterator>
+                                <li data-page="1" class="goto-page"><a href="?page=<%=Integer.parseInt(request.getParameter("page")) +1 %>">&gt;</a></li>
                             </ul>
                         </div>
                     </div>

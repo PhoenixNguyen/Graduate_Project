@@ -13,5 +13,6 @@
         <property name="show_sql">true</property>
     
         <mapping class="com.hp.excelhandle.Customer" />
+        <mapping class="com.hp.domain.RoadManagement" />
   </session-factory>
 </hibernate-configuration>

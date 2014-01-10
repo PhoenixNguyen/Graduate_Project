@@ -33,20 +33,20 @@
             var arr = new Array();
             function initialize() {
                 var i;
-                var Customers = [
-            <s:iterator value="listCustomer" status="status">
+                var Points = [
+            <s:iterator value="listRoad" status="status">
                     {
-                        mXCoordinates: <s:property value="mXCoordinates"/>,
-                                mYCoordinates: <s:property value="mYCoordinates"/>,
-                        mMaDoiTuong: '<s:property value="mMaDoiTuong:"/>'
+                        mXCoordinates: <s:property value="mViDo"/>,
+                                mYCoordinates: <s:property value="mKinhdo"/>,
+                        mMaDoiTuong: '<s:property value="mThoiGian"/>'
 
                     },
             </s:iterator>
                 ];
 
                 var myOptions = {
-                    zoom: 14,
-                    center: new google.maps.LatLng(21.0286380, 105.7806179),
+                    zoom: 13,
+                    center: new google.maps.LatLng(<s:property value="listRoad.get(0).getmViDo()"/>, <s:property value="listRoad.get(0).getmKinhdo()"/>),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
@@ -57,18 +57,12 @@
                 });
 
                 var contentString = [
-            <s:iterator value="listCustomer" status="status">
-                    '<div id="boxShow"><img class= "ImageWrap" border="0" src="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" alt="Pulpit rock" >' +
-                            '<p class= "TextWrap"><b>Khách hàng: <s:property value="mDoiTuong"/></b>' + '<br/><br/>' +
-                            'Mã khách hàng: <s:property value="mMaDoiTuong"/>' + '<br/>' +
-                            'Tỉnh thành: <s:property value="mTinhThanh"/>' + '<br/>' +
-                            'Địa chỉ: <s:property value="mDiaChi"/>' + '<br/>' +
-                            'Điện thoại: <s:property value="mDienThoai"/>' + '<br/>' +
-                            'Fax: <s:property value="mFax"/>' + '<br/></p></div>',
+            <s:iterator value="listRoad" status="status">
+                    'Thời gian:<br/><s:property value="mThoiGian"/>',
             </s:iterator>
                 ];
 
-                for (i = 0; i < Customers.length; i++) {
+                for (i = 0; i < Points.length; i++) {
                     size = 15;
                     var img = new google.maps.MarkerImage('../images/marker.jpg',
                             new google.maps.Size(size, 2 * size),
@@ -78,14 +72,30 @@
 
                     var marker = new google.maps.Marker({
                         map: map,
-                        title: Customers[i].title,
-                        position: new google.maps.LatLng(Customers[i].mXCoordinates, Customers[i].mYCoordinates),
+                        title: Points[i].title,
+                        position: new google.maps.LatLng(Points[i].mXCoordinates, Points[i].mYCoordinates),
                         icon: img
                     });
 
-                    bindInfoWindow(marker, map, infowindow, contentString[i], Customers[i].mMaDoiTuong);
+                    bindInfoWindow(marker, map, infowindow, contentString[i], Points[i].mMaDoiTuong);
 
                 }
+                
+                //Polyline
+                var flightPlanCoordinates = [
+                    <s:iterator value="listRoad" status="status">
+                    new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
+                    </s:iterator>
+                  ];
+                  var flightPath = new google.maps.Polyline({
+                    path: flightPlanCoordinates,
+                    geodesic: true,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                  });
+
+                  flightPath.setMap(map);
 
             }
 
@@ -137,7 +147,7 @@
 
         <div id="wrapper" class="has-topbar">
             <div id="header" class="clearfix">
-                <h1 class="logo"><a href="" class="hide-text" target="">Trang chủ</a> <span>
+                <h1 class="logo"><a href="http://localhost:8080/DMSProject" class="hide-text" target="">Trang chủ</a> <span>
                         <a href="/">Thông tin khách hàng</a>			</span></h1>
 
                 <div class="right-app">
@@ -312,7 +322,7 @@
                 } 
                 %]
             </script>
-            <div id="container" class="poi-detail-page clearfix" data-id="542591" data-hash="6896202108404922949" data-fe-category="1" data-coordinates="21.03063357,105.85507392996" data-icon="/themes/bootstrap/img/icon_poi_color/icon_poi_new_46x66/1.png">
+            <div id="container" class="poi-detail-page clearfix" data-id="542591" data-hash="6896202108404922949" data-fe-category="1" data-coordinates="21.03063357,105.85507392996" data-icon="2.jpg">
                 <div class="left-content">
                     <div class="article-top">
                         <div id="googleMap" style="width:640px;height:340px;"></div>
@@ -331,7 +341,7 @@
                                     (84-4) 39 345 657; (84-4) 39 343 513; (84-98) 9 129 440                        </p>
                                 <p><strong>Email:</strong>
                                     khazana@fpt.vn                        </p>
-                                <p class="poi-website"><strong>Website:</strong> <a target="_blank" href="http://www.khazaana.vn">
+                                <p class="poi-website"><strong>Website:</strong> <a target="_blank" href="">
                                         www.khazaana.vn                            </a></p>
                             </div>
                         </div>
@@ -361,7 +371,7 @@
                         </div>-->
 
                     </div>
-                    <div class="article-photo"><img src="http://poipic.coccoc.vn/poi/previews/20130306/p1_1362545341779474ca170d4b61bd11738cba5ed17a03d4.jpg" style="margin-top: -44.5px;">
+                    <div class="article-photo"><img src="../customer/120HB/1.jpg" style="margin-top: -44.5px;">
                     </div>
 <!--                    <div class="article-bottom">
                         <ul class="tab-panel clearfix">
@@ -398,15 +408,18 @@
                         <h3>Danh sách ảnh tại nơi khách hàng:</h3>
                     </div>
                     <ul class="pois-list show-all">
-
+                        
+                        
+                                <s:iterator status="status" value="(5).{ #this }" >
                         <li data-poi-id="2275">
                             <div class="poi-content">
                                 <div class="poi-photo">
-                                    <img src="../images/pulpit.jpg" data-original="../images/pulpit.jpg" width="64" height="64" alt="Pane e Vino">
+                                    <img src="../customer/<s:property value="listRoad.get(0).getmMaKhachHang()"/>/<s:property value="#status.index+1"/>.jpg" 
+                                         data-original="../customer/<s:property value="listRoad.get(0).getmMaKhachHang()"/>/<s:property value="#status.index+1"/>.jpg" width="64" height="64" alt="Pane e Vino">
                                 </div>
-                                <h2 class="poi-title"><a href="/poi/details/17924613257549151258">Pane e Vino</a></h2>
+                                <h2 class="poi-title"><a href="/poi/details/17924613257549151258">Ảnh <s:property value="#status.index+1"/></a></h2>
                                 <div class="poi-infos">
-                                    <strong>Địa chỉ:</strong> 3, Nguyễn Khắc Cần, Q. Hoàn Kiếm, Hà Nội
+                                    <strong>Tiêu đề: 120 Hàng Buồm
                                     <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper">
                                             <div class="rate-value" style="width: 77.8%">
                                         
@@ -418,6 +431,7 @@
                                 </div>
                             </div>
                         </li>
+                            </s:iterator>
 
 
 

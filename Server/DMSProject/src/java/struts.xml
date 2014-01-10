@@ -10,6 +10,10 @@
         <action name="showMap" method="showMap" class="com.hp.action.ShowMapAction">
             <result name="success">view-map.jsp</result>
         </action>
+        
+        <action name="customer-detail" method="getRoad" class="com.hp.action.ShowMapAction">
+            <result name="success">view-map-detail.jsp</result>
+        </action>
 
     </package>
     

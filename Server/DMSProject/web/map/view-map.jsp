@@ -291,13 +291,13 @@
                                 <div class="poi-content">
                                     <div class="poi-photo">
 
-                                        <a href="">
+                                        <a href="customer-detail?customer=<s:property value="mMaDoiTuong"/>">
                                             <img src="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" data-original="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" width="64" height="64">
                                         </a>
 
                                     </div>
                                     <h2 class="poi-title">
-                                        <a href=""><s:property value="mDoiTuong"/></a></h2>
+                                        <a href="customer-detail?customer=<s:property value="mMaDoiTuong"/>"><s:property value="mDoiTuong"/></a></h2>
                                     <div class="poi-infos">
 
                                         <strong>Địa chỉ:</strong> <s:property value="mDiaChi"/>

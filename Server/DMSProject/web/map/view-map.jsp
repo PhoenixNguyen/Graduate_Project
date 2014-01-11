@@ -109,89 +109,7 @@
                 });
               });
         </script>
-        <script type="text/template" id="template-pois">
-            <ul class="left-poi-list">
-            [% for (var i = start_index; i < end_index; ++i) {
-            var poi = pois[i]
-            %]
-            <li data-poi-id="[%= poi.id %]">
-            <div class="poi-content">
-            <div class="poi-photo">
-            [% if (poi.img) { %]
-            <a href="/poi/details/[%= poi.hash %]">
-            <img src="[%= poi.img %]" data-original="[%= poi.img %]" width="64" height="64" />
-            </a>
-            [% } %]
-            </div>
-            <h2 class="poi-title">
-            <a href="/poi/details/[%= poi.hash %]">[%= poi.title %]</a></h2>
-            <div class="poi-infos">
-            [% if (poi.address) { %]
-            <strong>Địa chỉ:</strong> [%= poi.address %]
-            [% } %]
-
-            [% if (poi.email) { %]
-            <br /><strong>Email:</strong> [%= poi.email %]
-            [% } %]
-
-            [% if (poi.phone) { %]
-            <br /><strong>Điện thoại:</strong> [%= poi.phone %]
-            [% } %]
-
-            [% if (poi.url) { %]
-            <br /><strong>Web site:</strong> <a href="http://[%= poi.url %]" target="_blank">[%= poi.url %]</a>
-            [% } %]
-            [% if (poi.rating) {
-            rate = (poi.rating / 5) * 100;
-            %]
-            <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper"><div class="rate-value" style="width: [%=rate%]%"></div></div></div>
-            [% } %]
-
-            [% if (poi.fe_category==18 ||  poi.fe_category ==19) {							
-            %]
-            <div class="poi-src">* Dữ liệu do Thành Đoàn Hà Nội cung cấp</div>
-            [% } %]
-            </div>
-            </div>
-            </li>
-            [% } %]
-            </ul>
-            <div id="left-content-pagination">
-            [% 
-            var halfPPB = Math.floor(PAGES_PER_BLOCK / 2);
-            var midPPB = halfPPB + PAGES_PER_BLOCK % 2;
-            var pageBlockStart = Math.max(Math.min(pageNumber - halfPPB, numberOfPages - PAGES_PER_BLOCK), 1);
-            var pageBlockEnd = Math.min(Math.max(pageNumber + midPPB, PAGES_PER_BLOCK + 1), numberOfPages);
-            %]
-            <ul class="pagination-block">
-            [% if (numberOfPages > 1) { %]
-            [% if (pageNumber > 0) { %]
-            <li data-page="[%= pageNumber - 1 %]" class="goto-page"><a href="#">&lt;</a></li>
-            [% } %]
-
-            <li data-page="0" class="goto-page [%= pageNumber === 0 ? 'active' : '' %]"><a href="#">1</a></li>
-
-            [% if (pageNumber > midPPB) { %]
-            <li class="more-page"><span>...</span></li>
-            [% } %]
-
-            [% for (var page = pageBlockStart; page < pageBlockEnd; ++page) { %]
-            <li data-page="[%= page %]" class="goto-page [%= pageNumber === page ? 'active' : '' %]"><a href="#">[%= page + 1 %]</a></li>
-            [% } %]
-
-            [% if (numberOfPages > pageBlockEnd) { %]
-            <li class="more-page"><span>...</span></li>
-            [% } %]
-
-            [% if (pageNumber < numberOfPages - 1) { %]
-            <li data-page="[%= pageNumber + 1 %]" class="goto-page"><a href="#">&gt;</a></li>
-            [% } %]
-            [% } %]
-            </ul>
-            </div>
-        </script>
-
-
+        
     </head>
 
     <body>
@@ -240,7 +158,7 @@
                             </li>
 
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
-                            <li class="category-wrapper"><a href="#">Tỉnh thành</a>
+                            <li class="category-wrapper"><a href="#">Nhân viên</a>
 
                                 <div class="hide"><span class="arrow-up"></span>
                                     <div class="combo-wrapper wrapper-poitype">
@@ -251,12 +169,12 @@
 
                                         </select>-->
                                         <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Tất cả khách hàng">
+                                        <input type="text" placeholder="Mã nhân viên">
                                         <div class="combo-values poitype">
                                             <ul>
-                                                <li data-index="0" class="selected">Tỉnh thành</li>
-                                                <li data-index="1">Hà Nội</li>
-                                                <li data-index="2">Hải Phòng</li>
+                                                <li data-index="0" class="selected">Nhân viên</li>
+                                                <li data-index="1">Nhân viên 1</li>
+                                                <li data-index="2">Nhân viên 1</li>
 
                                             </ul>
                                         </div>

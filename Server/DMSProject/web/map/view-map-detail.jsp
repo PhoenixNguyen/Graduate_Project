@@ -124,11 +124,6 @@
     </head>
     <body>
 
-
-        <noscript>
-            &lt;img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=/MRDh1aAod00OU" style="display:none"
-            height="1" width="1" alt="" /&gt;
-        </noscript>
         <!-- End Alexa Certify Javascript -->
         <div id="topbar-placeholder">
             <style type="text/css">#topbar-widget,#topbar-widget li,#topbar-widget a{line-height:28px;height:28px}#topbar-widget[hidden]{display:none}#topbar-widget{font:12px Arial,Helvetica,sans-serif;position:relative;background:#4C4C4C;color:#fff}#topbar-widget .topbar-title,#topbar-widget button{display:none}#topbar-widget ul{background:#4C4C4C;list-style:none;white-space:nowrap;margin:0;padding:0}#topbar-widget .topbar-active,#topbar-widget a{padding:0 20px}#topbar-widget li,#topbar-widget a{display:inline-block;*display:inline;*zoom:1;color:#FFF;text-decoration:none;vertical-align:top;-webkit-transition:background-color 50ms;-moz-transition:background-color 50ms;-ms-transition:background-color 50ms;transition:background-color 50ms}#topbar-widget a:hover,#topbar-widget .topbar-active{background-color:#3F3F3F;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f3f3f',endColorstr='#3f3f3f',GradientType=0);position:relative}#topbar-widget .topbar-active{cursor:default}#topbar-widget .topbar-arrow{display:block;position:absolute;overflow:hidden;top:100%;left:50%;width:0;height:0;content:' ';border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:3px solid #fff;margin-top:-3px;margin-left:-3px;font-size:0}#topbar-widget.topbar-widget-mobile .topbar-title{font-size:18px;padding:0 50px 0 15px;line-height:50px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}#topbar-widget.topbar-widget-mobile,#topbar-widget.topbar-widget-mobile li{line-height:50px;height:50px}#topbar-widget.topbar-widget-mobile .topbar-title{display:block}#topbar-widget.topbar-widget-mobile button{display:block;width:32px;height:30px;background:#454545 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAAGUlEQVQokWP4TyFgoNiAYQBGA5EKYMADEQDcJn6QVVN+LQAAAABJRU5ErkJggg==') no-repeat 50% 50%;border:1px solid #3E3E3E;border-radius:2px;right:9px;top:9px;position:absolute}#topbar-widget.topbar-widget-mobile .topbar-active{display:none}#topbar-widget.topbar-widget-mobile a:hover{background-color:transparent}#topbar-widget.topbar-widget-mobile .topbar-link,#topbar-widget.topbar-widget-mobile .topbar-link a{font-size:15px;line-height:32px;height:32px;display:block}#topbar-widget.topbar-widget-mobile .topbar-link{border-top:1px solid #3B3B3B;background:#4C4C4C}#topbar-widget.topbar-widget-mobile .topbar-link a{border-top:1px solid #535353}#topbar-widget.topbar-widget-mobile .topbar-link a:hover{background:#3F3F3F;border-color:#3F3F3F}#topbar-widget.topbar-widget-mobile ul{overflow:hidden;position:absolute;-webkit-transition:height 150ms;top:100%;left:0;right:0;z-index:2147483647;height:0}#topbar-widget.topbar-widget-mobile button.expanded+ul{height:135px}</style>
@@ -197,131 +192,7 @@
                     </form>
                 </div>
             </div>
-            <!-- Templates -->
-            <script type="text/template" id="template-pois">
-                <ul class="left-poi-list">
-                [% for (var i = start_index; i < end_index; ++i) {
-                var poi = pois[i]
-                %]
-                <li data-poi-id="[%= poi.id %]">
-                <div class="poi-content">
-                <div class="poi-photo">
-                [% if (poi.img) { %]
-                <a href="/poi/details/[%= poi.hash %]">
-                <img src="[%= poi.img %]" data-original="[%= poi.img %]" width="64" height="64" />
-                </a>
-                [% } %]
-                </div>
-                <h2 class="poi-title">
-                <a href="/poi/details/[%= poi.hash %]">[%= poi.title %]</a></h2>
-                <div class="poi-infos">
-                [% if (poi.address) { %]
-                <strong>Địa chỉ:</strong> [%= poi.address %]
-                [% } %]
-
-                [% if (poi.email) { %]
-                <br /><strong>Email:</strong> [%= poi.email %]
-                [% } %]
-
-                [% if (poi.phone) { %]
-                <br /><strong>Điện thoại:</strong> [%= poi.phone %]
-                [% } %]
-
-                [% if (poi.url) { %]
-                <br /><strong>Web site:</strong> <a href="http://[%= poi.url %]" target="_blank">[%= poi.url %]</a>
-                [% } %]
-                [% if (poi.rating) {
-                rate = (poi.rating / 5) * 100;
-                %]
-                <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper"><div class="rate-value" style="width: [%=rate%]%"></div></div></div>
-                [% } %]
-
-                [% if (poi.fe_category==18 ||  poi.fe_category ==19) {							
-                %]
-                <div class="poi-src">* Dữ liệu do Thành Đoàn Hà Nội cung cấp</div>
-                [% } %]
-                </div>
-                </div>
-                </li>
-                [% } %]
-                </ul>
-                <div id="left-content-pagination">
-                [% 
-                var halfPPB = Math.floor(PAGES_PER_BLOCK / 2);
-                var midPPB = halfPPB + PAGES_PER_BLOCK % 2;
-                var pageBlockStart = Math.max(Math.min(pageNumber - halfPPB, numberOfPages - PAGES_PER_BLOCK), 1);
-                var pageBlockEnd = Math.min(Math.max(pageNumber + midPPB, PAGES_PER_BLOCK + 1), numberOfPages);
-                %]
-                <ul class="pagination-block">
-                [% if (numberOfPages > 1) { %]
-                [% if (pageNumber > 0) { %]
-                <li data-page="[%= pageNumber - 1 %]" class="goto-page"><a href="#">&lt;</a></li>
-                [% } %]
-
-                <li data-page="0" class="goto-page [%= pageNumber === 0 ? 'active' : '' %]"><a href="#">1</a></li>
-
-                [% if (pageNumber > midPPB) { %]
-                <li class="more-page"><span>...</span></li>
-                [% } %]
-
-                [% for (var page = pageBlockStart; page < pageBlockEnd; ++page) { %]
-                <li data-page="[%= page %]" class="goto-page [%= pageNumber === page ? 'active' : '' %]"><a href="#">[%= page + 1 %]</a></li>
-                [% } %]
-
-                [% if (numberOfPages > pageBlockEnd) { %]
-                <li class="more-page"><span>...</span></li>
-                [% } %]
-
-                [% if (pageNumber < numberOfPages - 1) { %]
-                <li data-page="[%= pageNumber + 1 %]" class="goto-page"><a href="#">&gt;</a></li>
-                [% } %]
-                [% } %]
-                </ul>
-                </div>
-            </script>	<!-- Templates -->
-            <script type="text/template" id="template-related-poi">
-                [% 
-                for (var i = 0, poi; poi = pois[i]; i++) {
-                if (+poi.id !== +poi_id) {
-                %]
-                <li data-poi-id="[%= poi.id %]">
-                <div class="poi-content">
-                <div class="poi-photo">
-                <img src="/themes/bootstrap/img/transparent.png" data-original="[%= poi.img %]" width="64" height="64" alt="[%= poi.title %]" />
-                </div>
-                <h2 class="poi-title"><a href="/poi/details/[%= poi.hash %]">[%= poi.title %]</a></h2>
-                <div class="poi-infos">
-                <strong>Địa chỉ:</strong> [%= poi.address %]
-
-                [% if (poi.email) { %]
-                <br /><strong>Email:</strong> [%= poi.email %]
-                [% } %]
-
-                [% if (poi.phone) { %]
-                <br /><strong>Điện thoại:</strong> [%= poi.phone %]
-                [% } %]
-
-                [% if (poi.url) { %]
-                <br /><strong>Website:</strong> <a href="http://[%= poi.url %]" target="_blank">[%= poi.url %]</a>
-                [% } %]
-                [% if (poi.rating) {
-                rate = (poi.rating/5)*100;
-                %]
-                <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper"><div class="rate-value" style="width: [%=rate%]%"></div></div></div>
-                [% } %]
-
-                [% if (poi.fe_category==18 ||  poi.fe_category ==19) {						
-                %]
-                <div class="poi-src">* Dữ liệu do Thành Đoàn Hà Nội cung cấp</div>
-                [% } %]
-                </div>
-                </div>
-                </li>
-                [% 
-                }
-                } 
-                %]
-            </script>
+           
             <div id="container" class="poi-detail-page clearfix" data-id="542591" data-hash="6896202108404922949" data-fe-category="1" data-coordinates="21.03063357,105.85507392996" data-icon="2.jpg">
                 <div class="left-content">
                     <div class="article-top">

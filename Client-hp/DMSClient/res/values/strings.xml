@@ -3,6 +3,11 @@
 
     <string name="app_name">DMSClient</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="hello_world">Hello world!</string> 
+	<string name="no_demos">No Demos</string>
+	
+	<string name="map_label">Basic Map</string>
+  <string name="map_description">Launches a map</string>
+  <string name="play_services_not_installed">Google Play services is not installed on this device.</string>
+  <string name="legal_info">Legal Info</string>
 </resources>

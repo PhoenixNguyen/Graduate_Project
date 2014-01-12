@@ -10,4 +10,29 @@
   <string name="map_description">Launches a map</string>
   <string name="play_services_not_installed">Google Play services is not installed on this device.</string>
   <string name="legal_info">Legal Info</string>
+  
+  <string name="location_source_demo_label">Location Source Demo</string>
+  <string name="location_source_demo_description">Demonstrates how to use a custom location source.</string>
+  
+  
+  <string name="my_location">My Location</string>
+  <string name="my_location_label">My Location</string>
+  <string name="my_location_description">Demonstrates how to use GMS Location</string>
+  <string name="mylocation_button">My Location Button</string>
+  <string name="mylocation_layer">My Location Layer</string>
+  
+  <string name="custom_info_contents">Custom info contents</string>
+  <string name="custom_info_window">Custom info window</string>
+  
+  <string name="drag_melbourne">Drag Melbourne</string>
+  <string name="clear_map">Clear</string>
+  <string name="reset_map">Reset</string>
+  <string name="default_info_window">Default info window</string>
+  <string name="rotation">Rotation:</string>
+  <string name="flat">Flat</string>
+  <string name="marker_label">Markers</string>
+  <string name="marker_description">Demonstrates how to add Markers to a map.</string>
+  
+  <string name="map_not_ready">Map is not ready yet</string>
+  
 </resources>

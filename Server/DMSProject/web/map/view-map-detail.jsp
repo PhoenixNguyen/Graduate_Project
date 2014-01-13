@@ -115,11 +115,15 @@
         
         <script>
             $(document).ready(function(){
-                $(".category-wrapper").click(function(){
-                  $(".hide").fadeToggle();
-
-                });
-              });
+                $('.category-wrapper').click(function () {
+                   var currentId = '#' + $('.hide:visible').prop('id');
+                   var newId = $(this).data('rel');
+                   $('.hide').fadeOut();
+                   if (currentId != newId) {
+                       $(newId).fadeIn();
+                   }
+               });
+             });
         </script>
                     
     </head>
@@ -165,10 +169,10 @@
                                 <div><input type="submit" name="finds" value="Tìm kiếm"></div>
                             </li>
 
-                            <li class="advance-text clear">Tìm kiếm nâng cao</li>
-                            <li class="category-wrapper"><a href="#">Giám đốc</a>
+                            <li class="advance-text clear" >Tìm kiếm nâng cao</li>
+                            <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
 
-                                <div class="hide"><span class="arrow-up"></span>
+                                <div  id="callback-form" class="hide"><span class="arrow-up"></span>
                                     <div class="combo-wrapper wrapper-poitype">
 <!--                                        <select name="poitype" class="select-box hide">
                                             <option value="" selected="selected">Tỉnh thành</option>
@@ -190,9 +194,9 @@
                                 </div>
                             </li>
                             
-                            <li class="category-wrapper"><a href="#">Nhân viên</a>
+                            <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
 
-                                <div class="hide"><span class="arrow-up"></span>
+                                <div id="enquiry-form" class="hide"><span class="arrow-up"></span>
                                     <div class="combo-wrapper wrapper-poitype">
 <!--                                        <select name="poitype" class="select-box hide">
                                             <option value="" selected="selected">Tỉnh thành</option>
@@ -214,9 +218,9 @@
                                 </div>
                             </li>
                             
-                            <li class="category-wrapper"><a href="#">Khách hàng</a>
+                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
 
-                                <div class="hide"><span class="arrow-up"></span>
+                                <div id="booknow-form" class="hide"><span class="arrow-up"></span>
                                     <div class="combo-wrapper wrapper-poitype">
 <!--                                        <select name="poitype" class="select-box hide">
                                             <option value="" selected="selected">Tỉnh thành</option>

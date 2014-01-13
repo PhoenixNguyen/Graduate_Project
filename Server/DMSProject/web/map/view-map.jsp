@@ -102,12 +102,7 @@
         </script>
         
         <script>
-//            $(document).ready(function(){
-//                $(".category-wrapper").click(function(){
-//                  $(".hide").fadeToggle();
-//
-//                });
-//              });
+
              $(document).ready(function(){
                 $('.category-wrapper').click(function () {
                    var currentId = '#' + $('.hide:visible').prop('id');

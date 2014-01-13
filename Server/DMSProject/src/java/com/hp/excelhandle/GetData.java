@@ -92,8 +92,10 @@ public class GetData {
             HSSFCell cell;
 
             int rows; // No of rows
-            rows = sheet.getPhysicalNumberOfRows();
-
+            rows = sheet.getLastRowNum() + 1; //getPhysicalNumberOfRows();
+            System.out.println("ROWs number" + rows);
+            System.out.println("Cell value: " + sheet.getRow(rows-1).getCell(0));
+            
             int cols = 0; // No of columns (max)
             int temp = 0;
 
@@ -127,7 +129,7 @@ public class GetData {
                     
                     
                     int tmp = 0;
-                    custumer.setmStt(row.getCell(tmp++).getNumericCellValue());
+                    custumer.setmStt((int)row.getCell(tmp++).getNumericCellValue());
                     custumer.setmTinhThanh(row.getCell(tmp++).getStringCellValue());
                     custumer.setmTuyenBanHangThu(row.getCell(tmp++).getStringCellValue());
                     custumer.setmMaNhanVien(row.getCell(tmp++).getStringCellValue());

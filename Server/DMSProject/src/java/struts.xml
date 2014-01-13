@@ -17,5 +17,13 @@
 
     </package>
     
+    <package name="admin"  extends="hibernate-default" namespace="/admin">
+		
+        <action name="add-customer" method="addCustomerFromExcelFile" class="com.hp.action.CustomerAction">
+            <result name="success">add-customer-result.jsp</result>
+            <result name="fail">../index.jsp</result>
+        </action>
+        
+    </package>
     
 </struts>

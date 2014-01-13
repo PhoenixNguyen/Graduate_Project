@@ -4,10 +4,12 @@
  */
 package com.hp.action;
 
+import com.hp.dao.CustomerDAO;
+import com.hp.dao.CustomerDAOImpl;
 import com.hp.dao.RoadManagementDAO;
 import com.hp.dao.RoadManagementDAOImpl;
 import com.hp.domain.RoadManagement;
-import com.hp.excelhandle.Customer;
+import com.hp.domain.Customer;
 import com.hp.excelhandle.GetData;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -23,15 +25,15 @@ import org.apache.struts2.ServletActionContext;
  */
 public class ShowMapAction extends ActionSupport{
     
-    private String filePath = ServletActionContext.getServletContext().getRealPath("/database/customer.xls");
     
-    private GetData mData= new GetData(filePath);
-    private ArrayList<Customer> listCustomer = new ArrayList();
+    private List<Customer> listCustomer = new ArrayList();
 
     //Get Road for each customer
     private RoadManagementDAO mRoadManagementDAO = new RoadManagementDAOImpl();
     private List<RoadManagement> listRoad = new ArrayList();
 
+    private CustomerDAO customerDAO = new CustomerDAOImpl();
+    
     public List<RoadManagement> getListRoad() {
         return listRoad;
     }
@@ -40,11 +42,11 @@ public class ShowMapAction extends ActionSupport{
         this.listRoad = listRoad;
     }
     
-    public ArrayList<Customer> getListCustomer() {
+    public List<Customer> getListCustomer() {
         return listCustomer;
     }
 
-    public void setListCustomer(ArrayList<Customer> listCustomer) {
+    public void setListCustomer(List<Customer> listCustomer) {
         this.listCustomer = listCustomer;
     }
             
@@ -52,7 +54,7 @@ public class ShowMapAction extends ActionSupport{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
-        listCustomer = mData.loadCustomer();
+        listCustomer = customerDAO.loadCustomersWithLocations();
         System.out.print("Load Customer into map !!!!!!!!!!!!!!!!!!!!!!");
         
         return SUCCESS;

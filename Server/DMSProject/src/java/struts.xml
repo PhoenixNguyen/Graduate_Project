@@ -17,5 +17,26 @@
 
     </package>
     
+    <package name="admin"  extends="hibernate-default" namespace="/admin">
+		
+        <action name="add-customer" method="addCustomerFromExcelFile" class="com.hp.action.CustomerAction">
+            <result name="success">add-customer-result.jsp</result>
+            <result name="input">add-customer-fail.jsp</result>
+        </action>
+        
+        <action name="upload" method="saveFile" class="com.hp.action.CustomerAction">
+            
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            
+            <result name="success" type="redirect">upload-customer-result.jsp</result>
+            <result name="input">upload-customer-file.jsp</result>
+        </action>
+        
+    </package>
     
 </struts>

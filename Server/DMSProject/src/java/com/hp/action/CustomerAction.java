@@ -9,7 +9,7 @@ package com.hp.action;
 import com.hp.common.ConfigFile;
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
-import com.hp.excelhandle.Customer;
+import com.hp.domain.Customer;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.FileInputStream;
 import org.apache.poi.hssf.usermodel.HSSFCell;

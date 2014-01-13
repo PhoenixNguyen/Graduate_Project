@@ -6,6 +6,7 @@
 
 package com.hp.excelhandle;
 
+import com.hp.domain.Customer;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;

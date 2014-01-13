@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.hp.excelhandle;
+package com.hp.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

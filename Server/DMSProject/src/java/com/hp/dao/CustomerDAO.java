@@ -6,7 +6,9 @@
 
 package com.hp.dao;
 
-import com.hp.excelhandle.Customer;
+import com.hp.domain.Customer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,4 +16,5 @@ import com.hp.excelhandle.Customer;
  */
 public interface CustomerDAO {
     public boolean saveOrUpdate(Customer pCustomer);
+    public List<Customer> loadCustomersWithLocations();
 }

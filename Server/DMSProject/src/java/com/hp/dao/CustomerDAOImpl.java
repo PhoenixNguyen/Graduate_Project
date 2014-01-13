@@ -58,6 +58,9 @@ public class CustomerDAOImpl implements CustomerDAO{
         }catch(Exception e){
             e.printStackTrace();
         }
+        finally {
+            session.close();
+        }
         
         return courses;
         

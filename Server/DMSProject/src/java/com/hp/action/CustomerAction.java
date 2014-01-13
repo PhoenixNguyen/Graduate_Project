@@ -10,20 +10,32 @@ import com.hp.common.ConfigFile;
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.domain.Customer;
+import com.hp.domain.Document;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.validator.Valid;
 
 /**
  *
  * @author HP
  */
 public class CustomerAction extends ActionSupport{
+    
+    
     //Init Customer
     //private Customer customer = new Customer();
     
@@ -38,12 +50,52 @@ public class CustomerAction extends ActionSupport{
 //        this.customer = customer;
 //    }
     
-    //access Excel files and import them into database
-    public String addCustomerFromExcelFile(){
-        
+    @Valid
+    private Document document = new Document();
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+    
+    
+    public String saveFile(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
         
         try {
-            String fileInput = ServletActionContext.getServletContext().getRealPath("/database/customer.xls");
+            String saveName = document.getFileFileName();
+            System.out.println(document.getFileContentType());
+            String filePath = ServletActionContext.getServletContext().getRealPath("/database/");
+            System.out.println("Server path:" + filePath);
+            
+            File fileToCreate = new File(filePath, saveName);
+            FileUtils.copyFile(document.getFile(), fileToCreate);
+            
+            //set name file
+            session.setAttribute("upload-name-file", saveName);
+        } catch (IOException ex) {
+            Logger.getLogger(CustomerAction.class.getName()).log(Level.SEVERE, null, ex);
+            return INPUT;
+        }
+        return SUCCESS;
+    }
+    //access Excel files and import them into database
+    public String addCustomerFromExcelFile(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        String saveName = (String)session.getAttribute("upload-name-file");
+        System.out.println("Get Attribute file name: "+saveName);
+        if(saveName == null)
+            return INPUT;
+        
+        //Import data
+        try {
+            String fileInput = ServletActionContext.getServletContext().getRealPath("/database/"+saveName+"/");
             POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(fileInput));
             HSSFWorkbook wb = new HSSFWorkbook(fs);
             HSSFSheet sheet = wb.getSheetAt(0);
@@ -53,7 +105,6 @@ public class CustomerAction extends ActionSupport{
             int rows; // No of rows
             rows = sheet.getLastRowNum() + 1; //getPhysicalNumberOfRows();
             System.out.println("ROWs number" + rows);
-            System.out.println("Cell value: " + sheet.getRow(rows-1).getCell(0).getNumericCellValue());
             
             int cols = 0; // No of columns (max)
             int temp = 0;
@@ -84,43 +135,65 @@ public class CustomerAction extends ActionSupport{
                     }
                     
                     //Init Customer Object
-                    System.out.println("CELL STT" + row.getCell(0).getNumericCellValue());
                     int tmp = 0;
                     Customer customer = new Customer();
 //                    customer.setmStt((int)row.getCell(tmp++).getNumericCellValue());
                     tmp++;
-                    customer.setmTinhThanh(row.getCell(tmp++).getStringCellValue());
-                    customer.setmTuyenBanHangThu(row.getCell(tmp++).getStringCellValue());
-                    customer.setmMaNhanVien(row.getCell(tmp++).getStringCellValue());
+                    if(row.getCell(1) != null)
+                        customer.setmTinhThanh(row.getCell(1).getStringCellValue());
+                    if(row.getCell(2) != null)
+                        customer.setmTuyenBanHangThu(row.getCell(2).getStringCellValue());
+                    if(row.getCell(3) != null)
+                        customer.setmMaNhanVien(row.getCell(3).getStringCellValue());
+                    if(row.getCell(4) != null)
+                        customer.setmX(row.getCell(4).getStringCellValue());
+                    if(row.getCell(5) != null)
+                    customer.setmMaDoiTuong(row.getCell(5).getStringCellValue());
+                    if(row.getCell(6) != null)
+                    customer.setmDoiTuong(row.getCell(6).getStringCellValue());
+                    if(row.getCell(7) != null)
+                    customer.setmNoDKy(row.getCell(7).getNumericCellValue());
+                    if(row.getCell(8) != null)
                     
-                    customer.setmX(row.getCell(tmp++).getStringCellValue());
-                    customer.setmMaDoiTuong(row.getCell(tmp++).getStringCellValue());
-                    customer.setmDoiTuong(row.getCell(tmp++).getStringCellValue());
-                    customer.setmNoDKy(row.getCell(tmp++).getNumericCellValue());
+                    customer.setmCoDKy(row.getCell(8).getNumericCellValue());
+                    if(row.getCell(9) != null)
+                    customer.setmNoTKy(row.getCell(9).getNumericCellValue());
+                    if(row.getCell(10) != null)
+                    customer.setmTienBan(row.getCell(10).getNumericCellValue());
                     
-                    customer.setmCoDKy(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmNoTKy(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmTienBan(row.getCell(tmp++).getNumericCellValue());
+                    if(row.getCell(11) != null)
+                    customer.setmCoTKy(row.getCell(11).getNumericCellValue());
+                    if(row.getCell(12) != null)
+                    customer.setmCKGG(row.getCell(12).getNumericCellValue());
+                    if(row.getCell(13) != null)
+                    customer.setmNhapLai(row.getCell(13).getNumericCellValue());
+                    if(row.getCell(14) != null)
                     
-                    customer.setmCoTKy(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmCKGG(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmNhapLai(row.getCell(tmp++).getNumericCellValue());
+                    customer.setmNoCKy(row.getCell(14).getNumericCellValue());
+                    if(row.getCell(15) != null)
+                    customer.setmCoCKy(row.getCell(15).getNumericCellValue());
+                    if(row.getCell(16) != null)
+                    customer.setmDoanhThu(row.getCell(16).getNumericCellValue());
                     
-                    customer.setmNoCKy(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmCoCKy(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmDoanhThu(row.getCell(tmp++).getNumericCellValue());
+                    if(row.getCell(17) != null)
+                    customer.setmPhanTramNoChiaThu(row.getCell(17).getNumericCellValue());
+                    if(row.getCell(18) != null)
+                    customer.setmNoToiDa(row.getCell(18).getNumericCellValue());
+                    if(row.getCell(19) != null)
+                    customer.setmDaiDien(row.getCell(19).getStringCellValue());
+                    if(row.getCell(20) != null)
+                    customer.setmDiaChi(row.getCell(20).getStringCellValue());
+                    if(row.getCell(21) != null)
+                    customer.setmDienThoai(row.getCell(21).getStringCellValue());
+                    if(row.getCell(22) != null)
+                    customer.setmFax(row.getCell(22).getStringCellValue());
                     
-                    customer.setmPhanTramNoChiaThu(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmNoToiDa(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmDaiDien(row.getCell(tmp++).getStringCellValue());
-                    
-                    customer.setmDiaChi(row.getCell(tmp++).getStringCellValue());
-                    customer.setmDienThoai(row.getCell(tmp++).getStringCellValue());
-                    customer.setmFax(row.getCell(tmp++).getStringCellValue());
-                    
-                    customer.setmGhiChu(row.getCell(tmp++).getStringCellValue());
-                    customer.setmXCoordinates(row.getCell(tmp++).getNumericCellValue());
-                    customer.setmYCoordinates(row.getCell(tmp++).getNumericCellValue());
+                    if(row.getCell(23) != null)
+                    customer.setmGhiChu(row.getCell(23).getStringCellValue());
+                    if(row.getCell(24) != null)
+                    customer.setmXCoordinates(row.getCell(24).getNumericCellValue());
+                    if(row.getCell(25) != null)
+                    customer.setmYCoordinates(row.getCell(25).getNumericCellValue());
                     
                     
                     //Add to database
@@ -131,7 +204,7 @@ public class CustomerAction extends ActionSupport{
             
         } catch(Exception ioe) {
             ioe.printStackTrace();
-            return "fail";
+            return INPUT;
         }
         return SUCCESS;
     }

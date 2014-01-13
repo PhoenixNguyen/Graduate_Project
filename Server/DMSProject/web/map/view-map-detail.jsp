@@ -121,6 +121,7 @@
                 });
               });
         </script>
+                    
     </head>
     <body>
 
@@ -165,25 +166,74 @@
                             </li>
 
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
-                            <li class="category-wrapper"><a href="#">Tỉnh thành</a>
+                            <li class="category-wrapper"><a href="#">Giám đốc</a>
 
                                 <div class="hide"><span class="arrow-up"></span>
                                     <div class="combo-wrapper wrapper-poitype">
 <!--                                        <select name="poitype" class="select-box hide">
-                                            <option value="">Tỉnh thành</option>
+                                            <option value="" selected="selected">Tỉnh thành</option>
                                             <option value="1">Hà Nội</option>
-                                            <option value="2">Hải Phòng</option>
+                                            <option value="1">Hải Phòng</option>
 
                                         </select>-->
                                         <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Tất cả địa điểm">
-                                            <div class="combo-values poitype">
-                                                <ul>
-                                                    <li data-index="0" class="selected">Tỉnh thành</li>
-                                                    <li data-index="1">Hà Nội</li>
-                                                    <li data-index="2">Hải Phòng</li>
-                                                </ul>
-                                            </div>
+                                        <input type="text" placeholder="Mã nhân viên">
+                                        <div class="combo-values poitype">
+                                            <ul>
+                                                <li data-index="0" class="selected">Giám đốc</li>
+                                                <li data-index="1">Giám đốc 1</li>
+                                                <li data-index="2">Giám đốc 2</li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="category-wrapper"><a href="#">Nhân viên</a>
+
+                                <div class="hide"><span class="arrow-up"></span>
+                                    <div class="combo-wrapper wrapper-poitype">
+<!--                                        <select name="poitype" class="select-box hide">
+                                            <option value="" selected="selected">Tỉnh thành</option>
+                                            <option value="1">Hà Nội</option>
+                                            <option value="1">Hải Phòng</option>
+
+                                        </select>-->
+                                        <a href="#" class="combo-show"><span>show</span></a>
+                                        <input type="text" placeholder="Mã nhân viên">
+                                        <div class="combo-values poitype">
+                                            <ul>
+                                                <li data-index="0" class="selected">Nhân viên</li>
+                                                <li data-index="1">Nhân viên 1</li>
+                                                <li data-index="2">Nhân viên 2</li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="category-wrapper"><a href="#">Khách hàng</a>
+
+                                <div class="hide"><span class="arrow-up"></span>
+                                    <div class="combo-wrapper wrapper-poitype">
+<!--                                        <select name="poitype" class="select-box hide">
+                                            <option value="" selected="selected">Tỉnh thành</option>
+                                            <option value="1">Hà Nội</option>
+                                            <option value="1">Hải Phòng</option>
+
+                                        </select>-->
+                                        <a href="#" class="combo-show"><span>show</span></a>
+                                        <input type="text" placeholder="Mã nhân viên">
+                                        <div class="combo-values poitype">
+                                            <ul>
+                                                <li data-index="0" class="selected">Khách hàng</li>
+                                                <li data-index="1">Khách hàng 1</li>
+                                                <li data-index="2">Khách hàng 2</li>
+
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -311,32 +361,7 @@
                 </div>
             </div>
 
-            <div id="overlay" class="hide">
-                <div class="overlay-content">
-                    <a href="#" class="close-popup"><span>Close popup</span></a>
-
-                    <h4>Xin vui lòng chọn thành phố:</h4>
-                    <div class="combo-wrapper wrapper-citys">
-                        <select name="citys" class="select-box min-width-140 hide">
-                            <option value="20.925111944444000%2C105.727879722220000%2C21.092853888889000%2C105.916919722220000" selected="selected">
-                                Hà Nội						</option>
-                            <option value="10.673571111111000%2C106.491694166670000%2C10.897621%2C106.831741">
-                                Hồ Chí Minh						</option>
-
-                        </select><a href="#" class="combo-show"><span>show</span></a>
-                        <input type="text" placeholder="Hà Nội">
-                            <div class="combo-values citys">
-                                <ul>
-                                    <li data-index="0" class="selected">
-                                        Hà Nội						</li>
-                                    <li data-index="1">
-                                        Hồ Chí Minh						</li>
-                                </ul>
-                            </div>
-                    </div>
-                    <div class="btn-select"><a href="#">Chọn thành phố</a></div>
-                </div>
-            </div>
+            
         </div>
 
 

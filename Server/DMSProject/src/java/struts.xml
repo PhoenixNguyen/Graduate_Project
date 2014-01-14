@@ -15,6 +15,9 @@
             <result name="success">view-map-detail.jsp</result>
         </action>
 
+        <action name="ajaxdemo" method="ajaxDemo" class="com.hp.action.ShowMapAction">
+            <result name="success" >AjaxDemo.jsp</result>
+        </action>
     </package>
     
     <package name="admin"  extends="hibernate-default" namespace="/admin">

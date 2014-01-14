@@ -6,6 +6,7 @@
 
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 
 <%
 
@@ -17,7 +18,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View map detail</title>
-
+        <sx:head />
+        
         <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
@@ -164,51 +166,16 @@
 
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
-
-                                <div id="callback-form" class="hide"><span class="arrow-up"></span>
-                                    <div class="combo-wrapper wrapper-poitype">
-<!--                                        <select name="poitype" class="select-box hide">
-                                            <option value="" selected="selected">Tỉnh thành</option>
-                                            <option value="1">Hà Nội</option>
-                                            <option value="1">Hải Phòng</option>
-
-                                        </select>-->
-                                        <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Mã nhân viên">
-                                        <div class="combo-values poitype">
-                                            <ul>
-                                                <li data-index="0" class="selected">Giám đốc</li>
-                                                <li data-index="1">Giám đốc 1</li>
-                                                <li data-index="2">Giám đốc 2</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
+                                <sx:autocompleter size="1"  list="userListGiamDoc" keyValue="mID"name="mID"></sx:autocompleter>
+                                </action>
                             </li>
                             
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
                                 
-                                <div id="enquiry-form" class="hide" style="display: none"><span class="arrow-up"></span>
-                                    <div class="combo-wrapper wrapper-poitype">
-<!--                                        <select name="poitype" class="select-box hide">
-                                            <option value="" selected="selected">Tỉnh thành</option>
-                                            <option value="1">Hà Nội</option>
-                                            <option value="1">Hải Phòng</option>
-
-                                        </select>-->
-                                        <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Mã nhân viên">
-                                        <div class="combo-values poitype">
-                                            <ul>
-                                                <li data-index="0" class="selected">Nhân viên</li>
-                                                <li data-index="1">Nhân viên 1</li>
-                                                <li data-index="2">Nhân viên 2</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID"></sx:autocompleter>
+                                </action>
                             </li>
                             
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>

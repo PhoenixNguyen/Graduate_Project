@@ -24,7 +24,7 @@ public class StaffDAOImpl implements StaffDAO{
         
         List<String> courses = null;
         try{
-            courses = session.createQuery("select mID from Staff where mManager ='"+pUser+"'").list();
+            courses = session.createQuery("select mID from Staff  ").list(); //where mManager ='"+pUser+"'"
         }catch(Exception e){
             e.printStackTrace();
         }

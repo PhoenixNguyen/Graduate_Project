@@ -50,6 +50,15 @@ public class ShowMapAction extends ActionSupport{
     private StaffDAO staffDAO = new StaffDAOImpl();
     private List<String> userListStaff = new ArrayList<String>();
 
+    private String giamdocId;
+
+    public String getGiamdocId() {
+        return giamdocId;
+    }
+
+    public void setGiamdocId(String giamdocId) {
+        this.giamdocId = giamdocId;
+    }
     public List<String> getUserListStaff() {
         return userListStaff;
     }
@@ -66,24 +75,7 @@ public class ShowMapAction extends ActionSupport{
         this.userListGiamDoc = userListGiamDoc;
     }
     
-    public List<String> getCountries() {
-        return countries;
-    }
-
-    public void setCountries(List<String> countries) {
-        this.countries = countries;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-    private List<String> countries;
-    private String country;
-    
+ 
     public List<RoadManagement> getListRoad() {
         return listRoad;
     }
@@ -127,19 +119,10 @@ public class ShowMapAction extends ActionSupport{
         return SUCCESS;
     }
     
-    public String ajaxDemo(){
-        countries = new ArrayList<String>();
-        StringTokenizer st = new StringTokenizer(data, ",");
- 
-        while (st.hasMoreTokens()) {
-            countries.add(st.nextToken().trim());
-        }
-        return SUCCESS;
-    }
-    
     public String filterViewLocations(){
         //get list giam doc permission = 2
         userListGiamDoc = userDAO.getListUser(2);
+        userListStaff = staffDAO.getListUser(giamdocId);
         return SUCCESS;
     }
 }

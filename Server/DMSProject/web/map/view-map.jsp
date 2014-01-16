@@ -8,6 +8,10 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 
+<script>
+<%@include file="../js/jquery.min.js"%>
+</script>
+
 <%
 
     request.setCharacterEncoding("UTF-8");
@@ -116,7 +120,32 @@
                });
              });
         </script>
-        
+        <script type="text/javascript">
+        // load ajax
+        function getLoad(){
+
+
+        var giamdocId = "doremi";//$('#giamDoc').val();
+        console.log("Ma giam doc: " + giamdocId);
+         $.getJSON('filterGiamDoc.action', {'giamdocId': giamdocId},
+             function(data) {
+
+                    var divisionList = (data.userListStaff);
+                         console.log("log: " + divisionList);
+                         var options = $("#staff");
+                         options.find('option')
+             .remove()
+             .end();
+              options.append($("<option />").val("-1").text("--Select2--"));
+         $.each(divisionList, function(k , v) {
+
+             options.append($("<option />").val(k).text(v));
+         });
+             }
+         );
+         }
+
+   </script>
     </head>
 
     <body>
@@ -167,27 +196,28 @@
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
                                 
-                                
-                                <sx:autocompleter size="1"  list="userListGiamDoc" keyValue="mID"name="mID"></sx:autocompleter>
+                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc" listKey="giamDocId" onchange="getLoad()"  headerKey="0" headerValue="--select--" />
+                                <!--sx:autocompleter size="1"  list="userListGiamDoc" keyValue="mID"name="mID"-->
                                 </action>
                             </li>
                             
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
                                 
-                                <sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID"></sx:autocompleter>
-                                </action>
+                                
+                                <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff"  headerKey="0" headerValue="--select--" />
+                                <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
                             </li>
                             
-                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
+<!--                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
 
                                 <div id="booknow-form" class="hide" style="display: none"><span class="arrow-up"></span>
                                     <div class="combo-wrapper wrapper-poitype">
-<!--                                        <select name="poitype" class="select-box hide">
+                                        <select name="poitype" class="select-box hide">
                                             <option value="" selected="selected">Tỉnh thành</option>
                                             <option value="1">Hà Nội</option>
                                             <option value="1">Hải Phòng</option>
 
-                                        </select>-->
+                                        </select>
                                         <a href="#" class="combo-show"><span>show</span></a>
                                         <input type="text" placeholder="Mã nhân viên">
                                         <div class="combo-values poitype">
@@ -200,7 +230,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li>-->
                         </ul>
                     </form>
                 </div>

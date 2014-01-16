@@ -26,8 +26,8 @@
         
         <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-        <script type="text/javascript" src="../js/jquery.min.js"></script>
+<!--        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        <script type="text/javascript" src="../js/jquery.min.js"></script>-->
         <script type="text/javascript" src="../js/view-data-script.js"></script>
         <script type="text/javascript" src="../js/view-map.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
@@ -122,10 +122,10 @@
         </script>
         <script type="text/javascript">
         // load ajax
-        function getLoad(){
+        function getLoad(x){
 
 
-        var giamdocId = "doremi";//$('#giamDoc').val();
+        var giamdocId = x;//$('#giamDoc').val();
         console.log("Ma giam doc: " + giamdocId);
          $.getJSON('filterGiamDoc.action', {'giamdocId': giamdocId},
              function(data) {
@@ -136,7 +136,7 @@
                          options.find('option')
              .remove()
              .end();
-              options.append($("<option />").val("-1").text("--Select2--"));
+              options.append($("<option />").val("-1").text("--Select--"));
          $.each(divisionList, function(k , v) {
 
              options.append($("<option />").val(k).text(v));
@@ -196,7 +196,7 @@
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
                                 
-                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc" listKey="giamDocId" onchange="getLoad()"  headerKey="0" headerValue="--select--" />
+                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc" listKey="giamDocId" onchange="getLoad(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
                                 <!--sx:autocompleter size="1"  list="userListGiamDoc" keyValue="mID"name="mID"-->
                                 </action>
                             </li>

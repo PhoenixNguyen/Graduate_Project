@@ -5,7 +5,7 @@
 
 <struts>
     
-    <package name="map"  extends="hibernate-default" namespace="/map">
+    <package name="map"  extends="json-default,hibernate-default" namespace="/map">
 		
         <action name="showMap" method="showMap" class="com.hp.action.ShowMapAction">
             <result name="success">view-map.jsp</result>
@@ -15,17 +15,20 @@
             <result name="success">view-map-detail.jsp</result>
         </action>
 
-    </package>
-    
-    <package name="json" namespace="/map" extends="json-default">
-      
-        <action name="filterGiamDoc" method="filterViewLocations" class="com.hp.action.ShowMapAction"  >
+        <action name="filterGiamDoc" method="showMap" class="com.hp.action.ShowMapAction"  >
               
-          <result type="json" >
+          <result  type="json" >
+              <!--param name="root">userListStaff</param-->
               <param name="contentType">application/json</param>
 <!--            <param name="inputName">inputStream</param>-->
           </result>
         </action>
+        
+    </package>
+    
+    <package name="ajax" namespace="/map" extends="json-default">
+      
+        
         
     </package>
     

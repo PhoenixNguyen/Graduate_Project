@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 /**
@@ -100,7 +101,12 @@ public class ShowMapAction extends ActionSupport{
         userListGiamDoc = userDAO.getListUser(2);
         
         //Lay ve nhan vien cua giam doc
-        userListStaff = staffDAO.getListUser("kachiusa");
+        if(giamdocId == null)
+            userListStaff = staffDAO.getListUser("kachiusa");
+        else{
+            userListStaff = staffDAO.getListUser(giamdocId);
+            System.out.print(" filter!! "); 
+        }
         listCustomer = customerDAO.loadCustomersWithLocations();
         System.out.print("Load Customer into map !!!!!!!!!!!!!!!!!!!!!!");
         
@@ -112,17 +118,11 @@ public class ShowMapAction extends ActionSupport{
         HttpSession session = request.getSession(true);
         
         String customerID = request.getParameter("customer");
-        if(!customerID.isEmpty())
+        if(customerID != null)
             listRoad = mRoadManagementDAO.getRoad(customerID);
         
         //System.out.print("Load Road !!!!!!!!!!!!!!!!!!!!!!" + listRoad.size());
         return SUCCESS;
     }
     
-    public String filterViewLocations(){
-        //get list giam doc permission = 2
-        userListGiamDoc = userDAO.getListUser(2);
-        userListStaff = staffDAO.getListUser(giamdocId);
-        return SUCCESS;
-    }
 }

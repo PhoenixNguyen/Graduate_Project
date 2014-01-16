@@ -122,10 +122,24 @@
         </script>
         <script type="text/javascript">
         // load ajax
+        var gdID;
+//        function filter(){
+//            console.log("Filter: " + gdID);
+//            //$.getJSON('showMap.action',{'page':0},{'giamdocId': gdID});
+//            var params = 1; //values for passing to struts if any
+//            var resultStringX = $.ajax({
+//            type: "POST",
+//            url:"showMap.action", // struts2 action call
+//            data: params,
+//            async: false
+//            }).responseText;
+//            resultStringX=$.trim(resultStringX);  // the returning result will be stored in resultStringX variable
+//        }
         function getLoad(x){
 
 
-        var giamdocId = x;//$('#giamDoc').val();
+        var giamdocId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
+        gdID = giamdocId;
         console.log("Ma giam doc: " + giamdocId);
          $.getJSON('filterGiamDoc.action', {'giamdocId': giamdocId},
              function(data) {
@@ -143,13 +157,16 @@
          });
              }
          );
+ 
          }
 
    </script>
     </head>
 
     <body>
+        
         <div id="head" style="height:60px;">
+            
             <div id="topbar-placeholder">
 
                 <div id="topbar-widget" class="">
@@ -172,6 +189,7 @@
                     <span>
                         Quản lý khách hàng			
                     </span>
+                    
                 </h1>
 
                 <div class="right-app">
@@ -180,7 +198,7 @@
 
 
                 <div class="searchs">
-                    <form action="/" method="post" name="search-poi">
+                    <form action="showMap.action?page=0" method="post" name="search-poi">
                         <ul>
                             <li>
                                 <div id="keys">
@@ -195,8 +213,8 @@
 
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
-                                
-                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc" listKey="giamDocId" onchange="getLoad(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
+                                <s:set id="giamdid" value="giamdocId"/>
+                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" onchange="getLoad(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
                                 <!--sx:autocompleter size="1"  list="userListGiamDoc" keyValue="mID"name="mID"-->
                                 </action>
                             </li>
@@ -207,7 +225,14 @@
                                 <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff"  headerKey="0" headerValue="--select--" />
                                 <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
                             </li>
-                            
+                            <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>
+                                
+                                
+                                <input type="submit" name="finds"  value="Lọc" style="width: 100px;
+                                        height: 30px;margin-top: -28px;margin-left: 20px;position: absolute;">
+                                
+                                <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
+                            </li>
 <!--                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
 
                                 <div id="booknow-form" class="hide" style="display: none"><span class="arrow-up"></span>

@@ -1222,9 +1222,9 @@ exists or setup the property manually. For example like this:
     <target depends="init,-init-cos,compile,compile-jsps,-do-compile-single-jsp,-pre-dist,-do-tmp-dist-with-manifest,-do-tmp-dist-without-manifest" description="Debug project in IDE." if="netbeans.home" name="debug">
         <nbstartserver debugmode="true"/>
         <antcall target="connect-debugger"/>
-        <nbdeploy clientUrlPart="${client.urlPart}" debugmode="true" forceRedeploy="true"/>
+<!--        <nbdeploy clientUrlPart="${client.urlPart}" debugmode="true" forceRedeploy="true"/>-->
         <antcall target="debug-display-browser-old"/>
-        <antcall target="debug-display-browser"/>
+<!--        <antcall target="debug-display-browser"/>-->
         <antcall target="connect-client-debugger"/>
     </target>
     <target if="do.debug.server" name="connect-debugger" unless="is.debugged">
@@ -1244,7 +1244,7 @@ exists or setup the property manually. For example like this:
         <nbbrowse url="${client.url}"/>
     </target>
     <target if="do.display.browser.debug" name="debug-display-browser">
-        <nbbrowse context="${browser.context}" url="${client.url}" urlPath="${client.urlPart}"/>
+<!--        <nbbrowse context="${browser.context}" url="${client.url}" urlPath="${client.urlPart}"/>-->
     </target>
     <target if="do.debug.client" name="connect-client-debugger">
         <webproject1:nbjsdebugstart webUrl="${client.url}"/>

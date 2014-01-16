@@ -99,15 +99,39 @@ public class ShowMapAction extends ActionSupport{
         
         //Lay ve giam doc
         userListGiamDoc = userDAO.getListUser(2);
+       
+        
         
         //Lay ve nhan vien cua giam doc
-        if(giamdocId == null)
+        if(getGiamdocId() == null){
+            //Tat ca nhan vien
             userListStaff = staffDAO.getListUser("kachiusa");
-        else{
-            userListStaff = staffDAO.getListUser(giamdocId);
-            System.out.print(" filter!! "); 
+            //tat ca khach hang
+            if(session.getAttribute("giamdocId") != null){
+                System.out.print(" Get something "); 
+                //setGiamdocId((String)session.getAttribute("giamdocId"));
+                listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"));
+
+             }else{
+                listCustomer = customerDAO.loadCustomersWithLocations();
+            }
         }
-        listCustomer = customerDAO.loadCustomersWithLocations();
+        //AJAX
+        else if(getGiamdocId() != null){
+            userListStaff = staffDAO.getListUser(giamdocId);
+            
+            session.setAttribute("giamdocId", giamdocId);
+            if(giamdocId.compareTo("nullid") == 0){
+                session.setAttribute("giamdocId", null);
+                System.out.println("giamdocid: " + session.getAttribute("giamdocId"));
+            }
+            
+            System.out.print(" filter!! "); 
+            return SUCCESS;
+        }
+        
+         
+        
         System.out.print("Load Customer into map !!!!!!!!!!!!!!!!!!!!!!");
         
         return SUCCESS;

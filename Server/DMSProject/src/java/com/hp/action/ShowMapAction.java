@@ -203,9 +203,13 @@ public class ShowMapAction extends ActionSupport{
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"));
-
+                
+                listRoad = mRoadManagementDAO.getRoad((String)session.getAttribute("giamdocId"),
+                        (String)session.getAttribute("staffId"),
+                        (String)session.getAttribute("khachhangId"));
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();
+                listRoad = mRoadManagementDAO.getRoad(null,null,null);
             }
         }
         //AJAX
@@ -213,6 +217,8 @@ public class ShowMapAction extends ActionSupport{
             userListStaff = staffDAO.getListUser(giamdocId);
             
             session.setAttribute("giamdocId", giamdocId);
+            session.setAttribute("staffId", null);
+            session.setAttribute("khachhangId", null);
             if(giamdocId.compareTo("nullid") == 0){
                 session.setAttribute("giamdocId", null);
                 System.out.println("giamdocid: " + session.getAttribute("giamdocId"));
@@ -225,6 +231,8 @@ public class ShowMapAction extends ActionSupport{
         if(getNhanvienId()!= null){
             userListCustomer = customerDAO.getListCustomer(nhanvienId);
             session.setAttribute("staffId", nhanvienId);
+            session.setAttribute("khachhangId", null);
+            session.setAttribute("giamdocId", null);
             if(nhanvienId.compareTo("nullid") == 0){
                 session.setAttribute("staffId", null);
                 System.out.println("staffId: " + session.getAttribute("staffId"));
@@ -236,6 +244,8 @@ public class ShowMapAction extends ActionSupport{
         else
         if(getKhachhangId()!= null){
             session.setAttribute("khachhangId", khachhangId);
+            session.setAttribute("giamdocId", null);
+            session.setAttribute("staffId", null);
             if(khachhangId.compareTo("nullid") == 0){
                 session.setAttribute("khachhangId", null);
                 System.out.println("khachhangId: " + session.getAttribute("khachhangId"));
@@ -249,9 +259,9 @@ public class ShowMapAction extends ActionSupport{
         
         System.out.print("Load Customer into map !!!!!!!!!!!!!!!!!!!!!!");
         
-        String customerID = request.getParameter("customer");
-        if(customerID != null)
-            listRoad = mRoadManagementDAO.getRoad("kachiusa",null,customerID);
+//        String customerID = request.getParameter("customer");
+//        if(customerID != null)
+//            listRoad = mRoadManagementDAO.getRoad("kachiusa",null,customerID);
         return SUCCESS;
     }   
     

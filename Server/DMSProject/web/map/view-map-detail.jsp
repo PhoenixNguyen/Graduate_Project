@@ -225,7 +225,7 @@
             var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
             //gdID = giamdocId;
             console.log("Ma nhan vien: " + staffId);
-             $.getJSON('filterStaff2.action', {'nhanvienId': staffId},
+             $.getJSON('filterCustomer.action', {'khachhangId': staffId},
                  function(data) {
 
                         var divisionList = (data.userListStaff);
@@ -274,7 +274,7 @@
 
 
                 <div class="searchs">
-                    <form action="/" method="post" name="search-poi">
+                    <form action="customer-detail.action" method="post" name="search-poi">
                         <ul>
                             <li>
                                 <div id="keys">

@@ -30,7 +30,7 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author HP
  */
-public class ShowMapAction extends ActionSupport{
+public class ShowRoadAction extends ActionSupport{
     
     
     private List<Customer> listCustomer = new ArrayList();
@@ -104,8 +104,8 @@ public class ShowMapAction extends ActionSupport{
     public void setListCustomer(List<Customer> listCustomer) {
         this.listCustomer = listCustomer;
     }
-        
-    public String showMap(){
+            
+    public String showRoad2(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
@@ -161,64 +161,63 @@ public class ShowMapAction extends ActionSupport{
         
         return SUCCESS;
     }
-    public String showRoad(){
-        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-        HttpSession session = request.getSession();
-        
-        //Lay ve giam doc
-        userListGiamDoc = userDAO.getListUser(2);
-       System.out.println(" GD: ");
-        System.out.println(" GD: "+getGiamdocId()+" STaff: "+ getNhanvienId()); 
-        
-        //Lay ve nhan vien cua giam doc
-        
-        if(getGiamdocId() == null && getNhanvienId() == null){
-            //Tat ca nhan vien
-            userListStaff = staffDAO.getListUser(null);
-            //tat ca khach hang
-            if(session.getAttribute("giamdocId") != null || session.getAttribute("staffId") != null){
-                System.out.print(" Get something "); 
-                //setGiamdocId((String)session.getAttribute("giamdocId"));
-                listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
-                        (String)session.getAttribute("staffId"));
-
-             }else{
-                listCustomer = customerDAO.loadCustomersWithLocations();
-            }
-        }
-        //AJAX
-        else if(getGiamdocId() != null){
-            userListStaff = staffDAO.getListUser(giamdocId);
-            
-            session.setAttribute("giamdocId", giamdocId);
-            if(giamdocId.compareTo("nullid") == 0){
-                session.setAttribute("giamdocId", null);
-                System.out.println("giamdocid: " + session.getAttribute("giamdocId"));
-            }
-            setGiamdocId(null);
-            System.out.print(" filter!! "); 
-            return SUCCESS;
-        }
-        else
-        if(getNhanvienId()!= null){
-            session.setAttribute("staffId", nhanvienId);
-            if(nhanvienId.compareTo("nullid") == 0){
-                session.setAttribute("staffId", null);
-                System.out.println("staffId: " + session.getAttribute("staffId"));
-            }
-            
-            //Reset
-            
-        }
-        
-         
-        
-        System.out.print("Load Customer into map !!!!!!!!!!!!!!!!!!!!!!");
-        
-        String customerID = request.getParameter("customer");
-        if(customerID != null)
-            listRoad = mRoadManagementDAO.getRoad(customerID);
-        return SUCCESS;
-    }   
+    
+//    public String getRoad(){
+//        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+//        HttpSession session = request.getSession();
+//        
+//        String customerID = request.getParameter("customer");
+//        if(customerID != null)
+//            listRoad = mRoadManagementDAO.getRoad(customerID);
+//        
+//        //
+//        //Lay ve giam doc
+//        userListGiamDoc = userDAO.getListUser(2);
+//       System.out.println(" GD: ");
+//        System.out.println(" GD: "+getGiamdocId()+" STaff: "+ getNhanvienId()); 
+//        
+//        //Lay ve nhan vien cua giam doc
+//        
+//        if(getGiamdocId() == null && getNhanvienId() == null){
+//            //Tat ca nhan vien
+//            userListStaff = staffDAO.getListUser(null);
+//            //tat ca khach hang
+//            if(session.getAttribute("giamdocId") != null || session.getAttribute("staffId") != null){
+//                System.out.print(" Get something "); 
+//                //setGiamdocId((String)session.getAttribute("giamdocId"));
+//                listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
+//                        (String)session.getAttribute("staffId"));
+//
+//             }else{
+//                listCustomer = customerDAO.loadCustomersWithLocations();
+//            }
+//        }
+//        //AJAX
+//        else if(getGiamdocId() != null){
+//            userListStaff = staffDAO.getListUser(giamdocId);
+//            
+//            session.setAttribute("giamdocId", giamdocId);
+//            if(giamdocId.compareTo("nullid") == 0){
+//                session.setAttribute("giamdocId", null);
+//                System.out.println("giamdocid: " + session.getAttribute("giamdocId"));
+//            }
+//            setGiamdocId(null);
+//            System.out.print(" filter!! "); 
+//            return SUCCESS;
+//        }
+//        else
+//        if(getNhanvienId()!= null){
+//            session.setAttribute("staffId", nhanvienId);
+//            if(nhanvienId.compareTo("nullid") == 0){
+//                session.setAttribute("staffId", null);
+//                System.out.println("staffId: " + session.getAttribute("staffId"));
+//            }
+//            
+//            //Reset
+//            
+//        }
+//        System.out.print("Load Road !!!!!!!!!!!!!!!!!!!!!!" + listRoad.size());
+//        return SUCCESS;
+//    }
     
 }

@@ -229,7 +229,8 @@
                             <li class="advance-text clear">Tìm kiếm nâng cao</li>
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
                                 <s:set id="giamdid" value="giamdocId"/>
-                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" onchange="getLoadStaff(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
+                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" 
+                                          onchange="getLoadStaff(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
                                 <!--sx:autocompleter size="1"  list="userListGiamDoc" keyValue="mID"name="mID"-->
                                 </action>
                             </li>
@@ -237,7 +238,8 @@
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
                                 
                                 
-                                <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff" onchange="getLoadCustomer(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
+                                <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff" 
+                                          onchange="getLoadCustomer(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
                                 <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
                             </li>
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>

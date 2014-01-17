@@ -6,7 +6,11 @@
 
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 
+<script>
+<%@include file="../js/jquery.min.js"%>
+</script>
 <%
 
     request.setCharacterEncoding("UTF-8");
@@ -16,14 +20,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
 
-        <link rel="icon" href=""/>
+<!--        <link rel="icon" href=""/> this tag do action double load: be carfuly-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>View map detail</title>
 
             <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
-
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-            <script type = "text/javascript" src = "../js/jquery.min.js" ></script>
             <script type="text/javascript" src="../js/view-data-script.js"></script>
             <script type="text/javascript" src="../js/view-map.js"></script>
             <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
@@ -125,7 +126,62 @@
                });
              });
         </script>
-                    
+        <script type="text/javascript">
+        // load ajax
+        var gdID;
+        //load sales man list
+        function getLoadStaff2(x){
+//            _url = location.href;
+//            _url += (_url.split('?')[1] ? '&':'?') + param;
+//            return _url;
+//            
+//            window.location.search = jQuery.query.set("rows", 10);
+            
+            var giamdocId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
+            gdID = giamdocId;
+            console.log("Ma giam doc: " + giamdocId);
+             $.getJSON('filterGiamDoc2.action', {'giamdocId': giamdocId},
+                 function(data) {
+
+                        var divisionList = (data.userListStaff);
+                             console.log("log: " + divisionList);
+                             var options = $("#staff");
+                             options.find('option')
+                 .remove()
+                 .end();
+                  options.append($("<option />").val("-1").text("--select--"));
+             $.each(divisionList, function(k , v) {
+
+                 options.append($("<option />").val(k).text(v));
+             });
+                 }
+             );
+         }
+         
+         //load customer list
+         function getLoadCustomer2(x){
+            var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
+            //gdID = giamdocId;
+            console.log("Ma nhan vien: " + staffId);
+             $.getJSON('filterStaff2.action', {'nhanvienId': staffId},
+                 function(data) {
+
+                        var divisionList = (data.userListStaff);
+                             //console.log("log: " + divisionList);
+//                             var options = $("#staff");
+//                             options.find('option')
+//                 .remove()
+//                 .end();
+//                  options.append($("<option />").val("-1").text("--select--"));
+//             $.each(divisionList, function(k , v) {
+//
+//                 options.append($("<option />").val(k).text(v));
+//             });
+                 }
+             );
+         }
+
+   </script>            
     </head>
     <body>
 
@@ -172,74 +228,27 @@
                             <li class="advance-text clear" >Tìm kiếm nâng cao</li>
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
 
-                                <div  id="callback-form" class="hide"><span class="arrow-up"></span>
-                                    <div class="combo-wrapper wrapper-poitype">
-<!--                                        <select name="poitype" class="select-box hide">
-                                            <option value="" selected="selected">Tỉnh thành</option>
-                                            <option value="1">Hà Nội</option>
-                                            <option value="1">Hải Phòng</option>
-
-                                        </select>-->
-                                        <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Mã nhân viên">
-                                        <div class="combo-values poitype">
-                                            <ul>
-                                                <li data-index="0" class="selected">Giám đốc</li>
-                                                <li data-index="1">Giám đốc 1</li>
-                                                <li data-index="2">Giám đốc 2</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" 
+                                          onchange="getLoadStaff2(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
                             </li>
                             
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
 
-                                <div id="enquiry-form" class="hide"><span class="arrow-up"></span>
-                                    <div class="combo-wrapper wrapper-poitype">
-<!--                                        <select name="poitype" class="select-box hide">
-                                            <option value="" selected="selected">Tỉnh thành</option>
-                                            <option value="1">Hà Nội</option>
-                                            <option value="1">Hải Phòng</option>
-
-                                        </select>-->
-                                        <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Mã nhân viên">
-                                        <div class="combo-values poitype">
-                                            <ul>
-                                                <li data-index="0" class="selected">Nhân viên</li>
-                                                <li data-index="1">Nhân viên 1</li>
-                                                <li data-index="2">Nhân viên 2</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff" 
+                                          onchange="getLoadCustomer2(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
                             </li>
                             
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
 
-                                <div id="booknow-form" class="hide"><span class="arrow-up"></span>
-                                    <div class="combo-wrapper wrapper-poitype">
-<!--                                        <select name="poitype" class="select-box hide">
-                                            <option value="" selected="selected">Tỉnh thành</option>
-                                            <option value="1">Hà Nội</option>
-                                            <option value="1">Hải Phòng</option>
-
-                                        </select>-->
-                                        <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Mã nhân viên">
-                                        <div class="combo-values poitype">
-                                            <ul>
-                                                <li data-index="0" class="selected">Khách hàng</li>
-                                                <li data-index="1">Khách hàng 1</li>
-                                                <li data-index="2">Khách hàng 2</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                            </li>
+                            <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>
+                                
+                                
+                                <input type="submit" name="finds"  value="Lọc" style="width: 100px;
+                                        height: 30px;margin-top: -28px;margin-left: 20px;position: absolute;">
+                                
+                                <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
                             </li>
                                                        
                         </ul>

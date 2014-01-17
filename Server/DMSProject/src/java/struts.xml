@@ -23,6 +23,14 @@
 <!--            <param name="inputName">inputStream</param>-->
           </result>
         </action>
+        <action name="filterStaff" method="showMap" class="com.hp.action.ShowMapAction"  >
+              
+          <result  type="json" >
+              <!--param name="root">userListStaff</param-->
+              <param name="contentType">application/json</param>
+<!--            <param name="inputName">inputStream</param>-->
+          </result>
+        </action>
         
     </package>
     

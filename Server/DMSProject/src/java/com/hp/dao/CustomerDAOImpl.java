@@ -68,7 +68,7 @@ public class CustomerDAOImpl implements CustomerDAO{
         
     }
     
-    public List<Customer> loadCustomersWithLocations(String pManagerID){
+    public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
@@ -79,11 +79,13 @@ public class CustomerDAOImpl implements CustomerDAO{
         try{
             
             System.out.print(pManagerID);           
-            
-            courses3 = session.createQuery("select cus from Customer as cus, Staff as st where "
-                    + "st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
-                    + "' and cus.mXCoordinates is NOT NULL "
-                    + "and  cus.mYCoordinates is NOT NULL ").list();
+            if(pStaff == null)
+                courses = session.createQuery("select cus from Customer as cus, Staff as st where "
+                        + "st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
+                        + "' and cus.mXCoordinates is NOT NULL "
+                        + "and  cus.mYCoordinates is NOT NULL ").list();
+            else
+                courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"'").list();
             //courses = session.createQuery("from Customer where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL and mMaNhanVien='DVH'").list();
 //            use DMSServer
 //            select cus.* 
@@ -102,7 +104,7 @@ public class CustomerDAOImpl implements CustomerDAO{
             session.close();
         }
         
-        return courses3;
+        return courses;
     }
     
     

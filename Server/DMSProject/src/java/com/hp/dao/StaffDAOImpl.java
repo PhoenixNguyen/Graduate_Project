@@ -24,9 +24,10 @@ public class StaffDAOImpl implements StaffDAO{
         
         List<String> courses = null;
         try{
-            if(pUser.compareTo("") == 0)
+            if(pUser == null)
                 courses = session.createQuery("select mID from Staff ").list();
-            courses = session.createQuery("select mID from Staff  where mManager ='"+pUser+"'").list(); //where mManager ='"+pUser+"'"
+            else
+                courses = session.createQuery("select mID from Staff  where mManager ='"+pUser+"'").list(); //where mManager ='"+pUser+"'"
         }catch(Exception e){
             e.printStackTrace();
         }

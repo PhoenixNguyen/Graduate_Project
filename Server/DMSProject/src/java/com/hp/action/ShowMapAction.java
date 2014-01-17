@@ -52,6 +52,18 @@ public class ShowMapAction extends ActionSupport{
     private List<String> userListStaff = new ArrayList<String>();
 
     private String giamdocId;
+    private String nhanvienId;
+
+    public String getNhanvienId() {
+        return nhanvienId;
+    }
+
+    public void setNhanvienId(String nhanvienId) {
+        this.nhanvienId = nhanvienId;
+    }
+
+   
+    
 
     public String getGiamdocId() {
         return giamdocId;
@@ -99,18 +111,20 @@ public class ShowMapAction extends ActionSupport{
         
         //Lay ve giam doc
         userListGiamDoc = userDAO.getListUser(2);
-       
-        
+       System.out.println(" GD: ");
+        System.out.println(" GD: "+getGiamdocId()+" STaff: "+ getNhanvienId()); 
         
         //Lay ve nhan vien cua giam doc
-        if(getGiamdocId() == null){
+        
+        if(getGiamdocId() == null && getNhanvienId() == null){
             //Tat ca nhan vien
-            userListStaff = staffDAO.getListUser("kachiusa");
+            userListStaff = staffDAO.getListUser(null);
             //tat ca khach hang
-            if(session.getAttribute("giamdocId") != null){
+            if(session.getAttribute("giamdocId") != null || session.getAttribute("staffId") != null){
                 System.out.print(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
-                listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"));
+                listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
+                        (String)session.getAttribute("staffId"));
 
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();
@@ -125,9 +139,20 @@ public class ShowMapAction extends ActionSupport{
                 session.setAttribute("giamdocId", null);
                 System.out.println("giamdocid: " + session.getAttribute("giamdocId"));
             }
-            
+            setGiamdocId(null);
             System.out.print(" filter!! "); 
             return SUCCESS;
+        }
+        else
+        if(getNhanvienId()!= null){
+            session.setAttribute("staffId", nhanvienId);
+            if(nhanvienId.compareTo("nullid") == 0){
+                session.setAttribute("staffId", null);
+                System.out.println("staffId: " + session.getAttribute("staffId"));
+            }
+            
+            //Reset
+            
         }
         
          

@@ -19,4 +19,6 @@ public interface CustomerDAO {
     public List<Customer> loadCustomersWithLocations();
     //and hava all sales man of manager
     public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff);
+    //Get List customer to ajax
+    public List<String> getListCustomer(String pStaff);
 }

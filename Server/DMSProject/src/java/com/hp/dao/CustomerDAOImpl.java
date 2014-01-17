@@ -107,7 +107,27 @@ public class CustomerDAOImpl implements CustomerDAO{
         return courses;
     }
     
-    
-    
+    //Get List customer to ajax
+    public List<String> getListCustomer(String pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<String> courses = null;
+        try{
+            if(pStaff == null)
+                courses = session.createQuery("select mMaDoiTuong from Customer where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL ").list();
+            else
+                courses = session.createQuery("select mMaDoiTuong from Customer where mXCoordinates is NOT NULL "
+                        + " and  mYCoordinates is NOT NULL and mMaNhanVien='"+pStaff+"'").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
     
 }

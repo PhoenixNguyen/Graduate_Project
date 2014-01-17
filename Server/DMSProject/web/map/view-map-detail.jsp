@@ -158,8 +158,31 @@
              );
          }
          
-         //load customer list
+         //load customer list 
          function getLoadCustomer2(x){
+            var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
+            //gdID = giamdocId;
+            console.log("Ma nhan vien: " + staffId);
+             $.getJSON('filterStaff2.action', {'nhanvienId': staffId},
+                 function(data) {
+
+                        var divisionList = (data.userListCustomer);
+                             console.log("log: " + divisionList);
+                             var options = $("#customer");
+                             options.find('option')
+                 .remove()
+                 .end();
+                  options.append($("<option />").val("-1").text("--select--"));
+             $.each(divisionList, function(k , v) {
+
+                 options.append($("<option />").val(k).text(v));
+             });
+                 }
+             );
+         }
+         
+         //Khi nhan vao chon khach hang
+         function getLoadCustomerDetail(x){
             var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
             //gdID = giamdocId;
             console.log("Ma nhan vien: " + staffId);
@@ -239,7 +262,8 @@
                             </li>
                             
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
-
+                                <s:select name="customerId"  list="userListCustomer" listKey="customerId" id="customer" 
+                                          onchange="getLoadCustomerDetail(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
                                 
                             </li>
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>

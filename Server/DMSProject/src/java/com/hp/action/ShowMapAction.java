@@ -50,10 +50,28 @@ public class ShowMapAction extends ActionSupport{
     
     private StaffDAO staffDAO = new StaffDAOImpl();
     private List<String> userListStaff = new ArrayList<String>();
-
+    private List<String> userListCustomer = new ArrayList<String>();
+    
     private String giamdocId;
     private String nhanvienId;
+    private String khachhangId;
 
+    public String getKhachhangId() {
+        return khachhangId;
+    }
+
+    public void setKhachhangId(String khachhangId) {
+        this.khachhangId = khachhangId;
+    }
+    
+    public List<String> getUserListCustomer() {
+        return userListCustomer;
+    }
+
+    public void setUserListCustomer(List<String> userListCustomer) {
+        this.userListCustomer = userListCustomer;
+    }
+    
     public String getNhanvienId() {
         return nhanvienId;
     }
@@ -172,11 +190,13 @@ public class ShowMapAction extends ActionSupport{
         
         //Lay ve nhan vien cua giam doc
         
-        if(getGiamdocId() == null && getNhanvienId() == null){
+        if(getGiamdocId() == null && getNhanvienId() == null && getKhachhangId() == null){
             //Tat ca nhan vien
             userListStaff = staffDAO.getListUser(null);
-            //tat ca khach hang
-            if(session.getAttribute("giamdocId") != null || session.getAttribute("staffId") != null){
+            //Tat ca danh sach khach hang
+            userListCustomer = customerDAO.getListCustomer(null);
+            //tat ca khach hang show screen
+            if(session.getAttribute("giamdocId") != null || session.getAttribute("staffId") != null || session.getAttribute("khachhangId") != null){
                 System.out.print(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
@@ -201,10 +221,22 @@ public class ShowMapAction extends ActionSupport{
         }
         else
         if(getNhanvienId()!= null){
+            userListCustomer = customerDAO.getListCustomer(nhanvienId);
             session.setAttribute("staffId", nhanvienId);
             if(nhanvienId.compareTo("nullid") == 0){
                 session.setAttribute("staffId", null);
                 System.out.println("staffId: " + session.getAttribute("staffId"));
+            }
+            
+            //Reset
+            
+        }
+        else
+        if(getKhachhangId()!= null){
+            session.setAttribute("khachhangId", khachhangId);
+            if(khachhangId.compareTo("nullid") == 0){
+                session.setAttribute("khachhangId", null);
+                System.out.println("khachhangId: " + session.getAttribute("khachhangId"));
             }
             
             //Reset

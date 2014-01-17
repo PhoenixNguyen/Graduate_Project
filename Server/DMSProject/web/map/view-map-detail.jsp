@@ -32,10 +32,17 @@
             
             <script type="text/javascript">
             var arr = new Array();
+            <s:iterator value="listRoad" status="status">
+            <s:iterator value="listRoad.get(#status.index)" >
+                console.log(<s:property value="#status.index"/>);
+                    
+            </s:iterator>
+            </s:iterator>
             function initialize() {
                 var i;
                 var Points = [
             <s:iterator value="listRoad" status="status">
+            <s:iterator value="listRoad.get(#status.index)" >
                     {
                         mXCoordinates: <s:property value="mViDo"/>,
                                 mYCoordinates: <s:property value="mKinhdo"/>,
@@ -43,11 +50,12 @@
 
                     },
             </s:iterator>
+            </s:iterator>
                 ];
 
                 var myOptions = {
                     zoom: 13,
-                    center: new google.maps.LatLng(<s:property value="listRoad.get(0).getmViDo()"/>, <s:property value="listRoad.get(0).getmKinhdo()"/>),
+                    center: new google.maps.LatLng(<s:property value="listRoad.get(0).get(0).getmViDo()"/>, <s:property value="listRoad.get(0).get(0).getmKinhdo()"/>),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
@@ -59,7 +67,10 @@
 
                 var contentString = [
             <s:iterator value="listRoad" status="status">
-                    'Thời gian:<br/><s:property value="mThoiGian"/>',
+            <s:iterator value="listRoad.get(#status.index)" >
+                    'Mã Nhân viên: <s:property value="mMaNhanVien"/> <br/>\
+                    Thời gian:<br/><s:property value="mThoiGian"/>',
+            </s:iterator>
             </s:iterator>
                 ];
 
@@ -81,25 +92,53 @@
                     bindInfoWindow(marker, map, infowindow, contentString[i], Points[i].mMaDoiTuong);
 
                 }
-                
-                //Polyline
-                var flightPlanCoordinates = [
+                //multi polyline
+                var multi = [
                     <s:iterator value="listRoad" status="status">
-                    new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
-                    </s:iterator>
-                  ];
-                  var flightPath = new google.maps.Polyline({
-                    path: flightPlanCoordinates,
+                    
+                    [
+                        <s:iterator value="listRoad.get(#status.index)" >
+                                new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
+                        </s:iterator>
+                        
+                    ],
+                    </s:iterator>  
+                
+                ];
+                var color =  ["#FF0000", "#00FFFF", "#000000", "#006400","#FF8C00", "#8FBC8F", "#9400D3", "#FF1493"];
+                for (i = 0; i < multi.length; i++) {
+                    var flightPath1 = new google.maps.Polyline({
+                    path: multi[i],
                     geodesic: true,
-                    strokeColor: '#FF0000',
+                    strokeColor: color[Math.floor(Math.random() * color.length)] ,
                     strokeOpacity: 1.0,
                     strokeWeight: 2
                   });
 
-                  flightPath.setMap(map);
+                  flightPath1.setMap(map);
+
+                }
+                //Polyline
+//                var flightPlanCoordinates = [
+//                    <s:iterator value="listRoad" status="status">
+//                    new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
+//                    </s:iterator>
+//                  ];
+//                  var flightPath = new google.maps.Polyline({
+//                    path: flightPlanCoordinates,
+//                    geodesic: true,
+//                    strokeColor: '#FF0000',
+//                    strokeOpacity: 1.0,
+//                    strokeWeight: 2
+//                  });
+//
+//                  flightPath.setMap(map);
 
             }
-
+            function getListToShowPolyline(){
+                var list = [{},{}];
+            }
+            
             function bindInfoWindow(marker, map, infowindow, html, Ltitle) {
                 google.maps.event.addListener(marker, 'click', function() {
                     infowindow.setContent(html);

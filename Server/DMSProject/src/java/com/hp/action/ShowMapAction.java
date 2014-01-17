@@ -37,7 +37,15 @@ public class ShowMapAction extends ActionSupport{
 
     //Get Road for each customer
     private RoadManagementDAO mRoadManagementDAO = new RoadManagementDAOImpl();
-    private List<RoadManagement> listRoad = new ArrayList();
+    private List<List<RoadManagement>> listRoad = new ArrayList<List<RoadManagement>>();
+
+    public List<List<RoadManagement>> getListRoad() {
+        return listRoad;
+    }
+
+    public void setListRoad(List<List<RoadManagement>> listRoad) {
+        this.listRoad = listRoad;
+    }
 
     private CustomerDAO customerDAO = new CustomerDAOImpl();
     
@@ -56,6 +64,7 @@ public class ShowMapAction extends ActionSupport{
     private String nhanvienId;
     private String khachhangId;
 
+   
     public String getKhachhangId() {
         return khachhangId;
     }
@@ -107,13 +116,6 @@ public class ShowMapAction extends ActionSupport{
     }
     
  
-    public List<RoadManagement> getListRoad() {
-        return listRoad;
-    }
-
-    public void setListRoad(List<RoadManagement> listRoad) {
-        this.listRoad = listRoad;
-    }
     
     public List<Customer> getListCustomer() {
         return listCustomer;
@@ -249,7 +251,7 @@ public class ShowMapAction extends ActionSupport{
         
         String customerID = request.getParameter("customer");
         if(customerID != null)
-            listRoad = mRoadManagementDAO.getRoad(customerID);
+            listRoad = mRoadManagementDAO.getRoad("kachiusa",null,customerID);
         return SUCCESS;
     }   
     

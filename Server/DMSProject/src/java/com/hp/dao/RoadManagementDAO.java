@@ -14,5 +14,5 @@ import java.util.List;
  * @author HP
  */
 public interface RoadManagementDAO {
-    public List<RoadManagement> getRoad(String pMaKhachHang);
+    public List<List<RoadManagement>> getRoad(String pGiamDoc, String pNhanVien, String pMaKhachHang);
 }

@@ -74,20 +74,27 @@ public class CustomerDAOImpl implements CustomerDAO{
         transaction = session.beginTransaction();
         
         List<Customer> courses = null;
+        List<Customer> courses2 = null;
+        List<Customer> courses3 = null;
         try{
             
-            System.out.print(pManagerID);
-//            courses = session.createSQLQuery("select cus.* from tb_khachhang as cus, tb_nhanvien as st where "
-//                    + "st.nhanvien_ma_nhan_vien = cus.khachhang_ma_dt and st.nhanvien_nguoi_quan_ly = 'kachiusa" //+pManagerID
-//                    + "' and cus.khachhang_toa_do_x != null "
-//                    + "and  cus.khachhang_toa_do_y != null ").addEntity(Customer.class).list();
+            System.out.print(pManagerID);           
             
-            
-            //            courses = session.createQuery("select cus from Customer as cus, Staff as st where "
-//                    + "st.mID = cus.mMaNhanVien and st.mManager = 'kachiusa" //+pManagerID
-//                    + "' and cus.mXCoordinates is NOT NULL "
-//                    + "and  cus.mYCoordinates is NOT NULL ").list();
-            courses = session.createQuery("from Customer where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL and mMaNhanVien='DVH'").list();
+            courses3 = session.createQuery("select cus from Customer as cus, Staff as st where "
+                    + "st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
+                    + "' and cus.mXCoordinates is NOT NULL "
+                    + "and  cus.mYCoordinates is NOT NULL ").list();
+            //courses = session.createQuery("from Customer where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL and mMaNhanVien='DVH'").list();
+//            use DMSServer
+//            select cus.* 
+//            from  tb_khachhang as cus, tb_nhanvien as st 
+//            where 
+//                            st.nhanvien_ma_nhan_vien = cus.khachhang_ma_nv
+//                            and
+//                            st.nhanvien_nguoi_quan_ly = 'kachiusa'
+//
+//                            and cus.khachhang_toa_do_x IS NOT null
+//                            and  cus.khachhang_toa_do_y IS NOT null
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -95,7 +102,7 @@ public class CustomerDAOImpl implements CustomerDAO{
             session.close();
         }
         
-        return courses;
+        return courses3;
     }
     
     

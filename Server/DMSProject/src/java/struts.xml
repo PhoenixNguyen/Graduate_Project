@@ -5,17 +5,85 @@
 
 <struts>
     
-    <package name="map"  extends="hibernate-default" namespace="/map">
+    <package name="map"  extends="json-default,hibernate-default" namespace="/map">
 		
         <action name="showMap" method="showMap" class="com.hp.action.ShowMapAction">
             <result name="success">view-map.jsp</result>
         </action>
         
-        <action name="customer-detail" method="getRoad" class="com.hp.action.ShowMapAction">
+        
+
+        <action name="filterGiamDoc" method="showMap" class="com.hp.action.ShowMapAction"  >
+              
+          <result  type="json" >
+              <param name="contentType">application/json</param>
+              <param name="inputName">inputStream</param>
+          </result>
+        </action>
+        <action name="filterStaff" method="showMap" class="com.hp.action.ShowMapAction"  >
+              
+          <result  type="json" >
+              <param name="contentType">application/json</param>
+            <param name="inputName">inputStream</param>
+          </result>
+        </action>
+        
+<!--        FOR ROADS-->
+        <action name="customer-detail" method="showRoad" class="com.hp.action.ShowMapAction">
             <result name="success">view-map-detail.jsp</result>
         </action>
-
+        <action name="filterGiamDoc2" method="showRoad" class="com.hp.action.ShowMapAction"  >
+              
+          <result  type="json" >
+              <!--param name="root">userListStaff</param-->
+              <param name="contentType">application/json</param>
+<!--            <param name="inputName">inputStream</param>-->
+          </result>
+        </action>
+        <action name="filterStaff2" method="showRoad" class="com.hp.action.ShowMapAction"  >
+              
+          <result  type="json" >
+              <!--param name="root">userListStaff</param-->
+              <param name="contentType">application/json</param>
+<!--            <param name="inputName">inputStream</param>-->
+          </result>
+        </action>
+        <action name="filterCustomer" method="showRoad" class="com.hp.action.ShowMapAction"  >
+              
+          <result  type="json" >
+              <!--param name="root">userListStaff</param-->
+              <param name="contentType">application/json</param>
+<!--            <param name="inputName">inputStream</param>-->
+          </result>
+        </action>
     </package>
     
+    <package name="ajax" namespace="/map" extends="json-default">
+      
+        
+        
+    </package>
+    
+    <package name="admin"  extends="hibernate-default" namespace="/admin">
+		
+        <action name="add-customer" method="addCustomerFromExcelFile" class="com.hp.action.CustomerAction">
+            <result name="success">add-customer-result.jsp</result>
+            <result name="input">add-customer-fail.jsp</result>
+        </action>
+        
+        <action name="upload" method="saveFile" class="com.hp.action.CustomerAction">
+            
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            
+            <result name="success" type="redirect">upload-customer-result.jsp</result>
+            <result name="input">upload-customer-file.jsp</result>
+        </action>
+        
+    </package>
     
 </struts>

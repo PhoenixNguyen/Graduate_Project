@@ -4,46 +4,86 @@
  * and open the template in the editor.
  */
 
-package com.hp.excelhandle;
+package com.hp.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author HP
  */
-public class Customer extends Object{
-    private double mStt;
+@Entity
+@Table(name="tb_khachhang")
+
+public class Customer {
+    
+    @Id
+    @GeneratedValue
+    
+    @Column(name="khachhang_stt")
+    private int mStt;
+    @Column(name="khachhang_tinh_thanh")
     private String mTinhThanh;
+    @Column(name="khachhang_tuyen_ban_hang_thu")
     private String mTuyenBanHangThu;
+    @Column(name="khachhang_ma_nv")
     private String mMaNhanVien;
+    @Column(name="khachhang_x")
     private String mX;
+    @Column(name="khachhang_ma_dt")
     private String mMaDoiTuong;
+    @Column(name="khachhang_doi_tuong")
     private String mDoiTuong;
+    @Column(name="khachhang_no_dky")
     private double mNoDKy;
+    @Column(name="khachhang_co_dky")
     private double mCoDKy;
+    @Column(name="khachhang_no_tky")
     private double mNoTKy;
+    @Column(name="khachhang_tien_ban")
     private double mTienBan;
+    @Column(name="khachhang_co_tky")
     private double mCoTKy;
+    @Column(name="khachhang_ck_gg")
     private double mCKGG;
+    @Column(name="khachhang_nhap_lai")
     private double mNhapLai;
+    @Column(name="khachhang_no_cky")
     private double mNoCKy;
+    @Column(name="khachhang_co_cky")
     private double mCoCKy;
+    @Column(name="khachhang_doanh_thu")
     private double mDoanhThu;
+    @Column(name="khachhang_ti_le_no_thu")
     private double mPhanTramNoChiaThu;
+    @Column(name="khachhang_no_toi_da")
     private double mNoToiDa;
+    @Column(name="khachhang_dai_dien")
     private String mDaiDien;
+    @Column(name="khachhang_diachi")
     private String mDiaChi;
+    @Column(name="khachhang_dien_thoai")
     private String mDienThoai;
+    @Column(name="khachhang_fax")
     private String mFax;
+    @Column(name="khachhang_ghi_chu")
     private String mGhiChu;
-           
+    
+    @Column(name="khachhang_toa_do_x")         
     private double mXCoordinates;
+    @Column(name="khachhang_toa_do_y")
     private double mYCoordinates;
 
-    public double getmStt() {
+    
+    public int getmStt() {
         return mStt;
     }
 
-    public void setmStt(double mStt) {
+    public void setmStt(int mStt) {
         this.mStt = mStt;
     }
 

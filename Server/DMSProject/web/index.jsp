@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1>Hello World!</h1> <br/>
-        <a href="map/showMap?page=0">Show map</a>
+        <a href="map/showMap?page=0">Show map</a><br/>
+        <a href="admin/upload-customer-file.jsp">upload customer file</a><br/>
     </body>
 </html>

@@ -6,7 +6,11 @@
 
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 
+<script>
+<%@include file="../js/jquery.min.js"%>
+</script>
 <%
 
     request.setCharacterEncoding("UTF-8");
@@ -16,14 +20,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
 
-        <link rel="icon" href=""/>
+<!--        <link rel="icon" href=""/> this tag do action double load: be carfuly-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>View map detail</title>
 
             <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
-
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-            <script type = "text/javascript" src = "../js/jquery.min.js" ></script>
             <script type="text/javascript" src="../js/view-data-script.js"></script>
             <script type="text/javascript" src="../js/view-map.js"></script>
             <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
@@ -31,10 +32,17 @@
             
             <script type="text/javascript">
             var arr = new Array();
+            <s:iterator value="listRoad" status="status">
+            <s:iterator value="listRoad.get(#status.index)" >
+                console.log(<s:property value="#status.index"/>);
+                    
+            </s:iterator>
+            </s:iterator>
             function initialize() {
                 var i;
                 var Points = [
             <s:iterator value="listRoad" status="status">
+            <s:iterator value="listRoad.get(#status.index)" >
                     {
                         mXCoordinates: <s:property value="mViDo"/>,
                                 mYCoordinates: <s:property value="mKinhdo"/>,
@@ -42,11 +50,12 @@
 
                     },
             </s:iterator>
+            </s:iterator>
                 ];
 
                 var myOptions = {
                     zoom: 13,
-                    center: new google.maps.LatLng(<s:property value="listRoad.get(0).getmViDo()"/>, <s:property value="listRoad.get(0).getmKinhdo()"/>),
+                    center: new google.maps.LatLng(<s:property value="listRoad.get(0).get(0).getmViDo()"/>, <s:property value="listRoad.get(0).get(0).getmKinhdo()"/>),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
@@ -58,7 +67,10 @@
 
                 var contentString = [
             <s:iterator value="listRoad" status="status">
-                    'Thời gian:<br/><s:property value="mThoiGian"/>',
+            <s:iterator value="listRoad.get(#status.index)" >
+                    'Mã Nhân viên: <s:property value="mMaNhanVien"/> <br/>\
+                    Thời gian:<br/><s:property value="mThoiGian"/>',
+            </s:iterator>
             </s:iterator>
                 ];
 
@@ -80,25 +92,53 @@
                     bindInfoWindow(marker, map, infowindow, contentString[i], Points[i].mMaDoiTuong);
 
                 }
-                
-                //Polyline
-                var flightPlanCoordinates = [
+                //multi polyline
+                var multi = [
                     <s:iterator value="listRoad" status="status">
-                    new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
-                    </s:iterator>
-                  ];
-                  var flightPath = new google.maps.Polyline({
-                    path: flightPlanCoordinates,
+                    
+                    [
+                        <s:iterator value="listRoad.get(#status.index)" >
+                                new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
+                        </s:iterator>
+                        
+                    ],
+                    </s:iterator>  
+                
+                ];
+                var color =  ["#FF0000", "#00FFFF", "#000000", "#006400","#FF8C00", "#8FBC8F", "#9400D3", "#FF1493"];
+                for (i = 0; i < multi.length; i++) {
+                    var flightPath1 = new google.maps.Polyline({
+                    path: multi[i],
                     geodesic: true,
-                    strokeColor: '#FF0000',
+                    strokeColor: color[Math.floor(Math.random() * color.length)] ,
                     strokeOpacity: 1.0,
                     strokeWeight: 2
                   });
 
-                  flightPath.setMap(map);
+                  flightPath1.setMap(map);
+
+                }
+                //Polyline
+//                var flightPlanCoordinates = [
+//                    <s:iterator value="listRoad" status="status">
+//                    new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
+//                    </s:iterator>
+//                  ];
+//                  var flightPath = new google.maps.Polyline({
+//                    path: flightPlanCoordinates,
+//                    geodesic: true,
+//                    strokeColor: '#FF0000',
+//                    strokeOpacity: 1.0,
+//                    strokeWeight: 2
+//                  });
+//
+//                  flightPath.setMap(map);
 
             }
-
+            function getListToShowPolyline(){
+                var list = [{},{}];
+            }
+            
             function bindInfoWindow(marker, map, infowindow, html, Ltitle) {
                 google.maps.event.addListener(marker, 'click', function() {
                     infowindow.setContent(html);
@@ -115,12 +155,95 @@
         
         <script>
             $(document).ready(function(){
-                $(".category-wrapper").click(function(){
-                  $(".hide").fadeToggle();
-
-                });
-              });
+                $('.category-wrapper').click(function () {
+                   var currentId = '#' + $('.hide:visible').prop('id');
+                   var newId = $(this).data('rel');
+                   $('.hide').fadeOut();
+                   if (currentId != newId) {
+                       $(newId).fadeIn();
+                   }
+               });
+             });
         </script>
+        <script type="text/javascript">
+        // load ajax
+        var gdID;
+        //load sales man list
+        function getLoadStaff2(x){
+//            _url = location.href;
+//            _url += (_url.split('?')[1] ? '&':'?') + param;
+//            return _url;
+//            
+//            window.location.search = jQuery.query.set("rows", 10);
+            
+            var giamdocId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
+            gdID = giamdocId;
+            console.log("Ma giam doc: " + giamdocId);
+             $.getJSON('filterGiamDoc2.action', {'giamdocId': giamdocId},
+                 function(data) {
+
+                        var divisionList = (data.userListStaff);
+                             console.log("log: " + divisionList);
+                             var options = $("#staff");
+                             options.find('option')
+                 .remove()
+                 .end();
+                  options.append($("<option />").val("-1").text("--select--"));
+             $.each(divisionList, function(k , v) {
+
+                 options.append($("<option />").val(k).text(v));
+             });
+                 }
+             );
+         }
+         
+         //load customer list 
+         function getLoadCustomer2(x){
+            var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
+            //gdID = giamdocId;
+            console.log("Ma nhan vien: " + staffId);
+             $.getJSON('filterStaff2.action', {'nhanvienId': staffId},
+                 function(data) {
+
+                        var divisionList = (data.userListCustomer);
+                             console.log("log: " + divisionList);
+                             var options = $("#customer");
+                             options.find('option')
+                 .remove()
+                 .end();
+                  options.append($("<option />").val("-1").text("--select--"));
+             $.each(divisionList, function(k , v) {
+
+                 options.append($("<option />").val(k).text(v));
+             });
+                 }
+             );
+         }
+         
+         //Khi nhan vao chon khach hang
+         function getLoadCustomerDetail(x){
+            var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
+            //gdID = giamdocId;
+            console.log("Ma nhan vien: " + staffId);
+             $.getJSON('filterCustomer.action', {'khachhangId': staffId},
+                 function(data) {
+
+                        var divisionList = (data.userListStaff);
+                             //console.log("log: " + divisionList);
+//                             var options = $("#staff");
+//                             options.find('option')
+//                 .remove()
+//                 .end();
+//                  options.append($("<option />").val("-1").text("--select--"));
+//             $.each(divisionList, function(k , v) {
+//
+//                 options.append($("<option />").val(k).text(v));
+//             });
+                 }
+             );
+         }
+
+   </script>            
     </head>
     <body>
 
@@ -151,7 +274,7 @@
 
 
                 <div class="searchs">
-                    <form action="/" method="post" name="search-poi">
+                    <form action="customer-detail.action" method="post" name="search-poi">
                         <ul>
                             <li>
                                 <div id="keys">
@@ -164,28 +287,31 @@
                                 <div><input type="submit" name="finds" value="Tìm kiếm"></div>
                             </li>
 
-                            <li class="advance-text clear">Tìm kiếm nâng cao</li>
-                            <li class="category-wrapper"><a href="#">Tỉnh thành</a>
+                            <li class="advance-text clear" >Tìm kiếm nâng cao</li>
+                            <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
 
-                                <div class="hide"><span class="arrow-up"></span>
-                                    <div class="combo-wrapper wrapper-poitype">
-<!--                                        <select name="poitype" class="select-box hide">
-                                            <option value="">Tỉnh thành</option>
-                                            <option value="1">Hà Nội</option>
-                                            <option value="2">Hải Phòng</option>
+                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" 
+                                          onchange="getLoadStaff2(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
+                            </li>
+                            
+                            <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
 
-                                        </select>-->
-                                        <a href="#" class="combo-show"><span>show</span></a>
-                                        <input type="text" placeholder="Tất cả địa điểm">
-                                            <div class="combo-values poitype">
-                                                <ul>
-                                                    <li data-index="0" class="selected">Tỉnh thành</li>
-                                                    <li data-index="1">Hà Nội</li>
-                                                    <li data-index="2">Hải Phòng</li>
-                                                </ul>
-                                            </div>
-                                    </div>
-                                </div>
+                                <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff" 
+                                          onchange="getLoadCustomer2(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
+                            </li>
+                            
+                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
+                                <s:select name="customerId"  list="userListCustomer" listKey="customerId" id="customer" 
+                                          onchange="getLoadCustomerDetail(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
+                                
+                            </li>
+                            <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>
+                                
+                                
+                                <input type="submit" name="finds"  value="Lọc" style="width: 100px;
+                                        height: 30px;margin-top: -28px;margin-left: 20px;position: absolute;">
+                                
+                                <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
                             </li>
                                                        
                         </ul>
@@ -311,32 +437,7 @@
                 </div>
             </div>
 
-            <div id="overlay" class="hide">
-                <div class="overlay-content">
-                    <a href="#" class="close-popup"><span>Close popup</span></a>
-
-                    <h4>Xin vui lòng chọn thành phố:</h4>
-                    <div class="combo-wrapper wrapper-citys">
-                        <select name="citys" class="select-box min-width-140 hide">
-                            <option value="20.925111944444000%2C105.727879722220000%2C21.092853888889000%2C105.916919722220000" selected="selected">
-                                Hà Nội						</option>
-                            <option value="10.673571111111000%2C106.491694166670000%2C10.897621%2C106.831741">
-                                Hồ Chí Minh						</option>
-
-                        </select><a href="#" class="combo-show"><span>show</span></a>
-                        <input type="text" placeholder="Hà Nội">
-                            <div class="combo-values citys">
-                                <ul>
-                                    <li data-index="0" class="selected">
-                                        Hà Nội						</li>
-                                    <li data-index="1">
-                                        Hồ Chí Minh						</li>
-                                </ul>
-                            </div>
-                    </div>
-                    <div class="btn-select"><a href="#">Chọn thành phố</a></div>
-                </div>
-            </div>
+            
         </div>
 
 

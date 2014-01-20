@@ -91,5 +91,9 @@ public final class DetailsListData {
 //        new DemoDetails(R.string.visible_region_demo_label,
 //                        R.string.visible_region_demo_description,
 //                        VisibleRegionDemoActivity.class),
+                        
+                        new DetailsList(R.string.login_label,
+                                R.string.login_description,
+                                LoginActivity.class),
     };
 }

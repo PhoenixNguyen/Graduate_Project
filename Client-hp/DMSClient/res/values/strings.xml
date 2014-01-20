@@ -35,4 +35,7 @@
   
   <string name="map_not_ready">Map is not ready yet</string>
   
+  <string name="login_label">LOGIN</string>
+  <string name="login_description">Login to view customers!</string>
+  
 </resources>

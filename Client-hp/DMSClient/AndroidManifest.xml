@@ -54,6 +54,10 @@
       android:name=".MarkerActivity"
       android:label="@string/marker_label"/>
 		
+		<activity
+      android:name=".LoginActivity"
+      android:label="@string/login_label"/>
+		
     </application>
     
 

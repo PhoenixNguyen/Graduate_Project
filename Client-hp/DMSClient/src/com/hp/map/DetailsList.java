@@ -1,5 +1,6 @@
 package com.hp.map;
 
+import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 
 /**
@@ -19,12 +20,13 @@ public class DetailsList {
     /**
      * The demo activity's class.
      */
-    public final Class<? extends FragmentActivity> activityClass;
+    public final Class<? extends Activity> activityClass;
 
     public DetailsList(
-            int titleId, int descriptionId, Class<? extends FragmentActivity> activityClass) {
+            int titleId, int descriptionId, Class<? extends Activity> activityClass) {
         this.titleId = titleId;
         this.descriptionId = descriptionId;
         this.activityClass = activityClass;
     }
+
 }

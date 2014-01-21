@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,9 +30,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.hp.domain.*;
 
 public class RestClient {
 
+	//All customer
+	public static List<Customer> customerList;
+	
 	private ArrayList<NameValuePair> params;
 	private ArrayList<NameValuePair> headers;
 
@@ -221,7 +226,9 @@ public class RestClient {
 			System.out.println("----------------------------");
 		 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
-		 
+				//init customer
+				Customer customer = new Customer();
+				
 				Node nNode = nList.item(temp);
 		 
 				System.out.println("\nCurrent Element :" + nNode.getNodeName());
@@ -230,11 +237,25 @@ public class RestClient {
 		 
 					Element eElement = (Element) nNode;
 		 
-					System.out.println("Staff id : " + eElement.getAttribute("id"));
-					System.out.println("First Name : " + eElement.getElementsByTagName("name").item(0).getTextContent());
-//					System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
-//					System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
-//					System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
+					String id = eElement.getAttribute("id");
+					String name = eElement.getElementsByTagName("name").item(0).getTextContent();
+					String description = eElement.getElementsByTagName("description").item(0).getTextContent();
+					float x = Float.parseFloat(eElement.getElementsByTagName("x").item(0).getTextContent());
+					float y = Float.parseFloat(eElement.getElementsByTagName("y").item(0).getTextContent());
+					
+					System.out.println("customer id : " + id);
+					System.out.println("Name : " + name);
+					System.out.println("description : " + description);
+					System.out.println("X : " + x);
+					System.out.println("Y : " + y);
+					
+					//Add customer
+					customer.setId(id);
+					customer.setName(name);
+					customer.setX(x);
+					customer.setY(y);
+					
+					customerList.add(customer);
 		 
 				}
 			}

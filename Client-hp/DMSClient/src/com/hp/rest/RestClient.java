@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.hp.domain.*;
@@ -35,7 +37,7 @@ import com.hp.domain.*;
 public class RestClient {
 
 	//All customer
-	public static List<Customer> customerList;
+	public static List<Customer> customerList =  new ArrayList<Customer>();
 	
 	private ArrayList<NameValuePair> params;
 	private ArrayList<NameValuePair> headers;
@@ -185,36 +187,13 @@ public class RestClient {
 		return sb.toString();
 	}
 	
-	private static String convertStreamToList(InputStream is) {
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-		StringBuilder sb = new StringBuilder();
-
-		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return sb.toString();
-	}
 	
-	public void parseXML(){
-		
-		InputStream pXML = getInputstream();
-		
+	public boolean parseXML(String pXML){
+		customerList.clear();
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(pXML);
+			Document doc = dBuilder.parse(new InputSource(new StringReader(pXML)));
 			
 			
 			doc.getDocumentElement().normalize();
@@ -260,16 +239,19 @@ public class RestClient {
 				}
 			}
 			
-			
+			return true;
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 		
 	 

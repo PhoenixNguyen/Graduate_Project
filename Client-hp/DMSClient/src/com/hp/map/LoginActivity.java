@@ -26,7 +26,7 @@ import com.hp.map.CustomerListActivity;
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class LoginActivity extends Activity {
 	
-	String mUrl = "http://192.168.0.8:33554/RestJerseyDemo/webresources/generic/getCustomer"; 
+	String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
 			//"http://192.168.1.104:33554/RestJerseyDemo/webresources/generic/getCustomer";
 	EditText mUsername;
 	EditText mPassword;
@@ -54,10 +54,10 @@ public class LoginActivity extends Activity {
         mPassword = (EditText)findViewById(R.id.password);
         
         Button btnLogin = (Button)findViewById(R.id.btnLogin);
-        btnLogin.setOnTouchListener(new OnTouchListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
+			public void onClick(View v) {
 				//Get username
 				String username = mUsername.getText().toString();
 				String password = mPassword.getText().toString();
@@ -66,8 +66,8 @@ public class LoginActivity extends Activity {
 				
 				//Init Http request
 				RestClient client = new RestClient(mUrl);
-//				client.AddParam("username", username);
-//				client.AddParam("password", password);
+				client.AddParam("username", username);
+				client.AddParam("password", password);
 				
 				try {
 				    client.Execute(RequestMethod.GET);
@@ -79,25 +79,26 @@ public class LoginActivity extends Activity {
 				String response = client.getResponse();
 				System.out.println("RESPONSE 0:____________________________ " + response);
 				if(response != null){
-					client.parseXML();
-					System.out.println("RESPONSE:____________________________ " + response);
+					//If invalid return
+					if(!client.parseXML(response))
+						return;
 					
 					//Set List customer
 					DetailsListData.CUSTOMER_LIST=  new DetailsList[]{
 							
 					};
 					//add element
-					for(int i = 0; i < 2; i++){
+					for(int i = 0; i < RestClient.customerList.size(); i++){
 						DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
-								new DetailsList(R.string.map_label,
-				                        R.string.map_description,
+								new DetailsList(RestClient.customerList.get(i).getName(),
+										RestClient.customerList.get(i).getId() +" : " + 
+										RestClient.customerList.get(i).getDescription(),
 				                        MarkerActivity.class));
 					}
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), CustomerListActivity.class);
 	            	startActivity(i);
 				}
-				return false;
 			}
 		});
         // Listening to register new account link

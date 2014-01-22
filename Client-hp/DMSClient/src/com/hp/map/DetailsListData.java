@@ -25,20 +25,20 @@ public final class DetailsListData {
     private DetailsListData() {}
 
     public static final DetailsList[] DEMOS = {
-        new DetailsList(R.string.map_label,
-                        R.string.map_description,
+        new DetailsList("map_label",
+                        "map_description",
                         MapActivity.class),
 
-        new DetailsList(R.string.marker_label,
-                        R.string.marker_description,
+        new DetailsList("marker_label",
+                        "marker_description",
                         MarkerActivity.class),
 
-        new DetailsList(R.string.my_location_label,
-                        R.string.my_location_description,
+        new DetailsList("my_location_label",
+                        "my_location_description",
                         MyLocationActivity.class),
                         
-                        new DetailsList(R.string.login_label,
-                                R.string.login_description,
+                        new DetailsList("login_label",
+                                "login_description",
                                 LoginActivity.class),
     };
     

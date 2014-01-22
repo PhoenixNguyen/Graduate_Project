@@ -26,6 +26,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -67,7 +68,7 @@ public class MarkerActivity extends FragmentActivity
     private static final LatLng MELBOURNE = new LatLng(21.0186378, 105.7906186);
     private static final LatLng SYDNEY = new LatLng(21.0186378, 105.8006188);
     private static final LatLng ADELAIDE = new LatLng(21.028638, 105.7806179);
-    private static final LatLng PERTH = new LatLng(21.0386384, 105.7806179);
+    private static final LatLng PERTH = new LatLng(21.0386384, 120.7806179);
 
     /** Demonstrates customizing the info window and/or its contents. */
     class CustomInfoWindowAdapter implements InfoWindowAdapter {
@@ -223,13 +224,15 @@ public class MarkerActivity extends FragmentActivity
                 @SuppressLint("NewApi") // We check which build version we are using.
                 @Override
                 public void onGlobalLayout() {
-                    LatLngBounds bounds = new LatLngBounds.Builder()
-                            .include(PERTH)
-                            .include(SYDNEY)
+                    Builder builder = new LatLngBounds.Builder();
+                            //
+                    builder.include(SYDNEY)
                             .include(ADELAIDE)
                             .include(BRISBANE)
-                            .include(MELBOURNE)
-                            .build();
+                            .include(MELBOURNE);
+                    builder.include(PERTH);
+                    
+                    LatLngBounds  bounds = builder.build();
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
                       mapView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                     } else {

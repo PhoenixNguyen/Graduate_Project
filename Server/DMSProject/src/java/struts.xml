@@ -14,6 +14,11 @@
         <action name="getCustomerForStaff" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">generic/getCustomer</result>
         </action>
+        
+        <action name="putJourney" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/putJourney</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
 		

@@ -70,6 +70,13 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="0.5"
+          android:onClick="onSendDemo"
+          android:text="@string/send_demo"/>
+        
+        <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="0.5"
           android:onClick="onClearMap"
           android:text="@string/clear_map"/>
         <Button

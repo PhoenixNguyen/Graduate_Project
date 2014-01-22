@@ -24,9 +24,9 @@
   <string name="drag_melbourne">Drag Melbourne</string>
   <string name="clear_map">Just one</string>
   <string name="reset_map">All</string>
-  <string name="rotation">Rotation:</string>
-  <string name="flat">Flat</string>
-  <string name="marker_label">Markers</string>
+  <string name="send_demo">Send location demo!</string>
+   
+  <string name="marker_label">Show customer detail</string>
   <string name="marker_description">Demonstrates how to add Markers to a map.</string>
   
   <string name="map_not_ready">Map is not ready yet</string>

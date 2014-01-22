@@ -7,7 +7,14 @@ public class Customer {
 	private float y;
 	private String address;
 	private String phone;
+	private String staffid;
 	
+	public String getStaffid() {
+		return staffid;
+	}
+	public void setStaffid(String staffid) {
+		this.staffid = staffid;
+	}
 	public String getId() {
 		return id;
 	}

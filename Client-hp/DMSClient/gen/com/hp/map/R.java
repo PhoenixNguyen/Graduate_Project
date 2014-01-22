@@ -358,25 +358,24 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
-        public static final int customer_address=0x7f060036;
-        public static final int customer_id=0x7f060034;
+        public static final int customer_address=0x7f060035;
+        public static final int customer_id=0x7f060033;
         /**  Customer show on the map 
          */
-        public static final int customer_name=0x7f060033;
-        public static final int customer_phone=0x7f060035;
+        public static final int customer_name=0x7f060032;
+        public static final int customer_phone=0x7f060034;
         public static final int drag_melbourne=0x7f060029;
-        public static final int flat=0x7f06002d;
         public static final int hello_world=0x7f06001c;
         public static final int legal_info=0x7f060021;
         public static final int location_source_demo_description=0x7f060023;
         public static final int location_source_demo_label=0x7f060022;
-        public static final int login_description=0x7f060032;
-        public static final int login_label=0x7f060031;
+        public static final int login_description=0x7f060031;
+        public static final int login_label=0x7f060030;
         public static final int map_description=0x7f06001f;
         public static final int map_label=0x7f06001e;
-        public static final int map_not_ready=0x7f060030;
-        public static final int marker_description=0x7f06002f;
-        public static final int marker_label=0x7f06002e;
+        public static final int map_not_ready=0x7f06002f;
+        public static final int marker_description=0x7f06002e;
+        public static final int marker_label=0x7f06002d;
         public static final int my_location=0x7f060024;
         public static final int my_location_description=0x7f060026;
         public static final int my_location_label=0x7f060025;
@@ -385,7 +384,7 @@ containing a value of this type.
         public static final int no_demos=0x7f06001d;
         public static final int play_services_not_installed=0x7f060020;
         public static final int reset_map=0x7f06002b;
-        public static final int rotation=0x7f06002c;
+        public static final int send_demo=0x7f06002c;
     }
     public static final class style {
         /** 

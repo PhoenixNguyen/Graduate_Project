@@ -37,14 +37,17 @@ import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hp.rest.RestClient;
+import com.hp.rest.RestClient.RequestMethod;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
 import android.text.SpannableString;
@@ -61,13 +64,26 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 /**
  * This shows how to place markers on a map.
  */
+@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+@SuppressLint("NewApi")
 public class CustomerMapActivity extends FragmentActivity
         implements
         OnMarkerClickListener,
@@ -100,8 +116,20 @@ public class CustomerMapActivity extends FragmentActivity
     
     private int positionClick;
 
-    @Override
+    //current location
+    private float mX;
+    private float mY;
+    
+    private String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/putJourney"; 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	@SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
+    	if (android.os.Build.VERSION.SDK_INT > 9) {
+    	    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    	    StrictMode.setThreadPolicy(policy);
+    	}
+    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.marker_demo);
 
@@ -183,6 +211,8 @@ public class CustomerMapActivity extends FragmentActivity
     @Override
     public void onLocationChanged(Location location) {
         //mMessageView.setText("Location = " + location);
+    	mX = (float)location.getLatitude();
+    	mY = (float)location.getLongitude();
     }
     
     /**
@@ -213,7 +243,7 @@ public class CustomerMapActivity extends FragmentActivity
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Updating your location ...", Toast.LENGTH_SHORT).show();
         // Return false so that we don't consume the event and the default behavior still occurs
         // (the camera animates to the user's current position).
         return false;
@@ -314,6 +344,51 @@ public class CustomerMapActivity extends FragmentActivity
         addMarkersToMap(0);
     }
 
+    /** Called when the sendDemo button is clicked. */
+    public void onSendDemo(View view) {
+    	if(mX <= 0.0 || mY <= 0.0)
+    		return;
+    	
+        System.out.println("SEND DEMO LOCATION: _______");
+        String content = "<?xml version=\"1.0\"?> "
+                + "<root>";
+
+        content += "<road id=\""+RestClient.customerList.get(positionClick).getId()+"\"> " 
+                        + "<x>"+mX+"</x> " 
+                        + "<y>"+mY+"</y> " 
+                        + "<staffid>"+RestClient.customerList.get(positionClick).getStaffid()+"</staffid> " 
+                       
+                  + "</road> ";
+        
+        content += "</root> ";
+						
+        String value = "";
+        try {
+			value = new String(content.getBytes("UTF-8"), "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}    
+        System.out.print("content______________" + value);
+      //Init Http request
+		RestClient client = new RestClient(mUrl);
+		client.AddParam("data", value);
+		//client.AddParam("pXML", content);
+		//client.AddParam("password", password);
+		
+		try {
+		    client.Execute(RequestMethod.POST);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		//Get Response
+		String response = client.getResponse();
+		
+		System.out.print("response__________" + response);
+		
+    }
+    
     /** Called when the Reset button is clicked. */
     public void onToggleFlat(View view) {
         if (!checkReady()) {

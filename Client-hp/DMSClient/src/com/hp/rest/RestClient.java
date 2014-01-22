@@ -222,6 +222,7 @@ public class RestClient {
 					String phone = eElement.getElementsByTagName("phone").item(0).getTextContent();
 					float x = Float.parseFloat(eElement.getElementsByTagName("x").item(0).getTextContent());
 					float y = Float.parseFloat(eElement.getElementsByTagName("y").item(0).getTextContent());
+					String staffid = eElement.getElementsByTagName("staffid").item(0).getTextContent();
 					
 					System.out.println("customer id : " + id);
 					System.out.println("Name : " + name);
@@ -229,6 +230,7 @@ public class RestClient {
 					System.out.println("phone : " + phone);
 					System.out.println("X : " + x);
 					System.out.println("Y : " + y);
+					System.out.println("Y : " + staffid);
 					
 					//Add customer
 					customer.setId(id);
@@ -237,6 +239,7 @@ public class RestClient {
 					customer.setPhone(phone);
 					customer.setX(x);
 					customer.setY(y);
+					customer.setStaffid(staffid);
 					
 					customerList.add(customer);
 		 

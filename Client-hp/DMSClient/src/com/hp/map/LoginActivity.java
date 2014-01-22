@@ -11,23 +11,19 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hp.rest.RestClient.RequestMethod;
 import com.hp.rest.RestClient;
-import com.hp.map.CustomerListActivity;
  
 @SuppressLint("NewApi")
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class LoginActivity extends Activity {
 	
 	String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
-			//"http://192.168.1.104:33554/RestJerseyDemo/webresources/generic/getCustomer";
 	EditText mUsername;
 	EditText mPassword;
 	
@@ -96,7 +92,7 @@ public class LoginActivity extends Activity {
 				                        CustomerMapActivity.class));
 					}
 					// TODO Auto-generated method stub
-					Intent i = new Intent(getApplicationContext(), CustomerListActivity.class);
+					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 	            	startActivity(i);
 				}
 			}

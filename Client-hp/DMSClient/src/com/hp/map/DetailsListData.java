@@ -17,29 +17,23 @@
 package com.hp.map;
 
 /**
- * A list of all the demos we have available.
+ * A list of all views
  */
 public final class DetailsListData {
 
     /** This class should not be instantiated. */
     private DetailsListData() {}
 
-    public static final DetailsList[] DEMOS = {
-        new DetailsList("map_label",
-                        "map_description",
-                        MapActivity.class),
+    public static final DetailsList[] MAIN = {
+        new DetailsList("Customer list",
+                        "Click here to view customer list and create orders",
+                        CustomerListActivity.class),
 
-        new DetailsList("marker_label",
-                        "marker_description",
-                        CustomerMapActivity.class),
+        new DetailsList("Planning",
+                        "Scheduled for a month",
+                        PlanningActivity.class),
 
-        new DetailsList("my_location_label",
-                        "my_location_description",
-                        MyLocationActivity.class),
-                        
-                        new DetailsList("login_label",
-                                "login_description",
-                                LoginActivity.class),
+        
     };
     
     public static DetailsList[] CUSTOMER_LIST ;

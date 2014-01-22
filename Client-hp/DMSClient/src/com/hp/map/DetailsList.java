@@ -1,7 +1,6 @@
 package com.hp.map;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
 
 /**
  * A simple POJO that holds the details about the demo that are used by the List Adapter.

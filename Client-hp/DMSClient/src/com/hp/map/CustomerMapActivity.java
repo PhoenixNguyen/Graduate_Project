@@ -24,7 +24,6 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
@@ -41,43 +40,23 @@ import com.hp.rest.RestClient.RequestMethod;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.content.Intent;
-import android.graphics.Color;
-import android.location.Location;
+import android.content.Intent;import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.StrictMode;
-import android.os.SystemClock;
 import android.support.v4.app.FragmentActivity;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 /**
  * This shows how to place markers on a map.
@@ -109,7 +88,6 @@ public class CustomerMapActivity extends FragmentActivity
     private final List<Marker> mMarkerRainbow = new ArrayList<Marker>();
 
     private TextView customer_name, customer_id, customer_phone, customer_address;
-    private SeekBar mRotationBar;
     private CheckBox mFlatBox;
 
     private final Random mRandom = new Random();
@@ -131,7 +109,7 @@ public class CustomerMapActivity extends FragmentActivity
     	}
     	
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.marker_demo);
+        setContentView(R.layout.customer_map);
 
         //Get POSITION
         Intent i = getIntent();
@@ -373,8 +351,6 @@ public class CustomerMapActivity extends FragmentActivity
       //Init Http request
 		RestClient client = new RestClient(mUrl);
 		client.AddParam("data", value);
-		//client.AddParam("pXML", content);
-		//client.AddParam("password", password);
 		
 		try {
 		    client.Execute(RequestMethod.POST);

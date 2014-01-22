@@ -1,7 +1,5 @@
 package com.hp.map;
 
-import com.hp.map.MainActivity.CustomArrayAdapter;
-
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;

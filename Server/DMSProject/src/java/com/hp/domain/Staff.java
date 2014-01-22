@@ -31,9 +31,12 @@ public class Staff {
     
     @Column(name="nhanvien_ma_nhan_vien")
     private String mID;
+    @Column(name="nhanvien_mat_khau")
+    private String mPW;
+
     @Column(name="nhanvien_ho_ten")
     private String mName;
-    @Column(name="nhanvien_diachia")
+    @Column(name="nhanvien_dia_chi")
     private String mAdress;
     @Column(name="nhanvien_chuc_vu")
     private String mJob;
@@ -44,6 +47,8 @@ public class Staff {
     private Date mDate;
     @Column(name="nhanvien_nguoi_quan_ly")
     private String mManager;
+    @Column(name="nhanvien_trang_thai")
+    private boolean mStatus;
     
     public int getmSTT() {
         return mSTT;
@@ -60,7 +65,15 @@ public class Staff {
     public void setmID(String mID) {
         this.mID = mID;
     }
+    
+    public String getmPW() {
+        return mPW;
+    }
 
+    public void setmPW(String mPW) {
+        this.mPW = mPW;
+    }
+    
     public String getmName() {
         return mName;
     }
@@ -109,5 +122,12 @@ public class Staff {
         this.mManager = mManager;
     }
     
+    public boolean ismStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(boolean mStatus) {
+        this.mStatus = mStatus;
+    }
     
 }

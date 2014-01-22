@@ -63,11 +63,11 @@ public class MarkerActivity extends FragmentActivity
         OnInfoWindowClickListener,
         OnMarkerDragListener,
         OnSeekBarChangeListener {
-    private static final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
-    private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
-    private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
-    private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
-    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
+    private static final LatLng BRISBANE = new LatLng(21.0186378, 105.7806181);
+    private static final LatLng MELBOURNE = new LatLng(21.0186378, 105.7906186);
+    private static final LatLng SYDNEY = new LatLng(21.0186378, 105.8006188);
+    private static final LatLng ADELAIDE = new LatLng(21.028638, 105.7806179);
+    private static final LatLng PERTH = new LatLng(21.0386384, 105.7806179);
 
     /** Demonstrates customizing the info window and/or its contents. */
     class CustomInfoWindowAdapter implements InfoWindowAdapter {
@@ -245,34 +245,34 @@ public class MarkerActivity extends FragmentActivity
         // Uses a colored icon.
         mBrisbane = mMap.addMarker(new MarkerOptions()
                 .position(BRISBANE)
-                .title("Brisbane")
-                .snippet("Population: 2,074,200")
+                .title("Anh Hưng- 0936 995 998 - 22426062")
+                .snippet("Số 113 Hoàng Văn Thái 66605442")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
         // Uses a custom icon with the info window popping out of the center of the icon.
         mSydney = mMap.addMarker(new MarkerOptions()
                 .position(SYDNEY)
-                .title("Sydney")
-                .snippet("Population: 4,627,300")
+                .title("120 Hàng Buồm")
+                .snippet("")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
                 .infoWindowAnchor(0.5f, 0.5f));
 
         // Creates a draggable marker. Long press to drag.
         mMelbourne = mMap.addMarker(new MarkerOptions()
                 .position(MELBOURNE)
-                .title("Melbourne")
-                .snippet("Population: 4,137,400")
+                .title("14 Nguyễn Văn Tố")
+                .snippet("043.8285048")
                 .draggable(true));
 
         // A few more markers for good measure.
         mPerth = mMap.addMarker(new MarkerOptions()
                 .position(PERTH)
-                .title("Perth")
-                .snippet("Population: 1,738,800"));
+                .title("Công ty CP rau an toàn Hà Nội - 043 629 35 444")
+                .snippet("Số 202 phố Hồ Tùng Mậu -TT Cầu Diễn - H Từ Liêm - Tp.Hà Nội - Việt Nam"));
         mAdelaide = mMap.addMarker(new MarkerOptions()
                 .position(ADELAIDE)
-                .title("Adelaide")
-                .snippet("Population: 1,213,000"));
+                .title("Cafe Palu , 21 Bảo Linh")
+                .snippet("Chị Chi 0915663993"));
 
         // Creates a marker rainbow demonstrating how to create default marker icons of different
         // hues (colors).

@@ -52,7 +52,7 @@
 	      android:label="@string/my_location_label"/>
 		
 		<activity
-      android:name=".MarkerActivity"
+      android:name=".CustomerMapActivity"
       android:label="@string/marker_label"/>
 		
 		<activity

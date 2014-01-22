@@ -93,7 +93,7 @@ public class LoginActivity extends Activity {
 								new DetailsList(RestClient.customerList.get(i).getName(),
 										RestClient.customerList.get(i).getId() +" : " + 
 										RestClient.customerList.get(i).getAddress(),
-				                        MarkerActivity.class));
+				                        CustomerMapActivity.class));
 					}
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), CustomerListActivity.class);

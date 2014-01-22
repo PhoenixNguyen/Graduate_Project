@@ -31,7 +31,7 @@ public final class DetailsListData {
 
         new DetailsList("marker_label",
                         "marker_description",
-                        MarkerActivity.class),
+                        CustomerMapActivity.class),
 
         new DetailsList("my_location_label",
                         "my_location_description",

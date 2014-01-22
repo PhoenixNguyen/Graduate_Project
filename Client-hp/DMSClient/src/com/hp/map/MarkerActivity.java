@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hp.rest.RestClient;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -64,12 +65,7 @@ public class MarkerActivity extends FragmentActivity
         OnInfoWindowClickListener,
         OnMarkerDragListener,
         OnSeekBarChangeListener {
-    private static final LatLng BRISBANE = new LatLng(21.0186378, 105.7806181);
-    private static final LatLng MELBOURNE = new LatLng(21.0186378, 105.7906186);
-    private static final LatLng SYDNEY = new LatLng(21.0186378, 105.8006188);
-    private static final LatLng ADELAIDE = new LatLng(21.028638, 105.7806179);
-    private static final LatLng PERTH = new LatLng(21.0386384, 120.7806179);
-
+    
     /** Demonstrates customizing the info window and/or its contents. */
     class CustomInfoWindowAdapter implements InfoWindowAdapter {
         private final RadioGroup mOptions;
@@ -91,7 +87,7 @@ public class MarkerActivity extends FragmentActivity
                 // This means that getInfoContents will be called.
                 return null;
             }
-            render(marker, mWindow);
+            //render(marker, mWindow);
             return mWindow;
         }
 
@@ -101,60 +97,13 @@ public class MarkerActivity extends FragmentActivity
                 // This means that the default info contents will be used.
                 return null;
             }
-            render(marker, mContents);
+            //render(marker, mContents);
             return mContents;
         }
 
-        private void render(Marker marker, View view) {
-            int badge;
-            // Use the equals() method on a Marker to check for equals.  Do not use ==.
-            if (marker.equals(mBrisbane)) {
-                badge = R.drawable.badge_qld;
-            } else if (marker.equals(mAdelaide)) {
-                badge = R.drawable.badge_sa;
-            } else if (marker.equals(mSydney)) {
-                badge = R.drawable.badge_nsw;
-            } else if (marker.equals(mMelbourne)) {
-                badge = R.drawable.badge_victoria;
-            } else if (marker.equals(mPerth)) {
-                badge = R.drawable.badge_wa;
-            } else {
-                // Passing 0 to setImageResource will clear the image view.
-                badge = 0;
-            }
-            ((ImageView) view.findViewById(R.id.badge)).setImageResource(badge);
-
-            String title = marker.getTitle();
-            TextView titleUi = ((TextView) view.findViewById(R.id.title));
-            if (title != null) {
-                // Spannable string allows us to edit the formatting of the text.
-                SpannableString titleText = new SpannableString(title);
-                titleText.setSpan(new ForegroundColorSpan(Color.RED), 0, titleText.length(), 0);
-                titleUi.setText(titleText);
-            } else {
-                titleUi.setText("");
-            }
-
-            String snippet = marker.getSnippet();
-            TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
-            if (snippet != null && snippet.length() > 12) {
-                SpannableString snippetText = new SpannableString(snippet);
-                snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, 10, 0);
-                snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 12, snippet.length(), 0);
-                snippetUi.setText(snippetText);
-            } else {
-                snippetUi.setText("");
-            }
-        }
     }
 
     private GoogleMap mMap;
-
-    private Marker mPerth;
-    private Marker mSydney;
-    private Marker mBrisbane;
-    private Marker mAdelaide;
-    private Marker mMelbourne;
 
     private final List<Marker> mMarkerRainbow = new ArrayList<Marker>();
 
@@ -225,12 +174,11 @@ public class MarkerActivity extends FragmentActivity
                 @Override
                 public void onGlobalLayout() {
                     Builder builder = new LatLngBounds.Builder();
-                            //
-                    builder.include(SYDNEY)
-                            .include(ADELAIDE)
-                            .include(BRISBANE)
-                            .include(MELBOURNE);
-                    builder.include(PERTH);
+                    for(int i = 0; i< RestClient.customerList.size(); i++){
+                    		
+                    	builder.include(new LatLng(RestClient.customerList.get(i).getX(), RestClient.customerList.get(i).getY()));
+                        	
+                    }
                     
                     LatLngBounds  bounds = builder.build();
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -245,54 +193,18 @@ public class MarkerActivity extends FragmentActivity
     }
 
     private void addMarkersToMap() {
-        // Uses a colored icon.
-        mBrisbane = mMap.addMarker(new MarkerOptions()
-                .position(BRISBANE)
-                .title("Anh Hưng- 0936 995 998 - 22426062")
-                .snippet("Số 113 Hoàng Văn Thái 66605442")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-
-        // Uses a custom icon with the info window popping out of the center of the icon.
-        mSydney = mMap.addMarker(new MarkerOptions()
-                .position(SYDNEY)
-                .title("120 Hàng Buồm")
-                .snippet("")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
-                .infoWindowAnchor(0.5f, 0.5f));
-
-        // Creates a draggable marker. Long press to drag.
-        mMelbourne = mMap.addMarker(new MarkerOptions()
-                .position(MELBOURNE)
-                .title("14 Nguyễn Văn Tố")
-                .snippet("043.8285048")
-                .draggable(true));
-
-        // A few more markers for good measure.
-        mPerth = mMap.addMarker(new MarkerOptions()
-                .position(PERTH)
-                .title("Công ty CP rau an toàn Hà Nội - 043 629 35 444")
-                .snippet("Số 202 phố Hồ Tùng Mậu -TT Cầu Diễn - H Từ Liêm - Tp.Hà Nội - Việt Nam"));
-        mAdelaide = mMap.addMarker(new MarkerOptions()
-                .position(ADELAIDE)
-                .title("Cafe Palu , 21 Bảo Linh")
-                .snippet("Chị Chi 0915663993"));
-
-        // Creates a marker rainbow demonstrating how to create default marker icons of different
-        // hues (colors).
-        float rotation = mRotationBar.getProgress();
-        boolean flat = mFlatBox.isChecked();
-
-        int numMarkersInRainbow = 12;
-        for (int i = 0; i < numMarkersInRainbow; i++) {
-            mMarkerRainbow.add(mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(
-                            -30 + 10 * Math.sin(i * Math.PI / (numMarkersInRainbow - 1)),
-                            135 - 10 * Math.cos(i * Math.PI / (numMarkersInRainbow - 1))))
-                    .title("Marker " + i)
-                    .icon(BitmapDescriptorFactory.defaultMarker(i * 360 / numMarkersInRainbow))
-                    .flat(flat)
-                    .rotation(rotation)));
+    	
+    	//Add Markers
+    	List<Marker> markerList = new ArrayList<Marker>();
+    	for(int i = 0; i< RestClient.customerList.size(); i++){
+    		mMap.addMarker(new MarkerOptions()
+            .position(new LatLng(RestClient.customerList.get(i).getX(), RestClient.customerList.get(i).getY()))
+            .title(RestClient.customerList.get(i).getName())
+            .snippet(RestClient.customerList.get(i).getId()+":"+RestClient.customerList.get(i).getDescription())
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+    		            	
         }
+
     }
 
     private boolean checkReady() {
@@ -359,36 +271,11 @@ public class MarkerActivity extends FragmentActivity
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-        if (marker.equals(mPerth)) {
-            // This causes the marker at Perth to bounce into position when it is clicked.
-            final Handler handler = new Handler();
-            final long start = SystemClock.uptimeMillis();
-            final long duration = 1500;
 
-            final Interpolator interpolator = new BounceInterpolator();
-
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    long elapsed = SystemClock.uptimeMillis() - start;
-                    float t = Math.max(1 - interpolator
-                            .getInterpolation((float) elapsed / duration), 0);
-                    marker.setAnchor(0.5f, 1.0f + 2 * t);
-
-                    if (t > 0.0) {
-                        // Post again 16ms later.
-                        handler.postDelayed(this, 16);
-                    }
-                }
-            });
-        } else if (marker.equals(mAdelaide)) {
             // This causes the marker at Adelaide to change color and alpha.
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(mRandom.nextFloat() * 360));
             marker.setAlpha(mRandom.nextFloat());
-        }
-        // We return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
+        
         return false;
     }
 

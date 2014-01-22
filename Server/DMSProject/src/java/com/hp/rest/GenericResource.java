@@ -123,7 +123,8 @@ public class GenericResource {
             for(int i = 0; i < customerList.size(); i++){
                 xml += "<customer id=\""+customerList.get(i).getmMaDoiTuong()+"\"> " 
                             + "<name>"+customerList.get(i).getmDoiTuong()+"</name> " 
-                            + "<description>"+customerList.get(i).getmDiaChi()+"</description> " 
+                            + "<address>"+customerList.get(i).getmDiaChi()+"</address> " 
+                            + "<phone>"+customerList.get(i).getmDienThoai()+"</phone> " 
                             + "<x>"+customerList.get(i).getmXCoordinates()+"</x>" 
                             + "<y>"+customerList.get(i).getmYCoordinates()+"</y>"
                       + "</customer> ";

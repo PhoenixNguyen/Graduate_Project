@@ -34,4 +34,9 @@
   <string name="login_label">LOGIN</string>
   <string name="login_description">Login to view customers!</string>
   
+  <!-- Customer show on the map -->
+  <string name="customer_name">Customer Name: </string>
+  <string name="customer_id">ID:</string>
+  <string name="customer_phone">Phone:</string>
+  <string name="customer_address">Address:</string>
 </resources>

@@ -218,19 +218,23 @@ public class RestClient {
 		 
 					String id = eElement.getAttribute("id");
 					String name = eElement.getElementsByTagName("name").item(0).getTextContent();
-					String description = eElement.getElementsByTagName("description").item(0).getTextContent();
+					String address = eElement.getElementsByTagName("address").item(0).getTextContent();
+					String phone = eElement.getElementsByTagName("phone").item(0).getTextContent();
 					float x = Float.parseFloat(eElement.getElementsByTagName("x").item(0).getTextContent());
 					float y = Float.parseFloat(eElement.getElementsByTagName("y").item(0).getTextContent());
 					
 					System.out.println("customer id : " + id);
 					System.out.println("Name : " + name);
-					System.out.println("description : " + description);
+					System.out.println("address : " + address);
+					System.out.println("phone : " + phone);
 					System.out.println("X : " + x);
 					System.out.println("Y : " + y);
 					
 					//Add customer
 					customer.setId(id);
 					customer.setName(name);
+					customer.setAddress(address);
+					customer.setPhone(phone);
 					customer.setX(x);
 					customer.setY(y);
 					

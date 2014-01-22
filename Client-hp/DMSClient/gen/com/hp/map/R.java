@@ -220,25 +220,26 @@ containing a value of this type.
     }
     public static final class id {
         public static final int btnLogin=0x7f05000c;
+        public static final int customer_address=0x7f050011;
+        public static final int customer_id=0x7f05000f;
+        public static final int customer_name=0x7f05000e;
+        public static final int customer_phone=0x7f050010;
         public static final int description=0x7f050006;
-        public static final int flat=0x7f05000f;
         public static final int footer=0x7f050009;
-        public static final int get_my_location_button=0x7f050013;
+        public static final int get_my_location_button=0x7f050014;
         public static final int header=0x7f050008;
         public static final int hybrid=0x7f050004;
         public static final int legal_info=0x7f050007;
         public static final int link_to_register=0x7f05000d;
-        public static final int map=0x7f050011;
-        public static final int menu_legal=0x7f050014;
-        public static final int message_text=0x7f050012;
+        public static final int map=0x7f050012;
+        public static final int menu_legal=0x7f050015;
+        public static final int message_text=0x7f050013;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int password=0x7f05000b;
-        public static final int rotationSeekBar=0x7f050010;
         public static final int satellite=0x7f050002;
         public static final int terrain=0x7f050003;
         public static final int title=0x7f050005;
-        public static final int top_text=0x7f05000e;
         public static final int username=0x7f05000a;
     }
     public static final class integer {
@@ -357,6 +358,12 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
+        public static final int customer_address=0x7f060036;
+        public static final int customer_id=0x7f060034;
+        /**  Customer show on the map 
+         */
+        public static final int customer_name=0x7f060033;
+        public static final int customer_phone=0x7f060035;
         public static final int drag_melbourne=0x7f060029;
         public static final int flat=0x7f06002d;
         public static final int hello_world=0x7f06001c;

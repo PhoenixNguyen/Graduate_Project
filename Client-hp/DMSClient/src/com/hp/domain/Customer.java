@@ -2,6 +2,12 @@ package com.hp.domain;
 
 public class Customer {
 	private String id;
+	private String name;
+	private float x;
+	private float y;
+	private String address;
+	private String phone;
+	
 	public String getId() {
 		return id;
 	}
@@ -14,12 +20,7 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String discription) {
-		this.description = discription;
-	}
+	
 	public float getX() {
 		return x;
 	}
@@ -33,9 +34,18 @@ public class Customer {
 		this.y = y;
 	}
 	
-	private String name;
-	private String description;
-	private float x;
-	private float y;
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String adress) {
+		this.address = adress;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	
 }

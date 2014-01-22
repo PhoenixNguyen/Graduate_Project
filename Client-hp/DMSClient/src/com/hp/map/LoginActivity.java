@@ -92,7 +92,7 @@ public class LoginActivity extends Activity {
 						DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
 								new DetailsList(RestClient.customerList.get(i).getName(),
 										RestClient.customerList.get(i).getId() +" : " + 
-										RestClient.customerList.get(i).getDescription(),
+										RestClient.customerList.get(i).getAddress(),
 				                        MarkerActivity.class));
 					}
 					// TODO Auto-generated method stub

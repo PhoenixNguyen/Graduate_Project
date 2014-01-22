@@ -71,7 +71,7 @@ public class MarkerActivity extends FragmentActivity
 
     private final List<Marker> mMarkerRainbow = new ArrayList<Marker>();
 
-    private TextView mTopText;
+    private TextView customer_name, customer_id, customer_phone, customer_address;
     private SeekBar mRotationBar;
     private CheckBox mFlatBox;
 
@@ -88,14 +88,16 @@ public class MarkerActivity extends FragmentActivity
         Intent i = getIntent();
         positionClick = i.getIntExtra("POSITION_CLICK", 0);
         
-        mTopText = (TextView) findViewById(R.id.top_text);
+        customer_name = (TextView) findViewById(R.id.customer_name);
+        customer_id = (TextView) findViewById(R.id.customer_id);
+        customer_phone = (TextView) findViewById(R.id.customer_phone);
+        customer_address = (TextView) findViewById(R.id.customer_address);
 
-        mRotationBar = (SeekBar) findViewById(R.id.rotationSeekBar);
-        mRotationBar.setMax(360);
-        mRotationBar.setOnSeekBarChangeListener(this);
-
-        mFlatBox = (CheckBox) findViewById(R.id.flat);
-
+        customer_name.setText("Customer Name: "+ RestClient.customerList.get(positionClick).getName());
+        customer_id.setText("ID: "+ RestClient.customerList.get(positionClick).getId());
+        customer_phone.setText("Phone: "+ RestClient.customerList.get(positionClick).getPhone());
+        customer_address.setText("Address: "+ RestClient.customerList.get(positionClick).getAddress());
+        
         setUpMapIfNeeded();
     }
 
@@ -104,6 +106,7 @@ public class MarkerActivity extends FragmentActivity
         super.onResume();
         setUpMapIfNeeded();
     }
+
 
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
@@ -117,7 +120,7 @@ public class MarkerActivity extends FragmentActivity
             }
         }
     }
-
+    
     private void setUpMap() {
         // Hide the zoom controls as the button panel will cover it.
         mMap.getUiSettings().setZoomControlsEnabled(false);
@@ -167,7 +170,7 @@ public class MarkerActivity extends FragmentActivity
     		mMap.addMarker(new MarkerOptions()
             .position(new LatLng(RestClient.customerList.get(positionClick).getX(), RestClient.customerList.get(positionClick).getY()))
             .title(RestClient.customerList.get(positionClick).getName())
-            .snippet(RestClient.customerList.get(positionClick).getId()+":"+RestClient.customerList.get(positionClick).getDescription())
+            .snippet(RestClient.customerList.get(positionClick).getId()+":"+RestClient.customerList.get(positionClick).getAddress())
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     	}
     	else
@@ -175,7 +178,7 @@ public class MarkerActivity extends FragmentActivity
 	    		mMap.addMarker(new MarkerOptions()
 	            .position(new LatLng(RestClient.customerList.get(i).getX(), RestClient.customerList.get(i).getY()))
 	            .title(RestClient.customerList.get(i).getName())
-	            .snippet(RestClient.customerList.get(i).getId()+":"+RestClient.customerList.get(i).getDescription())
+	            .snippet(RestClient.customerList.get(i).getId()+":"+RestClient.customerList.get(i).getAddress())
 	            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 	    		            	
 	        }
@@ -262,18 +265,22 @@ public class MarkerActivity extends FragmentActivity
         Toast.makeText(getBaseContext(), "Click Info Window", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onMarkerDragStart(Marker marker) {
-        mTopText.setText("onMarkerDragStart");
-    }
+	@Override
+	public void onMarkerDrag(Marker arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-        mTopText.setText("onMarkerDragEnd");
-    }
+	@Override
+	public void onMarkerDragEnd(Marker arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void onMarkerDrag(Marker marker) {
-        mTopText.setText("onMarkerDrag.  Current Position: " + marker.getPosition());
-    }
+	@Override
+	public void onMarkerDragStart(Marker arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

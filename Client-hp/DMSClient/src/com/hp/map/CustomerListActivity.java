@@ -73,6 +73,9 @@ public class CustomerListActivity extends ListActivity{
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         DetailsList demo = (DetailsList) getListAdapter().getItem(position);
-        startActivity(new Intent(this, demo.activityClass));
+        Intent t = new Intent(this, demo.activityClass);
+        t.putExtra("POSITION_CLICK", position);
+        
+        startActivity(t);
     }
 }

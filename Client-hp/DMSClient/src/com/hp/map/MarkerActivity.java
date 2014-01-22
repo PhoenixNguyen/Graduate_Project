@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.hp.rest.RestClient;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -66,43 +67,6 @@ public class MarkerActivity extends FragmentActivity
         OnMarkerDragListener,
         OnSeekBarChangeListener {
     
-    /** Demonstrates customizing the info window and/or its contents. */
-    class CustomInfoWindowAdapter implements InfoWindowAdapter {
-        private final RadioGroup mOptions;
-
-        // These a both viewgroups containing an ImageView with id "badge" and two TextViews with id
-        // "title" and "snippet".
-        private final View mWindow;
-        private final View mContents;
-
-        CustomInfoWindowAdapter() {
-            mWindow = getLayoutInflater().inflate(R.layout.custom_info_window, null);
-            mContents = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
-            mOptions = (RadioGroup) findViewById(R.id.custom_info_window_options);
-        }
-
-        @Override
-        public View getInfoWindow(Marker marker) {
-            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_window) {
-                // This means that getInfoContents will be called.
-                return null;
-            }
-            //render(marker, mWindow);
-            return mWindow;
-        }
-
-        @Override
-        public View getInfoContents(Marker marker) {
-            if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_contents) {
-                // This means that the default info contents will be used.
-                return null;
-            }
-            //render(marker, mContents);
-            return mContents;
-        }
-
-    }
-
     private GoogleMap mMap;
 
     private final List<Marker> mMarkerRainbow = new ArrayList<Marker>();
@@ -112,12 +76,18 @@ public class MarkerActivity extends FragmentActivity
     private CheckBox mFlatBox;
 
     private final Random mRandom = new Random();
+    
+    private int positionClick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.marker_demo);
 
+        //Get POSITION
+        Intent i = getIntent();
+        positionClick = i.getIntExtra("POSITION_CLICK", 0);
+        
         mTopText = (TextView) findViewById(R.id.top_text);
 
         mRotationBar = (SeekBar) findViewById(R.id.rotationSeekBar);
@@ -153,11 +123,7 @@ public class MarkerActivity extends FragmentActivity
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
         // Add lots of markers to the map.
-        addMarkersToMap();
-
-        // Setting an info window adapter allows us to change the both the contents and look of the
-        // info window.
-        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+        addMarkersToMap(1);
 
         // Set listeners for marker events.  See the bottom of this class for their behavior.
         mMap.setOnMarkerClickListener(this);
@@ -192,18 +158,27 @@ public class MarkerActivity extends FragmentActivity
         }
     }
 
-    private void addMarkersToMap() {
+    //If show only a customer clicked: pView = 1
+    //If show all customers: pView = 0
+    private void addMarkersToMap(int pView) {
     	
     	//Add Markers
-    	List<Marker> markerList = new ArrayList<Marker>();
-    	for(int i = 0; i< RestClient.customerList.size(); i++){
+    	if(pView == 1){
     		mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(RestClient.customerList.get(i).getX(), RestClient.customerList.get(i).getY()))
-            .title(RestClient.customerList.get(i).getName())
-            .snippet(RestClient.customerList.get(i).getId()+":"+RestClient.customerList.get(i).getDescription())
+            .position(new LatLng(RestClient.customerList.get(positionClick).getX(), RestClient.customerList.get(positionClick).getY()))
+            .title(RestClient.customerList.get(positionClick).getName())
+            .snippet(RestClient.customerList.get(positionClick).getId()+":"+RestClient.customerList.get(positionClick).getDescription())
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-    		            	
-        }
+    	}
+    	else
+	    	for(int i = 0; i< RestClient.customerList.size(); i++){
+	    		mMap.addMarker(new MarkerOptions()
+	            .position(new LatLng(RestClient.customerList.get(i).getX(), RestClient.customerList.get(i).getY()))
+	            .title(RestClient.customerList.get(i).getName())
+	            .snippet(RestClient.customerList.get(i).getId()+":"+RestClient.customerList.get(i).getDescription())
+	            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+	    		            	
+	        }
 
     }
 
@@ -221,6 +196,8 @@ public class MarkerActivity extends FragmentActivity
             return;
         }
         mMap.clear();
+        // Add a marker to the map.
+        addMarkersToMap(1);
     }
 
     /** Called when the Reset button is clicked. */
@@ -230,7 +207,8 @@ public class MarkerActivity extends FragmentActivity
         }
         // Clear the map because we don't want duplicates of the markers.
         mMap.clear();
-        addMarkersToMap();
+        //Add lots of makers to the map
+        addMarkersToMap(0);
     }
 
     /** Called when the Reset button is clicked. */

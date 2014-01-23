@@ -4,7 +4,22 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+    <!-- FOR connect MVC not map struts2-->
+    <!--constant name="struts.convention.package.locators" value="rest"/>
+    <constant name="struts.convention.action.suffix" value="Controller"/>
+    <constant name="struts.convention.action.mapAllMatches" value="true"/>
+    <constant name="struts.convention.default.parent.package" value="rest-default"/-->
     
+    <package name="webresources" extends="hibernate-default" namespace="/webresources">
+        <action name="getCustomerForStaff" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getCustomer</result>
+        </action>
+        
+        <action name="putJourney" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/putJourney</result>
+        </action>
+        
+    </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
 		
         <action name="showMap" method="showMap" class="com.hp.action.ShowMapAction">

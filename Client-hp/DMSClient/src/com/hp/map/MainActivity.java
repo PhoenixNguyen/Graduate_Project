@@ -2,17 +2,14 @@ package com.hp.map;
 
 import com.hp.map.LegalInfoActivity;
 import com.hp.map.DetailsList;
-import com.hp.map.MainActivity.CustomArrayAdapter;
 import com.hp.map.DetailsListData;
 import com.hp.map.FeatureView;
 import com.hp.map.R;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,7 +52,7 @@ public class MainActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		ListAdapter adapter = new CustomArrayAdapter(this, DetailsListData.DEMOS);
+		ListAdapter adapter = new CustomArrayAdapter(this, DetailsListData.MAIN);
 
         setListAdapter(adapter);
 	}

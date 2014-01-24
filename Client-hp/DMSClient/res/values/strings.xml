@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DMSClient</string>
+    <string name="app_name">DMS Client System</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string> 
-	<string name="no_demos">No Demos</string>
-	
-	<string name="map_label">Basic Map</string>
-  <string name="map_description">Launches a map</string>
-  <string name="play_services_not_installed">Google Play services is not installed on this device.</string>
-  <string name="legal_info">Legal Info</string>
-  
-  <string name="location_source_demo_label">Location Source Demo</string>
-  <string name="location_source_demo_description">Demonstrates how to use a custom location source.</string>
-  
-  
-  <string name="my_location">My Location</string>
-  <string name="my_location_label">My Location</string>
-  <string name="my_location_description">Demonstrates how to use GMS Location</string>
-  <string name="mylocation_button">My Location Button</string>
-  <string name="mylocation_layer">My Location Layer</string>
-  
-  <string name="custom_info_contents">Custom info contents</string>
-  <string name="custom_info_window">Custom info window</string>
-  
-  <string name="drag_melbourne">Drag Melbourne</string>
-  <string name="clear_map">Clear</string>
-  <string name="reset_map">Reset</string>
-  <string name="default_info_window">Default info window</string>
-  <string name="rotation">Rotation:</string>
-  <string name="flat">Flat</string>
-  <string name="marker_label">Markers</string>
-  <string name="marker_description">Demonstrates how to add Markers to a map.</string>
-  
-  <string name="map_not_ready">Map is not ready yet</string>
-  
+    <string name="no_demos">No Demos</string>
+    <string name="main_label">Welcome you!</string>
+    
+    <string name="login_label">Login</string>
+    <string name="customer_list_label">List customers for you</string>
+    
+    <string name="play_services_not_installed">Google Play services is not installed on this device.</string>
+    <string name="legal_info">Legal Info</string>
+    <string name="location_source_demo_label">Location Source Demo</string>
+    <string name="location_source_demo_description">Demonstrates how to use a custom location source.</string>
+    
+    <string name="clear_map">Just one</string>
+    <string name="reset_map">All</string>
+    <string name="send_demo">Send location demo!</string>
+    <string name="marker_label">Show customer detail</string>
+    <string name="marker_description">Demonstrates how to add Markers to a map.</string>
+    <string name="map_not_ready">Map is not ready yet</string>
+
+    <!-- Customer show on the map -->
+    <string name="customer_name">Customer Name: </string>
+    <string name="customer_id">ID:</string>
+    <string name="customer_phone">Phone:</string>
+    <string name="customer_address">Address:</string>
+    
+    <string name="planning_label">Planning</string>
+    
+
 </resources>

@@ -8,9 +8,12 @@ package com.hp.dao;
 
 import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
+import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
+import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -87,5 +90,26 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
         }
         
         return result;
+    }
+    
+    //Add customer  
+    @Override
+    public boolean saveOrUpdate(RoadManagement pRoadManagement){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.saveOrUpdate(pRoadManagement);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
     }
 }

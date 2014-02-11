@@ -23,7 +23,8 @@ import com.hp.rest.RestClient;
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class LoginActivity extends Activity {
 	
-	String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
+	String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/getCustomerForStaff"; 
+	//String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
 	EditText mUsername;
 	EditText mPassword;
 	

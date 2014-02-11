@@ -57,6 +57,13 @@
         <activity
             android:name=".PlanningActivity"
             android:label="@string/planning_label" />
+        <activity
+            android:name=".Order_AmountActivity"
+            android:label="@string/amount" />
+        <activity
+            android:name=".Order_ProductActivity"
+            android:label="@string/product" />
+        
     </application>
 
 </manifest>

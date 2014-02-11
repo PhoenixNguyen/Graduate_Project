@@ -163,8 +163,12 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000a;
-        public static final int common_signin_btn_text_light=0x7f04000b;
+        public static final int common_signin_btn_text_dark=0x7f04000e;
+        public static final int common_signin_btn_text_light=0x7f04000f;
+        public static final int orange=0x7f04000c;
+        public static final int purple=0x7f04000b;
+        public static final int red=0x7f04000a;
+        public static final int white=0x7f04000d;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -219,46 +223,80 @@ containing a value of this type.
         public static final int repeat_bg=0x7f020027;
     }
     public static final class id {
-        public static final int btnLogin=0x7f050011;
-        public static final int customer_address=0x7f050008;
-        public static final int customer_id=0x7f050006;
-        public static final int customer_name=0x7f050005;
-        public static final int customer_phone=0x7f050007;
-        public static final int description=0x7f05000b;
-        public static final int footer=0x7f05000e;
-        public static final int header=0x7f05000d;
+        public static final int amount_button=0x7f050016;
+        public static final int btnLogin=0x7f050023;
+        public static final int class_id=0x7f05002b;
+        public static final int class_name=0x7f05002a;
+        public static final int count=0x7f050027;
+        public static final int customer_address=0x7f05001a;
+        public static final int customer_id=0x7f050018;
+        public static final int customer_name=0x7f050017;
+        public static final int customer_phone=0x7f050019;
+        public static final int dc2_value=0x7f050011;
+        public static final int description=0x7f05001d;
+        public static final int dialogButtonNO=0x7f050029;
+        public static final int dialogButtonYES=0x7f050028;
+        public static final int discount=0x7f05000a;
+        public static final int discount2=0x7f050010;
+        public static final int discount_value=0x7f05000b;
+        public static final int document=0x7f050008;
+        public static final int document_value=0x7f050009;
+        public static final int footer=0x7f050020;
+        public static final int header=0x7f05001f;
         public static final int hybrid=0x7f050004;
-        public static final int legal_info=0x7f05000c;
-        public static final int link_to_register=0x7f050012;
-        public static final int map=0x7f050009;
-        public static final int menu_legal=0x7f050013;
+        public static final int init_order=0x7f05001b;
+        public static final int legal_info=0x7f05001e;
+        public static final int link_to_register=0x7f050024;
+        public static final int list_view_product=0x7f05002f;
+        public static final int map=0x7f05001c;
+        public static final int menu_legal=0x7f050031;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int password=0x7f050010;
+        public static final int note=0x7f050012;
+        public static final int note_value=0x7f050013;
+        public static final int password=0x7f050022;
+        public static final int price=0x7f050026;
+        public static final int product_button=0x7f050015;
+        public static final int product_id=0x7f05002c;
+        public static final int product_name=0x7f05002d;
         public static final int satellite=0x7f050002;
+        public static final int save=0x7f050014;
+        public static final int search_button=0x7f05002e;
+        public static final int sum=0x7f05000e;
+        public static final int sum_value=0x7f05000f;
+        public static final int tax=0x7f05000c;
+        public static final int tax_value=0x7f05000d;
         public static final int terrain=0x7f050003;
-        public static final int title=0x7f05000a;
-        public static final int username=0x7f05000f;
+        public static final int text=0x7f050025;
+        public static final int title=0x7f050005;
+        public static final int total=0x7f050006;
+        public static final int total_name=0x7f050030;
+        public static final int total_value=0x7f050007;
+        public static final int username=0x7f050021;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int customer_list=0x7f030001;
-        public static final int customer_map=0x7f030002;
-        public static final int feature=0x7f030003;
-        public static final int footer_repeat=0x7f030004;
-        public static final int header_gradient=0x7f030005;
-        public static final int legal_info=0x7f030006;
-        public static final int login=0x7f030007;
-        public static final int planning=0x7f030008;
+        public static final int amount=0x7f030001;
+        public static final int customer_list=0x7f030002;
+        public static final int customer_map=0x7f030003;
+        public static final int feature=0x7f030004;
+        public static final int footer_repeat=0x7f030005;
+        public static final int header_gradient=0x7f030006;
+        public static final int legal_info=0x7f030007;
+        public static final int login=0x7f030008;
+        public static final int order_product_dialog=0x7f030009;
+        public static final int planning=0x7f03000a;
+        public static final int product=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
     }
     public static final class string {
         public static final int action_settings=0x7f06001b;
+        public static final int amount=0x7f06002f;
         public static final int app_name=0x7f06001a;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -373,6 +411,7 @@ containing a value of this type.
         public static final int no_demos=0x7f06001c;
         public static final int planning_label=0x7f06002e;
         public static final int play_services_not_installed=0x7f060020;
+        public static final int product=0x7f060030;
         public static final int reset_map=0x7f060025;
         public static final int send_demo=0x7f060026;
     }

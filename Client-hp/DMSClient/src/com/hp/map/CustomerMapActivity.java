@@ -40,13 +40,16 @@ import com.hp.rest.RestClient.RequestMethod;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -78,6 +81,9 @@ public class CustomerMapActivity extends FragmentActivity
     private GoogleMap mMap;
     private LocationClient mLocationClient;
     
+    private Button initOrder;
+    private Context context = this;
+    
  // These settings are the same as the settings for the map. They will in fact give you updates
     // at the maximal rates currently possible.
     private static final LocationRequest REQUEST = LocationRequest.create()
@@ -98,7 +104,10 @@ public class CustomerMapActivity extends FragmentActivity
     private float mX;
     private float mY;
     
-    private String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/putJourney"; 
+    //private String mUrl = "http://192.168.169.7:33554/DMSProject/webresources/putJourney"; 
+    String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/putJourney"; 
+  	//String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
+    
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("NewApi")
 	@Override
@@ -111,6 +120,8 @@ public class CustomerMapActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_map);
 
+        
+        
         //Get POSITION
         Intent i = getIntent();
         positionClick = i.getIntExtra("POSITION_CLICK", 0);
@@ -125,6 +136,15 @@ public class CustomerMapActivity extends FragmentActivity
         customer_phone.setText("Phone: "+ RestClient.customerList.get(positionClick).getPhone());
         customer_address.setText("Address: "+ RestClient.customerList.get(positionClick).getAddress());
         
+        initOrder = (Button)findViewById(R.id.init_order);
+        initOrder.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(context, Order_ProductActivity.class));
+			}
+		});
         setUpMapIfNeeded();
     }
 

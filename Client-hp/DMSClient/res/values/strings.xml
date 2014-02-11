@@ -29,5 +29,6 @@
     
     <string name="planning_label">Planning</string>
     
-
+	<string name="amount">Amount</string>
+	<string name="product">Product</string>
 </resources>

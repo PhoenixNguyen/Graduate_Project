@@ -28,7 +28,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.hp.map.LoginActivity"
+            android:name="com.hp.map.Order_TabActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -63,6 +63,10 @@
         <activity
             android:name=".Order_ProductActivity"
             android:label="@string/product" />
+         <!--Activity
+            android:name=".Order_TabActivity"
+            android:label="@string/product" /-->
+        
         
     </application>
 

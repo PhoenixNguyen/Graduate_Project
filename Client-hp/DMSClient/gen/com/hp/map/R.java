@@ -288,8 +288,9 @@ containing a value of this type.
         public static final int legal_info=0x7f030007;
         public static final int login=0x7f030008;
         public static final int order_product_dialog=0x7f030009;
-        public static final int planning=0x7f03000a;
-        public static final int product=0x7f03000b;
+        public static final int order_tab=0x7f03000a;
+        public static final int planning=0x7f03000b;
+        public static final int product=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;

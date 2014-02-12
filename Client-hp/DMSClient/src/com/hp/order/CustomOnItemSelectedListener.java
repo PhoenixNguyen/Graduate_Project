@@ -24,7 +24,8 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		if(parent.getItemAtPosition(pos).toString().compareTo("fruit") == 0)
 			PRODUCT = 
 					new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
-									"Apple", "Avocado"};
+									"Apple", "Avocado",
+									"Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
 		else
 			PRODUCT = 
 			new String[] {"Android", "iOS", "WindowsMobile", "Blackberry",

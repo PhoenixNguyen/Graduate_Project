@@ -85,13 +85,22 @@ public class Order_ProductActivity extends Activity{
 		amount = (Button)findViewById(R.id.amount_button);
 		product.setSelected(true);
 		
+		product.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				setContentView(R.layout.product);
+			}
+		});
 		amount.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				setContentView(R.layout.amount);
 				
-				startActivity(new Intent(context, Order_AmountActivity.class));
+				//startActivity(new Intent(context, Order_AmountActivity.class));
 			}
 		});
 	}

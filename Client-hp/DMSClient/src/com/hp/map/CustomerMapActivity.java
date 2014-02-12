@@ -142,7 +142,7 @@ public class CustomerMapActivity extends FragmentActivity
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				startActivity(new Intent(context, Order_ProductActivity.class));
+				startActivity(new Intent(context, Order_TabActivity.class));
 			}
 		});
         setUpMapIfNeeded();

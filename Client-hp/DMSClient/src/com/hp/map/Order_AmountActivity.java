@@ -25,7 +25,8 @@ public class Order_AmountActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				startActivity(new Intent(context, Order_ProductActivity.class));
+				//setContentView(R.layout.product);
+				//startActivity(new Intent(context, Order_ProductActivity.class));
 			}
 		});
 	}

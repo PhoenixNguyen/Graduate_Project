@@ -16,9 +16,9 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		this.context = context;
 	}
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
-		Toast.makeText(parent.getContext(), 
-			"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
-			Toast.LENGTH_SHORT).show();
+//		Toast.makeText(parent.getContext(), 
+//			"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+//			Toast.LENGTH_SHORT).show();
 		
 		String[] PRODUCT;
 		if(parent.getItemAtPosition(pos).toString().compareTo("fruit") == 0)

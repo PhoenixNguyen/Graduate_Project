@@ -33,9 +33,6 @@ public class Order_ProductActivity extends Activity{
 	private Spinner spinner;
 	final Context context = this;
 	
-	private Button product;
-	private Button amount;
-	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
@@ -80,29 +77,6 @@ public class Order_ProductActivity extends Activity{
 		addItemsOnSpinner();
 		addListenerOnSpinnerItemSelection();
 		
-		/// Switch view
-		product = (Button)findViewById(R.id.product_button);
-		amount = (Button)findViewById(R.id.amount_button);
-		product.setSelected(true);
-		
-		product.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setContentView(R.layout.product);
-			}
-		});
-		amount.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				setContentView(R.layout.amount);
-				
-				//startActivity(new Intent(context, Order_AmountActivity.class));
-			}
-		});
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){

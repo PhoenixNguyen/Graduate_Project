@@ -31,4 +31,6 @@
     
 	<string name="amount">Amount</string>
 	<string name="product">Product</string>
+	
+	<string name="schedule">Schedule</string>
 </resources>

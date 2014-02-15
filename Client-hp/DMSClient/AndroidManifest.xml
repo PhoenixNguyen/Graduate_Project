@@ -30,7 +30,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.hp.map.Schedule_CalendarActivity"
+            android:name="com.hp.map.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,9 +70,9 @@
             android:label="@string/product" />
          
          
-        <!-- activity
+        <activity
             android:name="com.hp.map.Schedule_CalendarActivity"
-            android:label="@string/schedule" /-->
+            android:label="@string/schedule" />
         
     </application>
 

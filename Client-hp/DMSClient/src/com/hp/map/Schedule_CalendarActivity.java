@@ -1,22 +1,36 @@
 package com.hp.map;
 
+import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.UriBuilder;
+
 import com.hp.order.ProductArrayAdapter;
+import com.hp.rest.Rest;
 import com.hp.schedule.CalendarAdapter;
 import com.hp.schedule.DialogArrayAdapter;
 import com.hp.schedule.Utility;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +45,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
+@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class Schedule_CalendarActivity extends Activity {
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
@@ -49,11 +65,20 @@ public class Schedule_CalendarActivity extends Activity {
 	private ListView listViewCus;
 	final Context context = this;
 		
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	@SuppressLint("NewApi")
 	public void onCreate(Bundle savedInstanceState) {
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+    	    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+    	    StrictMode.setThreadPolicy(policy);
+    	}
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calendar);
 		Locale.setDefault(Locale.US);
-
+		
+//		Rest rest = new Rest("njnj");
+//		rest.connectWebservices();
+		
 		rLayout = (LinearLayout) findViewById(R.id.text);
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
 		itemmonth = (GregorianCalendar) month.clone();
@@ -99,6 +124,13 @@ public class Schedule_CalendarActivity extends Activity {
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
+				
+				//Connect services
+				Rest rest = new Rest("");
+				rest.connectWebservices();
+				
+				System.out.println("________________ 2 CALL: "+
+			    		Rest.mService.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(String.class));
 				// removing the previous view if added
 				if (((LinearLayout) rLayout).getChildCount() > 0) {
 					((LinearLayout) rLayout).removeAllViews();
@@ -283,4 +315,41 @@ public class Schedule_CalendarActivity extends Activity {
 			adapter.notifyDataSetChanged();
 		}
 	};
+	
+	public void connectWebservices(){
+//		ClientConfig config = new DefaultClientConfig();
+//	    Client client = Client.create(config);
+//	    WebResource service = client.resource(getBaseURI());
+//	    // Fluent interfaces
+//	    //System.out.println(service.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).toString());
+//	    // Get plain text
+//	    System.out.println("________________"+
+//	    		service.path("webresources").path("getData").accept("text/plain").get(String.class));
+//	    // Get XML
+//	    //System.out.println(service.path("webresources").path("getData").accept(MediaType.TEXT_XML).get(String.class));
+//	    // The HTML
+//	    //System.out.println(service.path("webresources").path("getData").accept(MediaType.TEXT_HTML).get(String.class));
+		
+		Client client = Client.create();
+		 
+		WebResource webResource = client
+		   .resource("http://192.168.169.2:8080/DMSProject/webresources/getData");
+ 
+		ClientResponse response = webResource.accept("text/plain")
+                   .get(ClientResponse.class);
+ 
+		if (response.getStatus() != 200) {
+		   throw new RuntimeException("Failed : HTTP error code : "
+			+ response.getStatus());
+		}
+ 
+		String output = response.getEntity(String.class);
+ 
+		System.out.println("Output from Server .... \n");
+		System.out.println(output);
+	}
+	
+	private URI getBaseURI() {
+	    return UriBuilder.fromUri("http://192.168.169.2:8080/DMSProject").build();
+	  }
 }

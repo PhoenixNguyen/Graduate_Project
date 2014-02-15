@@ -260,7 +260,7 @@ public class GenericResource {
         List<Schedule> scheduleList = new ArrayList<Schedule>();
 
         scheduleList = scheduleDAO.getScheduleList("", "");
-                
+        
         return scheduleList;
     }
 }

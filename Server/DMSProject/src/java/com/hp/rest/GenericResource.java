@@ -10,10 +10,13 @@ import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.dao.RoadManagementDAO;
 import com.hp.dao.RoadManagementDAOImpl;
+import com.hp.dao.ScheduleDAO;
+import com.hp.dao.ScheduleDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
+import com.hp.domain.Schedule;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -22,6 +25,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -246,5 +250,17 @@ public class GenericResource {
             e.printStackTrace();
             return "ERROR";
         }
+    }
+    
+    @Path("/getSchedule")
+    @GET
+    @Produces("application/xml")
+    public Collection<Schedule> getSchedule(){
+        ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+        List<Schedule> scheduleList = new ArrayList<Schedule>();
+
+        scheduleList = scheduleDAO.getScheduleList("", "");
+                
+        return scheduleList;
     }
 }

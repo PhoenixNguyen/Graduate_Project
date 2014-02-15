@@ -16,5 +16,7 @@
         <mapping class="com.hp.domain.RoadManagement" />
         <mapping class="com.hp.domain.User" />
         <mapping class="com.hp.domain.Staff" />
+        <mapping class="com.hp.domain.Schedule" />
+        
   </session-factory>
 </hibernate-configuration>

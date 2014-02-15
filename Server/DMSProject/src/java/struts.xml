@@ -14,14 +14,17 @@
         <action name="getCustomerForStaff" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">generic/getCustomer</result>
         </action>
-        <action name="getData" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
-            <result name="success">generic/getData</result>
+        <action name="getHtml" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getHtml</result>
         </action>
         
         <action name="putJourney" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">generic/putJourney</result>
         </action>
         
+        <action name="getSchedule" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getSchedule</result>
+        </action>
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
 		

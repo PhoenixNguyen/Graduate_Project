@@ -54,8 +54,10 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         Query query = null;
         try{
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = sdf.parse("2013-12-12");
-            String str = "from Schedule where mMaNV='dvh' and mDate='"+ sdf.format(date) +"'";
+            Date date = sdf.parse(pDate);
+            String str = "from Schedule where lower(mMaNV)='"+pMaNV.toLowerCase()+"' and mDate BETWEEN '"
+                    + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"')";
+            
             courses = session.createQuery(str).list();
 //            query.setString(0, pMaNV);
 //            query.setDate(1, pDate);

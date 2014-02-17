@@ -1,19 +1,35 @@
 package com.hp.map;
 
+import java.io.IOException;
 import java.net.URI;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
+
+import com.hp.domain.Customer;
+import com.hp.domain.Schedule;
 import com.hp.order.ProductArrayAdapter;
 import com.hp.rest.Rest;
+import com.hp.rest.RestClient;
 import com.hp.schedule.CalendarAdapter;
 import com.hp.schedule.DialogArrayAdapter;
+import com.hp.schedule.ListViewSchedules;
+import com.hp.schedule.ScheduleViewArrayAdapter;
 import com.hp.schedule.Utility;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -65,6 +81,10 @@ public class Schedule_CalendarActivity extends Activity {
 	private ListView listViewCus;
 	final Context context = this;
 		
+	//take customers
+	public static Map<String, Timestamp> mTakeCustomersList = new HashMap<String, Timestamp>();
+	public static String mTakeTheDate = new String();
+	
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("NewApi")
 	public void onCreate(Bundle savedInstanceState) {
@@ -120,11 +140,10 @@ public class Schedule_CalendarActivity extends Activity {
 		
 		listView = (ListView)findViewById(R.id.list_view_customers);
 		
-		
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				
+				listView.clearDisappearingChildren();
 				//Connect services
 //				Rest rest = new Rest("");
 //				rest.connectWebservices();
@@ -140,6 +159,10 @@ public class Schedule_CalendarActivity extends Activity {
 				((CalendarAdapter) parent.getAdapter()).setSelected(v);
 				String selectedGridDate = CalendarAdapter.dayString
 						.get(position);
+				
+				//Set Take the date
+				mTakeTheDate = selectedGridDate ;
+				
 				String[] separatedTime = selectedGridDate.split("-");
 				String gridvalueString = separatedTime[2].replaceFirst("^0*",
 						"");// taking last part of date. ie; 2 from 2012-12-02.
@@ -168,30 +191,84 @@ public class Schedule_CalendarActivity extends Activity {
 				// add the textview to the linearlayout -----------------------------------
 				rLayout.addView(viewDate);
 				rLayout.addView(add);
-				// Add dialog ------------------------------------------------------------
-				addDialog();
+				add.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						// Add dialog ------------------------------------------------------------
+						addDialog();
+					}
+				});
+				
 				
 				///////////////////////////////////////////
 				
 				// List customers in schedule -------------------------------------------
-				String[] PRODUCT = 
-						new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
-										"Apple", "Avocado","Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
-				//listView = (ListView)findViewById(R.id.list_view_customers);
-				listView.setAdapter(new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, PRODUCT));
+				ClientResponse response = Rest.mService.path("webresources").path("getSchedule")
+						.accept("application/json")
+						.type("application/json").post(ClientResponse.class
+								,RestClient.customerList.get(0).getmMaNhanVien()+"::"+selectedGridDate);
 				
-				listView.setOnItemClickListener(new OnItemClickListener()
-				{
-				     @Override
-				     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
-				     {
-//				    	 String selectedValue = (String) listView.getAdapter().getItem(position);
-//				    	 
-//				          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
-//				    	// custom dialog
-
-				      }
-				});
+		        System.out.println("________________ "+ response.toString() + "__ " +response.getLength());
+		        if(response.getLength() > 2 )
+		        {
+		        
+			        String re = response.getEntity(String.class);
+			        System.out.println("________________ "+ re);
+			        
+			        // pair to object
+			        ObjectMapper mapper = new ObjectMapper();
+			        List<Schedule> schedule = null;
+					try {
+	//					File jsonFile = new File(jsonFilePath);
+						schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+								Schedule.class));
+						System.out.println("++++++++++++++ "+schedule.get(0).getmMaKH());
+					} catch (JsonGenerationException e) {
+						e.printStackTrace();
+					} catch (JsonMappingException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					String[] scheduleIDList = new String[]{};
+					ListViewSchedules[] listV = new ListViewSchedules[]{};
+					
+					for(int i = 0; i < schedule.size(); i++){
+						scheduleIDList = append(scheduleIDList, schedule.get(i).getmMaKH());
+						listV = append(listV, new ListViewSchedules(schedule.get(i).getmMaKH()
+								, schedule.get(i).getmDate().toString()));
+						
+					}
+					String[] PRODUCT = 
+							new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
+											"Apple", "Avocado","Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
+					//listView = (ListView)findViewById(R.id.list_view_customers);
+					
+					listView.setAdapter(new ScheduleViewArrayAdapter(context, android.R.layout.simple_list_item_1, listV));
+					
+					listView.setOnItemClickListener(new OnItemClickListener()
+					{
+					     @Override
+					     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
+					     {
+	//				    	 String selectedValue = (String) listView.getAdapter().getItem(position);
+	//				    	 
+	//				          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
+	//				    	// custom dialog
+	
+					      }
+					});
+				
+		        }
+		        else
+		        {
+		        	ListViewSchedules[] listV = new ListViewSchedules[]{
+		        			new ListViewSchedules("NOT SET", "00-00-00 00:00:00")};
+		        	listView.setAdapter(new ScheduleViewArrayAdapter(context, android.R.layout.simple_list_item_1, listV));
+		        }
 
 			}
 
@@ -208,11 +285,42 @@ public class Schedule_CalendarActivity extends Activity {
 		dialog.setTitle("Chọn Khách Hàng");
 		
 		// List customers in schedule -------------------------------------------
+		//Get customers list for staff and not have the schedule ========================================
+		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListSchedule")
+				.accept("application/json")
+				.type("application/json").post(ClientResponse.class, RestClient.customerList.get(0).getmMaNhanVien());
+        System.out.println("________________ "+ response.toString());
+        String re = response.getEntity(String.class);
+        System.out.println("________________ "+ re);
+        
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<Customer> schedule = null;
+		try {
+//			File jsonFile = new File(jsonFilePath);
+			schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+					Customer.class));
+			System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		String[] customer = new String[]{};
+		
+		for(int i = 0; i < schedule.size(); i++){
+			customer = append(customer, schedule.get(i).getmMaDoiTuong());
+			
+		}
 		String[] PRODUCT = 
 				new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
 								"Apple", "Avocado","Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
 		//ListView listViewCus = (ListView)findViewById(R.id.list_view_cus);
-		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, PRODUCT));
+		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, customer));
 		
 		listViewCus.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -232,6 +340,57 @@ public class Schedule_CalendarActivity extends Activity {
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				// get map
+				System.out.println("__MAP__");
+				List<Schedule> scheduleList = new ArrayList<Schedule>();
+				for(String key : mTakeCustomersList.keySet()){
+					Timestamp value = mTakeCustomersList.get(key);
+					Schedule schedule = new Schedule(RestClient.customerList.get(0).getmMaNhanVien()
+							, key
+							, value
+							, false);
+					
+					scheduleList.add(schedule);
+					System.out.println(key + " ___ " + value);
+					
+				}
+				//================= put in server======================================
+				ObjectMapper mapper = new ObjectMapper();
+		        String listStr = new String();
+
+				try {
+
+					listStr = mapper.writeValueAsString(scheduleList);
+					
+				} catch (JsonGenerationException ex) {
+
+					ex.printStackTrace();
+
+				} catch (JsonMappingException ex) {
+
+					ex.printStackTrace();
+
+				} catch (IOException ex) {
+
+					ex.printStackTrace();
+
+				}
+				
+				//Post
+				ClientResponse response = Rest.mService.path("webresources").path("putSchedule").accept("application/json")
+						.type("application/json").post(ClientResponse.class, listStr);
+						
+				if (response.getStatus() != 200) {
+		            throw new RuntimeException("Failed : HTTP error code : "
+		                    + response.getStatus());
+		        }
+		        String output = response.toString();
+		        System.out.println("Server response .... \n");
+		        System.out.println(output);
+		        
+				/////==================================================================
+				//destroy
+				Schedule_CalendarActivity.mTakeCustomersList.clear();
 				dialog.dismiss();
 			}
 		});
@@ -259,6 +418,15 @@ public class Schedule_CalendarActivity extends Activity {
 //		});
 //		dialog.show();
 	}
+	
+	@SuppressLint("NewApi")
+	static <T> T[] append(T[] arr, T element) {
+        final int N = arr.length;
+        arr = Arrays.copyOf(arr, N + 1);
+        arr[N] = element;
+        return arr;
+    }
+	
 	protected void setNextMonth() {
 		if (month.get(GregorianCalendar.MONTH) == month
 				.getActualMaximum(GregorianCalendar.MONTH)) {

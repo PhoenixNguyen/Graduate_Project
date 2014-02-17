@@ -94,9 +94,9 @@ public class LoginActivity extends Activity {
 					//add element
 					for(int i = 0; i < RestClient.customerList.size(); i++){
 						DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
-								new DetailsList(RestClient.customerList.get(i).getName(),
-										RestClient.customerList.get(i).getId() +" : " + 
-										RestClient.customerList.get(i).getAddress(),
+								new DetailsList(RestClient.customerList.get(i).getmDoiTuong(),
+										RestClient.customerList.get(i).getmMaDoiTuong() +" : " + 
+										RestClient.customerList.get(i).getmDiaChi(),
 				                        CustomerMapActivity.class));
 					}
 					// TODO Auto-generated method stub

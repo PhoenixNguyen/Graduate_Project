@@ -258,13 +258,17 @@ public class GenericResource {
     }
     
     @Path("/getSchedule")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Schedule> getSchedule(){
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Schedule> getSchedule(String pTemp){
+        String[] total = pTemp.split("::");
+        String staff = total[0];
+        String date = total[1];
+        
         ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
         List<Schedule> scheduleList = new ArrayList<Schedule>();
 
-        scheduleList = scheduleDAO.getScheduleList("", "");
+        scheduleList = scheduleDAO.getScheduleList(staff, date);
         
 //        Schedule sc = new Schedule();
 //        sc.setmMaKH("fdfd");
@@ -299,5 +303,48 @@ public class GenericResource {
 //            String output = pTrack.toString();
             System.out.println("____ " + pTrack + "___ " + st);
             return Response.status(200).entity(pTrack).build();
+    }
+    
+    @Path("/getCustomersListSchedule")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Customer> getCustomerToXML(String pStaff) {
+         
+            CustomerDAO customerDAO = new CustomerDAOImpl();
+            List<Customer> customerList = new ArrayList<Customer>();
+
+            customerList = customerDAO.getListCustomerSchedule(pStaff);
+            
+            return customerList;
+    }
+    
+    @POST
+    @Path("/putSchedule")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putSchedule( String pSchedule ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<Schedule> schedulesList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                schedulesList = mapper.readValue(pSchedule, TypeFactory.defaultInstance().constructCollectionType(List.class,
+					Schedule.class));
+                System.out.println(schedulesList.get(0).getmMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+        for(int i = 0; i< schedulesList.size(); i++){
+            scheduleDAO.saveOrUpdate(schedulesList.get(i));
+        }
+            
+            return Response.status(200).entity(pSchedule).build();
     }
 }

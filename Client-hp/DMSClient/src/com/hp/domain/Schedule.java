@@ -29,9 +29,20 @@ public class Schedule {
     private int mStt;
     private String mMaNV;
     private String mMaKH;
-    private Date mDate;
+    private Timestamp mDate;
     private boolean mStatus;
 
+    public Schedule(String pMaNV, String pMaKH, Timestamp pDate, boolean pStatus){
+    	this.mMaNV = pMaNV;
+    	this.mMaKH = pMaKH;
+    	this.mDate = pDate;
+    	this.mStatus = pStatus;
+    }
+    
+    public Schedule(){
+    	
+    }
+    
     @XmlElement
     public int getmStt() {
         return mStt;
@@ -60,11 +71,11 @@ public class Schedule {
     }
 
     @XmlElement
-    public Date getmDate() {
+    public Timestamp getmDate() {
         return mDate;
     }
 
-    public void setmDate(Date mDate) {
+    public void setmDate(Timestamp mDate) {
         this.mDate = mDate;
     }
 

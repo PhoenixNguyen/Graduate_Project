@@ -36,8 +36,7 @@ public class Schedule {
     @Column(name="schedule_ma_khach_hang")
     private String mMaKH;
     @Column(name="schedule_date")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date mDate;
+    private Timestamp mDate;
     @Column(name="schedule_trang_thai")
     private boolean mStatus;
 
@@ -69,11 +68,11 @@ public class Schedule {
     }
 
     @XmlElement
-    public Date getmDate() {
+    public Timestamp getmDate() {
         return mDate;
     }
 
-    public void setmDate(Date mDate) {
+    public void setmDate(Timestamp mDate) {
         this.mDate = mDate;
     }
 

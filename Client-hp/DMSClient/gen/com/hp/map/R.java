@@ -267,7 +267,7 @@ containing a value of this type.
         public static final int list_view_customers=0x7f05001b;
         public static final int list_view_product=0x7f050034;
         public static final int map=0x7f050023;
-        public static final int menu_legal=0x7f050038;
+        public static final int menu_legal=0x7f050039;
         public static final int next=0x7f050018;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -287,6 +287,7 @@ containing a value of this type.
         public static final int tax_value=0x7f05000d;
         public static final int terrain=0x7f050003;
         public static final int text=0x7f05001a;
+        public static final int timePicker1=0x7f050038;
         public static final int title=0x7f050005;
         public static final int total=0x7f050006;
         public static final int total_name=0x7f050035;

@@ -37,6 +37,6 @@ public class Rest {
 	}
 	
 	private static URI getBaseURI() {
-	    return UriBuilder.fromUri("http://192.168.169.2:8080/DMSProject").build();
+	    return UriBuilder.fromUri("http://192.168.169.5:8080/DMSProject").build();
 	  }
 }

@@ -17,6 +17,7 @@ import com.hp.dao.StaffDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Schedule;
+import com.hp.domain.Track;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -42,6 +43,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -165,8 +167,19 @@ public class GenericResource {
             return null;
     }
     
-    //Update journey
+    @POST
     @Path("/putJourney")
+    @Consumes(MediaType.APPLICATION_XML)
+    public Response consumeJSON(Track track ) {
+
+            String output = track.toString();
+
+            System.out.println("JSON___ "+ output);
+            return Response.status(200).entity(output).build();
+    }
+        
+    //Update journey
+    @Path("/putJourney2")
     @POST
     @Produces(MediaType.TEXT_XML)
     public String updateJourney(@FormParam("data") String str) {
@@ -254,13 +267,16 @@ public class GenericResource {
     
     @Path("/getSchedule")
     @GET
-    @Produces("application/xml")
-    public Collection<Schedule> getSchedule(){
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Schedule> getSchedule(){
         ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
         List<Schedule> scheduleList = new ArrayList<Schedule>();
 
         scheduleList = scheduleDAO.getScheduleList("", "");
         
+//        Schedule sc = new Schedule();
+//        sc.setmMaKH("fdfd");
+//        sc.setmMaNV("1234fdfd");
         return scheduleList;
     }
 }

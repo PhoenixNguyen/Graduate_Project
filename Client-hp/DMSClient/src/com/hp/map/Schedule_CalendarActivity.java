@@ -126,8 +126,8 @@ public class Schedule_CalendarActivity extends Activity {
 					int position, long id) {
 				
 				//Connect services
-				Rest rest = new Rest("");
-				rest.connectWebservices();
+//				Rest rest = new Rest("");
+//				rest.connectWebservices();
 				
 				System.out.println("________________ 2 CALL: "+
 			    		Rest.mService.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(String.class));
@@ -162,10 +162,15 @@ public class Schedule_CalendarActivity extends Activity {
 				viewDate.setTextSize(20);
 				viewDate.setTextColor(Color.BLACK);
 				
-				// Add dialog ------------------------------------------------------------
-				addDialog();
+				Button add = new Button(Schedule_CalendarActivity.this);
+				add.setText("Add schedules");
+				add.setRight(1);
 				// add the textview to the linearlayout -----------------------------------
 				rLayout.addView(viewDate);
+				rLayout.addView(add);
+				// Add dialog ------------------------------------------------------------
+				addDialog();
+				
 				///////////////////////////////////////////
 				
 				// List customers in schedule -------------------------------------------

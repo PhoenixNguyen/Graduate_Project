@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hp.rest.RestClient.RequestMethod;
+import com.hp.rest.Rest;
 import com.hp.rest.RestClient;
  
 @SuppressLint("NewApi")
@@ -46,6 +47,10 @@ public class LoginActivity extends Activity {
 		else
 			System.out.println("NO Internet access!!____________________");
         
+        // Connect server
+        Rest rest = new Rest("");
+		rest.connectWebservices();
+		
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
@@ -56,6 +61,7 @@ public class LoginActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				
 				//Get username
 				String username = mUsername.getText().toString();
 				String password = mPassword.getText().toString();

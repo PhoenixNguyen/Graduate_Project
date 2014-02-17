@@ -35,8 +35,20 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hp.domain.Schedule;
+import com.hp.domain.Track;
+import com.hp.rest.Rest;
 import com.hp.rest.RestClient;
 import com.hp.rest.RestClient.RequestMethod;
+import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.GenericType;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.api.json.JSONConfiguration;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -46,6 +58,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
+import android.transition.Scene;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -57,9 +70,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 
 /**
  * This shows how to place markers on a map.
@@ -348,42 +369,96 @@ public class CustomerMapActivity extends FragmentActivity
     		return;
     	
         System.out.println("SEND DEMO LOCATION: _______");
-        String content = "<?xml version=\"1.0\"?> "
-                + "<root>";
-
-        content += "<road id=\""+RestClient.customerList.get(positionClick).getId()+"\"> " 
-                        + "<x>"+mX+"</x> " 
-                        + "<y>"+mY+"</y> " 
-                        + "<staffid>"+RestClient.customerList.get(positionClick).getStaffid()+"</staffid> " 
-                       
-                  + "</road> ";
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
         
-        content += "</root> ";
-						
-        String value = "";
-        try {
-			value = new String(content.getBytes("UTF-8"), "UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}    
-        System.out.print("content______________" + value);
-      //Init Http request
-		RestClient client = new RestClient(mUrl);
-		client.AddParam("data", value);
+        Track track = new Track(""
+        		,RestClient.customerList.get(positionClick).getId()
+        		,Timestamp.valueOf(dateFormat.format(date))
+        		,mX
+        		,mY
+        		,"");
+        
+        ClientConfig clientConfig = new DefaultClientConfig();
+
+		clientConfig.getFeatures().put(
+				JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+
+		Client client = Client.create(clientConfig);
+
+		WebResource webResource = client
+				.resource("http://192.168.169.5:8080/DMSProject/webresources/getSchedule");
+
+		ClientResponse response = webResource.accept("application/json")
+				.type("application/json").get(ClientResponse.class);
+        System.out.println("________________ "+ response.toString());
+        String re = response.getEntity(String.class);
+        System.out.println("________________ "+ re);
+//		Rest.mService.path("webresources").path("getSchedule").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).getEntity(String.class));
+//        
+//     // register genson in jersey client
+//        ClientConfig cfg = new DefaultClientConfig(GensonJsonConverter.class);
+//        Client client = Client.create(cfg);
+//        WebResource webResource = client.resource("http://192.168.169.5:8080/DMSProject/webresources/getSchedule");
+//
+//        // you can map it to a pojo, no need to have a string or map
+//        Schedule pojo = webResource
+//                        .accept(MediaType.APPLICATION_JSON)
+//                        .get(Schedule.class);
+//        
+//        System.out.println("________________ "+ pojo.getmMaKH());
+//        		Rest.mService.path("webresources").path("getSchedule").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).getEntity(String.class));
+//        
+//        ClientResponse resp = Rest.mService.path("webresources").path("getSchedule").accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+////        GenericType<List<Schedule>> gt = new GenericType<List<Schedule>>(){};
+////        List<Schedule> list = resp.getEntity(gt);
+//        Schedule sc = resp.getEntity(Schedule.class);
+//        System.out.println("_______________ "+sc.getmMaNV());
+        
+////        MultivaluedMap<String, String> params = new MultivaluedMapImpl();
+//        GenericType<Collection<Schedule>> gt = new GenericType<Collection<Schedule>>(){};
+//		Collection<Schedule> result = Rest.mService.path("webresources").path("getSchedule")
+////				.queryParams(params)
+//				.accept(MediaType.APPLICATION_XML_TYPE).get(gt);
+//	
+//		System.out.println("_______________ "+result.toString());
 		
-		try {
-		    client.Execute(RequestMethod.POST);
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-		
-		//Get Response
-		String response = client.getResponse();
-		
-		System.out.print("response__________" + response);
+//        ClientResponse response2 = Rest.mService.path("webresources").path("getSchedule")
+//        			.accept(MediaType.APPLICATION_XML)
+//        			.type(MediaType.APPLICATION_XML)
+//        			.get(ClientResponse.class, track);
+//		
+//        ClientResponse response = Rest.mService.path("webresources").path("putJourney")
+//    			.accept(MediaType.APPLICATION_XML)
+//    			.type(MediaType.APPLICATION_XML)
+//    			.post(ClientResponse.class, track);
+//        
+//        if (response.getStatus() != 200) {
+//        	throw new RuntimeException("Failed : HTTP error code : " 
+//		                        + response.getStatus());
+//		            }
+//		 
+//        String output = response.getEntity(String.class);
+//        System.out.println("Server response .... ______\n");
+//		System.out.println(output);
+
 		
     }
+    
+    public enum MIMETypes {
+		 
+		  APPLICATION_XML("application/xml");
+		  
+		  private final String name;
+		   
+		  private MIMETypes(String name) {
+		    this.name = name;
+		  }
+		   
+		  public String getName() {
+		    return name;
+		  }
+	}
     
     /** Called when the Reset button is clicked. */
     public void onToggleFlat(View view) {

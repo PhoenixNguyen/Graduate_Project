@@ -17,7 +17,6 @@ import com.hp.dao.StaffDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Schedule;
-import com.hp.domain.Track;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -47,6 +46,10 @@ import javax.ws.rs.core.Response;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -166,20 +169,9 @@ public class GenericResource {
         }else
             return null;
     }
-    
-    @POST
-    @Path("/putJourney")
-    @Consumes(MediaType.APPLICATION_XML)
-    public Response consumeJSON(Track track ) {
-
-            String output = track.toString();
-
-            System.out.println("JSON___ "+ output);
-            return Response.status(200).entity(output).build();
-    }
         
     //Update journey
-    @Path("/putJourney2")
+    @Path("/putJourney")
     @POST
     @Produces(MediaType.TEXT_XML)
     public String updateJourney(@FormParam("data") String str) {
@@ -285,8 +277,27 @@ public class GenericResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response putLocation( String pTrack ) {
 
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        RoadManagement track = new RoadManagement();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                track = mapper.readValue(pTrack, RoadManagement.class);
+                System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        CustomerDAO customerDAO = new CustomerDAOImpl();
+        int st = customerDAO.update(track.getmMaKhachHang(), track.getmViDo(), track.getmKinhdo());
+        
 //            String output = pTrack.toString();
-            System.out.println("____ " + pTrack);
+            System.out.println("____ " + pTrack + "___ " + st);
             return Response.status(200).entity(pTrack).build();
     }
 }

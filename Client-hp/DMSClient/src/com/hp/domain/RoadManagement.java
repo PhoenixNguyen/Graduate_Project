@@ -2,7 +2,9 @@ package com.hp.domain;
 
 import java.sql.Timestamp;
 
-public class Track {
+public class RoadManagement {
+
+	private int mSTT;
 	private String mMaNhanVien;
 	private String mMaKhachHang;
     private Timestamp mThoiGian;
@@ -10,7 +12,7 @@ public class Track {
     private float mKinhdo;
     private String mGhiChu;
     
-    public Track(String pMaNhanVien, String pMaKhachHang, Timestamp pThoiGian, 
+    public RoadManagement(String pMaNhanVien, String pMaKhachHang, Timestamp pThoiGian, 
     		float pViDo, float pKinhdo, String pGhiChu){
     	this.mMaNhanVien = pMaNhanVien;
     	this.mMaKhachHang = pMaKhachHang;
@@ -20,6 +22,14 @@ public class Track {
     	this.mGhiChu = pGhiChu;
     }
     
+	public int getmSTT() {
+		return mSTT;
+	}
+
+	public void setmSTT(int mSTT) {
+		this.mSTT = mSTT;
+	}
+	
     public String getmMaNhanVien() {
 		return mMaNhanVien;
 	}

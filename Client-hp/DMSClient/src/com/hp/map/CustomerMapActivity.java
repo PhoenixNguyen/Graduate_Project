@@ -36,7 +36,7 @@ import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hp.domain.Schedule;
-import com.hp.domain.Track;
+import com.hp.domain.RoadManagement;
 import com.hp.rest.Rest;
 import com.hp.rest.RestClient;
 import com.hp.rest.RestClient.RequestMethod;
@@ -379,7 +379,8 @@ public class CustomerMapActivity extends FragmentActivity
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         
-        Track track = new Track(""
+        //Post
+        RoadManagement track = new RoadManagement(""
         		,RestClient.customerList.get(positionClick).getId()
         		,Timestamp.valueOf(dateFormat.format(date))
         		,mX
@@ -387,15 +388,12 @@ public class CustomerMapActivity extends FragmentActivity
         		,"");
         
         ObjectMapper mapper = new ObjectMapper();
-        String put = new String();
+        String locationStr = new String();
 
 		try {
 
-			put = mapper.writeValueAsString(track);
+			locationStr = mapper.writeValueAsString(track);
 			
-//			mapper.writeValue(put, track);
-			//System.out.println(mapper.writeValueAsString(student));
-
 		} catch (JsonGenerationException ex) {
 
 			ex.printStackTrace();
@@ -409,29 +407,21 @@ public class CustomerMapActivity extends FragmentActivity
 			ex.printStackTrace();
 
 		}
-        ClientConfig clientConfig = new DefaultClientConfig();
+       
 
-		clientConfig.getFeatures().put(
-				JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
-
-		Client client = Client.create(clientConfig);
-
-		WebResource webResource = client
-				.resource("http://192.168.169.2:8080/DMSProject/webresources/putLocation");
-
-		ClientResponse response = webResource.accept("application/json")
-		.type("application/json").post(ClientResponse.class, put);
+		ClientResponse response = Rest.mService.path("webresources").path("putLocation").accept("application/json")
+		.type("application/json").post(ClientResponse.class, locationStr);
 		
 		if (response.getStatus() != 200) {
             throw new RuntimeException("Failed : HTTP error code : "
                     + response.getStatus());
         }
-        String output = response.getEntity(String.class);
+        String output = response.toString();
         System.out.println("Server response .... \n");
         System.out.println(output);
 
 			
-		
+		//Get
 //		ClientResponse response = webResource.accept("application/json")
 //				.type("application/json").get(ClientResponse.class);
 //        System.out.println("________________ "+ response.toString());
@@ -462,53 +452,6 @@ public class CustomerMapActivity extends FragmentActivity
 //		}
         
         
-//		Rest.mService.path("webresources").path("getSchedule").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).getEntity(String.class));
-//        
-//     // register genson in jersey client
-//        ClientConfig cfg = new DefaultClientConfig(GensonJsonConverter.class);
-//        Client client = Client.create(cfg);
-//        WebResource webResource = client.resource("http://192.168.169.5:8080/DMSProject/webresources/getSchedule");
-//
-//        // you can map it to a pojo, no need to have a string or map
-//        Schedule pojo = webResource
-//                        .accept(MediaType.APPLICATION_JSON)
-//                        .get(Schedule.class);
-//        
-//        System.out.println("________________ "+ pojo.getmMaKH());
-//        		Rest.mService.path("webresources").path("getSchedule").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).getEntity(String.class));
-//        
-//        ClientResponse resp = Rest.mService.path("webresources").path("getSchedule").accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-////        GenericType<List<Schedule>> gt = new GenericType<List<Schedule>>(){};
-////        List<Schedule> list = resp.getEntity(gt);
-//        Schedule sc = resp.getEntity(Schedule.class);
-//        System.out.println("_______________ "+sc.getmMaNV());
-        
-////        MultivaluedMap<String, String> params = new MultivaluedMapImpl();
-//        GenericType<Collection<Schedule>> gt = new GenericType<Collection<Schedule>>(){};
-//		Collection<Schedule> result = Rest.mService.path("webresources").path("getSchedule")
-////				.queryParams(params)
-//				.accept(MediaType.APPLICATION_XML_TYPE).get(gt);
-//	
-//		System.out.println("_______________ "+result.toString());
-		
-//        ClientResponse response2 = Rest.mService.path("webresources").path("getSchedule")
-//        			.accept(MediaType.APPLICATION_XML)
-//        			.type(MediaType.APPLICATION_XML)
-//        			.get(ClientResponse.class, track);
-//		
-//        ClientResponse response = Rest.mService.path("webresources").path("putJourney")
-//    			.accept(MediaType.APPLICATION_XML)
-//    			.type(MediaType.APPLICATION_XML)
-//    			.post(ClientResponse.class, track);
-//        
-//        if (response.getStatus() != 200) {
-//        	throw new RuntimeException("Failed : HTTP error code : " 
-//		                        + response.getStatus());
-//		            }
-//		 
-//        String output = response.getEntity(String.class);
-//        System.out.println("Server response .... ______\n");
-//		System.out.println(output);
 
 		
     }

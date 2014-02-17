@@ -130,4 +130,31 @@ public class CustomerDAOImpl implements CustomerDAO{
         return courses;
     }
     
+    //Update customer location
+    @Override
+    public int update(String pID, float pX, float pY){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        int status = 0;
+        try{
+            String str = "update Customer set mXCoordinates ="+pX+ " "
+                    + ", mYCoordinates="+pY+" where mMaDoiTuong='"+pID+ "'" ;
+            Query query = session.createQuery(str);
+            status = query.executeUpdate();
+            session.getTransaction().commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        finally {
+            session.close();
+        }
+        
+        return status;
+        
+    }
+    
+    
 }

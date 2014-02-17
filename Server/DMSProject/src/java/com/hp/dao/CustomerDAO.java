@@ -21,4 +21,7 @@ public interface CustomerDAO {
     public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff);
     //Get List customer to ajax
     public List<String> getListCustomer(String pStaff);
+    
+    //Set customer location
+    public int update(String pID, float pX, float pY);
 }

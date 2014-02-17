@@ -69,6 +69,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -81,6 +83,11 @@ import java.util.Random;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
 
 /**
  * This shows how to place markers on a map.
@@ -379,6 +386,29 @@ public class CustomerMapActivity extends FragmentActivity
         		,mY
         		,"");
         
+        ObjectMapper mapper = new ObjectMapper();
+        String put = new String();
+
+		try {
+
+			put = mapper.writeValueAsString(track);
+			
+//			mapper.writeValue(put, track);
+			//System.out.println(mapper.writeValueAsString(student));
+
+		} catch (JsonGenerationException ex) {
+
+			ex.printStackTrace();
+
+		} catch (JsonMappingException ex) {
+
+			ex.printStackTrace();
+
+		} catch (IOException ex) {
+
+			ex.printStackTrace();
+
+		}
         ClientConfig clientConfig = new DefaultClientConfig();
 
 		clientConfig.getFeatures().put(
@@ -387,13 +417,51 @@ public class CustomerMapActivity extends FragmentActivity
 		Client client = Client.create(clientConfig);
 
 		WebResource webResource = client
-				.resource("http://192.168.169.5:8080/DMSProject/webresources/getSchedule");
+				.resource("http://192.168.169.2:8080/DMSProject/webresources/putLocation");
 
 		ClientResponse response = webResource.accept("application/json")
-				.type("application/json").get(ClientResponse.class);
-        System.out.println("________________ "+ response.toString());
-        String re = response.getEntity(String.class);
-        System.out.println("________________ "+ re);
+		.type("application/json").post(ClientResponse.class, put);
+		
+		if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+        String output = response.getEntity(String.class);
+        System.out.println("Server response .... \n");
+        System.out.println(output);
+
+			
+		
+//		ClientResponse response = webResource.accept("application/json")
+//				.type("application/json").get(ClientResponse.class);
+//        System.out.println("________________ "+ response.toString());
+//        String re = response.getEntity(String.class);
+//        System.out.println("________________ "+ re);
+//        
+//        // pair to object
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//		try {
+////			File jsonFile = new File(jsonFilePath);
+//			List<Schedule> schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+//					Schedule.class));
+//			System.out.println(schedule.get(0).getmMaKH());
+//
+//		} catch (JsonGenerationException e) {
+//
+//			e.printStackTrace();
+//
+//		} catch (JsonMappingException e) {
+//
+//			e.printStackTrace();
+//
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//
+//		}
+        
+        
 //		Rest.mService.path("webresources").path("getSchedule").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).getEntity(String.class));
 //        
 //     // register genson in jersey client

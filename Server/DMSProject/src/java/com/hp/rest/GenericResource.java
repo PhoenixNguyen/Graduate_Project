@@ -279,4 +279,14 @@ public class GenericResource {
 //        sc.setmMaNV("1234fdfd");
         return scheduleList;
     }
+    
+    @POST
+    @Path("/putLocation")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putLocation( String pTrack ) {
+
+//            String output = pTrack.toString();
+            System.out.println("____ " + pTrack);
+            return Response.status(200).entity(pTrack).build();
+    }
 }

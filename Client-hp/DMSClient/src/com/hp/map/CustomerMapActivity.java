@@ -38,8 +38,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.hp.domain.Schedule;
 import com.hp.domain.RoadManagement;
 import com.hp.rest.Rest;
-import com.hp.rest.RestClient;
-import com.hp.rest.RestClient.RequestMethod;
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -159,10 +157,10 @@ public class CustomerMapActivity extends FragmentActivity
         customer_phone = (TextView) findViewById(R.id.customer_phone);
         customer_address = (TextView) findViewById(R.id.customer_address);
 
-        customer_name.setText("Customer Name: "+ RestClient.customerList.get(positionClick).getmDoiTuong());
-        customer_id.setText("ID: "+ RestClient.customerList.get(positionClick).getmMaDoiTuong());
-        customer_phone.setText("Phone: "+ RestClient.customerList.get(positionClick).getmDienThoai());
-        customer_address.setText("Address: "+ RestClient.customerList.get(positionClick).getmDiaChi());
+        customer_name.setText("Customer Name: "+ Rest.customerList.get(positionClick).getmDoiTuong());
+        customer_id.setText("ID: "+ Rest.customerList.get(positionClick).getmMaDoiTuong());
+        customer_phone.setText("Phone: "+ Rest.customerList.get(positionClick).getmDienThoai());
+        customer_address.setText("Address: "+ Rest.customerList.get(positionClick).getmDiaChi());
         
         initOrder = (Button)findViewById(R.id.init_order);
         initOrder.setOnClickListener(new OnClickListener() {
@@ -299,9 +297,9 @@ public class CustomerMapActivity extends FragmentActivity
                 @Override
                 public void onGlobalLayout() {
                     Builder builder = new LatLngBounds.Builder();
-                    for(int i = 0; i< RestClient.customerList.size(); i++){
+                    for(int i = 0; i< Rest.customerList.size(); i++){
                     		
-                    	builder.include(new LatLng(RestClient.customerList.get(i).getmXCoordinates(), RestClient.customerList.get(i).getmYCoordinates()));
+                    	builder.include(new LatLng(Rest.customerList.get(i).getmXCoordinates(), Rest.customerList.get(i).getmYCoordinates()));
                         	
                     }
                     
@@ -324,17 +322,17 @@ public class CustomerMapActivity extends FragmentActivity
     	//Add Markers
     	if(pView == 1){
     		mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(RestClient.customerList.get(positionClick).getmXCoordinates(), RestClient.customerList.get(positionClick).getmYCoordinates()))
-            .title(RestClient.customerList.get(positionClick).getmDoiTuong())
-            .snippet(RestClient.customerList.get(positionClick).getmMaDoiTuong()+":"+RestClient.customerList.get(positionClick).getmDiaChi())
+            .position(new LatLng(Rest.customerList.get(positionClick).getmXCoordinates(), Rest.customerList.get(positionClick).getmYCoordinates()))
+            .title(Rest.customerList.get(positionClick).getmDoiTuong())
+            .snippet(Rest.customerList.get(positionClick).getmMaDoiTuong()+":"+Rest.customerList.get(positionClick).getmDiaChi())
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     	}
     	else
-	    	for(int i = 0; i< RestClient.customerList.size(); i++){
+	    	for(int i = 0; i< Rest.customerList.size(); i++){
 	    		mMap.addMarker(new MarkerOptions()
-	            .position(new LatLng(RestClient.customerList.get(i).getmXCoordinates(), RestClient.customerList.get(i).getmYCoordinates()))
-	            .title(RestClient.customerList.get(i).getmDoiTuong())
-	            .snippet(RestClient.customerList.get(i).getmMaDoiTuong()+":"+RestClient.customerList.get(i).getmDiaChi())
+	            .position(new LatLng(Rest.customerList.get(i).getmXCoordinates(), Rest.customerList.get(i).getmYCoordinates()))
+	            .title(Rest.customerList.get(i).getmDoiTuong())
+	            .snippet(Rest.customerList.get(i).getmMaDoiTuong()+":"+Rest.customerList.get(i).getmDiaChi())
 	            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 	    		            	
 	        }
@@ -381,7 +379,7 @@ public class CustomerMapActivity extends FragmentActivity
         
         //Post
         RoadManagement track = new RoadManagement(""
-        		,RestClient.customerList.get(positionClick).getmMaDoiTuong()
+        		,Rest.customerList.get(positionClick).getmMaDoiTuong()
         		,Timestamp.valueOf(dateFormat.format(date))
         		,mX
         		,mY

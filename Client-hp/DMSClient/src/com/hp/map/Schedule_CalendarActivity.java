@@ -25,7 +25,6 @@ import com.hp.domain.Customer;
 import com.hp.domain.Schedule;
 import com.hp.order.ProductArrayAdapter;
 import com.hp.rest.Rest;
-import com.hp.rest.RestClient;
 import com.hp.schedule.CalendarAdapter;
 import com.hp.schedule.DialogArrayAdapter;
 import com.hp.schedule.ListViewSchedules;
@@ -208,7 +207,7 @@ public class Schedule_CalendarActivity extends Activity {
 				ClientResponse response = Rest.mService.path("webresources").path("getSchedule")
 						.accept("application/json")
 						.type("application/json").post(ClientResponse.class
-								,RestClient.customerList.get(0).getmMaNhanVien()+"::"+selectedGridDate);
+								,Rest.customerList.get(0).getmMaNhanVien()+"::"+selectedGridDate);
 				
 		        System.out.println("________________ "+ response.toString() + "__ " +response.getLength());
 		        if(response.getLength() > 2 )
@@ -288,7 +287,7 @@ public class Schedule_CalendarActivity extends Activity {
 		//Get customers list for staff and not have the schedule ========================================
 		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListSchedule")
 				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, RestClient.customerList.get(0).getmMaNhanVien());
+				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getmMaNhanVien());
         System.out.println("________________ "+ response.toString());
         String re = response.getEntity(String.class);
         System.out.println("________________ "+ re);
@@ -345,7 +344,7 @@ public class Schedule_CalendarActivity extends Activity {
 				List<Schedule> scheduleList = new ArrayList<Schedule>();
 				for(String key : mTakeCustomersList.keySet()){
 					Timestamp value = mTakeCustomersList.get(key);
-					Schedule schedule = new Schedule(RestClient.customerList.get(0).getmMaNhanVien()
+					Schedule schedule = new Schedule(Rest.customerList.get(0).getmMaNhanVien()
 							, key
 							, value
 							, false);

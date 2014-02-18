@@ -16,9 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.hp.rest.RestClient.RequestMethod;
 import com.hp.rest.Rest;
-import com.hp.rest.RestClient;
  
 @SuppressLint("NewApi")
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -69,34 +67,19 @@ public class LoginActivity extends Activity {
 				System.out.println("USERNAME___" + username);
 				
 				//Init Http request
-				RestClient client = new RestClient(mUrl);
-				client.AddParam("username", username);
-				client.AddParam("password", password);
 				
-				try {
-				    client.Execute(RequestMethod.GET);
-				} catch (Exception e) {
-				    e.printStackTrace();
-				}
-				
-				//Get Response
-				String response = client.getResponse();
-				System.out.println("RESPONSE 0:____________________________ " + response);
-				if(response != null){
-					//If invalid return
-					if(!client.parseXML(response))
-						return;
-					
+				if(Rest.getCustomersList(username) == true){
 					//Set List customer
 					DetailsListData.CUSTOMER_LIST=  new DetailsList[]{
 							
 					};
+					
 					//add element
-					for(int i = 0; i < RestClient.customerList.size(); i++){
+					for(int i = 0; i < Rest.customerList.size(); i++){
 						DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
-								new DetailsList(RestClient.customerList.get(i).getmDoiTuong(),
-										RestClient.customerList.get(i).getmMaDoiTuong() +" : " + 
-										RestClient.customerList.get(i).getmDiaChi(),
+								new DetailsList(Rest.customerList.get(i).getmMaDoiTuong(),
+										Rest.customerList.get(i).getmDoiTuong() +" : " + 
+												Rest.customerList.get(i).getmDiaChi(),
 				                        CustomerMapActivity.class));
 					}
 					// TODO Auto-generated method stub

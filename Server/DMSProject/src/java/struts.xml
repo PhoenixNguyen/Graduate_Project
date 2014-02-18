@@ -38,6 +38,10 @@
             <result name="success">generic/putSchedule</result>
         </action>
         
+        <action name="getCustomersListStart" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getCustomersListStart</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
 		

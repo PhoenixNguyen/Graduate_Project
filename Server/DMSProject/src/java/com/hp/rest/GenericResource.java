@@ -347,4 +347,16 @@ public class GenericResource {
             
             return Response.status(200).entity(pSchedule).build();
     }
+    
+    @POST
+    @Path("/getCustomersListStart")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Customer> getCustomersListStart( String pStaff ) {
+
+        CustomerDAO customerDAO = new CustomerDAOImpl();
+        List<Customer> customerList = new ArrayList<Customer>();
+
+        customerList = customerDAO.loadCustomersWithLocations(null, pStaff);
+        return customerList;
+    }
 }

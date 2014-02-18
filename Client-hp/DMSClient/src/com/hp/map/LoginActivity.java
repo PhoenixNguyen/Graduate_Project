@@ -88,14 +88,17 @@ public class LoginActivity extends Activity {
 						return;
 					
 					//Set List customer
+					
 					DetailsListData.CUSTOMER_LIST=  new DetailsList[]{
 							
 					};
+					if(DetailsListData.CUSTOMER_LIST.length > 1)
+						DetailsListData.CUSTOMER_LIST = null;
 					//add element
 					for(int i = 0; i < RestClient.customerList.size(); i++){
 						DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
-								new DetailsList(RestClient.customerList.get(i).getmDoiTuong(),
-										RestClient.customerList.get(i).getmMaDoiTuong() +" : " + 
+								new DetailsList(RestClient.customerList.get(i).getmMaDoiTuong(),
+										RestClient.customerList.get(i).getmDoiTuong() +" : " + 
 										RestClient.customerList.get(i).getmDiaChi(),
 				                        CustomerMapActivity.class));
 					}

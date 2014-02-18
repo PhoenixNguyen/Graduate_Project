@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/red"
+    android:orientation="vertical"
+    android:padding="15dip" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dip"
+        android:text="@string/product_information"
+        android:textColor="@color/purple"
+        android:textSize="25dip" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_brand"
+            android:textSize="15dip" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:entries="@array/array_brand" />
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dip"
+        android:background="@color/white"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dip"
+                android:text="@string/text_row1_1"
+                 />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dip"
+                android:text="@string/text_row1_2"
+                 />
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="@string/text_row1_3"
+                 />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="20dip"
+                android:text="@string/text_row2_1"
+                 />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

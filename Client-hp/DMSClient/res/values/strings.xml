@@ -5,15 +5,12 @@
     <string name="action_settings">Settings</string>
     <string name="no_demos">No Demos</string>
     <string name="main_label">Welcome you!</string>
-    
     <string name="login_label">Login</string>
     <string name="customer_list_label">List customers for you</string>
-    
     <string name="play_services_not_installed">Google Play services is not installed on this device.</string>
     <string name="legal_info">Legal Info</string>
     <string name="location_source_demo_label">Location Source Demo</string>
     <string name="location_source_demo_description">Demonstrates how to use a custom location source.</string>
-    
     <string name="clear_map">Just one</string>
     <string name="reset_map">All</string>
     <string name="send_demo">Send the location</string>
@@ -26,11 +23,58 @@
     <string name="customer_id">ID:</string>
     <string name="customer_phone">Phone:</string>
     <string name="customer_address">Address:</string>
-    
     <string name="planning_label">Planning</string>
+    <string name="amount">Amount</string>
+    <string name="product">Product</string>
+    <string name="schedule">Schedule</string>
+
+    <!-- in_store_activity -->
+    <string name="product_information">Product Information</string>
+    <string name="continue_label">Continue</string>
+    <string name="new_game_label">New Game</string>
+    <string name="about_label">About</string>
+    <string name="exit_label">Exit</string>
+    <string name="about_title">About Android Sudoku</string>
+    <string name="main_title">fdfds</string>
+    <string name="text_brand">Brand:</string>
+    <string-array name="array_brand">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+    <string name="text_row1_1">Product</string>
+    <string name="text_row1_2">Video Clip</string>
+    <string name="text_row1_3">Product Knowledge</string>
+    <string name="text_row2_1">Product</string>
     
-	<string name="amount">Amount</string>
-	<string name="product">Product</string>
+    <!-- payment_colection -->
+    <string name="text0">Payment Colection</string>
+    <string name="text1">Customer ID</string>
+	<string name="text2">...</string>
+	<string name="text3">Agirg Report</string>
+	<string name="text4">Payment Amount</string>
+	<string name="text5">Salance Amount</string>
+	<string name="text6">Total Payment Amount</string>
+	<string name="text7">Auto Pay</string>
+	<string name="text8">Choose</string>
+	<string name="text9">Paument Amont</string>
+	<string name="text10">Balance</string>
+	<string name="text11">Original Amount </string>
+	<string name="text12">SAVE</string>
 	
-	<string name="schedule">Schedule</string>
+	<!-- return order -->
+	<string name="customer_name1">CustomerName: ABC</string>
+	<string name="customer_id1">CustID: 001</string>
+	<string name="brand">Brand:</string>
+	<string name="variant">Variant:</string>
+	<string-array name="array_variant">
+        <item>All</item>
+        <item>01</item>
+        <item>02</item>
+    </string-array>
+    <string name="button_search">Search</string>
+    <string name="button_product">Product</string>
+    <string name="button_return_summany">Return Summany</string>
+    <string name="button_return_production">Return Production</string>
+    <string name="button_return_otc">Return OTC</string>
 </resources>

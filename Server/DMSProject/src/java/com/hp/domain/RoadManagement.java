@@ -30,6 +30,20 @@ public class RoadManagement {
     private float mKinhdo;
     private String mGhiChu;
 
+    public RoadManagement(String pMaNhanVien, String pMaKhachHang, Timestamp pThoiGian, 
+    		float pViDo, float pKinhdo, String pGhiChu){
+    	this.mMaNhanVien = pMaNhanVien;
+    	this.mMaKhachHang = pMaKhachHang;
+    	this.mThoiGian = pThoiGian;
+    	this.mViDo = pViDo;
+    	this.mKinhdo = pKinhdo;
+    	this.mGhiChu = pGhiChu;
+    }
+    
+    public RoadManagement(){
+        
+    }
+    
     @Id
     @GeneratedValue
     

@@ -14,6 +14,8 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+	<uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <!-- My Location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -57,6 +59,21 @@
         <activity
             android:name=".PlanningActivity"
             android:label="@string/planning_label" />
+        <activity
+            android:name=".Order_AmountActivity"
+            android:label="@string/amount" />
+        <activity
+            android:name=".Order_ProductActivity"
+            android:label="@string/product" />
+         <activity
+            android:name=".Order_TabActivity"
+            android:label="@string/product" />
+         
+         
+        <activity
+            android:name="com.hp.map.Schedule_CalendarActivity"
+            android:label="@string/schedule" />
+        
     </application>
 
 </manifest>

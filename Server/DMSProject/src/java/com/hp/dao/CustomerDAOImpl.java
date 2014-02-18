@@ -130,4 +130,71 @@ public class CustomerDAOImpl implements CustomerDAO{
         return courses;
     }
     
+    //Update customer location
+    @Override
+    public int update(String pID, float pX, float pY){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        int status = 0;
+        try{
+            String str = "update Customer set mXCoordinates ="+pX+ " "
+                    + ", mYCoordinates="+pY+" where mMaDoiTuong='"+pID+ "'" ;
+            Query query = session.createQuery(str);
+            status = query.executeUpdate();
+            session.getTransaction().commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        finally {
+            session.close();
+        }
+        
+        return status;
+        
+    }
+    
+    //list customer for schedule
+    public List<Customer> getListCustomerSchedule(String pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Customer> courses = null;
+        try{
+            String str = "select cus1.* from tb_khachhang as cus1 where lower(cus1.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
+                    + " Except "
+                    + "(select cus.* from tb_khachhang as cus, tb_schedule as sc "
+                    + "where cus.khachhang_ma_dt = sc.schedule_ma_khach_hang "
+                    + "and lower(cus.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' )";
+                    
+            
+            courses = session.createSQLQuery(str).addEntity(Customer.class).list();
+            
+//            courses = session.createQuery("select cus1 from Customer as cus1 where "//lower(cus1.mMaNhanVien)='"+pStaff.toLowerCase()+"' "
+//                    + " not exists "
+//                    + "(select cus from Customer as cus, Schedule as sc "
+//                    + "where cus.mMaDoiTuong = sc.mMaKH "
+//                    + "and lower(cus.mMaNhanVien)='"+pStaff.toLowerCase()+"' )"
+//                    ).list();
+            
+//           courses = session.createQuery("select cus from Customer as cus ,Schedule as sc "
+//                   + "where cus.mMaDoiTuong != sc.mMaKH "
+//                   + "and lower(cus.mMaNhanVien)='"+pStaff.toLowerCase()+"' "
+////                   + "and sc.mMaKH is NULL"
+//                    ).list();
+           
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    
 }

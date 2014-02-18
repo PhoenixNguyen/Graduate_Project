@@ -35,28 +35,59 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hp.domain.Schedule;
+import com.hp.domain.RoadManagement;
+import com.hp.rest.Rest;
 import com.hp.rest.RestClient;
 import com.hp.rest.RestClient.RequestMethod;
+import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.GenericType;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.api.json.JSONConfiguration;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
+import android.transition.Scene;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
 
 /**
  * This shows how to place markers on a map.
@@ -78,6 +109,9 @@ public class CustomerMapActivity extends FragmentActivity
     private GoogleMap mMap;
     private LocationClient mLocationClient;
     
+    private Button initOrder;
+    private Context context = this;
+    
  // These settings are the same as the settings for the map. They will in fact give you updates
     // at the maximal rates currently possible.
     private static final LocationRequest REQUEST = LocationRequest.create()
@@ -98,7 +132,10 @@ public class CustomerMapActivity extends FragmentActivity
     private float mX;
     private float mY;
     
-    private String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/putJourney"; 
+    //private String mUrl = "http://192.168.169.7:33554/DMSProject/webresources/putJourney"; 
+    String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/putJourney"; 
+  	//String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
+    
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("NewApi")
 	@Override
@@ -111,6 +148,8 @@ public class CustomerMapActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_map);
 
+        
+        
         //Get POSITION
         Intent i = getIntent();
         positionClick = i.getIntExtra("POSITION_CLICK", 0);
@@ -120,11 +159,20 @@ public class CustomerMapActivity extends FragmentActivity
         customer_phone = (TextView) findViewById(R.id.customer_phone);
         customer_address = (TextView) findViewById(R.id.customer_address);
 
-        customer_name.setText("Customer Name: "+ RestClient.customerList.get(positionClick).getName());
-        customer_id.setText("ID: "+ RestClient.customerList.get(positionClick).getId());
-        customer_phone.setText("Phone: "+ RestClient.customerList.get(positionClick).getPhone());
-        customer_address.setText("Address: "+ RestClient.customerList.get(positionClick).getAddress());
+        customer_name.setText("Customer Name: "+ RestClient.customerList.get(positionClick).getmDoiTuong());
+        customer_id.setText("ID: "+ RestClient.customerList.get(positionClick).getmMaDoiTuong());
+        customer_phone.setText("Phone: "+ RestClient.customerList.get(positionClick).getmDienThoai());
+        customer_address.setText("Address: "+ RestClient.customerList.get(positionClick).getmDiaChi());
         
+        initOrder = (Button)findViewById(R.id.init_order);
+        initOrder.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(context, Order_TabActivity.class));
+			}
+		});
         setUpMapIfNeeded();
     }
 
@@ -253,7 +301,7 @@ public class CustomerMapActivity extends FragmentActivity
                     Builder builder = new LatLngBounds.Builder();
                     for(int i = 0; i< RestClient.customerList.size(); i++){
                     		
-                    	builder.include(new LatLng(RestClient.customerList.get(i).getX(), RestClient.customerList.get(i).getY()));
+                    	builder.include(new LatLng(RestClient.customerList.get(i).getmXCoordinates(), RestClient.customerList.get(i).getmYCoordinates()));
                         	
                     }
                     
@@ -276,17 +324,17 @@ public class CustomerMapActivity extends FragmentActivity
     	//Add Markers
     	if(pView == 1){
     		mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(RestClient.customerList.get(positionClick).getX(), RestClient.customerList.get(positionClick).getY()))
-            .title(RestClient.customerList.get(positionClick).getName())
-            .snippet(RestClient.customerList.get(positionClick).getId()+":"+RestClient.customerList.get(positionClick).getAddress())
+            .position(new LatLng(RestClient.customerList.get(positionClick).getmXCoordinates(), RestClient.customerList.get(positionClick).getmYCoordinates()))
+            .title(RestClient.customerList.get(positionClick).getmDoiTuong())
+            .snippet(RestClient.customerList.get(positionClick).getmMaDoiTuong()+":"+RestClient.customerList.get(positionClick).getmDiaChi())
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     	}
     	else
 	    	for(int i = 0; i< RestClient.customerList.size(); i++){
 	    		mMap.addMarker(new MarkerOptions()
-	            .position(new LatLng(RestClient.customerList.get(i).getX(), RestClient.customerList.get(i).getY()))
-	            .title(RestClient.customerList.get(i).getName())
-	            .snippet(RestClient.customerList.get(i).getId()+":"+RestClient.customerList.get(i).getAddress())
+	            .position(new LatLng(RestClient.customerList.get(i).getmXCoordinates(), RestClient.customerList.get(i).getmYCoordinates()))
+	            .title(RestClient.customerList.get(i).getmDoiTuong())
+	            .snippet(RestClient.customerList.get(i).getmMaDoiTuong()+":"+RestClient.customerList.get(i).getmDiaChi())
 	            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 	    		            	
 	        }
@@ -328,42 +376,67 @@ public class CustomerMapActivity extends FragmentActivity
     		return;
     	
         System.out.println("SEND DEMO LOCATION: _______");
-        String content = "<?xml version=\"1.0\"?> "
-                + "<root>";
-
-        content += "<road id=\""+RestClient.customerList.get(positionClick).getId()+"\"> " 
-                        + "<x>"+mX+"</x> " 
-                        + "<y>"+mY+"</y> " 
-                        + "<staffid>"+RestClient.customerList.get(positionClick).getStaffid()+"</staffid> " 
-                       
-                  + "</road> ";
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
         
-        content += "</root> ";
-						
-        String value = "";
-        try {
-			value = new String(content.getBytes("UTF-8"), "UTF-8");
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}    
-        System.out.print("content______________" + value);
-      //Init Http request
-		RestClient client = new RestClient(mUrl);
-		client.AddParam("data", value);
-		
+        //Post
+        RoadManagement track = new RoadManagement(""
+        		,RestClient.customerList.get(positionClick).getmMaDoiTuong()
+        		,Timestamp.valueOf(dateFormat.format(date))
+        		,mX
+        		,mY
+        		,"");
+        
+        ObjectMapper mapper = new ObjectMapper();
+        String locationStr = new String();
+
 		try {
-		    client.Execute(RequestMethod.POST);
-		} catch (Exception e) {
-		    e.printStackTrace();
+
+			locationStr = mapper.writeValueAsString(track);
+			
+		} catch (JsonGenerationException ex) {
+
+			ex.printStackTrace();
+
+		} catch (JsonMappingException ex) {
+
+			ex.printStackTrace();
+
+		} catch (IOException ex) {
+
+			ex.printStackTrace();
+
 		}
+       
+
+		ClientResponse response = Rest.mService.path("webresources").path("putLocation").accept("application/json")
+		.type("application/json").post(ClientResponse.class, locationStr);
 		
-		//Get Response
-		String response = client.getResponse();
-		
-		System.out.print("response__________" + response);
+		if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : "
+                    + response.getStatus());
+        }
+        String output = response.toString();
+        System.out.println("Server response .... \n");
+        System.out.println(output);
+
 		
     }
+    
+    public enum MIMETypes {
+		 
+		  APPLICATION_XML("application/xml");
+		  
+		  private final String name;
+		   
+		  private MIMETypes(String name) {
+		    this.name = name;
+		  }
+		   
+		  public String getName() {
+		    return name;
+		  }
+	}
     
     /** Called when the Reset button is clicked. */
     public void onToggleFlat(View view) {

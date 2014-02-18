@@ -17,12 +17,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hp.rest.RestClient.RequestMethod;
+import com.hp.rest.Rest;
 import com.hp.rest.RestClient;
  
 @SuppressLint("NewApi")
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class LoginActivity extends Activity {
 	
+	//String mUrl = "http://192.168.169.7:33554/DMSProject/webresources/getCustomerForStaff";
 	String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/getCustomerForStaff"; 
 	//String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
 	EditText mUsername;
@@ -45,6 +47,10 @@ public class LoginActivity extends Activity {
 		else
 			System.out.println("NO Internet access!!____________________");
         
+        // Connect server
+        Rest rest = new Rest("");
+		rest.connectWebservices();
+		
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
@@ -55,6 +61,7 @@ public class LoginActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				
 				//Get username
 				String username = mUsername.getText().toString();
 				String password = mPassword.getText().toString();
@@ -87,9 +94,9 @@ public class LoginActivity extends Activity {
 					//add element
 					for(int i = 0; i < RestClient.customerList.size(); i++){
 						DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
-								new DetailsList(RestClient.customerList.get(i).getName(),
-										RestClient.customerList.get(i).getId() +" : " + 
-										RestClient.customerList.get(i).getAddress(),
+								new DetailsList(RestClient.customerList.get(i).getmDoiTuong(),
+										RestClient.customerList.get(i).getmMaDoiTuong() +" : " + 
+										RestClient.customerList.get(i).getmDiaChi(),
 				                        CustomerMapActivity.class));
 					}
 					// TODO Auto-generated method stub

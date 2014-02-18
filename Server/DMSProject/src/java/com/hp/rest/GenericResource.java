@@ -10,10 +10,13 @@ import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.dao.RoadManagementDAO;
 import com.hp.dao.RoadManagementDAOImpl;
+import com.hp.dao.ScheduleDAO;
+import com.hp.dao.ScheduleDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
+import com.hp.domain.Schedule;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -22,6 +25,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.ws.rs.core.Context;
@@ -38,9 +42,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
+import javax.ws.rs.core.Response;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -160,7 +169,7 @@ public class GenericResource {
         }else
             return null;
     }
-    
+        
     //Update journey
     @Path("/putJourney")
     @POST
@@ -246,5 +255,96 @@ public class GenericResource {
             e.printStackTrace();
             return "ERROR";
         }
+    }
+    
+    @Path("/getSchedule")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Schedule> getSchedule(String pTemp){
+        String[] total = pTemp.split("::");
+        String staff = total[0];
+        String date = total[1];
+        
+        ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+        List<Schedule> scheduleList = new ArrayList<Schedule>();
+
+        scheduleList = scheduleDAO.getScheduleList(staff, date);
+        
+//        Schedule sc = new Schedule();
+//        sc.setmMaKH("fdfd");
+//        sc.setmMaNV("1234fdfd");
+        return scheduleList;
+    }
+    
+    @POST
+    @Path("/putLocation")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putLocation( String pTrack ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        RoadManagement track = new RoadManagement();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                track = mapper.readValue(pTrack, RoadManagement.class);
+                System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        CustomerDAO customerDAO = new CustomerDAOImpl();
+        int st = customerDAO.update(track.getmMaKhachHang(), track.getmViDo(), track.getmKinhdo());
+        
+//            String output = pTrack.toString();
+            System.out.println("____ " + pTrack + "___ " + st);
+            return Response.status(200).entity(pTrack).build();
+    }
+    
+    @Path("/getCustomersListSchedule")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Customer> getCustomerToXML(String pStaff) {
+         
+            CustomerDAO customerDAO = new CustomerDAOImpl();
+            List<Customer> customerList = new ArrayList<Customer>();
+
+            customerList = customerDAO.getListCustomerSchedule(pStaff);
+            
+            return customerList;
+    }
+    
+    @POST
+    @Path("/putSchedule")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putSchedule( String pSchedule ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<Schedule> schedulesList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                schedulesList = mapper.readValue(pSchedule, TypeFactory.defaultInstance().constructCollectionType(List.class,
+					Schedule.class));
+                System.out.println(schedulesList.get(0).getmMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+        for(int i = 0; i< schedulesList.size(); i++){
+            scheduleDAO.saveOrUpdate(schedulesList.get(i));
+        }
+            
+            return Response.status(200).entity(pSchedule).build();
     }
 }

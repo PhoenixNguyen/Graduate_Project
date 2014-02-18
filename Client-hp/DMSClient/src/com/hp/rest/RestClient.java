@@ -233,13 +233,13 @@ public class RestClient {
 					System.out.println("Y : " + staffid);
 					
 					//Add customer
-					customer.setId(id);
-					customer.setName(name);
-					customer.setAddress(address);
-					customer.setPhone(phone);
-					customer.setX(x);
-					customer.setY(y);
-					customer.setStaffid(staffid);
+					customer.setmMaDoiTuong(id);
+					customer.setmDoiTuong(name);
+					customer.setmDiaChi(address);
+					customer.setmDienThoai(phone);
+					customer.setmXCoordinates(x);
+					customer.setmYCoordinates(y);
+					customer.setmMaNhanVien(staffid);
 					
 					customerList.add(customer);
 		 

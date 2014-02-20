@@ -56,7 +56,8 @@ public class ScheduleDAOImpl implements ScheduleDAO{
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = sdf.parse(pDate);
             String str = "from Schedule where lower(mMaNV)='"+pMaNV.toLowerCase()+"' and mDate BETWEEN '"
-                    + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"')";
+                    + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') "
+                    + "order by mDate ";
             
             courses = session.createQuery(str).list();
 //            query.setString(0, pMaNV);
@@ -70,6 +71,33 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         }
         
         return courses;
+        
+    }
+    
+    public int deletechedule(String pID, String pDate){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        int status = 0;
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = sdf.parse(pDate);
+            
+            String str = "delete Schedule where  mMaKH='"+pID+ "' and "
+                    + " mDate='"+sdf.format(date)+"'" ;
+            Query query = session.createQuery(str);
+            status = query.executeUpdate();
+            session.getTransaction().commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        finally {
+            session.close();
+        }
+        
+        return status;
         
     }
 }

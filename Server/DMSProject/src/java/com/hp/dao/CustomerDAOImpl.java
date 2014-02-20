@@ -11,7 +11,9 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
 import com.hp.domain.Customer;
 import com.hp.domain.Staff;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.hibernate.HibernateException;
@@ -157,18 +159,22 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
     
     //list customer for schedule
-    public List<Customer> getListCustomerSchedule(String pStaff){
+    public List<Customer> getListCustomerSchedule(String pStaff, String pDate){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
         
         List<Customer> courses = null;
         try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = sdf.parse(pDate);
             String str = "select cus1.* from tb_khachhang as cus1 where lower(cus1.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
                     + " Except "
                     + "(select cus.* from tb_khachhang as cus, tb_schedule as sc "
                     + "where cus.khachhang_ma_dt = sc.schedule_ma_khach_hang "
-                    + "and lower(cus.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' )";
+                    + "and lower(cus.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
+                    + "and sc.schedule_date BETWEEN '"
+                    + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') )";
                     
             
             courses = session.createSQLQuery(str).addEntity(Customer.class).list();

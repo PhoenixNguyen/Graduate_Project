@@ -98,13 +98,14 @@ public class CustomerListActivity extends Activity{
 				
 				
 				for(int i = 0; i < DetailsListData.CUSTOMER_LIST.length; i++){
-					System.out.println("__ "+actv.getText().toString() + " " + DetailsListData.CUSTOMER_LIST[i].titleId);
-					if(actv.getText().toString().compareTo(DetailsListData.CUSTOMER_LIST[i].titleId) == 0){
+					String id = DetailsListData.CUSTOMER_LIST[i].titleId;
+					System.out.println("__ "+actv.getText().toString() + " " + id);
+					if(actv.getText().toString().compareTo(id) == 0){
 						System.out.println("pass!");
 						
 						DetailsList demo = (DetailsList) listView.getAdapter().getItem(i);
 				        Intent t = new Intent(context, demo.activityClass);
-				        t.putExtra("POSITION_CLICK", i);
+				        t.putExtra("POSITION_CLICK", id);
 				        
 				        startActivity(t);
 					}
@@ -121,7 +122,7 @@ public class CustomerListActivity extends Activity{
 		     {
 		        DetailsList demo = (DetailsList) listView.getAdapter().getItem(position);
 		        Intent t = new Intent(context, demo.activityClass);
-		        t.putExtra("POSITION_CLICK", position);
+		        t.putExtra("POSITION_CLICK", demo.titleId);
 		        
 		        startActivity(t);
 		      }

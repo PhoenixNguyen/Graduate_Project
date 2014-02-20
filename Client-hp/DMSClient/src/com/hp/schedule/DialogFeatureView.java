@@ -63,7 +63,7 @@ public final class DialogFeatureView extends FrameLayout {
      */
     public synchronized void setTitleId(final String titleId) {
     	CheckBox chkBox = (CheckBox) (findViewById(R.id.cb_customer));
-    	timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
+//    	timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
     	
     	chkBox.setText(titleId);
     	chkBox.setOnClickListener(new OnClickListener() {

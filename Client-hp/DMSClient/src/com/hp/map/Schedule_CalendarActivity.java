@@ -4,14 +4,18 @@ import java.io.IOException;
 import java.net.URI;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
@@ -41,6 +45,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -142,11 +147,10 @@ public class Schedule_CalendarActivity extends Activity {
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				listView.clearDisappearingChildren();
-				//Connect services
-//				Rest rest = new Rest("");
-//				rest.connectWebservices();
 				
+				//Set enable
+				listView.setEnabled(true);
+
 				System.out.println("________________ 2 CALL: "+
 			    		Rest.mService.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(String.class));
 				// removing the previous view if added
@@ -156,7 +160,7 @@ public class Schedule_CalendarActivity extends Activity {
 				desc = new ArrayList<String>();
 				date = new ArrayList<String>();
 				((CalendarAdapter) parent.getAdapter()).setSelected(v);
-				String selectedGridDate = CalendarAdapter.dayString
+				final String selectedGridDate = CalendarAdapter.dayString
 						.get(position);
 				
 				//Set Take the date
@@ -196,7 +200,7 @@ public class Schedule_CalendarActivity extends Activity {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						// Add dialog ------------------------------------------------------------
-						addDialog();
+						addDialog(selectedGridDate);
 					}
 				});
 				
@@ -223,7 +227,7 @@ public class Schedule_CalendarActivity extends Activity {
 	//					File jsonFile = new File(jsonFilePath);
 						schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
 								Schedule.class));
-						System.out.println("++++++++++++++ "+schedule.get(0).getmMaKH());
+						System.out.println("++++++++++++++ "+schedule.get(0).getmMaKH() +" " +schedule.get(0).getmDate());
 					} catch (JsonGenerationException e) {
 						e.printStackTrace();
 					} catch (JsonMappingException e) {
@@ -235,10 +239,16 @@ public class Schedule_CalendarActivity extends Activity {
 					String[] scheduleIDList = new String[]{};
 					ListViewSchedules[] listV = new ListViewSchedules[]{};
 					
+					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					for(int i = 0; i < schedule.size(); i++){
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(schedule.get(i).getmDate());
+						cal.add(Calendar.HOUR, -7);
+						System.out.println("-____- " +dateFormat.format(cal.getTime()));
+											  
 						scheduleIDList = append(scheduleIDList, schedule.get(i).getmMaKH());
 						listV = append(listV, new ListViewSchedules(schedule.get(i).getmMaKH()
-								, schedule.get(i).getmDate().toString()));
+								, dateFormat.format(cal.getTime()) ));
 						
 					}
 					String[] PRODUCT = 
@@ -253,7 +263,8 @@ public class Schedule_CalendarActivity extends Activity {
 					     @Override
 					     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
 					     {
-	//				    	 String selectedValue = (String) listView.getAdapter().getItem(position);
+					    	 ListViewSchedules selectedValue = (ListViewSchedules) listView.getAdapter().getItem(position);
+					    	 addCustomerDialog(selectedValue);
 	//				    	 
 	//				          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
 	//				    	// custom dialog
@@ -264,9 +275,12 @@ public class Schedule_CalendarActivity extends Activity {
 		        }
 		        else
 		        {
+		        	
+		        	
 		        	ListViewSchedules[] listV = new ListViewSchedules[]{
 		        			new ListViewSchedules("NOT SET", "00-00-00 00:00:00")};
 		        	listView.setAdapter(new ScheduleViewArrayAdapter(context, android.R.layout.simple_list_item_1, listV));
+		        	listView.setEnabled(false);
 		        }
 
 			}
@@ -274,7 +288,73 @@ public class Schedule_CalendarActivity extends Activity {
 		});
 	}
 
-	public void addDialog(){
+	public void addCustomerDialog(final ListViewSchedules selectedValue){
+		final Dialog dialog = new Dialog(context);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
+		dialog.setContentView(v);
+		
+		dialog.setTitle("Lựa chọn của bạn: ");
+	
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// show the map
+				Intent t = new Intent(context, CustomerMapActivity.class);
+		        t.putExtra("POSITION_CLICK", selectedValue.getId());
+		        
+		        startActivity(t);
+		        
+				dialog.dismiss();
+			}
+		});
+
+		//Delete a schedule
+		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		// if button is clicked, close the custom dialog
+		dialogDeleteButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			
+				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = null;
+				try {
+					date = sdf.parse(selectedValue.getTime());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				System.out.println("_date: "+ sdf.format(date));
+//				//Post
+				ClientResponse response = Rest.mService.path("webresources").path("deleteSchedule").accept("application/json")
+						.type("application/json").post(ClientResponse.class, selectedValue.getId()+"::"+sdf.format(date));
+						
+				if (response.getStatus() != 200) {
+		            throw new RuntimeException("Failed : HTTP error code : "
+		                    + response.getStatus());
+		        }
+		        String output = response.getEntity(String.class);
+		        System.out.println("Server response .... \n");
+		        System.out.println(output);
+		        
+		        if(output.compareTo("status:1") == 0){
+		        	Toast.makeText(context, "Đã xóa!", Toast.LENGTH_SHORT).show();
+		        	
+		        }
+		        else
+		        	Toast.makeText(context, "Xóa lỗi!", Toast.LENGTH_SHORT).show();
+		        
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+		
+	}
+	
+	public void addDialog(String pDate){
 		final Dialog dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.schedule_dialog, null, false);
@@ -287,7 +367,7 @@ public class Schedule_CalendarActivity extends Activity {
 		//Get customers list for staff and not have the schedule ========================================
 		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListSchedule")
 				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getmMaNhanVien());
+				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getmMaNhanVien() +"::"+pDate);
         System.out.println("________________ "+ response.toString());
         String re = response.getEntity(String.class);
         System.out.println("________________ "+ re);
@@ -299,7 +379,7 @@ public class Schedule_CalendarActivity extends Activity {
 //			File jsonFile = new File(jsonFilePath);
 			schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
 					Customer.class));
-			System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
+			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -396,26 +476,6 @@ public class Schedule_CalendarActivity extends Activity {
 
 		dialog.show();
 		
-//		final Dialog dialog = new Dialog(context);
-//		dialog.setContentView(R.layout.order_product_dialog);
-//		dialog.setTitle("Số lượng");
-//
-//		// set the custom dialog components - text, image and button
-//		TextView text = (TextView) dialog.findViewById(R.id.text);
-//		text.setText("Tên sản phẩm: ");
-//
-//		TextView price = (TextView) dialog.findViewById(R.id.price);
-//		price.setText("Giá sản phẩm: ");
-//		
-//		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
-//		// if button is clicked, close the custom dialog
-//		dialogButton.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				dialog.dismiss();
-//			}
-//		});
-//		dialog.show();
 	}
 	
 	@SuppressLint("NewApi")
@@ -488,40 +548,5 @@ public class Schedule_CalendarActivity extends Activity {
 		}
 	};
 	
-	public void connectWebservices(){
-//		ClientConfig config = new DefaultClientConfig();
-//	    Client client = Client.create(config);
-//	    WebResource service = client.resource(getBaseURI());
-//	    // Fluent interfaces
-//	    //System.out.println(service.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).toString());
-//	    // Get plain text
-//	    System.out.println("________________"+
-//	    		service.path("webresources").path("getData").accept("text/plain").get(String.class));
-//	    // Get XML
-//	    //System.out.println(service.path("webresources").path("getData").accept(MediaType.TEXT_XML).get(String.class));
-//	    // The HTML
-//	    //System.out.println(service.path("webresources").path("getData").accept(MediaType.TEXT_HTML).get(String.class));
-		
-		Client client = Client.create();
-		 
-		WebResource webResource = client
-		   .resource("http://192.168.169.2:8080/DMSProject/webresources/getData");
- 
-		ClientResponse response = webResource.accept("text/plain")
-                   .get(ClientResponse.class);
- 
-		if (response.getStatus() != 200) {
-		   throw new RuntimeException("Failed : HTTP error code : "
-			+ response.getStatus());
-		}
- 
-		String output = response.getEntity(String.class);
- 
-		System.out.println("Output from Server .... \n");
-		System.out.println(output);
-	}
 	
-	private URI getBaseURI() {
-	    return UriBuilder.fromUri("http://192.168.169.2:8080/DMSProject").build();
-	  }
 }

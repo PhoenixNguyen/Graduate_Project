@@ -287,7 +287,7 @@ public class GenericResource {
         try {
 //			File jsonFile = new File(jsonFilePath);
                 track = mapper.readValue(pTrack, RoadManagement.class);
-                System.out.println(track.getmMaKhachHang());
+                //System.out.println(track.getmMaKhachHang());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -308,14 +308,18 @@ public class GenericResource {
     @Path("/getCustomersListSchedule")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<Customer> getCustomerToXML(String pStaff) {
+    public List<Customer> getCustomerToXML(String pStaffDate) {
          
-            CustomerDAO customerDAO = new CustomerDAOImpl();
-            List<Customer> customerList = new ArrayList<Customer>();
+        String[] total = pStaffDate.split("::");
+        String staff = total[0];
+        String date = total[1];
+        
+        CustomerDAO customerDAO = new CustomerDAOImpl();
+        List<Customer> customerList = new ArrayList<Customer>();
 
-            customerList = customerDAO.getListCustomerSchedule(pStaff);
-            
-            return customerList;
+        customerList = customerDAO.getListCustomerSchedule(staff, date);
+
+        return customerList;
     }
     
     @POST
@@ -330,7 +334,7 @@ public class GenericResource {
 //			File jsonFile = new File(jsonFilePath);
                 schedulesList = mapper.readValue(pSchedule, TypeFactory.defaultInstance().constructCollectionType(List.class,
 					Schedule.class));
-                System.out.println(schedulesList.get(0).getmMaKH());
+                //System.out.println(schedulesList.get(0).getmMaKH());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -358,5 +362,18 @@ public class GenericResource {
 
         customerList = customerDAO.loadCustomersWithLocations(null, pStaff);
         return customerList;
+    }
+    
+    @POST
+    @Path("/deleteSchedule")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteSchedule( String pTmp ) {
+        String[] total = pTmp.split("::");
+        String staff = total[0];
+        String date = total[1];
+        
+        ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+        int st = scheduleDAO.deletechedule(staff, date);
+        return Response.status(200).entity("status:"+ st).build();
     }
 }

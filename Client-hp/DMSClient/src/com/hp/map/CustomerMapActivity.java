@@ -124,7 +124,7 @@ public class CustomerMapActivity extends FragmentActivity
 
     private final Random mRandom = new Random();
     
-    private int positionClick;
+    private int positionClick = 0;
 
     //current location
     private float mX;
@@ -150,7 +150,13 @@ public class CustomerMapActivity extends FragmentActivity
         
         //Get POSITION
         Intent i = getIntent();
-        positionClick = i.getIntExtra("POSITION_CLICK", 0);
+        String username  = i.getStringExtra("POSITION_CLICK");
+        
+        for(int j = 0; j < Rest.customerList.size(); j++){
+        	if(username.compareTo(Rest.customerList.get(j).getmMaDoiTuong()) == 0){
+        		positionClick = j;
+        	}
+        }
         
         customer_name = (TextView) findViewById(R.id.customer_name);
         customer_id = (TextView) findViewById(R.id.customer_id);

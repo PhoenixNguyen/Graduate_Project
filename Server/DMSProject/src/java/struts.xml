@@ -42,6 +42,10 @@
             <result name="success">generic/getCustomersListStart</result>
         </action>
         
+        <action name="deleteSchedule" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/deleteSchedule</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
 		

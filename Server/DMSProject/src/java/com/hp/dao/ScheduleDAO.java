@@ -17,4 +17,6 @@ import java.util.List;
 public interface ScheduleDAO {
     public boolean saveOrUpdate(Schedule pSchedule);
     public List<Schedule> getScheduleList(String pMaNV, String pDate);
+    
+    public int deletechedule(String pID, String pDate);
 }

@@ -7,7 +7,12 @@
 package com.hp.domain;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import com.hp.rest.XmlElement;
 import com.hp.rest.XmlRootElement;
@@ -32,11 +37,13 @@ public class Schedule {
     private Timestamp mDate;
     private boolean mStatus;
 
-    public Schedule(String pMaNV, String pMaKH, Timestamp pDate, boolean pStatus){
+    @SuppressWarnings("deprecation")
+	public Schedule(String pMaNV, String pMaKH, Timestamp pDate, boolean pStatus){
     	this.mMaNV = pMaNV;
     	this.mMaKH = pMaKH;
-    	this.mDate = pDate;
     	this.mStatus = pStatus;
+    	    	
+    	this.mDate = pDate;
     }
     
     public Schedule(){

@@ -14,7 +14,10 @@
     </head>
     <body>
         <h1>HOSCO DMS Project</h1> <br/>
-        <a href="map/showMap?page=0">Show map</a><br/>
-        <a href="admin/upload-customer-file.jsp">upload customer file</a><br/>
+        <a href="map/showMap?page=0">Show the map</a><br/>
+        <a href="admin/upload-customer-file.jsp">upload customers file</a><br/>
+<!--        <a href="admin/upload-dms-client-file">Upload a DMSClient file</a>
+        <a href="admin/download-dms-client-file">Download the DMSClient file</a>
+        -->
     </body>
 </html>

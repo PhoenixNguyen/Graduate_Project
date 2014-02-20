@@ -26,5 +26,5 @@ public interface CustomerDAO {
     public int update(String pID, float pX, float pY);
     
     //get list for schedule
-    public List<Customer> getListCustomerSchedule(String pStaff);
+    public List<Customer> getListCustomerSchedule(String pStaff, String pDate);
 }

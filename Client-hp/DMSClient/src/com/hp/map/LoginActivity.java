@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hp.rest.Rest;
  
@@ -28,6 +29,7 @@ public class LoginActivity extends Activity {
 	EditText mUsername;
 	EditText mPassword;
 	
+	private Context context = this;
     @SuppressLint("NewApi")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,17 +40,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         // setting default screen to login.xml
         setContentView(R.layout.login);
- 
-        if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else
-			System.out.println("NO Internet access!!____________________");
-        
-        // Connect server
-        Rest rest = new Rest("");
-		rest.connectWebservices();
-		
+         
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
@@ -59,6 +51,18 @@ public class LoginActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				// Check the internet
+				if(isOnline()){
+					System.out.println("Internet access!!____________________");
+				}
+				else{
+					System.out.println("NO Internet access!!____________________");
+					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
+				// Connect server
+		        new Rest("").connectWebservices();
 				
 				//Get username
 				String username = mUsername.getText().toString();

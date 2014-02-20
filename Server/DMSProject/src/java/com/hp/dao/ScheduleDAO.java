@@ -19,4 +19,8 @@ public interface ScheduleDAO {
     public List<Schedule> getScheduleList(String pMaNV, String pDate);
     
     public int deletechedule(String pID, String pDate);
+    
+    //Get
+    public List<Schedule> getSchedulesList();
+    public List<Schedule> getSchedulesList(String pManagerID, String pStaff, String pDate);
 }

@@ -48,13 +48,11 @@
         
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
-		
+        <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
         <action name="showMap" method="showMap" class="com.hp.action.ShowMapAction">
             <result name="success">view-map.jsp</result>
         </action>
         
-        
-
         <action name="filterGiamDoc" method="showMap" class="com.hp.action.ShowMapAction"  >
               
           <result  type="json" >
@@ -70,8 +68,8 @@
           </result>
         </action>
         
-<!--        FOR ROADS-->
-        <action name="customer-detail" method="showRoad" class="com.hp.action.ShowMapAction">
+<!--        FOR ROADS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+        <action name="staff-road" method="showRoad" class="com.hp.action.ShowMapAction">
             <result name="success">view-map-detail.jsp</result>
         </action>
         <action name="filterGiamDoc2" method="showRoad" class="com.hp.action.ShowMapAction"  >
@@ -98,6 +96,33 @@
 <!--            <param name="inputName">inputStream</param>-->
           </result>
         </action>
+        
+        <!--FOR SCHEDULES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <action name="showSchedule" method="showMap" class="com.hp.action.ShedulesAction">
+            <result name="success">view-schedules.jsp</result>
+        </action>
+        
+        <action name="filterGiamDoc3" method="showMap" class="com.hp.action.ShedulesAction"  >
+              
+          <result  type="json" >
+              <param name="contentType">application/json</param>
+              <param name="inputName">inputStream</param>
+          </result>
+        </action>
+        <action name="filterStaff3" method="showMap" class="com.hp.action.ShedulesAction"  >
+              
+          <result  type="json" >
+              <param name="contentType">application/json</param>
+            <param name="inputName">inputStream</param>
+          </result>
+        </action>
+        
+        <!-- CUSTOMER DETAIL-->
+        <action name="customerDetail" method="customerDetail" class="com.hp.action.ShowMapAction">
+            <result name="success">view-map.jsp</result>
+            <result name="input">view-map.jsp</result>
+        </action>
+        
     </package>
     
     <package name="ajax" namespace="/map" extends="json-default">

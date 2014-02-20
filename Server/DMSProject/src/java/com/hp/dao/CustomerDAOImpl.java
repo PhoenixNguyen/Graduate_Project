@@ -88,17 +88,7 @@ public class CustomerDAOImpl implements CustomerDAO{
                         + "and  cus.mYCoordinates is NOT NULL ").list();
             else
                 courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"'").list();
-            //courses = session.createQuery("from Customer where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL and mMaNhanVien='DVH'").list();
-//            use DMSServer
-//            select cus.* 
-//            from  tb_khachhang as cus, tb_nhanvien as st 
-//            where 
-//                            st.nhanvien_ma_nhan_vien = cus.khachhang_ma_nv
-//                            and
-//                            st.nhanvien_nguoi_quan_ly = 'kachiusa'
-//
-//                            and cus.khachhang_toa_do_x IS NOT null
-//                            and  cus.khachhang_toa_do_y IS NOT null
+          
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -178,20 +168,7 @@ public class CustomerDAOImpl implements CustomerDAO{
                     
             
             courses = session.createSQLQuery(str).addEntity(Customer.class).list();
-            
-//            courses = session.createQuery("select cus1 from Customer as cus1 where "//lower(cus1.mMaNhanVien)='"+pStaff.toLowerCase()+"' "
-//                    + " not exists "
-//                    + "(select cus from Customer as cus, Schedule as sc "
-//                    + "where cus.mMaDoiTuong = sc.mMaKH "
-//                    + "and lower(cus.mMaNhanVien)='"+pStaff.toLowerCase()+"' )"
-//                    ).list();
-            
-//           courses = session.createQuery("select cus from Customer as cus ,Schedule as sc "
-//                   + "where cus.mMaDoiTuong != sc.mMaKH "
-//                   + "and lower(cus.mMaNhanVien)='"+pStaff.toLowerCase()+"' "
-////                   + "and sc.mMaKH is NULL"
-//                    ).list();
-           
+    
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -202,5 +179,74 @@ public class CustomerDAOImpl implements CustomerDAO{
         return courses;
     }
     
+    public List<Customer> loadCustomersWithLocationsForSchedule(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Customer> courses = null;
+        try{
+            courses = session.createQuery("select cus from Customer as cus, Schedule as sc "
+                    + "where cus.mMaDoiTuong = sc.mMaKH "
+                    + "and cus.mXCoordinates is NOT NULL and  cus.mYCoordinates is NOT NULL ").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+        
+    }
     
+    public List<Customer> loadCustomersWithLocationsForSchedule(String pManagerID, String pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Customer> courses = null;
+        List<Customer> courses2 = null;
+        List<Customer> courses3 = null;
+        try{
+            
+            System.out.print(pManagerID);           
+            if(pStaff == null)
+                courses = session.createQuery("select cus from Customer as cus,Staff as st, Schedule as sc where "
+                        + "cus.mMaDoiTuong = sc.mMaKH "
+                        + "and st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
+                        + "' and cus.mXCoordinates is NOT NULL "
+                        + "and  cus.mYCoordinates is NOT NULL ").list();
+            else
+                courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"'").list();
+          
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    @Override
+    public List<Customer> loadCustomersDetail(String pCustomer){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Customer> courses = null;
+        try{
+            courses = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"'").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+        
+    }
 }

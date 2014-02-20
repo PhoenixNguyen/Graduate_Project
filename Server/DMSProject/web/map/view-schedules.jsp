@@ -132,7 +132,7 @@
             var giamdocId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
             gdID = giamdocId;
             console.log("Ma giam doc: " + giamdocId);
-             $.getJSON('filterGiamDoc.action', {'giamdocId': giamdocId},
+             $.getJSON('filterGiamDoc3.action', {'giamdocId': giamdocId},
                  function(data) {
 
                         var divisionList = (data.userListStaff);
@@ -155,7 +155,7 @@
             var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
             //gdID = giamdocId;
             console.log("Ma nhan vien: " + staffId);
-             $.getJSON('filterStaff.action', {'nhanvienId': staffId},
+             $.getJSON('filterStaff3.action', {'nhanvienId': staffId},
                  function(data) {
 
                         var divisionList = (data.userListStaff);
@@ -211,7 +211,7 @@
 
 
                 <div class="searchs">
-                    <form action="showMap.action?page=0" method="post" name="search-poi">
+                    <form action="showSchedule.action?page=0" method="post" name="search-poi">
                         <ul>
                             <li>
                                 <div id="keys">
@@ -269,24 +269,24 @@
                                 int page2 = Integer.parseInt(request.getParameter("page")) * 10;
                                 pageContext.setAttribute("first", page2);
                             %>
-                            <s:subset source="listCustomer" start="%{#attr.first}"  count="10">
+                            <s:subset source="listSchedules" start="%{#attr.first}"  count="10">
                             <s:iterator  status="status" >
                             <li data-poi-id="18299">
                                 <div class="poi-content">
                                     <div class="poi-photo">
 
-                                        <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaDoiTuong"/>">
-                                            <img src="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" data-original="../customer/<s:property value="mMaDoiTuong"/>/1.jpg" width="64" height="64">
+                                        <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaKH"/>">
+                                            <img src="../customer/<s:property value="mMaKH"/>/1.jpg" data-original="../customer/<s:property value="mMaKH"/>/1.jpg" width="64" height="64">
                                         </a>
 
                                     </div>
                                     <h2 class="poi-title">
-                                        <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaDoiTuong"/>"><s:property value="mDoiTuong"/></a></h2>
+                                        <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaKH"/>"><s:property value="mMaKH"/></a></h2>
                                     <div class="poi-infos">
 
-                                        <strong>Địa chỉ:</strong> <s:property value="mDiaChi"/>
+                                        <strong>Mã Nhân viên:</strong> <s:property value="mMaNV"/>
 
-                                        <br><strong>Điện thoại:</strong> <s:property value="mDienThoai"/>
+                                        <br><strong>Thời gian:</strong> <s:property value="mDate"/>
 
                                     </div>
                                 </div>
@@ -299,8 +299,8 @@
 
                             <ul class="pagination-block">
                                 <li data-page="1" class="goto-page"><a href="?page=<%=Integer.parseInt(request.getParameter("page")) -1 %>">&lt;</a></li>
-                                <s:iterator  value="listCustomer" status="status" >
-                                <s:if test="#status.index < (listCustomer.size() -1)/10+1">
+                                <s:iterator  value="listSchedules" status="status" >
+                                <s:if test="#status.index < (listSchedules.size() -1)/10+1">
                                 <li data-page="0" class="goto-page active"><a href="?page=<s:property value="#status.index"/>"><s:property value="#status.index"/></a></li>
                                 </s:if>
                                 </s:iterator>

@@ -100,4 +100,51 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         return status;
         
     }
+    
+    @Override
+    public List<Schedule> getSchedulesList(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Schedule> courses = null;
+        try{
+            courses = session.createQuery("from Schedule order by mDate").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+        
+    }
+    
+    public List<Schedule> getSchedulesList(String pManagerID, String pStaff, String pDate){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Schedule> courses = null;
+        
+        try{
+            
+            System.out.print(pManagerID);           
+            if(pStaff == null)
+                courses = session.createQuery("select sc from Schedule as sc, Staff as st where "
+                        + "st.mID = sc.mMaNV and st.mManager = '" +pManagerID +"'"
+                        + " order by sc.mDate").list();
+            else
+                courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' order by mDate").list();
+          
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
 }

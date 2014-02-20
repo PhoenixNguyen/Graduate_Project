@@ -25,6 +25,14 @@ public interface CustomerDAO {
     //Set customer location
     public int update(String pID, float pX, float pY);
     
-    //get list for schedule
+    //get list for schedule (services)
     public List<Customer> getListCustomerSchedule(String pStaff, String pDate);
+    
+    //For MAP schedule
+    public List<Customer> loadCustomersWithLocationsForSchedule();
+    public List<Customer> loadCustomersWithLocationsForSchedule(String pManagerID, String pStaff);
+    
+    //Customer detail
+    public List<Customer> loadCustomersDetail(String pCustomer);
+    
 }

@@ -254,9 +254,7 @@ public class ShowMapAction extends ActionSupport{
             //Reset
             
         }
-        
-         
-        
+    
         System.out.print("Load Customer into map !!!!!!!!!!!!!!!!!!!!!!");
         
 //        String customerID = request.getParameter("customer");
@@ -264,5 +262,24 @@ public class ShowMapAction extends ActionSupport{
 //            listRoad = mRoadManagementDAO.getRoad("kachiusa",null,customerID);
         return SUCCESS;
     }   
-    
+ 
+    public String customerDetail(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        String id = request.getParameter("customer_id");
+        if(id==null)
+            return INPUT;
+        
+        //Lay ve giam doc
+        userListGiamDoc = userDAO.getListUser(2);
+        //Tat ca nhan vien
+        userListStaff = staffDAO.getListUser(null);
+        //Tat ca danh sach khach hang
+        userListCustomer = customerDAO.getListCustomer(null);
+        
+        listCustomer = customerDAO.loadCustomersDetail(id);
+        
+        return SUCCESS;
+    }
 }

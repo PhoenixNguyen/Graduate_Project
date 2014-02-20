@@ -22,7 +22,7 @@
 
 <!--        <link rel="icon" href=""/> this tag do action double load: be carfuly-->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>View map detail</title>
+            <title>Journeys</title>
 
             <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
             <script type="text/javascript" src="../js/view-data-script.js"></script>
@@ -274,7 +274,7 @@
 
 
                 <div class="searchs">
-                    <form action="customer-detail.action" method="post" name="search-poi">
+                    <form action="staff-roads.action" method="post" name="search-poi">
                         <ul>
                             <li>
                                 <div id="keys">
@@ -327,19 +327,19 @@
                     <div class="article-content">
                         <div class="article-title">
                             <h2>
-                                Khazaana Indian restaurant                
+                                <s:property value="listCustomer.get(0).getmDoiTuong()"/>
                             </h2>
                         </div>
                         <div class="content">
                             <div class="poi-infos">
                                 <p><strong>Địa chỉ:</strong>
-                                    11, Lý Thái Tổ, Q. Hoàn Kiếm, Hà Nội                    </p>
+                                    <s:property value="listCustomer.get(0).getmDiaChi()"/></p>
                                 <p><strong>Điện thoại:</strong>
-                                    (84-4) 39 345 657; (84-4) 39 343 513; (84-98) 9 129 440                        </p>
-                                <p><strong>Email:</strong>
-                                    khazana@fpt.vn                        </p>
+                                    <s:property value="listCustomer.get(0).getmDienThoai()"/></p>                      </p>
+                                <p><strong>Fax</strong>
+                                     <s:property value="listCustomer.get(0).getmFax()"/> </p>
                                 <p class="poi-website"><strong>Website:</strong> <a target="_blank" href="">
-                                        www.khazaana.vn                            </a></p>
+                                                         </a></p>
                             </div>
                         </div>
                         <div class="content">

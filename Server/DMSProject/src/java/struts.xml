@@ -69,8 +69,8 @@
         </action>
         
 <!--        FOR ROADS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <action name="staff-road" method="showRoad" class="com.hp.action.ShowMapAction">
-            <result name="success">view-map-detail.jsp</result>
+        <action name="staff-roads" method="showRoad" class="com.hp.action.ShowMapAction">
+            <result name="success">staff-roads.jsp</result>
         </action>
         <action name="filterGiamDoc2" method="showRoad" class="com.hp.action.ShowMapAction"  >
               

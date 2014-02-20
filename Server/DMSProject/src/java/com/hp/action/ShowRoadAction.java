@@ -124,7 +124,7 @@ public class ShowRoadAction extends ActionSupport{
                 System.out.print(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
-                        (String)session.getAttribute("staffId"));
+                        (String)session.getAttribute("staffId"), null);
 
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();

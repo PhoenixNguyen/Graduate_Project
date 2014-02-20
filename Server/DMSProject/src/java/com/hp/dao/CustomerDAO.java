@@ -18,7 +18,7 @@ public interface CustomerDAO {
     public boolean saveOrUpdate(Customer pCustomer);
     public List<Customer> loadCustomersWithLocations();
     //and hava all sales man of manager
-    public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff);
+    public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff, String pCustomer);
     //Get List customer to ajax
     public List<String> getListCustomer(String pStaff);
     

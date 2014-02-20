@@ -144,7 +144,7 @@ public class ShowMapAction extends ActionSupport{
                 System.out.print(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
-                        (String)session.getAttribute("staffId"));
+                        (String)session.getAttribute("staffId"), null);
 
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();
@@ -202,7 +202,7 @@ public class ShowMapAction extends ActionSupport{
                 System.out.print(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
-                        (String)session.getAttribute("staffId"));
+                        (String)session.getAttribute("staffId"), (String)session.getAttribute("khachhangId"));
                 
                 listRoad = mRoadManagementDAO.getRoad((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"),

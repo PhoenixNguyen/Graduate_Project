@@ -70,7 +70,7 @@ public class CustomerDAOImpl implements CustomerDAO{
         
     }
     
-    public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff){
+    public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff, String pCustomer){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
@@ -80,14 +80,18 @@ public class CustomerDAOImpl implements CustomerDAO{
         List<Customer> courses3 = null;
         try{
             
-            System.out.print(pManagerID);           
-            if(pStaff == null)
-                courses = session.createQuery("select cus from Customer as cus, Staff as st where "
-                        + "st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
-                        + "' and cus.mXCoordinates is NOT NULL "
-                        + "and  cus.mYCoordinates is NOT NULL ").list();
+            System.out.print(pManagerID);    
+            if(pCustomer == null){
+                if(pStaff == null)
+                    courses = session.createQuery("select cus from Customer as cus, Staff as st where "
+                            + "st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
+                            + "' and cus.mXCoordinates is NOT NULL "
+                            + "and  cus.mYCoordinates is NOT NULL ").list();
+                else
+                    courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"'").list();
+            }
             else
-                courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"'").list();
+                courses = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"'").list();
           
         }catch(Exception e){
             e.printStackTrace();

@@ -148,7 +148,7 @@ public class GenericResource {
             CustomerDAO customerDAO = new CustomerDAOImpl();
             List<Customer> customerList = new ArrayList<Customer>();
 
-            customerList = customerDAO.loadCustomersWithLocations(null, pUsername);
+            customerList = customerDAO.loadCustomersWithLocations(null, pUsername, null);
             System.out.println("LIST: " + customerList.get(0).getmMaDoiTuong());
             String xml = "<?xml version=\"1.0\"?> "
                     + "<root>";
@@ -360,7 +360,7 @@ public class GenericResource {
         CustomerDAO customerDAO = new CustomerDAOImpl();
         List<Customer> customerList = new ArrayList<Customer>();
 
-        customerList = customerDAO.loadCustomersWithLocations(null, pStaff);
+        customerList = customerDAO.loadCustomersWithLocations(null, pStaff, null);
         return customerList;
     }
     

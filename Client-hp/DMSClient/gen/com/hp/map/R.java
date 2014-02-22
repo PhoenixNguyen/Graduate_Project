@@ -8,6 +8,10 @@
 package com.hp.map;
 
 public final class R {
+    public static final class array {
+        public static final int array_brand=0x7f090000;
+        public static final int array_variant=0x7f090001;
+    }
     public static final class attr {
         /** 
     The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
@@ -271,7 +275,7 @@ containing a value of this type.
         public static final int list_view_product=0x7f05003b;
         public static final int lview=0x7f05001b;
         public static final int map=0x7f050029;
-        public static final int menu_legal=0x7f05003f;
+        public static final int menu_legal=0x7f05003e;
         public static final int next=0x7f050018;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -286,7 +290,6 @@ containing a value of this type.
         public static final int save=0x7f050014;
         public static final int search_button=0x7f05003a;
         public static final int search_text=0x7f05001f;
-        public static final int store_id=0x7f05003e;
         public static final int sum=0x7f05000e;
         public static final int sum_value=0x7f05000f;
         public static final int tax=0x7f05000c;
@@ -318,16 +321,20 @@ containing a value of this type.
         public static final int login=0x7f03000b;
         public static final int order_product_dialog=0x7f03000c;
         public static final int order_tab=0x7f03000d;
-        public static final int planning=0x7f03000e;
-        public static final int product=0x7f03000f;
-        public static final int schedule_dialog=0x7f030010;
-        public static final int schedule_dialog_feature=0x7f030011;
-        public static final int store=0x7f030012;
+        public static final int payment_colection=0x7f03000e;
+        public static final int planning=0x7f03000f;
+        public static final int product=0x7f030010;
+        public static final int return_order=0x7f030011;
+        public static final int schedule_dialog=0x7f030012;
+        public static final int schedule_dialog_feature=0x7f030013;
+        public static final int store=0x7f030014;
     }
     public static final class menu {
-        public static final int main=0x7f0a0000;
+        public static final int main=0x7f0b0000;
     }
     public static final class string {
+        public static final int about_label=0x7f060035;
+        public static final int about_title=0x7f060037;
         public static final int action_settings=0x7f06001b;
         public static final int amount=0x7f06002f;
         public static final int app_name=0x7f06001a;
@@ -354,6 +361,12 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int brand=0x7f06004d;
+        public static final int button_product=0x7f060050;
+        public static final int button_return_otc=0x7f060053;
+        public static final int button_return_production=0x7f060052;
+        public static final int button_return_summany=0x7f060051;
+        public static final int button_search=0x7f06004f;
         public static final int clear_map=0x7f060024;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -426,28 +439,60 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
+        public static final int continue_label=0x7f060033;
         public static final int customer_address=0x7f06002d;
         public static final int customer_id=0x7f06002b;
+        public static final int customer_id1=0x7f06004c;
         public static final int customer_list_label=0x7f06001f;
         /**  Customer show on the map 
          */
         public static final int customer_name=0x7f06002a;
+        /**  return order 
+         */
+        public static final int customer_name1=0x7f06004b;
         public static final int customer_phone=0x7f06002c;
+        public static final int exit_label=0x7f060036;
         public static final int legal_info=0x7f060021;
         public static final int location_source_demo_description=0x7f060023;
         public static final int location_source_demo_label=0x7f060022;
         public static final int login_label=0x7f06001e;
         public static final int main_label=0x7f06001d;
+        public static final int main_title=0x7f060038;
         public static final int map_not_ready=0x7f060029;
         public static final int marker_description=0x7f060028;
         public static final int marker_label=0x7f060027;
+        public static final int new_game_label=0x7f060034;
         public static final int no_demos=0x7f06001c;
         public static final int planning_label=0x7f06002e;
         public static final int play_services_not_installed=0x7f060020;
         public static final int product=0x7f060030;
+        /**  in_store_activity 
+         */
+        public static final int product_information=0x7f060032;
         public static final int reset_map=0x7f060025;
         public static final int schedule=0x7f060031;
         public static final int send_demo=0x7f060026;
+        /**  payment_colection 
+         */
+        public static final int text0=0x7f06003e;
+        public static final int text1=0x7f06003f;
+        public static final int text10=0x7f060048;
+        public static final int text11=0x7f060049;
+        public static final int text12=0x7f06004a;
+        public static final int text2=0x7f060040;
+        public static final int text3=0x7f060041;
+        public static final int text4=0x7f060042;
+        public static final int text5=0x7f060043;
+        public static final int text6=0x7f060044;
+        public static final int text7=0x7f060045;
+        public static final int text8=0x7f060046;
+        public static final int text9=0x7f060047;
+        public static final int text_brand=0x7f060039;
+        public static final int text_row1_1=0x7f06003a;
+        public static final int text_row1_2=0x7f06003b;
+        public static final int text_row1_3=0x7f06003c;
+        public static final int text_row2_1=0x7f06003d;
+        public static final int variant=0x7f06004e;
     }
     public static final class style {
         /** 
@@ -471,11 +516,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

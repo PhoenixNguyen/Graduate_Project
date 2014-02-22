@@ -21,24 +21,24 @@ package com.hp.map;
  */
 public final class DetailsListData {
 
-    /** This class should not be instantiated. */
-    private DetailsListData() {}
+	/** This class should not be instantiated. */
+	private DetailsListData() {
+	}
 
-    public static final DetailsList[] MAIN = {
-        new DetailsList("Customer list",
-                        "Click here to view customer list and create orders",
-                        CustomerListActivity.class),
+	public static final DetailsList[] MAIN = {
+			new DetailsList("Customer list",
+					"Click here to view customer list and create orders",
+					CustomerListActivity.class),
 
-        new DetailsList("Planning",
-                        "Scheduled for a month",
-                        Schedule_CalendarActivity.class),
-                        
-        new DetailsList("Store",
-                "Store activity",
-                StoreActivity.class),                
+			new DetailsList("Planning", "Scheduled for a month",
+					Schedule_CalendarActivity.class),
 
-        
-    };
-    
-    public static DetailsList[] CUSTOMER_LIST ;
+			new DetailsList("Store", "Store activity", StoreActivity.class),
+
+			new DetailsList("Payment Colection", "Payment Colection", PaymentColection.class),
+			new DetailsList("Return Order", "Return order", ReturnOrder.class),
+
+	};
+
+	public static DetailsList[] CUSTOMER_LIST;
 }

@@ -32,6 +32,10 @@ public final class DetailsListData {
         new DetailsList("Planning",
                         "Scheduled for a month",
                         Schedule_CalendarActivity.class),
+                        
+        new DetailsList("Store",
+                "Store activity",
+                StoreActivity.class),                
 
         
     };

@@ -74,6 +74,10 @@
             android:name="com.hp.map.Schedule_CalendarActivity"
             android:label="@string/schedule" />
         
+        <activity
+            android:name="com.hp.map.StoreActivity"
+            android:label="@string/schedule" />
+        
     </application>
 
 </manifest>

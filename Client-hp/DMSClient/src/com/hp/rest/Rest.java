@@ -50,8 +50,8 @@ public class Rest {
 	}
 	
 	private static URI getBaseURI() {
-	    return UriBuilder.fromUri("http://192.168.169.3:8080/DMSProject").build();
-	    //return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8080/DMSProject").build();
+	    //return UriBuilder.fromUri("http://192.168.169.3:8080/DMSProject").build();
+	    return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8080/DMSProject").build();
 	    
 	  }
 	

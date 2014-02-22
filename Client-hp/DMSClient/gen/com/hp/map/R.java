@@ -271,7 +271,7 @@ containing a value of this type.
         public static final int list_view_product=0x7f05003b;
         public static final int lview=0x7f05001b;
         public static final int map=0x7f050029;
-        public static final int menu_legal=0x7f05003e;
+        public static final int menu_legal=0x7f05003f;
         public static final int next=0x7f050018;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
@@ -286,6 +286,7 @@ containing a value of this type.
         public static final int save=0x7f050014;
         public static final int search_button=0x7f05003a;
         public static final int search_text=0x7f05001f;
+        public static final int store_id=0x7f05003e;
         public static final int sum=0x7f05000e;
         public static final int sum_value=0x7f05000f;
         public static final int tax=0x7f05000c;
@@ -321,6 +322,7 @@ containing a value of this type.
         public static final int product=0x7f03000f;
         public static final int schedule_dialog=0x7f030010;
         public static final int schedule_dialog_feature=0x7f030011;
+        public static final int store=0x7f030012;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;

@@ -19,6 +19,7 @@ import com.hp.excelhandle.GetData;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -64,6 +65,15 @@ public class ShowMapAction extends ActionSupport{
     private String nhanvienId;
     private String khachhangId;
 
+   private List<String> filesNameList = new ArrayList<String>();
+
+    public List<String> getFilesNameList() {
+        return filesNameList;
+    }
+
+    public void setFilesNameList(List<String> filesNameList) {
+        this.filesNameList = filesNameList;
+    }
    
     public String getKhachhangId() {
         return khachhangId;
@@ -207,9 +217,15 @@ public class ShowMapAction extends ActionSupport{
                 listRoad = mRoadManagementDAO.getRoad((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"),
                         (String)session.getAttribute("khachhangId"));
+                
+                //Get images
+                filesNameList = getImagesName(listCustomer);
+                
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();
                 listRoad = mRoadManagementDAO.getRoad(null,null,null);
+                //Get images
+                filesNameList = getImagesName(listCustomer);
             }
         }
         //AJAX
@@ -263,6 +279,22 @@ public class ShowMapAction extends ActionSupport{
         return SUCCESS;
     }   
  
+    public List<String> getImagesName(List<Customer> pList){
+        List<String> tmp = new ArrayList<String>();
+        String filePath = ServletActionContext.getServletContext().getRealPath("/customer/"
+                            +pList.get(0).getmMaDoiTuong()+"/");
+                File[] files = new File(filePath).listFiles();
+                if(files == null)
+                    return null;
+                for(File file : files){
+                    if(file.isFile()){
+                        tmp.add(file.getName());
+                        System.out.println(file.getName());
+                    }
+                    
+                }
+        return tmp;
+    }
     public String customerDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();

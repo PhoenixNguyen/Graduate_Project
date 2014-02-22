@@ -369,6 +369,11 @@ public class Schedule_CalendarActivity extends Activity {
 				.accept("application/json")
 				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getmMaNhanVien() +"::"+pDate);
         System.out.println("________________ "+ response.toString());
+        if(response.getStatus() != 200){
+        	dialog.dismiss();
+        	return;
+        }
+        
         String re = response.getEntity(String.class);
         System.out.println("________________ "+ re);
         

@@ -368,7 +368,7 @@
                         </div>-->
 
                     </div>
-                    <div class="article-photo"><img src="../customer/120HB/1.jpg" style="margin-top: -44.5px;">
+                    <div class="article-photo"><img src="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(0)"/>" style="margin-top: -44.5px;">
                     </div>
 <!--                    <div class="article-bottom">
                         <ul class="tab-panel clearfix">
@@ -407,16 +407,16 @@
                     <ul class="pois-list show-all">
                         
                         
-                                <s:iterator status="status" value="(5).{ #this }" >
+                                <s:iterator status="status" value="filesNameList" >
                         <li data-poi-id="2275">
                             <div class="poi-content">
                                 <div class="poi-photo">
-                                    <img src="../customer/<s:property value="listRoad.get(0).getmMaKhachHang()"/>/<s:property value="#status.index+1"/>.jpg" 
-                                         data-original="../customer/<s:property value="listRoad.get(0).getmMaKhachHang()"/>/<s:property value="#status.index+1"/>.jpg" width="64" height="64" alt="Pane e Vino">
+                                    <img src="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" 
+                                         data-original="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" width="64" height="64" alt="Pane e Vino">
                                 </div>
-                                <h2 class="poi-title"><a href="/poi/details/17924613257549151258">Ảnh <s:property value="#status.index+1"/></a></h2>
+                                <h2 class="poi-title"><a href="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>">Ảnh <s:property value="#status.index+1"/></a></h2>
                                 <div class="poi-infos">
-                                    <strong>Tiêu đề: 120 Hàng Buồm
+                                    <strong>Tiêu đề: <s:property value="filesNameList.get(#status.index)"/>
                                     <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper">
                                             <div class="rate-value" style="width: 77.8%">
                                         

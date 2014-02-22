@@ -13,6 +13,9 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+
 import com.hp.domain.Customer;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -84,4 +87,5 @@ public class Rest {
 		
 		return true;
 	}
+		    
 }

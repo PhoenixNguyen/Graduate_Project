@@ -3,14 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/red"
-    android:orientation="vertical"
-    android:padding="5dip" >
+    android:orientation="vertical" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="15dip"
         android:text="@string/text0"
         android:textSize="25dip" />
 
@@ -35,19 +33,17 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginLeft="5dip"
             android:background="@color/orange"
-            android:text="@string/text2"
-            android:textSize="15dip" />
+            android:text="@string/text2" />
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginLeft="5dip"
             android:background="@color/orange"
-            android:text="@string/text3"
-            android:textSize="15dip" />
+            android:text="@string/text3" />
     </LinearLayout>
 
     <LinearLayout
@@ -121,12 +117,10 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="26dp"
         android:layout_gravity="center"
         android:background="@color/orange"
-        android:padding="5dip"
-        android:text="@string/text7"
-        android:textSize="15dip" />
+        android:text="@string/text7" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -149,25 +143,32 @@
                 android:gravity="center_horizontal" >
 
                 <TextView
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:gravity="center"
                     android:padding="10dip"
                     android:text="@string/text8" />
 
                 <TextView
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:gravity="center"
                     android:padding="10dip"
                     android:text="@string/text9" />
 
                 <TextView
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:gravity="center"
                     android:padding="20dip"
                     android:text="@string/text10" />
 
                 <TextView
                     android:layout_weight="1"
+                    android:background="@drawable/cell_shape"
                     android:gravity="center"
                     android:padding="20dip"
                     android:text="@string/text11" />
@@ -189,7 +190,7 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dip"
         android:background="@color/orange"

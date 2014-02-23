@@ -1,0 +1,54 @@
+#head_data{
+    
+}
+#slect_item{
+    float: left;
+    
+}
+#load{
+    float: left;
+    margin-left: 100px;
+}
+#txt{
+    float: right;
+    margin-right: 25%;
+}
+
+#main_data{
+    margin-top: 50px;
+    position: absolute;
+}
+#tb_show{
+    float: left;
+    width: 800px;
+    height: 500px;
+    overflow: auto;
+}
+
+#fix{
+    float: right;
+    width: 500px;
+    height: 500px;
+    margin-left: 100px;
+    background-color: gold;
+    
+}
+
+#fix.table{
+    
+}
+
+
+table{
+    width: 100%;
+    height: 100%;
+    //overflow: auto;
+    //margin-top: 20px;
+    
+}
+
+table, th, td{
+    border: 1px solid black;
+    //padding:5px;
+}
+

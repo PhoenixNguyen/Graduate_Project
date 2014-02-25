@@ -302,7 +302,7 @@ public class GenericResource {
         
 //            String output = pTrack.toString();
             System.out.println("____ " + pTrack + "___ " + st);
-            return Response.status(200).entity(pTrack).build();
+            return Response.status(200).entity(st+"").build();
     }
     
     @Path("/getCustomersListSchedule")

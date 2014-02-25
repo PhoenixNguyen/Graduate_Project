@@ -44,6 +44,7 @@ public class LoginActivity extends Activity {
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
+        mUsername.setText("eufood.tranvandung");
         mPassword = (EditText)findViewById(R.id.password);
         
         Button btnLogin = (Button)findViewById(R.id.btnLogin);

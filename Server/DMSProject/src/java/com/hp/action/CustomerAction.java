@@ -122,14 +122,18 @@ public class CustomerAction extends ActionSupport{
             for(int i = 0; i < rows; i++){
                 
                 row = sheet.getRow(i);
+                System.out.println("__ Rows: " +(i+1));
                 if(row != null){
                     
+                    System.out.println("__ Row: " +(i+1)+" ,Cell number: " + row.getPhysicalNumberOfCells());
                     //If the customer id null
                     if(row.getCell(ConfigFile.MA_DOI_TUONG_COL) == null ||
-                            row.getCell(ConfigFile.X_COORDINATES_COL) == null ||
-                            row.getCell(ConfigFile.Y_COORDINATES_COL) == null ||
-                            row.getCell(ConfigFile.X_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING ||
-                            row.getCell(ConfigFile.Y_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING
+                            row.getCell(ConfigFile.MA_DOI_TUONG_COL+1) == null ||
+                            row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_STRING
+//                            row.getCell(ConfigFile.X_COORDINATES_COL) == null ||
+//                            row.getCell(ConfigFile.Y_COORDINATES_COL) == null ||
+//                            row.getCell(ConfigFile.X_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING ||
+//                            row.getCell(ConfigFile.Y_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING
                             ){
                         continue;   
                     }

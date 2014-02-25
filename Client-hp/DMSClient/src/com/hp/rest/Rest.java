@@ -27,6 +27,7 @@ import com.sun.jersey.spi.service.ServiceFinder;
 public class Rest {
 
 	public static List<Customer> customerList =  new ArrayList<Customer>();
+	public static String mStaffID = new String();
 	
 	public Rest(String pUrl){
 		
@@ -53,7 +54,7 @@ public class Rest {
 	}
 	
 	private static URI getBaseURI() {
-	    return UriBuilder.fromUri("http://192.168.0.32:8080/DMSProject").build();
+	    return UriBuilder.fromUri("http://192.168.169.2:8080/DMSProject").build();
 	    //return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8080/DMSProject").build();
 	    
 	  }
@@ -63,6 +64,13 @@ public class Rest {
 				.accept("application/json")
 				.type("application/json").post(ClientResponse.class, pStaff);
         System.out.println("________________ "+ response.toString());
+        
+        if(response.getStatus() != 200){
+        	
+        	return false;
+        }
+        
+        mStaffID = pStaff;
         String re = response.getEntity(String.class);
         System.out.println("________________ "+ re);
         
@@ -73,7 +81,7 @@ public class Rest {
 //			File jsonFile = new File(jsonFilePath);
 			customerList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
 					Customer.class));
-			System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
+			//System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 			return false;

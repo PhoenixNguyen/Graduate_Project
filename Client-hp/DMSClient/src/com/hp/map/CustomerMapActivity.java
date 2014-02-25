@@ -57,6 +57,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.transition.Scene;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -74,6 +75,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -125,7 +127,8 @@ public class CustomerMapActivity extends FragmentActivity
     private final Random mRandom = new Random();
     
     private int positionClick = 0;
-
+    private String username;
+    
     //current location
     private float mX;
     private float mY;
@@ -150,7 +153,7 @@ public class CustomerMapActivity extends FragmentActivity
         
         //Get POSITION
         Intent i = getIntent();
-        String username  = i.getStringExtra("POSITION_CLICK");
+        username  = i.getStringExtra("POSITION_CLICK");
         
         for(int j = 0; j < Rest.customerList.size(); j++){
         	if(username.compareTo(Rest.customerList.get(j).getmMaDoiTuong()) == 0){
@@ -416,11 +419,42 @@ public class CustomerMapActivity extends FragmentActivity
 		ClientResponse response = Rest.mService.path("webresources").path("putLocation").accept("application/json")
 		.type("application/json").post(ClientResponse.class, locationStr);
 		
-		if (response.getStatus() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + response.getStatus());
-        }
+//		if (response.getStatus() != 200) {
+//            throw new RuntimeException("Failed : HTTP error code : "
+//                    + response.getStatus());
+//        }
         String output = response.toString();
+        
+        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("1") == 0)) {
+            Toast.makeText(context, "Đã gửi vị trí", Toast.LENGTH_SHORT).show();
+            // refresh customers
+            DetailsListData.CUSTOMER_LIST = null;
+            Rest.customerList.clear();
+            
+            if(Rest.getCustomersList(Rest.mStaffID) == true){
+				//Set List customer
+				DetailsListData.CUSTOMER_LIST=  new DetailsList[]{
+						
+				};
+				
+				//add element
+				for(int i = 0; i < Rest.customerList.size(); i++){
+					DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
+							new DetailsList(Rest.customerList.get(i).getmMaDoiTuong(),
+									Rest.customerList.get(i).getmDoiTuong() +" : " + 
+											Rest.customerList.get(i).getmDiaChi(),
+			                        CustomerMapActivity.class));
+				}
+				// TODO Auto-generated method stub
+				Intent t = new Intent(context, CustomerMapActivity.class);
+		        t.putExtra("POSITION_CLICK", username);
+		        
+		        startActivity(t);
+			}
+            
+        }else
+        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+        
         System.out.println("Server response .... \n");
         System.out.println(output);
 
@@ -510,5 +544,14 @@ public class CustomerMapActivity extends FragmentActivity
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	@SuppressLint("NewApi")
+	static <T> T[] append(T[] arr, T element) {
+        final int N = arr.length;
+        arr = Arrays.copyOf(arr, N + 1);
+        arr[N] = element;
+        return arr;
+    }
 
 }

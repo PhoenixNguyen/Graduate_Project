@@ -56,6 +56,16 @@ public class CustomerAction extends ActionSupport{
     private Document document = new Document();
     private List<Customer> customersList = new ArrayList<Customer>();
 
+    private Customer customer = new Customer();
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
     public List<Customer> getCustomersList() {
         return customersList;
     }
@@ -226,6 +236,30 @@ public class CustomerAction extends ActionSupport{
     
     public String displayCustomers(){
         customersList = customerDAO.getListCustomer();
+        return SUCCESS;
+    }
+    
+    private String customerID = new String();
+    private int customerSTT;
+
+    public int getCustomerSTT() {
+        return customerSTT;
+    }
+
+    public void setCustomerSTT(int customerSTT) {
+        this.customerSTT = customerSTT;
+    }
+    
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+    
+    public String editCustomer(){
+        customer = customerDAO.loadCustomer(customerSTT);
         return SUCCESS;
     }
 }

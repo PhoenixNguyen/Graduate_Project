@@ -37,5 +37,8 @@ public interface CustomerDAO {
     
     //View customers list
     public List<Customer> getListCustomer();
+    //get a customer
+    public Customer loadCustomer(String pCustomer);
+    public Customer loadCustomer(int pCustomer);
     
 }

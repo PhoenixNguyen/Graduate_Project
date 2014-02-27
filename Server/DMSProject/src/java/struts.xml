@@ -131,7 +131,7 @@
         
     </package>
     
-    <package name="admin"  extends="hibernate-default" namespace="/admin">
+    <package name="admin"  extends="json-default,hibernate-default" namespace="/admin">
 		
         <action name="add-customer" method="addCustomerFromExcelFile" class="com.hp.action.CustomerAction">
             <result name="success">add-customer-result.jsp</result>
@@ -154,6 +154,12 @@
         <action name="displayCustomers" method="displayCustomers" class="com.hp.action.CustomerAction">
             <result name="success" >input-page.jsp</result>
             <result name="input" >input-page.jsp</result>
+        </action>
+        
+        <action name="editCustomer" method="editCustomer" class="com.hp.action.CustomerAction">
+            <result type="json">
+                <param name="contentType">application/json</param>
+            </result>
         </action>
     </package>
     

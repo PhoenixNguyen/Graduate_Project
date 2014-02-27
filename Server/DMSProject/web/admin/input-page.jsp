@@ -13,6 +13,14 @@
         <title>Input page</title>
         
         <link type="text/css" rel="stylesheet" href="../css/admin/input-page.css"/>
+        
+<!--        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>-->
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/admin/input-page.js"></script>
+        
+        <script>
+            
+        </script>
     </head>
     <body>
         <h1>Show and import resources</h1>
@@ -53,7 +61,7 @@
                     </tr>
                     <s:iterator status="status" value="customersList" >
                     <tr>
-                        <td><a href="">Sửa</a></td>
+                        <td><button onclick="editCustomer('<s:property value="mStt"/>')">Sửa</button></td>
                         <td><a href="">Xóa</a></td>
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mMaDoiTuong"/></td>

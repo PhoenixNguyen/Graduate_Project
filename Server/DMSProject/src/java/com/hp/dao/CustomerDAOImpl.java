@@ -271,4 +271,48 @@ public class CustomerDAOImpl implements CustomerDAO{
         
         return courses;
     }
+    
+    public Customer loadCustomer(String pCustomer){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        Customer courses = null;
+        try{
+            //Query query = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"'");
+            //courses = (Customer)query;
+                    
+            courses = (Customer)session.get(Customer.class, 1);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    public Customer loadCustomer(int pCustomer){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        Customer courses = null;
+        try{
+            //Query query = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"'");
+            //courses = (Customer)query;
+                    
+            courses = (Customer)session.get(Customer.class, pCustomer);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
 }

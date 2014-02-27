@@ -4,7 +4,8 @@
     Author     : HP
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page  contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,255 +35,40 @@
             
         </div>
         <div id="main_data">
-            <div id="tb_show">
-                <table>
+            
+            <table id="tb_show">
+                <thead>
                     <tr>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                        <th>STT</th>
-                        <th>Mã khách hàng</th>
-                        <th>Tên khách hàng</th>
-                        <th>Điện thoại</th>
+                        <td>Sửa</td>
+                        <td>Xóa</td>
+                        <td>STT</td>
+                        <td>Mã khách hàng</td>
+                        <td>Tên khách hàng</td>
+                        <td>Điện thoại</td>
+                        <td>Quận</td>
+                        <td>Nhân viên chăm sóc</td>
                     </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
+                </thead>
+                <tbody>
                     </tr>
+                    <s:iterator status="status" value="customersList" >
                     <tr>
                         <td><a href="">Sửa</a></td>
                         <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
+                        <td><s:property value="#status.index"/></td>
+                        <td><s:property value="mMaDoiTuong"/></td>
+                        <td><s:property value="mDoiTuong"/></td>
+                        <td><s:property value="mDienThoai"/></td>
+                        <td><s:property value="mX"/></td>
+                        <td><s:property value="mMaNhanVien"/></td>
 
                     </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    <tr>
-                        <td><a href="">Sửa</a></td>
-                        <td><a href="">Xóa</a></td>
-                        <td>001</td>
-                        <td>HOS</td>
-                        <td>Trần Công Đoài</td>
-                        <td>0123456789</td>
-
-                    </tr>
-                    
+                    </s:iterator>
+                </tbody>
+                
                 </table>
-            </div>
-            <div id="fix">
-                <table >
+            
+                <table id="fix">
                     <col width="30%">
                     <col width="70%">
                     <tr>
@@ -320,7 +106,7 @@
                         </td>
                     </tr>
                 </table>
-            </div>
+            
         </div>
         
     </body>

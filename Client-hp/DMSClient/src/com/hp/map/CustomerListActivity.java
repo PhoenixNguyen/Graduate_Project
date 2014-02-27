@@ -65,10 +65,6 @@ public class CustomerListActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.customer_list);
 		
-		//List view
-		listView = (ListView)findViewById(R.id.list);
-		listView.setAdapter(new CustomArrayAdapter(this, DetailsListData.CUSTOMER_LIST));
-				
 		//Auto complete
 		String[] language ={"C","C++","Java",".NET","iPhone","Android","ASP.NET","PHP"};
 		String[] li = new String[]{};
@@ -87,7 +83,7 @@ public class CustomerListActivity extends Activity{
         actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView  
         actv.setTextColor(Color.RED);  
         
-        //
+		// show
         btt = (Button)findViewById(R.id.btt);
         btt.setOnClickListener(new OnClickListener() {
 			
@@ -113,8 +109,11 @@ public class CustomerListActivity extends Activity{
 				
 			}
 		});
-		
-		
+        
+		//List view
+		listView = (ListView)findViewById(R.id.list);
+		listView.setAdapter(new CustomArrayAdapter(this, DetailsListData.CUSTOMER_LIST));
+			
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
 		     @Override

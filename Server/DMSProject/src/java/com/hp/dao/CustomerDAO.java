@@ -35,4 +35,7 @@ public interface CustomerDAO {
     //Customer detail
     public List<Customer> loadCustomersDetail(String pCustomer);
     
+    //View customers list
+    public List<Customer> getListCustomer();
+    
 }

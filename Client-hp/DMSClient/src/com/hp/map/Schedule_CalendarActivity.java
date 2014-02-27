@@ -47,6 +47,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -147,6 +148,16 @@ public class Schedule_CalendarActivity extends Activity {
 		gridview.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
+				
+				// Check the internet
+				if(isOnline()){
+					System.out.println("Internet access!!____________________");
+				}
+				else{
+					System.out.println("NO Internet access!!____________________");
+					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+					return;
+				}
 				
 				//Set enable
 				listView.setEnabled(true);
@@ -318,6 +329,16 @@ public class Schedule_CalendarActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 			
+				// Check the internet
+				if(isOnline()){
+					System.out.println("Internet access!!____________________");
+				}
+				else{
+					System.out.println("NO Internet access!!____________________");
+					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date date = null;
 				try {
@@ -360,6 +381,16 @@ public class Schedule_CalendarActivity extends Activity {
 	}
 	
 	public void addDialog(String pDate){
+		// Check the internet
+		if(isOnline()){
+			System.out.println("Internet access!!____________________");
+		}
+		else{
+			System.out.println("NO Internet access!!____________________");
+			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
 		final Dialog dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.schedule_dialog, null, false);
@@ -429,6 +460,16 @@ public class Schedule_CalendarActivity extends Activity {
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				// Check the internet
+				if(isOnline()){
+					System.out.println("Internet access!!____________________");
+				}
+				else{
+					System.out.println("NO Internet access!!____________________");
+					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				// get map
 				System.out.println("__MAP__");
 				List<Schedule> scheduleList = new ArrayList<Schedule>();
@@ -558,5 +599,9 @@ public class Schedule_CalendarActivity extends Activity {
 		}
 	};
 	
+	public boolean isOnline() { 
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
+		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
+	}
 	
 }

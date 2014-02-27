@@ -16,6 +16,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +54,16 @@ public class CustomerAction extends ActionSupport{
     
     @Valid
     private Document document = new Document();
+    private List<Customer> customersList = new ArrayList<Customer>();
 
+    public List<Customer> getCustomersList() {
+        return customersList;
+    }
+
+    public void setCustomersList(List<Customer> customersList) {
+        this.customersList = customersList;
+    }
+    
     public Document getDocument() {
         return document;
     }
@@ -213,4 +224,8 @@ public class CustomerAction extends ActionSupport{
         return SUCCESS;
     }
     
+    public String displayCustomers(){
+        customersList = customerDAO.getListCustomer();
+        return SUCCESS;
+    }
 }

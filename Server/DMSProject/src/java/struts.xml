@@ -151,6 +151,10 @@
             <result name="input">upload-customer-file.jsp</result>
         </action>
         
+        <action name="displayCustomers" method="displayCustomers" class="com.hp.action.CustomerAction">
+            <result name="success" >input-page.jsp</result>
+            <result name="input" >input-page.jsp</result>
+        </action>
     </package>
     
 </struts>

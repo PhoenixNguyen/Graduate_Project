@@ -17,21 +17,38 @@
 #main_data{
     margin-top: 50px;
     position: absolute;
+    width: 100%;
 }
 #tb_show{
+    background-color: #aaa;
     float: left;
-    width: 800px;
+    width: 60%;
     height: 500px;
     overflow: auto;
+    display: block;
 }
 
 #fix{
     float: right;
-    width: 500px;
+    width: 30%;
     height: 500px;
-    margin-left: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
     background-color: gold;
     
+}
+
+thead{
+    width: 100%;
+}
+tbody {
+    width: 100%;
+    background-color: #ddd;
+/*    height: 700px;
+    overflow: auto;*/
+}
+td {
+    padding: 3px 10px;
 }
 
 #fix.table{

@@ -44,7 +44,7 @@ public class LoginActivity extends Activity {
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
-        mUsername.setText("eufood.tranvandung");
+        mUsername.setText("eufood.");
         mPassword = (EditText)findViewById(R.id.password);
         
         Button btnLogin = (Button)findViewById(R.id.btnLogin);
@@ -72,7 +72,11 @@ public class LoginActivity extends Activity {
 				System.out.println("USERNAME___" + username);
 				
 				//Init Http request
-				
+				System.out.println("__ " + password);
+				if(password.compareTo("123456") != 0){
+					Toast.makeText(context, "Tên đăng nhập và mật khẩu không hợp lệ!", Toast.LENGTH_SHORT).show();
+				}
+				else
 				if(Rest.getCustomersList(username) == true){
 					//Set List customer
 					DetailsListData.CUSTOMER_LIST=  new DetailsList[]{
@@ -91,6 +95,7 @@ public class LoginActivity extends Activity {
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 	            	startActivity(i);
 				}
+				
 			}
 		});
         // Listening to register new account link

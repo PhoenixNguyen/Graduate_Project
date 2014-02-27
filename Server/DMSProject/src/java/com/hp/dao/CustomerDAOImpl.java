@@ -252,4 +252,23 @@ public class CustomerDAOImpl implements CustomerDAO{
         return courses;
         
     }
+    
+    //Get List customer to ajax
+    public List<Customer> getListCustomer(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Customer> courses = null;
+        try{
+            courses = session.createQuery("from Customer ").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
 }

@@ -52,6 +52,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;import android.location.Location;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -379,6 +380,16 @@ public class CustomerMapActivity extends FragmentActivity
 
     /** Called when the sendDemo button is clicked. */
     public void onSendDemo(View view) {
+    	//check network
+    	if(isOnline()){
+			System.out.println("Internet access!!____________________");
+		}
+		else{
+			System.out.println("NO Internet access!!____________________");
+			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+			return;
+		}
+    	
     	if(mX <= 0.0 || mY <= 0.0)
     		return;
     	
@@ -553,5 +564,10 @@ public class CustomerMapActivity extends FragmentActivity
         arr[N] = element;
         return arr;
     }
+	
+	public boolean isOnline() { 
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
+		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
+	}
 
 }

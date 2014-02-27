@@ -19,7 +19,7 @@
         <a href="map/showSchedule?page=0">Check Schedules</a><br/>
         <a href="map/staff-roads">journeys</a><br/><br/>
         
-        <a href="admin/input-page.jsp">input page</a><br/>
+        <a href="admin/displayCustomers">input page</a><br/>
         
 <!--        <a href="admin/upload-dms-client-file">Upload a DMSClient file</a>
         <a href="admin/download-dms-client-file">Download the DMSClient file</a>

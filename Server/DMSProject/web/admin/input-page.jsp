@@ -62,7 +62,9 @@
                 </div>
                     <div id="import">
                         <input type="button" id="imp" onClick="importData()" value="Import" > 
-                        <div id="info">GET: </div>    
+                        <div id="info">STATUS: 
+                            <span></span>
+                        </div>    
                     </div>
 <!--                <button>load</button>-->
             </div>

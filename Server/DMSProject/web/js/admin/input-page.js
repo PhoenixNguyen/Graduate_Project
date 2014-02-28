@@ -42,8 +42,10 @@ function importData(){
             console.log(customersTotal);
             
             var option = $("#info");
+            option.find('span').remove();
             var alert = "Có " + customersTotal + " khách hàng được thêm!";
-            option.append(alert);
+            option.append($("<span/>").append(alert));
+            
         }
     );
 }

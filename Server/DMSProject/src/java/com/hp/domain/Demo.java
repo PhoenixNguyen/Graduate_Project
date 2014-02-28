@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="tb_khachhang")
 
-public class Customer {
+public class Demo {
     
     private int mStt;
     private String mTinhThanh;
@@ -28,26 +28,26 @@ public class Customer {
     private String mX;
     private String mMaDoiTuong;
     private String mDoiTuong;
-    private Double mNoDKy;
-    private Double mCoDKy;
-    private Double mNoTKy;
-    private Double mTienBan;
-    private Double mCoTKy;
-    private Double mCKGG;
-    private Double mNhapLai;
-    private Double mNoCKy;
-    private Double mCoCKy;
-    private Double mDoanhThu;
-    private Double mPhanTramNoChiaThu;
-    private Double mNoToiDa;
+    private Float mNoDKy;
+    private Float mCoDKy;
+    private Float mNoTKy;
+    private Float mTienBan;
+    private Float mCoTKy;
+    private Float mCKGG;
+    private Float mNhapLai;
+    private Float mNoCKy;
+    private Float mCoCKy;
+    private Float mDoanhThu;
+    private Float mPhanTramNoChiaThu;
+    private Float mNoToiDa;
     private String mDaiDien;
     private String mDiaChi;
     private String mDienThoai;
     private String mFax;
     private String mGhiChu;
     
-    private Double mXCoordinates;
-    private Double mYCoordinates;
+    private Float mXCoordinates;
+    private Float mYCoordinates;
 
     @Id
     @GeneratedValue
@@ -110,99 +110,99 @@ public class Customer {
         this.mDoiTuong = mDoiTuong;
     }
     @Column(name="khachhang_no_dky")
-    public Double getmNoDKy() {
+    public Float getmNoDKy() {
         return mNoDKy;
     }
 
-    public void setmNoDKy(Double mNoDKy) {
+    public void setmNoDKy(Float mNoDKy) {
         this.mNoDKy = mNoDKy;
     }
     @Column(name="khachhang_co_dky")
-    public Double getmCoDKy() {
+    public Float getmCoDKy() {
         return mCoDKy;
     }
 
-    public void setmCoDKy(Double mCoDKy) {
+    public void setmCoDKy(Float mCoDKy) {
         this.mCoDKy = mCoDKy;
     }
     @Column(name="khachhang_no_tky")
-    public Double getmNoTKy() {
+    public Float getmNoTKy() {
         return mNoTKy;
     }
 
-    public void setmNoTKy(Double mNoTKy) {
+    public void setmNoTKy(Float mNoTKy) {
         this.mNoTKy = mNoTKy;
     }
     @Column(name="khachhang_tien_ban")
-    public Double getmTienBan() {
+    public Float getmTienBan() {
         return mTienBan;
     }
 
-    public void setmTienBan(Double mTienBan) {
+    public void setmTienBan(Float mTienBan) {
         this.mTienBan = mTienBan;
     }
     @Column(name="khachhang_co_tky")
-    public Double getmCoTKy() {
+    public Float getmCoTKy() {
         return mCoTKy;
     }
 
-    public void setmCoTKy(Double mCoTKy) {
+    public void setmCoTKy(Float mCoTKy) {
         this.mCoTKy = mCoTKy;
     }
     @Column(name="khachhang_ck_gg")
-    public Double getmCKGG() {
+    public Float getmCKGG() {
         return mCKGG;
     }
 
-    public void setmCKGG(Double mCKGG) {
+    public void setmCKGG(Float mCKGG) {
         this.mCKGG = mCKGG;
     }
     @Column(name="khachhang_nhap_lai")
-    public Double getmNhapLai() {
+    public Float getmNhapLai() {
         return mNhapLai;
     }
 
-    public void setmNhapLai(Double mNhapLai) {
+    public void setmNhapLai(Float mNhapLai) {
         this.mNhapLai = mNhapLai;
     }
     @Column(name="khachhang_no_cky")
-    public Double getmNoCKy() {
+    public Float getmNoCKy() {
         return mNoCKy;
     }
 
-    public void setmNoCKy(Double mNoCKy) {
+    public void setmNoCKy(Float mNoCKy) {
         this.mNoCKy = mNoCKy;
     }
     @Column(name="khachhang_co_cky")
-    public Double getmCoCKy() {
+    public Float getmCoCKy() {
         return mCoCKy;
     }
 
-    public void setmCoCKy(Double mCoCKy) {
+    public void setmCoCKy(Float mCoCKy) {
         this.mCoCKy = mCoCKy;
     }
     @Column(name="khachhang_doanh_thu")
-    public Double getmDoanhThu() {
+    public Float getmDoanhThu() {
         return mDoanhThu;
     }
 
-    public void setmDoanhThu(Double mDoanhThu) {
+    public void setmDoanhThu(Float mDoanhThu) {
         this.mDoanhThu = mDoanhThu;
     }
     @Column(name="khachhang_ti_le_no_thu")
-    public Double getmPhanTramNoChiaThu() {
+    public Float getmPhanTramNoChiaThu() {
         return mPhanTramNoChiaThu;
     }
 
-    public void setmPhanTramNoChiaThu(Double mPhanTramNoChiaThu) {
+    public void setmPhanTramNoChiaThu(Float mPhanTramNoChiaThu) {
         this.mPhanTramNoChiaThu = mPhanTramNoChiaThu;
     }
     @Column(name="khachhang_no_toi_da")
-    public Double getmNoToiDa() {
+    public Float getmNoToiDa() {
         return mNoToiDa;
     }
 
-    public void setmNoToiDa(Double mNoToiDa) {
+    public void setmNoToiDa(Float mNoToiDa) {
         this.mNoToiDa = mNoToiDa;
     }
     @Column(name="khachhang_dai_dien")
@@ -246,23 +246,20 @@ public class Customer {
         this.mGhiChu = mGhiChu;
     }
     @Column(name="khachhang_toa_do_x")         
-    public Double getmXCoordinates() {
+    public Float getmXCoordinates() {
         return mXCoordinates;
     }
 
-    public void setmXCoordinates(Double mXCoordinates) {
+    public void setmXCoordinates(Float mXCoordinates) {
         this.mXCoordinates = mXCoordinates;
     }
     @Column(name="khachhang_toa_do_y")
-    public Double getmYCoordinates() {
+    public Float getmYCoordinates() {
         return mYCoordinates;
     }
 
-    public void setmYCoordinates(Double mYCoordinates) {
+    public void setmYCoordinates(Float mYCoordinates) {
         this.mYCoordinates = mYCoordinates;
     }
-    
-    public Customer(){
-        
-    }
+   
 }

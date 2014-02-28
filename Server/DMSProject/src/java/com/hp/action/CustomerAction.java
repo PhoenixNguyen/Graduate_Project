@@ -10,12 +10,17 @@ import com.hp.common.ConfigFile;
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.domain.Customer;
+import com.hp.domain.Demo;
+import com.hp.domain.Demo2;
 import com.hp.domain.Document;
+import com.hp.domain.Staff;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,7 +40,7 @@ import org.hibernate.validator.Valid;
  *
  * @author HP
  */
-public class CustomerAction extends ActionSupport{
+public class CustomerAction extends ActionSupport implements ModelDriven{
     
     
     //Init Customer
@@ -44,6 +49,13 @@ public class CustomerAction extends ActionSupport{
     //Init customerDAO
     private CustomerDAO customerDAO = new CustomerDAOImpl();
     
+        
+    private String customerID = new String();
+    private int customerSTT;
+    public Demo demo = new Demo();
+    public Customer customer = new Customer();
+    public Customer customer2 = new Customer();
+    public Staff st = new Staff();
 //    public Customer getCustomer() {
 //        return customer;
 //    }
@@ -56,7 +68,7 @@ public class CustomerAction extends ActionSupport{
     private Document document = new Document();
     private List<Customer> customersList = new ArrayList<Customer>();
 
-    private Customer customer = new Customer();
+    
 
     public Customer getCustomer() {
         return customer;
@@ -82,6 +94,10 @@ public class CustomerAction extends ActionSupport{
         this.document = document;
     }
     
+    @Override
+    public Object getModel() {
+        return customer;
+    }
     
     public String saveFile(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
@@ -236,12 +252,19 @@ public class CustomerAction extends ActionSupport{
     
     public String displayCustomers(){
         customersList = customerDAO.getListCustomer();
+        
         return SUCCESS;
     }
-    
-    private String customerID = new String();
-    private int customerSTT;
 
+
+    public Demo getDemo() {
+        return demo;
+    }
+
+    public void setDemo(Demo demo) {
+        this.demo = demo;
+    }
+    
     public int getCustomerSTT() {
         return customerSTT;
     }
@@ -258,8 +281,54 @@ public class CustomerAction extends ActionSupport{
         this.customerID = customerID;
     }
     
-    public String editCustomer(){
-        customer = customerDAO.loadCustomer(customerSTT);
+    public String editCustomer() throws UnsupportedEncodingException{
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+        
+        String stt = request.getParameter("id_cus");
+        int st;
+        if(stt ==null){
+            return INPUT;
+        }
+        st = Integer.parseInt(stt);
+        
+        customersList = customerDAO.getListCustomer();
+        customer = customerDAO.loadCustomer(st);
+            
         return SUCCESS;
     }
+    
+    public String updateCustomer() throws UnsupportedEncodingException{
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+        
+        String name  = customer.getmDienThoai();
+        
+        String pw = demo.getmDienThoai();
+        Float y = demo.getmYCoordinates();
+        
+//        int stt = demo2.getStt();
+//        Float point = demo2.getPoint();
+//        System.out.println("__" + stt + "__ " +point);
+        
+        System.out.println("__" + pw + "__ " +y);
+        System.out.println("__" + name);
+        boolean status = customerDAO.update(customer);
+        customersList = customerDAO.getListCustomer();
+        
+        return SUCCESS;
+    }
+    
+    Demo2 demo2 = new Demo2();
+
+    public Demo2 getDemo2() {
+        return demo2;
+    }
+
+    public void setDemo2(Demo2 demo2) {
+        this.demo2 = demo2;
+    }
+    
 }

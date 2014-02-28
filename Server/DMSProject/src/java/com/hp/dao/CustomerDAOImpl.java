@@ -25,7 +25,7 @@ import org.hibernate.Transaction;
  * @author HP
  */
 
-public class CustomerDAOImpl implements CustomerDAO{
+public class CustomerDAOImpl implements CustomerDAO {
     
     //Add customer  
     @Override
@@ -36,6 +36,26 @@ public class CustomerDAOImpl implements CustomerDAO{
         try{
             
             session.saveOrUpdate(pCustomer);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean update(Customer pCustomer){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.update(pCustomer);
             session.getTransaction().commit();
         }catch(HibernateException e){
             transaction.rollback();

@@ -1063,7 +1063,7 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.slf4j-log4j12-1.5.8.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.sqljdbc4.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.struts2-convention-plugin-2.1.6.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${file.reference.struts2-core-2.1.6.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+<!--        <copyfiles files="${file.reference.struts2-core-2.1.6.jar}" todir="${build.web.dir}/WEB-INF/lib"/>-->
         <copyfiles files="${file.reference.struts2-dojo-plugin-2.1.8.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.struts2-fullhibernatecore-plugin-1.4-GA.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${file.reference.xwork-2.1.2.jar}" todir="${build.web.dir}/WEB-INF/lib"/>

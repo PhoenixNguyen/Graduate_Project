@@ -16,6 +16,8 @@ import java.util.List;
  */
 public interface CustomerDAO {
     public boolean saveOrUpdate(Customer pCustomer);
+    public boolean update(Customer pCustomer);
+    
     public List<Customer> loadCustomersWithLocations();
     //and hava all sales man of manager
     public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff, String pCustomer);

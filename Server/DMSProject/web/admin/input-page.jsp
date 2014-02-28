@@ -4,8 +4,14 @@
     Author     : HP
 --%>
 
-<%@page  contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
+
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,7 +67,9 @@
                     </tr>
                     <s:iterator status="status" value="customersList" >
                     <tr>
-                        <td><button onclick="editCustomer('<s:property value="mStt"/>')">Sửa</button></td>
+                        <td>
+                            <input type="button" value="Sửa" 
+                                   onClick="location.href='editCustomer?id_cus=<s:property value="mStt"/>'"/></td>
                         <td><a href="">Xóa</a></td>
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mMaDoiTuong"/></td>
@@ -75,46 +83,33 @@
                 </tbody>
                 
                 </table>
-            
-                <table id="fix">
-                    <col width="30%">
-                    <col width="70%">
-                    <tr>
-                        <td>Mã khách hàng: </td>
-                        <td>HOS</td>
-                    </tr>
-                    <tr>
-                        <td>Tên khách hàng: </td>
-                        <td>Trần Công Đoài</td>
-                    </tr>
-                    <tr>
-                        <td>Số điện thoại: </td>
-                        <td>0123456789</td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ: </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Fax: </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Mã nhân viên: </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Trạng thái: </td>
-                        <td></td>
-                    </tr>
+                
+                <div id="editForm">
+                    <s:form action="update-customer" method="get"> 
+                             <s:push value="customer"> 
+                                 <s:hidden name="mFax"/> 
+                                 <s:hidden name="mGhiChu"/> 
+                                 <s:hidden name="mYCoordinates"/> 
+                                 
+                                 <s:hidden name="mStt"/> 
+                                 <s:textfield type="text" name="mDoiTuong" label="Tên khách hàng: " placeholder="tên khách hàng"/>
+                                 <s:textfield type="text" name="mTinhThanh" label="Tỉnh thành: " placeholder="tỉnh thành"/>
+                                 <s:hidden name="mTuyenBanHangThu"/>
+                                 <s:hidden name="mMaNhanVien"/> 
+                                 <s:hidden name="mX"/> 
+                                 
+                                 
+                                 <s:hidden name="mMaDoiTuong"/> 
+                                 
+                                 
+                                 
+                                 <s:textfield type="text" name="mDiaChi" label="Địa chỉ:" placeholder="địa chỉ"/>
+                                 <s:textfield type="text" name="mDienThoai" label="Điện thoại:" placeholder="điện thoại"/>
+                                 <s:submit/>
+                             </s:push>
+                       </s:form>  
                     
-                    <tr>
-                        <td align="center" colspan="2">
-                            <button style="width: 150px; height: 50px;">Update</button>
-                        </td>
-                    </tr>
-                </table>
-            
+                 </div>   
         </div>
         
     </body>

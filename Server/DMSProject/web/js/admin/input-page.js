@@ -31,3 +31,19 @@ function editCustomer(id){
     
     );
 }
+
+function importData(){
+    console.log('GET');
+    //$("#info").append('hello');
+    $.getJSON('add-customer',
+        function(data){
+            console.log('GET');
+            var customersTotal = (data.customersTotal);
+            console.log(customersTotal);
+            
+            var option = $("#info");
+            var alert = "Có " + customersTotal + " khách hàng được thêm!";
+            option.append(alert);
+        }
+    );
+}

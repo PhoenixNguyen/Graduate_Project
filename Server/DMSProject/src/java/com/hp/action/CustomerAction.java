@@ -68,7 +68,15 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     private Document document = new Document();
     private List<Customer> customersList = new ArrayList<Customer>();
 
-    
+    private int customersTotal;
+
+    public int getCustomersTotal() {
+        return customersTotal;
+    }
+
+    public void setCustomersTotal(int customersTotal) {
+        this.customersTotal = customersTotal;
+    }
 
     public Customer getCustomer() {
         return customer;
@@ -103,8 +111,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        String saveName = document.getFileFileName();
         try {
-            String saveName = document.getFileFileName();
+            
             System.out.println(document.getFileContentType());
             String filePath = ServletActionContext.getServletContext().getRealPath("/database/");
             System.out.println("Server path:" + filePath);
@@ -114,6 +123,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
             
             //set name file
             session.setAttribute("upload-name-file", saveName);
+            
         } catch (IOException ex) {
             Logger.getLogger(CustomerAction.class.getName()).log(Level.SEVERE, null, ex);
             return INPUT;
@@ -130,6 +140,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         if(saveName == null)
             return INPUT;
         
+        int total = 0;
         //Import data
         try {
             String fileInput = ServletActionContext.getServletContext().getRealPath("/database/"+saveName+"/");
@@ -238,8 +249,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
                     
                     
                     //Add to database
-                    if(customerDAO.saveOrUpdate(customer))
+                    if(customerDAO.saveOrUpdate(customer)){
                         System.out.println("Add Object " + i);
+                        total++;
+                    }
                 }
             }
             
@@ -247,6 +260,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
             ioe.printStackTrace();
             return INPUT;
         }
+        customersTotal = total;
         return SUCCESS;
     }
     
@@ -284,7 +298,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String editCustomer() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
-        request.setCharacterEncoding("UTF-8");
+        //request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF8");
         
         String stt = request.getParameter("id_cus");
         int st;
@@ -302,7 +317,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String updateCustomer() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
-        request.setCharacterEncoding("UTF-8");
+        //request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF8");
+        
+        String test = request.getParameter("mTinhThanh");
         
         String name  = customer.getmDienThoai();
         
@@ -313,7 +331,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
 //        Float point = demo2.getPoint();
 //        System.out.println("__" + stt + "__ " +point);
         
-        System.out.println("__" + pw + "__ " +y);
+        System.out.println("__" + pw + "__ " +y +" PARA: " + test);
         System.out.println("__" + name);
         boolean status = customerDAO.update(customer);
         customersList = customerDAO.getListCustomer();

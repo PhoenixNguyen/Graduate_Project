@@ -4,14 +4,11 @@
     Author     : HP
 --%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 
-<%
-    request.setCharacterEncoding("UTF-8");
-    response.setCharacterEncoding("UTF-8");
 
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,6 +24,12 @@
         <script>
             
         </script>
+        
+        <%
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
+
+        %>
     </head>
     <body>
         <h1>Show and import resources</h1>
@@ -40,8 +43,28 @@
                 </select>
             </div>
             <div id="load">
-                Thêm dữ liệu
-                <button>load</button>
+                <div>Thêm dữ liệu</div> 
+                <div>
+                    <s:actionerror />
+                    <s:form action="upload" onsubmit="uploadData()" id="login_form" enctype="multipart/form-data" validate="true"
+                            cssStyle="position: absolute;
+                                   margin-top: -50px;
+                                   margin-left: 60px;"
+                            >  
+
+                        <s:file type="file" name="document.file" id="upfile"/>
+                        <br/>
+                        <br/>
+                        <s:submit                           
+                               />
+
+                    </s:form>       
+                </div>
+                    <div id="import">
+                        <input type="button" id="imp" onClick="importData()" value="Import" > 
+                        <div id="info">GET: </div>    
+                    </div>
+<!--                <button>load</button>-->
             </div>
             <div id="txt">
                 Sửa thông tin
@@ -85,26 +108,35 @@
                 </table>
                 
                 <div id="editForm">
-                    <s:form action="update-customer" method="get"> 
+                    <s:textfield type="text" name="customer.getmMaDoiTuong()" label="Khách hàng: " placeholder=""/>
+                    <s:form action="update-customer" method="get" accept-charset="UTF-8"> 
                              <s:push value="customer"> 
-                                 <s:hidden name="mFax"/> 
-                                 <s:hidden name="mGhiChu"/> 
-                                 <s:hidden name="mYCoordinates"/> 
-                                 
                                  <s:hidden name="mStt"/> 
-                                 <s:textfield type="text" name="mDoiTuong" label="Tên khách hàng: " placeholder="tên khách hàng"/>
-                                 <s:textfield type="text" name="mTinhThanh" label="Tỉnh thành: " placeholder="tỉnh thành"/>
+                                 <s:textfield type="text" name="mTinhThanh" label="Tỉnh thành: " placeholder=""/>
                                  <s:hidden name="mTuyenBanHangThu"/>
                                  <s:hidden name="mMaNhanVien"/> 
                                  <s:hidden name="mX"/> 
-                                 
-                                 
                                  <s:hidden name="mMaDoiTuong"/> 
-                                 
-                                 
-                                 
-                                 <s:textfield type="text" name="mDiaChi" label="Địa chỉ:" placeholder="địa chỉ"/>
-                                 <s:textfield type="text" name="mDienThoai" label="Điện thoại:" placeholder="điện thoại"/>
+                                 <s:textfield type="text" name="mDoiTuong" label="Tên khách hàng: " placeholder=""/>
+                                 <s:hidden name="mNoDKy"/> 
+                                 <s:hidden name="mCoDKy"/> 
+                                 <s:hidden name="mNoTKy"/> 
+                                 <s:hidden name="mTienBan"/> 
+                                 <s:hidden name="mCoTKy"/> 
+                                 <s:hidden name="mCKGG"/> 
+                                 <s:hidden name="mNhapLai"/> 
+                                 <s:hidden name="mNoCKy"/> 
+                                 <s:hidden name="mCoCKy"/> 
+                                 <s:hidden name="mDoanhThu"/> 
+                                 <s:hidden name="mPhanTramNoChiaThu"/> 
+                                 <s:hidden name="mNoToiDa"/> 
+                                 <s:hidden name="mDaiDien"/> 
+                                 <s:textfield type="text" name="mDiaChi" label="Địa chỉ:" placeholder="pass"/>
+                                 <s:textfield type="text" name="mDienThoai" label="Điện thoại:" placeholder="pass"/>
+                                 <s:hidden name="mFax"/> 
+                                 <s:hidden name="mGhiChu"/> 
+                                 <s:hidden name="mXCoordinates"/> 
+                                 <s:hidden name="mYCoordinates"/>
                                  <s:submit/>
                              </s:push>
                        </s:form>  

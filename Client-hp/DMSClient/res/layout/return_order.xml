@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_marginLeft="10dip"
-            android:background="@color/orange"
+        android:background="@drawable/button_color"
             android:text="@string/button_search" />
     </LinearLayout>
 
@@ -104,28 +104,28 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dip"
-            android:background="@color/orange"
+            android:background="@drawable/button_color"
             android:text="@string/button_product" />
 
         <Button
             android:layout_width="92dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dip"
-            android:background="@color/orange"
+            android:background="@drawable/button_color"
             android:text="@string/button_return_summany" />
 
         <Button
             android:layout_width="85dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dip"
-            android:background="@color/orange"
+            android:background="@drawable/button_color"
             android:text="@string/button_return_production" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dip"
-            android:background="@color/orange"
+            android:background="@drawable/button_color"
             android:text="@string/button_return_otc" />
     </LinearLayout>
 

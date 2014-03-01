@@ -35,6 +35,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.LatLngBounds.Builder;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.hp.domain.Customer;
 import com.hp.domain.Schedule;
 import com.hp.domain.RoadManagement;
 import com.hp.rest.Rest;
@@ -128,8 +129,8 @@ public class CustomerMapActivity extends FragmentActivity
     private final Random mRandom = new Random();
     
     private int positionClick = 0;
-    private String username;
-    
+    public static String customerSelected = new String();
+    public static Customer mSelectedCustomer;
     //current location
     private float mX;
     private float mY;
@@ -154,11 +155,12 @@ public class CustomerMapActivity extends FragmentActivity
         
         //Get POSITION
         Intent i = getIntent();
-        username  = i.getStringExtra("POSITION_CLICK");
+        customerSelected  = i.getStringExtra("POSITION_CLICK");
         
         for(int j = 0; j < Rest.customerList.size(); j++){
-        	if(username.compareTo(Rest.customerList.get(j).getmMaDoiTuong()) == 0){
+        	if(customerSelected.compareTo(Rest.customerList.get(j).getmMaDoiTuong()) == 0){
         		positionClick = j;
+        		mSelectedCustomer = Rest.customerList.get(j);
         	}
         }
         
@@ -458,7 +460,7 @@ public class CustomerMapActivity extends FragmentActivity
 				}
 				// TODO Auto-generated method stub
 				Intent t = new Intent(context, CustomerMapActivity.class);
-		        t.putExtra("POSITION_CLICK", username);
+		        t.putExtra("POSITION_CLICK", customerSelected);
 		        
 		        startActivity(t);
 			}

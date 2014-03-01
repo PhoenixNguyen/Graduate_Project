@@ -18,11 +18,17 @@ import com.hp.dao.ScheduleDAO;
 import com.hp.dao.ScheduleDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
+import com.hp.dao.TakeOrderDAO;
+import com.hp.dao.TakeOrderDAOImpl;
+import com.hp.dao.TakeOrderDetailDAO;
+import com.hp.dao.TakeOrderDetailDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Schedule;
+import com.hp.domain.TakeOrder;
+import com.hp.domain.TakeOrderDetail;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
@@ -407,5 +413,67 @@ public class GenericResource {
         
         return list;
         
+    }
+    
+    @POST
+    @Path("/putTakeOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putTakeOrder( String pTakeOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        TakeOrder takeOrder = new TakeOrder();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                takeOrder = mapper.readValue(pTakeOrder, TakeOrder.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        boolean st = takeOrderDAO.saveOrUpdate(takeOrder);
+//            String output = pTrack.toString();
+            System.out.println("____ " + pTakeOrder + "___ " + st);
+            return Response.status(200).entity(st+"").build();
+    }
+    
+    @POST
+    @Path("/putOrdersDetailList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putOrdersDetailList( String pList ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<TakeOrderDetail> detailList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                detailList = mapper.readValue(pList
+                        , TypeFactory.defaultInstance().constructCollectionType(List.class
+                        , TakeOrderDetail.class));
+                //System.out.println(schedulesList.get(0).getmMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        int count = 0;
+        TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
+        for(int i = 0; i< detailList.size(); i++){
+            if(takeOrderDetailDAO.saveOrUpdate(detailList.get(i)))
+                count ++;
+            
+        }
+        
+        return Response.status(200).entity(count+"").build();
     }
 }

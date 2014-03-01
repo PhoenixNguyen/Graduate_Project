@@ -64,16 +64,16 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////
 		
-		String[] PRODUCT;
-		if(parent.getItemAtPosition(pos).toString().compareTo("fruit") == 0)
-			PRODUCT = 
-					new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
-									"Apple", "Avocado",
-									"Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
-		else
-			PRODUCT = 
-			new String[] {"Android", "iOS", "WindowsMobile", "Blackberry",
-				"Android", "iOS", "WindowsMobile"};
+//		String[] PRODUCT;
+//		if(parent.getItemAtPosition(pos).toString().compareTo("fruit") == 0)
+//			PRODUCT = 
+//					new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
+//									"Apple", "Avocado",
+//									"Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
+//		else
+//			PRODUCT = 
+//			new String[] {"Android", "iOS", "WindowsMobile", "Blackberry",
+//				"Android", "iOS", "WindowsMobile"};
 		listView.setAdapter(new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, productsList));
 	  }
 	 

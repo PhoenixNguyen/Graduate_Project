@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.type.TypeFactory;
 import com.hp.domain.Customer;
 import com.hp.domain.Product;
 import com.hp.domain.Provider;
+import com.hp.domain.TakeOrderDetail;
 import com.hp.order.*;
 import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
@@ -30,6 +31,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,10 +46,17 @@ public class Order_ProductActivity extends Activity{
 	
 	private Spinner spinner;
 	final Context context = this;
+	private int line = 0;
+	
+	public static List<TakeOrderDetail> ordersDetailList = new ArrayList<TakeOrderDetail>();
+	
+	private TextView total_value;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
+		
+		total_value = (TextView)findViewById(R.id.total_value);
 		
 		List<Product> productsList = new ArrayList<Product>();
 		Product product = new Product(1, "Welcome", "Welcome", "Choose providers list");
@@ -56,12 +65,13 @@ public class Order_ProductActivity extends Activity{
 		listView = (ListView)findViewById(R.id.list_view_product);
 		listView.setAdapter(new ProductArrayAdapter(this, android.R.layout.simple_list_item_1, productsList));
 		
+		
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
 		     @Override
 		     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
 		     {
-		    	 String selectedValue = (String) listView.getAdapter().getItem(position);
+		    	 final Product selectedValue = (Product) listView.getAdapter().getItem(position);
 		    	 
 		          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
 		    	// custom dialog
@@ -71,20 +81,58 @@ public class Order_ProductActivity extends Activity{
 		 
 					// set the custom dialog components - text, image and button
 					TextView text = (TextView) dialog.findViewById(R.id.text);
-					text.setText("Tên sản phẩm: "+selectedValue);
+					text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
 
 					TextView price = (TextView) dialog.findViewById(R.id.price);
-					price.setText("Giá sản phẩm: "+position);
+					price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
+					
+					final EditText count = (EditText)dialog.findViewById(R.id.count);
 					
 					Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 					// if button is clicked, close the custom dialog
 					dialogButton.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
+							
+							line++;
+							String count2 = count.getText().toString();
+							int number = 0;
+							if(count2.compareTo("") != 0)
+								number = Integer.parseInt(count2);
+							else
+								return;
+							
+							//take order detail
+							boolean status = false;
+							for(int i = 0; i < ordersDetailList.size(); i++){
+								if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
+									if(number == 0){
+										ordersDetailList.remove(i);
+									}
+									else{
+										ordersDetailList.get(i).setmNumber(number);
+										
+									}
+									status = true;
+									line--;
+								}
+							}
+							if(!status && number != 0){
+								TakeOrderDetail orderDetail = 
+										new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
+												selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
+												selectedValue.getmExportPrices(), "", number, "", 0);
+								
+								ordersDetailList.add(orderDetail);
+							}
+							
+							total_value.setText(ordersDetailList.size()+"");
+							//finish
 							dialog.dismiss();
 						}
 					});
 		 
+					
 					dialog.show();
 		      }
 		});

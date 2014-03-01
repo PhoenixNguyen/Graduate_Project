@@ -95,6 +95,7 @@ public class Order_ProductActivity extends Activity{
 						public void onClick(View v) {
 							
 							line++;
+							System.out.println("__ "+ line);
 							String count2 = count.getText().toString();
 							int number = 0;
 							if(count2.compareTo("") != 0)
@@ -118,6 +119,7 @@ public class Order_ProductActivity extends Activity{
 								}
 							}
 							if(!status && number != 0){
+								System.out.println("2__ "+ line);
 								TakeOrderDetail orderDetail = 
 										new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
 												selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 

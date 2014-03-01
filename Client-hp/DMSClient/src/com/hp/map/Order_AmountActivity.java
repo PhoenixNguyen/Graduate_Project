@@ -101,6 +101,7 @@ public class Order_AmountActivity extends Activity implements OnClickListener{
 			
 			//Set order ID
 			for(int i = 0; i < Order_ProductActivity.ordersDetailList.size(); i++){
+				Order_ProductActivity.ordersDetailList.get(i).setmLine(i+1);
 				Order_ProductActivity.ordersDetailList.get(i).setmTakeOrderID(orderID);
 			}
 			

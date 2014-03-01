@@ -1,9 +1,20 @@
 package com.hp.map;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
+
+import com.hp.domain.Customer;
+import com.hp.domain.Product;
+import com.hp.domain.Provider;
 import com.hp.order.*;
+import com.hp.rest.Rest;
+import com.sun.jersey.api.client.ClientResponse;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,6 +22,7 @@ import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,8 +49,12 @@ public class Order_ProductActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
 		
+		List<Product> productsList = new ArrayList<Product>();
+		Product product = new Product(1, "Welcome", "Welcome", "Choose providers list");
+		productsList.add(product);
+		
 		listView = (ListView)findViewById(R.id.list_view_product);
-		listView.setAdapter(new ProductArrayAdapter(this, android.R.layout.simple_list_item_1, PRODUCT));
+		listView.setAdapter(new ProductArrayAdapter(this, android.R.layout.simple_list_item_1, productsList));
 		
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -89,10 +105,52 @@ public class Order_ProductActivity extends Activity{
 	// add items into spinner dynamically
 	  public void addItemsOnSpinner() {
 	 
+		//GET providers list
+		// Check the internet
+		if(isOnline()){
+			System.out.println("Internet access!!____________________");
+		}
+		else{
+			System.out.println("NO Internet access!!____________________");
+			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		ClientResponse response = Rest.mService.path("webresources").path("getProvidersIDList")
+				.accept("application/json")
+				.type("application/json").get(ClientResponse.class);
+        System.out.println("________________ "+ response.toString());
+        if(response.getStatus() != 200){
+        	return;
+        }
+        
+        String re = response.getEntity(String.class);
+        System.out.println("________________ "+ re);
+        
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<Provider> providersList = null;
+		try {
+//			File jsonFile = new File(jsonFilePath);
+			providersList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+					Provider.class));
+			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+		
 		spinner = (Spinner) findViewById(R.id.class_id);
+		
 		List<String> list = new ArrayList<String>();
-		list.add("fruit");
-		list.add("mobile os");
+		for(int i = 0; i < providersList.size(); i++){
+			
+			list.add(providersList.get(i).getmID());
+		}
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 			android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -105,4 +163,11 @@ public class Order_ProductActivity extends Activity{
 			spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(this, listView));
 		  }
 	  ////////////////////// finish spiner ///////////////////////////////////
+
+	  
+	  public boolean isOnline() { 
+			ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
+			return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
+		}
 }
+

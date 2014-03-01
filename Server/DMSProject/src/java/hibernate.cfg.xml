@@ -19,5 +19,10 @@
         <mapping class="com.hp.domain.Staff" />
         <mapping class="com.hp.domain.Schedule" />
         
+        <mapping class="com.hp.domain.Provider" />
+        <mapping class="com.hp.domain.Product" />
+        <mapping class="com.hp.domain.TakeOrder" />
+        <mapping class="com.hp.domain.TakeOrderDetail" />
+        
   </session-factory>
 </hibernate-configuration>

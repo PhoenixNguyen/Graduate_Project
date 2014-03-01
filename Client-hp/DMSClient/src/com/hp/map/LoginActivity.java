@@ -44,8 +44,9 @@ public class LoginActivity extends Activity {
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
-        mUsername.setText("eufood.");
+        mUsername.setText("eufood.nguyentuanlong");
         mPassword = (EditText)findViewById(R.id.password);
+        mPassword.setText("123456");
         
         Button btnLogin = (Button)findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {

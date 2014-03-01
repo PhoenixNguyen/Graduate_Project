@@ -6,52 +6,42 @@
 
 package com.hp.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author HP
  */
-@Entity
-@Table(name="tb_sanpham")
+
 public class Product {
-    @Id
-    @GeneratedValue
     
-    @Column(name="sanpham_stt")
     private int mSerial;
-    @Column(name="sanpham_ma_vach")
-    private String mBarcode;
-    @Column(name="sanpham_ma_san_pham")
+	
+	private String mBarcode;
     private String mProductID;
-    @Column(name="sanpham_ten_hang_hoa")
     private String mProductName;
-    @Column(name="sanpham_thuong_hieu")
     private String mBrand;
-    @Column(name="sanpham_xuat_xu")
     private String mOrigin;
-    @Column(name="sanpham_quy_cach_packing")
     private String mPackingSpecifications;
-    @Column(name="sanpham_dinh_luong")
     private String mQuantification;
-    @Column(name="sanpham_thue")
-    private Float mVATTax;
-    @Column(name="sanpham_gia_nhap")
-    private Float mImportPrices;
-    @Column(name="sanpham_gia_ban")
-    private Float mExportPrices;
-    @Column(name="sanpham_nha_cung_cap")
+    private float mVATTax;
+    private float mImportPrices;
+    private float mExportPrices;
     private String mProvider;
-    @Column(name="sanpham_mo_ta")
     private String mDescription;
-    @Column(name="sanpham_anh_san_pham")
     private String mProductImage;
 
-    
+    public Product(int mSerial, String mBarcode, String mProductID,
+			String mProductName) {
+		super();
+		this.mSerial = mSerial;
+		this.mBarcode = mBarcode;
+		this.mProductID = mProductID;
+		this.mProductName = mProductName;
+	}
+
+    public Product(){
+    	
+    }
     public int getmSerial() {
         return mSerial;
     }
@@ -116,27 +106,27 @@ public class Product {
         this.mQuantification = mQuantification;
     }
 
-    public Float getmVATTax() {
+    public float getmVATTax() {
         return mVATTax;
     }
 
-    public void setmVATTax(Float mVATTax) {
+    public void setmVATTax(float mVATTax) {
         this.mVATTax = mVATTax;
     }
 
-    public Float getmImportPrices() {
+    public float getmImportPrices() {
         return mImportPrices;
     }
 
-    public void setmImportPrices(Float mImportPrices) {
+    public void setmImportPrices(float mImportPrices) {
         this.mImportPrices = mImportPrices;
     }
 
-    public Float getmExportPrices() {
+    public float getmExportPrices() {
         return mExportPrices;
     }
 
-    public void setmExportPrices(Float mExportPrices) {
+    public void setmExportPrices(float mExportPrices) {
         this.mExportPrices = mExportPrices;
     }
 

@@ -8,6 +8,10 @@ package com.hp.rest;
 
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
+import com.hp.dao.ProductDAO;
+import com.hp.dao.ProductDAOImpl;
+import com.hp.dao.ProviderDAO;
+import com.hp.dao.ProviderDAOImpl;
 import com.hp.dao.RoadManagementDAO;
 import com.hp.dao.RoadManagementDAOImpl;
 import com.hp.dao.ScheduleDAO;
@@ -15,6 +19,8 @@ import com.hp.dao.ScheduleDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.domain.Customer;
+import com.hp.domain.Product;
+import com.hp.domain.Provider;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Schedule;
 import java.io.IOException;
@@ -375,5 +381,31 @@ public class GenericResource {
         ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
         int st = scheduleDAO.deletechedule(staff, date);
         return Response.status(200).entity("status:"+ st).build();
+    }
+    
+    @GET
+    @Path("/getProvidersIDList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Provider> getProvidersIDList() {
+        List<Provider> list = new ArrayList<Provider>();
+        
+        ProviderDAO providerDAO = new ProviderDAOImpl();
+        list = providerDAO.getProvidersIDList();
+        
+        return list;
+        
+    }
+    
+    @POST
+    @Path("/getProductsList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Product> getProvidersIDList(String pProvider) {
+        List<Product> list = new ArrayList<Product>();
+        
+        ProductDAO productDAO = new ProductDAOImpl();
+        list = productDAO.getProductList(pProvider);
+        
+        return list;
+        
     }
 }

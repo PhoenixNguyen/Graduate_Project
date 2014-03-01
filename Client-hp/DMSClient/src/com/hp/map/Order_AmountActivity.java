@@ -33,6 +33,22 @@ public class Order_AmountActivity extends Activity {
 		dc2_value = (EditText)findViewById(R.id.dc2_value);
 		note_value = (EditText)findViewById(R.id.note_value);
 		
+		int numberTotal = 0;
+		float pricesTotal = 0;
+		for(int i = 0; i < Order_ProductActivity.ordersDetailList.size(); i++){
+			numberTotal = numberTotal +  Order_ProductActivity.ordersDetailList.get(i).getmNumber();
+			pricesTotal = pricesTotal +  Order_ProductActivity.ordersDetailList.get(i).getmBeforeOrderPrice() 
+					* Order_ProductActivity.ordersDetailList.get(i).getmNumber() ;
+		}
+		document_value.setText(Order_ProductActivity.ordersDetailList.size() + " sản phẩm và " + numberTotal + " mục");
+		sum_value.setText(pricesTotal + "");
 		
+	}
+	
+	@Override
+	protected void onResume() {
+
+	   super.onResume();
+	   this.onCreate(null);
 	}
 }

@@ -138,7 +138,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         String saveName = (String)session.getAttribute("upload-name-file");
         System.out.println("Get Attribute file name: "+saveName);
         if(saveName == null)
-            return INPUT;
+            return SUCCESS;
         
         int total = 0;
         //Import data
@@ -258,7 +258,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
             
         } catch(Exception ioe) {
             ioe.printStackTrace();
-            return INPUT;
+            return SUCCESS;
         }
         customersTotal = total;
         return SUCCESS;

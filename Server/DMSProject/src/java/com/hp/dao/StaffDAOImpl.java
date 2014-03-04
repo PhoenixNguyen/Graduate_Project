@@ -7,7 +7,9 @@
 package com.hp.dao;
 
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
+import com.hp.domain.Staff;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -64,4 +66,86 @@ public class StaffDAOImpl implements StaffDAO{
         
         return result;
     }
+    
+    public List<Staff> getListStaff(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Staff> courses = null;
+        try{
+                courses = session.createQuery("from Staff ").list();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    public Staff loadStaff(int pID){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        Staff courses = null;
+        try{
+            //Query query = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"'");
+            //courses = (Customer)query;
+                    
+            courses = (Staff)session.get(Staff.class, pID);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    @Override
+    public boolean update(Staff pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.update(pStaff);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean saveOrUpdate(Staff pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.saveOrUpdate(pStaff);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
 }

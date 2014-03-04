@@ -15,4 +15,8 @@ import java.util.List;
  */
 public interface ProductDAO {
     public List<Product> getProductList(String pProvider);
+    public List<Product> getProductList();
+    public Product loadProduct(int pID);
+    public boolean saveOrUpdate(Product pProduct);
+    public boolean update(Product pProduct);
 }

@@ -190,6 +190,96 @@
             <result name="input" >input-page.jsp</result>
         </action>
         
+<!--        display staff-->
+        <action name="display-staffs" method="displayStaffs" class="com.hp.action.StaffsAction">
+            <result name="success" >input-staffs.jsp</result>
+            <result name="input" >input-staffs.jsp</result>
+        </action>
+        
+        <action name="edit-staff" method="editStaff" class="com.hp.action.StaffsAction">
+            <result name="success" >input-staffs.jsp</result>
+            <result name="input" >input-staffs.jsp</result>
+        </action>
+        
+        <action name="update-staff" method="updateStaff" class="com.hp.action.StaffsAction">
+            <result name="success" >input-staffs.jsp</result>
+            <result name="input" >input-staffs.jsp</result>
+        </action>
+        
+        <action name="upload-staffs" method="saveFile" class="com.hp.action.StaffsAction">
+            
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+ 
+            <result name="success" type="redirect">display-staffs</result>
+            <result name="input" type="redirect">display-staffs</result>
+        </action>
+        
+        <action name="add-staff" method="addStaffFromExcelFile" class="com.hp.action.StaffsAction">
+
+            <result type="json">
+                <param name="contentType">application/json</param>
+            </result>
+            
+        </action>
+        
+        
+        <!--        display products-->
+        <action name="display-products" method="displayProducts" class="com.hp.action.ProductsAction">
+            <result name="success" >input-products.jsp</result>
+            <result name="input" >input-products.jsp</result>
+        </action>
+        
+        <action name="edit-product" method="editProduct" class="com.hp.action.ProductsAction">
+            <result name="success" >input-products.jsp</result>
+            <result name="input" >input-products.jsp</result>
+        </action>
+        
+        <action name="update-product" method="updateProduct" class="com.hp.action.ProductsAction">
+            <result name="success" >input-products.jsp</result>
+            <result name="input" >input-products.jsp</result>
+        </action>
+        
+        <action name="upload-products" method="saveFile" class="com.hp.action.ProductsAction">
+            
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+ 
+            <result name="success" type="redirect">display-products</result>
+            <result name="input" type="redirect">display-products</result>
+        </action>
+        
+        <action name="add-product" method="addProductFromExcelFile" class="com.hp.action.ProductsAction">
+
+            <result type="json">
+                <param name="contentType">application/json</param>
+            </result>
+            
+        </action>
+        
+        <action name="upload-product-image" method="uploadAnImage" class="com.hp.action.ProductsAction">
+            
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    image/png,image/gif,image/jpeg,image/pjpeg,application/rar,image/jpg
+                    ,application/octet-stream,text/plain
+                    ,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+ 
+            <result name="success" type="redirect">edit-product?id_product=${id_product}</result>
+            <result name="input" type="redirect">edit-product?id_product=${id_product}</result>
+        </action>
+        
     </package>
     
 </struts>

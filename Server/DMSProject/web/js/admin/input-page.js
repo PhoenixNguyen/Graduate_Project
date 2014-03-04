@@ -11,7 +11,7 @@ function editCustomer(id){
             
             //find edit form
             var options = $("#editForm");
-            
+            z
 //            var $input = $("<s:textfield name='myField' type='text'/>");
 //            var $input2 = $("<s:a href=\"123\" >2222hkkk</s:a>");
 //            var $form = $("<s:form action=\"update-data\" method=\"get\" id=\"form\"> " 
@@ -49,3 +49,56 @@ function importData(){
         }
     );
 }
+
+function importStaffs(){
+    console.log('GET');
+    //$("#info").append('hello');
+    $.getJSON('add-staff',
+        function(data){
+            console.log('GET');
+            var staffsTotal = (data.staffsTotal);
+            console.log(staffsTotal);
+            
+            var option = $("#info");
+            option.find('span').remove();
+            var alert = "Có " + staffsTotal + " nhân viên được thêm!";
+            option.append($("<span/>").append(alert));
+            
+        }
+    );
+}
+
+function importProducts(){
+    console.log('GET');
+    //$("#info").append('hello');
+    $.getJSON('add-product',
+        function(data){
+            console.log('GET');
+            var productsTotal = (data.productsTotal);
+            console.log(productsTotal);
+            
+            var option = $("#info");
+            option.find('span').remove();
+            var alert = "Có " + productsTotal + " sản phẩm được thêm!";
+            option.append($("<span/>").append(alert));
+            
+        }
+    );
+}
+
+var $action = "";
+function selectObject(x){
+            
+            var selected = x;
+            console.log("selected: " + selected);
+            
+            if(selected === 0)
+                $action = "displayCustomers";
+            if(selected === 1)
+                $action = "display-staffs";
+            if(selected === 2)    
+                $action = "display-products";
+            
+            window.location.href = ""+ $action;
+
+         }

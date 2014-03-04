@@ -8,9 +8,6 @@
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 
-<script>
-<%@include file="../js/jquery.min.js"%>
-</script>
 
 <%
 
@@ -26,6 +23,7 @@
         
         <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
 
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/view-data-script.js"></script>
         <script type="text/javascript" src="../js/view-map.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">

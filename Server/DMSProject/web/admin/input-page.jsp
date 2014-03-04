@@ -36,11 +36,13 @@
         <div id="head_data">
             <div id="slect_item">
                 Chọn mục dữ liệu
-                <select>
+                <s:select name="giamDocId" list="{'Khách hàng', 'Nhân viên', 'Sản phẩm'}" id="sele"  listKey="giamDocId" 
+                          onchange="selectObject(selectedIndex)"  headerKey="0"  value="Khách hàng"/>
+<!--                <select>
                     <option selected="1">Khách hàng</option>
                     <option>Nhân viên</option>
                     <option>Sản phẩm</option>
-                </select>
+                </select>-->
             </div>
             <div id="load">
                 <div>Thêm dữ liệu</div> 
@@ -134,7 +136,7 @@
                                  <s:hidden name="mNoToiDa"/> 
                                  <s:hidden name="mDaiDien"/> 
                                  <s:textfield type="text" name="mDiaChi" label="Địa chỉ:" placeholder="pass"/>
-                                 <s:textfield type="text" name="mDienThoai" label="Điện thoại:" placeholder="pass"/>
+                                 <s:textfield id="dt" type="text" name="mDienThoai" label="Điện thoại:" placeholder="pass"/>
                                  <s:hidden name="mFax"/> 
                                  <s:hidden name="mGhiChu"/> 
                                  <s:hidden name="mXCoordinates"/> 

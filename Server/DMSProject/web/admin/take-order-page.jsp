@@ -108,7 +108,7 @@
                 </table>
                 
                 <div id="editForm">
-                    <h2>Chi tiết hóa đơn:</h2>
+                    <h2>Chi tiết hóa đơn: <s:property value="detailTakeOrdersList.get(0).getmTakeOrderID()"/></h2>
                     <table id="tb_edit">
                 <thead>
                     <tr>

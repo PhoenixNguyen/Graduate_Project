@@ -280,6 +280,18 @@
             <result name="input" type="redirect">edit-product?id_product=${id_product}</result>
         </action>
         
+        
+        <!--        display Take Order ================================================================= -->
+        <action name="display-take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
+            <result name="success" >take-order-page.jsp</result>
+            <result name="input" >take-order-page.jsp</result>
+        </action>
+        
+        <action name="take-order-detail" method="loadTakeOrdersDetail" class="com.hp.action.TakeOrderAction">
+            <result name="success" >take-order-page.jsp</result>
+            <result name="input" >take-order-page.jsp</result>
+        </action>
+        
     </package>
     
 </struts>

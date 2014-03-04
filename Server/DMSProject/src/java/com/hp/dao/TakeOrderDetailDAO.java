@@ -7,6 +7,7 @@
 package com.hp.dao;
 
 import com.hp.domain.TakeOrderDetail;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,7 @@ import com.hp.domain.TakeOrderDetail;
  */
 public interface TakeOrderDetailDAO {
     public boolean saveOrUpdate(TakeOrderDetail pTakeOrder);
+    
+    //GET
+    public List<TakeOrderDetail> getDetailTakeOrdersList(String pID);
 }

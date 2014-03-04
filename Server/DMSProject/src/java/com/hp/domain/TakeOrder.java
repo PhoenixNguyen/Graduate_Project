@@ -46,13 +46,13 @@ public class TakeOrder {
     @Column(name="hoadondathang_hinh_thuc_van_chuyen")
     private String mShippingVehicle;
     @Column(name="hoadondathang_thue")
-    private float mTax;
+    private Float mTax;
     @Column(name="hoadondathang_tien_truoc_thue")
-    private float mBeforePrice;
+    private Float mBeforePrice;
     @Column(name="hoadondathang_tien_sau_thue")
-    private float mAfterPrivate;
+    private Float mAfterPrivate;
     @Column(name="hoadondathang_giam_gia")
-    private float mDiscount;
+    private Float mDiscount;
     @Column(name="hoadondathang_trang_thai_don_hang")
     private int mOrderStatus;
     @Column(name="hoadondathang_ngay_tao_hoa_don")
@@ -144,36 +144,36 @@ public class TakeOrder {
         this.mShippingVehicle = mShippingVehicle;
     }
 
-    public float getmTax() {
+    public Float getmTax() {
         return mTax;
     }
 
-    public void setmTax(float mTax) {
+    public void setmTax(Float mTax) {
         this.mTax = mTax;
     }
 
     
-    public float getmBeforePrice() {
+    public Float getmBeforePrice() {
         return mBeforePrice;
     }
 
-    public void setmBeforePrice(float mBeforePrice) {
+    public void setmBeforePrice(Float mBeforePrice) {
         this.mBeforePrice = mBeforePrice;
     }
 
-    public float getmAfterPrivate() {
+    public Float getmAfterPrivate() {
         return mAfterPrivate;
     }
 
-    public void setmAfterPrivate(float mAfterPrivate) {
+    public void setmAfterPrivate(Float mAfterPrivate) {
         this.mAfterPrivate = mAfterPrivate;
     }
 
-    public float getmDiscount() {
+    public Float getmDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(float mDiscount) {
+    public void setmDiscount(Float mDiscount) {
         this.mDiscount = mDiscount;
     }
 

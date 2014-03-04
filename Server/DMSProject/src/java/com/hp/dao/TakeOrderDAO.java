@@ -7,6 +7,7 @@
 package com.hp.dao;
 
 import com.hp.domain.TakeOrder;
+import java.util.List;
 
 /**
  *
@@ -15,5 +16,6 @@ import com.hp.domain.TakeOrder;
 public interface TakeOrderDAO {
     public boolean saveOrUpdate(TakeOrder pTakeOrder);
         
-    
+    //Get
+    public List<TakeOrder> getTakeOrdersList();
 }

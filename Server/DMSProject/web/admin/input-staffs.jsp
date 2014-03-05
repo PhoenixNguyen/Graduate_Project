@@ -114,12 +114,22 @@
                 
                 </table>
                 
+                <%
+                            if(request.getParameter("id_staff") != null){
+                                int id = Integer.parseInt(request.getParameter("id_staff"));
+
+                                pageContext.setAttribute("idstaff", id);
+                            }
+                %>
+                <s:set id="id" value="%{#attr.idstaff}"/>
+                
                 <div id="editForm">
                     <s:textfield type="text" name="staff.getmID()" label="Nhân viên: " placeholder=""/>
                     <s:form action="update-staff" method="get" accept-charset="UTF-8"> 
                              <s:push value="staff"> 
                                  <s:hidden name="mSTT"/> 
-                                 <s:hidden name="mID"/> 
+                                 <s:hidden name="staff_serial" value="%{#id}"/> 
+                                 <s:textfield type="text" name="mID" label="Mã nhân viên: " placeholder="Mã nhân viên"/>
                                  <s:textfield type="text" name="mPW" label="Mật khẩu: " placeholder="Mật khẩu"/>
                                  <s:textfield type="text" name="mName" label="Họ tên: " placeholder="Họ tên"/>
                                  <s:textfield type="text" name="mAdress" label="Địa chỉ: " placeholder="Địa chỉ"/>

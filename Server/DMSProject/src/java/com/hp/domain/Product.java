@@ -23,7 +23,7 @@ public class Product {
     @GeneratedValue
     
     @Column(name="sanpham_stt")
-    private int mSerial;
+    private Integer mSerial;
     @Column(name="sanpham_ma_vach")
     private String mBarcode;
     @Column(name="sanpham_ma_san_pham")
@@ -52,11 +52,11 @@ public class Product {
     private String mProductImage;
 
     
-    public int getmSerial() {
+    public Integer getmSerial() {
         return mSerial;
     }
 
-    public void setmSerial(int mSerial) {
+    public void setmSerial(Integer mSerial) {
         this.mSerial = mSerial;
     }
 

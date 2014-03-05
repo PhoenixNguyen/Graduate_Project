@@ -26,7 +26,7 @@ public class Staff {
     @GeneratedValue
     
     @Column(name="nhanvien_stt")
-    private int mSTT;
+    private Integer mSTT;
 
     
     @Column(name="nhanvien_ma_nhan_vien")
@@ -50,11 +50,11 @@ public class Staff {
     @Column(name="nhanvien_trang_thai")
     private boolean mStatus;
     
-    public int getmSTT() {
+    public Integer getmSTT() {
         return mSTT;
     }
 
-    public void setmSTT(int mSTT) {
+    public void setmSTT(Integer mSTT) {
         this.mSTT = mSTT;
     }
     

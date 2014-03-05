@@ -333,6 +333,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         
         System.out.println("__" + pw + "__ " +y +" PARA: " + test);
         System.out.println("__" + name);
+        
+        if(customerSTT <= 0){
+            boolean status = customerDAO.saveOrUpdate(customer);
+            customersList = customerDAO.getListCustomer();
+            return SUCCESS;
+        }     
         boolean status = customerDAO.update(customer);
         customersList = customerDAO.getListCustomer();
         

@@ -101,8 +101,11 @@
                     <tr>
                         <td>
                             <input type="button" value="Sửa" 
-                                   onClick="location.href='edit-product?id_product=<s:property value="mSerial"/>'"/></td>
-                        <td><a href="">Xóa</a></td>
+                                   onClick="location.href='edit-product?id_product=<s:property value="mSerial"/>'"/>
+                        </td>
+                        <td><input type="button" value="Xóa" />
+<!--                                   onClick="location.href='remove-product?id_product='"/>-->
+                        </td>
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mBarcode"/></td>
                         <td><s:property value="mProductID"/></td>
@@ -125,13 +128,24 @@
                 
                 </table>
                 
+                    <%
+                            if(request.getParameter("id_product") != null){
+                                int id = Integer.parseInt(request.getParameter("id_product"));
+
+                                pageContext.setAttribute("idproduct", id);
+                            }
+                    %>
+                    <s:set id="id" value="%{#attr.idproduct}"/>
+                    
                 <div id="editForm">
                     <s:textfield type="text" name="product.getmProductID()" label="Sản phẩm: " placeholder=""/>
                     <s:form action="update-product" method="get" accept-charset="UTF-8" cssStyle="margin-bottom: 10px;"> 
                              <s:push value="product"> 
                                  <s:hidden name="mSerial"/> 
-                                 <s:hidden name="mBarcode"/> 
-                                 <s:hidden name="mProductID"/> 
+                                 <s:hidden name="id_product" value="%{#id}"/> 
+                                 
+                                 <s:textfield type="text" name="mBarcode" label="Mã vạch: " placeholder="Mã vạch"/>
+                                 <s:textfield type="text" name="mProductID" label="Mã sản phẩm: " placeholder="Mã sản phẩm"/>
                                  <s:textfield type="text" name="mProductName" label="Tên sản phẩm: " placeholder="Tên sản phẩm"/>
                                  <s:textfield type="text" name="mBrand" label="Thương hiệu: " placeholder="Thương hiệu"/>
                                  <s:textfield type="text" name="mOrigin" label="Xuất xứ: " placeholder="Xuất xứ"/>
@@ -153,14 +167,7 @@
                              </s:push>
                        </s:form>  
                     
-                    <%
-                            if(request.getParameter("id_product") != null){
-                                int id = Integer.parseInt(request.getParameter("id_product"));
-
-                                pageContext.setAttribute("idproduct", id);
-                            }
-                    %>
-                    <s:set id="id" value="%{#attr.idproduct}"/>
+                    
                     <s:actionerror />
                     <s:form action="upload-product-image?id_product=%{#id}" title="dfdf" label="Thay đổi ảnh" onsubmit="uploadData()" id="login_form32" enctype="multipart/form-data" validate="true"
                            cssStyle="margin-top: -100px;

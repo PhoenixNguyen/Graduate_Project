@@ -260,11 +260,28 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         return SUCCESS;
     }
     
+    private int staff_serial;
+
+    public int getStaff_serial() {
+        return staff_serial;
+    }
+
+    public void setStaff_serial(int staff_serial) {
+        this.staff_serial = staff_serial;
+    }
+    
     public String updateStaff() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF8");
         
+        if(staff_serial <= 0){
+            System.out.println("OK1" + staff.getmID());
+            boolean status = staffDAO.saveOrUpdate(staff);
+            staffsList = staffDAO.getListStaff();
+
+            return SUCCESS;
+        }
         System.out.println("OK" + staff.getmID());
         boolean status = staffDAO.update(staff);
         staffsList = staffDAO.getListStaff();

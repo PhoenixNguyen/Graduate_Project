@@ -289,10 +289,39 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         return SUCCESS;
     }
     
+    public String removeProduct() throws UnsupportedEncodingException{
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        //request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF8");
+        
+//        String stt = request.getParameter("id_product");
+//        int st;
+//        if(stt ==null){
+//            return INPUT;
+//        }
+//        st = Integer.parseInt(stt);
+        
+        productsList = productDAO.getProductList();
+        //product = productDAO.loadProduct(st);
+            
+        return SUCCESS;
+    }
+    
     public String updateProduct() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF8");
+                
+        System.out.println("id_product: "+id_product);
+        if(id_product <= 0){
+            product.setmSerial(null);
+            product.setmProvider("0");
+            System.out.println("OKsave" + product.getmProductID());
+            boolean status = productDAO.saveOrUpdate(product);
+            productsList = productDAO.getProductList();
+            return SUCCESS;
+        }
         
         System.out.println("OK" + product.getmProductID());
         boolean status = productDAO.update(product);

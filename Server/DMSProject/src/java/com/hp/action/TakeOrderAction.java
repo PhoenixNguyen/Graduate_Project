@@ -14,6 +14,7 @@ import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -24,13 +25,27 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author HP
  */
-public class TakeOrderAction extends ActionSupport{
+public class TakeOrderAction extends ActionSupport implements ModelDriven{
     private TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
     private TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
     
     private List<TakeOrder> takeOrdersList = new ArrayList<TakeOrder>();
     private List<TakeOrderDetail> detailTakeOrdersList = new ArrayList<TakeOrderDetail>();
 
+    public TakeOrder takeOrder = new TakeOrder();
+
+    @Override
+    public Object getModel() {
+        return takeOrder;
+    }
+    public TakeOrder getTakeOrder() {
+        return takeOrder;
+    }
+
+    public void setTakeOrder(TakeOrder takeOrder) {
+        this.takeOrder = takeOrder;
+    }
+    
     public List<TakeOrder> getTakeOrdersList() {
         return takeOrdersList;
     }
@@ -64,6 +79,31 @@ public class TakeOrderAction extends ActionSupport{
         
         detailTakeOrdersList = takeOrderDetailDAO.getDetailTakeOrdersList(order_id);
         takeOrdersList = takeOrderDAO.getTakeOrdersList();
+        return SUCCESS;
+    }
+    
+    public String editTakeOrder(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        String order_id = request.getParameter("id_take_order");
+        int st;
+        if(order_id ==null){
+            return INPUT;
+        }
+        st = Integer.parseInt(order_id);
+        takeOrder = takeOrderDAO.getTakeOrder(st);
+        
+        return SUCCESS;
+    }
+    
+    public String updateTakeOrder(){
+        System.out.println("OKto " + takeOrder.getmID() +" : " +takeOrder.getmCustomerAddress());
+        //takeOrder.setmEditer("0");
+        boolean status = takeOrderDAO.update(takeOrder);
+        System.out.println(status);
+        takeOrdersList = takeOrderDAO.getTakeOrdersList();
+        
         return SUCCESS;
     }
     

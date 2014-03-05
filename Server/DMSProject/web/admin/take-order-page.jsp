@@ -49,7 +49,9 @@
             <table id="tb_show">
                 <thead>
                     <tr>
-                        
+                        <td>Sửa</td>
+                        <td>Xóa</td>
+                        <td>Chi tiết</td>
                         <td>STT</td>
                         <td>Mã hóa đơn</td>
                         <td>Ngày đặt hàng</td>
@@ -57,7 +59,6 @@
                         <td>Mã khách hàng</td>
                         <td>Tên khách hàng</td>
                         <td>Địa chỉ</td>
-                        <td>Tên khách hàng</td>
                         <td>Số điện thoại</td>
                         <td>Địa chỉ giao hàng</td>
                         <td>Hình thức vận chuyển</td>
@@ -75,11 +76,14 @@
                 <tbody>
                     </tr>
                     <s:iterator status="status" value="takeOrdersList" >
-                        <tr id="<s:property value="mSerial"/>" onclick="location.href='take-order-detail?id_takeorder=<s:property value="mID"/>'">
-<!--                        <td>
+                    <tr >
+                        <td>
                             <input type="button" value="Sửa" 
-                                   onClick="location.href='editCustomer?id_cus=<s:property value="mStt"/>'"/></td>
-                        <td><a href="">Xóa</a></td>-->
+                                   onClick="location.href='edit-take-order?id_take_order=<s:property value="mSerial"/>'"/></td>
+                        <td><input type="button" value="Xóa" 
+                                   onClick="location.href='edit-take-order?id_take_order=<s:property value="mSerial"/>'"/></td>
+                        <td><input type="button" value="Chi tiết" 
+                                   onClick="location.href='take-order-detail?id_takeorder=<s:property value="mID"/>'"/></td>
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mID"/></td>
                         <td><s:property value="mTakeOrderDate"/></td>
@@ -112,7 +116,8 @@
                     <table id="tb_edit">
                 <thead>
                     <tr>
-                        
+                        <td>Sửa</td>
+                        <td>Xóa</td>
                         <td>STT</td>
                         <td>Mã hóa đơn</td>
                         <td>Ngày dòng</td>
@@ -134,11 +139,12 @@
                 <tbody>
                     </tr>
                     <s:iterator status="status" value="detailTakeOrdersList" >
-                        <tr >
-<!--                        <td>
+                    <tr >
+                        <td>
                             <input type="button" value="Sửa" 
                                    onClick="location.href='editCustomer?id_cus=<s:property value="mStt"/>'"/></td>
-                        <td><a href="">Xóa</a></td>-->
+                        <td><input type="button" value="Xóa" 
+                                   onClick="location.href='editCustomer?id_cus=<s:property value="mStt"/>'"/></td>
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mTakeOrderID"/></td>
                         <td><s:property value="mLine"/></td>

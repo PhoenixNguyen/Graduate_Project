@@ -18,4 +18,6 @@ public interface TakeOrderDAO {
         
     //Get
     public List<TakeOrder> getTakeOrdersList();
+    public TakeOrder getTakeOrder(int pTakeOrder);
+    public boolean update(TakeOrder pTakeOrder);
 }

@@ -26,7 +26,7 @@ public class TakeOrder {
     @GeneratedValue
     
     @Column(name="hoadondathang_stt")
-    private int mSerial;
+    private Integer mSerial;
     @Column(name="hoadondathang_ma_hoa_don")
     private String mID;
     @Column(name="hoadondathang_ngay_dat_hang")
@@ -45,7 +45,7 @@ public class TakeOrder {
     private String mDeliveryAddress;
     @Column(name="hoadondathang_hinh_thuc_van_chuyen")
     private String mShippingVehicle;
-    @Column(name="hoadondathang_thue")
+    @Column(name="hoadondathang_thue" , nullable = true)
     private Float mTax;
     @Column(name="hoadondathang_tien_truoc_thue")
     private Float mBeforePrice;
@@ -54,7 +54,7 @@ public class TakeOrder {
     @Column(name="hoadondathang_giam_gia")
     private Float mDiscount;
     @Column(name="hoadondathang_trang_thai_don_hang")
-    private int mOrderStatus;
+    private Integer mOrderStatus;
     @Column(name="hoadondathang_ngay_tao_hoa_don")
     private Timestamp mOrderEstablishDate;
     @Column(name="hoadondathang_ngay_sua_hoa_don")
@@ -64,11 +64,14 @@ public class TakeOrder {
     @Column(name="hoadondathang_nguoi_sua")
     private String mEditer;
 
-    public int getmSerial() {
+    public TakeOrder(){
+        
+    }
+    public Integer getmSerial() {
         return mSerial;
     }
 
-    public void setmSerial(int mSerial) {
+    public void setmSerial(Integer mSerial) {
         this.mSerial = mSerial;
     }
 
@@ -177,11 +180,11 @@ public class TakeOrder {
         this.mDiscount = mDiscount;
     }
 
-    public int getmOrderStatus() {
+    public Integer getmOrderStatus() {
         return mOrderStatus;
     }
 
-    public void setmOrderStatus(int mOrderStatus) {
+    public void setmOrderStatus(Integer mOrderStatus) {
         this.mOrderStatus = mOrderStatus;
     }
 

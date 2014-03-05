@@ -58,4 +58,43 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         
         return courses;
     }
+    
+    public TakeOrder getTakeOrder(int pTakeOrder){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        TakeOrder courses = null;
+        try{
+                courses = (TakeOrder)session.get(TakeOrder.class, pTakeOrder);
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    @Override
+    public boolean update(TakeOrder pTakeOrder){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.update(pTakeOrder);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
 }

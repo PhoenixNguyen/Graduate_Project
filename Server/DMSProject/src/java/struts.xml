@@ -297,6 +297,16 @@
             <result name="input" >take-order-page.jsp</result>
         </action>
         
+        <action name="edit-take-order" method="editTakeOrder" class="com.hp.action.TakeOrderAction">
+            <result name="success" >edit-take-order.jsp</result>
+            <result name="input" >take-order-page.jsp</result>
+        </action>
+        
+        <action name="update-take-order" method="updateTakeOrder" class="com.hp.action.TakeOrderAction">
+            <result name="success" >edit-take-order.jsp</result>
+            <result name="input" >edit-take-order.jsp</result>
+        </action>
+        
     </package>
     
 </struts>

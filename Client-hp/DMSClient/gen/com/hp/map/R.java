@@ -404,6 +404,7 @@ containing a value of this type.
         public static final int autoCompleteTextView1=0x7f050020;
         public static final int btnLogin=0x7f050033;
         public static final int btt=0x7f050022;
+        public static final int button=0x7f050043;
         public static final int calendar=0x7f050015;
         public static final int cb_customer=0x7f050040;
         public static final int class_id=0x7f05003a;
@@ -426,10 +427,12 @@ containing a value of this type.
         public static final int display_table=0x7f050038;
         public static final int document=0x7f050008;
         public static final int document_value=0x7f050009;
+        public static final int field=0x7f050041;
         public static final int footer=0x7f050030;
         public static final int gridview=0x7f050019;
         public static final int header=0x7f050016;
         public static final int hybrid=0x7f050004;
+        public static final int image=0x7f050042;
         public static final int init_order=0x7f050028;
         public static final int legal_info=0x7f05002f;
         public static final int link_to_register=0x7f050034;
@@ -439,7 +442,7 @@ containing a value of this type.
         public static final int list_view_product=0x7f05003e;
         public static final int lview=0x7f05001b;
         public static final int map=0x7f05002a;
-        public static final int menu_legal=0x7f050041;
+        public static final int menu_legal=0x7f050044;
         public static final int next=0x7f050018;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;

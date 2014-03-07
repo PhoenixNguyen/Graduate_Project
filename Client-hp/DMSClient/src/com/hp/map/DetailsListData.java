@@ -33,7 +33,9 @@ public final class DetailsListData {
                         "Scheduled for a month",
                         Schedule_CalendarActivity.class),
 
-        
+        new DetailsList("Orders manager",
+                "your orders manager",
+                OrdersManagerActivity.class),
     };
     
     public static DetailsList[] CUSTOMER_LIST ;

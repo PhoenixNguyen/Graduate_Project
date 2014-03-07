@@ -33,4 +33,7 @@
 	<string name="product">Product</string>
 	
 	<string name="schedule">Schedule</string>
+	
+	<string name="orders_manager">Orders manager</string>
+	<string name="orders_detail_manager">Orders detail manager</string>
 </resources>

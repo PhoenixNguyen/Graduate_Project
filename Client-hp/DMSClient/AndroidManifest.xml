@@ -69,11 +69,17 @@
             android:name=".Order_TabActivity"
             android:label="@string/product" />
          
-         
         <activity
             android:name="com.hp.map.Schedule_CalendarActivity"
             android:label="@string/schedule" />
         
+        <activity
+            android:name="com.hp.map.OrdersManagerActivity"
+            android:label="@string/orders_manager" />
+        
+		<activity
+            android:name="com.hp.map.OrdersDetailManagerActivity"
+            android:label="@string/orders_detail_manager" />            
     </application>
 
 </manifest>

@@ -11,6 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
+import org.hibernate.validator.Length;
+import org.hibernate.validator.Max;
+import org.hibernate.validator.Min;
+import org.hibernate.validator.NotEmpty;
+import org.hibernate.validator.Pattern;
+import org.hibernate.validator.Valid;
 
 /**
  *
@@ -101,6 +108,11 @@ public class Customer {
     public void setmMaDoiTuong(String mMaDoiTuong) {
         this.mMaDoiTuong = mMaDoiTuong;
     }
+    
+    @NotEmpty(message = "Tên tài khoản không được trống")
+    @Pattern(regex="[A-Za-z0-9\\.]+",message="Tên tài khoản chỉ chứa a-z, A-Z, 0-9, .")
+    @Length(min = 3 , max = 255 ,message= "Tên tài khoản phải có độ dài 3-255 ký tự")
+    @Valid
     @Column(name="khachhang_doi_tuong")
     public String getmDoiTuong() {
         return mDoiTuong;
@@ -109,6 +121,8 @@ public class Customer {
     public void setmDoiTuong(String mDoiTuong) {
         this.mDoiTuong = mDoiTuong;
     }
+    
+    //@Max(2)
     @Column(name="khachhang_no_dky")
     public Double getmNoDKy() {
         return mNoDKy;

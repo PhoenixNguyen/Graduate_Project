@@ -160,6 +160,7 @@
 
                 <div id="editForm">
                     <s:textfield type="text" name="customer.getmMaDoiTuong()" label="Khách hàng: " placeholder=""/>
+                    <s:actionerror />
                     <s:form action="update-customer" method="get" accept-charset="UTF-8"> 
                              <s:push value="customer"> 
                                  <s:hidden name="customerSTT" value="%{#id}"/>

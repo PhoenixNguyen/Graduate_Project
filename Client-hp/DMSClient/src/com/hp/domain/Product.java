@@ -23,7 +23,7 @@ public class Product {
     private String mOrigin;
     private String mPackingSpecifications;
     private String mQuantification;
-    private float mVATTax;
+	private float mVATTax;
     private float mImportPrices;
     private float mExportPrices;
     private String mProvider;

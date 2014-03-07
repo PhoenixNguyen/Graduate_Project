@@ -26,12 +26,12 @@ public class RoadManagement {
     private String mMaNhanVien;
     private String mMaKhachHang;
     private Timestamp mThoiGian;
-    private float mViDo;
-    private float mKinhdo;
+    private Float mViDo;
+    private Float mKinhdo;
     private String mGhiChu;
 
     public RoadManagement(String pMaNhanVien, String pMaKhachHang, Timestamp pThoiGian, 
-    		float pViDo, float pKinhdo, String pGhiChu){
+    		Float pViDo, Float pKinhdo, String pGhiChu){
     	this.mMaNhanVien = pMaNhanVien;
     	this.mMaKhachHang = pMaKhachHang;
     	this.mThoiGian = pThoiGian;
@@ -84,20 +84,20 @@ public class RoadManagement {
     }
 
     @Column(name="quanlyduongdi_vi_do")
-    public float getmViDo() {
+    public Float getmViDo() {
         return mViDo;
     }
 
-    public void setmViDo(float mViDo) {
+    public void setmViDo(Float mViDo) {
         this.mViDo = mViDo;
     }
 
     @Column(name="quanlyduongdi_kinh_do")
-    public float getmKinhdo() {
+    public Float getmKinhdo() {
         return mKinhdo;
     }
 
-    public void setmKinhdo(float mKinhdo) {
+    public void setmKinhdo(Float mKinhdo) {
         this.mKinhdo = mKinhdo;
     }
 

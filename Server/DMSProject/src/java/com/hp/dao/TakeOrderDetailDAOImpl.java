@@ -27,7 +27,7 @@ public class TakeOrderDetailDAOImpl implements TakeOrderDetailDAO{
         transaction = session.beginTransaction();
         try{
             
-            session.saveOrUpdate(pTakeOrder);
+            session.save(pTakeOrder);
             session.getTransaction().commit();
         }catch(HibernateException e){
             transaction.rollback();
@@ -57,5 +57,44 @@ public class TakeOrderDetailDAOImpl implements TakeOrderDetailDAO{
         }
         
         return courses;
+    }
+    
+     public TakeOrderDetail getTakeOrderDetail(int pTakeOrderDetail){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        TakeOrderDetail courses = null;
+        try{
+                courses = (TakeOrderDetail)session.get(TakeOrderDetail.class, pTakeOrderDetail);
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+     
+     @Override
+    public boolean update(TakeOrderDetail pTakeOrderDetail){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.update(pTakeOrderDetail);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
     }
 }

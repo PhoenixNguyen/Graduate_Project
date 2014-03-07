@@ -142,9 +142,9 @@
                     <tr >
                         <td>
                             <input type="button" value="Sửa" 
-                                   onClick="location.href='editCustomer?id_cus=<s:property value="mStt"/>'"/></td>
+                                   onClick="location.href='edit-take-order-detail?id_take_order_detail=<s:property value="mSerial"/>'"/></td>
                         <td><input type="button" value="Xóa" 
-                                   onClick="location.href='editCustomer?id_cus=<s:property value="mStt"/>'"/></td>
+                                   onClick="location.href='edit-take-order-detail?id_take_order_detail=<s:property value="mSerial"/>'"/></td>
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mTakeOrderID"/></td>
                         <td><s:property value="mLine"/></td>

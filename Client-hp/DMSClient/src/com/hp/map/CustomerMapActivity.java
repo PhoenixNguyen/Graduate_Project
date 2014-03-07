@@ -135,9 +135,7 @@ public class CustomerMapActivity extends FragmentActivity
     private float mX;
     private float mY;
     
-    //private String mUrl = "http://192.168.169.7:33554/DMSProject/webresources/putJourney"; 
     String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/putJourney"; 
-  	//String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
     
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@SuppressLint("NewApi")

@@ -25,42 +25,42 @@ public class TakeOrderDetail {
     @GeneratedValue
     
     @Column(name="chitietdondathang_stt")
-    private int mSerial;
+    private Integer mSerial;
     @Column(name="chitietdondathang_ma_hoa_don")
     private String mTakeOrderID;
     @Column(name="chitietdondathang_dong")
-    private int mLine;
+    private Integer mLine;
     @Column(name="chitietdondathang_ma_hang")
     private String mProductID;
     @Column(name="chitietdondathang_ma_vach")
     private String mBarcode;
     @Column(name="chitietdondathang_ten_san_pham")
     private String mProductName;
-    @Column(name="chitietdondathang_don_gia_sau_thue")
-    private float mAfterOrderPrice;
-    @Column(name="chitietdondathang_don_gia_truoc_thue")
-    private float mBeforeOrderPrice;
-    @Column(name="chitietdondathang_thue")
-    private float mTax;
-    @Column(name="chitietdondathang_giam_gia")
-    private float mDiscount;
-    @Column(name="chitietdondathang_thanh_tien")
-    private float mPriceTotal;
-    @Column(name="chitietdondathang_ma_kho")
+    @Column(name="chitietdondathang_don_gia_sau_thue", nullable = true)
+    private Float mAfterOrderPrice;
+    @Column(name="chitietdondathang_don_gia_truoc_thue", nullable = true)
+    private Float mBeforeOrderPrice;
+    @Column(name="chitietdondathang_thue", nullable = true)
+    private Float mTax;
+    @Column(name="chitietdondathang_giam_gia" , nullable = true)
+    private Float mDiscount;
+    @Column(name="chitietdondathang_thanh_tien", nullable = true)
+    private Float mPriceTotal;
+    @Column(name="chitietdondathang_ma_kho", nullable = true)
     private String mStockID;
     @Column(name="chitietdondathang_so_luong")
-    private int mNumber;
+    private Integer mNumber;
     @Column(name="chitietdondathang_don_vi_tinh")
     private String mUnit;
-    @Column(name="chitietdondathang_ty_gia")
-    private float mExchangeRate;
+    @Column(name="chitietdondathang_ty_gia", nullable = true)
+    private Float mExchangeRate;
     
     
-    public int getmSerial() {
+    public Integer getmSerial() {
         return mSerial;
     }
 
-    public void setmSerial(int mSerial) {
+    public void setmSerial(Integer mSerial) {
         this.mSerial = mSerial;
     }
 
@@ -72,11 +72,11 @@ public class TakeOrderDetail {
         this.mTakeOrderID = mTakeOrderID;
     }
 
-    public int getmLine() {
+    public Integer getmLine() {
         return mLine;
     }
 
-    public void setmLine(int mLine) {
+    public void setmLine(Integer mLine) {
         this.mLine = mLine;
     }
 
@@ -104,43 +104,43 @@ public class TakeOrderDetail {
         this.mProductName = mProductName;
     }
 
-    public float getmAfterOrderPrice() {
+    public Float getmAfterOrderPrice() {
         return mAfterOrderPrice;
     }
 
-    public void setmAfterOrderPrice(float mAfterOrderPrice) {
+    public void setmAfterOrderPrice(Float mAfterOrderPrice) {
         this.mAfterOrderPrice = mAfterOrderPrice;
     }
 
-    public float getmBeforeOrderPrice() {
+    public Float getmBeforeOrderPrice() {
         return mBeforeOrderPrice;
     }
 
-    public void setmBeforeOrderPrice(float mBeforeOrderPrice) {
+    public void setmBeforeOrderPrice(Float mBeforeOrderPrice) {
         this.mBeforeOrderPrice = mBeforeOrderPrice;
     }
 
-    public float getmTax() {
+    public Float getmTax() {
         return mTax;
     }
 
-    public void setmTax(float mTax) {
+    public void setmTax(Float mTax) {
         this.mTax = mTax;
     }
 
-    public float getmDiscount() {
+    public Float getmDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(float mDiscount) {
+    public void setmDiscount(Float mDiscount) {
         this.mDiscount = mDiscount;
     }
 
-    public float getmPriceTotal() {
+    public Float getmPriceTotal() {
         return mPriceTotal;
     }
 
-    public void setmPriceTotal(float mPriceTotal) {
+    public void setmPriceTotal(Float mPriceTotal) {
         this.mPriceTotal = mPriceTotal;
     }
 
@@ -152,11 +152,11 @@ public class TakeOrderDetail {
         this.mStockID = mStockID;
     }
 
-    public int getmNumber() {
+    public Integer getmNumber() {
         return mNumber;
     }
 
-    public void setmNumber(int mNumber) {
+    public void setmNumber(Integer mNumber) {
         this.mNumber = mNumber;
     }
 
@@ -168,11 +168,11 @@ public class TakeOrderDetail {
         this.mUnit = mUnit;
     }
 
-    public float getmExchangeRate() {
+    public Float getmExchangeRate() {
         return mExchangeRate;
     }
 
-    public void setmExchangeRate(float mExchangeRate) {
+    public void setmExchangeRate(Float mExchangeRate) {
         this.mExchangeRate = mExchangeRate;
     }
     

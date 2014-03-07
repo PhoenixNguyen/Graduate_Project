@@ -53,6 +53,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     private String customerID = new String();
     private int customerSTT;
     public Demo demo = new Demo();
+    
+    @Valid
     public Customer customer = new Customer();
     public Customer customer2 = new Customer();
     public Staff st = new Staff();
@@ -335,6 +337,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         System.out.println("__" + name);
         
         if(customerSTT <= 0){
+//            Customer cu1 = new Customer();
+//            cu1.setmMaNhanVien("0");
+//            cu1.setmMaDoiTuong("111");
+//            cu1.setmNoDKy(0.0);
+//            
             boolean status = customerDAO.saveOrUpdate(customer);
             customersList = customerDAO.getListCustomer();
             return SUCCESS;

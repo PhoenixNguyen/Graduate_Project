@@ -27,7 +27,7 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         transaction = session.beginTransaction();
         try{
             
-            session.saveOrUpdate(pTakeOrder);
+            session.save(pTakeOrder);
             session.getTransaction().commit();
         }catch(HibernateException e){
             transaction.rollback();

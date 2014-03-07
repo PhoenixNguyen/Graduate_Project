@@ -186,8 +186,8 @@
         </action>
         
         <action name="update-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
-            <result name="success" type="redirect">displayCustomers</result>
-            <result name="input" type="redirect">displayCustomers</result>
+            <result name="success" >input-page.jsp</result>
+            <result name="input" >input-page.jsp</result>
         </action>
         
 <!--        display staff-->
@@ -307,6 +307,16 @@
             <result name="input" >edit-take-order.jsp</result>
         </action>
         
+        
+        <action name="edit-take-order-detail" method="editTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
+            <result name="success" >edit-take-order-detail.jsp</result>
+            <result name="input" >edit-take-order-detail.jsp</result>
+        </action>
+        
+        <action name="update-take-order-detail" method="updateTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
+            <result name="success" >edit-take-order-detail.jsp</result>
+            <result name="input" >edit-take-order-detail.jsp</result>
+        </action>
     </package>
     
 </struts>

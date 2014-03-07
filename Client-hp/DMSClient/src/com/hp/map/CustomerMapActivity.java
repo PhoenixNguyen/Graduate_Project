@@ -112,6 +112,8 @@ public class CustomerMapActivity extends FragmentActivity
     private LocationClient mLocationClient;
     
     private Button initOrder;
+    private Button takeImages;
+    
     private Context context = this;
     
  // These settings are the same as the settings for the map. They will in fact give you updates
@@ -179,6 +181,16 @@ public class CustomerMapActivity extends FragmentActivity
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				startActivity(new Intent(context, Order_TabActivity.class));
+			}
+		});
+        
+        takeImages = (Button)findViewById(R.id.take_images);
+        takeImages.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(context, TakeImagesActivity.class));
 			}
 		});
         setUpMapIfNeeded();

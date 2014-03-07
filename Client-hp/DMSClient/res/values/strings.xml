@@ -36,4 +36,6 @@
 	
 	<string name="orders_manager">Orders manager</string>
 	<string name="orders_detail_manager">Orders detail manager</string>
+	
+	<string name="take_images">Take Images</string>
 </resources>

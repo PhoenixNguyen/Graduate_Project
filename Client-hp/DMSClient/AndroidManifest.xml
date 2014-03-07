@@ -79,7 +79,12 @@
         
 		<activity
             android:name="com.hp.map.OrdersDetailManagerActivity"
-            android:label="@string/orders_detail_manager" />            
+            android:label="@string/orders_detail_manager" />          
+            
+		<activity
+            android:name="com.hp.map.TakeImagesActivity"
+            android:label="@string/take_images" />  
+		
     </application>
 
 </manifest>

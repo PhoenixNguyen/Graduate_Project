@@ -34,11 +34,29 @@
     android:lines="2"
     android:text="@string/customer_address"/>
     
-    <Button
-    android:id="@+id/init_order"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Khởi tạo hóa đơn"/>
+    <LinearLayout
+		  android:layout_width="match_parent"
+		  android:layout_height="wrap_content"
+		  android:orientation="horizontal"
+		  
+		  >
+	    <Button
+	    android:id="@+id/init_order"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Khởi tạo hóa đơn"
+	    android:gravity="left"
+	    />
+	    
+	    <Button
+	    android:id="@+id/take_images"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="Chụp ảnh"
+	    android:gravity="right"
+	    />
+	    
+    </LinearLayout>
     
   </LinearLayout>
   <FrameLayout

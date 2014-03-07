@@ -59,6 +59,25 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         return courses;
     }
     
+    public List<TakeOrder> getTakeOrdersList(String pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<TakeOrder> courses = null;
+        try{
+                courses = session.createQuery("from TakeOrder where mCreater='"+pStaff+"'").list();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
     public TakeOrder getTakeOrder(int pTakeOrder){
         Session session = getSessionFactory().openSession();
         Transaction transaction;

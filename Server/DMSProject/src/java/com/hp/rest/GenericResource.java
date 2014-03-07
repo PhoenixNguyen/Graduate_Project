@@ -476,4 +476,30 @@ public class GenericResource {
         
         return Response.status(200).entity(count+"").build();
     }
+    
+    @POST
+    @Path("/getTakeOrderList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<TakeOrder> getTakeOrderList(String pData) {
+        List<TakeOrder> list = new ArrayList<TakeOrder>();
+        
+        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        list = takeOrderDAO.getTakeOrdersList(pData);
+        
+        return list;
+        
+    }
+    
+    @POST
+    @Path("/getTakeOrderDetailList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<TakeOrderDetail> getTakeOrderDetailList(String pData) {
+        List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
+        
+        TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(pData);
+        
+        return list;
+        
+    }
 }

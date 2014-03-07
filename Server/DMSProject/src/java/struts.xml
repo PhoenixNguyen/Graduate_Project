@@ -62,6 +62,14 @@
             <result name="success">generic/putOrdersDetailList</result>
         </action>
         
+        <action name="getTakeOrderList" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getTakeOrderList</result>
+        </action>
+        
+        <action name="getTakeOrderDetailList" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getTakeOrderDetailList</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
         <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

@@ -1,14 +1,29 @@
 package com.hp.map;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
+
+import com.hp.domain.Customer;
+import com.hp.domain.TakeOrder;
+import com.hp.rest.Rest;
+import com.sun.jersey.api.client.ClientResponse;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,6 +33,7 @@ public class OrdersManagerActivity extends Activity implements OnClickListener{
 	
 	private TableLayout table;
 	private TextView id[] ;
+	private List<TakeOrder> takeOrderList = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +44,53 @@ public class OrdersManagerActivity extends Activity implements OnClickListener{
 	}
 	
 	public void addRow(){
+		//GET From server
+		
+		ClientResponse response = Rest.mService.path("webresources").path("getTakeOrderList")
+				.accept("application/json")
+				.type("application/json").post(ClientResponse.class, Rest.mStaffID);
+        System.out.println("________________ "+ response.toString());
+        
+        if(response.getStatus() != 200){
+        	
+        	return;
+        }
+        
+        String re = response.getEntity(String.class);
+        System.out.println("________________ "+ re);
+        
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        
+		try {
+//			File jsonFile = new File(jsonFilePath);
+			takeOrderList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+					TakeOrder.class));
+			//System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+			return ;
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return ;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ;
+		}
+		
+		//Display
+		
 		table = (TableLayout)findViewById(R.id.display_table);
 		
-		id = new TextView[10];
+		id = new TextView[takeOrderList.size()];
 		
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < takeOrderList.size(); i++){
 			TableRow tbRow = new TableRow(this);
 			TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+			lp.setMargins(0, 60, 0, 0);
 			
 			tbRow.setLayoutParams(lp);
-			//tbRow.setBackgroundColor(Color.parseColor("#b0b0b0"));
-			//tbRow.setBackgroundResource(R.drawable.table_border);
+			
 			tbRow.setWeightSum(10);
 			int bg= 0;
 			if(i%2 == 0){
@@ -48,7 +100,7 @@ public class OrdersManagerActivity extends Activity implements OnClickListener{
 				bg = R.drawable.table_border2;
 			
 			id[i] = new TextView(this);
-			id[i].setText("ID " + i);
+			id[i].setText(takeOrderList.get(i).getmID());
 			id[i].setTextSize(18);
 			id[i].setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 6f));
 			id[i].setBackgroundResource(bg);
@@ -56,12 +108,13 @@ public class OrdersManagerActivity extends Activity implements OnClickListener{
 			id[i].setOnClickListener(this);
 			
 			TextView priceTotal = new TextView(this);
-			priceTotal.setText("Giá " + i);
+			priceTotal.setText(takeOrderList.get(i).getmBeforePrice()+"");
 			priceTotal.setTextSize(18);
 			priceTotal.setLayoutParams(new TableRow.LayoutParams(0, LayoutParams.WRAP_CONTENT, 3.5f));
 			priceTotal.setBackgroundResource(bg);
+			priceTotal.setGravity(Gravity.RIGHT);
 			
-			ImageButton iconDelete = new ImageButton(this);
+			ImageView iconDelete = new ImageView(this);
 			iconDelete.setImageResource(R.drawable.delete_icon);
 			iconDelete.setBackgroundResource(bg);
 			
@@ -74,11 +127,11 @@ public class OrdersManagerActivity extends Activity implements OnClickListener{
 	}
 	
 	public void onClick(View v){
-		for(int i= 0; i< 10; i++)
+		for(int i= 0; i< takeOrderList.size(); i++)
 			if(v == id[i]){
 				System.out.println("click: " + i + " " + id[i].getText().toString());
 				Intent intent = new Intent(getApplicationContext(), OrdersDetailManagerActivity.class);
-				intent.putExtra("order_id", id[i].getText().toString());
+				intent.putExtra("ORDER_ID", id[i].getText().toString());
 				
 				startActivity(intent);
 			}

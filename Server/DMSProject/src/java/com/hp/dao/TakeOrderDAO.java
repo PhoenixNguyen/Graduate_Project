@@ -20,4 +20,5 @@ public interface TakeOrderDAO {
     public List<TakeOrder> getTakeOrdersList();
     public TakeOrder getTakeOrder(int pTakeOrder);
     public boolean update(TakeOrder pTakeOrder);
+    public List<TakeOrder> getTakeOrdersList(String pStaff);
 }

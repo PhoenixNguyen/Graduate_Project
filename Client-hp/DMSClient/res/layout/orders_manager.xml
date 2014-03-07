@@ -24,21 +24,25 @@
 	        android:textSize="25dp"
 	        />
     </LinearLayout>
-    
-    <TableLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/display_table"
-    
-    android:orientation="vertical" 
-    android:textSize="18dp"
-    
-    android:paddingLeft="5dip"
-    android:paddingTop="5dip"
-    android:paddingRight="5dip"
-    android:paddingBottom="5dip"
-    >
+    <ScrollView 
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+        >
+	    <TableLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:id="@+id/display_table"
+	    
+	    android:orientation="vertical" 
+	    android:textSize="18dp"
+	    
+	    android:paddingLeft="5dip"
+	    android:paddingTop="5dip"
+	    android:paddingRight="5dip"
+	    android:paddingBottom="5dip"
+	    >
+	
+		</TableLayout>
 
-	</TableLayout>
-
+	 ></ScrollView>
 </LinearLayout>

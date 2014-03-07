@@ -398,6 +398,7 @@ containing a value of this type.
         public static final int repeat_bg=0x7f020035;
         public static final int table_border=0x7f020036;
         public static final int table_border2=0x7f020037;
+        public static final int table_order_detail=0x7f020038;
     }
     public static final class id {
         public static final int autoCompleteTextView1=0x7f050020;

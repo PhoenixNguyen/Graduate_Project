@@ -1,21 +1,63 @@
 package com.hp.map;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
+import javax.ws.rs.core.MediaType;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.hp.datahandle.DataConvert;
+import com.hp.domain.DataInfo;
+import com.hp.rest.Rest;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
+import com.sun.jersey.multipart.FormDataBodyPart;
+import com.sun.jersey.multipart.FormDataMultiPart;
+import com.sun.xml.messaging.saaj.packaging.mime.MessagingException;
+import com.sun.xml.messaging.saaj.packaging.mime.internet.MimeBodyPart;
+import com.sun.xml.messaging.saaj.packaging.mime.internet.MimeMultipart;
+
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Files;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+@SuppressLint("NewApi")
 public class TakeImagesActivity extends Activity{
 
 		protected Button _button;
@@ -26,9 +68,16 @@ public class TakeImagesActivity extends Activity{
 		
 		protected static final String PHOTO_TAKEN	= "photo_taken";
 			
-	    @Override
+	    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+		@SuppressLint("NewApi")
+		@Override
 	    public void onCreate(Bundle savedInstanceState) 
 	    {
+	    	if (android.os.Build.VERSION.SDK_INT > 9) {
+	    	    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	    	    StrictMode.setThreadPolicy(policy);
+	    	}
+	    	
 	        super.onCreate(savedInstanceState);
 	        
 	        setContentView(R.layout.take_images);
@@ -93,7 +142,11 @@ public class TakeImagesActivity extends Activity{
 	    	_image.setImageBitmap(bitmap);
 	    	
 	    	_field.setVisibility( View.GONE );
+	    	
+	    	//UPLOAD FILE
+	    	upload();
 	    }
+	    
 	    
 	    @Override 
 	    protected void onRestoreInstanceState( Bundle savedInstanceState){
@@ -108,4 +161,52 @@ public class TakeImagesActivity extends Activity{
 	    protected void onSaveInstanceState( Bundle outState ) {
 	    	outState.putBoolean( TakeImagesActivity.PHOTO_TAKEN, _taken );
 	    }
-	}
+	    
+	    public void upload(){
+	    	//PUT infomations
+	    		    	
+	    	DataInfo data = new DataInfo(Rest.mStaffID
+	    			, CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong()
+	    			, DataConvert.encodeImageToString(_path)
+	    			, "");
+	    	
+	    	//Convert an Object
+	    	ObjectMapper mapper = new ObjectMapper();
+	        String object = new String();
+
+			try {
+
+				object = mapper.writeValueAsString(data);
+				
+			} catch (JsonGenerationException ex) {
+
+				ex.printStackTrace();
+
+			} catch (JsonMappingException ex) {
+
+				ex.printStackTrace();
+
+			} catch (IOException ex) {
+
+				ex.printStackTrace();
+
+			}
+			
+	    	//Post
+			ClientResponse response = Rest.mService.path("webresources").path("putImage").accept("application/json")
+					.type("application/json").post(ClientResponse.class, object);
+					
+			if (response.getStatus() != 200) {
+	            throw new RuntimeException("Failed : HTTP error code : "
+	                    + response.getStatus());
+	            
+	            
+	        }else{
+		        String output = response.getEntity(String.class);
+		        
+		        System.out.println("Server response .... \n");
+		        System.out.println(output);
+	        }
+	    }
+	    
+}

@@ -22,14 +22,21 @@ import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
+import com.hp.datahandle.DataConvert;
 import com.hp.domain.Customer;
+import com.hp.domain.DataInfo;
 import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Schedule;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import java.io.IOException;
+
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
@@ -40,6 +47,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -53,15 +61,25 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.json.JSONException;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
+
+//import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+//import org.glassfish.jersey.media.multipart.FormDataParam;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -500,6 +518,74 @@ public class GenericResource {
         list = takeOrderDetailDAO.getDetailTakeOrdersList(pData);
         
         return list;
+        
+    }
+    
+    
+    @POST
+    @Path("/putImage")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putImage( String pData ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        DataInfo data = new DataInfo();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                data = mapper.readValue(pData, DataInfo.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date today = new Date();
+        
+        String name = data.getNhanVien() +"-"+ df.format(today) +"-"
+                + today.getHours()+"-"+today.getMinutes()+"-"+today.getSeconds() + ".jpg";
+        
+        String path = ServletActionContext.getServletContext()
+                .getRealPath("/customer/" );
+        
+        //Create new folder
+        File file = new File(path + "/" + data.getKhachHang());
+	if (!file.exists()) {
+		if (file.mkdir()) {
+			System.out.println("Directory is created!");
+		} else {
+			System.out.println("Failed to create directory!");
+		}
+	}
+        
+        System.out.println(path+ "/" + data.getKhachHang()+"/"+ name);
+        //Save
+        saveImage(data.getNoiDung(), (path + "/" + data.getKhachHang()+"/"+ name) );
+        
+//            String output = pTrack.toString();
+            System.out.println("____ " + data.getNhanVien()+ "___ " + data.getKhachHang());
+            return Response.status(200).entity("______ Success").build();
+    }
+    
+    public void saveImage(String input, String output) {
+        try {           
+                byte[] imageByteArray = DataConvert.decodeImage(input);
+
+                // Write a image byte array into file system
+                FileOutputStream imageOutFile = new FileOutputStream(output);
+                imageOutFile.write(imageByteArray);
+                
+                imageOutFile.close();
+
+                System.out.println("Image Successfully Manipulated!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Image not found" + e);
+        } catch (IOException ioe) {
+            System.out.println("Exception while reading the Image " + ioe);
+        }
         
     }
 }

@@ -125,6 +125,16 @@ public class TakeImagesActivity extends Activity {
 
 		case -1:
 			onPhotoTaken();
+			
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inSampleSize = 4;
+			Bitmap bitmap = BitmapFactory.decodeFile(_path, options);
+			
+			//RESIZE and SAVE
+			savePhoto(bitmap);
+
+			// UPLOAD FILE
+			upload();
 			break;
 		}
 	}
@@ -144,11 +154,7 @@ public class TakeImagesActivity extends Activity {
 
 		_field.setVisibility(View.GONE);
 
-		//RESIZE and SAVE
-		savePhoto(bitmap);
-
-		// UPLOAD FILE
-		upload();
+		
 	}
 
 	@Override

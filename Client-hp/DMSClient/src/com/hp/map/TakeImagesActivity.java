@@ -41,12 +41,14 @@ import com.sun.xml.messaging.saaj.packaging.mime.internet.MimeMultipart;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -59,6 +61,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 @SuppressLint("NewApi")
@@ -223,6 +226,16 @@ public class TakeImagesActivity extends Activity {
 	public void upload() {
 		// PUT infomations
 
+		// Check the internet
+		if(isOnline()){
+			System.out.println("Internet access!!____________________");
+		}
+		else{
+			System.out.println("NO Internet access!!____________________");
+			Toast.makeText(this, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
 		DataInfo data = new DataInfo(Rest.mStaffID,
 				CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong(),
 				DataConvert.encodeImageToString(pathSave), "");
@@ -264,6 +277,11 @@ public class TakeImagesActivity extends Activity {
 			System.out.println("Server response .... \n");
 			System.out.println(output);
 		}
+	}
+	
+	public boolean isOnline() { 
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
+		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
 	}
 
 }

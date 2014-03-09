@@ -6,8 +6,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Calendar;
 
 import javax.ws.rs.core.MediaType;
 
@@ -43,6 +45,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
+import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,155 +62,202 @@ import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 @SuppressLint("NewApi")
-public class TakeImagesActivity extends Activity{
+public class TakeImagesActivity extends Activity {
 
-		protected Button _button;
-		protected ImageView _image;
-		protected TextView _field;
-		protected String _path;
-		protected boolean _taken;
-		
-		protected static final String PHOTO_TAKEN	= "photo_taken";
-			
-	    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-		@SuppressLint("NewApi")
-		@Override
-	    public void onCreate(Bundle savedInstanceState) 
-	    {
-	    	if (android.os.Build.VERSION.SDK_INT > 9) {
-	    	    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-	    	    StrictMode.setThreadPolicy(policy);
-	    	}
-	    	
-	        super.onCreate(savedInstanceState);
-	        
-	        setContentView(R.layout.take_images);
-	       
-	        _image = ( ImageView ) findViewById( R.id.image );
-	        _field = ( TextView ) findViewById( R.id.field );
-	        _button = ( Button ) findViewById( R.id.button );
-	        _button.setOnClickListener( new ButtonClickHandler() );
-	        
-	        _path = Environment.getExternalStorageDirectory() + "/images/make_machine_example.jpg";
-	    }
-	    
-	    public class ButtonClickHandler implements View.OnClickListener 
-	    {
-	    	public void onClick( View view ){
-	    		Log.i("MakeMachine", "ButtonClickHandler.onClick()" );
-	    		startCameraActivity();
-	    	}
-	    }
-	    
-	    protected void startCameraActivity()
-	    {
-	    	Log.i("MakeMachine", "startCameraActivity()" );
-	    	File file = new File( _path );
-	    	Uri outputFileUri = Uri.fromFile( file );
-	    	
-	    	Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE );
-	    	intent.putExtra( MediaStore.EXTRA_OUTPUT, outputFileUri );
-	    	
-	    	startActivityForResult( intent, 0 );
-	    }
-	    
-	    @Override
-	    protected void onActivityResult(int requestCode, int resultCode, Intent data) 
-	    {	
-	    	Log.i( "MakeMachine", "resultCode: " + resultCode );
-	    	switch( resultCode )
-	    	{
-	    		case 0:
-	    			System.out.println("_____  Cancelled");
-	    			Log.i( "MakeMachine", "User cancelled" );
-	    			break;
-	    			
-	    		case -1:
-	    			onPhotoTaken();
-	    			break;
-	    	}
-	    }
-	    
-	    protected void onPhotoTaken()
-	    {
-	    	Log.i( "MakeMachine", "onPhotoTaken" );
-	    	System.out.println("_____  Taken");
-	    	
-	    	_taken = true;
-	    	
-	    	BitmapFactory.Options options = new BitmapFactory.Options();
-	        options.inSampleSize = 4;
-	    	
-	    	Bitmap bitmap = BitmapFactory.decodeFile( _path, options );
-	    	
-	    	_image.setImageBitmap(bitmap);
-	    	
-	    	_field.setVisibility( View.GONE );
-	    	
-	    	//UPLOAD FILE
-	    	upload();
-	    }
-	    
-	    
-	    @Override 
-	    protected void onRestoreInstanceState( Bundle savedInstanceState){
-	    	System.out.println("_____  Restore");
-	    	Log.i( "MakeMachine", "onRestoreInstanceState()");
-	    	if( savedInstanceState.getBoolean( TakeImagesActivity.PHOTO_TAKEN ) ) {
-	    		onPhotoTaken();
-	    	}
-	    }
-	    
-	    @Override
-	    protected void onSaveInstanceState( Bundle outState ) {
-	    	outState.putBoolean( TakeImagesActivity.PHOTO_TAKEN, _taken );
-	    }
-	    
-	    public void upload(){
-	    	//PUT infomations
-	    		    	
-	    	DataInfo data = new DataInfo(Rest.mStaffID
-	    			, CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong()
-	    			, DataConvert.encodeImageToString(_path)
-	    			, "");
-	    	
-	    	//Convert an Object
-	    	ObjectMapper mapper = new ObjectMapper();
-	        String object = new String();
+	protected Button _button;
+	protected ImageView _image;
+	protected TextView _field;
+	protected String _path;
+	protected boolean _taken;
 
-			try {
+	protected static final String PHOTO_TAKEN = "photo_taken";
 
-				object = mapper.writeValueAsString(data);
-				
-			} catch (JsonGenerationException ex) {
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	@SuppressLint("NewApi")
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+		}
 
-				ex.printStackTrace();
+		super.onCreate(savedInstanceState);
 
-			} catch (JsonMappingException ex) {
+		setContentView(R.layout.take_images);
 
-				ex.printStackTrace();
+		_image = (ImageView) findViewById(R.id.image);
+		_field = (TextView) findViewById(R.id.field);
+		_button = (Button) findViewById(R.id.button);
+		_button.setOnClickListener(new ButtonClickHandler());
 
-			} catch (IOException ex) {
+		_path = Environment.getExternalStorageDirectory()
+				+ "/images/make_machine_example.jpg";
+	}
 
-				ex.printStackTrace();
+	public class ButtonClickHandler implements View.OnClickListener {
+		public void onClick(View view) {
+			Log.i("MakeMachine", "ButtonClickHandler.onClick()");
+			startCameraActivity();
+		}
+	}
 
-			}
-			
-	    	//Post
-			ClientResponse response = Rest.mService.path("webresources").path("putImage").accept("application/json")
-					.type("application/json").post(ClientResponse.class, object);
-					
-			if (response.getStatus() != 200) {
-	            throw new RuntimeException("Failed : HTTP error code : "
-	                    + response.getStatus());
-	            
-	            
-	        }else{
-		        String output = response.getEntity(String.class);
-		        
-		        System.out.println("Server response .... \n");
-		        System.out.println(output);
-	        }
-	    }
-	    
+	protected void startCameraActivity() {
+		Log.i("MakeMachine", "startCameraActivity()");
+		File file = new File(_path);
+		Uri outputFileUri = Uri.fromFile(file);
+
+		Intent intent = new Intent(
+				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+
+		startActivityForResult(intent, 0);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.i("MakeMachine", "resultCode: " + resultCode);
+		switch (resultCode) {
+		case 0:
+			System.out.println("_____  Cancelled");
+			Log.i("MakeMachine", "User cancelled");
+			break;
+
+		case -1:
+			onPhotoTaken();
+			break;
+		}
+	}
+
+	protected void onPhotoTaken() {
+		Log.i("MakeMachine", "onPhotoTaken");
+		System.out.println("_____  Taken");
+
+		_taken = true;
+
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 4;
+
+		Bitmap bitmap = BitmapFactory.decodeFile(_path, options);
+
+		_image.setImageBitmap(bitmap);
+
+		_field.setVisibility(View.GONE);
+
+		//RESIZE and SAVE
+		savePhoto(bitmap);
+
+		// UPLOAD FILE
+		upload();
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		System.out.println("_____  Restore");
+		Log.i("MakeMachine", "onRestoreInstanceState()");
+		if (savedInstanceState.getBoolean(TakeImagesActivity.PHOTO_TAKEN)) {
+			onPhotoTaken();
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putBoolean(TakeImagesActivity.PHOTO_TAKEN, _taken);
+	}
+
+	private String pathSave;
+	public void savePhoto(Bitmap bmp) {
+		File imageFileFolder = new File(
+				Environment.getExternalStorageDirectory(), "DMS");
+		imageFileFolder.mkdir();
+		FileOutputStream out = null;
+		Calendar c = Calendar.getInstance();
+		String date = fromInt(c.get(Calendar.MONTH))
+				+ fromInt(c.get(Calendar.DAY_OF_MONTH))
+				+ fromInt(c.get(Calendar.YEAR))
+				+ fromInt(c.get(Calendar.HOUR_OF_DAY))
+				+ fromInt(c.get(Calendar.MINUTE))
+				+ fromInt(c.get(Calendar.SECOND));
+		File imageFileName = new File(imageFileFolder, date.toString() + ".jpg");
+		pathSave = Environment.getExternalStorageDirectory()+ "/DMS/" + imageFileName.getName();
+		try {
+			out = new FileOutputStream(imageFileName);
+			bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
+			out.flush();
+			out.close();
+			scanPhoto(imageFileName.toString());
+			out = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String fromInt(int val) {
+		return String.valueOf(val);
+	}
+
+	private MediaScannerConnection msConn = null;
+	public void scanPhoto(final String imageFileName) {
+		msConn = new MediaScannerConnection(TakeImagesActivity.this,
+				new MediaScannerConnectionClient() {
+					public void onMediaScannerConnected() {
+						msConn.scanFile(imageFileName, null);
+						Log.i("msClient obj  in Photo Utility",
+								"connection established");
+					}
+
+					public void onScanCompleted(String path, Uri uri) {
+						msConn.disconnect();
+						Log.i("msClient obj in Photo Utility", "scan completed");
+					}
+				});
+		msConn.connect();
+	}
+
+	public void upload() {
+		// PUT infomations
+
+		DataInfo data = new DataInfo(Rest.mStaffID,
+				CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong(),
+				DataConvert.encodeImageToString(pathSave), "");
+
+		// Convert an Object
+		ObjectMapper mapper = new ObjectMapper();
+		String object = new String();
+
+		try {
+
+			object = mapper.writeValueAsString(data);
+
+		} catch (JsonGenerationException ex) {
+
+			ex.printStackTrace();
+
+		} catch (JsonMappingException ex) {
+
+			ex.printStackTrace();
+
+		} catch (IOException ex) {
+
+			ex.printStackTrace();
+
+		}
+
+		// Post
+		ClientResponse response = Rest.mService.path("webresources")
+				.path("putImage").accept("application/json")
+				.type("application/json").post(ClientResponse.class, object);
+
+		if (response.getStatus() != 200) {
+			throw new RuntimeException("Failed : HTTP error code : "
+					+ response.getStatus());
+
+		} else {
+			String output = response.getEntity(String.class);
+
+			System.out.println("Server response .... \n");
+			System.out.println(output);
+		}
+	}
+
 }

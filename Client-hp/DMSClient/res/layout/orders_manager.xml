@@ -10,6 +10,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
+    
+    android:paddingLeft="5dip"
+    android:paddingTop="5dip"
+    android:paddingRight="5dip"
+    android:paddingBottom="5dip"
     >
 	    <TextView 
 	        android:layout_width="match_parent"
@@ -70,21 +75,16 @@
 		    >
 		    
 		    <EditText 
-		        android:layout_weight="0.4"
+		        android:id="@+id/id_search"
+		        android:layout_weight="0.6"
 		        android:layout_width= "0dip"
 		        android:layout_height="wrap_content"
-		        android:hint="Mã khách hàng"
+		        android:hint="Mã/Tên khách hàng"
 		        />
 		    
-		    <EditText 
-		        android:layout_weight="0.4"
-		        android:layout_width= "0dip"
-		        android:layout_height="wrap_content"
-		        android:hint="Tên khách hàng"
-		        />
 		    
 		    <Button 
-		        android:layout_weight="0.2"
+		        android:layout_weight="0.4"
 		        android:layout_width= "0dip"
 		        android:layout_height="wrap_content"
 		        android:text="Tìm kiếm"

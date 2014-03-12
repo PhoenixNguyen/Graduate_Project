@@ -19,7 +19,9 @@ public class TakeOrder {
     
    
     private int mSerial;
-    private String mID;
+    
+
+	private String mID;
 	private Timestamp mTakeOrderDate;
     private Timestamp mDeliveryDate;
     private String mCustomerID;
@@ -38,6 +40,10 @@ public class TakeOrder {
     private String mCreater;
     private String mEditer;
 
+    @Override
+	public String toString() {
+		return mCustomerID +" "+ mCustomerName;
+	}
     public TakeOrder(){
     	
     }

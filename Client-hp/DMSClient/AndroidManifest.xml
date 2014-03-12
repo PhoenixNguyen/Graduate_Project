@@ -75,14 +75,14 @@
         
         <activity
             android:name="com.hp.map.OrdersManagerActivity"
-            android:label="@string/orders_manager" >
+            android:label="@string/orders_manager" 
             
-        	<intent-filter>
-	            <action android:name="android.intent.action.SEARCH" />
-	        </intent-filter>
-	        <meta-data android:name="android.app.searchable"
-	            
-	                   android:resource="@xml/searchable"/> 
+        	android:windowSoftInputMode="stateHidden"
+        	>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         
 		<activity

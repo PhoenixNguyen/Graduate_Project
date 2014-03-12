@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="@color/CAE542"
+    android:background="@color/FFFFCC"
     
     >
     <LinearLayout
@@ -15,34 +15,102 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:textSize="25dp"
-	        android:text="Orders list"
+	        android:text="Danh sách hóa đơn"
 	        />
     	
-	    <EditText 
-	        android:layout_width="match_parent"
+	    <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" 
+		    >
+		    <TextView 
+	        android:layout_weight="0.2"
+	        android:layout_width= "0dip"
 	        android:layout_height="wrap_content"
-	        android:textSize="25dp"
+	        android:text="Lọc"
 	        />
+		    <EditText 
+		        android:layout_weight="0.3"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:text="Từ"
+		        android:editable="false"
+		        />
+		    <Button 
+		        android:layout_weight="0.05"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        />
+		    <EditText 
+		        android:layout_weight="0.3"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:text="Đến"
+		        android:editable="false"
+		        />
+		    <Button 
+		        android:layout_weight="0.05"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        />
+		    <Button 
+		        android:layout_weight="0.2"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:text="Ok"
+		        />
+	    </LinearLayout>
+	    
+	    <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" 
+		    >
+		    
+		    <EditText 
+		        android:layout_weight="0.4"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:hint="Mã khách hàng"
+		        />
+		    
+		    <EditText 
+		        android:layout_weight="0.4"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:hint="Tên khách hàng"
+		        />
+		    
+		    <Button 
+		        android:layout_weight="0.2"
+		        android:layout_width= "0dip"
+		        android:layout_height="wrap_content"
+		        android:text="Tìm kiếm"
+		        />
+	    </LinearLayout>
     </LinearLayout>
-    <ScrollView 
+    <LinearLayout 
         android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-        >
-	    <TableLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:id="@+id/display_table"
-	    
-	    android:orientation="vertical" 
-	    android:textSize="18dp"
-	    
-	    android:paddingLeft="5dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        
+        android:paddingLeft="5dip"
 	    android:paddingTop="5dip"
 	    android:paddingRight="5dip"
 	    android:paddingBottom="5dip"
-	    >
-	
-		</TableLayout>
-
-	 ></ScrollView>
+        >
+	    <ListView
+	        android:drawSelectorOnTop="false"
+		android:listSelector="#00000000"	   
+		android:background="@drawable/selector"     
+        android:id="@+id/list_view_product"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+        
+    </LinearLayout>
 </LinearLayout>

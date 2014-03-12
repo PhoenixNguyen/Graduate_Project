@@ -1,7 +1,12 @@
 package com.hp.map;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -10,6 +15,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
 
 import com.hp.domain.Customer;
+import com.hp.domain.DateTimePicker;
+import com.hp.domain.DateTimePicker.DateWatcher;
 import com.hp.domain.Product;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
@@ -29,6 +36,7 @@ import android.os.Bundle;
 import android.provider.SyncStateContract.Constants;
 import android.text.Editable;
 import android.text.TextWatcher;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -36,6 +44,7 @@ import android.view.MenuInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +52,7 @@ import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -51,11 +61,14 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TableRow.LayoutParams;
 
-public class OrdersManagerActivity extends Activity implements OnClickListener {
+public class OrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
 
 	private TableLayout table;
 	private TextView id[];
-	private List<TakeOrder> takeOrderList = null;
+	private List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
+	private List<TakeOrder> takeOrderListFilter = new ArrayList<TakeOrder>();
+	private boolean filter = false;
+	
 	private ListView ordersListView;
 
 	private EditText id_search;
@@ -63,13 +76,21 @@ public class OrdersManagerActivity extends Activity implements OnClickListener {
 
 	private OrdersManagerArrayAdapter adapter;
 
+	private EditText start;
+	private EditText end;
+	
+	private String result_string_start;
+	private String result_string_end;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orders_manager);
-
-		addRow();
-
+		
+		start = (EditText)findViewById(R.id.start);
+		end = (EditText)findViewById(R.id.end);
+		
+		getOrderList();
 		addListView();
 
 		id_search = (EditText) findViewById(R.id.id_search);
@@ -112,42 +133,9 @@ public class OrdersManagerActivity extends Activity implements OnClickListener {
 			return;
 		}
 
-		// GET From server
+		
 
-		ClientResponse response = Rest.mService.path("webresources")
-				.path("getTakeOrderList").accept("application/json")
-				.type("application/json")
-				.post(ClientResponse.class, Rest.mStaffID);
-		System.out.println("________________ " + response.toString());
-
-		if (response.getStatus() != 200) {
-
-			return;
-		}
-
-		String re = response.getEntity(String.class);
-		System.out.println("________________ " + re);
-
-		// pair to object
-		ObjectMapper mapper = new ObjectMapper();
-
-		try {
-			// File jsonFile = new File(jsonFilePath);
-			takeOrderList = mapper.readValue(re, TypeFactory.defaultInstance()
-					.constructCollectionType(List.class, TakeOrder.class));
-			// System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-			return;
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-			return;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
-
-		if (takeOrderList.size() == 0) {
+		if (getOrderList(filter).size() == 0) {
 			return;
 		}
 		// List<Product> productsList = new ArrayList<Product>();
@@ -157,7 +145,7 @@ public class OrdersManagerActivity extends Activity implements OnClickListener {
 
 		ordersListView = (ListView) findViewById(R.id.list_view_product);
 		adapter = new OrdersManagerArrayAdapter(this,
-				android.R.layout.simple_list_item_1, takeOrderList);
+				android.R.layout.simple_list_item_1, getOrderList(filter));
 		ordersListView.setAdapter(adapter);
 
 		ordersListView.setOnItemClickListener(new OnItemClickListener() {
@@ -165,172 +153,60 @@ public class OrdersManagerActivity extends Activity implements OnClickListener {
 			public void onItemClick(AdapterView<?> a, View v, int position,
 					long id) {
 				System.out.println("Click!");
-				// final Product selectedValue = (Product)
-				// listView.getAdapter().getItem(position);
-				//
-				// //Toast.makeText(getBaseContext(), "Click",
-				// Toast.LENGTH_LONG).show();
-				// // custom dialog
-				// final Dialog dialog = new Dialog(context);
-				// dialog.setContentView(R.layout.order_product_dialog);
-				// dialog.setTitle("Số lượng");
-				//
-				// // set the custom dialog components - text, image and button
-				// TextView text = (TextView) dialog.findViewById(R.id.text);
-				// text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
-				//
-				// TextView price = (TextView) dialog.findViewById(R.id.price);
-				// price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
-				//
-				// final EditText count =
-				// (EditText)dialog.findViewById(R.id.count);
-				//
-				// Button dialogButton = (Button)
-				// dialog.findViewById(R.id.dialogButtonYES);
-				// // if button is clicked, close the custom dialog
-				// dialogButton.setOnClickListener(new OnClickListener() {
-				// @Override
-				// public void onClick(View v) {
-				//
-				// line++;
-				// System.out.println("__ "+ line);
-				// String count2 = count.getText().toString();
-				// int number = 0;
-				// if(count2.compareTo("") != 0)
-				// number = Integer.parseInt(count2);
-				// else
-				// return;
-				//
-				// //take order detail
-				// boolean status = false;
-				// for(int i = 0; i < ordersDetailList.size(); i++){
-				// if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID())
-				// == 0){
-				// if(number == 0){
-				// ordersDetailList.remove(i);
-				// }
-				// else{
-				// ordersDetailList.get(i).setmNumber(number);
-				//
-				// }
-				// status = true;
-				// line--;
-				// }
-				// }
-				// if(!status && number != 0){
-				// System.out.println("2__ "+ line);
-				// TakeOrderDetail orderDetail =
-				// new TakeOrderDetail("", line, selectedValue.getmProductID(),
-				// selectedValue.getmBarcode(), selectedValue.getmProductName(),
-				// selectedValue.getmExportPrices(),
-				// selectedValue.getmExportPrices(), 0, 0,
-				// selectedValue.getmExportPrices(), "", number, "", 0);
-				//
-				// ordersDetailList.add(orderDetail);
-				// }
-				//
-				// total_value.setText(ordersDetailList.size()+"");
-				// //finish
-				// dialog.dismiss();
-				// }
-				// });
-				//
-				//
-				// dialog.show();
+				
 			}
 		});
 	}
 
-	public void addRow() {
+	public List<TakeOrder> getOrderList(){
 		// GET From server
 
-		// ClientResponse response =
-		// Rest.mService.path("webresources").path("getTakeOrderList")
-		// .accept("application/json")
-		// .type("application/json").post(ClientResponse.class, Rest.mStaffID);
-		// System.out.println("________________ "+ response.toString());
-		//
-		// if(response.getStatus() != 200){
-		//
-		// return;
-		// }
-		//
-		// String re = response.getEntity(String.class);
-		// System.out.println("________________ "+ re);
-		//
-		// // pair to object
-		// ObjectMapper mapper = new ObjectMapper();
-		//
-		// try {
-		// // File jsonFile = new File(jsonFilePath);
-		// takeOrderList = mapper.readValue(re,
-		// TypeFactory.defaultInstance().constructCollectionType(List.class,
-		// TakeOrder.class));
-		// //System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
-		// } catch (JsonGenerationException e) {
-		// e.printStackTrace();
-		// return ;
-		// } catch (JsonMappingException e) {
-		// e.printStackTrace();
-		// return ;
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// return ;
-		// }
-		//
-		// //Display
-		//
-		// table = (TableLayout)findViewById(R.id.display_table);
-		//
-		// id = new TextView[takeOrderList.size()];
-		//
-		// for(int i = 0; i < takeOrderList.size(); i++){
-		// TableRow tbRow = new TableRow(this);
-		// TableRow.LayoutParams lp = new
-		// TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-		// lp.setMargins(0, 60, 0, 0);
-		//
-		// tbRow.setLayoutParams(lp);
-		//
-		// tbRow.setWeightSum(10);
-		// int bg= 0;
-		// if(i%2 == 0){
-		// bg = R.drawable.table_border;
-		// }
-		// else
-		// bg = R.drawable.table_border2;
-		//
-		// id[i] = new TextView(this);
-		// id[i].setText(takeOrderList.get(i).getmID());
-		// id[i].setTextSize(18);
-		// id[i].setLayoutParams(new TableRow.LayoutParams(0,
-		// LayoutParams.WRAP_CONTENT, 6f));
-		// id[i].setBackgroundResource(bg);
-		//
-		// id[i].setOnClickListener(this);
-		//
-		// TextView priceTotal = new TextView(this);
-		// priceTotal.setText(takeOrderList.get(i).getmBeforePrice()+"");
-		// priceTotal.setTextSize(18);
-		// priceTotal.setLayoutParams(new TableRow.LayoutParams(0,
-		// LayoutParams.WRAP_CONTENT, 3.5f));
-		// priceTotal.setBackgroundResource(bg);
-		// priceTotal.setGravity(Gravity.RIGHT);
-		//
-		// ImageView iconDelete = new ImageView(this);
-		// iconDelete.setImageResource(R.drawable.delete_icon);
-		// iconDelete.setBackgroundResource(bg);
-		//
-		// tbRow.addView(id[i]);
-		// tbRow.addView(priceTotal);
-		// tbRow.addView(iconDelete);
-		//
-		// table.addView(tbRow, i);
-		// }
-	}
+				ClientResponse response = Rest.mService.path("webresources")
+						.path("getTakeOrderList").accept("application/json")
+						.type("application/json")
+						.post(ClientResponse.class, Rest.mStaffID);
+				System.out.println("________________ " + response.toString());
 
+				if (response.getStatus() != 200) {
+
+					return null;
+				}
+
+				String re = response.getEntity(String.class);
+				System.out.println("________________ " + re);
+
+				// pair to object
+				ObjectMapper mapper = new ObjectMapper();
+
+				try {
+					// File jsonFile = new File(jsonFilePath);
+					takeOrderList = mapper.readValue(re, TypeFactory.defaultInstance()
+							.constructCollectionType(List.class, TakeOrder.class));
+					// System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
+				} catch (JsonGenerationException e) {
+					e.printStackTrace();
+					return null;
+				} catch (JsonMappingException e) {
+					e.printStackTrace();
+					return null;
+				} catch (IOException e) {
+					e.printStackTrace();
+					return null;
+				}
+				
+				return takeOrderList;
+	}
+	
+	public List<TakeOrder> getOrderList(boolean filter){
+		if(filter == false){
+			return takeOrderList;
+		}
+		
+		else
+			return takeOrderListFilter;
+	}
 	public void onClick(View v) {
-		for (int i = 0; i < takeOrderList.size(); i++)
+		for (int i = 0; i < getOrderList(filter).size(); i++)
 			if (v == id[i]) {
 				System.out.println("click: " + i + " "
 						+ id[i].getText().toString());
@@ -346,5 +222,161 @@ public class OrdersManagerActivity extends Activity implements OnClickListener {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		return cm.getActiveNetworkInfo() != null
 				&& cm.getActiveNetworkInfo().isConnectedOrConnecting();
+	}
+	
+	public void button_click_1(View view){ 
+        // Create the dialog
+        final Dialog mDateTimeDialog = new Dialog(this);
+        // Inflate the root layout
+        final RelativeLayout mDateTimeDialogView = (RelativeLayout) getLayoutInflater().inflate(R.layout.order_manager_dialog_set_time, null);
+        // Grab widget instance
+        final DateTimePicker mDateTimePicker = (DateTimePicker) mDateTimeDialogView.findViewById(R.id.DateTimePicker);
+        mDateTimePicker.setDateChangedListener(this);
+                 
+        // Update demo edittext when the "OK" button is clicked
+        ((Button) mDateTimeDialogView.findViewById(R.id.SetDateTime)).setOnClickListener(new OnClickListener() {
+         public void onClick(View v) {
+               mDateTimePicker.clearFocus();
+               // TODO Auto-generated method stub
+               result_string_start = mDateTimePicker.getMonth() + "/" + String.valueOf(mDateTimePicker.getDay()) + "/" + String.valueOf(mDateTimePicker.getYear())
+                                                + "  " + String.valueOf(mDateTimePicker.getHour()) + ":" + String.valueOf(mDateTimePicker.getMinute()+":0");
+               start.setText(result_string_start);
+               mDateTimeDialog.dismiss();
+         }
+         });
+
+         // Cancel the dialog when the "Cancel" button is clicked
+         ((Button) mDateTimeDialogView.findViewById(R.id.CancelDialog)).setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                     // TODO Auto-generated method stub
+                     mDateTimeDialog.cancel();
+                }
+         });
+
+                // Reset Date and Time pickers when the "Reset" button is clicked
+       
+         ((Button) mDateTimeDialogView.findViewById(R.id.ResetDateTime)).setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                      // TODO Auto-generated method stub
+                      mDateTimePicker.reset();
+                }
+         });
+                 
+        // Setup TimePicker
+        // No title on the dialog window
+        mDateTimeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // Set the dialog content view
+        mDateTimeDialog.setContentView(mDateTimeDialogView);
+        // Display the dialog
+        mDateTimeDialog.show();                
+	}
+
+	public void button_click_2(View view){ 
+        // Create the dialog
+        final Dialog mDateTimeDialog = new Dialog(this);
+        // Inflate the root layout
+        final RelativeLayout mDateTimeDialogView = (RelativeLayout) getLayoutInflater().inflate(R.layout.order_manager_dialog_set_time, null);
+        // Grab widget instance
+        final DateTimePicker mDateTimePicker = (DateTimePicker) mDateTimeDialogView.findViewById(R.id.DateTimePicker);
+        mDateTimePicker.setDateChangedListener(this);
+                 
+        // Update demo edittext when the "OK" button is clicked
+        ((Button) mDateTimeDialogView.findViewById(R.id.SetDateTime)).setOnClickListener(new OnClickListener() {
+         public void onClick(View v) {
+               mDateTimePicker.clearFocus();
+               // TODO Auto-generated method stub
+               result_string_end = mDateTimePicker.getMonth() + "/" + String.valueOf(mDateTimePicker.getDay()) + "/" + String.valueOf(mDateTimePicker.getYear())
+                                                + "  " + String.valueOf(mDateTimePicker.getHour()) + ":" + String.valueOf(mDateTimePicker.getMinute()+":0");
+               end.setText(result_string_end);
+               mDateTimeDialog.dismiss();
+         }
+         });
+
+         // Cancel the dialog when the "Cancel" button is clicked
+         ((Button) mDateTimeDialogView.findViewById(R.id.CancelDialog)).setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                     // TODO Auto-generated method stub
+                     mDateTimeDialog.cancel();
+                }
+         });
+
+                // Reset Date and Time pickers when the "Reset" button is clicked
+       
+         ((Button) mDateTimeDialogView.findViewById(R.id.ResetDateTime)).setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                      // TODO Auto-generated method stub
+                      mDateTimePicker.reset();
+                }
+         });
+                 
+        // Setup TimePicker
+        // No title on the dialog window
+        mDateTimeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // Set the dialog content view
+        mDateTimeDialog.setContentView(mDateTimeDialogView);
+        // Display the dialog
+        mDateTimeDialog.show();                
+	}
+
+	public void button_filter(View view){
+		filter = true;
+		takeOrderListFilter.clear();
+		
+		DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat dateFormat2 = new SimpleDateFormat("MMM/dd/yyyy HH:mm:ss");
+		
+		Date startDate = null;
+		Date endDate = null;
+		try {
+			startDate = dateFormat2.parse(result_string_start);
+			endDate = dateFormat2.parse(result_string_end);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(startDate);
+		
+		for(int i = 0; i < takeOrderList.size(); i++){
+			Date compare = null;
+			try {
+				if(takeOrderList.get(i).getmOrderEstablishDate() == null)
+					continue;
+				String date = takeOrderList.get(i).getmOrderEstablishDate().toString();
+				
+				compare = dateFormat1.parse(date);
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(compare);
+			if(compare.after(startDate) 
+					&& compare.before(endDate)){
+				
+				takeOrderListFilter.add(takeOrderList.get(i));
+				System.out.println(takeOrderList.get(i).getmID());
+			}
+		}
+		
+		adapter = new OrdersManagerArrayAdapter(this,
+				android.R.layout.simple_list_item_1, takeOrderListFilter);
+		ordersListView.setAdapter(adapter);
+		//onResume();
+		
+	}
+	@Override
+	public void onDateChanged(Calendar c) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	protected void onResume() {
+
+	   super.onResume();
+	   this.onCreate(null);
 	}
 }

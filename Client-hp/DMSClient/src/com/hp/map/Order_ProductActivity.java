@@ -57,6 +57,8 @@ public class Order_ProductActivity extends Activity{
 	private EditText id_search;
 	private ProductArrayAdapter adapter;
 	
+	
+	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
@@ -66,7 +68,7 @@ public class Order_ProductActivity extends Activity{
 		
 		//Search ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		id_search = (EditText) findViewById(R.id.product_id);
-				
+						
 		total_value = (TextView)findViewById(R.id.total_value);
 		
 		List<Product> productsList = new ArrayList<Product>();
@@ -97,6 +99,9 @@ public class Order_ProductActivity extends Activity{
 
 					TextView price = (TextView) dialog.findViewById(R.id.price);
 					price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
+					
+					TextView discount = (TextView) dialog.findViewById(R.id.discount);
+					discount.setText("Giảm giá: 0.0" );
 					
 					final EditText count = (EditText)dialog.findViewById(R.id.count);
 					

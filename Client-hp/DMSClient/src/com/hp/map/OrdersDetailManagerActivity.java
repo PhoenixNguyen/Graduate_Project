@@ -174,15 +174,15 @@ public class OrdersDetailManagerActivity extends Activity{
 		        
 		        System.out.println("Server response .... \n");
 		        System.out.println("input 0: " + output);
-
+		       
+		       
 				dialog.dismiss();
 				
 				//reload
-				Intent intent = new Intent(getApplicationContext(),
-						OrdersDetailManagerActivity.class);
-				intent.putExtra("ORDER_ID", order_id);
-
-				startActivity(intent);
+				getOrderList();
+				adapter = new OrdersManagerDetailArrayAdapter(context,
+						android.R.layout.simple_list_item_1, takeOrderDetailList);
+				ordersListView.setAdapter(adapter);
 			}
 		});
 

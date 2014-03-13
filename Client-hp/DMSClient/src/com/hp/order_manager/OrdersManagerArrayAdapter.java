@@ -47,7 +47,7 @@ public class OrdersManagerArrayAdapter extends ArrayAdapter<TakeOrder>{
 
         featureView.setTitleId(values.get(position).getmID());
         featureView.setDescriptionId(values.get(position).getmCustomerName());
-        featureView.setValue(values.get(position).getmBeforePrice()+"");
+        featureView.setValue(values.get(position).getmAfterPrivate()+"");
 
         
         return featureView;

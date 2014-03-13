@@ -12,6 +12,7 @@ import com.hp.domain.Staff;
 import com.hp.domain.TakeOrder;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -87,6 +88,28 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         try{
                 courses = (TakeOrder)session.get(TakeOrder.class, pTakeOrder);
             
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    public TakeOrder getTakeOrder(String pID){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        TakeOrder courses = null;
+        try{
+            //Query q = session.createQuery("from TakeOrder where mID='"+pID+"'");
+            Query q = session.createSQLQuery("select * from tb_hoadondathang where hoadondathang_ma_hoa_don='"+pID+"'")
+                    .addEntity(TakeOrder.class);
+             courses = (TakeOrder)q.list().get(0);
+            //courses = (TakeOrder)session.get(TakeOrder.class, pID);
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -108,42 +109,65 @@ public class OrdersDetailManagerActivity extends Activity{
 
 	public void addCustomerDialog(final TakeOrderDetail selectedValue){
 		final Dialog dialog = new Dialog(context);
-		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
-		dialog.setContentView(v);
+		dialog.setContentView(R.layout.order_product_dialog);
+		dialog.setTitle("Thay đổi số lượng");
+
+		// set the custom dialog components - text, image and button
+		TextView text = (TextView) dialog.findViewById(R.id.text);
+		text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
+
+		TextView price = (TextView) dialog.findViewById(R.id.price);
+		price.setText("Giá sản phẩm: "+selectedValue.getmBeforeOrderPrice());
 		
-		dialog.setTitle("Lựa chọn của bạn: ");
-	
+		final EditText count = (EditText)dialog.findViewById(R.id.count);
+		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
-		dialogButton.setText("Hiển thị chi tiết");
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// show the map
-//				Intent intent = new Intent(getApplicationContext(),
-//						OrdersDetailManagerActivity.class);
-//				intent.putExtra("ORDER_ID", selectedValue.getmID());
-//
-//				startActivity(intent);
-		        
+				
+//				line++;
+//				System.out.println("__ "+ line);
+//				String count2 = count.getText().toString();
+//				int number = 0;
+//				if(count2.compareTo("") != 0)
+//					number = Integer.parseInt(count2);
+//				else
+//					return;
+//				
+//				//take order detail
+//				boolean status = false;
+//				for(int i = 0; i < ordersDetailList.size(); i++){
+//					if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
+//						if(number == 0){
+//							ordersDetailList.remove(i);
+//						}
+//						else{
+//							ordersDetailList.get(i).setmNumber(number);
+//							
+//						}
+//						status = true;
+//						line--;
+//					}
+//				}
+//				if(!status && number != 0){
+//					System.out.println("2__ "+ line);
+//					TakeOrderDetail orderDetail = 
+//							new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
+//									selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
+//									selectedValue.getmExportPrices(), "", number, "", 0);
+//					
+//					ordersDetailList.add(orderDetail);
+//				}
+//				
+//				total_value.setText(ordersDetailList.size()+"");
+				//finish
 				dialog.dismiss();
 			}
 		});
 
-		//Delete a schedule
-		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
-		dialogDeleteButton.setText("Xóa bản ghi");
-		// if button is clicked, close the custom dialog
-		dialogDeleteButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-			
-
-		        
-				dialog.dismiss();
-			}
-		});
+		
 		dialog.show();
 		
 	}

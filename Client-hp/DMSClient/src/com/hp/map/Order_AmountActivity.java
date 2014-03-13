@@ -37,7 +37,7 @@ public class Order_AmountActivity extends Activity implements OnClickListener{
 	private EditText note_value;
 	
 	private Button save;
-	float pricesTotal = 0;
+	float pricesTotal;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -54,7 +54,7 @@ public class Order_AmountActivity extends Activity implements OnClickListener{
 		save = (Button)findViewById(R.id.save);
 		
 		int numberTotal = 0;
-		
+		pricesTotal = 0;
 		for(int i = 0; i < Order_ProductActivity.ordersDetailList.size(); i++){
 			numberTotal = numberTotal +  Order_ProductActivity.ordersDetailList.get(i).getmNumber();
 			pricesTotal = pricesTotal +  Order_ProductActivity.ordersDetailList.get(i).getmAfterOrderPrice() 

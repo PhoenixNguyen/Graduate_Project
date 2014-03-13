@@ -432,6 +432,10 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 	}
 
 	public void button_filter(View view){
+		
+		if(result_string_start == null || result_string_end == null)
+			return;
+		
 		filter = true;
 		takeOrderListFilter.clear();
 		

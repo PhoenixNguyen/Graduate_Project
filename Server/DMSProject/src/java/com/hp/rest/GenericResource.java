@@ -588,4 +588,32 @@ public class GenericResource {
         }
         
     }
+    
+    @POST
+    @Path("/updateDetailOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateDetailOrder( String pTakeOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        TakeOrderDetail takeOrder = new TakeOrderDetail();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                takeOrder = mapper.readValue(pTakeOrder, TakeOrderDetail.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        TakeOrderDetailDAO takeOrderDAO = new TakeOrderDetailDAOImpl();
+        boolean st = takeOrderDAO.update(takeOrder);
+//            String output = pTrack.toString();
+            System.out.println("____ " + pTakeOrder + "___ " + st);
+            return Response.status(200).entity(st+"").build();
+    }
 }

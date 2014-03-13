@@ -127,43 +127,62 @@ public class OrdersDetailManagerActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				
-//				line++;
-//				System.out.println("__ "+ line);
-//				String count2 = count.getText().toString();
-//				int number = 0;
-//				if(count2.compareTo("") != 0)
-//					number = Integer.parseInt(count2);
-//				else
-//					return;
-//				
-//				//take order detail
-//				boolean status = false;
-//				for(int i = 0; i < ordersDetailList.size(); i++){
-//					if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
-//						if(number == 0){
-//							ordersDetailList.remove(i);
-//						}
-//						else{
-//							ordersDetailList.get(i).setmNumber(number);
-//							
-//						}
-//						status = true;
-//						line--;
-//					}
-//				}
-//				if(!status && number != 0){
-//					System.out.println("2__ "+ line);
-//					TakeOrderDetail orderDetail = 
-//							new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
-//									selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
-//									selectedValue.getmExportPrices(), "", number, "", 0);
-//					
-//					ordersDetailList.add(orderDetail);
-//				}
-//				
-//				total_value.setText(ordersDetailList.size()+"");
-				//finish
+				if(count == null)
+					return;
+				
+				int number = Integer.parseInt(count.getText().toString());
+				selectedValue.setmNumber(number);
+				selectedValue.setmPriceTotal(selectedValue.getmAfterOrderPrice() * number);
+				
+				//Sys
+				
+				ObjectMapper mapper = new ObjectMapper();
+		        String orderDetail = new String();
+
+				try {
+
+					orderDetail = mapper.writeValueAsString(selectedValue);
+					
+				} catch (JsonGenerationException ex) {
+
+					ex.printStackTrace();
+
+				} catch (JsonMappingException ex) {
+
+					ex.printStackTrace();
+
+				} catch (IOException ex) {
+
+					ex.printStackTrace();
+
+				}
+		       
+				//Order ---------------------------------------------------------------
+				ClientResponse response = Rest.mService.path("webresources").path("updateDetailOrder").accept("application/json")
+				.type("application/json").post(ClientResponse.class, orderDetail);
+
+		        String output = response.toString();
+		        System.out.println("input 1: " + output);
+		        
+		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+		            Toast.makeText(context, "Đang cập nhật", Toast.LENGTH_SHORT).show();
+		            // refresh customers
+		            
+		            
+		        }else
+		        	Toast.makeText(context, "Không thể cập nhật, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+		        
+		        System.out.println("Server response .... \n");
+		        System.out.println("input 0: " + output);
+
 				dialog.dismiss();
+				
+				//reload
+				Intent intent = new Intent(getApplicationContext(),
+						OrdersDetailManagerActivity.class);
+				intent.putExtra("ORDER_ID", order_id);
+
+				startActivity(intent);
 			}
 		});
 

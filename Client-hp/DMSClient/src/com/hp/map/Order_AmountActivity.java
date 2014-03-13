@@ -57,7 +57,7 @@ public class Order_AmountActivity extends Activity implements OnClickListener{
 		
 		for(int i = 0; i < Order_ProductActivity.ordersDetailList.size(); i++){
 			numberTotal = numberTotal +  Order_ProductActivity.ordersDetailList.get(i).getmNumber();
-			pricesTotal = pricesTotal +  Order_ProductActivity.ordersDetailList.get(i).getmBeforeOrderPrice() 
+			pricesTotal = pricesTotal +  Order_ProductActivity.ordersDetailList.get(i).getmAfterOrderPrice() 
 					* Order_ProductActivity.ordersDetailList.get(i).getmNumber() ;
 		}
 		document_value.setText(Order_ProductActivity.ordersDetailList.size() + " sản phẩm và " + numberTotal + " mục");

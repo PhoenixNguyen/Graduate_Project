@@ -123,7 +123,7 @@ public class Order_ProductActivity extends Activity{
 								TakeOrderDetail orderDetail = 
 										new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
 												selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
-												selectedValue.getmExportPrices(), "", number, "", 0);
+												selectedValue.getmExportPrices() * number, "", number, "", 0);
 								
 								ordersDetailList.add(orderDetail);
 							}

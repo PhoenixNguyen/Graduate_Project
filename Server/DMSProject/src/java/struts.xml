@@ -78,6 +78,10 @@
             <result name="success">generic/putImage</result>
         </action>
         
+        <action name="updateDetailOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/updateDetailOrder</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
         <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

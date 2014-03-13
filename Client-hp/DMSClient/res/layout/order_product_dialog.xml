@@ -53,4 +53,15 @@
         android:layout_below="@+id/count"
         android:layout_toRightOf="@+id/dialogButtonYES"
         />
+	<Button
+        android:id="@+id/dialogButtonDelete"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text=" Delete "
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/count"
+        android:layout_toRightOf="@+id/dialogButtonNO"
+        android:visibility="invisible"
+        />
 </RelativeLayout>

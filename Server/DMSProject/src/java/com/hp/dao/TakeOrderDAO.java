@@ -22,4 +22,7 @@ public interface TakeOrderDAO {
     public boolean update(TakeOrder pTakeOrder);
     public List<TakeOrder> getTakeOrdersList(String pStaff);
     public TakeOrder getTakeOrder(String pID);
+    
+    //delete
+    public boolean delete(TakeOrder pTakeOrder);
 }

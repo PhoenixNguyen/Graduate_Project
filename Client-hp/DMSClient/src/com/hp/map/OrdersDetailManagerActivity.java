@@ -122,6 +122,7 @@ public class OrdersDetailManagerActivity extends Activity{
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Cập nhật");
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -186,6 +187,76 @@ public class OrdersDetailManagerActivity extends Activity{
 			}
 		});
 
+		//Cancel
+		Button dialogButtonNO = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogButtonNO.setText("Hủy");
+		// if button is clicked, close the custom dialog
+		dialogButtonNO.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		Button dialogButtonDelete = (Button) dialog.findViewById(R.id.dialogButtonDelete);
+		dialogButtonDelete.setVisibility(1);
+		dialogButtonDelete.setText("Xóa");
+		// if button is clicked, close the custom dialog
+		dialogButtonDelete.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				//Sys
+				
+				ObjectMapper mapper = new ObjectMapper();
+		        String orderDetail = new String();
+
+				try {
+
+					orderDetail = mapper.writeValueAsString(selectedValue);
+					
+				} catch (JsonGenerationException ex) {
+
+					ex.printStackTrace();
+
+				} catch (JsonMappingException ex) {
+
+					ex.printStackTrace();
+
+				} catch (IOException ex) {
+
+					ex.printStackTrace();
+
+				}
+		       
+				//Order ---------------------------------------------------------------
+				ClientResponse response = Rest.mService.path("webresources").path("deleteDetailOrder").accept("application/json")
+				.type("application/json").post(ClientResponse.class, orderDetail);
+
+		        String output = response.toString();
+		        System.out.println("input 1: " + output);
+		        
+		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+		            Toast.makeText(context, "Đang xóa", Toast.LENGTH_SHORT).show();
+		            // refresh customers
+		            
+		            
+		        }else
+		        	Toast.makeText(context, "Không thể xóa, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+		        
+		        System.out.println("Server response .... \n");
+		        System.out.println("input 0: " + output);
+		       
+		       
+				dialog.dismiss();
+				
+				//reload
+				getOrderList();
+				adapter = new OrdersManagerDetailArrayAdapter(context,
+						android.R.layout.simple_list_item_1, takeOrderDetailList);
+				ordersListView.setAdapter(adapter);
+			}
+		});
 		
 		dialog.show();
 		

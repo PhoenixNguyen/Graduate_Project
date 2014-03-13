@@ -20,4 +20,7 @@ public interface TakeOrderDetailDAO {
     public List<TakeOrderDetail> getDetailTakeOrdersList(String pID);
     public TakeOrderDetail getTakeOrderDetail(int pTakeOrderDetail);
     public boolean update(TakeOrderDetail pTakeOrderDetail);
+    
+    //delete
+    public boolean delete(TakeOrderDetail pTakeOrderDetail);
 }

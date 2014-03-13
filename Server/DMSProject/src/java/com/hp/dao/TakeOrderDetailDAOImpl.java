@@ -97,4 +97,24 @@ public class TakeOrderDetailDAOImpl implements TakeOrderDetailDAO{
         
         return true;
     }
+    
+    @Override
+    public boolean delete(TakeOrderDetail pTakeOrderDetail){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.delete(pTakeOrderDetail);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
 }

@@ -139,4 +139,24 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         
         return true;
     }
+    
+    @Override
+    public boolean delete(TakeOrder pTakeOrder){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.delete(pTakeOrder);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
 }

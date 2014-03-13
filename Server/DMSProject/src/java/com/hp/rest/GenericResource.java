@@ -634,4 +634,50 @@ public class GenericResource {
         System.out.println("____ " + pTakeOrder + "___ " + st);
         return Response.status(200).entity(st2+"").build();
     }
+    
+    @POST
+    @Path("/deleteDetailOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteDetailOrder( String pTakeOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        TakeOrderDetail takeOrderDetail = new TakeOrderDetail();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                takeOrderDetail = mapper.readValue(pTakeOrder, TakeOrderDetail.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
+        boolean st = takeOrderDetailDAO.delete(takeOrderDetail);
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Update the order
+        List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
+        
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getmTakeOrderID());
+        float priceTotal = 0;
+        for(int i = 0; i < list.size(); i++){
+            priceTotal += list.get(i).getmPriceTotal();
+        }
+        
+        TakeOrder takeOrder = new TakeOrder();
+        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        
+        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getmTakeOrderID());
+        takeOrder.setmAfterPrivate(priceTotal);
+        boolean st2 = takeOrderDAO.update(takeOrder);
+//            String output = pTrack.toString();
+        System.out.println("____ " + pTakeOrder + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
 }

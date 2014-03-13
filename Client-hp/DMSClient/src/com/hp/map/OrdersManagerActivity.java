@@ -22,6 +22,7 @@ import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import com.hp.order_manager.OrdersManagerArrayAdapter;
 import com.hp.rest.Rest;
+import com.hp.schedule.ListViewSchedules;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
@@ -29,41 +30,30 @@ import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.provider.SyncStateContract.Constants;
 import android.text.Editable;
 import android.text.TextWatcher;
 
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.TextureView;
+import android.view.LayoutInflater;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.TableRow.LayoutParams;
 
 public class OrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
 
-	private TableLayout table;
 	private TextView id[];
 	private List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
 	private List<TakeOrder> takeOrderListFilter = new ArrayList<TakeOrder>();
@@ -81,6 +71,8 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 	
 	private String result_string_start;
 	private String result_string_end;
+	
+	private Context context = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -153,11 +145,97 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 			public void onItemClick(AdapterView<?> a, View v, int position,
 					long id) {
 				System.out.println("Click!");
+				TakeOrder selectedValue = (TakeOrder) ordersListView.getAdapter().getItem(position);
+		    	 addCustomerDialog(selectedValue);
 				
 			}
 		});
 	}
 
+	public void addCustomerDialog(final TakeOrder selectedValue){
+		final Dialog dialog = new Dialog(context);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
+		dialog.setContentView(v);
+		
+		dialog.setTitle("Lựa chọn của bạn: ");
+	
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Hiển thị chi tiết");
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// show the map
+				Intent intent = new Intent(getApplicationContext(),
+						OrdersDetailManagerActivity.class);
+				intent.putExtra("ORDER_ID", selectedValue.getmID());
+
+				startActivity(intent);
+		        
+				dialog.dismiss();
+			}
+		});
+
+		//Delete a schedule
+		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogDeleteButton.setText("Xóa bản ghi");
+		// if button is clicked, close the custom dialog
+		dialogDeleteButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			
+//				// Check the internet
+//				if(isOnline()){
+//					System.out.println("Internet access!!____________________");
+//				}
+//				else{
+//					System.out.println("NO Internet access!!____________________");
+//					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+//					return;
+//				}
+//				
+//				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//				Date date = null;
+//				try {
+//					date = sdf.parse(selectedValue.getTime());
+//				} catch (ParseException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//				System.out.println("_date: "+ sdf.format(date));
+////				//Post
+//				ClientResponse response = Rest.mService.path("webresources").path("deleteSchedule").accept("application/json")
+//						.type("application/json").post(ClientResponse.class, selectedValue.getId()+"::"+sdf.format(date));
+//						
+//				if (response.getStatus() != 200) {
+//		            throw new RuntimeException("Failed : HTTP error code : "
+//		                    + response.getStatus());
+//		        }
+//				
+//				if(response.getStatus() != 200){
+//		        	
+//		        	return ;
+//		        }
+//		        String output = response.getEntity(String.class);
+//		        System.out.println("Server response .... \n");
+//		        System.out.println(output);
+//		        
+//		        if(output.compareTo("status:1") == 0){
+//		        	Toast.makeText(context, "Đã xóa!", Toast.LENGTH_SHORT).show();
+//		        	
+//		        }
+//		        else
+//		        	Toast.makeText(context, "Xóa lỗi!", Toast.LENGTH_SHORT).show();
+		        
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+		
+	}
+	
 	public List<TakeOrder> getOrderList(){
 		// GET From server
 
@@ -218,12 +296,6 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 			}
 	}
 
-	public boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		return cm.getActiveNetworkInfo() != null
-				&& cm.getActiveNetworkInfo().isConnectedOrConnecting();
-	}
-	
 	public void button_click_1(View view){ 
         // Create the dialog
         final Dialog mDateTimeDialog = new Dialog(this);
@@ -372,6 +444,14 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 		// TODO Auto-generated method stub
 		
 	}
+	
+
+	public boolean isOnline() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		return cm.getActiveNetworkInfo() != null
+				&& cm.getActiveNetworkInfo().isConnectedOrConnecting();
+	}
+	
 	
 	@Override
 	protected void onResume() {

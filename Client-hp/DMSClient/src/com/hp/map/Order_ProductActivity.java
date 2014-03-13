@@ -25,6 +25,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -52,10 +54,19 @@ public class Order_ProductActivity extends Activity{
 	
 	private TextView total_value;
 	
+	private EditText id_search;
+	private ProductArrayAdapter adapter;
+	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
 		
+		//Reset
+		ordersDetailList.clear();
+		
+		//Search ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		id_search = (EditText) findViewById(R.id.product_id);
+				
 		total_value = (TextView)findViewById(R.id.total_value);
 		
 		List<Product> productsList = new ArrayList<Product>();
@@ -63,7 +74,8 @@ public class Order_ProductActivity extends Activity{
 		productsList.add(product);
 		
 		listView = (ListView)findViewById(R.id.list_view_product);
-		listView.setAdapter(new ProductArrayAdapter(this, android.R.layout.simple_list_item_1, productsList));
+		adapter = new ProductArrayAdapter(this, android.R.layout.simple_list_item_1, productsList);
+		listView.setAdapter(adapter);
 		
 		
 		listView.setOnItemClickListener(new OnItemClickListener()
@@ -143,6 +155,9 @@ public class Order_ProductActivity extends Activity{
 		addItemsOnSpinner();
 		addListenerOnSpinnerItemSelection();
 		
+		
+
+		
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){
@@ -210,7 +225,7 @@ public class Order_ProductActivity extends Activity{
 	  
 	  public void addListenerOnSpinnerItemSelection() {
 			spinner = (Spinner) findViewById(R.id.class_id);
-			spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(this, listView));
+			spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(this, listView, id_search));
 		  }
 	  ////////////////////// finish spiner ///////////////////////////////////
 

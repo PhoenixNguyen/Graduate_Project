@@ -15,7 +15,6 @@ package com.hp.domain;
 public class Product {
     
     private int mSerial;
-	
 	private String mBarcode;
     private String mProductID;
     private String mProductName;
@@ -29,6 +28,14 @@ public class Product {
     private String mProvider;
     private String mDescription;
     private String mProductImage;
+
+
+	@Override
+	public String toString() {
+		return mProductID +" " + mProductName;
+				
+	}
+
 
     public Product(int mSerial, String mBarcode, String mProductID,
 			String mProductName) {

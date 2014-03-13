@@ -23,4 +23,6 @@ public interface TakeOrderDetailDAO {
     
     //delete
     public boolean delete(TakeOrderDetail pTakeOrderDetail);
+    //delete where order id
+    public boolean delete(String pID);
 }

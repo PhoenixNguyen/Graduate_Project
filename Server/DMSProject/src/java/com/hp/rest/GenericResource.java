@@ -680,4 +680,38 @@ public class GenericResource {
         System.out.println("____ " + pTakeOrder + "___ " + st);
         return Response.status(200).entity(st2+"").build();
     }
+    
+    @POST
+    @Path("/deleteOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteOrder( String pTakeOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        TakeOrder takeOrder = new TakeOrder();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                takeOrder = mapper.readValue(pTakeOrder, TakeOrder.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
+        boolean st = takeOrderDetailDAO.delete(takeOrder.getmID());
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Delete Order
+        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        boolean st2 = takeOrderDAO.delete(takeOrder);
+        
+        System.out.println("____ " + pTakeOrder + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
 }

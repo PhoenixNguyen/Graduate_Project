@@ -12,6 +12,7 @@ import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -106,6 +107,26 @@ public class TakeOrderDetailDAOImpl implements TakeOrderDetailDAO{
         try{
             
             session.delete(pTakeOrderDetail);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean delete(String pID){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            Query q = session.createQuery("delete TakeOrderDetail where mTakeOrderID='"+pID+"'");
+            q.executeUpdate();
             session.getTransaction().commit();
         }catch(HibernateException e){
             transaction.rollback();

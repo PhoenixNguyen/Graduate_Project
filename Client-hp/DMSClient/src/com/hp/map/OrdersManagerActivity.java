@@ -21,6 +21,7 @@ import com.hp.domain.Product;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import com.hp.order_manager.OrdersManagerArrayAdapter;
+import com.hp.order_manager.OrdersManagerDetailArrayAdapter;
 import com.hp.rest.Rest;
 import com.hp.schedule.ListViewSchedules;
 import com.sun.jersey.api.client.ClientResponse;
@@ -185,50 +186,88 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 			@Override
 			public void onClick(View v) {
 			
-//				// Check the internet
-//				if(isOnline()){
-//					System.out.println("Internet access!!____________________");
-//				}
-//				else{
-//					System.out.println("NO Internet access!!____________________");
-//					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-//					return;
-//				}
-//				
-//				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//				Date date = null;
-//				try {
-//					date = sdf.parse(selectedValue.getTime());
-//				} catch (ParseException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				
-//				System.out.println("_date: "+ sdf.format(date));
-////				//Post
-//				ClientResponse response = Rest.mService.path("webresources").path("deleteSchedule").accept("application/json")
-//						.type("application/json").post(ClientResponse.class, selectedValue.getId()+"::"+sdf.format(date));
-//						
-//				if (response.getStatus() != 200) {
-//		            throw new RuntimeException("Failed : HTTP error code : "
-//		                    + response.getStatus());
-//		        }
-//				
-//				if(response.getStatus() != 200){
-//		        	
-//		        	return ;
-//		        }
-//		        String output = response.getEntity(String.class);
-//		        System.out.println("Server response .... \n");
-//		        System.out.println(output);
-//		        
-//		        if(output.compareTo("status:1") == 0){
-//		        	Toast.makeText(context, "Đã xóa!", Toast.LENGTH_SHORT).show();
-//		        	
-//		        }
-//		        else
-//		        	Toast.makeText(context, "Xóa lỗi!", Toast.LENGTH_SHORT).show();
+				commitDialog(selectedValue);
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+		
+	}
+	
+	public void commitDialog(final TakeOrder selectedValue){
+		final Dialog dialog = new Dialog(context);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
+		dialog.setContentView(v);
+		
+		dialog.setTitle("Cảnh báo, xóa bản ghi! ");
+	
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Chấp nhận");
+		// if button is clicked, close the custom dialog
+		
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//Sys
+				
+				ObjectMapper mapper = new ObjectMapper();
+		        String order = new String();
+
+				try {
+
+					order = mapper.writeValueAsString(selectedValue);
+					
+				} catch (JsonGenerationException ex) {
+
+					ex.printStackTrace();
+
+				} catch (JsonMappingException ex) {
+
+					ex.printStackTrace();
+
+				} catch (IOException ex) {
+
+					ex.printStackTrace();
+
+				}
+		       
+				//Order ---------------------------------------------------------------
+				ClientResponse response = Rest.mService.path("webresources").path("deleteOrder").accept("application/json")
+				.type("application/json").post(ClientResponse.class, order);
+
+		        String output = response.toString();
+		        System.out.println("input 1: " + output);
 		        
+		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+		            Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
+		            // refresh customers
+		            
+		            
+		        }else
+		        	Toast.makeText(context, "Không thể xóa, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+		        
+		        System.out.println("Server response .... \n");
+		        System.out.println("input 0: " + output);
+		        
+		        dialog.dismiss();
+		        
+		        //Refresh
+		        getOrderList();
+		        adapter = new OrdersManagerArrayAdapter(context,
+						android.R.layout.simple_list_item_1, takeOrderList);
+				ordersListView.setAdapter(adapter);
+			}
+		});
+
+		//Delete a schedule
+		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogDeleteButton.setText("Hủy");
+		// if button is clicked, close the custom dialog
+		dialogDeleteButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+							
 				dialog.dismiss();
 			}
 		});

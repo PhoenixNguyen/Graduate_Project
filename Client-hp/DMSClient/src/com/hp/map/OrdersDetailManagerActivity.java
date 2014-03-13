@@ -205,7 +205,32 @@ public class OrdersDetailManagerActivity extends Activity{
 		dialogButtonDelete.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				commitDialog(selectedValue);
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+		
+	}
+	
+	public void commitDialog(final TakeOrderDetail selectedValue){
+		final Dialog dialog = new Dialog(context);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
+		dialog.setContentView(v);
+		
+		dialog.setTitle("Cảnh báo, xóa bản ghi! ");
+	
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Chấp nhận");
+		// if button is clicked, close the custom dialog
+		
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
 				
+
 				//Sys
 				
 				ObjectMapper mapper = new ObjectMapper();
@@ -237,7 +262,7 @@ public class OrdersDetailManagerActivity extends Activity{
 		        System.out.println("input 1: " + output);
 		        
 		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-		            Toast.makeText(context, "Đang xóa", Toast.LENGTH_SHORT).show();
+		            Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
 		            // refresh customers
 		            
 		            
@@ -257,7 +282,18 @@ public class OrdersDetailManagerActivity extends Activity{
 				ordersListView.setAdapter(adapter);
 			}
 		});
-		
+
+		//Delete a schedule
+		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogDeleteButton.setText("Hủy");
+		// if button is clicked, close the custom dialog
+		dialogDeleteButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+							
+				dialog.dismiss();
+			}
+		});
 		dialog.show();
 		
 	}

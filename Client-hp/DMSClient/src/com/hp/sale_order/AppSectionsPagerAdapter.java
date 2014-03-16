@@ -42,7 +42,7 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
                 return sale2;
             	
             default:
-            	return new ReturnOrderFragment();
+            	return new SaleValueFragment();
                 // The other sections of the app are dummy placeholders.
 //                Fragment fragment = new ReturnOrderFragment();
 //                Bundle args = new Bundle();

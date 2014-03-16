@@ -45,7 +45,7 @@ public class ReturnOrderFragment extends Fragment{
 	private LinearLayout layout;
 	public static String order_id;
 	
-	private List<TakeOrderDetail> takeOrderDetailList = null;
+	public static List<TakeOrderDetail> takeOrderDetailList = null;
 	private Context context ;
 	private ListView ordersListView;
 	private OrdersManagerDetailArrayAdapter adapter;

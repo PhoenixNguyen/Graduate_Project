@@ -424,9 +424,9 @@ containing a value of this type.
         public static final int autoCompleteTextView1=0x7f060020;
         public static final int btnLogin=0x7f060038;
         public static final int btt=0x7f060022;
-        public static final int button=0x7f060067;
+        public static final int button=0x7f060069;
         public static final int calendar=0x7f060015;
-        public static final int cb_customer=0x7f060064;
+        public static final int cb_customer=0x7f060066;
         public static final int class_id=0x7f06005e;
         public static final int class_name=0x7f06005d;
         public static final int count=0x7f060055;
@@ -453,7 +453,7 @@ containing a value of this type.
         public static final int document=0x7f060008;
         public static final int document_value=0x7f060009;
         public static final int end=0x7f06005a;
-        public static final int field=0x7f060065;
+        public static final int field=0x7f060067;
         public static final int footer=0x7f060035;
         public static final int gridview=0x7f060019;
         public static final int header=0x7f060016;
@@ -464,7 +464,7 @@ containing a value of this type.
         public static final int hybrid=0x7f060004;
         public static final int id=0x7f060031;
         public static final int id_search=0x7f06005c;
-        public static final int image=0x7f060066;
+        public static final int image=0x7f060068;
         public static final int init_order=0x7f060028;
         public static final int legal_info=0x7f060034;
         public static final int link_to_register=0x7f060039;
@@ -474,7 +474,7 @@ containing a value of this type.
         public static final int list_view_product=0x7f060057;
         public static final int lview=0x7f06001b;
         public static final int map=0x7f06002a;
-        public static final int menu_legal=0x7f060068;
+        public static final int menu_legal=0x7f06006a;
         public static final int min_container=0x7f06004b;
         public static final int min_display=0x7f06004d;
         public static final int min_minus=0x7f06004e;
@@ -492,11 +492,13 @@ containing a value of this type.
         public static final int note_value=0x7f060013;
         public static final int number=0x7f060032;
         public static final int number_value=0x7f060033;
-        public static final int pager=0x7f060063;
+        public static final int pager=0x7f060065;
         public static final int password=0x7f060037;
         public static final int previous=0x7f060017;
         public static final int price=0x7f060054;
         public static final int product_id=0x7f06005f;
+        public static final int return_order=0x7f060064;
+        public static final int sale=0x7f060063;
         public static final int satellite=0x7f060002;
         public static final int save=0x7f060014;
         public static final int search_button=0x7f060060;

@@ -36,6 +36,11 @@ public final class DetailsListData {
         new DetailsList("Orders manager",
                 "your orders manager",
                 OrdersManagerActivity.class),
+                
+        new DetailsList("Sale order",
+                "Sale order",
+                SaleOrdersManagerActivity.class),        
+                
     };
     
     public static DetailsList[] CUSTOMER_LIST ;

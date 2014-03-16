@@ -47,9 +47,12 @@ public class Sale_Return_Order_Activity extends FragmentActivity implements Acti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sale_return_order_main);
 
+		Intent intent = getIntent();
+		String order_id = intent.getStringExtra("ORDER_ID");
+        
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
-        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager(), order_id);
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();

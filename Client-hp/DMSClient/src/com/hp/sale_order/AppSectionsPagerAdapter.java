@@ -8,8 +8,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
-    public AppSectionsPagerAdapter(FragmentManager fm) {
+	private final String tab1 = "Xuất hàng";
+	private final String tab2 = "Trả hàng";
+	private final String tab3 = "Tổng kết";
+	
+	private String selected_order;
+	
+    public AppSectionsPagerAdapter(FragmentManager fm, String selected_id) {
         super(fm);
+        this.selected_order = selected_id;
     }
 
     @Override
@@ -18,15 +25,35 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 // The first section of the app is the most interesting -- it offers
                 // a launchpad into the other demonstrations in this example application.
-                return new SaleOrderFragment();
-
+//                return new SaleOrderFragment();
+            	Fragment sale = new SaleOrderFragment();
+                Bundle args1 = new Bundle();
+                args1.putString("ORDER_ID", selected_order);
+                sale.setArguments(args1);
+                return sale;
+                
+            case 1:
+            	return new ReturnOrderFragment();
+//            	Fragment sale2 = new SaleOrderFragment();
+//                Bundle args2 = new Bundle();
+//                args2.putString("ORDER_ID", selected_order);
+//                sale2.setArguments(args2);
+//                return sale2;
+            	
             default:
+            	return new ReturnOrderFragment();
                 // The other sections of the app are dummy placeholders.
-                Fragment fragment = new ReturnOrderFragment();
-                Bundle args = new Bundle();
-                args.putInt(ReturnOrderFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+//                Fragment fragment = new ReturnOrderFragment();
+//                Bundle args = new Bundle();
+//                args.putInt(ReturnOrderFragment.ARG_SECTION_NUMBER, i + 1);
+//                fragment.setArguments(args);
+//                return fragment;
+            	
+//            	Fragment sale3 = new SaleOrderFragment();
+//                Bundle args3 = new Bundle();
+//                args3.putString("ORDER_ID", selected_order);
+//                sale3.setArguments(args3);
+//                return sale3;
         }
     }
 
@@ -37,6 +64,17 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Section " + (position + 1);
+    	switch(position){
+    	case 0:
+    		return tab1;
+    		
+    	case 1:
+    		return tab2;
+    	case 2:
+    		return tab3;
+    	default:
+    		return "Next";
+    	}
+    	        
     }
 }

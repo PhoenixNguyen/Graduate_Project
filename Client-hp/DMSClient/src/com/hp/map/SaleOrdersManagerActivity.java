@@ -1,10 +1,12 @@
 package com.hp.map;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,14 +20,17 @@ import com.hp.domain.Customer;
 import com.hp.domain.DateTimePicker;
 import com.hp.domain.DateTimePicker.DateWatcher;
 import com.hp.domain.Product;
+import com.hp.domain.Schedule;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import com.hp.order_manager.OrdersManagerArrayAdapter;
 import com.hp.order_manager.OrdersManagerDetailArrayAdapter;
 import com.hp.rest.Rest;
-import com.hp.schedule.ListViewSchedules;
+import com.hp.sale_order.DialogArrayAdapter;
+
 import com.sun.jersey.api.client.ClientResponse;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.SearchManager;
@@ -46,6 +51,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
@@ -55,7 +61,6 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class SaleOrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
 
-	private TextView id[];
 	private List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
 	private List<TakeOrder> takeOrderListFilter = new ArrayList<TakeOrder>();
 	private boolean filter = false;
@@ -75,13 +80,17 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 	
 	private Context context = this;
 	
+	private ImageButton new_sale_order;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.orders_manager);
+		setContentView(R.layout.sale_order_manager);
 		
 		start = (EditText)findViewById(R.id.start);
 		end = (EditText)findViewById(R.id.end);
+		
+		new_sale_order = (ImageButton)findViewById(R.id.new_sale_order);
+		new_sale_order.setOnClickListener(this);
 		
 		getOrderList();
 		addListView();
@@ -169,7 +178,7 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 			public void onClick(View v) {
 				// show the map
 				Intent intent = new Intent(getApplicationContext(),
-						Sale_Return_Order_Activity.class);
+						SaleOrderDetail_Main_Activity.class);
 				intent.putExtra("ORDER_ID", selectedValue.getmID());
 
 				startActivity(intent);
@@ -323,18 +332,188 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 			return takeOrderListFilter;
 	}
 	public void onClick(View v) {
-		for (int i = 0; i < getOrderList(filter).size(); i++)
-			if (v == id[i]) {
-				System.out.println("click: " + i + " "
-						+ id[i].getText().toString());
-				Intent intent = new Intent(getApplicationContext(),
-						OrdersDetailManagerActivity.class);
-				intent.putExtra("ORDER_ID", id[i].getText().toString());
-
-				startActivity(intent);
-			}
+//		for (int i = 0; i < getOrderList(filter).size(); i++)
+//			if (v == id[i]) {
+//				System.out.println("click: " + i + " "
+//						+ id[i].getText().toString());
+//				Intent intent = new Intent(getApplicationContext(),
+//						TakeOrdersDetailManagerActivity.class);
+//				intent.putExtra("ORDER_ID", id[i].getText().toString());
+//
+//				startActivity(intent);
+//			}
+		
+		//New sale order
+		if(v == new_sale_order){
+			addNewSaleOrderDialog(null);
+		}
 	}
 
+	public void addNewSaleOrderDialog(final TakeOrder selectedValue){
+		final Dialog dialog = new Dialog(context);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
+		dialog.setContentView(v);
+		
+		dialog.setTitle("Tạo mới hóa đơn bán hàng bằng ");
+	
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Tạo mới bằng tay");
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// show the map
+//				Intent intent = new Intent(getApplicationContext(),
+//						SaleOrderDetail_Main_Activity.class);
+//				intent.putExtra("ORDER_ID", selectedValue.getmID());
+//
+//				startActivity(intent);
+		        
+				dialog.dismiss();
+			}
+		});
+
+		//Delete a schedule
+		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogDeleteButton.setText("Hóa đơn đặt hàng");
+		// if button is clicked, close the custom dialog
+		dialogDeleteButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			
+				loadTakeOrderDialog(null);
+				//commitDialog(selectedValue);
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+		
+	}
+	
+	String selectedValue = null;
+	public void loadTakeOrderDialog(String pDate){
+		// Check the internet
+		if(isOnline()){
+			System.out.println("Internet access!!____________________");
+		}
+		else{
+			System.out.println("NO Internet access!!____________________");
+			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		final Dialog dialog = new Dialog(context);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.schedule_dialog, null, false);
+		dialog.setContentView(v);
+		final ListView listViewCus = (ListView)dialog.findViewById(R.id.list_view_cus);
+		
+		dialog.setTitle("Chọn hóa đơn đặt");
+		
+		// List Take order -------------------------------------------
+		//Get getTakeOrderList  ========================================
+		ClientResponse response = Rest.mService.path("webresources")
+				.path("getTakeOrderList").accept("application/json")
+				.type("application/json")
+				.post(ClientResponse.class, Rest.mStaffID);
+		System.out.println("________________ " + response.toString());
+
+		if (response.getStatus() != 200) {
+
+			return ;
+		}
+
+		String re = response.getEntity(String.class);
+		System.out.println("________________ " + re);
+
+		// pair to object
+		ObjectMapper mapper = new ObjectMapper();
+		List<TakeOrder> takeOrderList2;
+		try {
+			// File jsonFile = new File(jsonFilePath);
+			takeOrderList2 = mapper.readValue(re, TypeFactory.defaultInstance()
+					.constructCollectionType(List.class, TakeOrder.class));
+			// System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+			return ;
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return ;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ;
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		String[] take_order_id_list = new String[]{};
+		
+		for(int i = 0; i < takeOrderList2.size(); i++){
+			take_order_id_list = append(take_order_id_list, takeOrderList2.get(i).getmID());
+			
+		}
+		
+		//ListView listViewCus = (ListView)findViewById(R.id.list_view_cus);
+		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, take_order_id_list));
+		//listViewCus.setBackgroundResource(R.drawable.artists_list_backgroundcolor);
+		listViewCus.setSelector( R.drawable.artists_list_backgroundcolor);
+		listViewCus.setOnItemClickListener(new OnItemClickListener()
+		{
+		     @Override
+		     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
+		     {
+		    	 selectedValue = (String) listViewCus.getAdapter().getItem(position);
+//		    	 
+//		          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
+//		    	// custom dialog
+
+		      }
+		});
+		
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Check the internet
+				if(isOnline()){
+					System.out.println("Internet access!!____________________");
+				}
+				else{
+					System.out.println("NO Internet access!!____________________");
+					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+					return;
+				}
+							
+				//================= put in server======================================
+				
+				//Post
+				ClientResponse response = Rest.mService.path("webresources").path("putSaleOrder").accept("application/json")
+						.type("application/json").post(ClientResponse.class, selectedValue);
+						
+				if (response.getStatus() != 200) {
+		            throw new RuntimeException("Failed : HTTP error code : "
+		                    + response.getStatus());
+		        }
+				if (response.getStatus() != 200) {
+
+					return;
+				}
+		        String output = response.toString();
+		        System.out.println("Server response .... \n");
+		        System.out.println(output);
+		        
+				/////==================================================================
+				//Reload
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+		
+	}
+	
 	public void button_click_1(View view){ 
         // Create the dialog
         final Dialog mDateTimeDialog = new Dialog(this);
@@ -502,4 +681,12 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 	   super.onResume();
 	   this.onCreate(null);
 	}
+	
+	@SuppressLint("NewApi")
+	static <T> T[] append(T[] arr, T element) {
+        final int N = arr.length;
+        arr = Arrays.copyOf(arr, N + 1);
+        arr[N] = element;
+        return arr;
+    }
 }

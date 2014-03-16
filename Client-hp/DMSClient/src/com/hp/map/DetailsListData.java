@@ -35,7 +35,7 @@ public final class DetailsListData {
 
         new DetailsList("Orders manager",
                 "your orders manager",
-                OrdersManagerActivity.class),
+                TakeOrdersManagerActivity.class),
                 
         new DetailsList("Sale order",
                 "Sale order",

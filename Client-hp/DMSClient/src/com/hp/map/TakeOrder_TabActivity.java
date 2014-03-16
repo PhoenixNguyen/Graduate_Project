@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
-public class Order_TabActivity extends TabActivity{
+public class TakeOrder_TabActivity extends TabActivity{
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -16,13 +16,13 @@ public class Order_TabActivity extends TabActivity{
 		Resources recource = getResources();
 		TabHost tabHost = getTabHost();
 		
-		Intent intentProduct = new Intent().setClass(this, Order_ProductActivity.class);
+		Intent intentProduct = new Intent().setClass(this, TakeOrder_ProductActivity.class);
 		TabSpec tabSpecProduct = tabHost
 				.newTabSpec("Product")
 				.setIndicator("Product")
 				.setContent(intentProduct);
 		
-		Intent intentAmount = new Intent().setClass(this, Order_AmountActivity.class);
+		Intent intentAmount = new Intent().setClass(this, TakeOrder_AmountActivity.class);
 		TabSpec tabSpecAmount = tabHost
 				.newTabSpec("Amount")
 				.setIndicator("Amount")

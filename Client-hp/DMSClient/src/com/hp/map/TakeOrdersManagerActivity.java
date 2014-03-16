@@ -53,7 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class OrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
+public class TakeOrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
 
 	private TextView id[];
 	private List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
@@ -94,7 +94,7 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 			public void onTextChanged(CharSequence cs, int arg1, int arg2,
 					int arg3) {
 				// When user changed the Text
-				OrdersManagerActivity.this.adapter.getFilter().filter(cs);
+				TakeOrdersManagerActivity.this.adapter.getFilter().filter(cs);
 			}
 
 			@Override
@@ -169,7 +169,7 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 			public void onClick(View v) {
 				// show the map
 				Intent intent = new Intent(getApplicationContext(),
-						OrdersDetailManagerActivity.class);
+						TakeOrdersDetailManagerActivity.class);
 				intent.putExtra("ORDER_ID", selectedValue.getmID());
 
 				startActivity(intent);
@@ -328,7 +328,7 @@ public class OrdersManagerActivity extends Activity implements OnClickListener, 
 				System.out.println("click: " + i + " "
 						+ id[i].getText().toString());
 				Intent intent = new Intent(getApplicationContext(),
-						OrdersDetailManagerActivity.class);
+						TakeOrdersDetailManagerActivity.class);
 				intent.putExtra("ORDER_ID", id[i].getText().toString());
 
 				startActivity(intent);

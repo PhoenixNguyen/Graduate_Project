@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint("NewApi")
-public class Sale_Return_Order_Activity extends FragmentActivity implements ActionBar.TabListener {
+public class SaleOrderDetail_Main_Activity extends FragmentActivity implements ActionBar.TabListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the

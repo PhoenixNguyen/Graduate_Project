@@ -42,7 +42,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TableRow.LayoutParams;
 
-public class OrdersDetailManagerActivity extends Activity{
+public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	private LinearLayout layout;
 	private String order_id;

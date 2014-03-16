@@ -18,6 +18,9 @@
     <color name="FFFFCC">#FFFFCC</color>
     <color name="col000099">#000099</color>
     
+    <color name="normal">#6666FF</color>
+    <color name="itemselected">#EDEDED</color>
+    
     
     <color name="White">#FFFFFF</color>
  <color name="Ivory">#FFFFF0</color>

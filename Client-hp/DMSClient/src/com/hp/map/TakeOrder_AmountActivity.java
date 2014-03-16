@@ -24,7 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Order_AmountActivity extends Activity implements OnClickListener{
+public class TakeOrder_AmountActivity extends Activity implements OnClickListener{
 	
 	private Context context = this;
 	
@@ -55,12 +55,12 @@ public class Order_AmountActivity extends Activity implements OnClickListener{
 		
 		int numberTotal = 0;
 		pricesTotal = 0;
-		for(int i = 0; i < Order_ProductActivity.ordersDetailList.size(); i++){
-			numberTotal = numberTotal +  Order_ProductActivity.ordersDetailList.get(i).getmNumber();
-			pricesTotal = pricesTotal +  Order_ProductActivity.ordersDetailList.get(i).getmAfterOrderPrice() 
-					* Order_ProductActivity.ordersDetailList.get(i).getmNumber() ;
+		for(int i = 0; i < TakeOrder_ProductActivity.ordersDetailList.size(); i++){
+			numberTotal = numberTotal +  TakeOrder_ProductActivity.ordersDetailList.get(i).getmNumber();
+			pricesTotal = pricesTotal +  TakeOrder_ProductActivity.ordersDetailList.get(i).getmAfterOrderPrice() 
+					* TakeOrder_ProductActivity.ordersDetailList.get(i).getmNumber() ;
 		}
-		document_value.setText(Order_ProductActivity.ordersDetailList.size() + " sản phẩm và " + numberTotal + " mục");
+		document_value.setText(TakeOrder_ProductActivity.ordersDetailList.size() + " sản phẩm và " + numberTotal + " mục");
 		sum_value.setText(pricesTotal + "");
 		
 		save.setOnClickListener(this);
@@ -100,9 +100,9 @@ public class Order_AmountActivity extends Activity implements OnClickListener{
 					, Rest.mStaffID, Rest.mStaffID);
 			
 			//Set order ID
-			for(int i = 0; i < Order_ProductActivity.ordersDetailList.size(); i++){
-				Order_ProductActivity.ordersDetailList.get(i).setmLine(i+1);
-				Order_ProductActivity.ordersDetailList.get(i).setmTakeOrderID(orderID);
+			for(int i = 0; i < TakeOrder_ProductActivity.ordersDetailList.size(); i++){
+				TakeOrder_ProductActivity.ordersDetailList.get(i).setmLine(i+1);
+				TakeOrder_ProductActivity.ordersDetailList.get(i).setmTakeOrderID(orderID);
 			}
 			
 			// Send
@@ -113,7 +113,7 @@ public class Order_AmountActivity extends Activity implements OnClickListener{
 			try {
 
 				TakeOrderStr = mapper.writeValueAsString(order);
-				orderDetailList = mapper.writeValueAsString(Order_ProductActivity.ordersDetailList);
+				orderDetailList = mapper.writeValueAsString(TakeOrder_ProductActivity.ordersDetailList);
 				
 			} catch (JsonGenerationException ex) {
 

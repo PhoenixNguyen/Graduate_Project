@@ -39,7 +39,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Order_ProductActivity extends Activity{
+public class TakeOrder_ProductActivity extends Activity{
 	private ListView listView;
 	
 	static final String[] PRODUCT = 

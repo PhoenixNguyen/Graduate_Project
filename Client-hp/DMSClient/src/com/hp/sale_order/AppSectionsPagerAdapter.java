@@ -12,7 +12,7 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 	private final String tab2 = "Trả hàng";
 	private final String tab3 = "Tổng kết";
 	
-	private String selected_order;
+	public static String selected_order;
 	
     public AppSectionsPagerAdapter(FragmentManager fm, String selected_id) {
         super(fm);
@@ -28,17 +28,18 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 //                return new SaleOrderFragment();
             	Fragment sale = new SaleOrderFragment();
                 Bundle args1 = new Bundle();
-                args1.putString("ORDER_ID", selected_order);
+                args1.putString(SaleOrderFragment.ORDER_ID, selected_order);
                 sale.setArguments(args1);
                 return sale;
                 
             case 1:
-            	return new ReturnOrderFragment();
-//            	Fragment sale2 = new SaleOrderFragment();
-//                Bundle args2 = new Bundle();
-//                args2.putString("ORDER_ID", selected_order);
-//                sale2.setArguments(args2);
-//                return sale2;
+//            	return new ReturnOrderFragment();
+            	Fragment sale2 = new ReturnOrderFragment();
+                Bundle args2 = new Bundle();
+                //ReturnOrderFragment.ORDER_ID = selected_order;
+                args2.putString(ReturnOrderFragment.ORDER_ID, selected_order);
+                sale2.setArguments(args2);
+                return sale2;
             	
             default:
             	return new ReturnOrderFragment();

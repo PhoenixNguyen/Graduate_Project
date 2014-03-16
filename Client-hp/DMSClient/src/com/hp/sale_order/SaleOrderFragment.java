@@ -40,7 +40,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SaleOrderFragment extends Fragment{
-	public static final String ARG_SECTION_NUMBER = "section_number";
+	public static final String ORDER_ID = "section_number";
 	
 	private LinearLayout layout;
 	public static String order_id;
@@ -58,8 +58,10 @@ public class SaleOrderFragment extends Fragment{
 		this.context = container.getContext();
 		rootView = inflater.inflate(R.layout.orders_detail_manager, container, false);
         
-		Bundle args = getArguments();
-		order_id = args.getString("ORDER_ID");
+		order_id = AppSectionsPagerAdapter.selected_order;
+		
+//		Bundle args = getArguments();
+//		order_id = args.getString(ORDER_ID);
 		
 		//super.onCreate(savedInstanceState);
 		//setContentView(R.layout.orders_detail_manager);
@@ -119,7 +121,7 @@ public class SaleOrderFragment extends Fragment{
 	public void addCustomerDialog(final TakeOrderDetail selectedValue){
 		final Dialog dialog = new Dialog(context);
 		dialog.setContentView(R.layout.order_product_dialog);
-		dialog.setTitle("Thay đổi số lượng");
+		dialog.setTitle("Trả lại sản phẩm này");
 
 		// set the custom dialog components - text, image and button
 		TextView text = (TextView) dialog.findViewById(R.id.text);
@@ -131,16 +133,20 @@ public class SaleOrderFragment extends Fragment{
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
-		dialogButton.setText("Cập nhật");
+		dialogButton.setText("Lưu lại");
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				
-				if(count == null)
+				if(count == null )
 					return;
 				
 				int number = Integer.parseInt(count.getText().toString());
+				if(number >  selectedValue.getmNumber()){
+					Toast.makeText(context, "Số lượng bạn nhập lớn hơn trong hóa đơn!", Toast.LENGTH_SHORT).show();
+					return;
+				}
 				selectedValue.setmNumber(number);
 				selectedValue.setmPriceTotal(selectedValue.getmAfterOrderPrice() * number);
 				
@@ -168,14 +174,14 @@ public class SaleOrderFragment extends Fragment{
 				}
 		       
 				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path("updateDetailOrder").accept("application/json")
+				ClientResponse response = Rest.mService.path("webresources").path("putDetailReturnOrder").accept("application/json")
 				.type("application/json").post(ClientResponse.class, orderDetail);
 
 		        String output = response.toString();
 		        System.out.println("input 1: " + output);
 		        
 		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-		            Toast.makeText(context, "Đang cập nhật", Toast.LENGTH_SHORT).show();
+		            Toast.makeText(context, "Đã cập nhật", Toast.LENGTH_SHORT).show();
 		            // refresh customers
 		            
 		            
@@ -189,10 +195,10 @@ public class SaleOrderFragment extends Fragment{
 				dialog.dismiss();
 				
 				//reload
-				getOrderList();
-				adapter = new OrdersManagerDetailArrayAdapter(context,
-						android.R.layout.simple_list_item_1, takeOrderDetailList);
-				ordersListView.setAdapter(adapter);
+//				getOrderList();
+//				adapter = new OrdersManagerDetailArrayAdapter(context,
+//						android.R.layout.simple_list_item_1, takeOrderDetailList);
+//				ordersListView.setAdapter(adapter);
 			}
 		});
 
@@ -209,7 +215,7 @@ public class SaleOrderFragment extends Fragment{
 		
 		Button dialogButtonDelete = (Button) dialog.findViewById(R.id.dialogButtonDelete);
 		dialogButtonDelete.setVisibility(1);
-		dialogButtonDelete.setText("Xóa");
+		dialogButtonDelete.setText("");
 		// if button is clicked, close the custom dialog
 		dialogButtonDelete.setOnClickListener(new OnClickListener() {
 			@Override
@@ -242,53 +248,53 @@ public class SaleOrderFragment extends Fragment{
 
 				//Sys
 				
-				ObjectMapper mapper = new ObjectMapper();
-		        String orderDetail = new String();
-
-				try {
-
-					orderDetail = mapper.writeValueAsString(selectedValue);
-					
-				} catch (JsonGenerationException ex) {
-
-					ex.printStackTrace();
-
-				} catch (JsonMappingException ex) {
-
-					ex.printStackTrace();
-
-				} catch (IOException ex) {
-
-					ex.printStackTrace();
-
-				}
-		       
-				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path("deleteDetailOrder").accept("application/json")
-				.type("application/json").post(ClientResponse.class, orderDetail);
-
-		        String output = response.toString();
-		        System.out.println("input 1: " + output);
-		        
-		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-		            Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
-		            // refresh customers
-		            
-		            
-		        }else
-		        	Toast.makeText(context, "Không thể xóa, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-		        
-		        System.out.println("Server response .... \n");
-		        System.out.println("input 0: " + output);
+//				ObjectMapper mapper = new ObjectMapper();
+//		        String orderDetail = new String();
+//
+//				try {
+//
+//					orderDetail = mapper.writeValueAsString(selectedValue);
+//					
+//				} catch (JsonGenerationException ex) {
+//
+//					ex.printStackTrace();
+//
+//				} catch (JsonMappingException ex) {
+//
+//					ex.printStackTrace();
+//
+//				} catch (IOException ex) {
+//
+//					ex.printStackTrace();
+//
+//				}
+//		       
+//				//Order ---------------------------------------------------------------
+//				ClientResponse response = Rest.mService.path("webresources").path("deleteDetailOrder").accept("application/json")
+//				.type("application/json").post(ClientResponse.class, orderDetail);
+//
+//		        String output = response.toString();
+//		        System.out.println("input 1: " + output);
+//		        
+//		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+//		            Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
+//		            // refresh customers
+//		            
+//		            
+//		        }else
+//		        	Toast.makeText(context, "Không thể xóa, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+//		        
+//		        System.out.println("Server response .... \n");
+//		        System.out.println("input 0: " + output);
 		       
 		       
 				dialog.dismiss();
 				
 				//reload
-				getOrderList();
-				adapter = new OrdersManagerDetailArrayAdapter(context,
-						android.R.layout.simple_list_item_1, takeOrderDetailList);
-				ordersListView.setAdapter(adapter);
+//				getOrderList();
+//				adapter = new OrdersManagerDetailArrayAdapter(context,
+//						android.R.layout.simple_list_item_1, takeOrderDetailList);
+//				ordersListView.setAdapter(adapter);
 			}
 		});
 
@@ -310,7 +316,7 @@ public class SaleOrderFragment extends Fragment{
 	public void getOrderList(){
 		//GET From server
 		
-		ClientResponse response = Rest.mService.path("webresources").path("getTakeOrderDetailList")
+		ClientResponse response = Rest.mService.path("webresources").path("getSaleOrderDetailList")
 				.accept("application/json")
 				.type("application/json").post(ClientResponse.class, order_id);
         System.out.println("________________ "+ response.toString());

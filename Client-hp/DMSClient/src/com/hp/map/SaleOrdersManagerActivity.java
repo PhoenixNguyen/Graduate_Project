@@ -163,124 +163,12 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 	}
 
 	public void addCustomerDialog(final TakeOrder selectedValue){
-		final Dialog dialog = new Dialog(context);
-		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
-		dialog.setContentView(v);
 		
-		dialog.setTitle("Lựa chọn của bạn: ");
-	
-		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
-		dialogButton.setText("Hiển thị chi tiết");
-		// if button is clicked, close the custom dialog
-		dialogButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// show the map
-				Intent intent = new Intent(getApplicationContext(),
-						SaleOrderDetail_Main_Activity.class);
-				intent.putExtra("ORDER_ID", selectedValue.getmID());
+		Intent intent = new Intent(getApplicationContext(),
+				SaleOrderDetail_Main_Activity.class);
+		intent.putExtra("ORDER_ID", selectedValue.getmID());
 
-				startActivity(intent);
-		        
-				dialog.dismiss();
-			}
-		});
-
-		//Delete a schedule
-		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
-		dialogDeleteButton.setText("Xóa bản ghi");
-		// if button is clicked, close the custom dialog
-		dialogDeleteButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-			
-				commitDialog(selectedValue);
-				dialog.dismiss();
-			}
-		});
-		dialog.show();
-		
-	}
-	
-	public void commitDialog(final TakeOrder selectedValue){
-		final Dialog dialog = new Dialog(context);
-		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
-		dialog.setContentView(v);
-		
-		dialog.setTitle("Cảnh báo, xóa bản ghi! ");
-	
-		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
-		dialogButton.setText("Chấp nhận");
-		// if button is clicked, close the custom dialog
-		
-		dialogButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//Sys
-				
-//				ObjectMapper mapper = new ObjectMapper();
-//		        String order = new String();
-//
-//				try {
-//
-//					order = mapper.writeValueAsString(selectedValue);
-//					
-//				} catch (JsonGenerationException ex) {
-//
-//					ex.printStackTrace();
-//
-//				} catch (JsonMappingException ex) {
-//
-//					ex.printStackTrace();
-//
-//				} catch (IOException ex) {
-//
-//					ex.printStackTrace();
-//
-//				}
-//		       
-//				//Order ---------------------------------------------------------------
-//				ClientResponse response = Rest.mService.path("webresources").path("deleteOrder").accept("application/json")
-//				.type("application/json").post(ClientResponse.class, order);
-//
-//		        String output = response.toString();
-//		        System.out.println("input 1: " + output);
-//		        
-//		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-//		            Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
-//		            // refresh customers
-//		            
-//		            
-//		        }else
-//		        	Toast.makeText(context, "Không thể xóa, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-//		        
-//		        System.out.println("Server response .... \n");
-//		        System.out.println("input 0: " + output);
-//		        
-//		        dialog.dismiss();
-//		        
-//		        //Refresh
-//		        getOrderList();
-//		        adapter = new OrdersManagerArrayAdapter(context,
-//						android.R.layout.simple_list_item_1, takeOrderList);
-//				ordersListView.setAdapter(adapter);
-			}
-		});
-
-		//Delete a schedule
-		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
-		dialogDeleteButton.setText("Hủy");
-		// if button is clicked, close the custom dialog
-		dialogDeleteButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-							
-				dialog.dismiss();
-			}
-		});
-		dialog.show();
+		startActivity(intent);
 		
 	}
 	
@@ -288,7 +176,7 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 		// GET From server
 
 				ClientResponse response = Rest.mService.path("webresources")
-						.path("getTakeOrderList").accept("application/json")
+						.path("getSaleOrderList").accept("application/json")
 						.type("application/json")
 						.post(ClientResponse.class, Rest.mStaffID);
 				System.out.println("________________ " + response.toString());
@@ -332,17 +220,7 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 			return takeOrderListFilter;
 	}
 	public void onClick(View v) {
-//		for (int i = 0; i < getOrderList(filter).size(); i++)
-//			if (v == id[i]) {
-//				System.out.println("click: " + i + " "
-//						+ id[i].getText().toString());
-//				Intent intent = new Intent(getApplicationContext(),
-//						TakeOrdersDetailManagerActivity.class);
-//				intent.putExtra("ORDER_ID", id[i].getText().toString());
-//
-//				startActivity(intent);
-//			}
-		
+
 		//New sale order
 		if(v == new_sale_order){
 			addNewSaleOrderDialog(null);
@@ -505,8 +383,14 @@ public class SaleOrdersManagerActivity extends Activity implements OnClickListen
 		        System.out.println(output);
 		        
 				/////==================================================================
-				//Reload
+				
 				dialog.dismiss();
+				
+				//Reload
+				getOrderList();
+				adapter = new OrdersManagerArrayAdapter(context,
+						android.R.layout.simple_list_item_1, takeOrderList);
+				ordersListView.setAdapter(adapter);
 			}
 		});
 

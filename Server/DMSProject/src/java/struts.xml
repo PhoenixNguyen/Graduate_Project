@@ -90,6 +90,32 @@
             <result name="success">generic/deleteOrder</result>
         </action>
         
+        
+        
+        <action name="getOrderData" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/getOrderData</result>
+        </action>
+        
+        <action name="putSaleOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/putSaleOrder</result>
+        </action>
+        
+        <action name="getSaleOrderList" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/getSaleOrderList</result>
+        </action>
+        
+        <action name="getSaleOrderDetailList" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/getSaleOrderDetailList</result>
+        </action>
+        
+        <action name="putDetailReturnOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/putDetailReturnOrder</result>
+        </action>
+        
+        <action name="getReturnOrderDetailList" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/getReturnOrderDetailList</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
         <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

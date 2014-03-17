@@ -40,6 +40,10 @@ public final class DetailsListData {
         new DetailsList("Sale order",
                 "Sale order",
                 SaleOrdersManagerActivity.class),        
+              
+        new DetailsList("Stock manager",
+                "products manager",
+                StockManagerActivity.class),        
                 
     };
     

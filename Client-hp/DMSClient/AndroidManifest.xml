@@ -101,6 +101,10 @@
             android:name="com.hp.map.SaleOrdersManagerActivity"
             android:label="Sale" /> 
 		
+		<activity
+            android:name="com.hp.map.StockManagerActivity"
+            android:label="Stock manager" /> 
+		
     </application>
 
 </manifest>

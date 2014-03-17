@@ -39,8 +39,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TakeOrder_ProductActivity extends Activity{
-	private ListView listView;
+public class TakeOrder_ProductActivity extends Activity implements OnItemClickListener{
+	public ListView listView;
 	
 	static final String[] PRODUCT = 
 			new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
@@ -57,7 +57,7 @@ public class TakeOrder_ProductActivity extends Activity{
 	private EditText id_search;
 	private ProductArrayAdapter adapter;
 	
-	
+	public TextView title;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -65,6 +65,9 @@ public class TakeOrder_ProductActivity extends Activity{
 		
 		//Reset
 		ordersDetailList.clear();
+		
+		//Init
+		init();
 		
 		//Search ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		id_search = (EditText) findViewById(R.id.product_id);
@@ -80,82 +83,8 @@ public class TakeOrder_ProductActivity extends Activity{
 		listView.setAdapter(adapter);
 		
 		
-		listView.setOnItemClickListener(new OnItemClickListener()
-		{
-		     @Override
-		     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
-		     {
-		    	 final Product selectedValue = (Product) listView.getAdapter().getItem(position);
-		    	 
-		          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
-		    	// custom dialog
-					final Dialog dialog = new Dialog(context);
-					dialog.setContentView(R.layout.order_product_dialog);
-					dialog.setTitle("Số lượng");
-		 
-					// set the custom dialog components - text, image and button
-					TextView text = (TextView) dialog.findViewById(R.id.text);
-					text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
-
-					TextView price = (TextView) dialog.findViewById(R.id.price);
-					price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
-					
-					TextView discount = (TextView) dialog.findViewById(R.id.discount);
-					discount.setText("Giảm giá: 0.0" );
-					
-					final EditText count = (EditText)dialog.findViewById(R.id.count);
-					
-					Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
-					// if button is clicked, close the custom dialog
-					dialogButton.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							
-							line++;
-							System.out.println("__ "+ line);
-							String count2 = count.getText().toString();
-							int number = 0;
-							if(count2.compareTo("") != 0)
-								number = Integer.parseInt(count2);
-							else
-								return;
-							
-							//take order detail
-							boolean status = false;
-							for(int i = 0; i < ordersDetailList.size(); i++){
-								if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
-									if(number == 0){
-										ordersDetailList.remove(i);
-									}
-									else{
-										ordersDetailList.get(i).setmNumber(number);
-										
-									}
-									status = true;
-									line--;
-								}
-							}
-							if(!status && number != 0){
-								System.out.println("2__ "+ line);
-								TakeOrderDetail orderDetail = 
-										new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
-												selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
-												selectedValue.getmExportPrices() * number, "", number, "", 0);
-								
-								ordersDetailList.add(orderDetail);
-							}
-							
-							total_value.setText(ordersDetailList.size()+"");
-							//finish
-							dialog.dismiss();
-						}
-					});
-		 
-					
-					dialog.show();
-		      }
-		});
-
+		listView.setOnItemClickListener(this);
+		
 		//spiner
 		addItemsOnSpinner();
 		addListenerOnSpinnerItemSelection();
@@ -163,6 +92,11 @@ public class TakeOrder_ProductActivity extends Activity{
 		
 
 		
+	}
+	
+	public void init(){
+		title = (TextView)findViewById(R.id.title);
+	
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){
@@ -239,5 +173,79 @@ public class TakeOrder_ProductActivity extends Activity{
 			ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
 			return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
 		}
+
+	
+	@Override
+    public void onItemClick(AdapterView<?> a, View v,int position, long id) 
+    {
+   	 final Product selectedValue = (Product) listView.getAdapter().getItem(position);
+   	 
+         //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
+   	// custom dialog
+			final Dialog dialog = new Dialog(context);
+			dialog.setContentView(R.layout.order_product_dialog);
+			dialog.setTitle("Số lượng");
+
+			// set the custom dialog components - text, image and button
+			TextView text = (TextView) dialog.findViewById(R.id.text);
+			text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
+
+			TextView price = (TextView) dialog.findViewById(R.id.price);
+			price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
+			
+			TextView discount = (TextView) dialog.findViewById(R.id.discount);
+			discount.setText("Giảm giá: 0.0" );
+			
+			final EditText count = (EditText)dialog.findViewById(R.id.count);
+			
+			Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+			// if button is clicked, close the custom dialog
+			dialogButton.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					
+					line++;
+					System.out.println("__ "+ line);
+					String count2 = count.getText().toString();
+					int number = 0;
+					if(count2.compareTo("") != 0)
+						number = Integer.parseInt(count2);
+					else
+						return;
+					
+					//take order detail
+					boolean status = false;
+					for(int i = 0; i < ordersDetailList.size(); i++){
+						if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
+							if(number == 0){
+								ordersDetailList.remove(i);
+							}
+							else{
+								ordersDetailList.get(i).setmNumber(number);
+								
+							}
+							status = true;
+							line--;
+						}
+					}
+					if(!status && number != 0){
+						System.out.println("2__ "+ line);
+						TakeOrderDetail orderDetail = 
+								new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
+										selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
+										selectedValue.getmExportPrices() * number, "", number, "", 0);
+						
+						ordersDetailList.add(orderDetail);
+					}
+					
+					total_value.setText(ordersDetailList.size()+"");
+					//finish
+					dialog.dismiss();
+				}
+			});
+
+			
+			dialog.show();
+     }
 }
 

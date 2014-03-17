@@ -422,9 +422,10 @@ containing a value of this type.
         public static final int ResetDateTime=0x7f060052;
         public static final int SetDateTime=0x7f060051;
         public static final int autoCompleteTextView1=0x7f060020;
+        public static final int ban_ra=0x7f06006b;
         public static final int btnLogin=0x7f060038;
         public static final int btt=0x7f060022;
-        public static final int button=0x7f060069;
+        public static final int button=0x7f060073;
         public static final int calendar=0x7f060015;
         public static final int cb_customer=0x7f060066;
         public static final int class_id=0x7f06005e;
@@ -450,10 +451,15 @@ containing a value of this type.
         public static final int discount=0x7f06000a;
         public static final int discount2=0x7f060010;
         public static final int discount_value=0x7f06000b;
+        public static final int display_table=0x7f060067;
         public static final int document=0x7f060008;
         public static final int document_value=0x7f060009;
+        public static final int duyet=0x7f06006d;
+        public static final int edit_nhap=0x7f060070;
+        public static final int edit_ton_cuoi=0x7f06006f;
+        public static final int edit_ton_dau=0x7f06006e;
         public static final int end=0x7f06005a;
-        public static final int field=0x7f060067;
+        public static final int field=0x7f060071;
         public static final int footer=0x7f060035;
         public static final int gridview=0x7f060019;
         public static final int header=0x7f060016;
@@ -464,7 +470,7 @@ containing a value of this type.
         public static final int hybrid=0x7f060004;
         public static final int id=0x7f060031;
         public static final int id_search=0x7f06005c;
-        public static final int image=0x7f060068;
+        public static final int image=0x7f060072;
         public static final int init_order=0x7f060028;
         public static final int legal_info=0x7f060034;
         public static final int link_to_register=0x7f060039;
@@ -474,7 +480,7 @@ containing a value of this type.
         public static final int list_view_product=0x7f060057;
         public static final int lview=0x7f06001b;
         public static final int map=0x7f06002a;
-        public static final int menu_legal=0x7f06006a;
+        public static final int menu_legal=0x7f060074;
         public static final int min_container=0x7f06004b;
         public static final int min_display=0x7f06004d;
         public static final int min_minus=0x7f06004e;
@@ -486,12 +492,14 @@ containing a value of this type.
         public static final int name=0x7f060030;
         public static final int new_sale_order=0x7f060062;
         public static final int next=0x7f060018;
+        public static final int nhap=0x7f060069;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int note=0x7f060012;
         public static final int note_value=0x7f060013;
         public static final int number=0x7f060032;
         public static final int number_value=0x7f060033;
+        public static final int order=0x7f06006c;
         public static final int pager=0x7f060065;
         public static final int password=0x7f060037;
         public static final int previous=0x7f060017;
@@ -513,6 +521,8 @@ containing a value of this type.
         public static final int text=0x7f06001a;
         public static final int textView1=0x7f060021;
         public static final int title=0x7f060005;
+        public static final int ton_cuoi=0x7f06006a;
+        public static final int ton_dau=0x7f060068;
         public static final int total=0x7f060006;
         public static final int total_name=0x7f060061;
         public static final int total_value=0x7f060007;
@@ -557,7 +567,9 @@ containing a value of this type.
         public static final int sale_return_order_main=0x7f03001b;
         public static final int schedule_dialog=0x7f03001c;
         public static final int schedule_dialog_feature=0x7f03001d;
-        public static final int take_images=0x7f03001e;
+        public static final int stock_manager=0x7f03001e;
+        public static final int stock_manager_dialog=0x7f03001f;
+        public static final int take_images=0x7f030020;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;

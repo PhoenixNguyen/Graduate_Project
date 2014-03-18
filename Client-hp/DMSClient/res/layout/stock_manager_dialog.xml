@@ -82,7 +82,7 @@
         android:layout_below="@+id/duyet"
         android:background="@color/white"
         android:hint="Tồn đầu"
-        android:numeric="integer"
+        android:numeric="decimal"
         />
  	<EditText
         android:id="@+id/edit_ton_cuoi"
@@ -91,7 +91,7 @@
         android:layout_below="@+id/edit_ton_dau"
         android:background="@color/white"
         android:hint="Tồn cuối"
-        android:numeric="integer"
+        android:numeric="decimal"
         />
  	<EditText
         android:id="@+id/edit_nhap"
@@ -100,7 +100,7 @@
         android:layout_below="@+id/edit_ton_cuoi"
         android:background="@color/white"
         android:hint="Nhập"
-        android:numeric="integer"
+        android:numeric="decimal"
         />
      <Button
         android:id="@+id/dialogButtonYES"

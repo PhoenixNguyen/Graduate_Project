@@ -14,6 +14,8 @@ import com.hp.dao.SaleOrderDAO;
 import com.hp.dao.SaleOrderDAOImpl;
 import com.hp.dao.SaleOrderDetailDAO;
 import com.hp.dao.SaleOrderDetailDAOImpl;
+import com.hp.dao.StockDAO;
+import com.hp.dao.StockDAOImpl;
 import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
@@ -22,6 +24,7 @@ import com.hp.domain.ReturnOrder;
 import com.hp.domain.ReturnOrderDetail;
 import com.hp.domain.SaleOrder;
 import com.hp.domain.SaleOrderDetail;
+import com.hp.domain.Stock;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import java.io.IOException;
@@ -217,4 +220,47 @@ public class OrdersHandle {
         return list;
         
     }
+    
+    @POST
+    @Path("/putStock")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putStock( String pStock ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        Stock stock = new Stock();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                stock = mapper.readValue(pStock, Stock.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        StockDAO stockDAO = new StockDAOImpl();
+        boolean st = false;
+        if(stock.getmSerial() == 0)
+            st = stockDAO.saveOrUpdate(stock);
+        else
+            st = stockDAO.update(stock);
+        
+        return Response.status(200).entity(st+"").build();
+    }
+    @POST
+    @Path("/getStock")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Stock getStock(String pData) {
+        
+        StockDAO stockDAO = new StockDAOImpl();
+        Stock stock = new Stock();
+        stock = stockDAO.getStock(pData);
+        
+        return stock;
+        
+    }
+    
 }

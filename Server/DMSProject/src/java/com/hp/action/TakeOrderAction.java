@@ -179,7 +179,10 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         String fileInput = ServletActionContext.getServletContext().getRealPath("/database/");
         System.out.println("Result: " +staff +" from date: "+  fromDate +" , to date: "+ toDate);
         
-        takeOrdersList = takeOrderDAO.getTakeOrdersList();
+        takeOrdersList = takeOrderDAO.getTakeOrdersList(staff, fromDate, toDate);
+        if(takeOrdersList.isEmpty())
+            return INPUT;
+        
         Map<String, List<TakeOrderDetail>> data = new HashMap<String, List<TakeOrderDetail>>();
         
         for(int i= 0; i < takeOrdersList.size(); i++){

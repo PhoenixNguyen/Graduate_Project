@@ -10,6 +10,8 @@ import com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory;
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
 import com.hp.domain.Staff;
 import com.hp.domain.TakeOrder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -68,6 +70,33 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         List<TakeOrder> courses = null;
         try{
                 courses = session.createQuery("from TakeOrder where mCreater='"+pStaff+"'").list();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    public List<TakeOrder> getTakeOrdersList(String pStaff, String pFrom, String pTo){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<TakeOrder> courses = null;
+        try{
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                
+                Date from = sdf.parse(pFrom);
+                Date to = sdf.parse(pTo);
+            
+                courses = session.createQuery("from TakeOrder where mCreater='"+pStaff+"'" 
+                                                + " and mTakeOrderDate BETWEEN '" +sdf2.format(from)+ "' "
+                                                + " and '" +sdf2.format(to)+"'").list();
             
         }catch(Exception e){
             e.printStackTrace();

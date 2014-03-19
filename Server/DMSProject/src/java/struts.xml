@@ -379,6 +379,28 @@
             <result name="success" >edit-take-order-detail.jsp</result>
             <result name="input" >edit-take-order-detail.jsp</result>
         </action>
+        
+        <action name="export-orders" method="getStaffsList" class="com.hp.action.TakeOrderAction">
+            <result name="success" >export-orders.jsp</result>
+            <result name="input" >export-orders.jsp</result>
+        </action>
+        
+        <action name="export-staff-xls" method="exportOrders" class="com.hp.action.TakeOrderAction">
+            <result name="success" type="stream">
+                <param name="contentType">
+                    image/png,image/gif,image/jpeg,image/pjpeg,application/rar,application/zip
+                    ,application/octet-stream,text/plain
+                    ,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                    , application/vnd.ms-powerpoint
+                    , application/pdf
+                </param>
+                <param name="inputName">orderFile</param>
+                <param name="contentDisposition">attachment;filename=test.xls</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="input" >export-orders.jsp</result>
+        </action>
+        
     </package>
     
 </struts>

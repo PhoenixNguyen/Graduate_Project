@@ -20,17 +20,17 @@ import org.hibernate.Transaction;
  */
 public class StaffDAOImpl implements StaffDAO{
     
-    public List<String> getListUser(String pUser){
+    public List<String> getListUser(String pManager){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
         
         List<String> courses = null;
         try{
-            if(pUser == null)
+            if(pManager == null)
                 courses = session.createQuery("select mID from Staff ").list();
             else
-                courses = session.createQuery("select mID from Staff  where mManager ='"+pUser+"'").list(); //where mManager ='"+pUser+"'"
+                courses = session.createQuery("select mID from Staff  where mManager ='"+pManager+"'").list(); //where mManager ='"+pUser+"'"
         }catch(Exception e){
             e.printStackTrace();
         }

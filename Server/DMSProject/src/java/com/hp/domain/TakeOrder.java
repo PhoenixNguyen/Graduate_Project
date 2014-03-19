@@ -64,6 +64,50 @@ public class TakeOrder {
     @Column(name="hoadondathang_nguoi_sua")
     private String mEditer;
 
+    public Object[] toArray(){
+        return new Object[]{
+            mID,
+            mTakeOrderDate,
+            mDeliveryDate,
+            mCustomerID,
+            mCustomerName,
+            mCustomerAddress,
+            mPhoneNumber,
+            mDeliveryAddress,
+            mShippingVehicle,
+            mTax,
+            mBeforePrice,
+            mAfterPrivate,
+            mDiscount,
+            mOrderStatus,
+            mOrderEstablishDate,
+            mOrderEditDate,
+            mCreater,
+            mEditer
+        };
+    }
+    public Object[] toTitleArray(){
+        return new Object[]{
+            "Mã hóa đơn",
+            "Ngày tạo",
+            "Ngày giao",
+            "Mã khách hàng",
+            "Tên khách hàng",
+            "Địa chỉ",
+            "Số điện thoại",
+            "Địa chỉ giao",
+            "Phương tiện",
+            "Thuế",
+            "Giá trước thuế",
+            "Giá sau thuế",
+            "Giảm giá",
+            "Trạng thái",
+            "Ngày lập",
+            "Ngày sửa",
+            "Người tạo",
+            "Người sửa"
+        };
+    }
     public TakeOrder(){
         
     }

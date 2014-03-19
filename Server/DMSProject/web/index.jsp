@@ -14,12 +14,14 @@
     </head>
     <body>
         <h1>HOSCO DMS Project</h1> <br/>
-        <a href="map/showMap?page=0">Show the map</a><br/>
-        <a href="map/showSchedule?page=0">Check Schedules</a><br/>
-        <a href="map/staff-roads">journeys</a><br/><br/>
+        <a href="map/showMap?page=0">Vị trí khách hàng</a><br/>
+        <a href="map/showSchedule?page=0">Lịch trình của nhân viên</a><br/>
+        <a href="map/staff-roads">Quản lý hành trình</a><br/><br/>
         
-        <a href="admin/displayCustomers">input page</a><br/>
-        <a href="admin/display-take-order">Display orders</a><br/>
+        <a href="admin/displayCustomers">Nhập thông tin cơ bản</a><br/>
+        <a href="admin/display-take-order">Hiển thị hóa đơn đặt hàng</a><br/>
+        
+        <a href="admin/export-orders">Xuất hóa đơn</a><br/>
         
 <!--        <a href="admin/upload-dms-client-file">Upload a DMSClient file</a>
         <a href="admin/download-dms-client-file">Download the DMSClient file</a>

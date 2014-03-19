@@ -55,7 +55,49 @@ public class TakeOrderDetail {
     @Column(name="chitietdondathang_ty_gia", nullable = true)
     private Float mExchangeRate;
     
+    public Object[] toArray(){
+        return new Object[] {
+            mTakeOrderID,
+            mLine,
+            mProductID,
+            mBarcode,
+            mProductName,
+            mUnit,
+            mAfterOrderPrice,
+            mBeforeOrderPrice,
+            mNumber,
+            mTax,
+            mExchangeRate,
+            mDiscount,
+            mPriceTotal,
+            mStockID
+            
+            
+            
+        };
+    }
     
+    public Object[] toTitleArray(){
+        return new Object[] {
+            "Mã hóa đơn",
+            "Dòng",
+            "Mã sản phẩm",
+            "Mã vạch",
+            "Tên sản phẩm",
+            "Đơn vị",
+            "Giá trước thuế",
+            "Giá sau thuế",
+            "Số lượng",
+            "Thuế",
+            "Tỷ giá",
+            "Giảm giá",
+            "Giá tổng",
+            "Mã kho"
+            
+            
+            
+        };
+    }
     public Integer getmSerial() {
         return mSerial;
     }

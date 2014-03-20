@@ -1,6 +1,7 @@
 package com.hp.map;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -47,10 +48,10 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	private LinearLayout layout;
 	public String order_id;
 	
-	private List<TakeOrderDetail> takeOrderDetailList = null;
-	private Context context = this;
-	private ListView ordersListView;
-	private OrdersManagerDetailArrayAdapter adapter;
+	public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
+	public Context context = this;
+	public ListView ordersListView;
+	public OrdersManagerDetailArrayAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,13 +102,13 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 					long id) {
 				System.out.println("Click!");
 				TakeOrderDetail selectedValue = (TakeOrderDetail) ordersListView.getAdapter().getItem(position);
-		    	 addCustomerDialog(selectedValue);
+		    	 addCustomerDialog(selectedValue, position);
 				
 			}
 		});
 	}
 
-	public void addCustomerDialog(final TakeOrderDetail selectedValue){
+	public void addCustomerDialog(final TakeOrderDetail selectedValue, final int position){
 		final Dialog dialog = new Dialog(context);
 		dialog.setContentView(R.layout.order_product_dialog);
 		dialog.setTitle("Thay đổi số lượng");

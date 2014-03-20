@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -43,7 +45,7 @@ import android.widget.Toast;
 
 public class TakeOrder_ProductActivity extends Activity implements OnItemClickListener{
 	public ListView listView;
-	public static List<Product> mProductsList = new ArrayList<Product>();
+	public static Map<String, List<Product>> mProductsMap = new HashMap<String, List<Product>>();
 	
 	static final String[] PRODUCT = 
 			new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
@@ -68,8 +70,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 		//Reset
 		ordersDetailList.clear();
-		mProductsList.clear();
-		
+				
 		//Init
 		init();
 		
@@ -96,6 +97,11 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 
 		
+	}
+	
+	public void onResume(){
+		super.onResume();
+		this.onCreate(null);
 	}
 	
 	public void init(){
@@ -152,11 +158,16 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////
 		
+				
 		spinner = (Spinner) findViewById(R.id.class_id);
 		
 		List<String> list = new ArrayList<String>();
 		for(int i = 0; i < providersList.size(); i++){
+			//Init products list
+//			mProductsMap.put(i+"", value)
+//			mProductsList[i] = new ArrayList<Product>();
 			
+			//Add
 			list.add(providersList.get(i).getmID());
 		}
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -219,9 +230,9 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				else
 					return;
 				
-				mProductsList.get(position).setmTotal(number);
-				Collections.sort(mProductsList);
-				Collections.reverse(mProductsList);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmTotal(number);
+				Collections.sort(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
+				Collections.reverse(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				
 				//listView.get(0)//getAdapter().getItem(position).
 //					
@@ -254,7 +265,8 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				//finish
 				dialog.dismiss();
 				
-				adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, mProductsList);
+				adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1
+						, TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				listView.setAdapter(adapter);
 			}
 		});

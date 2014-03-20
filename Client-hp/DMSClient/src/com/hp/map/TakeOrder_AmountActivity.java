@@ -39,6 +39,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	private Button save;
 	float pricesTotal;
 	
+	private int numberTotal;
+	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.amount);
@@ -53,16 +55,20 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		
 		save = (Button)findViewById(R.id.save);
 		
-		int numberTotal = 0;
 		pricesTotal = 0;
-		for(int i = 0; i < TakeOrder_ProductActivity.ordersDetailList.size(); i++){
-			numberTotal = numberTotal +  TakeOrder_ProductActivity.ordersDetailList.get(i).getmNumber();
-			pricesTotal = pricesTotal +  TakeOrder_ProductActivity.ordersDetailList.get(i).getmAfterOrderPrice() 
-					* TakeOrder_ProductActivity.ordersDetailList.get(i).getmNumber() ;
+		numberTotal = 0;
+		for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
+			numberTotal = numberTotal +  TakeOrder_ReViewActivity.takeOrderDetailList.get(i).getmNumber();
+			pricesTotal = pricesTotal +  TakeOrder_ReViewActivity.takeOrderDetailList.get(i).getmPriceTotal() ;
+					
 		}
-		document_value.setText(TakeOrder_ProductActivity.ordersDetailList.size() + " sản phẩm và " + numberTotal + " mục");
-		sum_value.setText(pricesTotal + "");
 		
+		if(numberTotal == 0)
+			return;
+		
+		document_value.setText(TakeOrder_ReViewActivity.takeOrderDetailList.size() + " sản phẩm và " + numberTotal + " đầu mục");
+		//sum_value.setText(pricesTotal + "");
+		total_value.setText(pricesTotal + "");
 		save.setOnClickListener(this);
 	}
 	
@@ -78,6 +84,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		// TODO Auto-generated method stub
 		if(v == save){
 			//Create order:
+			if(numberTotal == 0)
+				return;
 			
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new  Date();
@@ -100,9 +108,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					, Rest.mStaffID, Rest.mStaffID);
 			
 			//Set order ID
-			for(int i = 0; i < TakeOrder_ProductActivity.ordersDetailList.size(); i++){
-				TakeOrder_ProductActivity.ordersDetailList.get(i).setmLine(i+1);
-				TakeOrder_ProductActivity.ordersDetailList.get(i).setmTakeOrderID(orderID);
+			for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
+				TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmTakeOrderID(orderID);
 			}
 			
 			// Send
@@ -113,7 +120,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			try {
 
 				TakeOrderStr = mapper.writeValueAsString(order);
-				orderDetailList = mapper.writeValueAsString(TakeOrder_ProductActivity.ordersDetailList);
+				orderDetailList = mapper.writeValueAsString(TakeOrder_ReViewActivity.takeOrderDetailList);
 				
 			} catch (JsonGenerationException ex) {
 
@@ -157,7 +164,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	        if ((response2.getStatus() == 200) && (response2.getEntity(String.class).compareTo("0") != 0)) {
 	            Toast.makeText(context, "Đang lưu chi tiết hóa đơn", Toast.LENGTH_SHORT).show();
 	            // refresh customers
-	            
+	            resetValue();
 	            
 	        }else
 	        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
@@ -168,5 +175,12 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	        ////////////////////////// save order detail//////////////////////////////////
 	        
 		}
+	}
+	
+	public void resetValue(){
+		TakeOrder_ProductActivity.mProductsMap.clear();
+		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
+		pricesTotal = 0;
+		onResume();
 	}
 }

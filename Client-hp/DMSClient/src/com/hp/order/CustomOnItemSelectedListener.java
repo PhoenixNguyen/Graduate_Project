@@ -32,6 +32,8 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 	EditText search;
 	ProductArrayAdapter adapter;
 	
+	public static int mProviderIndex = 0;
+	
 	public CustomOnItemSelectedListener(Context context, ListView listView, EditText search){
 		this.listView = listView;
 		this.context = context;
@@ -41,7 +43,7 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 //		Toast.makeText(parent.getContext(), 
 //			"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
 //			Toast.LENGTH_SHORT).show();
-		
+		mProviderIndex = pos;
 		String providerID = parent.getItemAtPosition(pos).toString();
 		//GET
 		ClientResponse response = Rest.mService.path("webresources").path("getProductsList")
@@ -57,10 +59,10 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
         
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
-        //List<Product> productsList = new ArrayList<Product>();
+        List<Product> productsList = new ArrayList<Product>();
 		try {
 //			File jsonFile = new File(jsonFilePath);
-			TakeOrder_ProductActivity.mProductsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+			productsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
 					Product.class));
 			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
 		} catch (JsonGenerationException e) {
@@ -71,8 +73,10 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 			e.printStackTrace();
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////
+		if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + ""))
+			TakeOrder_ProductActivity.mProductsMap.put(mProviderIndex + "", productsList);
 		
-		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, TakeOrder_ProductActivity.mProductsList);
+		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + ""));
 		listView.setAdapter(adapter);
 		
 		//Add search listenner

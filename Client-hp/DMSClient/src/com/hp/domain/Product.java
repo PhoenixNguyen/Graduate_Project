@@ -12,7 +12,7 @@ package com.hp.domain;
  * @author HP
  */
 
-public class Product {
+public class Product implements Comparable<Product> {
     
     private int mSerial;
 	private String mBarcode;
@@ -29,7 +29,21 @@ public class Product {
     private String mDescription;
     private String mProductImage;
 
+    private int mTotal;
+    
+    public int compareTo(Product a) {
+        if ( this.mTotal > a.mTotal )
+            return 1;
+        else 
+            return -1;
+//        else {
+//             if ( this.timeEnded > a.timeEnded )
+//                   return 1;
+//             else
+//                  return -1;
+//         }
 
+     }
 	@Override
 	public String toString() {
 		return mProductID +" " + mProductName;
@@ -49,6 +63,17 @@ public class Product {
     public Product(){
     	
     }
+    
+    public int getmTotal() {
+		return mTotal;
+	}
+
+
+	public void setmTotal(int mTotal) {
+		this.mTotal = mTotal;
+	}
+
+
     public int getmSerial() {
         return mSerial;
     }

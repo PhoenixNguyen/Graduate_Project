@@ -62,6 +62,11 @@
         <activity
             android:name=".TakeOrder_AmountActivity"
             android:label="@string/amount" />
+        
+        <activity
+            android:name=".TakeOrder_ReViewActivity"
+            android:label="Xem lại" />
+        
         <activity
             android:name=".TakeOrder_ProductActivity"
             android:label="@string/product" />

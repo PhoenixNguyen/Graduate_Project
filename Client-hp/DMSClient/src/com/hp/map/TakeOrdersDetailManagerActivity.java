@@ -45,7 +45,7 @@ import android.widget.TableRow.LayoutParams;
 public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	private LinearLayout layout;
-	private String order_id;
+	public String order_id;
 	
 	private List<TakeOrderDetail> takeOrderDetailList = null;
 	private Context context = this;

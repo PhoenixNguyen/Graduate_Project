@@ -6,7 +6,6 @@ import java.util.List;
 import com.hp.domain.Product;
 import com.hp.domain.TakeOrder;
 import com.hp.map.DetailsList;
-import com.hp.map.FeatureView;
 import com.hp.map.R;
 import com.hp.map.R.layout;
 
@@ -48,6 +47,7 @@ public class ProductArrayAdapter extends ArrayAdapter<Product>{
 
         featureView.setTitleId(values.get(position).getmProductID());
         featureView.setDescriptionId(values.get(position).getmProductName());
+        featureView.setTotal(values.get(position).getmTotal() + "");
 
         return featureView;
 	}

@@ -46,6 +46,11 @@
 		  		android:layout_height="wrap_content"
 		  		android:textColor="#372c24"
 		  		android:text="Username"/>
+		  <LinearLayout
+		        android:focusable="true" 
+		        android:focusableInTouchMode="true"
+    			android:layout_width="0px" 
+    			android:layout_height="0px"/>
 		  <EditText android:id="@+id/username" 
 		      	android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"
@@ -57,6 +62,11 @@
 		  		android:layout_height="wrap_content"
 		  		android:textColor="#372c24"
 		  		android:text="Password"/>
+		  <LinearLayout
+		        android:focusable="true" 
+		        android:focusableInTouchMode="true"
+    			android:layout_width="0px" 
+    			android:layout_height="0px"/>
 		  <EditText android:id="@+id/password" 
 		      	android:layout_width="fill_parent"
 		  		android:layout_height="wrap_content"

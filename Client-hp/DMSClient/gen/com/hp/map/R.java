@@ -395,24 +395,25 @@ containing a value of this type.
         public static final int down_button_press=0x7f02002e;
         public static final int edit_icon=0x7f02002f;
         public static final int ic_action_new=0x7f020030;
-        public static final int ic_launcher=0x7f020031;
-        public static final int ic_plusone_medium_off_client=0x7f020032;
-        public static final int ic_plusone_small_off_client=0x7f020033;
-        public static final int ic_plusone_standard_off_client=0x7f020034;
-        public static final int ic_plusone_tall_off_client=0x7f020035;
-        public static final int icon=0x7f020036;
-        public static final int image_button_down=0x7f020037;
-        public static final int image_button_up=0x7f020038;
-        public static final int list_item_background=0x7f020039;
-        public static final int logo=0x7f02003a;
-        public static final int picker_middle=0x7f02003b;
-        public static final int repeat_bg=0x7f02003c;
-        public static final int selector=0x7f02003d;
-        public static final int table_border=0x7f02003e;
-        public static final int table_border2=0x7f02003f;
-        public static final int table_order_detail=0x7f020040;
-        public static final int up_button=0x7f020041;
-        public static final int up_button_press=0x7f020042;
+        public static final int ic_action_photo=0x7f020031;
+        public static final int ic_launcher=0x7f020032;
+        public static final int ic_plusone_medium_off_client=0x7f020033;
+        public static final int ic_plusone_small_off_client=0x7f020034;
+        public static final int ic_plusone_standard_off_client=0x7f020035;
+        public static final int ic_plusone_tall_off_client=0x7f020036;
+        public static final int icon=0x7f020037;
+        public static final int image_button_down=0x7f020038;
+        public static final int image_button_up=0x7f020039;
+        public static final int list_item_background=0x7f02003a;
+        public static final int logo=0x7f02003b;
+        public static final int picker_middle=0x7f02003c;
+        public static final int repeat_bg=0x7f02003d;
+        public static final int selector=0x7f02003e;
+        public static final int table_border=0x7f02003f;
+        public static final int table_border2=0x7f020040;
+        public static final int table_order_detail=0x7f020041;
+        public static final int up_button=0x7f020042;
+        public static final int up_button_press=0x7f020043;
     }
     public static final class id {
         public static final int CancelDialog=0x7f060053;
@@ -570,6 +571,7 @@ containing a value of this type.
         public static final int stock_manager=0x7f03001e;
         public static final int stock_manager_dialog=0x7f03001f;
         public static final int take_images=0x7f030020;
+        public static final int take_order_feature=0x7f030021;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;

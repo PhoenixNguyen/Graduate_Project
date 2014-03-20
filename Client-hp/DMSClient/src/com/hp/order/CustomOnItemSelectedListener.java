@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.type.TypeFactory;
 
 import com.hp.domain.Product;
 
+import com.hp.map.TakeOrder_ProductActivity;
 import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
@@ -56,10 +57,10 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
         
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
-        List<Product> productsList = new ArrayList<Product>();
+        //List<Product> productsList = new ArrayList<Product>();
 		try {
 //			File jsonFile = new File(jsonFilePath);
-			productsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+			TakeOrder_ProductActivity.mProductsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
 					Product.class));
 			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
 		} catch (JsonGenerationException e) {
@@ -71,7 +72,7 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////
 		
-		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, productsList);
+		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, TakeOrder_ProductActivity.mProductsList);
 		listView.setAdapter(adapter);
 		
 		//Add search listenner

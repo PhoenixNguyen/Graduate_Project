@@ -36,7 +36,7 @@ public final class FeatureView extends FrameLayout {
 
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutInflater.inflate(R.layout.feature, this);
+        layoutInflater.inflate(R.layout.take_order_feature, this);
     }
 
     /**
@@ -55,6 +55,10 @@ public final class FeatureView extends FrameLayout {
      */
     public synchronized void setDescriptionId(String descriptionId) {
         ((TextView) (findViewById(R.id.description))).setText(descriptionId);
+    }
+
+    public synchronized void setTotal(String pTotal) {
+        ((TextView) (findViewById(R.id.total))).setText(pTotal);
     }
 
 }

@@ -2,6 +2,8 @@ package com.hp.map;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -41,6 +43,7 @@ import android.widget.Toast;
 
 public class TakeOrder_ProductActivity extends Activity implements OnItemClickListener{
 	public ListView listView;
+	public static List<Product> mProductsList = new ArrayList<Product>();
 	
 	static final String[] PRODUCT = 
 			new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
@@ -65,6 +68,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 		//Reset
 		ordersDetailList.clear();
+		mProductsList.clear();
 		
 		//Init
 		init();
@@ -176,76 +180,87 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 
 	
 	@Override
-    public void onItemClick(AdapterView<?> a, View v,int position, long id) 
+    public void onItemClick(AdapterView<?> a, View v, final int position, long id) 
     {
-   	 final Product selectedValue = (Product) listView.getAdapter().getItem(position);
-   	 
-         //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
-   	// custom dialog
-			final Dialog dialog = new Dialog(context);
-			dialog.setContentView(R.layout.order_product_dialog);
-			dialog.setTitle("Số lượng");
+ 		final Product selectedValue = (Product) listView.getAdapter().getItem(position);
+ 
+ 		//Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
+ 		// custom dialog
+		final Dialog dialog = new Dialog(context);
+		dialog.setContentView(R.layout.order_product_dialog);
+		dialog.setTitle("Số lượng");
 
-			// set the custom dialog components - text, image and button
-			TextView text = (TextView) dialog.findViewById(R.id.text);
-			text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
+		// set the custom dialog components - text, image and button
+		TextView text = (TextView) dialog.findViewById(R.id.text);
+		text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
 
-			TextView price = (TextView) dialog.findViewById(R.id.price);
-			price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
-			
-			TextView discount = (TextView) dialog.findViewById(R.id.discount);
-			discount.setText("Giảm giá: 0.0" );
-			
-			final EditText count = (EditText)dialog.findViewById(R.id.count);
-			
-			Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
-			// if button is clicked, close the custom dialog
-			dialogButton.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					
-					line++;
-					System.out.println("__ "+ line);
-					String count2 = count.getText().toString();
-					int number = 0;
-					if(count2.compareTo("") != 0)
-						number = Integer.parseInt(count2);
-					else
-						return;
-					
-					//take order detail
-					boolean status = false;
-					for(int i = 0; i < ordersDetailList.size(); i++){
-						if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
-							if(number == 0){
-								ordersDetailList.remove(i);
-							}
-							else{
-								ordersDetailList.get(i).setmNumber(number);
-								
-							}
-							status = true;
-							line--;
-						}
-					}
-					if(!status && number != 0){
-						System.out.println("2__ "+ line);
-						TakeOrderDetail orderDetail = 
-								new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
-										selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
-										selectedValue.getmExportPrices() * number, "", number, "", 0);
-						
-						ordersDetailList.add(orderDetail);
-					}
-					
-					total_value.setText(ordersDetailList.size()+"");
-					//finish
-					dialog.dismiss();
-				}
-			});
+		TextView price = (TextView) dialog.findViewById(R.id.price);
+		price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
+		
+		TextView discount = (TextView) dialog.findViewById(R.id.discount);
+		discount.setText("Giảm giá: 0.0" );
+		
+		final EditText count = (EditText)dialog.findViewById(R.id.count);
+		
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				
+				
+				line++;
+				System.out.println("__ "+ line);
+				String count2 = count.getText().toString();
+				int number = 0;
+				if(count2.compareTo("") != 0)
+					number = Integer.parseInt(count2);
+				else
+					return;
+				
+				mProductsList.get(position).setmTotal(number);
+				Collections.sort(mProductsList);
+				Collections.reverse(mProductsList);
+				
+				//listView.get(0)//getAdapter().getItem(position).
+//					
+//					//take order detail
+//					boolean status = false;
+//					for(int i = 0; i < ordersDetailList.size(); i++){
+//						if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
+//							if(number == 0){
+//								ordersDetailList.remove(i);
+//							}
+//							else{
+//								ordersDetailList.get(i).setmNumber(number);
+//								
+//							}
+//							status = true;
+//							line--;
+//						}
+//					}
+//					if(!status && number != 0){
+//						System.out.println("2__ "+ line);
+//						TakeOrderDetail orderDetail = 
+//								new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
+//										selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
+//										selectedValue.getmExportPrices() * number, "", number, "", 0);
+//						
+//						ordersDetailList.add(orderDetail);
+//					}
+//					
+//					total_value.setText(ordersDetailList.size()+"");
+				//finish
+				dialog.dismiss();
+				
+				adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, mProductsList);
+				listView.setAdapter(adapter);
+			}
+		});
 
-			
-			dialog.show();
+		
+		dialog.show();
      }
 }
 

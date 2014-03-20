@@ -16,19 +16,29 @@ public class TakeOrder_TabActivity extends TabActivity{
 		Resources recource = getResources();
 		TabHost tabHost = getTabHost();
 		
+		//Product tab
 		Intent intentProduct = new Intent().setClass(this, TakeOrder_ProductActivity.class);
 		TabSpec tabSpecProduct = tabHost
 				.newTabSpec("Product")
-				.setIndicator("Product")
+				.setIndicator("Sản phẩm")
 				.setContent(intentProduct);
 		
+		//Amount tab
 		Intent intentAmount = new Intent().setClass(this, TakeOrder_AmountActivity.class);
 		TabSpec tabSpecAmount = tabHost
 				.newTabSpec("Amount")
-				.setIndicator("Amount")
+				.setIndicator("Tổng cộng")
 				.setContent(intentAmount);
 		
+		//Review tab
+		Intent intentReview = new Intent().setClass(this, TakeOrder_ReViewActivity.class);
+		TabSpec tabSpecReview = tabHost
+				.newTabSpec("Review")
+				.setIndicator("Xem lại")
+				.setContent(intentReview);
+		
 		tabHost.addTab(tabSpecProduct);
+		tabHost.addTab(tabSpecReview);
 		tabHost.addTab(tabSpecAmount);
 		
 		tabHost.setCurrentTab(0);

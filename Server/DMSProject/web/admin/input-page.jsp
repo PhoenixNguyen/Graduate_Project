@@ -81,14 +81,18 @@
                 <thead>
                     <tr>
                         <td>Sửa</td>
-                        <td>Xóa</td>
+<!--                        <td>Xóa</td>-->
                         <td>STT</td>
+                        <td>Mã khách hàng</td>
+                        <td>Tên khách hàng</td>
+                        <td>Mã nhân viên</td>
+                        
                         <td>Tỉnh thành</td>
                         <td>Tuyến bán hàng</td>
-                        <td>Mã nhân viên</td>
-                        <td>X</td>
-                        <td>Mã khách hàng</td>
-                        <td>mNoDKy</td>
+                        
+                        <td>Khu vực</td>
+                        
+<!--                        <td>mNoDKy</td>
                         <td>mCoDKy</td>
                         <td>mNoTKy</td>
                         <td>mTienBan</td>
@@ -100,7 +104,7 @@
                         <td>mDoanhThu</td>
                         <td>mPhanTramNoChiaThu</td>
                         <td>mNoToiDa</td>
-                        <td>mDaiDien</td>
+                        <td>mDaiDien</td>-->
                         <td>Địa chỉ</td>
                         <td>Điện thoại</td>
                         <td>Fax</td>
@@ -116,26 +120,18 @@
                         <td>
                             <input type="button" value="Sửa" 
                                    onClick="location.href='editCustomer?id_cus=<s:property value="mStt"/>'"/></td>
-                        <td><input type="button" value="Xóa" /></td>
+<!--                        <td><input type="button" value="Xóa" /></td>-->
                         <td><s:property value="#status.index"/></td>
+                        <td><s:property value="mMaDoiTuong"/></td>
+                        <td><s:property value="mDoiTuong"/></td>
+                        <td><s:property value="mMaNhanVien"/></td>
+                        
                         <td><s:property value="mTinhThanh"/></td>
                         <td><s:property value="mTuyenBanHangThu"/></td>
-                        <td><s:property value="mMaNhanVien"/></td>
+                        
                         <td><s:property value="mX"/></td>
-                        <td><s:property value="mMaDoiTuong"/></td>
-                        <td><s:property value="mNoDKy"/></td>
-                        <td><s:property value="mCoDKy"/></td>
-                        <td><s:property value="mNoTKy"/></td>
-                        <td><s:property value="mTienBan"/></td>
-                        <td><s:property value="mCoTKy"/></td>
-                        <td><s:property value="mCKGG"/></td>
-                        <td><s:property value="mNhapLai"/></td>
-                        <td><s:property value="mNoCKy"/></td>
-                        <td><s:property value="mCoCKy"/></td>
-                        <td><s:property value="mDoanhThu"/></td>
-                        <td><s:property value="mPhanTramNoChiaThu"/></td>
-                        <td><s:property value="mNoToiDa"/></td>
-                        <td><s:property value="mDaiDien"/></td>
+                        
+ 
                         <td><s:property value="mDiaChi"/></td>
                         <td><s:property value="mDienThoai"/></td>
                         <td><s:property value="mFax"/></td>
@@ -164,31 +160,25 @@
                     <s:form action="update-customer" method="get" accept-charset="UTF-8"> 
                              <s:push value="customer"> 
                                  <s:hidden name="customerSTT" value="%{#id}"/>
-                                 <s:hidden name="mStt"/> 
-                                 <s:textfield type="text" name="mTinhThanh" label="Tỉnh thành: " placeholder=""/>
-                                 <s:textfield id="dt" type="text" name="mTuyenBanHangThu" label="Tuyến bán hàng:" placeholder="Tuyến bán hàng"/>
-                                 <s:textfield id="dt" type="text" name="mMaNhanVien" label="Mã nhân viên:" placeholder="Mã nhân viên"/>
-                                 <s:textfield id="dt" type="text" name="mX" label="X:" placeholder="X"/>
-                                 <s:textfield type="text" name="mMaDoiTuong" label="Mã khách hàng: " placeholder="Mã khách hàng"/>
-                                 <s:textfield id="dt" type="text" name="mNoDKy" label="mNoDKy:" placeholder="mNoDKy"/>
-                                 <s:textfield id="dt" type="text" name="mCoDKy" label="mCoDKy:" placeholder="mCoDKy"/>
-                                 <s:textfield id="dt" type="text" name="mNoTKy" label="mNoTKy:" placeholder="mNoTKy"/>
-                                 <s:textfield id="dt" type="text" name="mTienBan" label="mTienBan:" placeholder="mTienBan"/>
-                                 <s:textfield id="dt" type="text" name="mCoTKy" label="mCoTKy:" placeholder="mCoTKy"/>
-                                 <s:textfield id="dt" type="text" name="mCKGG" label="mCKGG:" placeholder="mCKGG"/>
-                                 <s:textfield id="dt" type="text" name="mNhapLai" label="mNhapLai:" placeholder="mNhapLai"/>
-                                 <s:textfield id="dt" type="text" name="mNoCKy" label="mNoCKy:" placeholder="mNoCKy"/>
-                                 <s:textfield id="dt" type="text" name="mCoCKy" label="mCoCKy:" placeholder="mCoCKy"/>
-                                 <s:textfield id="dt" type="text" name="mDoanhThu" label="mDoanhThu:" placeholder="mDoanhThu"/>
-                                 <s:textfield id="dt" type="text" name="mPhanTramNoChiaThu" label="mPhanTramNoChiaThu:" placeholder="mPhanTramNoChiaThu"/>
-                                 <s:textfield id="dt" type="text" name="mNoToiDa" label="mNoToiDa:" placeholder="mNoToiDa"/>
-                                 <s:textfield id="dt" type="text" name="mDaiDien" label="mDaiDien:" placeholder="mDaiDien"/>
-                                 <s:textfield type="text" name="mDiaChi" label="Địa chỉ:" placeholder="pass"/>
-                                 <s:textfield id="dt" type="text" name="mDienThoai" label="Điện thoại:" placeholder="pass"/>
-                                 <s:textfield id="dt" type="text" name="mFax" label="Fax:" placeholder="Fax"/>
-                                 <s:textfield id="dt" type="text" name="mGhiChu" label="Ghi chú:" placeholder="Ghi chú"/>
-                                 <s:textfield id="dt" type="text" name="mXCoordinates" label="Vĩ độ:" placeholder="Vĩ độ"/>
-                                 <s:textfield id="dt" type="text" name="mYCoordinates" label="Kinh độ:" placeholder="Kinh độ"/>
+                                 <s:hidden name="customer.mStt"/> 
+                                 
+                                 <s:textfield type="text" required="true" name="customer.mMaDoiTuong" label="Mã khách hàng" placeholder="Mã khách hàng"/>
+                                 <s:textfield id="dt" type="text" name="customer.mDoiTuong" label="Tên khách hàng" placeholder="Tên khách hàng"/>
+                                 
+                                 <s:select name="customer.mMaNhanVien" list="staffsList" label="Mã nhân viên: "/>
+                                 
+                                 <s:textfield type="text" name="customer.mTinhThanh" label="Tỉnh thành" placeholder="Tỉnh thành"/>
+                                 <s:textfield id="dt" type="text" name="customer.mTuyenBanHangThu" label="Tuyến bán hàng" placeholder="Tuyến bán hàng"/>
+                                 
+                                 <s:textfield id="dt" type="text" name="customer.mX" label="Khu vực" placeholder="Khu vực"/>
+                                 
+                                 
+                                 <s:textfield type="text" name="customer.mDiaChi" label="Địa chỉ" placeholder="pass"/>
+                                 <s:textfield id="dt" type="text" name="customer.mDienThoai" label="Điện thoại" placeholder="pass"/>
+                                 <s:textfield id="dt" type="text" name="customer.mFax" label="Fax" placeholder="Fax"/>
+                                 <s:textfield id="dt" type="text" name="customer.mGhiChu" label="Ghi chú" placeholder="Ghi chú"/>
+                                 <s:textfield id="dt" type="text" name="customer.mXCoordinates" label="Vĩ độ" placeholder="Vĩ độ"/>
+                                 <s:textfield id="dt" type="text" name="customer.mYCoordinates" label="Kinh độ" placeholder="Kinh độ"/>
                                  <s:submit/>
                              </s:push>
                        </s:form>  

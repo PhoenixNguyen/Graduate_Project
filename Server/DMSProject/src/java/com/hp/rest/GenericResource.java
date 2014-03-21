@@ -414,7 +414,7 @@ public class GenericResource {
         List<Provider> list = new ArrayList<Provider>();
         
         ProviderDAO providerDAO = new ProviderDAOImpl();
-        list = providerDAO.getProvidersIDList();
+        list = providerDAO.getProvidersList();
         
         return list;
         

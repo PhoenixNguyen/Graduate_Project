@@ -9,6 +9,8 @@ package com.hp.action;
 import com.hp.common.ConfigFile;
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
+import com.hp.dao.StaffDAO;
+import com.hp.dao.StaffDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.Demo;
 import com.hp.domain.Demo2;
@@ -48,7 +50,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     
     //Init customerDAO
     private CustomerDAO customerDAO = new CustomerDAOImpl();
-    
+    private StaffDAO staffDAO = new StaffDAOImpl();
         
     private String customerID = new String();
     private int customerSTT;
@@ -72,6 +74,16 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
 
     private int customersTotal;
 
+    private List<String> staffsList = new ArrayList<String>();
+
+    public List<String> getStaffsList() {
+        return staffsList;
+    }
+
+    public void setStaffsList(List<String> staffsList) {
+        this.staffsList = staffsList;
+    }
+    
     public int getCustomersTotal() {
         return customersTotal;
     }
@@ -112,6 +124,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String saveFile(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        staffsList = staffDAO.getListUser(null);
         
         String saveName = document.getFileFileName();
         try {
@@ -268,7 +282,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     
     public String displayCustomers(){
         customersList = customerDAO.getListCustomer();
-        
+        staffsList = staffDAO.getListUser(null);
         return SUCCESS;
     }
 
@@ -302,6 +316,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         HttpSession session = request.getSession();
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
+        staffsList = staffDAO.getListUser(null);
         
         String stt = request.getParameter("id_cus");
         int st;
@@ -321,6 +336,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         HttpSession session = request.getSession();
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
+        staffsList = staffDAO.getListUser(null);
         
         String test = request.getParameter("mTinhThanh");
         

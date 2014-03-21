@@ -17,7 +17,7 @@ import org.hibernate.Transaction;
  * @author HP
  */
 public class ProviderDAOImpl implements ProviderDAO{
-    public List<Provider> getProvidersIDList(){
+    public List<Provider> getProvidersList(){
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
@@ -25,6 +25,24 @@ public class ProviderDAOImpl implements ProviderDAO{
         List<Provider> courses = null;
         try{
             courses = session.createQuery("from Provider " ).list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    public List<String> getProvidersIDList(){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<String> courses = null;
+        try{
+            courses = session.createQuery("select mID from Provider " ).list();
         }catch(Exception e){
             e.printStackTrace();
         }

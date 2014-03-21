@@ -11,6 +11,8 @@ import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
+import com.hp.dao.ProviderDAO;
+import com.hp.dao.ProviderDAOImpl;
 import com.hp.domain.Product;
 import com.hp.domain.Demo;
 import com.hp.domain.Demo2;
@@ -55,9 +57,11 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     
     //Init ProductDAO
     private ProductDAO productDAO = new ProductDAOImpl();
-    
+    private ProviderDAO providerDAO = new ProviderDAOImpl();
         
     private String productID = new String();
+    
+    @Valid
     public Product product = new Product();
 
     @Valid
@@ -66,6 +70,16 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     @Valid
     private Document document2 = new Document();
 
+    private List<String> providerIDList = new ArrayList<String>();
+
+    public List<String> getProviderIDList() {
+        return providerIDList;
+    }
+
+    public void setProviderIDList(List<String> providerIDList) {
+        this.providerIDList = providerIDList;
+    }
+    
     public Document getDocument2() {
         return document2;
     }
@@ -128,6 +142,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String saveFile(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        providerIDList = providerDAO.getProvidersIDList();
         
         String saveName = document.getFileFileName();
         try {
@@ -258,6 +273,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     
     public String displayProducts(){
         productsList = productDAO.getProductList();
+        providerIDList = providerDAO.getProvidersIDList();
         
         return SUCCESS;
     }
@@ -274,6 +290,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         //request.setCharacterEncoding("UTF-8");
+        providerIDList = providerDAO.getProvidersIDList();
+        
         request.setCharacterEncoding("UTF8");
         
         String stt = request.getParameter("id_product");
@@ -294,6 +312,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         HttpSession session = request.getSession();
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
+        providerIDList = providerDAO.getProvidersIDList();
         
 //        String stt = request.getParameter("id_product");
 //        int st;
@@ -312,7 +331,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF8");
-                
+        providerIDList = providerDAO.getProvidersIDList();
+        
         System.out.println("id_product: "+id_product);
         if(id_product <= 0){
             product.setmSerial(null);
@@ -333,6 +353,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String uploadAnImage(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        providerIDList = providerDAO.getProvidersIDList();
         
         String stt = request.getParameter("id_product");
         int st;

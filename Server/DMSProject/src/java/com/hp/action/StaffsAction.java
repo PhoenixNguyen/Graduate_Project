@@ -11,6 +11,8 @@ import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
+import com.hp.dao.UserDAO;
+import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Staff;
 import com.hp.domain.Demo;
 import com.hp.domain.Demo2;
@@ -54,9 +56,10 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     
     //Init StaffDAO
     private StaffDAO staffDAO = new StaffDAOImpl();
-    
+    private UserDAO userDAO = new UserDAOImpl();
         
     private String staffID = new String();
+    @Valid
     public Staff staff = new Staff();
 
     @Valid
@@ -65,6 +68,16 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
 
     private int staffsTotal;
 
+    private List<String> usersList = new ArrayList<String>();
+
+    public List<String> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(List<String> usersList) {
+        this.usersList = usersList;
+    }
+    
     public int getStaffsTotal() {
         return staffsTotal;
     }
@@ -106,6 +119,8 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        usersList = userDAO.getListUser(2);
+                
         String saveName = document.getFileFileName();
         try {
             
@@ -230,6 +245,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     public String displayStaffs(){
         staffsList = staffDAO.getListStaff();
         
+        usersList = userDAO.getListUser(2);
         return SUCCESS;
     }
 
@@ -246,6 +262,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         HttpSession session = request.getSession();
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
+        usersList = userDAO.getListUser(2);
         
         String stt = request.getParameter("id_staff");
         int st;
@@ -274,6 +291,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF8");
+        usersList = userDAO.getListUser(2);
         
         if(staff_serial <= 0){
             System.out.println("OK1" + staff.getmID());

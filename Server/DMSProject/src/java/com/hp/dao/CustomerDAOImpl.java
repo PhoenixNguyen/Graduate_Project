@@ -281,7 +281,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         List<Customer> courses = null;
         try{
-            courses = session.createQuery("from Customer ").list();
+            courses = session.createQuery("from Customer order by mMaDoiTuong").list();
         }catch(Exception e){
             e.printStackTrace();
         }

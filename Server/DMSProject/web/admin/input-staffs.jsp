@@ -76,7 +76,7 @@
                 <thead>
                     <tr>
                         <td>Sửa</td>
-                        <td>Xóa</td>
+<!--                        <td>Xóa</td>-->
                         <td>STT</td>
                         <td>Mã nhân viên</td>
                         <td>Mật khẩu</td>
@@ -96,7 +96,7 @@
                         <td>
                             <input type="button" value="Sửa" 
                                    onClick="location.href='edit-staff?id_staff=<s:property value="mSTT"/>'"/></td>
-                        <td><a href="">Xóa</a></td>
+<!--                        <td><a href="">Xóa</a></td>-->
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mID"/></td>
                         <td><s:property value="mPW"/></td>
@@ -125,19 +125,21 @@
                 
                 <div id="editForm">
                     <s:textfield type="text" name="staff.getmID()" label="Nhân viên: " placeholder=""/>
+                    <s:actionerror/>
                     <s:form action="update-staff" method="get" accept-charset="UTF-8"> 
                              <s:push value="staff"> 
-                                 <s:hidden name="mSTT"/> 
+                                 <s:hidden name="staff.mSTT"/> 
                                  <s:hidden name="staff_serial" value="%{#id}"/> 
-                                 <s:textfield type="text" name="mID" label="Mã nhân viên: " placeholder="Mã nhân viên"/>
-                                 <s:textfield type="text" name="mPW" label="Mật khẩu: " placeholder="Mật khẩu"/>
-                                 <s:textfield type="text" name="mName" label="Họ tên: " placeholder="Họ tên"/>
-                                 <s:textfield type="text" name="mAdress" label="Địa chỉ: " placeholder="Địa chỉ"/>
-                                 <s:textfield type="text" name="mJob" label="Chức vụ: " placeholder="Chức vụ"/>
-                                 <s:textfield type="text" name="mPhone" label="Điện thoại: " placeholder="Điện thoại"/>
-                                 <s:textfield type="text" name="mDate" label="Gia nhập: " placeholder="Gia nhập"/>
-                                 <s:textfield type="text" name="mManager" label="Người quản lý: " placeholder="Người quản lý"/>
-                                 <s:textfield type="text" name="mStatus" label="Trạng thái: " placeholder="Trạng thái"/>
+                                 <s:textfield type="text" required="true" name="staff.mID" label="Mã nhân viên: " placeholder="Mã nhân viên"/>
+                                 <s:textfield type="text" required="true" name="staff.mPW" label="Mật khẩu: " placeholder="Mật khẩu"/>
+                                 <s:textfield type="text" name="staff.mName" label="Họ tên: " placeholder="Họ tên"/>
+                                 <s:textfield type="text" name="staff.mAdress" label="Địa chỉ: " placeholder="Địa chỉ"/>
+                                 <s:textfield type="text" name="staff.mJob" label="Chức vụ: " placeholder="Chức vụ"/>
+                                 <s:textfield type="text" name="staff.mPhone" label="Điện thoại: " placeholder="Điện thoại"/>
+                                 <s:textfield type="text" name="staff.mDate" label="Gia nhập: " placeholder="Gia nhập"/>
+                                 
+                                 <s:select name="staff.mManager" list="usersList" label="Người quản lý: "/>
+                                 <s:textfield type="text" name="staff.mStatus" label="Trạng thái: " placeholder="Trạng thái"/>
                                  
                                  <s:submit/>
                              </s:push>

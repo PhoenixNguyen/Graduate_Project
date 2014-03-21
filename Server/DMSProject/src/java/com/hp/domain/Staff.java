@@ -13,6 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.validator.Length;
+import org.hibernate.validator.NotEmpty;
+import org.hibernate.validator.Pattern;
+import org.hibernate.validator.Valid;
 
 /**
  *
@@ -28,9 +32,17 @@ public class Staff {
     @Column(name="nhanvien_stt")
     private Integer mSTT;
 
-    
+    @NotEmpty(message = "Mã Nhân viên không được trống")
+    @Pattern(regex="[A-Za-z0-9\\.]+",message="Mã Nhân viên chỉ chứa a-z, A-Z, 0-9, .")
+    @Length(min = 3 , max = 255 ,message= "Mã Nhân viên phải có độ dài 3-255 ký tự")
     @Column(name="nhanvien_ma_nhan_vien")
+    @Valid
     private String mID;
+    
+    @NotEmpty(message = "Mật khẩu không được trống")
+    @Pattern(regex="[A-Za-z0-9\\.]+",message="Mật khẩu chỉ chứa a-z, A-Z, 0-9, .")
+    @Length(min = 3 , max = 255 ,message= "Mật khẩu phải có độ dài 3-255 ký tự")
+    @Valid
     @Column(name="nhanvien_mat_khau")
     private String mPW;
 

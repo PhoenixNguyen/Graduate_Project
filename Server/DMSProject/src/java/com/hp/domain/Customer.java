@@ -100,6 +100,10 @@ public class Customer {
     public void setmX(String mX) {
         this.mX = mX;
     }
+    
+    @NotEmpty(message = "Mã khách hàng không được trống")
+    @Pattern(regex="[A-Za-z0-9\\.]+",message="Mã khách hàng chỉ chứa a-z, A-Z, 0-9, .")
+    @Length(min = 3 , max = 255 ,message= "Mã khách hàng phải có độ dài 3-255 ký tự")
     @Column(name="khachhang_ma_dt")
     public String getmMaDoiTuong() {
         return mMaDoiTuong;
@@ -109,10 +113,7 @@ public class Customer {
         this.mMaDoiTuong = mMaDoiTuong;
     }
     
-    @NotEmpty(message = "Tên tài khoản không được trống")
-    @Pattern(regex="[A-Za-z0-9\\.]+",message="Tên tài khoản chỉ chứa a-z, A-Z, 0-9, .")
-    @Length(min = 3 , max = 255 ,message= "Tên tài khoản phải có độ dài 3-255 ký tự")
-    @Valid
+
     @Column(name="khachhang_doi_tuong")
     public String getmDoiTuong() {
         return mDoiTuong;

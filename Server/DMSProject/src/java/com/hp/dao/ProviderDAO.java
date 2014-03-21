@@ -14,5 +14,6 @@ import java.util.List;
  * @author HP
  */
 public interface ProviderDAO {
-    public List<Provider> getProvidersIDList();
+    public List<Provider> getProvidersList();
+    public List<String> getProvidersIDList();
 }

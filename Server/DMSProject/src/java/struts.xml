@@ -252,7 +252,7 @@
         </action>
         
         <action name="update-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
-            <result name="success" >input-page.jsp</result>
+            <result name="success" type="redirect">displayCustomers</result>
             <result name="input" >input-page.jsp</result>
         </action>
         
@@ -269,7 +269,7 @@
         
         <action name="update-staff" method="updateStaff" class="com.hp.action.StaffsAction">
             <result name="success" type="redirect">display-staffs</result>
-            <result name="input" type="redirect">display-staffs</result>
+            <result name="input" >input-staffs.jsp</result>
         </action>
         
         <action name="upload-staffs" method="saveFile" class="com.hp.action.StaffsAction">
@@ -312,7 +312,7 @@
         
         <action name="update-product" method="updateProduct" class="com.hp.action.ProductsAction">
             <result name="success" type="redirect">display-products</result>
-            <result name="input" type="redirect">display-products</result>
+            <result name="input" >input-products.jsp</result>
         </action>
         
         <action name="upload-products" method="saveFile" class="com.hp.action.ProductsAction">

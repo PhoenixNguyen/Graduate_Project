@@ -78,7 +78,6 @@
                 <thead>
                     <tr>
                         <td>Sửa</td>
-                        <td>Xóa</td>
                         <td>STT</td>
                         <td>Mã vạch</td>
                         <td>Mã sản phẩm</td>
@@ -103,8 +102,6 @@
                             <input type="button" value="Sửa" 
                                    onClick="location.href='edit-product?id_product=<s:property value="mSerial"/>'"/>
                         </td>
-                        <td><input type="button" value="Xóa" />
-<!--                                   onClick="location.href='remove-product?id_product='"/>-->
                         </td>
                         <td><s:property value="#status.index"/></td>
                         <td><s:property value="mBarcode"/></td>
@@ -129,7 +126,7 @@
                 </table>
                 
                     <%
-                            if(request.getParameter("id_product") != null){
+                            if(request.getParameter("id_product") != null && request.getParameter("id_product") != ""){
                                 int id = Integer.parseInt(request.getParameter("id_product"));
 
                                 pageContext.setAttribute("idproduct", id);
@@ -139,25 +136,27 @@
                     
                 <div id="editForm">
                     <s:textfield type="text" name="product.getmProductID()" label="Sản phẩm: " placeholder=""/>
+                    <s:actionerror/>
                     <s:form action="update-product" method="get" accept-charset="UTF-8" cssStyle="margin-bottom: 10px;"> 
                              <s:push value="product"> 
-                                 <s:hidden name="mSerial"/> 
                                  <s:hidden name="id_product" value="%{#id}"/> 
                                  
-                                 <s:textfield type="text" name="mBarcode" label="Mã vạch: " placeholder="Mã vạch"/>
-                                 <s:textfield type="text" name="mProductID" label="Mã sản phẩm: " placeholder="Mã sản phẩm"/>
-                                 <s:textfield type="text" name="mProductName" label="Tên sản phẩm: " placeholder="Tên sản phẩm"/>
-                                 <s:textfield type="text" name="mBrand" label="Thương hiệu: " placeholder="Thương hiệu"/>
-                                 <s:textfield type="text" name="mOrigin" label="Xuất xứ: " placeholder="Xuất xứ"/>
-                                 <s:textfield type="text" name="mPackingSpecifications" label="Quy cách: " placeholder="Quy cách"/>
-                                 <s:textfield type="text" name="mQuantification" label="Định lượng: " placeholder="Định lượng"/>
-                                 <s:textfield type="text" name="mVATTax" label="Thuế: " placeholder="Thuế"/>
-                                 <s:textfield type="text" name="mImportPrices" label="Giá nhập: " placeholder="Giá nhập"/>
-                                 <s:textfield type="text" name="mExportPrices" label="Giá bán: " placeholder="Giá bán"/>
+                                 <s:hidden name="product.mSerial"/> 
                                  
-                                 <s:textfield type="text" name="mProvider" label="Nhà cung cấp: " placeholder="Nhà cung cấp"/>
-                                 <s:textfield type="text" name="mDescription" label="Mô tả: " placeholder="Mô tả"/>
-                                 <s:textfield type="text" name="mProductImage" label="Đường dẫn ảnh: " placeholder="Hình ảnh"/>
+                                 <s:textfield type="text" name="product.mBarcode" label="Mã vạch: " placeholder="Mã vạch"/>
+                                 <s:textfield type="text" required="true" name="product.mProductID" label="Mã sản phẩm: " placeholder="Mã sản phẩm"/>
+                                 <s:textfield type="text" name="product.mProductName" label="Tên sản phẩm: " placeholder="Tên sản phẩm"/>
+                                 <s:textfield type="text" name="product.mBrand" label="Thương hiệu: " placeholder="Thương hiệu"/>
+                                 <s:textfield type="text" name="product.mOrigin" label="Xuất xứ: " placeholder="Xuất xứ"/>
+                                 <s:textfield type="text" name="product.mPackingSpecifications" label="Quy cách: " placeholder="Quy cách"/>
+                                 <s:textfield type="text" name="product.mQuantification" label="Định lượng: " placeholder="Định lượng"/>
+                                 <s:textfield type="text" name="product.mVATTax" label="Thuế: " placeholder="Thuế"/>
+                                 <s:textfield type="text" name="product.mImportPrices" label="Giá nhập: " placeholder="Giá nhập"/>
+                                 <s:textfield type="text" name="product.mExportPrices" label="Giá bán: " placeholder="Giá bán"/>
+                                 
+                                 <s:select name="product.mProvider" list="providerIDList" label="Nhà cung cấp: "/>
+                                 <s:textfield type="text" name="product.mDescription" label="Mô tả: " placeholder="Mô tả"/>
+                                 <s:textfield type="text" name="product.mProductImage" label="Đường dẫn ảnh: " placeholder="Hình ảnh"/>
                                  
                                     
                                  <s:submit  cssStyle="width: 200px;

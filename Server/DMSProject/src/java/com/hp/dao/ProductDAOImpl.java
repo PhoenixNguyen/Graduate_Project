@@ -58,6 +58,29 @@ public class ProductDAOImpl implements ProductDAO{
     
     }
     
+    public List<Product> getCustomerProductList(String pCustomerID){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Product> courses = null;
+        try{
+            courses = session.createQuery("from Product as p where p.mBarcode IN "
+                    + "(select distinct sod.mBarcode "
+                    + " from SaleOrderDetail as sod, SaleOrder as so"
+                    + " where so.mID = sod.mTakeOrderID "
+                    + " and so.mCustomerID='"+pCustomerID+"')" ).list(); //and so.mCustomerID='"+pCustomerID+"'
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    
+    }
+    
     public Product loadProduct(int pID){
         Session session = getSessionFactory().openSession();
         Transaction transaction;

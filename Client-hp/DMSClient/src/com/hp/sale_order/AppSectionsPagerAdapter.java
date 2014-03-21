@@ -43,18 +43,7 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
             	
             default:
             	return new SaleValueFragment();
-                // The other sections of the app are dummy placeholders.
-//                Fragment fragment = new ReturnOrderFragment();
-//                Bundle args = new Bundle();
-//                args.putInt(ReturnOrderFragment.ARG_SECTION_NUMBER, i + 1);
-//                fragment.setArguments(args);
-//                return fragment;
-            	
-//            	Fragment sale3 = new SaleOrderFragment();
-//                Bundle args3 = new Bundle();
-//                args3.putString("ORDER_ID", selected_order);
-//                sale3.setArguments(args3);
-//                return sale3;
+     
         }
     }
 

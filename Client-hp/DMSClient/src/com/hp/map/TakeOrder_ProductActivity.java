@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -53,7 +54,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	
 	private Spinner spinner;
 	final Context context = this;
-	private int line = 0;
+	private int line;
 	
 	public static List<TakeOrderDetail> ordersDetailList = new ArrayList<TakeOrderDetail>();
 	
@@ -95,7 +96,17 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		addListenerOnSpinnerItemSelection();
 		
 		
-
+		//SET total line
+		Set<String> keyset = TakeOrder_ProductActivity.mProductsMap.keySet();
+		line = 0;
+		for(String key : keyset){
+		for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++)
+			if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0){
+				line++;
+			}
+		}
+		total_value.setText(line+"");
+		//
 		
 	}
 	
@@ -218,10 +229,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
-				
-				
-				line++;
+			
 				System.out.println("__ "+ line);
 				String count2 = count.getText().toString();
 				int number = 0;
@@ -234,40 +242,24 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				Collections.sort(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				Collections.reverse(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				
-				//listView.get(0)//getAdapter().getItem(position).
-//					
-//					//take order detail
-//					boolean status = false;
-//					for(int i = 0; i < ordersDetailList.size(); i++){
-//						if(ordersDetailList.get(i).getmProductID().compareTo(selectedValue.getmProductID()) == 0){
-//							if(number == 0){
-//								ordersDetailList.remove(i);
-//							}
-//							else{
-//								ordersDetailList.get(i).setmNumber(number);
-//								
-//							}
-//							status = true;
-//							line--;
-//						}
-//					}
-//					if(!status && number != 0){
-//						System.out.println("2__ "+ line);
-//						TakeOrderDetail orderDetail = 
-//								new TakeOrderDetail("", line, selectedValue.getmProductID(), selectedValue.getmBarcode(), selectedValue.getmProductName(), 
-//										selectedValue.getmExportPrices(), selectedValue.getmExportPrices(), 0, 0, 
-//										selectedValue.getmExportPrices() * number, "", number, "", 0);
-//						
-//						ordersDetailList.add(orderDetail);
-//					}
-//					
-//					total_value.setText(ordersDetailList.size()+"");
 				//finish
 				dialog.dismiss();
 				
 				adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1
 						, TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				listView.setAdapter(adapter);
+				
+				//SET total line
+				Set<String> keyset = TakeOrder_ProductActivity.mProductsMap.keySet();
+				line = 0;
+				for(String key : keyset){
+				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++)
+					if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0){
+						line++;
+					}
+				}
+				total_value.setText(line+"");
+				//
 			}
 		});
 

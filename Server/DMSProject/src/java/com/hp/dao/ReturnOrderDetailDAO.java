@@ -19,6 +19,8 @@ public interface ReturnOrderDetailDAO {
     //GET
     public List<ReturnOrderDetail> getDetailReturnOrdersList(String pID);
     public ReturnOrderDetail getReturnOrderDetail(int pReturnOrderDetail);
+    public ReturnOrderDetail getReturnOrderDetail(String pOrderID, int pLine);
+    
     public boolean update(ReturnOrderDetail pReturnOrderDetail);
     
     //delete

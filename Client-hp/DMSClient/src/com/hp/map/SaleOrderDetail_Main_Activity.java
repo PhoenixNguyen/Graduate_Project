@@ -92,16 +92,20 @@ public class SaleOrderDetail_Main_Activity extends FragmentActivity implements A
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    	
     }
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // When the given tab is selected, switch to the corresponding page in the ViewPager.
+    	//if(tab.getPosition() != null)
+    	
         mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    	mViewPager.setCurrentItem(tab.getPosition());
     }
 
     

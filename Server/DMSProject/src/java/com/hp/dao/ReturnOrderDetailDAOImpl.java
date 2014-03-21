@@ -79,6 +79,33 @@ public class ReturnOrderDetailDAOImpl implements ReturnOrderDetailDAO{
         return courses;
     }
      
+     public ReturnOrderDetail getReturnOrderDetail(String pOrderID, int pLine){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<ReturnOrderDetail> courses = null;
+        try{
+                Query q = session.createSQLQuery("select * from tb_chitietdontrahang where "
+                        + " chitietdontrahang_ma_hoa_don ='"+pOrderID+"' "
+                        + " and chitietdontrahang_dong=" + pLine).addEntity(ReturnOrderDetail.class);
+                
+                courses = q.list();
+                
+                
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        if(courses == null || courses.size() == 0)
+            return null;
+        else
+            return courses.get(0);
+    }
+     
      @Override
     public boolean update(ReturnOrderDetail pReturnOrderDetail){
         Session session = getSessionFactory().openSession();
@@ -99,6 +126,7 @@ public class ReturnOrderDetailDAOImpl implements ReturnOrderDetailDAO{
         return true;
     }
     
+   
     @Override
     public boolean delete(ReturnOrderDetail pReturnOrderDetail){
         Session session = getSessionFactory().openSession();

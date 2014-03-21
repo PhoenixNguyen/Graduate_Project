@@ -2,7 +2,9 @@ package com.hp.sale_order;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import com.hp.map.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -24,6 +27,7 @@ import com.hp.order_manager.OrdersManagerDetailArrayAdapter;
 import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -39,18 +43,18 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ReturnOrderFragment extends Fragment{
+public class ReturnOrderFragment extends Fragment {
 	public static String ORDER_ID = "section_number";
 	
 	private LinearLayout layout;
 	public static String order_id;
 	
-	public static List<TakeOrderDetail> takeOrderDetailList = null;
-	private Context context ;
-	private ListView ordersListView;
-	private OrdersManagerDetailArrayAdapter adapter;
+	public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
+	private static Context context ;
+	private static ListView ordersListView;
+	private static OrdersManagerDetailArrayAdapter adapter;
 	
-	private View rootView;
+	private static View rootView;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -60,15 +64,6 @@ public class ReturnOrderFragment extends Fragment{
         
 		order_id = AppSectionsPagerAdapter.selected_order;
 		
-//		Bundle args = getArguments();
-//		order_id = args.getString(ORDER_ID);
-		
-		//super.onCreate(savedInstanceState);
-		//setContentView(R.layout.orders_detail_manager);
-		
-//		Intent intent = getIntent();
-//		order_id = intent.getStringExtra("ORDER_ID");
-		//TextView title = 
 		((TextView)rootView.findViewById(R.id.title)).setText("Order: "+order_id);
 //		title.setText("Order: "+order_id);
 		
@@ -79,7 +74,14 @@ public class ReturnOrderFragment extends Fragment{
 	}
 	
 	
-	public void addListView() {
+	
+	public void onResume(){
+		super.onResume();
+		this.onCreate(null);
+	}
+	
+	
+	public static void addListView() {
 
 		// Check the internet
 		if (isOnline()) {
@@ -93,7 +95,7 @@ public class ReturnOrderFragment extends Fragment{
 
 		
 
-		if (takeOrderDetailList.size() == 0) {
+		if (takeOrderDetailList == null) {
 			return;
 		}
 		// List<Product> productsList = new ArrayList<Product>();
@@ -118,7 +120,7 @@ public class ReturnOrderFragment extends Fragment{
 		});
 	}
 
-	public void addCustomerDialog(final TakeOrderDetail selectedValue){
+	public static void addCustomerDialog(final TakeOrderDetail selectedValue){
 		final Dialog dialog = new Dialog(context);
 		dialog.setContentView(R.layout.order_product_dialog);
 		dialog.setTitle("Thay đổi số lượng");
@@ -139,66 +141,66 @@ public class ReturnOrderFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				
-//				if(count == null )
-//					return;
-//				
-//				int number = Integer.parseInt(count.getText().toString());
-//				if(number >  selectedValue.getmNumber()){
-//					Toast.makeText(context, "Số lượng bạn nhập lớn hơn trong hóa đơn!", Toast.LENGTH_SHORT).show();
-//					return;
-//				}
-//				selectedValue.setmNumber(number);
-//				selectedValue.setmPriceTotal(selectedValue.getmAfterOrderPrice() * number);
-//				
-//				//Sys
-//				
-//				ObjectMapper mapper = new ObjectMapper();
-//		        String orderDetail = new String();
-//
-//				try {
-//
-//					orderDetail = mapper.writeValueAsString(selectedValue);
-//					
-//				} catch (JsonGenerationException ex) {
-//
-//					ex.printStackTrace();
-//
-//				} catch (JsonMappingException ex) {
-//
-//					ex.printStackTrace();
-//
-//				} catch (IOException ex) {
-//
-//					ex.printStackTrace();
-//
-//				}
-//		       
-//				//Order ---------------------------------------------------------------
-//				ClientResponse response = Rest.mService.path("webresources").path("putDetailReturnOrder").accept("application/json")
-//				.type("application/json").post(ClientResponse.class, orderDetail);
-//
-//		        String output = response.toString();
-//		        System.out.println("input 1: " + output);
-//		        
-//		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-//		            Toast.makeText(context, "Đã cập nhật", Toast.LENGTH_SHORT).show();
-//		            // refresh customers
-//		            
-//		            
-//		        }else
-//		        	Toast.makeText(context, "Không thể cập nhật, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-//		        
-//		        System.out.println("Server response .... \n");
-//		        System.out.println("input 0: " + output);
+				if(count == null )
+					return;
+				
+				int number = Integer.parseInt(count.getText().toString());
+				if(number >  selectedValue.getmNumber()){
+					Toast.makeText(context, "Số lượng bạn nhập lớn hơn trong hóa đơn!!", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				selectedValue.setmNumber(number);
+				selectedValue.setmPriceTotal(selectedValue.getmAfterOrderPrice() * number);
+				
+				//Sys
+				
+				ObjectMapper mapper = new ObjectMapper();
+		        String orderDetail = new String();
+
+				try {
+
+					orderDetail = mapper.writeValueAsString(selectedValue);
+					
+				} catch (JsonGenerationException ex) {
+
+					ex.printStackTrace();
+
+				} catch (JsonMappingException ex) {
+
+					ex.printStackTrace();
+
+				} catch (IOException ex) {
+
+					ex.printStackTrace();
+
+				}
+		       
+				//Order ---------------------------------------------------------------
+				ClientResponse response = Rest.mService.path("webresources").path("putDetailReturnOrder").accept("application/json")
+				.type("application/json").post(ClientResponse.class, orderDetail);
+
+		        String output = response.toString();
+		        System.out.println("input 1: " + output);
+		        
+		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+		            Toast.makeText(context, "Đã cập nhật", Toast.LENGTH_SHORT).show();
+		            // refresh customers
+		            
+		            
+		        }else
+		        	Toast.makeText(context, "Không thể cập nhật, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+		        
+		        System.out.println("Server response .... \n");
+		        System.out.println("input 0: " + output);
 		       
 		       
 				dialog.dismiss();
 				
 				//reload
-//				getOrderList();
-//				adapter = new OrdersManagerDetailArrayAdapter(context,
-//						android.R.layout.simple_list_item_1, takeOrderDetailList);
-//				ordersListView.setAdapter(adapter);
+				getOrderList();
+				adapter = new OrdersManagerDetailArrayAdapter(context,
+						android.R.layout.simple_list_item_1, takeOrderDetailList);
+				ordersListView.setAdapter(adapter);
 			}
 		});
 
@@ -229,7 +231,7 @@ public class ReturnOrderFragment extends Fragment{
 		
 	}
 	
-	public void commitDialog(final TakeOrderDetail selectedValue){
+	public static void commitDialog(final TakeOrderDetail selectedValue){
 		final Dialog dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
@@ -313,7 +315,7 @@ public class ReturnOrderFragment extends Fragment{
 		
 	}
 	
-	public void getOrderList(){
+	public static void getOrderList(){
 		//GET From server
 		
 		ClientResponse response = Rest.mService.path("webresources").path("getReturnOrderDetailList")
@@ -347,14 +349,16 @@ public class ReturnOrderFragment extends Fragment{
 			e.printStackTrace();
 			return ;
 		}
+		
 	}
 	
-	public boolean isOnline() {
+	public static boolean isOnline() {
 //		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 //		return cm.getActiveNetworkInfo() != null
 //				&& cm.getActiveNetworkInfo().isConnectedOrConnecting();
 		return true;
 	}
+
 	
 	
 }

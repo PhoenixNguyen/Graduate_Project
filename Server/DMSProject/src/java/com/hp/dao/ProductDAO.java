@@ -14,8 +14,10 @@ import java.util.List;
  * @author HP
  */
 public interface ProductDAO {
+    public List<Product> getCustomerProductList(String pCustomerID);
     public List<Product> getProductList(String pProvider);
     public List<Product> getProductList();
+    
     public Product loadProduct(int pID);
     public boolean saveOrUpdate(Product pProduct);
     public boolean update(Product pProduct);

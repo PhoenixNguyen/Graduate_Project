@@ -6,6 +6,8 @@
 
 package com.hp.rest;
 
+import com.hp.dao.ProductDAO;
+import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.ReturnOrderDAO;
 import com.hp.dao.ReturnOrderDAOImpl;
 import com.hp.dao.ReturnOrderDetailDAO;
@@ -20,6 +22,7 @@ import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
+import com.hp.domain.Product;
 import com.hp.domain.ReturnOrder;
 import com.hp.domain.ReturnOrderDetail;
 import com.hp.domain.SaleOrder;
@@ -173,23 +176,35 @@ public class OrdersHandle {
                 e.printStackTrace();
         }
         
-        //Save return order
+        
         ReturnOrder returnOrder = new ReturnOrder();
         ReturnOrderDAO returnOrderDAO = new ReturnOrderDAOImpl();
-        
-        //SaleOrder saleOrder = new SaleOrder();
+        ReturnOrderDetailDAO returnOrderDetailDAO = new ReturnOrderDetailDAOImpl();
         SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
         
+        //If ReturnOrderDetail exist => update it then return
+        ReturnOrderDetail returnOrderDetailExist = 
+                returnOrderDetailDAO.getReturnOrderDetail(returnOrderDetail.getmTakeOrderID(), returnOrderDetail.getmLine());
+        if( returnOrderDetailExist != null){
+            returnOrderDetailExist.setmNumber(returnOrderDetail.getmNumber());
+            returnOrderDetailExist.setmPriceTotal(returnOrderDetail.getmPriceTotal());
+            
+            boolean b = returnOrderDetailDAO.update(returnOrderDetailExist);
+            
+            return Response.status(200).entity(b+ "").build();
+        }
+        
+        //Save return order
         returnOrder = new ReturnOrder(saleOrderDAO.getSaleOrder(returnOrderDetail.getmTakeOrderID()));
         returnOrderDAO.saveOrUpdate(returnOrder);
                 
-        //Update detail return order
-        ReturnOrderDetailDAO returnOrderDetailDAO = new ReturnOrderDetailDAOImpl();
+        //Save detail return order
+        
         boolean st = returnOrderDetailDAO.saveOrUpdate(returnOrderDetail);
         if(!st)
             return Response.status(200).entity(st+"").build();
         
-        //Update the order
+        //Update the orderReturn
         List<ReturnOrderDetail> list = new ArrayList<ReturnOrderDetail>();
         
         list = returnOrderDetailDAO.getDetailReturnOrdersList(returnOrderDetail.getmTakeOrderID());
@@ -263,4 +278,15 @@ public class OrdersHandle {
         
     }
     
+    @GET
+    @Path("/getCustomerProduct")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Product> getCustomerProduct() {
+        
+        ProductDAO productDAO = new ProductDAOImpl();
+        
+        
+        return productDAO.getCustomerProductList("180NLB");
+        
+    }
 }

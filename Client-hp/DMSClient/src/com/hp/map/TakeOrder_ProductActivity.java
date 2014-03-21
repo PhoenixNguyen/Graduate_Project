@@ -225,6 +225,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Cập nhật");
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -263,7 +264,17 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 			}
 		});
 
-		
+		Button dialogButtonNO = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogButtonNO.setText("Hủy");
+		// if button is clicked, close the custom dialog
+		dialogButtonNO.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//finish
+				dialog.dismiss();
+			}
+			
+		});
 		dialog.show();
      }
 }

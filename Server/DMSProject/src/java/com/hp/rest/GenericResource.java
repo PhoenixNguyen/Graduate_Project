@@ -628,7 +628,7 @@ public class GenericResource {
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         
         takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getmTakeOrderID());
-        takeOrder.setmAfterPrivate(priceTotal);
+        takeOrder.setmAfterPrivate(priceTotal - priceTotal*takeOrder.getmDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pTakeOrder + "___ " + st);

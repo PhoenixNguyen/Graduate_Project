@@ -15,6 +15,7 @@ import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	private EditText dc2_value;
 	private EditText note_value;
 	
+	private EditText discount_percent;
+	
 	private Button save;
 	float pricesTotal;
 	
@@ -47,11 +50,11 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		
 		total_value = (EditText)findViewById(R.id.total_value);
 		document_value = (EditText)findViewById(R.id.document_value);
+		
+		discount_percent = (EditText)findViewById(R.id.discount_percent);
 		discount_value = (EditText)findViewById(R.id.discount_value);
-		tax_value = (EditText)findViewById(R.id.tax_value);
 		sum_value = (EditText)findViewById(R.id.sum_value);
-		dc2_value = (EditText)findViewById(R.id.dc2_value);
-		note_value = (EditText)findViewById(R.id.note_value);
+	
 		
 		save = (Button)findViewById(R.id.save);
 		
@@ -79,6 +82,53 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	   this.onCreate(null);
 	}
 
+	public void setDiscount(View view){
+		final Dialog dialog = new Dialog(context);
+		dialog.setContentView(R.layout.order_product_dialog);
+		dialog.setTitle("Đặt giảm giá");
+		
+		final EditText count = (EditText)dialog.findViewById(R.id.count);
+		count.setHint("Phần trăm");
+		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Cập nhật");
+		// if button is clicked, close the custom dialog
+		dialogButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			
+				String count2 = count.getText().toString();
+				int number = 0;
+				if(count2.compareTo("") != 0)
+					number = Integer.parseInt(count2);
+				else
+					return;
+				
+				discount_percent.setText(number+"");
+				discount_value.setText(pricesTotal*number/100 + "");
+				
+				//set sume
+				pricesTotal = pricesTotal - pricesTotal*number/100;
+				
+				sum_value.setText(pricesTotal+"");
+				dialog.dismiss();
+			}
+		});
+		
+		Button dialogButtonNO = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogButtonNO.setText("Hủy");
+		// if button is clicked, close the custom dialog
+		dialogButtonNO.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//finish
+				dialog.dismiss();
+			}
+			
+		});
+		dialog.show();
+	}
+	
+	
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
@@ -103,7 +153,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					, ""
 					
 					, 0
-					, pricesTotal, pricesTotal, 0
+					, pricesTotal, pricesTotal
+					, Integer.parseInt(discount_percent.getText().toString())
 					, 0, Timestamp.valueOf(date2), Timestamp.valueOf(date2)
 					, Rest.mStaffID, Rest.mStaffID);
 			

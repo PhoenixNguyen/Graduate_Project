@@ -128,6 +128,10 @@
             <result name="success">order/getCustomerProduct</result>
         </action>
         
+        <action name="getCustomerProviderList" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/getCustomerProviderList</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
         <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

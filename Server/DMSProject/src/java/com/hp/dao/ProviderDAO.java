@@ -16,4 +16,6 @@ import java.util.List;
 public interface ProviderDAO {
     public List<Provider> getProvidersList();
     public List<String> getProvidersIDList();
+    
+    public List<Provider> getProvidersList(String customerID);
 }

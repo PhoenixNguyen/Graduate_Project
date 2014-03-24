@@ -110,6 +110,10 @@
             android:name="com.hp.map.StockManagerActivity"
             android:label="Stock manager" /> 
 		
+		<activity
+            android:name="com.hp.map.InventoryManagerActivity"
+            android:label="Hàng tồn" /> 
+		
     </application>
 
 </manifest>

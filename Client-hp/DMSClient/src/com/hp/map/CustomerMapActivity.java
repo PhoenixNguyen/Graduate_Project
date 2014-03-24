@@ -580,6 +580,7 @@ public class CustomerMapActivity extends FragmentActivity
 	}
 	
 	public void inventoryManager(){
+		startActivity(new Intent(context, InventoryManagerActivity.class));
 		
 	}
 										       

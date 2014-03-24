@@ -8,6 +8,8 @@ package com.hp.rest;
 
 import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
+import com.hp.dao.ProviderDAO;
+import com.hp.dao.ProviderDAOImpl;
 import com.hp.dao.ReturnOrderDAO;
 import com.hp.dao.ReturnOrderDAOImpl;
 import com.hp.dao.ReturnOrderDetailDAO;
@@ -23,6 +25,7 @@ import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
 import com.hp.domain.Product;
+import com.hp.domain.Provider;
 import com.hp.domain.ReturnOrder;
 import com.hp.domain.ReturnOrderDetail;
 import com.hp.domain.SaleOrder;
@@ -278,15 +281,33 @@ public class OrdersHandle {
         
     }
     
-    @GET
+    @POST
     @Path("/getCustomerProduct")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getCustomerProduct() {
+    public List<Product> getCustomerProduct(String pData) { //String pData
+        //String pData="ll::ll";
+        String[] total = pData.split("::");
+        String providerID = total[0];
+        String customerID = total[1];
+        
+        System.out.println("____ " + pData + "___ " );
         
         ProductDAO productDAO = new ProductDAOImpl();
         
+        return productDAO.getCustomerProductList(customerID, providerID);//(customerID, providerID);
         
-        return productDAO.getCustomerProductList("180NLB");
+    }
+    
+    @POST
+    @Path("/getCustomerProviderList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Provider> getCustomerProviderList(String customerID) { //String customerID
+        List<Provider> list = new ArrayList<Provider>();
+        
+        ProviderDAO providerDAO = new ProviderDAOImpl();
+        list = providerDAO.getProvidersList(customerID);
+        
+        return list;
         
     }
 }

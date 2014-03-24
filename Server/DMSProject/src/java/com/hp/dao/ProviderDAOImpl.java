@@ -35,6 +35,29 @@ public class ProviderDAOImpl implements ProviderDAO{
         return courses;
     }
     
+    public List<Provider> getProvidersList(String customerID){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Provider> courses = null;
+        try{
+            courses = session.createQuery("select distinct per "
+                    + "from Provider as per, Product as pct, SaleOrder as so, SaleOrderDetail as sod "
+                    + "where per.mID = pct.mProvider and "
+                    + " so.mID = sod.mTakeOrderID and "
+                    + " pct.mProductID = sod.mBarcode and "
+                    + " so.mCustomerID='"+customerID+"'" ).list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
     public List<String> getProvidersIDList(){
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction;

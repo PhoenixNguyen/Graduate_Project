@@ -14,7 +14,7 @@ import java.util.List;
  * @author HP
  */
 public interface ProductDAO {
-    public List<Product> getCustomerProductList(String pCustomerID);
+    public List<Product> getCustomerProductList(String pCustomerID, String pProvider);
     public List<Product> getProductList(String pProvider);
     public List<Product> getProductList();
     

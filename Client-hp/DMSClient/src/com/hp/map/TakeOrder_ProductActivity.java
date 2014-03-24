@@ -48,10 +48,6 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	public ListView listView;
 	public static Map<String, List<Product>> mProductsMap = new HashMap<String, List<Product>>();
 	
-	static final String[] PRODUCT = 
-			new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
-							"Apple", "Avocado"};
-	
 	private Spinner spinner;
 	final Context context = this;
 	private int line;
@@ -64,6 +60,12 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	private ProductArrayAdapter adapter;
 	
 	public TextView title;
+	
+	//For Inventory
+	public String command;
+	public String customerID;
+	
+	public static boolean timeLine;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -117,7 +119,9 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	
 	public void init(){
 		title = (TextView)findViewById(R.id.title);
-	
+		command = "getProductsList";
+		customerID = "";
+		timeLine = true;
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){
@@ -130,26 +134,10 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	// add items into spinner dynamically
 	  public void addItemsOnSpinner() {
 	 
-		//GET providers list
-		// Check the internet
-		if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else{
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+		String re = getProviderIDList();
+		if(re == null)
 			return;
-		}
 		
-		ClientResponse response = Rest.mService.path("webresources").path("getProvidersIDList")
-				.accept("application/json")
-				.type("application/json").get(ClientResponse.class);
-        System.out.println("________________ "+ response.toString());
-        if(response.getStatus() != 200){
-        	return;
-        }
-        
-        String re = response.getEntity(String.class);
         System.out.println("________________ "+ re);
         
         // pair to object
@@ -187,10 +175,33 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		spinner.setAdapter(dataAdapter);
 	  }
 	 
+	  public String getProviderIDList(){
+		//GET providers list
+			// Check the internet
+			if(isOnline()){
+				System.out.println("Internet access!!____________________");
+			}
+			else{
+				System.out.println("NO Internet access!!____________________");
+				Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			
+			ClientResponse response = Rest.mService.path("webresources").path("getProvidersIDList")
+					.accept("application/json")
+					.type("application/json").get(ClientResponse.class);
+	        System.out.println("________________ "+ response.toString());
+	        if(response.getStatus() != 200){
+	        	return null;
+	        }
+	        
+	        return response.getEntity(String.class);
+	  }
+	  
 	  
 	  public void addListenerOnSpinnerItemSelection() {
 			spinner = (Spinner) findViewById(R.id.class_id);
-			spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(this, listView, id_search));
+			spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(this, listView, id_search, command, customerID));
 		  }
 	  ////////////////////// finish spiner ///////////////////////////////////
 

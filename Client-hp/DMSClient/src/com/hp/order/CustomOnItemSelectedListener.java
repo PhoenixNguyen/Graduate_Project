@@ -31,13 +31,19 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 	Context context;
 	EditText search;
 	ProductArrayAdapter adapter;
+	String command;
+	String customerID;
 	
 	public static int mProviderIndex = 0;
 	
-	public CustomOnItemSelectedListener(Context context, ListView listView, EditText search){
+	public CustomOnItemSelectedListener(Context context, ListView listView
+			, EditText search, String command, String customerID){
 		this.listView = listView;
 		this.context = context;
 		this.search = search;
+		this.command = command;
+		this.customerID= customerID; 
+		
 	}
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 //		Toast.makeText(parent.getContext(), 
@@ -45,10 +51,17 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 //			Toast.LENGTH_SHORT).show();
 		mProviderIndex = pos;
 		String providerID = parent.getItemAtPosition(pos).toString();
+		String data;
+		if(customerID == null || customerID == "")
+			data = providerID;
+		else
+			data = providerID +"::" + customerID;
+		
+		System.out.println("____ " + data + "___ " );
 		//GET
-		ClientResponse response = Rest.mService.path("webresources").path("getProductsList")
+		ClientResponse response = Rest.mService.path("webresources").path(command)
 				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, providerID);
+				.type("application/json").post(ClientResponse.class, data );
         System.out.println("________________ "+ response.toString());
         if(response.getStatus() != 200){
         	return;
@@ -73,9 +86,13 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 			e.printStackTrace();
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////
+		if(TakeOrder_ProductActivity.timeLine == true)
+			TakeOrder_ProductActivity.mProductsMap.clear();
+		
 		if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + ""))
 			TakeOrder_ProductActivity.mProductsMap.put(mProviderIndex + "", productsList);
 		
+		TakeOrder_ProductActivity.timeLine = false;
 		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + ""));
 		listView.setAdapter(adapter);
 		

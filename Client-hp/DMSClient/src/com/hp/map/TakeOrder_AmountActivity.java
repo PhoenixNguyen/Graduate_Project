@@ -37,6 +37,9 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	private EditText dc2_value;
 	private EditText note_value;
 	
+	private EditText customer_id;
+	private EditText customer_name;
+	
 	private EditText discount_percent;
 	
 	private Button save;
@@ -48,6 +51,9 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.amount);
 		
+		customer_id = (EditText)findViewById(R.id.customer_id);
+		customer_name = (EditText)findViewById(R.id.customer_name);
+		
 		total_value = (EditText)findViewById(R.id.total_value);
 		document_value = (EditText)findViewById(R.id.document_value);
 		
@@ -55,6 +61,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		discount_value = (EditText)findViewById(R.id.discount_value);
 		sum_value = (EditText)findViewById(R.id.sum_value);
 	
+		customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
+		customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
 		
 		save = (Button)findViewById(R.id.save);
 		

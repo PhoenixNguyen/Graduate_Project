@@ -59,6 +59,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.transition.Scene;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -110,10 +113,7 @@ public class CustomerMapActivity extends FragmentActivity
     
     private GoogleMap mMap;
     private LocationClient mLocationClient;
-    
-    private Button initOrder;
-    private Button takeImages;
-    
+      
     private Context context = this;
     
  // These settings are the same as the settings for the map. They will in fact give you updates
@@ -169,33 +169,41 @@ public class CustomerMapActivity extends FragmentActivity
         customer_phone = (TextView) findViewById(R.id.customer_phone);
         customer_address = (TextView) findViewById(R.id.customer_address);
 
-        customer_name.setText("Customer Name: "+ Rest.customerList.get(positionClick).getmDoiTuong());
-        customer_id.setText("ID: "+ Rest.customerList.get(positionClick).getmMaDoiTuong());
-        customer_phone.setText("Phone: "+ Rest.customerList.get(positionClick).getmDienThoai());
-        customer_address.setText("Address: "+ Rest.customerList.get(positionClick).getmDiaChi());
+        customer_name.setText(Rest.customerList.get(positionClick).getmDoiTuong());
+        customer_id.setText(Rest.customerList.get(positionClick).getmMaDoiTuong());
+        customer_phone.setText(Rest.customerList.get(positionClick).getmDienThoai());
+        customer_address.setText(Rest.customerList.get(positionClick).getmDiaChi());
         
-        initOrder = (Button)findViewById(R.id.init_order);
-        initOrder.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				startActivity(new Intent(context, TakeOrder_TabActivity.class));
-			}
-		});
-        
-        takeImages = (Button)findViewById(R.id.take_images);
-        takeImages.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				startActivity(new Intent(context, TakeImagesActivity.class));
-			}
-		});
         setUpMapIfNeeded();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.customer_menu, menu);
+ 
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+        case R.id.init_order:
+            initTakeOrder();
+            return true;
+        case R.id.take_picture:
+            takePicture();
+            return true;
+        case R.id.inventory_manager:
+            inventoryManager();
+            return true;
+       
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+    
     @Override
     protected void onResume() {
         super.onResume();
@@ -451,28 +459,10 @@ public class CustomerMapActivity extends FragmentActivity
         if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("1") == 0)) {
             Toast.makeText(context, "Đã gửi vị trí", Toast.LENGTH_SHORT).show();
             // refresh customers
-            DetailsListData.CUSTOMER_LIST = null;
-            Rest.customerList.clear();
             
             if(Rest.getCustomersList(Rest.mStaffID) == true){
-				//Set List customer
-				DetailsListData.CUSTOMER_LIST=  new DetailsList[]{
-						
-				};
-				
-				//add element
-				for(int i = 0; i < Rest.customerList.size(); i++){
-					DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
-							new DetailsList(Rest.customerList.get(i).getmMaDoiTuong(),
-									Rest.customerList.get(i).getmDoiTuong() +" : " + 
-											Rest.customerList.get(i).getmDiaChi(),
-			                        CustomerMapActivity.class));
-				}
-				// TODO Auto-generated method stub
-				Intent t = new Intent(context, CustomerMapActivity.class);
-		        t.putExtra("POSITION_CLICK", customerSelected);
-		        
-		        startActivity(t);
+
+				setUpMap();
 			}
             
         }else
@@ -581,5 +571,17 @@ public class CustomerMapActivity extends FragmentActivity
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
 		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
 	}
+	
+	public void initTakeOrder(){
+		startActivity(new Intent(context, TakeOrder_TabActivity.class));
+	}
+	public void takePicture(){
+		startActivity(new Intent(context, TakeImagesActivity.class));
+	}
+	
+	public void inventoryManager(){
+		
+	}
+										       
 
 }

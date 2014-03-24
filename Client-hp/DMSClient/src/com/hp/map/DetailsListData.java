@@ -47,5 +47,5 @@ public final class DetailsListData {
                 
     };
     
-    public static DetailsList[] CUSTOMER_LIST ;
+//    public static DetailsList[] CUSTOMER_LIST ;
 }

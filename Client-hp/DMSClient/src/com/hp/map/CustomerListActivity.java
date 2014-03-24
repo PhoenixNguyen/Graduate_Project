@@ -77,6 +77,10 @@ public class CustomerListActivity extends Activity{
 			}
 		});
 		
+		addListView();
+	}
+
+	public void addListView(){
 		//List view
 		listView = (ListView)findViewById(R.id.list);
 		customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);
@@ -95,7 +99,6 @@ public class CustomerListActivity extends Activity{
 		      }
 		});
 	}
-
 	@SuppressLint("NewApi")
 	static <T> T[] append(T[] arr, T element) {
         final int N = arr.length;

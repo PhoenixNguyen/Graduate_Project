@@ -76,7 +76,7 @@ public class Rest {
         
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
-        //List<Customer> schedule = null;
+        //List<Customer> customer = null;
 		try {
 //			File jsonFile = new File(jsonFilePath);
 			customerList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,

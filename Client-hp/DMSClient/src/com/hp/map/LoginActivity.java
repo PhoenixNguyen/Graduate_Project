@@ -79,19 +79,7 @@ public class LoginActivity extends Activity {
 				}
 				else
 				if(Rest.getCustomersList(username) == true){
-					//Set List customer
-					DetailsListData.CUSTOMER_LIST=  new DetailsList[]{
-							
-					};
-					
-					//add element
-					for(int i = 0; i < Rest.customerList.size(); i++){
-						DetailsListData.CUSTOMER_LIST = append(DetailsListData.CUSTOMER_LIST, 
-								new DetailsList(Rest.customerList.get(i).getmMaDoiTuong(),
-										Rest.customerList.get(i).getmDoiTuong() +" : " + 
-												Rest.customerList.get(i).getmDiaChi(),
-				                        CustomerMapActivity.class));
-					}
+
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 	            	startActivity(i);

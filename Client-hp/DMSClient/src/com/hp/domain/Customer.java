@@ -41,7 +41,9 @@ public class Customer {
     private double mXCoordinates;
     private double mYCoordinates;
 
-    
+    public String toString(){
+    	return mMaDoiTuong + " " + mDoiTuong;
+    }
     public int getmStt() {
         return mStt;
     }

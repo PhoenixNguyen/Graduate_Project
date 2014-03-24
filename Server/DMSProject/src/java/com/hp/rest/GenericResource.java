@@ -457,7 +457,7 @@ public class GenericResource {
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         boolean st = takeOrderDAO.saveOrUpdate(takeOrder);
 //            String output = pTrack.toString();
-            System.out.println("____ " + pTakeOrder + "___ " + st);
+            System.out.println("pTakeOrder: " + st +"____ " + pTakeOrder);
             return Response.status(200).entity(st+"").build();
     }
     
@@ -491,7 +491,7 @@ public class GenericResource {
                 count ++;
             
         }
-        
+        System.out.println("pTakeOrderDetail: " + count +"____ " + pList);
         return Response.status(200).entity(count+"").build();
     }
     

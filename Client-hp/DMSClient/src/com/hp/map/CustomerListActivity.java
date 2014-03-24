@@ -2,10 +2,14 @@ package com.hp.map;
 
 import java.util.Arrays;
 
+import com.hp.customer.CustomerArrayAdapter;
+import com.hp.domain.Customer;
 import com.hp.order.ProductArrayAdapter;
+import com.hp.rest.Rest;
 import com.hp.schedule.ListViewSchedules;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -13,6 +17,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,106 +28,68 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CustomerListActivity extends Activity{
-	public static class CustomArrayAdapter extends ArrayAdapter<DetailsList>{
-			
-			/**
-	         * @param demos An array containing the details of the demos to be displayed.
-	         */
-	        public CustomArrayAdapter(Context context, DetailsList[] demos) {
-	            super(context, R.layout.feature, R.id.title, demos);
-	        }
-	
-	        @Override
-	        public View getView(int position, View convertView, ViewGroup parent) {
-	            FeatureView featureView;
-	            if (convertView instanceof FeatureView) {
-	                featureView = (FeatureView) convertView;
-	            } else {
-	                featureView = new FeatureView(getContext());
-	            }
-	
-	            DetailsList list = getItem(position);
-	
-	            featureView.setTitleId(list.titleId);
-	            featureView.setDescriptionId(list.descriptionId);
-	
-	            return featureView;
-	        }
-		}
-	
 	
 	private ListView listView;
 	private Context context = this;
-	private Button btt;
-	private AutoCompleteTextView actv;
 	
+	private EditText input_text;
+	
+	private CustomerArrayAdapter customerAdapter;
+	
+	@SuppressLint("NewApi")
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.customer_list);
 		
-		//Auto complete
-		String[] language ={"C","C++","Java",".NET","iPhone","Android","ASP.NET","PHP"};
-		String[] li = new String[]{};
-		
-		for(int i = 0; i < DetailsListData.CUSTOMER_LIST.length; i++){
-			li = append(li, DetailsListData.CUSTOMER_LIST[i].titleId);
-		}
-		
-		//Creating the instance of ArrayAdapter containing list of language names  
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>  
-         (this,android.R.layout.select_dialog_item, li);  
+		// Set up action bar.
+//        final ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayShowHomeEnabled(false);
+//        actionBar.setDisplayShowTitleEnabled(false);
         
-     //Getting the instance of AutoCompleteTextView  
-        actv= (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);  
-        actv.setThreshold(1);//will start working from first character  
-        actv.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView  
-        actv.setTextColor(Color.RED);  
-        
-		// show
-        btt = (Button)findViewById(R.id.btt);
-        btt.setOnClickListener(new OnClickListener() {
+		input_text = (EditText)findViewById(R.id.input_text);
+		
+		input_text.addTextChangedListener(new TextWatcher() {
 			
 			@Override
-			public void onClick(View v) {
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// TODO Auto-generated method stub
+				customerAdapter.getFilter().filter(s);
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
 				// TODO Auto-generated method stub
 				
-				
-				
-				for(int i = 0; i < DetailsListData.CUSTOMER_LIST.length; i++){
-					String id = DetailsListData.CUSTOMER_LIST[i].titleId;
-					System.out.println("__ "+actv.getText().toString() + " " + id);
-					if(actv.getText().toString().compareTo(id) == 0){
-						System.out.println("pass!");
-						
-						DetailsList demo = (DetailsList) listView.getAdapter().getItem(i);
-				        Intent t = new Intent(context, demo.activityClass);
-				        t.putExtra("POSITION_CLICK", id);
-				        
-				        startActivity(t);
-					}
-				}
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
 				
 			}
 		});
-        
+		
 		//List view
 		listView = (ListView)findViewById(R.id.list);
-		listView.setAdapter(new CustomArrayAdapter(this, DetailsListData.CUSTOMER_LIST));
+		customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);
+		listView.setAdapter(customerAdapter);
 			
 		listView.setOnItemClickListener(new OnItemClickListener()
 		{
 		     @Override
 		     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
 		     {
-		        DetailsList demo = (DetailsList) listView.getAdapter().getItem(position);
-		        Intent t = new Intent(context, demo.activityClass);
-		        t.putExtra("POSITION_CLICK", demo.titleId);
+		    	Customer customer = (Customer) listView.getAdapter().getItem(position);
+		        Intent t = new Intent(context, CustomerMapActivity.class);
+		        t.putExtra("POSITION_CLICK", customer.getmMaDoiTuong());
 		        
 		        startActivity(t);
 		      }
@@ -136,29 +104,4 @@ public class CustomerListActivity extends Activity{
         return arr;
     }
 	
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.main, menu);
-//		return true;
-//	}
-//	
-//	@Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle item selection
-//        if (item.getItemId() == R.id.menu_legal) {
-//            startActivity(new Intent(this, LegalInfoActivity.class));
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        DetailsList demo = (DetailsList) getListAdapter().getItem(position);
-//        Intent t = new Intent(this, demo.activityClass);
-//        t.putExtra("POSITION_CLICK", position);
-//        
-//        startActivity(t);
-//    }
 }

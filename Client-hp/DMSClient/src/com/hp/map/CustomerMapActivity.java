@@ -97,16 +97,16 @@ import org.codehaus.jackson.map.type.TypeFactory;
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 @SuppressLint("NewApi")
 public class CustomerMapActivity extends FragmentActivity
-        implements
-        OnMarkerClickListener,
-        OnInfoWindowClickListener,
-        OnMarkerDragListener,
-        OnSeekBarChangeListener,
-        
-        ConnectionCallbacks,
-        OnConnectionFailedListener,
-        LocationListener,
-        OnMyLocationButtonClickListener{
+										        implements
+										        OnMarkerClickListener,
+										        OnInfoWindowClickListener,
+										        OnMarkerDragListener,
+										        OnSeekBarChangeListener,
+										        
+										        ConnectionCallbacks,
+										        OnConnectionFailedListener,
+										        LocationListener,
+										        OnMyLocationButtonClickListener{
     
     private GoogleMap mMap;
     private LocationClient mLocationClient;

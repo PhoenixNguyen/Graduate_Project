@@ -7,7 +7,7 @@
     <string name="main_label">Welcome you!</string>
     
     <string name="login_label">Login</string>
-    <string name="customer_list_label">List customers for you</string>
+    <string name="customer_list_label">Khách hàng</string>
     
     <string name="play_services_not_installed">Google Play services is not installed on this device.</string>
     <string name="legal_info">Legal Info</string>
@@ -17,7 +17,7 @@
     <string name="clear_map">Just one</string>
     <string name="reset_map">All</string>
     <string name="send_demo">Send the location</string>
-    <string name="marker_label">Show customer detail</string>
+    <string name="marker_label">Thông tin chi tiết</string>
     <string name="marker_description">Demonstrates how to add Markers to a map.</string>
     <string name="map_not_ready">Map is not ready yet</string>
 

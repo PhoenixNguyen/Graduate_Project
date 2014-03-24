@@ -50,7 +50,7 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         
         List<TakeOrder> courses = null;
         try{
-                courses = session.createQuery("from TakeOrder ").list();
+                courses = session.createQuery("from TakeOrder order by mTakeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();

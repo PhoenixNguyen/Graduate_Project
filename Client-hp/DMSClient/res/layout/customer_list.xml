@@ -14,7 +14,7 @@
             android:id="@+id/search_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Danh sách khách hàng của bạn"
+            android:text="@string/customer_title"
             android:textSize="25dp"
             
             />
@@ -37,7 +37,7 @@
 		            android:layout_weight="0.7"
 		            android:layout_width="0dp"
 		            android:layout_height="wrap_content"
-		            android:hint="Gõ mã hoặc tên khách hàng"
+		            android:hint="@string/search_hint"
 		            />
         	    
         	    <Button
@@ -45,7 +45,7 @@
 		            android:layout_weight="0.3"
 		            android:layout_width="0dp"
 		            android:layout_height="wrap_content"
-		            android:text="Tìm kiếm"
+		            android:text="@string/search_button_title"
 		            />
        	    </LinearLayout>
     </LinearLayout>

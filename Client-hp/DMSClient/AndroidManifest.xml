@@ -100,11 +100,11 @@
 		
 		<activity
             android:name="com.hp.map.SaleOrderDetail_Main_Activity"
-            android:label="Sale detail" />  
+            android:label="@string/sale_detail_label" />  
 		
 		<activity
             android:name="com.hp.map.SaleOrdersManagerActivity"
-            android:label="Sale" /> 
+            android:label="@string/sale_label" /> 
 		
 		<activity
             android:name="com.hp.map.StockManagerActivity"

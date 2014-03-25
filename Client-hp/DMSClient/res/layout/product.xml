@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             
             android:textSize="30dp"
-            android:text="Đặt hàng"/>
+            android:text="@string/product_title"/>
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             android:id="@+id/class_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nhóm sản phẩm: "/>
+            android:text="@string/product_group"/>
 		    <Spinner 
 		        android:id="@+id/class_id"
 		        android:layout_width="match_parent"
@@ -52,7 +52,7 @@
 			        android:layout_weight="0.3"
 		        	android:layout_width="0dip"
 			        android:layout_height="wrap_content"
-			        android:text="Search"/>
+			        android:text="@string/product_search_bt"/>
 		    
 	    </LinearLayout>
     </LinearLayout>
@@ -86,7 +86,7 @@
 	        android:layout_weight="0.5"
 	        android:layout_width="0dip"
 	        android:background="@color/red"
-	        android:text="Total Line:"
+	        android:text="@string/product_total_line"
 	        />
 	    
 	    <TextView
@@ -96,7 +96,7 @@
 	        android:layout_width="0dip"
 	        android:gravity="center"
 	        android:background="@color/orange"
-	        android:text="0"	       	        
+	        android:text="@string/amount_ed"	       	        
 	        />
        
    	</LinearLayout>

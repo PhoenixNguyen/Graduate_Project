@@ -25,25 +25,22 @@ public final class DetailsListData {
     private DetailsListData() {}
 
     public static final DetailsList[] MAIN = {
-        new DetailsList("Customer list",
-                        "Click here to view customer list and create orders",
+        new DetailsList("Danh sách khách hàng",
+                        "Nhấp vào để hiển thị thông tin chi tiết của khách hàng này",
                         CustomerListActivity.class),
 
-        new DetailsList("Planning",
-                        "Scheduled for a month",
+        new DetailsList("Kế hoạch",
+                        "Tạo lịch trình cho bạn",
                         Schedule_CalendarActivity.class),
 
-        new DetailsList("Orders manager",
-                "your orders manager",
+        new DetailsList("Hóa đơn đặt hàng",
+                "Quản lý hóa đơn đặt hàng",
                 TakeOrdersManagerActivity.class),
                 
-        new DetailsList("Sale order",
-                "Sale order",
+        new DetailsList("Hóa đơn bán hàng",
+                "Quản lý hóa đơn bán hàng",
                 SaleOrdersManagerActivity.class),        
-              
-        new DetailsList("Stock manager",
-                "products manager",
-                StockManagerActivity.class),        
+            
                 
     };
     

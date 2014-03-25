@@ -582,13 +582,25 @@ containing a value of this type.
         public static final int main=0x7f0b0001;
     }
     public static final class string {
-        public static final int action_check_updates=0x7f070039;
-        public static final int action_help=0x7f070038;
-        public static final int action_location_found=0x7f070036;
-        public static final int action_refresh=0x7f070037;
-        public static final int action_search=0x7f070035;
+        public static final int action_check_updates=0x7f070058;
+        public static final int action_help=0x7f070057;
+        public static final int action_location_found=0x7f070055;
+        public static final int action_refresh=0x7f070056;
+        public static final int action_search=0x7f070054;
         public static final int action_settings=0x7f07001b;
-        public static final int amount=0x7f07002f;
+        /**  Take order 
+         */
+        public static final int amount=0x7f070036;
+        public static final int amount_bt_discount=0x7f07003f;
+        public static final int amount_discount=0x7f07003e;
+        public static final int amount_documentl=0x7f07003d;
+        public static final int amount_ed=0x7f07003a;
+        public static final int amount_save_bt=0x7f070041;
+        public static final int amount_sume_final=0x7f070040;
+        public static final int amount_title=0x7f070038;
+        public static final int amount_total=0x7f07003c;
+        public static final int amount_tv_id=0x7f070039;
+        public static final int amount_tv_name=0x7f07003b;
         public static final int app_name=0x7f07001a;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -613,7 +625,7 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f070014;
-        public static final int clear_map=0x7f070024;
+        public static final int clear_map=0x7f07002b;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -685,31 +697,64 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
-        public static final int customer_address=0x7f07002d;
-        public static final int customer_id=0x7f07002b;
-        public static final int customer_list_label=0x7f07001f;
+        public static final int customer_address=0x7f070034;
+        public static final int customer_id=0x7f070032;
+        /**  Label for main menu 
+         */
+        public static final int customer_list=0x7f070026;
+        /**  For customers 
+         */
+        public static final int customer_list_label=0x7f070022;
         /**  Customer show on the map 
          */
-        public static final int customer_name=0x7f07002a;
-        public static final int customer_phone=0x7f07002c;
-        public static final int legal_info=0x7f070021;
-        public static final int location_source_demo_description=0x7f070023;
-        public static final int location_source_demo_label=0x7f070022;
-        public static final int login_label=0x7f07001e;
+        public static final int customer_name=0x7f070031;
+        public static final int customer_phone=0x7f070033;
+        public static final int customer_title=0x7f070023;
+        public static final int legal_info=0x7f070028;
+        public static final int location_source_demo_description=0x7f07002a;
+        public static final int location_source_demo_label=0x7f070029;
+        public static final int login_label=0x7f070020;
         public static final int main_label=0x7f07001d;
-        public static final int map_not_ready=0x7f070029;
-        public static final int marker_description=0x7f070028;
-        public static final int marker_label=0x7f070027;
+        public static final int map_not_ready=0x7f070030;
+        public static final int marker_description=0x7f07002f;
+        public static final int marker_label=0x7f07002e;
         public static final int no_demos=0x7f07001c;
-        public static final int orders_detail_manager=0x7f070033;
-        public static final int orders_manager=0x7f070032;
-        public static final int planning_label=0x7f07002e;
-        public static final int play_services_not_installed=0x7f070020;
-        public static final int product=0x7f070030;
-        public static final int reset_map=0x7f070025;
-        public static final int schedule=0x7f070031;
-        public static final int send_demo=0x7f070026;
-        public static final int take_images=0x7f070034;
+        public static final int order_title=0x7f070042;
+        public static final int orders_detail_manager=0x7f070052;
+        public static final int orders_manager=0x7f070051;
+        public static final int password_label=0x7f07001f;
+        public static final int planning_label=0x7f070035;
+        /**  For customer detail 
+         */
+        public static final int play_services_not_installed=0x7f070027;
+        public static final int product=0x7f070037;
+        public static final int product_group=0x7f07004d;
+        public static final int product_search_bt=0x7f07004e;
+        /**  For product 
+         */
+        public static final int product_title=0x7f07004c;
+        public static final int product_total_line=0x7f07004f;
+        public static final int reset_map=0x7f07002c;
+        public static final int sale_detail_label=0x7f070044;
+        public static final int sale_filter_bt=0x7f070049;
+        public static final int sale_filter_lable=0x7f070046;
+        public static final int sale_filter_lable_from=0x7f070047;
+        public static final int sale_filter_lable_to=0x7f070048;
+        /**  Sale order 
+         */
+        public static final int sale_label=0x7f070043;
+        public static final int sale_search_bt=0x7f07004b;
+        public static final int sale_search_hint=0x7f07004a;
+        public static final int sale_title=0x7f070045;
+        public static final int schedule=0x7f070050;
+        public static final int search_button_title=0x7f070025;
+        public static final int search_hint=0x7f070024;
+        public static final int send_demo=0x7f07002d;
+        public static final int take_images=0x7f070053;
+        public static final int text_label=0x7f070021;
+        /**  For Login 
+         */
+        public static final int username_label=0x7f07001e;
     }
     public static final class style {
         /** 

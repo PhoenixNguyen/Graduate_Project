@@ -25,7 +25,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textSize="25dp"
-		        android:text="Danh sách hóa đơn bán"
+		        android:text="@string/sale_title"
 		        />
 		    <ImageButton 
 		        android:id="@+id/new_sale_order"
@@ -44,14 +44,14 @@
 	        android:layout_weight="0.2"
 	        android:layout_width= "0dip"
 	        android:layout_height="wrap_content"
-	        android:text="Lọc"
+	        android:text="@string/sale_filter_lable"
 	        />
 		    <EditText 
 		        android:id="@+id/start"
 		        android:layout_weight="0.3"
 		        android:layout_width= "0dip"
 		        android:layout_height="wrap_content"
-		        android:text="Từ"
+		        android:text="@string/sale_filter_lable_from"
 		        android:editable="false"
 		        />
 		    <Button 
@@ -67,7 +67,7 @@
 		        android:layout_weight="0.3"
 		        android:layout_width= "0dip"
 		        android:layout_height="wrap_content"
-		        android:text="Đến"
+		        android:text="@string/sale_filter_lable_to"
 		        android:editable="false"
 		       
 		        />
@@ -83,7 +83,7 @@
 		        android:layout_weight="0.2"
 		        android:layout_width= "0dip"
 		        android:layout_height="wrap_content"
-		        android:text="Ok"
+		        android:text="@string/sale_filter_bt"
 		        android:onClick="button_filter"
 		        />
 	    </LinearLayout>
@@ -99,7 +99,7 @@
 		        android:layout_weight="0.6"
 		        android:layout_width= "0dip"
 		        android:layout_height="wrap_content"
-		        android:hint="Mã/Tên khách hàng"
+		        android:hint="@string/sale_search_hint"
 		        />
 		    
 		    
@@ -107,7 +107,7 @@
 		        android:layout_weight="0.4"
 		        android:layout_width= "0dip"
 		        android:layout_height="wrap_content"
-		        android:text="Tìm kiếm"
+		        android:text="@string/sale_search_bt"
 		        />
 	    </LinearLayout>
     </LinearLayout>

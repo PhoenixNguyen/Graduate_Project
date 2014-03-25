@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="30dp"
-            android:text="Đơn đặt hàng"/>
+            android:text="@string/amount_title"/>
         
         <LinearLayout 
 			android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 	            android:layout_weight="0.3"
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
-	            android:text="Mã khách hàng:  "
+	            android:text="@string/amount_tv_id"
 	            
 	            />
 		    <EditText 
@@ -38,7 +38,7 @@
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:enabled="false"
-	            android:text="0"/>
+	            android:text="@string/amount_ed"/>
 	    </LinearLayout>
 	    
         <LinearLayout 
@@ -52,7 +52,7 @@
 	            android:layout_weight="0.3"
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
-	            android:text="Tên khách hàng:  "
+	            android:text="@string/amount_tv_name"
 	            
 	            />
 		    <EditText 
@@ -62,7 +62,7 @@
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:enabled="false"
-	            android:text="0"/>
+	            android:text="@string/amount_ed"/>
 	    </LinearLayout>
         <LinearLayout 
 			android:layout_width="match_parent"
@@ -75,7 +75,7 @@
 	            android:layout_weight="0.3"
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
-	            android:text="Tổng giá trị:  "
+	            android:text="@string/amount_total"
 	            
 	            />
 		    <EditText 
@@ -85,7 +85,7 @@
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:enabled="false"
-	            android:text="0"/>
+	            android:text="@string/amount_ed"/>
 	    </LinearLayout>
 	    
 	    <LinearLayout 
@@ -99,7 +99,7 @@
             android:layout_weight="0.3"
 	        android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:text="Gồm có:"/>
+            android:text="@string/amount_documentl"/>
 	    <EditText 
             android:id="@+id/document_value"
             android:gravity="right"
@@ -107,7 +107,7 @@
 	        android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:text="0"/>
+            android:text="@string/amount_ed"/>
 	    </LinearLayout>
 	    
 	    <LinearLayout 
@@ -121,7 +121,7 @@
 	            android:layout_weight="0.3"
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
-	            android:text="Giảm giá:"/>
+	            android:text="@string/amount_discount"/>
 		    <EditText 
 	            android:id="@+id/discount_percent"
 	            android:gravity="right"
@@ -129,13 +129,13 @@
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:enabled="false"
-	            android:text="0"/>
+	            android:text="@string/amount_ed"/>
 		    <Button
 		            android:id="@+id/set"
 		            android:layout_weight="0.2"
 	        		android:layout_width="0dip"
 		            android:layout_height="wrap_content"
-		            android:text="set"
+		            android:text="@string/amount_bt_discount"
 		            android:onClick="setDiscount"
 		            />
 		    <EditText 
@@ -145,7 +145,7 @@
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:enabled="false"
-	            android:text="0"/>
+	            android:text="@string/amount_ed"/>
 	    </LinearLayout>
 	    
 	    <EditText 
@@ -167,7 +167,7 @@
 	            android:layout_weight="0.3"
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
-	            android:text="Tổng cuối cùng:"/>
+	            android:text="@string/amount_sume_final"/>
 		    <EditText 
 	            android:id="@+id/sum_value"
 	            android:gravity="right"
@@ -175,59 +175,15 @@
 		        android:layout_width="0dip"
 	            android:layout_height="wrap_content"
 	            android:enabled="false"
-	            android:text="0"/>
+	            android:text="@string/amount_ed"/>
 	    </LinearLayout>
 	    
-	    <!-- LinearLayout 
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			>
-	    <TextView 
-            android:id="@+id/discount2"
-            android:gravity="right"
-            android:layout_weight="0.3"
-	        android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:text="discount 2  "/>
-	    <EditText 
-            android:id="@+id/dc2_value"
-            android:gravity="right"
-            android:layout_weight="0.7"
-	        android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="0"/>
-        </LinearLayout>
-	    
-	    <LinearLayout 
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			>
-			   <TextView 
-		            android:id="@+id/note"
-		            android:gravity="right"
-            		android:layout_weight="0.3"
-	        		android:layout_width="0dip"
-		            android:layout_height="wrap_content"
-		            android:text="Note: "/>
-			   <EditText
-		            android:id="@+id/note_value"
-		            android:gravity="right"
-		            android:layout_weight="0.7"
-	        		android:layout_width="0dip"
-		            android:layout_height="wrap_content"
-		            android:text=""/>
-			    
-			   
-	    </LinearLayout-->
 	    <Button
 		            android:id="@+id/save"
 	        		android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:layout_marginTop="30dp"
-		            android:text="Lưu lại"/>
+		            android:text="@string/amount_save_bt"/>
     </LinearLayout>
         
 </LinearLayout>

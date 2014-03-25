@@ -502,4 +502,8 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 	   super.onResume();
 	   this.onCreate(null);
 	}
+	
+	public void newTakeOrder(View view){
+		startActivity(new Intent(this, CustomerListActivity.class));
+	}
 }

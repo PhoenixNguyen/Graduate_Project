@@ -55,8 +55,10 @@
 	<string name="amount_bt_discount">Set:</string>
 	<string name="amount_sume_final">Tổng cuối cùng:</string>
 	<string name="amount_save_bt">Lưu lại</string>
-	<string name="order_title">Danh sách chi tiết hóa đơn</string>
+	<string name="order_title">Hóa đơn</string>
 	
+	<!-- Take order manager -->
+	<string name="order_manager">Danh sách hóa đơn</string>
 	<!-- Sale order -->
 	<string name="sale_label">Hóa đơn bán hàng</string>
 	<string name="sale_detail_label">Chi tiết hóa đơn bán hàng</string>

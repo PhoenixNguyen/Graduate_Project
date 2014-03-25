@@ -62,7 +62,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		order_id = intent.getStringExtra("ORDER_ID");
 		
 		TextView title = (TextView)findViewById(R.id.title);
-		title.setText("Order: "+order_id);
+		title.setText(""+order_id);
 		
 		getOrderList();
 		addListView();
@@ -81,15 +81,9 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 			return;
 		}
 
-		
-
 		if (takeOrderDetailList.size() == 0) {
 			return;
 		}
-		// List<Product> productsList = new ArrayList<Product>();
-		// Product product = new Product(1, "Welcome", "Welcome",
-		// "Choose providers list");
-		// productsList.add(product);
 
 		ordersListView = (ListView) findViewById(R.id.list_view_product);
 		adapter = new OrdersManagerDetailArrayAdapter(this,
@@ -341,5 +335,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				&& cm.getActiveNetworkInfo().isConnectedOrConnecting();
 	}
 	
-	
+	public void newOrderDetail(View view){
+		
+	}
 }

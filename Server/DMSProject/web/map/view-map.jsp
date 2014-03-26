@@ -65,7 +65,9 @@
                             'Tỉnh thành: <s:property value="mTinhThanh"/>' + '<br/>' +
                             'Địa chỉ: <s:property value="mDiaChi"/>' + '<br/>' +
                             'Điện thoại: <s:property value="mDienThoai"/>' + '<br/>' +
-                            'Fax: <s:property value="mFax"/>' + '<br/></p></div>',
+                            'Fax: <s:property value="mFax"/>' + '<br/>\n\
+                             Tọa độ X: <s:property value="mXCoordinates"/> <br/> \n\
+                             Tọa độ Y: <s:property value="mYCoordinates"/> <br/>   </p></div>',
             </s:iterator>
                 ];
 

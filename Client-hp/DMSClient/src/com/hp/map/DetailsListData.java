@@ -37,9 +37,9 @@ public final class DetailsListData {
                 "Quản lý hóa đơn đặt hàng",
                 TakeOrdersManagerActivity.class),
                 
-        new DetailsList("Hóa đơn bán hàng",
-                "Quản lý hóa đơn bán hàng",
-                SaleOrdersManagerActivity.class),        
+//        new DetailsList("Hóa đơn bán hàng",
+//                "Quản lý hóa đơn bán hàng",
+//                SaleOrdersManagerActivity.class),        
         new DetailsList("Quản lý hàng tồn kho",
                 "Quản lý hàng tồn kho",
                 StockManagerActivity.class),     

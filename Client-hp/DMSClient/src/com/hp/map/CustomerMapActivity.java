@@ -186,6 +186,32 @@ public class CustomerMapActivity extends FragmentActivity
     }
     
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem item = menu.findItem(R.id.init_order);
+        if(!compareLocation())
+        	item.setEnabled(false);
+        else
+        	item.setEnabled(true);
+        return true;
+        
+    }
+    
+    public boolean compareLocation(){
+    	double x = Rest.customerList.get(positionClick).getmXCoordinates();
+    	double y = Rest.customerList.get(positionClick).getmYCoordinates();
+    	System.out.println("mX va (x - 0.000099): " + mX + " " + (x - 0.000099));
+    	System.out.println("mX va (x + 0.000099): " + mX + " " + (x + 0.000099));
+    	
+    	System.out.println("mY va (y - 0.000099): " + mY + " " + (y - 0.000099));
+    	System.out.println("mY va (y + 0.000099): " + mY + " " + (y + 0.000099));
+    	if(mX > (x - 0.000099) && mX < (x + 0.000099) && mY > (y - 0.000099) && mX < (y + 0.000099))
+    		return true;
+    	else
+    		return false;
+    	
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Take appropriate action for each action item click
         switch (item.getItemId()) {
@@ -267,6 +293,9 @@ public class CustomerMapActivity extends FragmentActivity
         //mMessageView.setText("Location = " + location);
     	mX = (float)location.getLatitude();
     	mY = (float)location.getLongitude();
+    	
+    	//refresh menu
+    	invalidateOptionsMenu();
     }
     
     /**
@@ -327,11 +356,11 @@ public class CustomerMapActivity extends FragmentActivity
                 @Override
                 public void onGlobalLayout() {
                     Builder builder = new LatLngBounds.Builder();
-                    for(int i = 0; i< Rest.customerList.size(); i++){
+                    //for(int i = 0; i< Rest.customerList.size(); i++){
                     		
-                    	builder.include(new LatLng(Rest.customerList.get(i).getmXCoordinates(), Rest.customerList.get(i).getmYCoordinates()));
+                    	builder.include(new LatLng(Rest.customerList.get(positionClick).getmXCoordinates(), Rest.customerList.get(positionClick).getmYCoordinates()));
                         	
-                    }
+                    //}
                     
                     LatLngBounds  bounds = builder.build();
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {

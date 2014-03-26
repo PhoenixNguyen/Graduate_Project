@@ -17,9 +17,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
             <sx:head />
-    <!--        <link rel="icon" href=""/> this tag do action double load: be carfuly-->
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Journeys</title>
+            <title>Quản lý hành trình</title>
 
             <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
             
@@ -65,12 +64,13 @@
                 });
 
                 var contentString = [
-            <s:iterator value="listRoad" status="status">
-            <s:iterator value="listRoad.get(#status.index)" >
-                    'Mã Nhân viên: <s:property value="mMaNhanVien"/> <br/>\
-                    Thời gian:<br/><s:property value="mThoiGian"/>',
-            </s:iterator>
-            </s:iterator>
+                    <s:iterator value="listRoad" status="status">
+                    <s:iterator value="listRoad.get(#status.index)" >
+                    <s:date name="mThoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                            'Mã Nhân viên: <s:property value="mMaNhanVien"/> <br/>\
+                            Thời gian:<br/><s:property value="%{createdDateId}"/>',
+                    </s:iterator>
+                    </s:iterator>
                 ];
 
                 for (i = 0; i < Points.length; i++) {
@@ -303,18 +303,18 @@
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
 
                                 <s:select name="pushInfo.managerID" list="userListGiamDoc" 
-                                          onchange="getLoadStaff2(options[selectedIndex].text)"   />
+                                          onchange="getLoadStaff2(options[selectedIndex].text)" headerKey="0" headerValue="--select--"  />
                             </li>
                             
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
 
                                 <s:select name="pushInfo.staffID"  list="userListStaff" id="staff"
-                                          onchange="getLoadCustomer2(options[selectedIndex].text)"   />
+                                          onchange="getLoadCustomer2(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
                             </li>
                             
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
                                 <s:select name="pushInfo.customerID"  list="userListCustomer" id="customer"
-                                          onchange="getLoadCustomerDetail(options[selectedIndex].text)"   />
+                                          onchange="getLoadCustomerDetail(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
                                 
                                 
                             </li>
@@ -443,14 +443,14 @@
                     </div>
                     <table class="tb_road">
                         <col width="15%">
-                        <col width="20%">
                         <col width="25%">
-                        <col width="20%">
-                        <col width="20%">
+                        <col width="30%">
+                        <col width="15%">
+                        <col width="15%">
                         <thead>
                             <tr >
-                                <th >Mã khách hàng</th>
-                                <th >Tên khách hàng</th>
+                                <th >Mã nhân viên</th>
+                                <th >Tên nhân viên</th>
                                 <th >Thời gian</th>
                                 <th >Vĩ độ</th>
                                 <th >Kinh độ</th>
@@ -460,10 +460,11 @@
                         <tbody>
                             <s:iterator value="listRoad" status="status">
                                 <s:iterator value="listRoad.get(#status.index)" >
+                                    <s:date name="mThoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
                                 <tr >
-                                    <td><s:property value="mMaKhachHang"/></td>
+                                    <td><s:property value="mMaNhanVien"/></td>
                                     <td></td>
-                                    <td><s:property value="mThoiGian"/></td>
+                                    <td><s:property value="%{createdDateId}"/></td>
                                     <td><s:property value="mViDo"/></td>
                                     <td><s:property value="mKinhdo"/></td>
                                 </tr>

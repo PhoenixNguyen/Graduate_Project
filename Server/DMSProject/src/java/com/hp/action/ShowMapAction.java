@@ -190,15 +190,22 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"), null);
-
+                
+                pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
+                pushInfo.setStaffID((String)session.getAttribute("staffId"));
+                
+                //get list object id
+                userListStaff = staffDAO.getListUser((String)session.getAttribute("giamdocId"));
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();
+                pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
+                pushInfo.setStaffID((String)session.getAttribute("staffId"));
             }
         }
         //AJAX
         else if(getGiamdocId() != null){
             userListStaff = staffDAO.getListUser(giamdocId);
-            
+            session.setAttribute("staffId", null);
             session.setAttribute("giamdocId", giamdocId);
             if(giamdocId.compareTo("nullid") == 0){
                 session.setAttribute("giamdocId", null);
@@ -251,7 +258,7 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         
         
         //Lay ve nhan vien cua giam doc
-        
+        //if filter pressed
         if(giamdocId == null && nhanvienId == null && khachhangId == null){
             //Tat ca nhan vien
             userListStaff = staffDAO.getListUser(null);
@@ -275,6 +282,10 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
                 pushInfo.setStaffID((String)session.getAttribute("staffId"));
                 pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
+                
+                //get list object id
+                userListCustomer = customerDAO.getListCustomer((String)session.getAttribute("staffId"));
+                userListStaff = staffDAO.getListUser((String)session.getAttribute("giamdocId"));
                 //Get images
                 filesNameList = getImagesName(listCustomer);
                 

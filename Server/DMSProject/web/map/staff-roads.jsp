@@ -264,19 +264,20 @@
                 <span class="topbar-title">Trang chủ</span>
                 <button onclick="this.className = this.className === 'expanded' ? '' : 'expanded';"></button>
                 <ul>
-                    <li class="topbar-link"><a href="" title="Trang chủ" index="0">Trang chủ</a></li>
-                    <li class="topbar-active" title=""><span class="topbar-arrow"></span></li>
+                    <li class="topbar-link"><a href="http://localhost:8080/DMSProject" title="Trang chủ" index="0">Trang chủ</a></li>
+<!--                    <li class="topbar-active" title=""><span class="topbar-arrow"></span></li>
                     <li class="topbar-link"><a href="" title="" index="2"></a></li>
                     <li class="topbar-link"><a href="" title="" index="3"></a></li>
-                    <li class="topbar-link"><a href="" title="" index="4"></a></li>
+                    <li class="topbar-link"><a href="" title="" index="4"></a></li>-->
                 </ul>
             </div>
         </div>
 
         <div id="wrapper" class="has-topbar">
             <div id="header" class="clearfix">
-                <h1 class="logo"><a href="http://localhost:8080/DMSProject" class="hide-text" target="">Trang chủ</a> <span>
-                        <a href="/">Thông tin khách hàng</a>			</span></h1>
+<!--                <h1 class="logo"><a href="http://localhost:8080/DMSProject" class="hide-text" target="">Trang chủ</a> <span>
+                        <a href="/">Thông tin khách hàng</a>			</span></h1>-->
+                <h1>Quản lý hành trình</h1> <br/>       
 
                 <div class="right-app">
                     <a href="" class="android-app" target="_blank"></a>
@@ -286,7 +287,7 @@
                 <div class="searchs">
                     <form action="staff-roads.action" method="post" name="search-poi">
                         <ul>
-                            <li>
+<!--                            <li>
                                 <div id="keys">
                                     <a title="Tiếng Việt" id="btn-language" href="#">v</a>
                                     <input type="text" name="keys" class="keyboardInput" value="" autocomplete="off">
@@ -295,9 +296,9 @@
                             </li>
                             <li>
                                 <div><input type="submit" name="finds" value="Tìm kiếm"></div>
-                            </li>
-
-                            <li class="advance-text clear" >Tìm kiếm nâng cao</li>
+                            </li>-->
+                            
+<!--                            <li class="advance-text clear" >Lọc khách hàng</li>-->
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
 
                                 <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" 
@@ -316,8 +317,14 @@
                                 
                             </li>
                                 
-                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Chọn ngày</a>
+                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Từ ngày</a>
                                 <sx:datetimepicker name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate"/>
+                                
+                                
+                            </li>
+                                
+                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Đến ngày</a>
+                                <sx:datetimepicker name="toDate" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate2"/>
                                 
                                 
                             </li>

@@ -31,18 +31,22 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
     Transaction transaction;
     
     @Override
-    public List<List<RoadManagement>> getRoad(String pGiamDoc, String pNhanVien, String pMaKhachHang, String pDate){
+    public List<List<RoadManagement>> getRoad(String pGiamDoc, String pNhanVien, String pMaKhachHang, String pDate, String pToDate){
         List<List<RoadManagement>> result = new ArrayList<List<RoadManagement>>();
         try{
             String datefinal="";
+            String toDatefinal="";
             System.out.println(" DATE: " + pDate); 
-            if(pDate != null && pDate.compareTo("")!= 0){
+            if(pDate != null && pDate.compareTo("")!= 0 && pToDate.compareTo("")!= 0){
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 
                 Date date = sdf.parse(pDate);
                 datefinal = sdf2.format(date);
-                System.out.println(" DATECONVERT: " + datefinal);
+                
+                Date toDate = sdf.parse(pToDate);
+                toDatefinal = sdf2.format(toDate);
+                System.out.println(" DATECONVERT: " + datefinal + " toDatefinal " + toDatefinal);
             }
             if(pGiamDoc != null){
                 //Lay danh sach ID khach hang cua giam doc
@@ -57,7 +61,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
                     else
                         tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
-                                + " and cast (mThoiGian as date) ='"+datefinal+"'").list();
+                                + " and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -76,7 +80,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
                     else
                         tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
-                                + "  and cast (mThoiGian as date) ='"+datefinal+"'").list();
+                                + "  and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -89,7 +93,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                     tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'").list();
                 else
                     tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'"
-                            + " and cast (mThoiGian as date) ='"+datefinal+"'").list();
+                            + " and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                  if(tmp != null)
                      result.add(tmp);
             }
@@ -105,7 +109,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
                     else
                         tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
-                                + " and CONVERT (mThoiGian, GETDATE()) ='"+datefinal+"'").list();
+                                + " and cast (mThoiGian as date) ='"+datefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);

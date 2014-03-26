@@ -66,7 +66,16 @@ public class ShowMapAction extends ActionSupport{
     private String khachhangId;
 
     private String date;
+    private String toDate;
 
+    public String getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
+    }
+    
     public String getDate() {
         return date;
     }
@@ -212,7 +221,7 @@ public class ShowMapAction extends ActionSupport{
         //Tat ca danh sach khach hang
         userListCustomer = customerDAO.getListCustomer(null);
         
-        System.out.println(" setDate: " + date);
+        System.out.println(" setDate: " + date + " toDate: " + toDate);
         System.out.println(" GD: ");
         System.out.println(" GD: "+getGiamdocId()+" STaff: "+ getNhanvienId()); 
         
@@ -234,14 +243,14 @@ public class ShowMapAction extends ActionSupport{
                 listRoad = mRoadManagementDAO.getRoad((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"),
                         (String)session.getAttribute("khachhangId"),
-                        date);
+                        date, toDate);
                 
                 //Get images
                 filesNameList = getImagesName(listCustomer);
                 
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();
-                listRoad = mRoadManagementDAO.getRoad(null,null,null,date);
+                listRoad = mRoadManagementDAO.getRoad(null,null,null,date, toDate);
                 //Get images
                 filesNameList = getImagesName(listCustomer);
             }

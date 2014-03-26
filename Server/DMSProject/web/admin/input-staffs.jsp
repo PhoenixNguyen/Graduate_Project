@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Input page</title>
+        <title>Quản lý thông tin nhân viên</title>
         
         <link type="text/css" rel="stylesheet" href="../css/admin/input-page.css"/>
         
@@ -32,7 +32,7 @@
         %>
     </head>
     <body>
-        <h1>Show and import resources</h1>
+        <h1>Quản lý thông tin nhân viên</h1>
         <div id="head_data">
             <div id="slect_item">
                 Chọn mục dữ liệu

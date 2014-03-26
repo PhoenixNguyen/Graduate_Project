@@ -11,7 +11,9 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
 import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -29,9 +31,19 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
     Transaction transaction;
     
     @Override
-    public List<List<RoadManagement>> getRoad(String pGiamDoc, String pNhanVien, String pMaKhachHang){
+    public List<List<RoadManagement>> getRoad(String pGiamDoc, String pNhanVien, String pMaKhachHang, String pDate){
         List<List<RoadManagement>> result = new ArrayList<List<RoadManagement>>();
         try{
+            String datefinal="";
+            System.out.println(" DATE: " + pDate); 
+            if(pDate != null && pDate.compareTo("")!= 0){
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                
+                Date date = sdf.parse(pDate);
+                datefinal = sdf2.format(date);
+                System.out.println(" DATECONVERT: " + datefinal);
+            }
             if(pGiamDoc != null){
                 //Lay danh sach ID khach hang cua giam doc
                 List<String> khachhang = null;
@@ -41,7 +53,11 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         + "and nv.mID = kh.mMaNhanVien ").list();
                 for(int i= 0; i < khachhang.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
-                    tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                    else
+                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
+                                + " and cast (mThoiGian as date) ='"+datefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -56,7 +72,11 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         + "from Customer where mMaNhanVien='"+pNhanVien+"'").list();
                 for(int i= 0; i < khachhang.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
-                    tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                    else
+                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
+                                + "  and cast (mThoiGian as date) ='"+datefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -65,7 +85,11 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
             else if(pMaKhachHang != null){
 
                 List<RoadManagement> tmp = new ArrayList<RoadManagement>();
-                 tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'").list();
+                if(datefinal.compareTo("") == 0)
+                    tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'").list();
+                else
+                    tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'"
+                            + " and cast (mThoiGian as date) ='"+datefinal+"'").list();
                  if(tmp != null)
                      result.add(tmp);
             }
@@ -77,7 +101,11 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         + "from Customer ").list();
                 for(int i= 0; i < khachhang.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
-                    tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                    else
+                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
+                                + " and CONVERT (mThoiGian, GETDATE()) ='"+datefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);

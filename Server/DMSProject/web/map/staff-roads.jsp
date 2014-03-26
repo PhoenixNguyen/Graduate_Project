@@ -16,9 +16,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-
-<!--        <link rel="icon" href=""/> this tag do action double load: be carfuly-->
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <sx:head />
+    <!--        <link rel="icon" href=""/> this tag do action double load: be carfuly-->
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Journeys</title>
 
             <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
@@ -241,7 +241,18 @@
                  }
              );
          }
-
+        
+         dojo.event.topic.subscribe("/value", function(textEntered, date, widget){
+             //var date ;
+             console.log("SetDate: " +date);
+            //date = dojo.byId("setdate").value; 
+//            $.getJSON('filterDate.action', {'date': date},
+//                 function(data) {
+//
+//                        var divisionList = (data.date);
+//                    }
+//            );
+        });
    </script>            
     </head>
     <body>
@@ -304,6 +315,12 @@
                                           onchange="getLoadCustomerDetail(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
                                 
                             </li>
+                                
+                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Chọn ngày</a>
+                                <sx:datetimepicker name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate"/>
+                                
+                                
+                            </li>
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>
                                 
                                 
@@ -321,7 +338,7 @@
             <div id="container" class="poi-detail-page clearfix" data-id="542591" data-hash="6896202108404922949" data-fe-category="1" data-coordinates="21.03063357,105.85507392996" data-icon="2.jpg">
                 <div class="left-content">
                     <div class="article-top">
-                        <div id="googleMap" style="width:640px;height:340px;"></div>
+                        <div id="googleMap" style="width:100%;height:500px;"></div>
                     </div>
                     <div class="article-content">
                         <div class="article-title">
@@ -359,7 +376,42 @@
                                     <a target="_blank" class="zingme hide-text" rel="zingme" href="">Zing
                                         me</a></div>
                         </div>
+                        
+                        <div class="right-content">
+                            <div class="article-title">
+                                <h3>Danh sách ảnh tại nơi khách hàng:</h3>
+                            </div>
+                            <ul class="pois-list show-all">
 
+
+                                        <s:iterator status="status" value="filesNameList" >
+                                <li data-poi-id="2275">
+                                    <div class="poi-content">
+                                        <div class="poi-photo">
+                                            <img src="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" 
+                                                 data-original="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" width="64" height="64" alt="Pane e Vino">
+                                        </div>
+                                        <h2 class="poi-title"><a href="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>">Ảnh <s:property value="#status.index+1"/></a></h2>
+                                        <div class="poi-infos">
+                                            <strong>Tiêu đề: <s:property value="filesNameList.get(#status.index)"/>
+                                            <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper">
+                                                    <div class="rate-value" style="width: 77.8%">
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                    </s:iterator>
+
+
+
+                            </ul>
+                            <div class="more-places"><!--<a href="#">Xem thêm...</a>--></div>
+                        </div>
 <!--                        <div class="content-bottom clearfix">
                             <div class="poi-infos">
                                 <a href="" class="back-link">Quay lại</a>
@@ -369,70 +421,45 @@
                     </div>
                     <div class="article-photo"><img src="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(0)"/>" style="margin-top: -44.5px;">
                     </div>
-<!--                    <div class="article-bottom">
-                        <ul class="tab-panel clearfix">
-                            <li class="active"><a href="#menu">Menu</a></li>
-                            <li><a href="#description">Mô tả</a></li>
-                        </ul>
-                        <div class="tabs-content">
-                            <div id="menu" class="tab-content jspScrollable" tabindex="0" style="overflow: hidden; padding: 0px; width: 655px;">
 
-                                <div class="jspContainer" style="width: 655px; height: 220px;"><div class="jspPane" style="padding: 0px 15px 0px 0px; width: 630px; top: 0px;"><ul class="food-menu">
-                                            <li>
-                                                <span><strong>56000 vnđ</strong></span>
-
-                                                <div>Súp nấm</div>
-                                            </li>
-                                            <li>
-                                                <span><strong>56000 vnđ</strong></span>
-
-                                                <div>Súp ngô</div>
-                                            </li>
-
-                                        </ul></div><div class="jspVerticalBar"><div class="jspCap jspCapTop"></div><div class="jspTrack" style="height: 220px;"><div class="jspDrag" style="height: 14px;"><div class="jspDragTop"></div><div class="jspDragBottom"></div></div></div><div class="jspCap jspCapBottom"></div></div></div></div>
-                            <div id="description" class="tab-content">
-                                <div class="poi-description">
-                                    Being the first Indian restaurant to be established in Hanoi during 1993, 
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
 
-                <div class="right-content">
+                <div class="right-content-new">
                     <div class="article-title">
-                        <h3>Danh sách ảnh tại nơi khách hàng:</h3>
+                        <h3>Chi tiết tọa độ:</h3>
                     </div>
-                    <ul class="pois-list show-all">
+                    <table class="tb_road">
+                        <col width="15%">
+                        <col width="20%">
+                        <col width="25%">
+                        <col width="20%">
+                        <col width="20%">
+                        <thead>
+                            <tr >
+                                <th >Mã khách hàng</th>
+                                <th >Tên khách hàng</th>
+                                <th >Thời gian</th>
+                                <th >Vĩ độ</th>
+                                <th >Kinh độ</th>
+                            </tr>
+                        </thead>
                         
-                        
-                                <s:iterator status="status" value="filesNameList" >
-                        <li data-poi-id="2275">
-                            <div class="poi-content">
-                                <div class="poi-photo">
-                                    <img src="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" 
-                                         data-original="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" width="64" height="64" alt="Pane e Vino">
-                                </div>
-                                <h2 class="poi-title"><a href="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>">Ảnh <s:property value="#status.index+1"/></a></h2>
-                                <div class="poi-infos">
-                                    <strong>Tiêu đề: <s:property value="filesNameList.get(#status.index)"/>
-                                    <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper">
-                                            <div class="rate-value" style="width: 77.8%">
-                                        
-                                            </div>
-                                                
-                                        </div>
-                                            
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        <tbody>
+                            <s:iterator value="listRoad" status="status">
+                                <s:iterator value="listRoad.get(#status.index)" >
+                                <tr >
+                                    <td><s:property value="mMaKhachHang"/></td>
+                                    <td><s:property value="mMaKhachHang"/></td>
+                                    <td><s:property value="mThoiGian"/></td>
+                                    <td><s:property value="mViDo"/></td>
+                                    <td><s:property value="mKinhdo"/></td>
+                                </tr>
+                                </s:iterator>
                             </s:iterator>
-
-
-
-                    </ul>
-                    <div class="more-places"><!--<a href="#">Xem thêm...</a>--></div>
+                            
+                        </tbody>
+                            
+                    </table>
                 </div>
             </div>
 

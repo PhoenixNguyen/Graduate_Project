@@ -65,6 +65,16 @@ public class ShowMapAction extends ActionSupport{
     private String nhanvienId;
     private String khachhangId;
 
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
    private List<String> filesNameList = new ArrayList<String>();
 
     public List<String> getFilesNameList() {
@@ -197,8 +207,15 @@ public class ShowMapAction extends ActionSupport{
         
         //Lay ve giam doc
         userListGiamDoc = userDAO.getListUser(2);
-       System.out.println(" GD: ");
+        //Tat ca nhan vien
+        userListStaff = staffDAO.getListUser(null);
+        //Tat ca danh sach khach hang
+        userListCustomer = customerDAO.getListCustomer(null);
+        
+        System.out.println(" setDate: " + date);
+        System.out.println(" GD: ");
         System.out.println(" GD: "+getGiamdocId()+" STaff: "+ getNhanvienId()); 
+        
         
         //Lay ve nhan vien cua giam doc
         
@@ -216,14 +233,15 @@ public class ShowMapAction extends ActionSupport{
                 
                 listRoad = mRoadManagementDAO.getRoad((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"),
-                        (String)session.getAttribute("khachhangId"));
+                        (String)session.getAttribute("khachhangId"),
+                        date);
                 
                 //Get images
                 filesNameList = getImagesName(listCustomer);
                 
              }else{
                 listCustomer = customerDAO.loadCustomersWithLocations();
-                listRoad = mRoadManagementDAO.getRoad(null,null,null);
+                listRoad = mRoadManagementDAO.getRoad(null,null,null,date);
                 //Get images
                 filesNameList = getImagesName(listCustomer);
             }

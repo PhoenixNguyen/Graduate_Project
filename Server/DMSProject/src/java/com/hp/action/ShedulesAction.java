@@ -16,6 +16,7 @@ import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Customer;
+import com.hp.domain.PushInfo;
 import com.hp.domain.Schedule;
 import com.hp.domain.User;
 import com.hp.excelhandle.GetData;
@@ -33,7 +34,7 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author HP
  */
-public class ShedulesAction extends ActionSupport{
+public class ShedulesAction extends ActionSupport implements ModelDriven{
     
     
     private List<Customer> listCustomer = new ArrayList();
@@ -60,6 +61,39 @@ public class ShedulesAction extends ActionSupport{
     private String nhanvienId;
     private String khachhangId;
 
+    public PushInfo pushInfo = new PushInfo();
+    
+    private String date;
+    private String toDate;
+    
+    @Override
+    public Object getModel() {
+        return pushInfo;
+    }
+    
+    public String getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
+    }
+    
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public PushInfo getPushInfo() {
+        return pushInfo;
+    }
+
+    public void setPushInfo(PushInfo pushInfo) {
+        this.pushInfo = pushInfo;
+    }
     private ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
     
     public List<Schedule> getListSchedules() {
@@ -157,19 +191,27 @@ public class ShedulesAction extends ActionSupport{
                 System.out.print(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listSchedules = scheduleDAO.getSchedulesList((String)session.getAttribute("giamdocId3"),
-                        (String)session.getAttribute("staffId3"), "");
+                        (String)session.getAttribute("staffId3"), date, toDate);
                 listCustomer = customerDAO.loadCustomersWithLocationsForSchedule((String)session.getAttribute("giamdocId3"),
                         (String)session.getAttribute("staffId3"));
 
+                pushInfo.setManagerID((String)session.getAttribute("giamdocId3"));
+                pushInfo.setStaffID((String)session.getAttribute("staffId3"));
+                
+                //get list object id
+                userListStaff = staffDAO.getListUser((String)session.getAttribute("giamdocId3"));
              }else{
-                listSchedules = scheduleDAO.getSchedulesList();
+                listSchedules = scheduleDAO.getSchedulesList(null, null, date, toDate);
                 listCustomer = customerDAO.loadCustomersWithLocationsForSchedule();
+                
+                pushInfo.setManagerID((String)session.getAttribute("giamdocId3"));
+                pushInfo.setStaffID((String)session.getAttribute("staffId3"));
             }
         }
         //AJAX
         else if(getGiamdocId() != null){
             userListStaff = staffDAO.getListUser(giamdocId);
-            
+            session.setAttribute("staffId3", null);
             session.setAttribute("giamdocId3", giamdocId);
             if(giamdocId.compareTo("nullid") == 0){
                 session.setAttribute("giamdocId3", null);

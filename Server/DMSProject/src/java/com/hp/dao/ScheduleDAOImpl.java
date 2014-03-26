@@ -121,7 +121,7 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         
     }
     
-    public List<Schedule> getSchedulesList(String pManagerID, String pStaff, String pDate){
+    public List<Schedule> getSchedulesList(String pManagerID, String pStaff, String pDate, String pToDate){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
@@ -129,14 +129,51 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         List<Schedule> courses = null;
         
         try{
+            String datefinal="";
+            String toDatefinal="";
+            System.out.println(" DATE: " + pDate); 
+            if(pDate != null && pDate.compareTo("")!= 0 && pToDate.compareTo("")!= 0){
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                
+                Date date = sdf.parse(pDate);
+                datefinal = sdf2.format(date);
+                
+                Date toDate = sdf.parse(pToDate);
+                toDatefinal = sdf2.format(toDate);
+                System.out.println(" DATECONVERT: " + datefinal + " toDatefinal " + toDatefinal);
+            }
             
             System.out.print(pManagerID);           
-            if(pStaff == null)
-                courses = session.createQuery("select sc from Schedule as sc, Staff as st where "
+            
+            if(pStaff != null)
+            {
+                if(datefinal.compareTo("") == 0)
+                    courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' order by mDate").list();
+                else
+                    courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' and cast (mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'  order by mDate").list();
+                
+                return courses;
+            }
+            else 
+            if(pManagerID != null){
+                if(datefinal.compareTo("") == 0)
+                    courses = session.createQuery("select sc from Schedule as sc, Staff as st where "
                         + "st.mID = sc.mMaNV and st.mManager = '" +pManagerID +"'"
                         + " order by sc.mDate").list();
-            else
-                courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' order by mDate").list();
+                else
+                courses = session.createQuery("select sc from Schedule as sc, Staff as st where "
+                        + "st.mID = sc.mMaNV and st.mManager = '" +pManagerID +"'"
+                        + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"' order by sc.mDate").list();
+                return courses;
+            }
+            else{
+                if(datefinal.compareTo("") == 0)
+                    courses = session.createQuery("from Schedule  order by mDate").list();
+                else
+                    courses = session.createQuery("from Schedule where cast (mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'  order by mDate").list();
+                return courses;
+            }
           
         }catch(Exception e){
             e.printStackTrace();

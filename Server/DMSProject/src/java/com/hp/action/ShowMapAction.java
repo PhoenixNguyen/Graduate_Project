@@ -237,19 +237,6 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
-//        pushInfo.setManagerID(giamdocId);
-//        pushInfo.setStaffID(nhanvienId);
-//        pushInfo.setCustomerID(khachhangId);
-//        //Lay ve giam doc
-//        userListGiamDoc = userDAO.getListUser(2);
-//        //Tat ca nhan vien
-//        userListStaff = staffDAO.getListUser(null);
-//        //Tat ca danh sach khach hang
-//        userListCustomer = customerDAO.getListCustomer(null);
-//        pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
-//        pushInfo.setStaffID((String)session.getAttribute("staffId"));
-//        pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
-
         userListGiamDoc = userDAO.getListUser(2);
         
         System.out.println(" setDate: " + date + " toDate: " + toDate);
@@ -321,7 +308,6 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
             
             session.setAttribute("staffId", nhanvienId);
             session.setAttribute("khachhangId", null);
-//            session.setAttribute("giamdocId", null);
             if(nhanvienId.compareTo("nullid") == 0){
                 session.setAttribute("staffId", null);
                 System.out.println("staffId: " + session.getAttribute("staffId"));
@@ -333,22 +319,16 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         else
         if(khachhangId!= null){
             session.setAttribute("khachhangId", khachhangId);
-//            session.setAttribute("giamdocId", null);
-//            session.setAttribute("staffId", null);
+
             if(khachhangId.compareTo("nullid") == 0){
                 session.setAttribute("khachhangId", null);
                 System.out.println("khachhangId: " + session.getAttribute("khachhangId"));
             }
-            
-            //Reset
-            
+                        
         }
     
         System.out.print("Load Customer into map !!!!!!!!!!!!!!!!!!!!!!");
-        
-//        String customerID = request.getParameter("customer");
-//        if(customerID != null)
-//            listRoad = mRoadManagementDAO.getRoad("kachiusa",null,customerID);
+
         return SUCCESS;
     }   
  

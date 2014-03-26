@@ -90,5 +90,6 @@
 	<string name="action_help">Giúp đỡ</string>
 	<string name="action_check_updates">Kiểm tra cập nhật</string>
 	
-	
+	<!-- stock_manager -->
+	<string name="stock_manager">Quản lý kho</string>
 </resources>

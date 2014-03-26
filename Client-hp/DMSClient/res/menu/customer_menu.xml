@@ -15,10 +15,10 @@
             android:id="@+id/take_picture"
             android:showAsAction="always|withText"
             android:title="Chụp ảnh tại cửa hàng"/>
-        <item
+        <!-- item
             android:id="@+id/inventory_manager"
             android:showAsAction="always|withText"
-            android:title="Quản lý hàng tồn"/>
+            android:title="Quản lý hàng tồn"/-->
     </menu>
 </item>
      

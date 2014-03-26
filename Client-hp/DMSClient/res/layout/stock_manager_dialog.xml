@@ -6,102 +6,60 @@
  
      
     <TextView
-        android:id="@+id/id"
-        android:layout_width="fill_parent"
+        android:id="@+id/idlaber"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mã"
+        android:text="Mã kho"
         />
     
- 	<TextView
-        android:id="@+id/name"
-        android:layout_width="fill_parent"
+ 	<EditText
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/id"
-        android:text="Tên"
+        android:layout_alignRight="@+id/idlaber"
+        android:text="abc"
         />
  	<TextView
+        android:id="@+id/priceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idlaber"
+        android:text="Giá sản phẩm:"
+        />
+ 	
+ 	<EditText
         android:id="@+id/price"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:text="Giá"
+        android:layout_alignRight="@+id/price"
+        android:text="abc"
         />
  	
- 	
- 	
  	<TextView
-        android:id="@+id/ton_dau"
-        android:layout_width="fill_parent"
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/price"
-        android:text="Tồn đầu"
+        android:text="Tên sản phẩm:"
         />
-    
- 	<TextView
-        android:id="@+id/nhap"
-        android:layout_width="fill_parent"
+    <EditText
+        android:id="@+id/product_value"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ton_dau"
-        android:text="Nhập"
-        />
- 	<TextView
-        android:id="@+id/ton_cuoi"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nhap"
-        android:text="Tồn cuối"
-        />
- 	<TextView
-        android:id="@+id/ban_ra"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ton_cuoi"
-        android:text="Bán ra"
-        />
-    
- 	<TextView
-        android:id="@+id/order"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ban_ra"
-        android:text="Order"
-        />
- 	<TextView
-        android:id="@+id/duyet"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/order"
-        android:text="Duyệt"
+        android:layout_alignRight="@+id/product_name"
+        android:text="abc"
         />
  	
  	<EditText
-        android:id="@+id/edit_ton_dau"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/duyet"
-        android:background="@color/white"
-        android:hint="Tồn đầu"
-        android:numeric="decimal"
-        />
- 	<EditText
         android:id="@+id/edit_ton_cuoi"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_below="@+id/edit_ton_dau"
         android:background="@color/white"
-        android:hint="Tồn cuối"
+        android:hint="Nhập tồn hiện tại"
         android:numeric="decimal"
         />
- 	<EditText
-        android:id="@+id/edit_nhap"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/edit_ton_cuoi"
-        android:background="@color/white"
-        android:hint="Nhập"
-        android:numeric="decimal"
-        />
+ 	
      <Button
         android:id="@+id/dialogButtonYES"
         android:layout_width="150dp"

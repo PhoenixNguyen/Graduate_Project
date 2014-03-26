@@ -80,6 +80,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		document_value.setText(TakeOrder_ReViewActivity.takeOrderDetailList.size() + " sản phẩm và " + numberTotal + " đầu mục");
 		//sum_value.setText(pricesTotal + "");
 		total_value.setText(pricesTotal + "");
+		sum_value.setText(pricesTotal+"");
+		
 		save.setOnClickListener(this);
 	}
 	

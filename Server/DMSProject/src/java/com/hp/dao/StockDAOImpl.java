@@ -29,7 +29,7 @@ public class StockDAOImpl implements StockDAO{
 //            if(getStock(pStock.getmStockID()) == null)
 //                session.save(pStock);
 //            else
-                session.save(pStock);
+                session.saveOrUpdate(pStock);
             //session.flush();
             session.getTransaction().commit();
         }catch(HibernateException e){

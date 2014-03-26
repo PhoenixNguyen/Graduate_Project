@@ -195,9 +195,9 @@ public class CustomerMapActivity extends FragmentActivity
         case R.id.take_picture:
             takePicture();
             return true;
-        case R.id.inventory_manager:
-            inventoryManager();
-            return true;
+//        case R.id.inventory_manager:
+//            inventoryManager();
+//            return true;
        
         default:
             return super.onOptionsItemSelected(item);

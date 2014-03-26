@@ -25,8 +25,11 @@ public class Stock {
     
     @Column(name="kho_stt")
     private int mSerial;
-    @Column(name="kho_ma_san_pham")
+    @Column(name="kho_ma_kho")
     private String mStockID;
+    @Column(name="kho_ma_san_pham")
+    private String mProductID;
+
     @Column(name="kho_ten_san_pham")
     private String mName;
     @Column(name="kho_gia")
@@ -48,6 +51,14 @@ public class Stock {
     @Column(name="kho_ghi_chu")
     private String mNote;
 
+    
+    public String getmProductID() {
+        return mProductID;
+    }
+
+    public void setmProductID(String mProductID) {
+        this.mProductID = mProductID;
+    }
     public int getmSerial() {
         return mSerial;
     }

@@ -108,7 +108,7 @@
 		
 		<activity
             android:name="com.hp.map.StockManagerActivity"
-            android:label="Stock manager" /> 
+            android:label="@string/stock_manager" /> 
 		
 		<activity
             android:name="com.hp.map.InventoryManagerActivity"

@@ -26,13 +26,23 @@ public class Stock {
     private float mDuyet;
     private float mTotalInventory;
     private String mNote;
+    
+    private String mProductID;
 
-    public Stock(String mStockID, String mName, float mPrice,
+    public String getmProductID() {
+        return mProductID;
+    }
+
+    public void setmProductID(String mProductID) {
+        this.mProductID = mProductID;
+    }
+    public Stock(String mStockID, String mProductID, String mName, float mPrice,
 			float mBeginningInventory, float mInput, float mLastInventory,
 			float mBanRa, float mOrder, float mDuyet, float mTotalInventory,
 			String mNote) {
 		super();
 		this.mStockID = mStockID;
+		this.mProductID = mProductID;
 		this.mName = mName;
 		this.mPrice = mPrice;
 		this.mBeginningInventory = mBeginningInventory;

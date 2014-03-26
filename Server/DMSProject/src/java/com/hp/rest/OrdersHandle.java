@@ -261,10 +261,9 @@ public class OrdersHandle {
         
         StockDAO stockDAO = new StockDAOImpl();
         boolean st = false;
-        if(stock.getmSerial() == 0)
-            st = stockDAO.saveOrUpdate(stock);
-        else
-            st = stockDAO.update(stock);
+        
+        st = stockDAO.saveOrUpdate(stock);
+       
         
         return Response.status(200).entity(st+"").build();
     }

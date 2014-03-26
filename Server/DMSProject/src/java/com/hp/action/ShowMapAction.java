@@ -14,6 +14,7 @@ import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Customer;
+import com.hp.domain.PushInfo;
 import com.hp.domain.User;
 import com.hp.excelhandle.GetData;
 import com.opensymphony.xwork2.ActionContext;
@@ -31,7 +32,7 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author HP
  */
-public class ShowMapAction extends ActionSupport{
+public class ShowMapAction extends ActionSupport implements ModelDriven{
     
     
     private List<Customer> listCustomer = new ArrayList();
@@ -68,6 +69,21 @@ public class ShowMapAction extends ActionSupport{
     private String date;
     private String toDate;
 
+    public PushInfo pushInfo = new PushInfo();
+
+    @Override
+    public Object getModel() {
+        return pushInfo;
+    }
+    
+    public PushInfo getPushInfo() {
+        return pushInfo;
+    }
+
+    public void setPushInfo(PushInfo pushInfo) {
+        this.pushInfo = pushInfo;
+    }
+    
     public String getToDate() {
         return toDate;
     }
@@ -214,21 +230,29 @@ public class ShowMapAction extends ActionSupport{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
-        //Lay ve giam doc
+//        pushInfo.setManagerID(giamdocId);
+//        pushInfo.setStaffID(nhanvienId);
+//        pushInfo.setCustomerID(khachhangId);
+//        //Lay ve giam doc
+//        userListGiamDoc = userDAO.getListUser(2);
+//        //Tat ca nhan vien
+//        userListStaff = staffDAO.getListUser(null);
+//        //Tat ca danh sach khach hang
+//        userListCustomer = customerDAO.getListCustomer(null);
+//        pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
+//        pushInfo.setStaffID((String)session.getAttribute("staffId"));
+//        pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
+
         userListGiamDoc = userDAO.getListUser(2);
-        //Tat ca nhan vien
-        userListStaff = staffDAO.getListUser(null);
-        //Tat ca danh sach khach hang
-        userListCustomer = customerDAO.getListCustomer(null);
         
         System.out.println(" setDate: " + date + " toDate: " + toDate);
         System.out.println(" GD: ");
-        System.out.println(" GD: "+getGiamdocId()+" STaff: "+ getNhanvienId()); 
+        System.out.println(" GD: "+giamdocId+" STaff: "+ nhanvienId); 
         
         
         //Lay ve nhan vien cua giam doc
         
-        if(getGiamdocId() == null && getNhanvienId() == null && getKhachhangId() == null){
+        if(giamdocId == null && nhanvienId == null && khachhangId == null){
             //Tat ca nhan vien
             userListStaff = staffDAO.getListUser(null);
             //Tat ca danh sach khach hang
@@ -244,7 +268,13 @@ public class ShowMapAction extends ActionSupport{
                         (String)session.getAttribute("staffId"),
                         (String)session.getAttribute("khachhangId"),
                         date, toDate);
+//                khachhangId = (String)session.getAttribute("khachhangId");
+//                giamdocId = (String)session.getAttribute("giamdocId");
+//                nhanvienId = (String)session.getAttribute("staffId");
                 
+                pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
+                pushInfo.setStaffID((String)session.getAttribute("staffId"));
+                pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
                 //Get images
                 filesNameList = getImagesName(listCustomer);
                 
@@ -253,10 +283,14 @@ public class ShowMapAction extends ActionSupport{
                 listRoad = mRoadManagementDAO.getRoad(null,null,null,date, toDate);
                 //Get images
                 filesNameList = getImagesName(listCustomer);
+                
+                pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
+                pushInfo.setStaffID((String)session.getAttribute("staffId"));
+                pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
             }
         }
         //AJAX
-        else if(getGiamdocId() != null){
+        else if(giamdocId != null){
             userListStaff = staffDAO.getListUser(giamdocId);
             
             session.setAttribute("giamdocId", giamdocId);
@@ -271,11 +305,12 @@ public class ShowMapAction extends ActionSupport{
             return SUCCESS;
         }
         else
-        if(getNhanvienId()!= null){
+        if(nhanvienId!= null){
             userListCustomer = customerDAO.getListCustomer(nhanvienId);
+            
             session.setAttribute("staffId", nhanvienId);
             session.setAttribute("khachhangId", null);
-            session.setAttribute("giamdocId", null);
+//            session.setAttribute("giamdocId", null);
             if(nhanvienId.compareTo("nullid") == 0){
                 session.setAttribute("staffId", null);
                 System.out.println("staffId: " + session.getAttribute("staffId"));
@@ -285,10 +320,10 @@ public class ShowMapAction extends ActionSupport{
             
         }
         else
-        if(getKhachhangId()!= null){
+        if(khachhangId!= null){
             session.setAttribute("khachhangId", khachhangId);
-            session.setAttribute("giamdocId", null);
-            session.setAttribute("staffId", null);
+//            session.setAttribute("giamdocId", null);
+//            session.setAttribute("staffId", null);
             if(khachhangId.compareTo("nullid") == 0){
                 session.setAttribute("khachhangId", null);
                 System.out.println("khachhangId: " + session.getAttribute("khachhangId"));
@@ -307,6 +342,9 @@ public class ShowMapAction extends ActionSupport{
     }   
  
     public List<String> getImagesName(List<Customer> pList){
+        if(pList == null || pList.size() == 0){
+            return null;
+        }
         List<String> tmp = new ArrayList<String>();
         String filePath = ServletActionContext.getServletContext().getRealPath("/customer/"
                             +pList.get(0).getmMaDoiTuong()+"/");

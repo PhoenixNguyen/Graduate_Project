@@ -20,12 +20,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View map detail</title>
         <sx:head />
-        
+
         <link type="text/css" rel="stylesheet" href="../css/map/view-map.css"/>
+        <link type="text/css" rel="stylesheet" href="../css/map/view-schedule.css"/>
 
         <script type="text/javascript" src="../js/jquery.min.js"></script>
         <script type="text/javascript" src="../js/view-data-script.js"></script>
         <script type="text/javascript" src="../js/view-map.js"></script>
+        
+        <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+        
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
         </script>
 
@@ -102,62 +106,62 @@
             }
             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
-        
+
         <script>
 
-             $(document).ready(function(){
-                $('.category-wrapper').click(function () {
-                   var currentId = '#' + $('.hide:visible').prop('id');
-                   var newId = $(this).data('rel');
-                   $('.hide').fadeOut();
-                   if (currentId != newId) {
-                       $(newId).fadeIn();
-                   }
-               });
-             });
+            $(document).ready(function() {
+                $('.category-wrapper').click(function() {
+                    var currentId = '#' + $('.hide:visible').prop('id');
+                    var newId = $(this).data('rel');
+                    $('.hide').fadeOut();
+                    if (currentId != newId) {
+                        $(newId).fadeIn();
+                    }
+                });
+            });
         </script>
         <script type="text/javascript">
-        // load ajax
-        var gdID;
-        //load sales man list
-        function getLoadStaff(x){
+            // load ajax
+            var gdID;
+            //load sales man list
+            function getLoadStaff(x) {
 //            _url = location.href;
 //            _url += (_url.split('?')[1] ? '&':'?') + param;
 //            return _url;
 //            
 //            window.location.search = jQuery.query.set("rows", 10);
-            
-            var giamdocId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
-            gdID = giamdocId;
-            console.log("Ma giam doc: " + giamdocId);
-             $.getJSON('filterGiamDoc3.action', {'giamdocId': giamdocId},
-                 function(data) {
 
-                        var divisionList = (data.userListStaff);
-                             console.log("log: " + divisionList);
-                             var options = $("#staff");
-                             options.find('option')
-                 .remove()
-                 .end();
-                  options.append($("<option />").val("-1").text("--select--"));
-             $.each(divisionList, function(k , v) {
+                var giamdocId = x !== "--select--" ? x : "nullid";//$('#giamDoc').val();
+                gdID = giamdocId;
+                console.log("Ma giam doc: " + giamdocId);
+                $.getJSON('filterGiamDoc3.action', {'giamdocId': giamdocId},
+                function(data) {
 
-                 options.append($("<option />").val(k).text(v));
-             });
-                 }
-             );
-         }
-         
-         //load customer list
-         function getLoadCustomer(x){
-            var staffId = x !== "--select--" ? x:"nullid";//$('#giamDoc').val();
-            //gdID = giamdocId;
-            console.log("Ma nhan vien: " + staffId);
-             $.getJSON('filterStaff3.action', {'nhanvienId': staffId},
-                 function(data) {
+                    var divisionList = (data.userListStaff);
+                    console.log("log: " + divisionList);
+                    var options = $("#staff");
+                    options.find('option')
+                            .remove()
+                            .end();
+                    options.append($("<option />").val("-1").text("--select--"));
+                    $.each(divisionList, function(k, v) {
 
-                        var divisionList = (data.userListStaff);
-                             //console.log("log: " + divisionList);
+                        options.append($("<option />").val(k).text(v));
+                    });
+                }
+                );
+            }
+
+            //load customer list
+            function getLoadCustomer(x) {
+                var staffId = x !== "--select--" ? x : "nullid";//$('#giamDoc').val();
+                //gdID = giamdocId;
+                console.log("Ma nhan vien: " + staffId);
+                $.getJSON('filterStaff3.action', {'nhanvienId': staffId},
+                function(data) {
+
+                    var divisionList = (data.userListStaff);
+                    //console.log("log: " + divisionList);
 //                             var options = $("#staff");
 //                             options.find('option')
 //                 .remove()
@@ -167,17 +171,17 @@
 //
 //                 options.append($("<option />").val(k).text(v));
 //             });
-                 }
-             );
-         }
+                }
+                );
+            }
 
-   </script>
+        </script>
     </head>
 
     <body>
-        
+
         <div id="head" style="height:60px;">
-            
+
             <div id="topbar-placeholder">
 
                 <div id="topbar-widget" class="">
@@ -196,13 +200,13 @@
             <!--SEARCH-->
 
             <div id="header" class="clearfix">
-                <h1 class="logo"><a href="" class="hide-text" target="">DMS</a> 
-                    <span>
-                        Quản lý khách hàng			
-                    </span>
-                    
-                </h1>
-
+                <!--                <h1 class="logo"><a href="" class="hide-text" target="">DMS</a> 
+                                    <span>
+                                        Quản lý khách hàng			
+                                    </span>
+                                    
+                                </h1>-->
+                <h1>Quản lý kế hoạch của nhân viên</h1> <br/> 
                 <div class="right-app">
                     <a href="" class="android-app" target=""></a>
                 </div>
@@ -211,18 +215,19 @@
                 <div class="searchs">
                     <form action="showSchedule.action?page=0" method="post" name="search-poi">
                         <ul>
-                            <li>
-                                <div id="keys">
-                                    <a title="Tiếng Việt" id="btn-language" href="#">v</a>
-                                    <input type="text" name="keys" class="keyboardInput" value="" autocomplete="off">
-                                    <a href="#" class="clear-text hide">×</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div><input type="submit" name="finds" value="Tìm kiếm"></div>
-                            </li>
 
-                            <li class="advance-text clear">Tìm kiếm nâng cao</li>
+                            <!--                            <li>
+                                                            <div id="keys">
+                                                                <a title="Tiếng Việt" id="btn-language" href="#">v</a>
+                                                                <input type="text" name="keys" class="keyboardInput" value="" autocomplete="off">
+                                                                <a href="#" class="clear-text hide">×</a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div><input type="submit" name="finds" value="Tìm kiếm"></div>
+                                                        </li>
+                            
+                                                        <li class="advance-text clear">Tìm kiếm nâng cao</li>-->
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
                                 <s:set id="giamdid" value="giamdocId"/>
                                 <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" 
@@ -230,20 +235,33 @@
                                 <!--sx:autocompleter size="1"  list="userListGiamDoc" keyValue="mID"name="mID"-->
                                 </action>
                             </li>
-                            
+
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
-                                
-                                
+
+
                                 <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff" 
                                           onchange="getLoadCustomer(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
                                 <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
                             </li>
+                            
+                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Từ ngày</a>
+                                <sx:datetimepicker name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate"/>
+                                
+                                
+                            </li>
+                            
+                            <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Đến ngày</a>
+                                <sx:datetimepicker name="toDate" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="settodate"/>
+                                
+                                
+                            </li>
+                            
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>
-                                
-                                
+
+
                                 <input type="submit" name="finds"  value="Lọc" style="width: 100px;
-                                        height: 30px;margin-top: -28px;margin-left: 20px;position: absolute;">
-                                
+                                       height: 30px;margin-top: -28px;margin-left: 20px;position: absolute;">
+
                                 <!--sx:autocompleter size="1"  list="userListStaff" keyValue="mID"name="mID">-->
                             </li>
                         </ul>
@@ -253,68 +271,45 @@
 
             <!--FINISH SEARCH-->
         </div>
-        <div id="googleMap" style="width:1000px;height:510px;"></div>
+        <!--        <div id="googleMap" style="width:1000px;height:510px;"></div>-->
 
-        <div id="info" >
+        <div id="info_schedule" >
 
-            <div id="left-panel">
-                <div id="show-left-panel"></div>
-                <div class="scroll-left-panel">
-                    <div id="left-panel-content">
-                        <ul class="left-poi-list">
-                    
-                            <%
-                                int page2 = Integer.parseInt(request.getParameter("page")) * 10;
-                                pageContext.setAttribute("first", page2);
-                            %>
-                            <s:subset source="listSchedules" start="%{#attr.first}"  count="10">
-                            <s:iterator  status="status" >
-                            <li data-poi-id="18299">
-                                <div class="poi-content">
-                                    <div class="poi-photo">
+            <div id="bottom_panel">
+                
+                <table class="tb_schedule">
+                    <thead>
+                    <col width="10%">
+                    <col width="30%">
+                    <col width="30%">
+                    <col width="30%">
+                        <tr>
+                            <th>Stt</th>
+                            <th>Ngày</th>
+                            <th>Mã khách hàng</th>
+                            <th>Mã nhân viên</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <%
+                int page2 = Integer.parseInt(request.getParameter("page")) * 10;
+                pageContext.setAttribute("first", page2);
+                %>
+                <s:subset source="listSchedules" start="%{#attr.first}"  count="10">
+                <s:iterator  status="status" >
+                <tr>
+                <td><s:property value="#status.index + 1"/></td>
+                <td><s:property value="mDate"/></td>
+                <td><s:property value="mMaNV"/></td>
+                <td><s:property value="mMaKH"/></td>
 
-                                        <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaKH"/>">
-                                            <img src="../customer/<s:property value="mMaKH"/>/1.jpg" data-original="../customer/<s:property value="mMaKH"/>/1.jpg" width="64" height="64">
-                                        </a>
 
-                                    </div>
-                                    <h2 class="poi-title">
-                                        <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaKH"/>"><s:property value="mMaKH"/></a></h2>
-                                    <div class="poi-infos">
+                </tr>
+                </s:iterator>
+                </s:subset>
+                </tbody>
+                </table>
 
-                                        <strong>Mã Nhân viên:</strong> <s:property value="mMaNV"/>
-
-                                        <br><strong>Thời gian:</strong> <s:property value="mDate"/>
-
-                                    </div>
-                                </div>
-                            </li>
-                            </s:iterator>
-                            </s:subset>
-
-                        </ul>
-                        <div id="left-content-pagination">
-
-                            <ul class="pagination-block">
-                                <li data-page="1" class="goto-page"><a href="?page=<%=Integer.parseInt(request.getParameter("page")) -1 %>">&lt;</a></li>
-                                <s:iterator  value="listSchedules" status="status" >
-                                <s:if test="#status.index < (listSchedules.size() -1)/10+1">
-                                <li data-page="0" class="goto-page active"><a href="?page=<s:property value="#status.index"/>"><s:property value="#status.index"/></a></li>
-                                </s:if>
-                                </s:iterator>
-                                <li data-page="1" class="goto-page"><a href="?page=<%=Integer.parseInt(request.getParameter("page")) +1 %>">&gt;</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="article-share">
-                        <span>Chia sẻ:</span>
-                        <a target="_blank" class="facebook hide-text" rel="facebook" href="">Facebook</a>
-                        <a target="_blank" class="twitter hide-text" rel="twitter" href="">Twitter</a>
-                        <a target="_blank" class="zingme hide-text" rel="zingme" href="">Zing me</a>
-                        
-                        
-                    </div>
-                </div>
             </div>
         </div>
 

@@ -264,7 +264,7 @@
                 <span class="topbar-title">Trang chủ</span>
                 <button onclick="this.className = this.className === 'expanded' ? '' : 'expanded';"></button>
                 <ul>
-                    <li class="topbar-link"><a href="http://localhost:8080/DMSProject" title="Trang chủ" index="0">Trang chủ</a></li>
+                    <li class="topbar-link"><a href="/DMSProject" title="Trang chủ" index="0">Trang chủ</a></li>
 <!--                    <li class="topbar-active" title=""><span class="topbar-arrow"></span></li>
                     <li class="topbar-link"><a href="" title="" index="2"></a></li>
                     <li class="topbar-link"><a href="" title="" index="3"></a></li>
@@ -299,21 +299,23 @@
                             </li>-->
                             
 <!--                            <li class="advance-text clear" >Lọc khách hàng</li>-->
+                            <s:push value="pushInfo">
                             <li class="category-wrapper" data-rel="#callback-form"><a href="#">Giám đốc</a>
 
-                                <s:select name="giamDocId" list="userListGiamDoc" id="giamDoc"  listKey="giamDocId" 
-                                          onchange="getLoadStaff2(options[selectedIndex].text)"  headerKey="0" headerValue="--select--" />
+                                <s:select name="pushInfo.managerID" list="userListGiamDoc" 
+                                          onchange="getLoadStaff2(options[selectedIndex].text)"   />
                             </li>
                             
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href="#">Nhân viên</a>
 
-                                <s:select name="staffId"  list="userListStaff" listKey="staffId" id="staff" 
-                                          onchange="getLoadCustomer2(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
+                                <s:select name="pushInfo.staffID"  list="userListStaff" id="staff"
+                                          onchange="getLoadCustomer2(options[selectedIndex].text)"   />
                             </li>
                             
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Khách hàng</a>
-                                <s:select name="customerId"  list="userListCustomer" listKey="customerId" id="customer" 
-                                          onchange="getLoadCustomerDetail(options[selectedIndex].text)" headerKey="0" headerValue="--select--" />
+                                <s:select name="pushInfo.customerID"  list="userListCustomer" id="customer"
+                                          onchange="getLoadCustomerDetail(options[selectedIndex].text)"   />
+                                
                                 
                             </li>
                                 
@@ -321,13 +323,16 @@
                                 <sx:datetimepicker name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate"/>
                                 
                                 
-                            </li>
+                           
                                 
+                            </li>
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Đến ngày</a>
                                 <sx:datetimepicker name="toDate" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate2"/>
                                 
                                 
                             </li>
+                            </s:push>    
+                            
                             <li class="category-wrapper" data-rel="#enquiry-form"><a href=""></a>
                                 
                                 
@@ -377,11 +382,12 @@
                             </div>
                         </div>
                         <div class="content clearfix">
-                            <div class="article-share">Chia sẻ:<br>
+<!--                            <div class="article-share">Chia sẻ:<br>
                                     <a target="_blank" class="facebook hide-text" rel="facebook" href="">Facebook</a>
                                     <a target="_blank" class="twitter hide-text" rel="twitter" href="">Twitter</a>
                                     <a target="_blank" class="zingme hide-text" rel="zingme" href="">Zing
-                                        me</a></div>
+                                        me</a>
+                            </div>-->
                         </div>
                         
                         <div class="right-content">
@@ -456,7 +462,7 @@
                                 <s:iterator value="listRoad.get(#status.index)" >
                                 <tr >
                                     <td><s:property value="mMaKhachHang"/></td>
-                                    <td><s:property value="mMaKhachHang"/></td>
+                                    <td></td>
                                     <td><s:property value="mThoiGian"/></td>
                                     <td><s:property value="mViDo"/></td>
                                     <td><s:property value="mKinhdo"/></td>

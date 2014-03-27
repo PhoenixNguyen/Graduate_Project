@@ -46,7 +46,7 @@ import android.widget.TableRow.LayoutParams;
 public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	private LinearLayout layout;
-	public String order_id;
+	public static String order_id = new String();
 	
 	public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
 	public Context context = this;
@@ -59,6 +59,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		setContentView(R.layout.orders_detail_manager);
 		
 		Intent intent = getIntent();
+		order_id = "";
 		order_id = intent.getStringExtra("ORDER_ID");
 		
 		TextView title = (TextView)findViewById(R.id.title);
@@ -336,6 +337,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	}
 	
 	public void newOrderDetail(View view){
+		startActivity(new Intent(this, TakeOrder_TabActivity.class));
 		
 	}
 }

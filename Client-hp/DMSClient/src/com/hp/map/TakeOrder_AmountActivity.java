@@ -61,9 +61,15 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		discount_value = (EditText)findViewById(R.id.discount_value);
 		sum_value = (EditText)findViewById(R.id.sum_value);
 	
-		customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
-		customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
-		
+		if(TakeOrdersDetailManagerActivity.order_id != null || TakeOrdersDetailManagerActivity.order_id.compareTo("") == 0){
+			customer_id.setText(TakeOrdersDetailManagerActivity.order_id);
+			customer_name.setText("Thêm sản phẩm!");
+			System.out.println("input 1: " + TakeOrdersDetailManagerActivity.order_id);
+		}
+		else{
+			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
+			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
+		}
 		save = (Button)findViewById(R.id.save);
 		
 		pricesTotal = 0;
@@ -151,8 +157,69 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			Date date = new  Date();
 			String date2 = df.format(date);
 			
-			String orderID = CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong()+"-" + date2;
+			String orderID = "";
 			
+			//FOR: Add some products ---------------------------------------------------------
+			//Set order ID
+			if(TakeOrdersDetailManagerActivity.order_id != null || TakeOrdersDetailManagerActivity.order_id.compareTo("") == 0){
+				for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
+					TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmTakeOrderID(TakeOrdersDetailManagerActivity.order_id);
+					TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmLine(TakeOrdersDetailManagerActivity.takeOrderDetailList.size()+i);
+				}
+				
+				//Send to server
+				String orderDetailList = new String();
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+
+					orderDetailList = mapper.writeValueAsString(TakeOrder_ReViewActivity.takeOrderDetailList);
+					
+				} catch (JsonGenerationException ex) {
+
+					ex.printStackTrace();
+
+				} catch (JsonMappingException ex) {
+
+					ex.printStackTrace();
+
+				} catch (IOException ex) {
+
+					ex.printStackTrace();
+
+				}
+				
+				//Order detail-------------------------------------------------------------
+		        ClientResponse response2 = Rest.mService.path("webresources").path("putOrdersDetailList").accept("application/json")
+		    			.type("application/json").post(ClientResponse.class, orderDetailList);
+
+		        String output2 = response2.toString();
+		        System.out.println("input 1: " + output2);
+		        
+		        if ((response2.getStatus() == 200) && (response2.getEntity(String.class).compareTo("0") != 0)) {
+		            Toast.makeText(context, "Đang lưu chi tiết hóa đơn", Toast.LENGTH_SHORT).show();
+		            // refresh customers
+		            
+		            
+		        }else
+		        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+		        
+		        System.out.println("Server response .... \n");
+		        System.out.println("input 0: " + output2);
+		        
+		        Intent i = new Intent(this, TakeOrdersDetailManagerActivity.class);
+		        i.putExtra("ORDER_ID", TakeOrdersDetailManagerActivity.order_id);
+		        startActivity(i);
+		        resetValueAdd();
+		        return;
+			}
+			
+			//END ADD--------------------------------------------------------------------------------------
+			else{
+				orderID = CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong()+"-" + date2;
+				for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
+					TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmTakeOrderID(orderID);
+				}
+			}
 			TakeOrder order = new TakeOrder(orderID
 					, Timestamp.valueOf(date2), Timestamp.valueOf(date2)
 					, CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong()
@@ -168,10 +235,6 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					, 0, Timestamp.valueOf(date2), Timestamp.valueOf(date2)
 					, Rest.mStaffID, Rest.mStaffID);
 			
-			//Set order ID
-			for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
-				TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmTakeOrderID(orderID);
-			}
 			
 			// Send
 			ObjectMapper mapper = new ObjectMapper();
@@ -243,5 +306,13 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
 		pricesTotal = 0;
 		onResume();
+	}
+	
+	public void resetValueAdd(){
+		TakeOrder_ProductActivity.mProductsMap.clear();
+		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
+		pricesTotal = 0;
+		TakeOrdersDetailManagerActivity.order_id = "";
+		TakeOrdersDetailManagerActivity.takeOrderDetailList.clear();
 	}
 }

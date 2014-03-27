@@ -81,15 +81,8 @@
         <activity
             android:name="com.hp.map.TakeOrdersManagerActivity"
             android:label="@string/orders_manager" 
-            
-        	android:windowSoftInputMode="stateHidden"
-        	>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        
+            />
+                    
 		<activity
             android:name="com.hp.map.TakeOrdersDetailManagerActivity"
             android:label="@string/orders_detail_manager" />          

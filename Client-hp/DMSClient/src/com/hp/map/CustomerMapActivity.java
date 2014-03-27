@@ -88,6 +88,7 @@ import java.util.Random;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -109,8 +110,11 @@ public class CustomerMapActivity extends FragmentActivity
 										        ConnectionCallbacks,
 										        OnConnectionFailedListener,
 										        LocationListener,
-										        OnMyLocationButtonClickListener{
+										        OnMyLocationButtonClickListener
+										        
+										        {
     
+	
     private GoogleMap mMap;
     private LocationClient mLocationClient;
       
@@ -296,8 +300,61 @@ public class CustomerMapActivity extends FragmentActivity
     	
     	//refresh menu
     	invalidateOptionsMenu();
+    	
+    	//pụtJourney();
     }
     
+    public void pụtJourney(){
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = new Date();
+		String datestr = dateFormat.format(date);
+    	RoadManagement roadManagement = new RoadManagement(Rest.mStaffID, "", 
+    			Timestamp.valueOf(datestr), mX, mY, "");
+    	
+    	
+    	ObjectMapper mapper = new ObjectMapper();
+        String objectStr = new String();
+
+
+		try {
+
+			objectStr = mapper.writeValueAsString(roadManagement);
+
+		} catch (JsonGenerationException ex) {
+
+			ex.printStackTrace();
+
+		} catch (JsonMappingException ex) {
+
+			ex.printStackTrace();
+
+		} catch (IOException ex) {
+
+			ex.printStackTrace();
+
+		}
+
+		//Order ---------------------------------------------------------------
+		ClientResponse response = Rest.mService.path("webresources").path("putStaffJourney").accept("application/json")
+		.type("application/json").post(ClientResponse.class, objectStr);
+	
+	
+
+	    String output = response.toString();
+	    System.out.println("input 1: " + output);
+	
+	    if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+	        //Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show();
+	        // refresh customers
+	    	System.out.println("Đã gửi");
+	
+	    }else
+	    	System.out.println("Không thể gửi");
+	    	//Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+	
+	    System.out.println("Server response .... \n");
+	    System.out.println("input 0: " + output);
+    }
     /**
      * Callback called when connected to GCore. Implementation of {@link ConnectionCallbacks}.
      */

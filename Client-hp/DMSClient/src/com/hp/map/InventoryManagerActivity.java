@@ -27,7 +27,12 @@ import com.hp.domain.TakeOrderDetail;
 import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
-public class StockManagerActivity extends TakeOrdersManagerActivity{
-
+public class InventoryManagerActivity extends TakeOrdersManagerActivity{
+	public void init(){
+			title.setText("Danh sách kiểm kho");
+			activityClass = InventoryManagerDetailActivity.class;
+			getList = "getInventoryManagerList";
+			deleteValue = "deleteInventoryManager";
+		}
 	
 }

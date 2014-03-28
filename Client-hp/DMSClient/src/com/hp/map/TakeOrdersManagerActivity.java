@@ -75,6 +75,12 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 	
 	private Context context = this;
 	
+	public TextView title;
+	
+	public Class<? extends Activity> activityClass;
+	public String getList;
+	public String deleteValue;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,6 +88,11 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 		
 		start = (EditText)findViewById(R.id.start);
 		end = (EditText)findViewById(R.id.end);
+		
+		title = (TextView)findViewById(R.id.title);
+		
+		//INIT
+		init();
 		
 		getOrderList();
 		addListView();
@@ -112,7 +123,11 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 		});
 	}
 
-	
+	public void init(){
+		activityClass = TakeOrdersDetailManagerActivity.class;
+		getList = "getTakeOrderList";
+		deleteValue = "deleteOrder";
+	}
 
 	public void addListView() {
 
@@ -152,7 +167,7 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 			}
 		});
 	}
-
+	
 	public void addCustomerDialog(final TakeOrder selectedValue){
 		final Dialog dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -169,7 +184,7 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 			public void onClick(View v) {
 				// show the map
 				Intent intent = new Intent(getApplicationContext(),
-						TakeOrdersDetailManagerActivity.class);
+						activityClass);
 				intent.putExtra("ORDER_ID", selectedValue.getmID());
 
 				startActivity(intent);
@@ -233,7 +248,7 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 				}
 		       
 				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path("deleteOrder").accept("application/json")
+				ClientResponse response = Rest.mService.path("webresources").path(deleteValue).accept("application/json")
 				.type("application/json").post(ClientResponse.class, order);
 
 		        String output = response.toString();
@@ -279,7 +294,7 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 		// GET From server
 
 				ClientResponse response = Rest.mService.path("webresources")
-						.path("getTakeOrderList").accept("application/json")
+						.path(getList).accept("application/json")
 						.type("application/json")
 						.post(ClientResponse.class, Rest.mStaffID);
 				System.out.println("________________ " + response.toString());

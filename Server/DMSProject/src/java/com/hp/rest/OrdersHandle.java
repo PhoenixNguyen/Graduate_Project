@@ -410,4 +410,156 @@ public class OrdersHandle {
         return Response.status(200).entity(count+"").build();
     }
     
+    
+    @POST
+    @Path("/getInventoryManagerList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<InventoryManager> getInventoryManagerList(String pData) {
+        List<InventoryManager> list = new ArrayList<InventoryManager>();
+        
+        InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
+        list = inventoryManagerDAO.getInventoryManagersList(pData);
+        
+        return list;
+        
+    }
+    
+    @POST
+    @Path("/getInventoryManagerDetailList")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<InventoryManagerDetail> getInventoryManagerDetailList(String pData) {
+        List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
+        
+        InventoryManagerDetailDAO inventoryManagerDetailDAO = new InventoryManagerDetailDAOImpl();
+        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(pData);
+        
+        return list;
+        
+    }
+    
+    @POST
+    @Path("/deleteInventoryManager")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteInventoryManager( String pInventoryManager ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        InventoryManager inventoryManager = new InventoryManager();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                inventoryManager = mapper.readValue(pInventoryManager, InventoryManager.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        InventoryManagerDetailDAO takeOrderDetailDAO = new InventoryManagerDetailDAOImpl();
+        boolean st = takeOrderDetailDAO.delete(inventoryManager.getmID());
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Delete Order
+        InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
+        boolean st2 = inventoryManagerDAO.delete(inventoryManager);
+        
+        System.out.println("____ " + pInventoryManager + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
+    
+    @POST
+    @Path("/updateDetailInventoryManager")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateDetailInventoryManager( String pInventoryManager ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        InventoryManagerDetail inventoryManagerDetail = new InventoryManagerDetail();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                inventoryManagerDetail = mapper.readValue(pInventoryManager, InventoryManagerDetail.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        InventoryManagerDetailDAO inventoryManagerDetailDAO = new InventoryManagerDetailDAOImpl();
+        boolean st = inventoryManagerDetailDAO.update(inventoryManagerDetail);
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Update the order
+        List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
+        
+        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getmTakeOrderID());
+        float priceTotal = 0;
+        for(int i = 0; i < list.size(); i++){
+            priceTotal += list.get(i).getmPriceTotal();
+        }
+        
+        InventoryManager inventoryManager = new InventoryManager();
+        InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
+        
+        inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getmTakeOrderID());
+        inventoryManager.setmAfterPrivate(priceTotal - priceTotal*inventoryManager.getmDiscount()/100);
+        boolean st2 = inventoryManagerDAO.update(inventoryManager);
+//            String output = pTrack.toString();
+        System.out.println("____ " + pInventoryManager + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
+    
+    @POST
+    @Path("/deleteDetailInventoryManager")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteDetailInventoryManager( String pInventoryManager ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        InventoryManagerDetail inventoryManagerDetail = new InventoryManagerDetail();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                inventoryManagerDetail = mapper.readValue(pInventoryManager, InventoryManagerDetail.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        InventoryManagerDetailDAO inventoryManagerDetailDAO = new InventoryManagerDetailDAOImpl();
+        boolean st = inventoryManagerDetailDAO.delete(inventoryManagerDetail);
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Update the order
+        List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
+        
+        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getmTakeOrderID());
+        float priceTotal = 0;
+        for(int i = 0; i < list.size(); i++){
+            priceTotal += list.get(i).getmPriceTotal();
+        }
+        
+        InventoryManager inventoryManager = new InventoryManager();
+        InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
+        
+        inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getmTakeOrderID());
+        inventoryManager.setmAfterPrivate(priceTotal);
+        boolean st2 = inventoryManagerDAO.update(inventoryManager);
+//            String output = pTrack.toString();
+        System.out.println("____ " + pInventoryManager + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
 }

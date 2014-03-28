@@ -54,6 +54,10 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	public OrdersManagerDetailArrayAdapter adapter;
 	
 	public TextView order_title;
+	public String getListDetail;
+	
+	public String updateData;
+	public String deleteData;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +82,10 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	}
 	
 	public void init(){
-		
+		order_title.setText("Danh mục chi tiết");
+		getListDetail = "getTakeOrderDetailList";
+		updateData = "updateDetailOrder";
+		deleteData = "deleteDetailOrder";
 	}
 	
 	public void addListView() {
@@ -166,7 +173,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				}
 		       
 				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path("updateDetailOrder").accept("application/json")
+				ClientResponse response = Rest.mService.path("webresources").path(updateData).accept("application/json")
 				.type("application/json").post(ClientResponse.class, orderDetail);
 
 		        String output = response.toString();
@@ -262,7 +269,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				}
 		       
 				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path("deleteDetailOrder").accept("application/json")
+				ClientResponse response = Rest.mService.path("webresources").path(deleteData).accept("application/json")
 				.type("application/json").post(ClientResponse.class, orderDetail);
 
 		        String output = response.toString();
@@ -308,7 +315,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	public void getOrderList(){
 		//GET From server
 		
-		ClientResponse response = Rest.mService.path("webresources").path("getTakeOrderDetailList")
+		ClientResponse response = Rest.mService.path("webresources").path(getListDetail)
 				.accept("application/json")
 				.type("application/json").post(ClientResponse.class, order_id);
         System.out.println("________________ "+ response.toString());

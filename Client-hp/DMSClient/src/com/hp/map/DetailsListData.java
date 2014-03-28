@@ -42,7 +42,7 @@ public final class DetailsListData {
 //                SaleOrdersManagerActivity.class),        
         new DetailsList("Quản lý hàng tồn kho",
                 "Quản lý hàng tồn kho",
-                StockManagerActivity.class),     
+                InventoryManagerActivity.class),     
                 
     };
     

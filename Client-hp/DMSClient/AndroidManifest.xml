@@ -103,8 +103,11 @@
             android:label="@string/sale_label" /> 
 		
 		<activity
-            android:name="com.hp.map.StockManagerActivity"
+            android:name="com.hp.map.InventoryManagerActivity"
             android:label="@string/stock_manager" /> 
+        <activity
+	        android:name="com.hp.map.InventoryManagerDetailActivity"
+	        android:label="@string/stock_manager" /> 
 		
 		<activity
             android:name="com.hp.map.GPSTracker"

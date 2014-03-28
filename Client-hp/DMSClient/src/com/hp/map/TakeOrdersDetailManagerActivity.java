@@ -60,16 +60,18 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orders_detail_manager);
 		
+		order_title = (TextView)findViewById(R.id.order_title_tv);
+		//init item commons
+		init();
+		
 		Intent intent = getIntent();
 		order_id = intent.getStringExtra("ORDER_ID");
 		
 		TextView title = (TextView)findViewById(R.id.title);
-		order_title = (TextView)findViewById(R.id.order_title_tv);
 		
 		title.setText(""+order_id);
 		
-		//init item commons
-		init();
+		
 		
 		getOrderList();
 		addListView();

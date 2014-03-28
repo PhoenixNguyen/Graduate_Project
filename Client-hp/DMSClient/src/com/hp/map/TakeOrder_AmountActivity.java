@@ -25,6 +25,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TakeOrder_AmountActivity extends Activity implements OnClickListener{
@@ -49,10 +51,21 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	
 	private int numberTotal;
 	
+	public String putData;
+	public String putDataDetail;
+	
+	public TextView title;
+	public TextView sum;
+	public LinearLayout linearlayout_discount;
+	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.amount);
 		
+		title = (TextView)findViewById(R.id.title);
+		sum = (TextView)findViewById(R.id.sum);
+		linearlayout_discount = (LinearLayout)findViewById(R.id.linearlayout_discount);
+
 		customer_id = (EditText)findViewById(R.id.customer_id);
 		customer_name = (EditText)findViewById(R.id.customer_name);
 		
@@ -68,6 +81,9 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		
 		save = (Button)findViewById(R.id.save);
 		
+		//init something
+		init();
+				
 		pricesTotal = 0;
 		numberTotal = 0;
 		for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
@@ -85,8 +101,13 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		sum_value.setText((new BigDecimal(pricesTotal)).toString());
 		
 		save.setOnClickListener(this);
-	}
 		
+	}
+	
+	public void init(){
+		putData = "putTakeOrder";
+		putDataDetail = "putOrdersDetailList";
+	}
 	@Override
 	protected void onResume() {
 
@@ -201,14 +222,14 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			}
 	       
 			//Order ---------------------------------------------------------------
-			ClientResponse response = Rest.mService.path("webresources").path("putTakeOrder").accept("application/json")
+			ClientResponse response = Rest.mService.path("webresources").path(putData).accept("application/json")
 			.type("application/json").post(ClientResponse.class, TakeOrderStr);
 
 	        String output = response.toString();
 	        System.out.println("input 1: " + output);
 	        
 	        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-	            Toast.makeText(context, "Đang lưu hóa đơn", Toast.LENGTH_SHORT).show();
+	            Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
 	            // refresh customers
 	            
 	            
@@ -219,14 +240,14 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	        System.out.println("input 0: " + output);
 	        
 	        //Order detail-------------------------------------------------------------
-	        ClientResponse response2 = Rest.mService.path("webresources").path("putOrdersDetailList").accept("application/json")
+	        ClientResponse response2 = Rest.mService.path("webresources").path(putDataDetail).accept("application/json")
 	    			.type("application/json").post(ClientResponse.class, orderDetailList);
 
 	        String output2 = response2.toString();
 	        System.out.println("input 1: " + output2);
 	        
 	        if ((response2.getStatus() == 200) && (response2.getEntity(String.class).compareTo("0") != 0)) {
-	            Toast.makeText(context, "Đang lưu chi tiết hóa đơn", Toast.LENGTH_SHORT).show();
+	            Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show();
 	            // refresh customers
 	            resetValue();
 	            

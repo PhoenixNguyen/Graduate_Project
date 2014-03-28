@@ -6,6 +6,10 @@
 
 package com.hp.rest;
 
+import com.hp.dao.InventoryManagerDAO;
+import com.hp.dao.InventoryManagerDAOImpl;
+import com.hp.dao.InventoryManagerDetailDAO;
+import com.hp.dao.InventoryManagerDetailDAOImpl;
 import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.ProviderDAO;
@@ -26,6 +30,8 @@ import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
+import com.hp.domain.InventoryManager;
+import com.hp.domain.InventoryManagerDetail;
 import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import com.hp.domain.ReturnOrder;
@@ -52,6 +58,7 @@ import javax.ws.rs.core.UriInfo;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.TypeFactory;
 
 
 /**
@@ -340,4 +347,67 @@ public class OrdersHandle {
         return Response.status(200).entity(st+"").build();
         
     }
+    
+    @POST
+    @Path("/putInventoryManager")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putInventoryManager( String pInventoryManager ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        InventoryManager inventoryManager = new InventoryManager();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                inventoryManager = mapper.readValue(pInventoryManager, InventoryManager.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
+        boolean st = inventoryManagerDAO.saveOrUpdate(inventoryManager);
+//            String output = pTrack.toString();
+            System.out.println("pTakeOrder: " + st +"____ " + pInventoryManager);
+            return Response.status(200).entity(st+"").build();
+    }
+    
+    @POST
+    @Path("/putInventoryManagerDetail")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putInventoryManagerDetail( String pList ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<InventoryManagerDetail> detailList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                detailList = mapper.readValue(pList
+                        , TypeFactory.defaultInstance().constructCollectionType(List.class
+                        , InventoryManagerDetail.class));
+                //System.out.println(schedulesList.get(0).getmMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        int count = 0;
+        InventoryManagerDetailDAO inventoryManagerDetailDAO = new InventoryManagerDetailDAOImpl();
+        for(int i = 0; i< detailList.size(); i++){
+            if(inventoryManagerDetailDAO.saveOrUpdate(detailList.get(i)))
+                count ++;
+            
+        }
+        System.out.println("pTakeOrderDetail: " + count +"____ " + pList);
+        return Response.status(200).entity(count+"").build();
+    }
+    
 }

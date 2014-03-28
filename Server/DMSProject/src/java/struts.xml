@@ -136,6 +136,13 @@
             <result name="success">order/putStaffJourney</result>
         </action>
         
+        <action name="putInventoryManagerDetail" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/putInventoryManagerDetail</result>
+        </action>
+        
+        <action name="putInventoryManager" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/putInventoryManager</result>
+        </action>
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
         <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

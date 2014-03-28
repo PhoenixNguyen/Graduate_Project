@@ -21,5 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class InventoryManager_AmountActivity extends TakeOrder_AmountActivity{
-	
+	public void init(){
+		putData = "putInventoryManager";
+		putDataDetail = "putInventoryManagerDetail";
+		title.setText("Hàng tồn kho");
+		sum.setText("Tổng giá trị");
+		linearlayout_discount.setVisibility(View.GONE);
+	}
 }

@@ -3,15 +3,15 @@
 <hibernate-configuration>
   <session-factory >
         <!--FOR online Server -->
-        <property name="hibernate.connection.datasource">jdbc/DMSProject</property>
+        <!--property name="hibernate.connection.datasource">jdbc/DMSProject</property-->
         
         <property name="hibernate.dialect">com.hp.filter.CustomMysqlDialect</property>
         
-        <!--property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=DMSServer</property>
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password">root</property>
-        <property name="show_sql">true</property-->
+        <property name="show_sql">true</property>
     
         <property name="hbm2ddl.auto">create</property>
     
@@ -30,6 +30,8 @@
         <mapping class="com.hp.domain.SaleOrderDetail" />
         <mapping class="com.hp.domain.ReturnOrder" />
         <mapping class="com.hp.domain.ReturnOrderDetail" />
+        <mapping class="com.hp.domain.InventoryManager" />
+        <mapping class="com.hp.domain.InventoryManagerDetail" />
         
         <mapping class="com.hp.domain.Stock" />
                 

@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
@@ -32,15 +33,14 @@ import com.hp.rest.Rest;
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class LoginActivity extends Activity {
 	
-	//String mUrl = "http://192.168.169.7:33554/DMSProject/webresources/getCustomerForStaff";
-	String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/getCustomerForStaff"; 
-	//String mUrl = "http://192.168.169.4:33554/DMSProject/webresources/getCustomerForStaff"; 
 	EditText mUsername;
 	EditText mPassword;
 	
 	private Context context = this;
 	
-	
+	private Thread thread = new ThreadClass();
+    private static Looper threadLooper = null;
+    
     @SuppressLint("NewApi")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,43 +110,24 @@ public class LoginActivity extends Activity {
             }
         });
         
+       
+        // Begin the location reading thread.
+        thread.start();
+
+        // do UI stuff in here
+        // never sleep in UI thread.  Example only.
+        try {
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+//        // end the thread.
+//        threadLooper.quit();
+//        // quit the activity
+//        this.finish();
+        //getLocation();
         
-//       
-//        //Create Thread
-//        Thread toRun = new Thread()
-//        {
-//               public void run()
-//               {
-//            	   
-////            	   int i =0;
-////               	while(i >= 0){
-////               		
-////                   
-////                       try {
-////                           sleep(5000);
-////                           i++;
-////                       } catch (InterruptedException e) {}
-////                   }
-//            	   
-//            	   GPSTracker gps = new GPSTracker(LoginActivity .this);
-//                   // check if GPS enabled    
-//                  if(gps.canGetLocation()){
-//
-//                      double latitude = gps.getLatitude();
-//                      double longitude = gps.getLongitude();
-//                      //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-//                      System.out.println("latitude: " + latitude + " longitude: " + longitude);
-//                  }else{
-//                      // can't get location
-//                      // GPS or Network is not enabled
-//                      // Ask user to enable GPS/network in settings
-//                      gps.showSettingsAlert();
-//                  }
-//                  
-//                   System.out.println("DONE! " + getName());
-//               }
-//        };
-//        toRun.start();
     }
     
     public boolean isOnline() { 
@@ -160,6 +141,45 @@ public class LoginActivity extends Activity {
         arr = Arrays.copyOf(arr, N + 1);
         arr[N] = element;
         return arr;
+    }
+    
+    private class ThreadClass extends Thread {
+        @Override
+        public void run() {
+            Looper.prepare();
+
+            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            MyLocationListener locListen = new MyLocationListener();
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 0, locListen);
+
+            threadLooper = Looper.myLooper();
+
+            Looper.loop();  // loop until "quit()" is called.
+
+            // remove the update listener to prevent the locationManager from calling it.
+            locationManager.removeUpdates(locListen);
+        }
+    }
+
+    private class MyLocationListener implements LocationListener {      
+        @Override
+        public void onLocationChanged(Location location) {
+        	if(location!= null && location.getLatitude()> 0)
+        		System.out.println("latitude20: " + location.getLatitude() + " longitude20: " + location.getLongitude());
+            /* Do very intensive work here */
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
     }
     
    

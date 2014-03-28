@@ -1,3 +1,5 @@
+//FOR get location on Thread example
+
 package com.hp.map;
 
 
@@ -32,18 +34,23 @@ public class GPSTracker extends Service implements LocationListener {
     double latitude; // latitude
     double longitude; // longitude
 
+    public float mX;
+    public float mY;
+    
     // The minimum distance to change Updates in meters
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 1/5; // 10 meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 1; // 10 meters
 
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 100 * 1 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 2 * 1; // 1 minute
 
     // Declaring a Location Manager
     protected LocationManager locationManager;
 
     public GPSTracker(Context context) {
         this.mContext = context;
-        getLocation();
+        
+        
+        //getLocation();
     }
 
     public Location getLocation() {
@@ -63,24 +70,9 @@ public class GPSTracker extends Service implements LocationListener {
                 // no network provider is enabled
             } else {
                 this.canGetLocation = true;
-                // First get location from Network Provider
-                if (isNetworkEnabled) {
-                    locationManager.requestLocationUpdates(
-                            LocationManager.NETWORK_PROVIDER,
-                            MIN_TIME_BW_UPDATES,
-                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                    Log.d("Network", "Network");
-                    if (locationManager != null) {
-                        location = locationManager
-                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        if (location != null) {
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }
-                    }
-                }
-                // if GPS Enabled get lat/long using GPS Services
+             // if GPS Enabled get lat/long using GPS Services
                 if (isGPSEnabled) {
+                	
                     if (location == null) {
                         locationManager.requestLocationUpdates(
                                 LocationManager.GPS_PROVIDER,
@@ -97,12 +89,31 @@ public class GPSTracker extends Service implements LocationListener {
                         }
                     }
                 }
+                // First get location from Network Provider
+                if (isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(
+                            LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                    Log.d("Network", "Network");
+                    if (locationManager != null) {
+                        location = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                        }
+                    }
+                }
+                
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
+        if(location!= null)
+        	System.out.println("latitude1: " + location.getLatitude() + " longitude1: " + location.getLongitude());
         return location;
     }
 
@@ -182,6 +193,10 @@ public class GPSTracker extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+    	mX = (float)location.getLatitude();
+    	mY = (float)location.getLongitude();
+    	
+    	System.out.println("latitude0: " + mX + " longitude0: " + mY);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.hp.order_manager;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class OrdersManagerArrayAdapter extends ArrayAdapter<TakeOrder>{
 
         featureView.setTitleId(values.get(position).getmID());
         featureView.setDescriptionId(values.get(position).getmCustomerName());
-        featureView.setValue(values.get(position).getmAfterPrivate()+"");
+        featureView.setValue((new BigDecimal(values.get(position).getmAfterPrivate())).toString());
 
         
         return featureView;

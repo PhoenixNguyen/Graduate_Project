@@ -34,7 +34,6 @@ public class StockManagerActivity extends TakeOrder_ProductActivity{
 		title.setText("Quản lý hàng tồn");
 		command = "getProductsList";
 		customerID = "";
-		timeLine = true;
 		
 //		title = (TextView)findViewById(R.id.title);
 //		title.setText("Quản lý kho");

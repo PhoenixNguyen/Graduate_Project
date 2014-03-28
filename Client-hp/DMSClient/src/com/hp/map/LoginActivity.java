@@ -103,7 +103,7 @@ public class LoginActivity extends Activity {
 				if(Rest.getCustomersList(username) == true){
 					
 					//Run thread to do backgroud send location
-					doBackground();
+					//doBackground();
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 	            	startActivity(i);
@@ -128,6 +128,7 @@ public class LoginActivity extends Activity {
     }
     
     public void doBackground(){
+
     	// Begin the location reading thread.
         thread.start();
 
@@ -251,5 +252,11 @@ public class LoginActivity extends Activity {
         }
     }
     
-   
+    @Override
+	public void onBackPressed() {
+    	//onDestroy();
+    	
+    	moveTaskToBack(true);
+    	  
+	}
 }

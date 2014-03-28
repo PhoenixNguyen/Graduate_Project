@@ -65,7 +65,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	public String command;
 	public String customerID;
 	
-	public static boolean timeLine;
+	public static boolean timeLine = true;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -121,7 +121,6 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		title = (TextView)findViewById(R.id.title);
 		command = "getProductsList";
 		customerID = "";
-		timeLine = true;
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){
@@ -245,11 +244,12 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				System.out.println("__ "+ line);
 				String count2 = count.getText().toString();
 				int number = 0;
-				if(count2.compareTo("") != 0)
+				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
 					number = Integer.parseInt(count2);
-				else
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
 					return;
-				
+				}
 				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmTotal(number);
 				Collections.sort(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				Collections.reverse(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));

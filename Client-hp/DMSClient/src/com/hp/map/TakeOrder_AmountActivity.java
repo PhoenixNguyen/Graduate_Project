@@ -1,8 +1,10 @@
 package com.hp.map;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -79,12 +81,12 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		
 		document_value.setText(TakeOrder_ReViewActivity.takeOrderDetailList.size() + " sản phẩm và " + numberTotal + " đầu mục");
 		//sum_value.setText(pricesTotal + "");
-		total_value.setText(pricesTotal + "");
-		sum_value.setText(pricesTotal+"");
+		total_value.setText((new BigDecimal(pricesTotal)).toString());
+		sum_value.setText((new BigDecimal(pricesTotal)).toString());
 		
 		save.setOnClickListener(this);
 	}
-	
+		
 	@Override
 	protected void onResume() {
 
@@ -108,18 +110,19 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			
 				String count2 = count.getText().toString();
 				int number = 0;
-				if(count2.compareTo("") != 0)
+				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
 					number = Integer.parseInt(count2);
-				else
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
 					return;
-				
+				}
 				discount_percent.setText(number+"");
-				discount_value.setText(pricesTotal*number/100 + "");
+				discount_value.setText((new BigDecimal(pricesTotal*number/100)).toString());
 				
 				//set sume
 				pricesTotal = pricesTotal - pricesTotal*number/100;
 				
-				sum_value.setText(pricesTotal+"");
+				sum_value.setText((new BigDecimal(pricesTotal)).toString());
 				dialog.dismiss();
 			}
 		});

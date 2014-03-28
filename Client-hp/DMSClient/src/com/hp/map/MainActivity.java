@@ -84,7 +84,7 @@ public class MainActivity extends ListActivity {
 	public void onBackPressed() {
       // end the thread.
       LoginActivity.threadLooper.quit();
+      //super.onBackPressed();
       startActivity(new Intent(this, LoginActivity.class));
-	    // your code.
 	}
 }

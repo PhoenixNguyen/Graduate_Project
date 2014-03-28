@@ -602,6 +602,10 @@ public class CustomerMapActivity extends FragmentActivity
 	}
 	
 	public void initTakeOrder(){
+		//Reset values and init it
+		TakeOrder_ProductActivity.mProductsMap.clear();
+		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
+		
 		startActivity(new Intent(context, TakeOrder_TabActivity.class));
 	}
 	public void takePicture(){

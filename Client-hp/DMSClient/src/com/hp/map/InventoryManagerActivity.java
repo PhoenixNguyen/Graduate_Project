@@ -27,7 +27,6 @@ public class InventoryManagerActivity extends TakeOrder_ProductActivity{
 			title.setText("Quản lý hàng tồn");
 			command = "getCustomerProduct";
 			customerID = CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong();
-			timeLine = true;
 		}
 	
 	public String getProviderIDList(){

@@ -14,6 +14,8 @@ import com.hp.dao.ReturnOrderDAO;
 import com.hp.dao.ReturnOrderDAOImpl;
 import com.hp.dao.ReturnOrderDetailDAO;
 import com.hp.dao.ReturnOrderDetailDAOImpl;
+import com.hp.dao.RoadManagementDAO;
+import com.hp.dao.RoadManagementDAOImpl;
 import com.hp.dao.SaleOrderDAO;
 import com.hp.dao.SaleOrderDAOImpl;
 import com.hp.dao.SaleOrderDetailDAO;
@@ -28,6 +30,7 @@ import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import com.hp.domain.ReturnOrder;
 import com.hp.domain.ReturnOrderDetail;
+import com.hp.domain.RoadManagement;
 import com.hp.domain.SaleOrder;
 import com.hp.domain.SaleOrderDetail;
 import com.hp.domain.Stock;
@@ -307,6 +310,34 @@ public class OrdersHandle {
         list = providerDAO.getProvidersList(customerID);
         
         return list;
+        
+    }
+    
+    //Update journey
+    @POST
+    @Path("/putStaffJourney")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putStaffJourney(String pData) { //String customerID
+        
+       // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        RoadManagement roadManagement = new RoadManagement();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                roadManagement = mapper.readValue(pData, RoadManagement.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        RoadManagementDAO roadManagementDAO = new RoadManagementDAOImpl();
+        boolean st = roadManagementDAO.saveOrUpdate(roadManagement);
+               
+        return Response.status(200).entity(st+"").build();
         
     }
 }

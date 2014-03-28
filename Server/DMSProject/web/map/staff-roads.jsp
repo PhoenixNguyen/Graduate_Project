@@ -432,7 +432,7 @@
                         </div>-->
 
                     </div>
-                    <div class="article-photo"><img src="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(0)"/>" style="margin-top: -44.5px;">
+                    <div class="article-photo"><img src="../customer/<s:property value="listCustomer.get(0).getmMaDoiTuong()"/>/<s:property value="filesNameList.get(0)"/>" style="margin-top: -44.5px; " width="300" >
                     </div>
 
                 </div>

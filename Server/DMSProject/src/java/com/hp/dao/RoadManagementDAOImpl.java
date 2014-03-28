@@ -49,51 +49,51 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                 System.out.println(" DATECONVERT: " + datefinal + " toDatefinal " + toDatefinal);
             }
             
-            if(pMaKhachHang != null){
+//            if(pMaKhachHang != null){
+//
+//                List<RoadManagement> tmp = new ArrayList<RoadManagement>();
+//                if(datefinal.compareTo("") == 0)
+//                    tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'").list();
+//                else
+//                    tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'"
+//                            + " and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+//                 if(tmp != null)
+//                     result.add(tmp);
+//            }
+            if(pNhanVien != null){
 
-                List<RoadManagement> tmp = new ArrayList<RoadManagement>();
-                if(datefinal.compareTo("") == 0)
-                    tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'").list();
-                else
-                    tmp = session.createQuery("from RoadManagement where mMaKhachHang = '"+pMaKhachHang+"'"
-                            + " and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
-                 if(tmp != null)
-                     result.add(tmp);
-            }
-            else if(pNhanVien != null){
-
-                //Lay danh sach ID khach hang cua giam doc
-                List<String> khachhang = null;
-                khachhang = session.createQuery("select mMaDoiTuong "
-                        + "from Customer where mMaNhanVien='"+pNhanVien+"'").list();
-                for(int i= 0; i < khachhang.size(); i++){
+//                //Lay danh sach ID khach hang cua giam doc
+//                List<String> khachhang = null;
+//                khachhang = session.createQuery("select mMaDoiTuong "
+//                        + "from Customer where mMaNhanVien='"+pNhanVien+"'").list();
+//                for(int i= 0; i < khachhang.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
                     if(datefinal.compareTo("") == 0)
-                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+pNhanVien+"'").list();
                     else
-                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
+                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+pNhanVien+"'"
                                 + "  and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
-                }
+                //}
                 
                 return result;
             }
             else 
             if(pGiamDoc != null){
-                //Lay danh sach ID khach hang cua giam doc
-                List<String> khachhang = null;
-                khachhang = session.createQuery("select kh.mMaDoiTuong "
-                        + "from Customer kh, Staff nv "
-                        + "where nv.mManager ='"+pGiamDoc+"' "
-                        + "and nv.mID = kh.mMaNhanVien ").list();
-                for(int i= 0; i < khachhang.size(); i++){
+                //Lay danh sach ID nhan vien cua giam doc
+                List<String> nhanvien = null;
+                nhanvien = session.createQuery("select mID "
+                        + "from Staff "
+                        + "where mManager ='"+pGiamDoc+"' "
+                        ).list();
+                for(int i= 0; i < nhanvien.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
                     if(datefinal.compareTo("") == 0)
-                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+nhanvien.get(i)+"'").list();
                     else
-                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
+                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+nhanvien.get(i)+"'"
                                 + " and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
@@ -105,21 +105,17 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
             
             else{
 
-                //Lay danh sach ID khach hang cua giam doc
-                List<String> khachhang = null;
-                khachhang = session.createQuery("select mMaDoiTuong "
-                        + "from Customer ").list();
-                for(int i= 0; i < khachhang.size(); i++){
+                //for(int i= 0; i < khachhang.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
                     if(datefinal.compareTo("") == 0)
-                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'").list();
+                        tmp = session.createQuery("from RoadManagement ").list();
                     else
-                        tmp = session.createQuery("from RoadManagement where mMaKhachHang='"+khachhang.get(i)+"'"
-                                + " and cast (mThoiGian as date) ='"+datefinal+"'").list();
+                        tmp = session.createQuery("from RoadManagement where "
+                                + " cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
-                }
+                //}
                 
                 return result;
             }

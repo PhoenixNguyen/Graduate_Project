@@ -79,5 +79,12 @@ public class MainActivity extends ListActivity {
         DetailsList demo = (DetailsList) getListAdapter().getItem(position);
         startActivity(new Intent(this, demo.activityClass));
     }
-
+    
+    @Override
+	public void onBackPressed() {
+      // end the thread.
+      LoginActivity.threadLooper.quit();
+      startActivity(new Intent(this, LoginActivity.class));
+	    // your code.
+	}
 }

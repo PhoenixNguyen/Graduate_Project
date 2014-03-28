@@ -50,7 +50,7 @@ public class LoginActivity extends Activity {
 	private Context context = this;
 	
 	private Thread thread = new ThreadClass();
-    private static Looper threadLooper = null;
+    public static Looper threadLooper = null;
     
     @SuppressLint("NewApi")
 	@Override
@@ -208,7 +208,6 @@ public class LoginActivity extends Activity {
     		String datestr = dateFormat.format(date);
         	RoadManagement roadManagement = new RoadManagement(Rest.mStaffID, "", 
         			Timestamp.valueOf(datestr), pX, pY, "");
-        	
         	
         	ObjectMapper mapper = new ObjectMapper();
             String objectStr = new String();

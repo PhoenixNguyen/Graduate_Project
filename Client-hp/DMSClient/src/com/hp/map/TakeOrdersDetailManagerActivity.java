@@ -53,6 +53,8 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	public ListView ordersListView;
 	public OrdersManagerDetailArrayAdapter adapter;
 	
+	public TextView order_title;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,12 +64,20 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		order_id = intent.getStringExtra("ORDER_ID");
 		
 		TextView title = (TextView)findViewById(R.id.title);
+		order_title = (TextView)findViewById(R.id.order_title_tv);
+		
 		title.setText(""+order_id);
+		
+		//init item commons
+		init();
 		
 		getOrderList();
 		addListView();
 	}
 	
+	public void init(){
+		
+	}
 	
 	public void addListView() {
 

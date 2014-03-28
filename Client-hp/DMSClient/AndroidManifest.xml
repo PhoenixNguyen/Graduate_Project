@@ -107,12 +107,24 @@
             android:label="@string/stock_manager" /> 
 		
 		<activity
-            android:name="com.hp.map.InventoryManagerActivity"
+            android:name="com.hp.map.GPSTracker"
+            android:label="Hàng tồn" /> 
+		
+		<activity
+            android:name="com.hp.map.InventoryManager_TabActivity"
             android:label="Hàng tồn" /> 
             
 		<activity
-            android:name="com.hp.map.GPSTracker"
+            android:name="com.hp.map.InventoryManager_AmountActivity"
             android:label="Hàng tồn" /> 
+		
+		<activity
+            android:name="com.hp.map.InventoryManager_ProductActivity"
+            android:label="Hàng tồn" />
+		<activity
+            android:name="com.hp.map.InventoryManager_ReviewActivity"
+            android:label="Hàng tồn" />
+		
 		
     </application>
 

@@ -73,7 +73,8 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 		//Reset
 		ordersDetailList.clear();
-				
+		
+		title = (TextView)findViewById(R.id.title);		
 		//Init
 		init();
 		
@@ -118,7 +119,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	}
 	
 	public void init(){
-		title = (TextView)findViewById(R.id.title);
+		
 		command = "getProductsList";
 		customerID = "";
 	}

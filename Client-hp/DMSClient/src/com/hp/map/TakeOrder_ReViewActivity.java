@@ -41,6 +41,10 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		addListView();
 	}
 	
+	public void init(){
+		order_title.setText("Hóa đơn");
+	}
+	
 	public void onResume(){
 		super.onResume();
 		this.onCreate(null);

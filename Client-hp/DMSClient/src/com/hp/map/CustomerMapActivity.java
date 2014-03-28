@@ -221,9 +221,9 @@ public class CustomerMapActivity extends FragmentActivity
         case R.id.take_picture:
             takePicture();
             return true;
-//        case R.id.inventory_manager:
-//            inventoryManager();
-//            return true;
+        case R.id.inventory_manager:
+            inventoryManager();
+            return true;
        
         default:
             return super.onOptionsItemSelected(item);
@@ -613,7 +613,10 @@ public class CustomerMapActivity extends FragmentActivity
 	}
 	
 	public void inventoryManager(){
-		startActivity(new Intent(context, InventoryManagerActivity.class));
+		//Reset values and init it
+		InventoryManager_ProductActivity.mProductsMap.clear();
+		InventoryManager_ReviewActivity.takeOrderDetailList.clear();
+		startActivity(new Intent(context, InventoryManager_TabActivity.class));
 		
 	}
 										       

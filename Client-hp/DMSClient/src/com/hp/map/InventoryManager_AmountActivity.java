@@ -1,15 +1,15 @@
 package com.hp.map;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
+
+import com.hp.domain.Product;
+import com.hp.domain.Stock;
+import com.hp.rest.Rest;
+import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Dialog;
 import android.view.View;
@@ -20,14 +20,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hp.domain.Product;
-import com.hp.domain.Stock;
-import com.hp.domain.TakeOrder;
-import com.hp.domain.TakeOrderDetail;
-import com.hp.rest.Rest;
-import com.sun.jersey.api.client.ClientResponse;
-
-public class StockManagerActivity extends TakeOrdersManagerActivity{
-
+public class InventoryManager_AmountActivity extends TakeOrder_AmountActivity{
 	
 }

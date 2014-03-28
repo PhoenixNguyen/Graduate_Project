@@ -17,6 +17,7 @@
         <a href="map/showMap?page=0">Vị trí khách hàng</a><br/>
         <a href="map/showSchedule?page=0">Lịch trình của nhân viên</a><br/>
         <a href="map/staff-roads">Quản lý hành trình</a><br/><br/>
+<!--        <a href="map/view-images">Xem ảnh tại nơi khách hàng</a><br/><br/>-->
         
         <a href="admin/displayCustomers">Nhập thông tin cơ bản</a><br/>
         <a href="admin/display-take-order">Hiển thị hóa đơn đặt hàng</a><br/>

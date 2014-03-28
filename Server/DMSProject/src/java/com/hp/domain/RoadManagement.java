@@ -65,7 +65,7 @@ public class RoadManagement {
         this.mMaNhanVien = mMaNhanVien;
     }
 
-    @Column(name="quanlyduongdi_ma_khach_hang")
+    @Column(name="quanlyduongdi_ten_nhan_vien")
     public String getmMaKhachHang() {
         return mMaKhachHang;
     }

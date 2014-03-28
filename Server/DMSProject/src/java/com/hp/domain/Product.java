@@ -78,7 +78,7 @@ public class Product {
     }
 
     @NotEmpty(message = "Mã sản phẩm không được trống")
-    @Pattern(regex="[A-Za-z0-9\\.]+",message="Mã sản phẩm chỉ chứa a-z, A-Z, 0-9, .")
+    @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã sản phẩm chỉ chứa a-z, A-Z, 0-9, ., _")
     @Length(min = 3 , max = 255 ,message= "Mã sản phẩm phải có độ dài 3-255 ký tự")
     @Column(name="sanpham_ma_san_pham")
     public String getmProductID() {

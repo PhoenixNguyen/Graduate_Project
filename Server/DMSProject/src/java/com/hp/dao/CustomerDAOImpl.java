@@ -131,10 +131,10 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<String> courses = null;
         try{
             if(pStaff == null)
-                courses = session.createQuery("select mMaDoiTuong from Customer where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL ").list();
+                courses = session.createQuery("select mMaDoiTuong from Customer  ").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
             else
-                courses = session.createQuery("select mMaDoiTuong from Customer where mXCoordinates is NOT NULL "
-                        + " and  mYCoordinates is NOT NULL and mMaNhanVien='"+pStaff+"'").list();
+                courses = session.createQuery("select mMaDoiTuong from Customer where  " //mXCoordinates is NOT NULL
+                        + " mMaNhanVien='"+pStaff+"'").list(); //and  mYCoordinates is NOT NULL and 
         }catch(Exception e){
             e.printStackTrace();
         }

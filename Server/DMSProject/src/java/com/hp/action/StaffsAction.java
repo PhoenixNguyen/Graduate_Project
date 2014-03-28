@@ -187,7 +187,8 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                     
                     System.out.println("__ Row: " +(i+1)+" ,Cell number: " + row.getPhysicalNumberOfCells());
                     //If the staff id null
-                    if(row.getCell(1) == null 
+                    if(row.getCell(1) == null ||
+                            row.getCell(1).getStringCellValue().compareTo("") == 0
 //                            row.getCell(ConfigFile.MA_DOI_TUONG_COL+1) == null ||
 //                            row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_STRING
 //                            row.getCell(ConfigFile.X_COORDINATES_COL) == null ||
@@ -200,6 +201,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                     
                     //Init Staff Object
                     int tmp = 0;
+                   
                     Staff staff = new Staff();
 //                    staff.setmStt((int)row.getCell(tmp++).getNumericCellValue());
                     tmp++;

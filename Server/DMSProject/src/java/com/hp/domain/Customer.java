@@ -102,9 +102,10 @@ public class Customer {
     }
     
     @NotEmpty(message = "Mã khách hàng không được trống")
-    @Pattern(regex="[A-Za-z0-9\\.]+",message="Mã khách hàng chỉ chứa a-z, A-Z, 0-9, .")
-    @Length(min = 3 , max = 255 ,message= "Mã khách hàng phải có độ dài 3-255 ký tự")
+//    @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã khách hàng chỉ chứa a-z, A-Z, 0-9, .")
+//    @Length(min = 3 , max = 255 ,message= "Mã khách hàng phải có độ dài 3-255 ký tự")
     @Column(name="khachhang_ma_dt")
+    @Valid
     public String getmMaDoiTuong() {
         return mMaDoiTuong;
     }

@@ -134,8 +134,8 @@ public class CustomerMapActivity extends FragmentActivity
     public static String customerSelected = new String();
     public static Customer mSelectedCustomer;
     //current location
-    private float mX;
-    private float mY;
+    public static float mX;
+    public static float mY;
     
     String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/putJourney"; 
     
@@ -246,7 +246,7 @@ public class CustomerMapActivity extends FragmentActivity
         }
     }
 
-    private void setUpMapIfNeeded() {
+    public void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
@@ -334,7 +334,7 @@ public class CustomerMapActivity extends FragmentActivity
     
   //=========================== End My Location =======================================
     
-    private void setUpMap() {
+    public void setUpMap() {
         // Hide the zoom controls as the button panel will cover it.
         mMap.getUiSettings().setZoomControlsEnabled(false);
 
@@ -376,7 +376,7 @@ public class CustomerMapActivity extends FragmentActivity
 
     //If show only a customer clicked: pView = 1
     //If show all customers: pView = 0
-    private void addMarkersToMap(int pView) {
+    public void addMarkersToMap(int pView) {
     	
     	//Add Markers
     	if(pView == 1){

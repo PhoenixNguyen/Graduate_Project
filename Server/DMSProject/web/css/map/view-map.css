@@ -83,8 +83,9 @@ img{
     
     width: 36%;
     margin-left: 5%;
-    height:0px;
+    height:500px;
     overflow: auto;
+    display: block;
 }
 table, th, td{
     border: 1px solid black;

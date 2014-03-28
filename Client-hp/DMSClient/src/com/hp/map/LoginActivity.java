@@ -1,16 +1,25 @@
 package com.hp.map;
 
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +39,8 @@ public class LoginActivity extends Activity {
 	EditText mPassword;
 	
 	private Context context = this;
+	
+	
     @SuppressLint("NewApi")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +55,7 @@ public class LoginActivity extends Activity {
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
-        mUsername.setText("eufood.nguyentuanlong");
+        mUsername.setText("ba_dinh");
         mPassword = (EditText)findViewById(R.id.password);
         mPassword.setText("123456");
         
@@ -83,6 +94,7 @@ public class LoginActivity extends Activity {
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 	            	startActivity(i);
+	            	//new ThreatRealtime("hello").start();
 				}
 				
 			}
@@ -97,6 +109,44 @@ public class LoginActivity extends Activity {
 //                startActivity(i);
             }
         });
+        
+        
+//       
+//        //Create Thread
+//        Thread toRun = new Thread()
+//        {
+//               public void run()
+//               {
+//            	   
+////            	   int i =0;
+////               	while(i >= 0){
+////               		
+////                   
+////                       try {
+////                           sleep(5000);
+////                           i++;
+////                       } catch (InterruptedException e) {}
+////                   }
+//            	   
+//            	   GPSTracker gps = new GPSTracker(LoginActivity .this);
+//                   // check if GPS enabled    
+//                  if(gps.canGetLocation()){
+//
+//                      double latitude = gps.getLatitude();
+//                      double longitude = gps.getLongitude();
+//                      //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+//                      System.out.println("latitude: " + latitude + " longitude: " + longitude);
+//                  }else{
+//                      // can't get location
+//                      // GPS or Network is not enabled
+//                      // Ask user to enable GPS/network in settings
+//                      gps.showSettingsAlert();
+//                  }
+//                  
+//                   System.out.println("DONE! " + getName());
+//               }
+//        };
+//        toRun.start();
     }
     
     public boolean isOnline() { 
@@ -111,4 +161,6 @@ public class LoginActivity extends Activity {
         arr[N] = element;
         return arr;
     }
+    
+   
 }

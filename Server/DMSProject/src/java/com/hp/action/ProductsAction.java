@@ -232,11 +232,11 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                     tmp++;
                     if(row.getCell(1) != null)
                         if(row.getCell(1).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                            product.setmBarcode(row.getCell(1).getNumericCellValue() + "");
+                            product.setmBarcode(String.valueOf(row.getCell(1).getNumericCellValue()) + "");
                         else
                             product.setmBarcode(row.getCell(1).getStringCellValue());
                     if(row.getCell(1) != null)
-                        product.setmProductID(row.getCell(1).getNumericCellValue() + "");
+                        product.setmProductID(String.valueOf(row.getCell(1).getNumericCellValue()) + "");
                     if(row.getCell(2) != null)
                         product.setmProductName(row.getCell(2).getStringCellValue());
                     if(row.getCell(3) != null)
@@ -254,7 +254,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                     if(row.getCell(7) != null)
                         product.setmExportPrices((float)row.getCell(7).getNumericCellValue());
                     
-                    product.setmProvider("0");
+                    product.setmProvider("nhacungcap1");
                     //Add to database
                     if(productDAO.saveOrUpdate(product)){
                         System.out.println("Add Object " + (i+1));

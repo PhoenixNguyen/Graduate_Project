@@ -1,9 +1,18 @@
 package com.hp.map;
 
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -27,7 +36,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hp.domain.RoadManagement;
 import com.hp.rest.Rest;
+import com.sun.jersey.api.client.ClientResponse;
  
 @SuppressLint("NewApi")
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -90,7 +101,9 @@ public class LoginActivity extends Activity {
 				}
 				else
 				if(Rest.getCustomersList(username) == true){
-
+					
+					//Run thread to do backgroud send location
+					doBackground();
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 	            	startActivity(i);
@@ -111,7 +124,11 @@ public class LoginActivity extends Activity {
         });
         
        
-        // Begin the location reading thread.
+        
+    }
+    
+    public void doBackground(){
+    	// Begin the location reading thread.
         thread.start();
 
         // do UI stuff in here
@@ -129,7 +146,6 @@ public class LoginActivity extends Activity {
         //getLocation();
         
     }
-    
     public boolean isOnline() { 
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
 		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
@@ -150,7 +166,7 @@ public class LoginActivity extends Activity {
 
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             MyLocationListener locListen = new MyLocationListener();
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 0, locListen);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 1, locListen);
 
             threadLooper = Looper.myLooper();
 
@@ -164,8 +180,12 @@ public class LoginActivity extends Activity {
     private class MyLocationListener implements LocationListener {      
         @Override
         public void onLocationChanged(Location location) {
-        	if(location!= null && location.getLatitude()> 0)
+        	if(location!= null && location.getLatitude()> 0){
         		System.out.println("latitude20: " + location.getLatitude() + " longitude20: " + location.getLongitude());
+        		
+        		//SEND
+        		pụtJourney((float)location.getLatitude(), (float)location.getLongitude());
+        	}
             /* Do very intensive work here */
         }
 
@@ -180,6 +200,56 @@ public class LoginActivity extends Activity {
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
             }
+        
+        ///
+        public void pụtJourney(float pX, float pY){
+        	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    		Date date = new Date();
+    		String datestr = dateFormat.format(date);
+        	RoadManagement roadManagement = new RoadManagement(Rest.mStaffID, "", 
+        			Timestamp.valueOf(datestr), pX, pY, "");
+        	
+        	
+        	ObjectMapper mapper = new ObjectMapper();
+            String objectStr = new String();
+
+    		try {
+
+    			objectStr = mapper.writeValueAsString(roadManagement);
+
+    		} catch (JsonGenerationException ex) {
+
+    			ex.printStackTrace();
+
+    		} catch (JsonMappingException ex) {
+
+    			ex.printStackTrace();
+
+    		} catch (IOException ex) {
+
+    			ex.printStackTrace();
+
+    		}
+
+    		//Order ---------------------------------------------------------------
+    		ClientResponse response = Rest.mService.path("webresources").path("putStaffJourney").accept("application/json")
+    		.type("application/json").post(ClientResponse.class, objectStr);
+    	
+    	    String output = response.toString();
+    	    System.out.println("input 1: " + output);
+    	
+    	    if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+    	        //Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show();
+    	        // refresh customers
+    	    	System.out.println("Đã gửi");
+    	
+    	    }else
+    	    	System.out.println("Không thể gửi");
+    	    	//Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+    	
+    	    System.out.println("Server response .... \n");
+    	    System.out.println("input 0: " + output);
+        }
     }
     
    

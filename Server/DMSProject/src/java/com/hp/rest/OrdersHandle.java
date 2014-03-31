@@ -562,4 +562,86 @@ public class OrdersHandle {
         System.out.println("____ " + pInventoryManager + "___ " + st);
         return Response.status(200).entity(st2+"").build();
     }
+    
+    @POST
+    @Path("/addOrdersDetailForTakeOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addOrdersDetailForTakeOrder( String pList ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<TakeOrderDetail> detailList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                detailList = mapper.readValue(pList
+                        , TypeFactory.defaultInstance().constructCollectionType(List.class
+                        , TakeOrderDetail.class));
+                //System.out.println(schedulesList.get(0).getmMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        int count = 0;
+        TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
+        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        
+        //Delete all old data
+        if(detailList != null && detailList.size() > 0)
+            takeOrderDetailDAO.delete(detailList.get(0).getmTakeOrderID());
+        else
+            return Response.status(200).entity("").build();
+        
+        float priceTotal = 0;
+        //Add new all data
+        for(int i = 0; i< detailList.size(); i++){
+            if(takeOrderDetailDAO.saveOrUpdate(detailList.get(i)))
+                count ++;
+            
+            //update price
+            //priceTotal += detailList.get(i).getmPriceTotal();
+        }
+        
+//        //Update takeorder
+//       
+//        TakeOrder takeOrder = new TakeOrder();
+//        
+//        takeOrder = takeOrderDAO.getTakeOrder(detailList.get(0).getmTakeOrderID());
+//        takeOrder.setmAfterPrivate(priceTotal - priceTotal*takeOrder.getmDiscount()/100);
+//        boolean st2 = takeOrderDAO.update(takeOrder);
+        
+        
+        System.out.println("pTakeOrderDetail: " + count +"____ " + pList);
+        return Response.status(200).entity(count+"").build();
+    }
+    
+    
+    @POST
+    @Path("/updateAddingTakeOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateAddingTakeOrder( String pOrder ) {
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        TakeOrder takeOrder = new TakeOrder();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                takeOrder = mapper.readValue(pOrder, TakeOrder.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        boolean b = takeOrderDAO.update(takeOrder);
+        
+        return Response.status(200).entity(b+"").build();
+    }
 }

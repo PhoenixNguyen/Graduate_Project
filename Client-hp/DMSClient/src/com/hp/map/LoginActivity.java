@@ -103,7 +103,7 @@ public class LoginActivity extends Activity {
 				if(Rest.getCustomersList(username) == true){
 					
 					//Run thread to do backgroud send location
-					//doBackground();
+					doBackground();
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), MainActivity.class);
 	            	startActivity(i);
@@ -167,7 +167,7 @@ public class LoginActivity extends Activity {
 
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             MyLocationListener locListen = new MyLocationListener();
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 1, locListen);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 100, locListen);
 
             threadLooper = Looper.myLooper();
 

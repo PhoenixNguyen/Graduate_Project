@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.type.TypeFactory;
 import com.hp.domain.Product;
 
 import com.hp.map.TakeOrder_ProductActivity;
+import com.hp.map.TakeOrdersDetailManagerActivity;
 import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
@@ -89,10 +90,34 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		if(TakeOrder_ProductActivity.timeLine == true)
 			TakeOrder_ProductActivity.mProductsMap.clear();
 		
-		if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + ""))
+		//If mProductsMap have not contained this key then import this list
+		if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + "")){
 			TakeOrder_ProductActivity.mProductsMap.put(mProviderIndex + "", productsList);
+			
+			//
+			//if add more products for take order
+			if(TakeOrder_ProductActivity.add_take_order_detail){
+				
+				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").size(); i++){
+					for(int j = 0; j < TakeOrdersDetailManagerActivity.takeOrderDetailList.size(); j++){
+						if(TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").get(i).getmProductID()
+								.compareTo(TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmProductID()) == 0){
+							
+							TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").get(i).setmTotal(
+									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmNumber());
+							
+						}
+					}
+				}
+				
+				TakeOrder_ProductActivity.take_order_id = TakeOrdersDetailManagerActivity.order_id;
+			}
+		}
 		
+		//timeline = false for not init again
 		TakeOrder_ProductActivity.timeLine = false;
+		
+		
 		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + ""));
 		listView.setAdapter(adapter);
 		

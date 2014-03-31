@@ -65,7 +65,12 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	public String command;
 	public String customerID;
 	
+	//Flag for import poducts one times
 	public static boolean timeLine = true;
+	//Flag for add more product into takeorder
+	public static boolean add_take_order_detail = false;
+	
+	public static String take_order_id;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -230,8 +235,8 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		TextView price = (TextView) dialog.findViewById(R.id.price);
 		price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
 		
-		TextView discount = (TextView) dialog.findViewById(R.id.discount);
-		discount.setText("Giảm giá: 0.0" );
+//		TextView discount = (TextView) dialog.findViewById(R.id.discount);
+//		discount.setText("Giảm giá: 0.0" );
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
 		

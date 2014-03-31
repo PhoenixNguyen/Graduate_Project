@@ -56,7 +56,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class TakeOrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
 
 	private TextView id[];
-	private List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
+	public static List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
 	private List<TakeOrder> takeOrderListFilter = new ArrayList<TakeOrder>();
 	private boolean filter = false;
 	

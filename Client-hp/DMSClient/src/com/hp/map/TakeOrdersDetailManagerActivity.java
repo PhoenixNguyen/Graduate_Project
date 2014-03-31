@@ -46,7 +46,7 @@ import android.widget.TableRow.LayoutParams;
 public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	private LinearLayout layout;
-	public String order_id;
+	public static String order_id;
 	
 	public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
 	public Context context = this;
@@ -59,11 +59,15 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	public String updateData;
 	public String deleteData;
 	
+	public ImageButton new_order_detail_bt;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orders_detail_manager);
 		
+		new_order_detail_bt = (ImageButton)findViewById(R.id.new_order_detail_bt);
+				
 		order_title = (TextView)findViewById(R.id.order_title_tv);
 		//init item commons
 		init();
@@ -86,6 +90,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		getListDetail = "getTakeOrderDetailList";
 		updateData = "updateDetailOrder";
 		deleteData = "deleteDetailOrder";
+		
 	}
 	
 	public void addListView() {
@@ -355,6 +360,10 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	}
 	
 	public void newOrderDetail(View view){
+		//Status = true
+		TakeOrder_ProductActivity.add_take_order_detail = true;
+		
+		startActivity(new Intent(this, TakeOrder_TabActivity.class));
 		
 	}
 }

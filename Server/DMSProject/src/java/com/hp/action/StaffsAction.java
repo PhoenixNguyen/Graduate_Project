@@ -233,6 +233,8 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                         System.out.println("Add Object " + (i+1));
                         total++;
                     }
+                    else
+                        continue;
                 }
             }
             

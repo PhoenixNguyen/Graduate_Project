@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -232,11 +233,11 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                     tmp++;
                     if(row.getCell(1) != null)
                         if(row.getCell(1).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                            product.setmBarcode(String.valueOf(row.getCell(1).getNumericCellValue()) + "");
+                            product.setmBarcode((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
                         else
                             product.setmBarcode(row.getCell(1).getStringCellValue());
                     if(row.getCell(1) != null)
-                        product.setmProductID(String.valueOf(row.getCell(1).getNumericCellValue()) + "");
+                        product.setmProductID((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
                     if(row.getCell(2) != null)
                         product.setmProductName(row.getCell(2).getStringCellValue());
                     if(row.getCell(3) != null)
@@ -260,6 +261,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                         System.out.println("Add Object " + (i+1));
                         total++;
                     }
+                    else
+                        continue;
                 }
             }
          

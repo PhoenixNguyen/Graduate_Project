@@ -48,6 +48,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	
 	private Button save;
 	float pricesTotal;
+	float discount;
 	
 	private int numberTotal;
 	
@@ -76,8 +77,25 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		discount_value = (EditText)findViewById(R.id.discount_value);
 		sum_value = (EditText)findViewById(R.id.sum_value);
 	
-		customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
-		customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
+		if(!TakeOrder_ProductActivity.add_take_order_detail && CustomerMapActivity.mSelectedCustomer != null){
+			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
+			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
+		}
+		else
+		{
+			for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
+				System.out.println("__++"+TakeOrdersManagerActivity.takeOrderList.get(i).getmID() +" -- " + TakeOrder_ProductActivity.take_order_id);
+	        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 
+	        			TakeOrder_ProductActivity.take_order_id) == 0){
+	        		System.out.println(" ACC ");
+	        		customer_id.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmID());
+	    			customer_name.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmCustomerName());
+	        		break;
+	        	}
+	        }
+			
+			
+		}
 		
 		save = (Button)findViewById(R.id.save);
 		
@@ -141,9 +159,9 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 				discount_value.setText((new BigDecimal(pricesTotal*number/100)).toString());
 				
 				//set sume
-				pricesTotal = pricesTotal - pricesTotal*number/100;
+				discount = pricesTotal*number/100;
 				
-				sum_value.setText((new BigDecimal(pricesTotal)).toString());
+				sum_value.setText((new BigDecimal(pricesTotal - discount)).toString());
 				dialog.dismiss();
 			}
 		});
@@ -171,6 +189,90 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			if(numberTotal == 0)
 				return;
 			
+			//If add more products into take order ========================================================
+			if(TakeOrder_ProductActivity.add_take_order_detail){
+					//Set order ID
+					for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
+						
+						TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmTakeOrderID(
+								TakeOrder_ProductActivity.take_order_id);
+					}
+					
+					// Send
+					ObjectMapper mapper = new ObjectMapper();
+			        String orderDetailList = new String();
+			        String TakeOrderStr = new String();
+			        TakeOrder order = null;
+			        for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
+			        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(
+			        			TakeOrder_ProductActivity.take_order_id) == 0){
+			        		order = TakeOrdersManagerActivity.takeOrderList.get(i);
+			        		order.setmDiscount(Integer.parseInt(discount_percent.getText().toString()));
+			        		order.setmAfterPrivate(pricesTotal - discount);
+			        		break;
+			        	}
+			        }
+					try {
+						TakeOrderStr = mapper.writeValueAsString(order);
+						orderDetailList = mapper.writeValueAsString(TakeOrder_ReViewActivity.takeOrderDetailList);
+						
+					} catch (JsonGenerationException ex) {
+
+						ex.printStackTrace();
+
+					} catch (JsonMappingException ex) {
+
+						ex.printStackTrace();
+
+					} catch (IOException ex) {
+
+						ex.printStackTrace();
+
+					}
+					
+					//Order ---------------------------------------------------------------
+					ClientResponse response = Rest.mService.path("webresources").path("updateAddingTakeOrder").accept("application/json")
+					.type("application/json").post(ClientResponse.class, TakeOrderStr);
+
+			        String output = response.toString();
+			        System.out.println("input 1: " + output);
+			        
+			        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+			            Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
+			            // refresh customers
+			            
+			            
+			        }else
+			        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+			        
+			        System.out.println("Server response .... \n");
+			        System.out.println("input 0: " + output);
+			        
+					//Order detail-------------------------------------------------------------
+			        ClientResponse response2 = Rest.mService.path("webresources").path("addOrdersDetailForTakeOrder").accept("application/json")
+			    			.type("application/json").post(ClientResponse.class, orderDetailList);
+
+			        String output2 = response2.toString();
+			        System.out.println("input 1: " + output2);
+			        
+			        if ((response2.getStatus() == 200) && (response2.getEntity(String.class).compareTo("0") != 0)) {
+			            Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show();
+			            // refresh customers
+			            resetValue();
+			            TakeOrder_ProductActivity.add_take_order_detail = false;
+			            
+			        }else
+			        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
+			        
+			        System.out.println("Server response .... \n");
+			        System.out.println("input 0: " + output2);
+				
+				
+				return;
+			}
+			
+			//NEW
+			/////////////////////////////////////////////////////////////////////////////=========================
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new  Date();
 			String date2 = df.format(date);
@@ -187,7 +289,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					, ""
 					
 					, 0
-					, pricesTotal, pricesTotal
+					, pricesTotal - discount, pricesTotal - discount
 					, Integer.parseInt(discount_percent.getText().toString())
 					, 0, Timestamp.valueOf(date2), Timestamp.valueOf(date2)
 					, Rest.mStaffID, Rest.mStaffID);
@@ -266,6 +368,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		TakeOrder_ProductActivity.mProductsMap.clear();
 		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
 		pricesTotal = 0;
+		discount = 0;
 		onResume();
 	}
 }

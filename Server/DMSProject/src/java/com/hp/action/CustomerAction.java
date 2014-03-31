@@ -270,6 +270,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
                         System.out.println("Add Object " + i);
                         total++;
                     }
+                    else
+                        continue;
                 }
             }
             

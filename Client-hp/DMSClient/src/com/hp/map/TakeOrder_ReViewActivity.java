@@ -19,30 +19,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
-		
+	
+	public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orders_detail_manager);
 		
+		new_order_detail_bt = (ImageButton)findViewById(R.id.new_order_detail_bt);
+		new_order_detail_bt.setVisibility(View.GONE);
 		
-		order_id = "180NLB-2014-03-14 02:17:02";
+		//order_id = "180NLB-2014-03-14 02:17:02";
 		
 		TextView title = (TextView)findViewById(R.id.title);
 		title.setText("Danh mục đã chọn: ");
 		
+		init();
 		getOrderList();
 		addListView();
 	}
 	
 	public void init(){
 		order_title.setText("Hóa đơn");
+		
 	}
 	
 	public void onResume(){
@@ -75,6 +85,39 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 			}
 		}
 		
+	}
+	
+	public void addListView() {
+
+		// Check the internet
+		if (isOnline()) {
+			System.out.println("Internet access!!____________________");
+		} else {
+			System.out.println("NO Internet access!!____________________");
+			Toast.makeText(this, "No internet access, please try again later!",
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		if (takeOrderDetailList.size() == 0) {
+			return;
+		}
+
+		ordersListView = (ListView) findViewById(R.id.list_view_product);
+		adapter = new OrdersManagerDetailArrayAdapter(this,
+				android.R.layout.simple_list_item_1, takeOrderDetailList);
+		ordersListView.setAdapter(adapter);
+
+		ordersListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> a, View v, int position,
+					long id) {
+				System.out.println("Click!");
+				TakeOrderDetail selectedValue = (TakeOrderDetail) ordersListView.getAdapter().getItem(position);
+		    	 addCustomerDialog(selectedValue, position);
+				
+			}
+		});
 	}
 	
 	public void addCustomerDialog(final TakeOrderDetail selectedValue, final int position){

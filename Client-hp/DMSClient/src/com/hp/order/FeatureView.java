@@ -61,4 +61,7 @@ public final class FeatureView extends FrameLayout {
         ((TextView) (findViewById(R.id.total))).setText(pTotal);
     }
 
+    public synchronized void setPrice(String pPrice) {
+        ((TextView) (findViewById(R.id.price))).setText(pPrice);
+    }
 }

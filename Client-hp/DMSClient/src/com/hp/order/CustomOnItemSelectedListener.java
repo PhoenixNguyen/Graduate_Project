@@ -59,64 +59,8 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 			data = providerID +"::" + customerID;
 		
 		System.out.println("____ " + data + "___ " );
-		//GET
-		ClientResponse response = Rest.mService.path("webresources").path(command)
-				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, data );
-        System.out.println("________________ "+ response.toString());
-        if(response.getStatus() != 200){
-        	return;
-        }
-        
-        String re = response.getEntity(String.class);
-        System.out.println("________________ "+ re);
-        
-        // pair to object
-        ObjectMapper mapper = new ObjectMapper();
-        List<Product> productsList = new ArrayList<Product>();
-		try {
-//			File jsonFile = new File(jsonFilePath);
-			productsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
-					Product.class));
-			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//////////////////////////////////////////////////////////////////////////////////////////
-		if(TakeOrder_ProductActivity.timeLine == true)
-			TakeOrder_ProductActivity.mProductsMap.clear();
 		
-		//If mProductsMap have not contained this key then import this list
-		if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + "")){
-			TakeOrder_ProductActivity.mProductsMap.put(mProviderIndex + "", productsList);
-			
-			//
-			//if add more products for take order
-			if(TakeOrder_ProductActivity.add_take_order_detail){
-				
-				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").size(); i++){
-					for(int j = 0; j < TakeOrdersDetailManagerActivity.takeOrderDetailList.size(); j++){
-						if(TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").get(i).getmProductID()
-								.compareTo(TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmProductID()) == 0){
-							
-							TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").get(i).setmTotal(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmNumber());
-							
-						}
-					}
-				}
-				
-				TakeOrder_ProductActivity.take_order_id = TakeOrdersDetailManagerActivity.order_id;
-			}
-		}
-		
-		//timeline = false for not init again
-		TakeOrder_ProductActivity.timeLine = false;
-		
+		addAllProducts();
 		
 		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + ""));
 		listView.setAdapter(adapter);
@@ -146,6 +90,73 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		});
 	  }
 	 
+	  public void addAllProducts(){
+		if(TakeOrder_ProductActivity.timeLine == true)
+				TakeOrder_ProductActivity.mProductsMap.clear();
+		else
+			return;
+		
+		for(int k = 0; k< TakeOrder_ProductActivity.providersList.size(); k++){
+		//GET
+		ClientResponse response = Rest.mService.path("webresources").path(command)
+				.accept("application/json")
+				.type("application/json").post(ClientResponse.class, TakeOrder_ProductActivity.providersList.get(k).getmID() );
+        System.out.println("________________ "+ response.toString());
+        if(response.getStatus() != 200){
+        	return;
+        }
+        
+        String re = response.getEntity(String.class);
+        System.out.println("________________ "+ re);
+        
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<Product> productsList = new ArrayList<Product>();
+		try {
+//				File jsonFile = new File(jsonFilePath);
+			productsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+					Product.class));
+			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		//If mProductsMap have not contained this key then import this list
+		//if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + "")){
+			TakeOrder_ProductActivity.mProductsMap.put(k + "", productsList);
+			
+			//
+			//if add more products for take order
+			if(TakeOrder_ProductActivity.add_take_order_detail){
+				
+				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(k + "").size(); i++){
+					for(int j = 0; j < TakeOrdersDetailManagerActivity.takeOrderDetailList.size(); j++){
+						if(TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).getmProductID()
+								.compareTo(TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmProductID()) == 0){
+							
+							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setmTotal(
+									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmNumber());
+							
+						}
+					}
+				}
+				
+				TakeOrder_ProductActivity.take_order_id = TakeOrdersDetailManagerActivity.order_id;
+			}
+		//}
+		
+		//timeline = false for not init again
+		TakeOrder_ProductActivity.timeLine = false;
+		
+		}
+		
+	  }
 	  @Override
 	  public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub

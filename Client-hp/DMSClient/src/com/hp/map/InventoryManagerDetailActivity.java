@@ -45,6 +45,7 @@ import android.widget.TableRow.LayoutParams;
 
 public class InventoryManagerDetailActivity extends TakeOrdersDetailManagerActivity{
 	
+	public static boolean add_inventory_detail = false;
 
 	public void init(){
 		order_title.setText("Danh mục chi tiết");
@@ -52,5 +53,20 @@ public class InventoryManagerDetailActivity extends TakeOrdersDetailManagerActiv
 		
 		updateData = "updateDetailInventoryManager";
 		deleteData = "deleteDetailInventoryManager";
+		
+		//
+		TakeOrder_ProductActivity.timeLine = true;
+		
+		//
+		add_inventory_detail = true;
+	}
+	
+	public void newOrderDetail(View view){
+		//Status = true
+		TakeOrder_ProductActivity.add_take_order_detail = true;
+		TakeOrder_ProductActivity.timeLine = true;
+		
+		startActivity(new Intent(this, InventoryManager_TabActivity.class));
+		
 	}
 }

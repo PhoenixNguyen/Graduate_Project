@@ -644,4 +644,86 @@ public class OrdersHandle {
         
         return Response.status(200).entity(b+"").build();
     }
+    
+    @POST
+    @Path("/updateAddingInventory")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateAddingInventory( String pOrder ) {
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        InventoryManager inventoryManager = new InventoryManager();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                inventoryManager = mapper.readValue(pOrder, InventoryManager.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
+        boolean b = inventoryManagerDAO.update(inventoryManager);
+        
+        return Response.status(200).entity(b+"").build();
+    }
+    
+    @POST
+    @Path("/updateAddingInventoryDetail")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateAddingInventoryDetail( String pList ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<InventoryManagerDetail> detailList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                detailList = mapper.readValue(pList
+                        , TypeFactory.defaultInstance().constructCollectionType(List.class
+                        , InventoryManagerDetail.class));
+                //System.out.println(schedulesList.get(0).getmMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        int count = 0;
+        InventoryManagerDetailDAO inventoryManagerDetailDAO = new InventoryManagerDetailDAOImpl();
+        InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
+        
+        //Delete all old data
+        if(detailList != null && detailList.size() > 0)
+            inventoryManagerDetailDAO.delete(detailList.get(0).getmTakeOrderID());
+        else
+            return Response.status(200).entity("").build();
+        
+        float priceTotal = 0;
+        //Add new all data
+        for(int i = 0; i< detailList.size(); i++){
+            if(inventoryManagerDetailDAO.saveOrUpdate(detailList.get(i)))
+                count ++;
+            
+            //update price
+            //priceTotal += detailList.get(i).getmPriceTotal();
+        }
+        
+//        //Update takeorder
+//       
+//        TakeOrder takeOrder = new TakeOrder();
+//        
+//        takeOrder = takeOrderDAO.getTakeOrder(detailList.get(0).getmTakeOrderID());
+//        takeOrder.setmAfterPrivate(priceTotal - priceTotal*takeOrder.getmDiscount()/100);
+//        boolean st2 = takeOrderDAO.update(takeOrder);
+        
+        
+        System.out.println("pTakeOrderDetail: " + count +"____ " + pList);
+        return Response.status(200).entity(count+"").build();
+    }
+    
 }

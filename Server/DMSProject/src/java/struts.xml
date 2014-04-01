@@ -171,6 +171,15 @@
         <action name="addOrdersDetailForTakeOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">order/addOrdersDetailForTakeOrder</result>
         </action>
+        
+        <action name="updateAddingInventory" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/updateAddingInventory</result>
+        </action>
+        
+        <action name="updateAddingInventoryDetail" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/updateAddingInventoryDetail</result>
+        </action>
+        
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
         <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

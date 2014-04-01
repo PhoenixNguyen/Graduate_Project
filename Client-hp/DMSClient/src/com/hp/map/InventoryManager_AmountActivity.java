@@ -12,6 +12,7 @@ import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -28,4 +29,6 @@ public class InventoryManager_AmountActivity extends TakeOrder_AmountActivity{
 		sum.setText("Tổng giá trị");
 		linearlayout_discount.setVisibility(View.GONE);
 	}
+	
+	
 }

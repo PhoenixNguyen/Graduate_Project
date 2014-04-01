@@ -362,6 +362,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	public void newOrderDetail(View view){
 		//Status = true
 		TakeOrder_ProductActivity.add_take_order_detail = true;
+		TakeOrder_ProductActivity.timeLine = true;
 		
 		startActivity(new Intent(this, TakeOrder_TabActivity.class));
 		

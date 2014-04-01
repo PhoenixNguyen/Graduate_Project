@@ -72,6 +72,9 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	
 	public static String take_order_id;
 	
+	public static List<Provider> providersList = new ArrayList<Provider>();
+	
+	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
@@ -138,7 +141,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	//............... start spiner ........................
 	// add items into spinner dynamically
 	  public void addItemsOnSpinner() {
-	 
+		  providersList.clear();
 		String re = getProviderIDList();
 		if(re == null)
 			return;
@@ -147,7 +150,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
         
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
-        List<Provider> providersList = null;
+        //List<Provider> providersList = null;
 		try {
 //			File jsonFile = new File(jsonFilePath);
 			providersList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,

@@ -230,8 +230,17 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 
 					}
 					
+					String update_main_command = "updateAddingTakeOrder";
+					String update_detail_command = "addOrdersDetailForTakeOrder";
+					
+					//If update Inventory
+					if(InventoryManagerDetailActivity.add_inventory_detail){
+						update_main_command = "updateAddingInventory";
+						update_detail_command = "updateAddingInventoryDetail";
+					}
+					
 					//Order ---------------------------------------------------------------
-					ClientResponse response = Rest.mService.path("webresources").path("updateAddingTakeOrder").accept("application/json")
+					ClientResponse response = Rest.mService.path("webresources").path(update_main_command).accept("application/json")
 					.type("application/json").post(ClientResponse.class, TakeOrderStr);
 
 			        String output = response.toString();
@@ -249,7 +258,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			        System.out.println("input 0: " + output);
 			        
 					//Order detail-------------------------------------------------------------
-			        ClientResponse response2 = Rest.mService.path("webresources").path("addOrdersDetailForTakeOrder").accept("application/json")
+			        ClientResponse response2 = Rest.mService.path("webresources").path(update_detail_command).accept("application/json")
 			    			.type("application/json").post(ClientResponse.class, orderDetailList);
 
 			        String output2 = response2.toString();
@@ -260,6 +269,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			            // refresh customers
 			            resetValue();
 			            TakeOrder_ProductActivity.add_take_order_detail = false;
+			            InventoryManagerDetailActivity.add_inventory_detail = false;
 			            
 			        }else
 			        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
@@ -364,11 +374,20 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		}
 	}
 	
+	public void updateTakeOrderDetail(){
+		
+	}
+	
+	public void updateInventoryDetail(){
+		
+	}
+	
 	public void resetValue(){
 		TakeOrder_ProductActivity.mProductsMap.clear();
 		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
 		pricesTotal = 0;
 		discount = 0;
+		
 		onResume();
 	}
 }

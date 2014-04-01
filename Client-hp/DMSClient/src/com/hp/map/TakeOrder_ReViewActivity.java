@@ -74,11 +74,15 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmProductName() 
 									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices()
 									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices()
-									, 0, 0 
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices() 
-										* TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal()
+									, 0
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmDiscount() 
+									, (float)Math.ceil((TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices() - 
+											TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices() *
+											TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmDiscount() / 100)
+										* TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal())
 									, "", TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal()
-									, "", 0);
+									, "", 0
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmNote());
 					
 					takeOrderDetailList.add(orderDetail);
 				}
@@ -126,13 +130,20 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		dialog.setTitle("Thay đổi số lượng");
 
 		// set the custom dialog components - text, image and button
-		TextView text = (TextView) dialog.findViewById(R.id.text);
-		text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
+		TextView text = (TextView) dialog.findViewById(R.id.name);
+		text.setText(""+selectedValue.getmProductName());
 
 		TextView price = (TextView) dialog.findViewById(R.id.price);
-		price.setText("Giá sản phẩm: "+selectedValue.getmBeforeOrderPrice());
+		price.setText(""+selectedValue.getmBeforeOrderPrice());
+		
+		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
+		discount.setText(takeOrderDetailList.get(position).getmDiscount()+"");
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
+		count.setText(takeOrderDetailList.get(position).getmNumber()+"");
+		
+		final EditText note = (EditText) dialog.findViewById(R.id.note);
+		note.setText(takeOrderDetailList.get(position).getmNote()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -141,14 +152,36 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 			@Override
 			public void onClick(View v) {
 				
-				if(count == null)
+//						if(count == null)
+//							return;
+//						
+//						int number = Integer.parseInt(count.getText().toString());
+				
+				String count2 = count.getText().toString();
+				String discount2 = discount.getText().toString();
+				
+				int number = 0;
+				int discount = 0;
+				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
+					number = Integer.parseInt(count2);
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
 					return;
+				}
 				
-				int number = Integer.parseInt(count.getText().toString());
+				if(discount2.compareTo("") != 0 && String.valueOf(discount2).length() < 10)
+					discount = Integer.parseInt(discount2);
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+				}
 				
+				float priceTotal = (float)Math.ceil((takeOrderDetailList.get(position).getmAfterOrderPrice() - 
+						takeOrderDetailList.get(position).getmAfterOrderPrice() * discount / 100) * number);
+				takeOrderDetailList.get(position).setmDiscount(discount);
 				takeOrderDetailList.get(position).setmNumber(number);
-				takeOrderDetailList.get(position).setmPriceTotal(number* takeOrderDetailList.get(position).getmAfterOrderPrice());
-				
+				takeOrderDetailList.get(position).setmPriceTotal(priceTotal);
+				takeOrderDetailList.get(position).setmNote(note.getText().toString());
+
 				dialog.dismiss();
 				
 				//reload

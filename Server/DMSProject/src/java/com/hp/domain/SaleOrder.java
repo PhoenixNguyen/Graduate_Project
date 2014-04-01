@@ -65,6 +65,17 @@ public class SaleOrder {
     @Column(name="hoadonbanhang_nguoi_sua")
     private String mEditer;
 
+    @Column(name="hoadonbanhang_ghi_chu")
+    private String mNote;
+
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
+    
     public SaleOrder(String mID, Timestamp mTakeOrderDate, Timestamp mDeliveryDate, String mCustomerID, String mCustomerName, String mCustomerAddress, String mPhoneNumber, String mDeliveryAddress, String mShippingVehicle, Float mTax, Float mBeforePrice, Float mAfterPrivate, Float mDiscount, Integer mOrderStatus, Timestamp mOrderEstablishDate, Timestamp mOrderEditDate, String mCreater, String mEditer) {
         this.mID = mID;
         this.mTakeOrderDate = mTakeOrderDate;

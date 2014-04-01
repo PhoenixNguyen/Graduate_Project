@@ -22,18 +22,28 @@ public class TakeOrderDetail {
     private float mAfterOrderPrice;
     private float mBeforeOrderPrice;
     private float mTax;
-    private float mDiscount;
+    private int mDiscount;
     private float mPriceTotal;
     private String mStockID;
     private int mNumber;
     private String mUnit;
     private float mExchangeRate;
     
-    public TakeOrderDetail(String mTakeOrderID, int mLine, String mProductID,
+    private String mNote;
+    
+    public String getmNote() {
+		return mNote;
+	}
+
+	public void setmNote(String mNote) {
+		this.mNote = mNote;
+	}
+
+	public TakeOrderDetail(String mTakeOrderID, int mLine, String mProductID,
 			String mBarcode, String mProductName, float mAfterOrderPrice,
-			float mBeforeOrderPrice, float mTax, float mDiscount,
+			float mBeforeOrderPrice, float mTax, int mDiscount,
 			float mPriceTotal, String mStockID, int mNumber, String mUnit,
-			float mExchangeRate) {
+			float mExchangeRate, String mNote) {
 		super();
 		this.mTakeOrderID = mTakeOrderID;
 		this.mLine = mLine;
@@ -49,6 +59,7 @@ public class TakeOrderDetail {
 		this.mNumber = mNumber;
 		this.mUnit = mUnit;
 		this.mExchangeRate = mExchangeRate;
+		this.mNote = mNote;
 	}
 
     public TakeOrderDetail(){
@@ -126,11 +137,11 @@ public class TakeOrderDetail {
         this.mTax = mTax;
     }
 
-    public float getmDiscount() {
+    public int getmDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(float mDiscount) {
+    public void setmDiscount(int mDiscount) {
         this.mDiscount = mDiscount;
     }
 

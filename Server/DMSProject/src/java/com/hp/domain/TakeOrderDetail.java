@@ -43,7 +43,7 @@ public class TakeOrderDetail {
     @Column(name="chitietdondathang_thue", nullable = true)
     private Float mTax;
     @Column(name="chitietdondathang_giam_gia" , nullable = true)
-    private Float mDiscount;
+    private Integer mDiscount;
     @Column(name="chitietdondathang_thanh_tien", nullable = true)
     private Float mPriceTotal;
     @Column(name="chitietdondathang_ma_kho", nullable = true)
@@ -54,6 +54,16 @@ public class TakeOrderDetail {
     private String mUnit;
     @Column(name="chitietdondathang_ty_gia", nullable = true)
     private Float mExchangeRate;
+    @Column(name="chitietdondathang_ghi_chu")
+    private String mNote;
+
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
     
     public Object[] toArray(){
         return new Object[] {
@@ -170,11 +180,11 @@ public class TakeOrderDetail {
         this.mTax = mTax;
     }
 
-    public Float getmDiscount() {
+    public Integer getmDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(Float mDiscount) {
+    public void setmDiscount(Integer mDiscount) {
         this.mDiscount = mDiscount;
     }
 

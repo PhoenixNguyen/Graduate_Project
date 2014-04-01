@@ -36,10 +36,26 @@
 	        android:id="@+id/title"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:textSize="20sp"
 	        android:text="@string/order_title"
 	        />
-    	
+    	<TextView 
+	        android:id="@+id/cus_id"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	        />
+    	<TextView 
+	        android:id="@+id/discount"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	        />
+    	<TextView 
+	        android:id="@+id/valuetotal"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	        />
 	    <EditText 
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"

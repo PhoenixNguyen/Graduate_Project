@@ -186,7 +186,10 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 				Intent intent = new Intent(getApplicationContext(),
 						activityClass);
 				intent.putExtra("ORDER_ID", selectedValue.getmID());
-
+				intent.putExtra("CUS_ID", selectedValue.getmCustomerID());
+				intent.putExtra("DISCOUNT", selectedValue.getmDiscount());
+				intent.putExtra("SUM_TOTAL", selectedValue.getmAfterPrivate());
+				
 				startActivity(intent);
 		        
 				dialog.dismiss();
@@ -345,7 +348,7 @@ public class TakeOrdersManagerActivity extends Activity implements OnClickListen
 				Intent intent = new Intent(getApplicationContext(),
 						TakeOrdersDetailManagerActivity.class);
 				intent.putExtra("ORDER_ID", id[i].getText().toString());
-
+				
 				startActivity(intent);
 			}
 	}

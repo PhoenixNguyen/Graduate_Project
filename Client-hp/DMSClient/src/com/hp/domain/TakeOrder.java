@@ -40,6 +40,16 @@ public class TakeOrder {
     private String mCreater;
     private String mEditer;
 
+    private String mNote;
+
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
+    
     @Override
 	public String toString() {
 		return mCustomerID +" "+ mCustomerName;

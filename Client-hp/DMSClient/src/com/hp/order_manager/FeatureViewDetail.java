@@ -65,4 +65,12 @@ public final class FeatureViewDetail extends FrameLayout {
     public synchronized void setValue(String value) {
         ((TextView) (findViewById(R.id.total_value))).setText(value);
     }
+    
+    public synchronized void setOriginalPrice(String value) {
+        ((TextView) (findViewById(R.id.origin))).setText(value);
+    }
+    
+    public synchronized void setDiscount(String value) {
+        ((TextView) (findViewById(R.id.discount))).setText(value);
+    }
 }

@@ -61,6 +61,10 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	public ImageButton new_order_detail_bt;
 	
+	private String cus_id;
+	private float discount;
+	private float valuetotal;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,17 +73,19 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		new_order_detail_bt = (ImageButton)findViewById(R.id.new_order_detail_bt);
 				
 		order_title = (TextView)findViewById(R.id.order_title_tv);
-		//init item commons
-		init();
 		
 		Intent intent = getIntent();
 		order_id = intent.getStringExtra("ORDER_ID");
+		cus_id = intent.getStringExtra("CUS_ID");
+		discount = intent.getFloatExtra("DISCOUNT", 0);
+		valuetotal = intent.getFloatExtra("SUM_TOTAL", 0);
 		
 		TextView title = (TextView)findViewById(R.id.title);
 		
-		title.setText(""+order_id);
+		title.setText("Mã HĐ: "+order_id);
 		
-		
+		//init item commons
+		init();
 		
 		getOrderList();
 		addListView();
@@ -91,6 +97,17 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		updateData = "updateDetailOrder";
 		deleteData = "deleteDetailOrder";
 		
+		TextView cus_id0 = (TextView)findViewById(R.id.cus_id);
+		TextView discount0 = (TextView)findViewById(R.id.discount);
+		TextView valuetotal0 = (TextView)findViewById(R.id.valuetotal);
+		
+		cus_id0.setVisibility(View.VISIBLE);
+		discount0.setVisibility(View.VISIBLE);
+		valuetotal0.setVisibility(View.VISIBLE);
+		
+		cus_id0.setText("Mã KH: " + cus_id);
+		discount0.setText("Giảm giá (%): " + discount);
+		valuetotal0.setText("Tổng giá trị: " + valuetotal);
 	}
 	
 	public void addListView() {
@@ -132,13 +149,20 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		dialog.setTitle("Thay đổi số lượng");
 
 		// set the custom dialog components - text, image and button
-		TextView text = (TextView) dialog.findViewById(R.id.text);
-		text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
+		TextView text = (TextView) dialog.findViewById(R.id.name);
+		text.setText(""+selectedValue.getmProductName());
 
 		TextView price = (TextView) dialog.findViewById(R.id.price);
-		price.setText("Giá sản phẩm: "+selectedValue.getmBeforeOrderPrice());
+		price.setText(""+selectedValue.getmBeforeOrderPrice());
+		
+		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
+		discount.setText(selectedValue.getmDiscount()+"");
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
+		count.setText(selectedValue.getmNumber()+"");
+		
+		final EditText note = (EditText) dialog.findViewById(R.id.note);
+		note.setText(selectedValue.getmNote()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -147,12 +171,36 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				
-				if(count == null)
-					return;
+//				if(count == null)
+//					return;
+//				
+//				int number = Integer.parseInt(count.getText().toString());
 				
-				int number = Integer.parseInt(count.getText().toString());
+				String count2 = count.getText().toString();
+				String discount2 = discount.getText().toString();
+				
+				int number = 0;
+				int discount = 0;
+				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
+					number = Integer.parseInt(count2);
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
+				if(discount2.compareTo("") != 0 && String.valueOf(discount2).length() < 10)
+					discount = Integer.parseInt(discount2);
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
+				float priceTotal = (float)Math.ceil((selectedValue.getmAfterOrderPrice() - 
+						selectedValue.getmAfterOrderPrice() * discount / 100) * number);
+				selectedValue.setmDiscount(discount);
 				selectedValue.setmNumber(number);
-				selectedValue.setmPriceTotal(selectedValue.getmAfterOrderPrice() * number);
+				selectedValue.setmPriceTotal(priceTotal);
+				selectedValue.setmNote(note.getText().toString());
 				
 				//Sys
 				

@@ -43,7 +43,7 @@ public class InventoryManagerDetail {
     @Column(name="kiemkhochitiet_thue", nullable = true)
     private Float mTax;
     @Column(name="kiemkhochitiet_giam_gia" , nullable = true)
-    private Float mDiscount;
+    private Integer mDiscount;
     @Column(name="kiemkhochitiet_thanh_tien", nullable = true)
     private Float mPriceTotal;
     @Column(name="kiemkhochitiet_ma_kho", nullable = true)
@@ -55,6 +55,16 @@ public class InventoryManagerDetail {
     @Column(name="kiemkhochitiet_ty_gia", nullable = true)
     private Float mExchangeRate;
     
+    @Column(name="kiemkhochitiet_ghi_chu")
+    private String mNote;
+
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
     public Object[] toArray(){
         return new Object[] {
             mTakeOrderID,
@@ -170,11 +180,11 @@ public class InventoryManagerDetail {
         this.mTax = mTax;
     }
 
-    public Float getmDiscount() {
+    public Integer getmDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(Float mDiscount) {
+    public void setmDiscount(Integer mDiscount) {
         this.mDiscount = mDiscount;
     }
 

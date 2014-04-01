@@ -131,7 +131,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 		command = "getProductsList";
 		customerID = "";
-		timeLine = true;
+		
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){
@@ -241,10 +241,11 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		EditText price = (EditText) dialog.findViewById(R.id.price);
 		price.setText(""+selectedValue.getmExportPrices());
 		
-//		TextView discount = (TextView) dialog.findViewById(R.id.discount);
-//		discount.setText("Giảm giá: 0.0" );
+		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
+		
+		final EditText note = (EditText) dialog.findViewById(R.id.note);
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -255,14 +256,28 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 			
 				System.out.println("__ "+ line);
 				String count2 = count.getText().toString();
+				String discount2 = discount.getText().toString();
+				
 				int number = 0;
+				int discount = 0;
 				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
 					number = Integer.parseInt(count2);
 				else{
 					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
 					return;
 				}
+				
+				if(discount2.compareTo("") != 0 && String.valueOf(discount2).length() < 10)
+					discount = Integer.parseInt(discount2);
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmTotal(number);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmDiscount(discount);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmNote(note.getText().toString());
+				
 				Collections.sort(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				Collections.reverse(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				

@@ -28,7 +28,9 @@ public class ReturnOrderDetail {
     @Column(name="chitietdontrahang_stt")
     private Integer mSerial;
 
-    public ReturnOrderDetail(String mTakeOrderID, Integer mLine, String mProductID, String mBarcode, String mProductName, Float mAfterOrderPrice, Float mBeforeOrderPrice, Float mTax, Float mDiscount, Float mPriceTotal, String mStockID, Integer mNumber, String mUnit, Float mExchangeRate) {
+    public ReturnOrderDetail(String mTakeOrderID, Integer mLine, String mProductID, String mBarcode, 
+            String mProductName, Float mAfterOrderPrice, Float mBeforeOrderPrice, Float mTax, 
+            Integer mDiscount, Float mPriceTotal, String mStockID, Integer mNumber, String mUnit, Float mExchangeRate) {
         this.mTakeOrderID = mTakeOrderID;
         this.mLine = mLine;
         this.mProductID = mProductID;
@@ -61,7 +63,7 @@ public class ReturnOrderDetail {
     @Column(name="chitietdontrahang_thue", nullable = true)
     private Float mTax;
     @Column(name="chitietdontrahang_giam_gia" , nullable = true)
-    private Float mDiscount;
+    private Integer mDiscount;
     @Column(name="chitietdontrahang_thanh_tien", nullable = true)
     private Float mPriceTotal;
     @Column(name="chitietdontrahang_ma_kho", nullable = true)
@@ -72,7 +74,16 @@ public class ReturnOrderDetail {
     private String mUnit;
     @Column(name="chitietdontrahang_ty_gia", nullable = true)
     private Float mExchangeRate;
-    
+    @Column(name="chitietdontrahang_ghi_chu")
+    private String mNote;
+
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
     public ReturnOrderDetail(){
         
     }
@@ -165,11 +176,11 @@ public class ReturnOrderDetail {
         this.mTax = mTax;
     }
 
-    public Float getmDiscount() {
+    public Integer getmDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(Float mDiscount) {
+    public void setmDiscount(Integer mDiscount) {
         this.mDiscount = mDiscount;
     }
 

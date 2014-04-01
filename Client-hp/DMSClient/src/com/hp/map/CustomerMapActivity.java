@@ -605,6 +605,8 @@ public class CustomerMapActivity extends FragmentActivity
 		//Reset values and init it
 		TakeOrder_ProductActivity.mProductsMap.clear();
 		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
+		TakeOrder_ProductActivity.timeLine = true;
+		TakeOrder_ProductActivity.add_take_order_detail = false;
 		
 		startActivity(new Intent(context, TakeOrder_TabActivity.class));
 	}

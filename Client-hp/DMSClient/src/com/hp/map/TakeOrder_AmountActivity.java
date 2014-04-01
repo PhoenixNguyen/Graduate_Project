@@ -59,6 +59,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 	public TextView sum;
 	public LinearLayout linearlayout_discount;
 	
+	public EditText note;
+	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.amount);
@@ -76,27 +78,9 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		discount_percent = (EditText)findViewById(R.id.discount_percent);
 		discount_value = (EditText)findViewById(R.id.discount_value);
 		sum_value = (EditText)findViewById(R.id.sum_value);
-	
-		if(!TakeOrder_ProductActivity.add_take_order_detail && CustomerMapActivity.mSelectedCustomer != null){
-			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
-			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
-		}
-		else
-		{
-			for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
-				System.out.println("__++"+TakeOrdersManagerActivity.takeOrderList.get(i).getmID() +" -- " + TakeOrder_ProductActivity.take_order_id);
-	        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 
-	        			TakeOrder_ProductActivity.take_order_id) == 0){
-	        		System.out.println(" ACC ");
-	        		customer_id.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmID());
-	    			customer_name.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmCustomerName());
-	        		break;
-	        	}
-	        }
-			
-			
-		}
 		
+		note = (EditText)findViewById(R.id.note);
+	
 		save = (Button)findViewById(R.id.save);
 		
 		//init something
@@ -120,6 +104,41 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		
 		save.setOnClickListener(this);
 		
+		
+
+		if(!TakeOrder_ProductActivity.add_take_order_detail && CustomerMapActivity.mSelectedCustomer != null){
+			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
+			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
+		}
+		else
+		{
+			if(TakeOrdersManagerActivity.takeOrderList != null)
+			for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
+				System.out.println("__++"+TakeOrdersManagerActivity.takeOrderList.get(i).getmID() +" -- " + TakeOrder_ProductActivity.take_order_id);
+	        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 
+	        			TakeOrder_ProductActivity.take_order_id) == 0){
+	        		System.out.println(" ACC ");
+	        		customer_id.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmID());
+	    			customer_name.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmCustomerName());
+	    			
+	    			//Show discount
+	    			discount_percent.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmDiscount() +"");
+	    			//set discount
+					discount = (float)Math.ceil(pricesTotal*TakeOrdersManagerActivity.takeOrderList.get(i).getmDiscount()/100);
+					
+					discount_value.setText((new BigDecimal(discount)).toString());
+					
+					//set sume
+					sum_value.setText((new BigDecimal(pricesTotal - discount)).toString());
+					
+					note.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmNote());
+	        		break;
+	        	}
+	        }
+			
+			
+		}
+		
 	}
 	
 	public void init(){
@@ -138,8 +157,23 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		dialog.setContentView(R.layout.order_product_dialog);
 		dialog.setTitle("Đặt giảm giá");
 		
+		TextView text0 = (TextView) dialog.findViewById(R.id.name);
+		text0.setVisibility(View.GONE);
+		TextView price0 = (TextView) dialog.findViewById(R.id.price);
+		price0.setVisibility(View.GONE);
+		EditText discount0 = (EditText) dialog.findViewById(R.id.discount);
+		discount0.setVisibility(View.GONE);
+		EditText note0 = (EditText) dialog.findViewById(R.id.note);
+		note0.setVisibility(View.GONE);
+		
+		TextView product_name = (TextView) dialog.findViewById(R.id.product_name);
+		product_name.setVisibility(View.GONE);
+		TextView product_price = (TextView) dialog.findViewById(R.id.product_price);
+		product_price.setVisibility(View.GONE);
+		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
 		count.setHint("Phần trăm");
+		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
 		// if button is clicked, close the custom dialog
@@ -155,12 +189,14 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
 					return;
 				}
+				
+				//set discount
+				discount = (float)Math.ceil(pricesTotal*number/100);
+				
 				discount_percent.setText(number+"");
-				discount_value.setText((new BigDecimal(pricesTotal*number/100)).toString());
+				discount_value.setText((new BigDecimal(discount)).toString());
 				
 				//set sume
-				discount = pricesTotal*number/100;
-				
 				sum_value.setText((new BigDecimal(pricesTotal - discount)).toString());
 				dialog.dismiss();
 			}
@@ -207,8 +243,10 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(
 			        			TakeOrder_ProductActivity.take_order_id) == 0){
 			        		order = TakeOrdersManagerActivity.takeOrderList.get(i);
-			        		order.setmDiscount(Integer.parseInt(discount_percent.getText().toString()));
+			        		order.setmDiscount(Float.parseFloat(discount_percent.getText().toString()));
 			        		order.setmAfterPrivate(pricesTotal - discount);
+			        		order.setmNote(note.getText().toString());
+			        		
 			        		break;
 			        	}
 			        }
@@ -269,6 +307,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			            // refresh customers
 			            resetValue();
 			            TakeOrder_ProductActivity.add_take_order_detail = false;
+			            TakeOrder_ProductActivity.timeLine = true;
 			            InventoryManagerDetailActivity.add_inventory_detail = false;
 			            
 			        }else
@@ -387,6 +426,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		TakeOrder_ReViewActivity.takeOrderDetailList.clear();
 		pricesTotal = 0;
 		discount = 0;
+		TakeOrder_ProductActivity.timeLine = true;
+		TakeOrder_ProductActivity.add_take_order_detail = false;
 		
 		onResume();
 	}

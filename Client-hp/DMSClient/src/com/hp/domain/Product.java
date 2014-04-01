@@ -30,6 +30,22 @@ public class Product implements Comparable<Product> {
     private String mProductImage;
 
     private int mTotal;
+    private int mDiscount;
+    
+    public int getmDiscount() {
+		return mDiscount;
+	}
+	public void setmDiscount(int mDiscount) {
+		this.mDiscount = mDiscount;
+	}
+	public String getmNote() {
+		return mNote;
+	}
+	public void setmNote(String mNote) {
+		this.mNote = mNote;
+	}
+
+	private String mNote;
     
     public int compareTo(Product a) {
         if ( this.mTotal > a.mTotal )

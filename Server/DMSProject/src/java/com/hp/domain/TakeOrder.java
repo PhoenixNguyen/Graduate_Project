@@ -63,7 +63,17 @@ public class TakeOrder {
     private String mCreater;
     @Column(name="hoadondathang_nguoi_sua")
     private String mEditer;
+    @Column(name="hoadondathang_ghi_chu")
+    private String mNote;
 
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
+    
     public Object[] toArray(){
         return new Object[]{
             mID,

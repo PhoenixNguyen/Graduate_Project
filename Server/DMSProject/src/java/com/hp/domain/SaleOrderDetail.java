@@ -44,7 +44,7 @@ public class SaleOrderDetail {
     @Column(name="chitietdonbanhang_thue", nullable = true)
     private Float mTax;
     @Column(name="chitietdonbanhang_giam_gia" , nullable = true)
-    private Float mDiscount;
+    private Integer mDiscount;
     @Column(name="chitietdonbanhang_thanh_tien", nullable = true)
     private Float mPriceTotal;
     @Column(name="chitietdonbanhang_ma_kho", nullable = true)
@@ -55,8 +55,20 @@ public class SaleOrderDetail {
     private String mUnit;
     @Column(name="chitietdonbanhang_ty_gia", nullable = true)
     private Float mExchangeRate;
+    @Column(name="chitietdonbanhang_ghi_chu")
+    private String mNote;
 
-    public SaleOrderDetail(String mTakeOrderID, Integer mLine, String mProductID, String mBarcode, String mProductName, Float mAfterOrderPrice, Float mBeforeOrderPrice, Float mTax, Float mDiscount, Float mPriceTotal, String mStockID, Integer mNumber, String mUnit, Float mExchangeRate) {
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
+    
+    public SaleOrderDetail(String mTakeOrderID, Integer mLine, String mProductID, String mBarcode, 
+            String mProductName, Float mAfterOrderPrice, Float mBeforeOrderPrice, Float mTax, 
+            Integer mDiscount, Float mPriceTotal, String mStockID, Integer mNumber, String mUnit, Float mExchangeRate) {
         this.mTakeOrderID = mTakeOrderID;
         this.mLine = mLine;
         this.mProductID = mProductID;
@@ -164,11 +176,11 @@ public class SaleOrderDetail {
         this.mTax = mTax;
     }
 
-    public Float getmDiscount() {
+    public Integer getmDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(Float mDiscount) {
+    public void setmDiscount(Integer mDiscount) {
         this.mDiscount = mDiscount;
     }
 

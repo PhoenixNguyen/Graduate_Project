@@ -64,6 +64,16 @@ public class InventoryManager {
     @Column(name="kiemkho_nguoi_sua")
     private String mEditer;
 
+    @Column(name="kiemkho_ghi_chu")
+    private String mNote;
+
+    public String getmNote() {
+        return mNote;
+    }
+
+    public void setmNote(String mNote) {
+        this.mNote = mNote;
+    }
     public Object[] toArray(){
         return new Object[]{
             mID,

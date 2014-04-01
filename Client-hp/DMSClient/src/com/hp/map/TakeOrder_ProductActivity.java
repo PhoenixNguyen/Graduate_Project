@@ -23,6 +23,7 @@ import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -130,6 +131,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 		command = "getProductsList";
 		customerID = "";
+		timeLine = true;
 	}
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){
@@ -228,15 +230,16 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
  		//Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
  		// custom dialog
 		final Dialog dialog = new Dialog(context);
+		
 		dialog.setContentView(R.layout.order_product_dialog);
 		dialog.setTitle("Số lượng");
 
 		// set the custom dialog components - text, image and button
-		TextView text = (TextView) dialog.findViewById(R.id.text);
-		text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
+		EditText text = (EditText) dialog.findViewById(R.id.name);
+		text.setText(""+selectedValue.getmProductName());
 
-		TextView price = (TextView) dialog.findViewById(R.id.price);
-		price.setText("Giá sản phẩm: "+selectedValue.getmExportPrices());
+		EditText price = (EditText) dialog.findViewById(R.id.price);
+		price.setText(""+selectedValue.getmExportPrices());
 		
 //		TextView discount = (TextView) dialog.findViewById(R.id.discount);
 //		discount.setText("Giảm giá: 0.0" );
@@ -295,6 +298,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 			}
 			
 		});
+		dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		dialog.show();
      }
 }

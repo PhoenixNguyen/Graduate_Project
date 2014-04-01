@@ -1,66 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
-    android:layout_marginLeft="5dp" >
+    android:layout_marginLeft="5dp" 
+    android:orientation="vertical"
+    >
  
-     
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="fill_parent"
+     <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:layout_marginLeft="5dp" 
+	    android:orientation="horizontal"
+	    >
+	    <TextView
+        android:layout_weight="0.4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="@+string/product_name"
         />
+	    <EditText
+	        android:id="@+id/name"
+	        android:layout_weight="0.6"
+        	android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:enabled="false"
+	        android:gravity="center"
+	        />
+    </LinearLayout>
     
- 	<TextView
-        android:id="@+id/price"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text"
-        />
- 	<TextView
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:layout_marginLeft="5dp" 
+	    android:orientation="horizontal"
+	    >
+	    <TextView
+	        android:layout_weight="0.4"
+        	android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@+string/product_price_title"
+	        />
+	 	<EditText
+	        android:id="@+id/price"
+	        android:layout_weight="0.6"
+       		android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:enabled="false"
+	        />
+	 </LinearLayout>
+ 	<!-- TextView
         android:id="@+id/discount"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/price"
-        />
- 	<EditText
-        android:id="@+id/count"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/discount"
-        android:background="@color/white"
-        android:hint="số lượng"
-        android:numeric="integer"
-        />
-     <Button
-        android:id="@+id/dialogButtonYES"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text=" YES "
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_below="@+id/count"
-        />
-	<Button
-        android:id="@+id/dialogButtonNO"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text=" NO "
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_below="@+id/count"
-        android:layout_toRightOf="@+id/dialogButtonYES"
-        />
-	<Button
-        android:id="@+id/dialogButtonDelete"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text=" Delete "
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_below="@+id/count"
-        android:layout_toRightOf="@+id/dialogButtonNO"
-        android:visibility="invisible"
-        />
-</RelativeLayout>
+        /-->
+ 	 <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" 
+		android:layout_marginLeft="5dp" 
+		android:orientation="horizontal"
+		>
+		 	<EditText
+		        android:id="@+id/count"
+		        android:layout_weight="0.5"
+	        	android:layout_width="0dp"
+		        android:layout_height="wrap_content"
+		        android:hint="số lượng"
+		        android:numeric="integer"
+		        />
+		 	<EditText
+		        android:id="@+id/discount"
+		        android:layout_weight="0.5"
+	        	android:layout_width="0dp"
+		        android:layout_height="wrap_content"
+		        android:hint="giảm giá (%)"
+		        android:numeric="integer"
+		        />
+ 	   </LinearLayout>
+ 	   
+ 	 <EditText
+	        android:id="@+id/note"
+        	android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:hint="ghi chú"
+	        />
+ 	 
+ 	 <LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" 
+		android:layout_marginLeft="5dp" 
+		android:orientation="horizontal"
+		>
+	     <Button
+	        android:id="@+id/dialogButtonYES"
+	        android:layout_weight="0.4"
+        	android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@+string/product_btt_yes"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginRight="5dp"
+	        />
+		<Button
+	        android:id="@+id/dialogButtonNO"
+	        android:layout_weight="0.3"
+        	android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@+string/product_btt_no"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginRight="5dp"
+	        />
+		<Button
+	        android:id="@+id/dialogButtonDelete"
+	        android:layout_weight="0.3"
+        	android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@+string/product_btt_delete"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginRight="5dp"
+	        android:visibility="invisible"
+	        />
+	</LinearLayout>
+</LinearLayout>

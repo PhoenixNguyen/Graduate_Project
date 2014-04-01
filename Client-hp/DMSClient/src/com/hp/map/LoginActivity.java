@@ -167,7 +167,7 @@ public class LoginActivity extends Activity {
 
             LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             MyLocationListener locListen = new MyLocationListener();
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 100, locListen);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 50, locListen);
 
             threadLooper = Looper.myLooper();
 

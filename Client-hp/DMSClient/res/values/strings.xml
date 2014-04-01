@@ -92,4 +92,11 @@
 	
 	<!-- stock_manager -->
 	<string name="stock_manager">Quản lý kho</string>
+	
+	<!-- Product dialog -->
+	<string name="product_name">Tên sản phẩm</string>
+	<string name="product_price_title">Giá</string>
+	<string name="product_btt_yes">Chấp nhận</string>
+	<string name="product_btt_no">Hủy</string>
+	<string name="product_btt_delete">Xóa</string>
 </resources>

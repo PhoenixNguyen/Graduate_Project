@@ -31,8 +31,15 @@ public class Product implements Comparable<Product> {
 
     private int mTotal;
     private int mDiscount;
+    private int mPromotionalProductAmounts;
     
-    public int getmDiscount() {
+    public int getmPromotionalProductAmounts() {
+		return mPromotionalProductAmounts;
+	}
+	public void setmPromotionalProductAmounts(int mPromotionalProductAmounts) {
+		this.mPromotionalProductAmounts = mPromotionalProductAmounts;
+	}
+	public int getmDiscount() {
 		return mDiscount;
 	}
 	public void setmDiscount(int mDiscount) {

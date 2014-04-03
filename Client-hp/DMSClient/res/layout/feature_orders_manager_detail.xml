@@ -121,4 +121,32 @@
 	    android:layout_weight="0.5"
 	    />
 	</LinearLayout>
+	
+  <LinearLayout 
+  android:layout_width= "match_parent"
+  android:layout_height="wrap_content"
+  android:layout_margin="5dp"
+  android:orientation="horizontal"
+  android:layout_weight="0.3"
+  android:background="@color/orange"
+  android:layout_marginTop="30dp"
+  >
+	  <TextView
+	    android:id="@+id/promotional_product_title"
+	    android:layout_width="0dip"
+	    android:layout_height="wrap_content"
+	    android:textSize="16sp"
+	    android:layout_weight="0.5"
+	    android:text="Khuyến mãi:"
+	    android:visibility="gone"
+	    />
+	  <TextView
+	    android:id="@+id/promotional_product"
+	    android:layout_width="0dip"
+	    android:layout_height="wrap_content"
+	    android:textSize="16sp"
+	    android:layout_weight="0.5"
+	    android:visibility="gone"
+	    />
+	</LinearLayout>
 </LinearLayout>

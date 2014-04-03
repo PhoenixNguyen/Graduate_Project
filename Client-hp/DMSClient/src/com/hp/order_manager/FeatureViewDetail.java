@@ -20,6 +20,7 @@ import com.hp.map.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -72,5 +73,12 @@ public final class FeatureViewDetail extends FrameLayout {
     
     public synchronized void setDiscount(String value) {
         ((TextView) (findViewById(R.id.discount))).setText(value);
+    }
+    
+    public synchronized void setPromoionalProduct(String value) {
+        ((TextView) (findViewById(R.id.promotional_product_title))).setVisibility(View.VISIBLE);
+        TextView promotional_product = (TextView) (findViewById(R.id.promotional_product));
+        promotional_product.setVisibility(View.VISIBLE);
+        promotional_product.setText(value);
     }
 }

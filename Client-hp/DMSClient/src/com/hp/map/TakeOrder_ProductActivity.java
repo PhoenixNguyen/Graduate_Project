@@ -263,9 +263,12 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				System.out.println("__ "+ line);
 				String count2 = count.getText().toString();
 				String discount2 = discount.getText().toString();
+				String product_discount_count2 = product_discount_count.getText().toString();
 				
 				int number = 0;
 				int discount = 0;
+				int promotionalAmount = 0;
+				//sale product
 				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
 					number = Integer.parseInt(count2);
 				else{
@@ -273,6 +276,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 					return;
 				}
 				
+				//Discount
 				if(String.valueOf(discount2).length() < 10){
 					if(discount2.compareTo("") != 0){
 						discount = Integer.parseInt(discount2);
@@ -287,9 +291,20 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 					return;
 				}
 				
+				//promotinal product
+				if(String.valueOf(product_discount_count2).length() < 10){
+					if(product_discount_count2.compareTo("") != 0)
+						promotionalAmount = Integer.parseInt(product_discount_count2);
+				}
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmTotal(number);
 				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmDiscount(discount);
 				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmNote(note.getText().toString());
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmPromotionalProductAmounts(promotionalAmount);
 				
 				Collections.sort(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				Collections.reverse(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));

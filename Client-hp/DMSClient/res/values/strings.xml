@@ -17,6 +17,7 @@
     <string name="customer_title">Danh sách khách hàng của bạn</string>
     <string name="search_hint">Gõ mã hoặc tên khách hàng</string>
     <string name="search_button_title">Tìm kiếm</string>
+    <string name="add_button">Thêm</string>
     
     <!-- Label for main menu -->
     <string name="customer_list">Danh sách khách hàng</string>
@@ -103,5 +104,17 @@
 	<string name="product_discount_title">Sản phẩm khuyến mãi</string>
 	<string name="product_count_hint">số lượng</string>
 	<string name="product_discount_hint">giảm giá (%)</string>
+	
+	<!-- insert customers -->
+	<string name="insert_title">Thêm mới</string>
+	<string name="cus_name">Tên khách hàng</string>
+	<string name="cus_id">Mã khách hàng</string>
+	<string name="cus_state">Tỉnh thành</string>
+	<string name="cus_line">Tuyến bán hàng</string>
+	<string name="cus_area">Khu vực</string>
+	<string name="cus_address">Địa chỉ</string>
+	<string name="cus_phone">Điện thoại</string>
+	<string name="cus_fax">Fax</string>
+	<string name="cus_note">Ghi chú</string>
 	
 </resources>

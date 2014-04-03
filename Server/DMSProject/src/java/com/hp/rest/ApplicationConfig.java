@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.hp.rest.GenericResource.class);
+        resources.add(com.hp.rest.InputResource.class);
         resources.add(com.hp.rest.OrdersHandle.class);
     }
     

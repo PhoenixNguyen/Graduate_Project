@@ -73,7 +73,7 @@ public class OrdersHandle {
     private UriInfo context;
 
     /**
-     * Creates a new instance of GenericResource
+     * Creates a new instance of OrdersHandle
      */
     public OrdersHandle() {
     }

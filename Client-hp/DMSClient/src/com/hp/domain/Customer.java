@@ -14,32 +14,39 @@ package com.hp.domain;
 public class Customer {
     
     private int mStt;
-    private String mTinhThanh;
-    private String mTuyenBanHangThu;
-    private String mMaNhanVien;
-    private String mX;
     private String mMaDoiTuong;
-    private String mDoiTuong;
-    private double mNoDKy;
-    private double mCoDKy;
-    private double mNoTKy;
-    private double mTienBan;
-    private double mCoTKy;
-    private double mCKGG;
-    private double mNhapLai;
-    private double mNoCKy;
-    private double mCoCKy;
-    private double mDoanhThu;
-    private double mPhanTramNoChiaThu;
-    private double mNoToiDa;
-    private String mDaiDien;
+	private String mDoiTuong;
+    private String mMaNhanVien;
+	private String mTinhThanh;
+    private String mTuyenBanHangThu;
+    private String mX;    
     private String mDiaChi;
     private String mDienThoai;
     private String mFax;
     private String mGhiChu;
-    
     private double mXCoordinates;
     private double mYCoordinates;
+
+    public Customer(){
+    	
+    }
+    
+    public Customer(String mMaDoiTuong, String mDoiTuong, String mMaNhanVien,
+			String mTinhThanh, String mTuyenBanHangThu, String mX,
+			String mDiaChi, String mDienThoai, String mFax, String mGhiChu) {
+		super();
+		this.mMaDoiTuong = mMaDoiTuong;
+		this.mDoiTuong = mDoiTuong;
+		this.mMaNhanVien = mMaNhanVien;
+		this.mTinhThanh = mTinhThanh;
+		this.mTuyenBanHangThu = mTuyenBanHangThu;
+		this.mX = mX;
+		this.mDiaChi = mDiaChi;
+		this.mDienThoai = mDienThoai;
+		this.mFax = mFax;
+		this.mGhiChu = mGhiChu;
+	}
+
 
     public String toString(){
     	return mMaDoiTuong + " " + mDoiTuong;
@@ -100,110 +107,6 @@ public class Customer {
         this.mDoiTuong = mDoiTuong;
     }
 
-    public double getmNoDKy() {
-        return mNoDKy;
-    }
-
-    public void setmNoDKy(double mNoDKy) {
-        this.mNoDKy = mNoDKy;
-    }
-
-    public double getmCoDKy() {
-        return mCoDKy;
-    }
-
-    public void setmCoDKy(double mCoDKy) {
-        this.mCoDKy = mCoDKy;
-    }
-
-    public double getmNoTKy() {
-        return mNoTKy;
-    }
-
-    public void setmNoTKy(double mNoTKy) {
-        this.mNoTKy = mNoTKy;
-    }
-
-    public double getmTienBan() {
-        return mTienBan;
-    }
-
-    public void setmTienBan(double mTienBan) {
-        this.mTienBan = mTienBan;
-    }
-
-    public double getmCoTKy() {
-        return mCoTKy;
-    }
-
-    public void setmCoTKy(double mCoTKy) {
-        this.mCoTKy = mCoTKy;
-    }
-
-    public double getmCKGG() {
-        return mCKGG;
-    }
-
-    public void setmCKGG(double mCKGG) {
-        this.mCKGG = mCKGG;
-    }
-
-    public double getmNhapLai() {
-        return mNhapLai;
-    }
-
-    public void setmNhapLai(double mNhapLai) {
-        this.mNhapLai = mNhapLai;
-    }
-
-    public double getmNoCKy() {
-        return mNoCKy;
-    }
-
-    public void setmNoCKy(double mNoCKy) {
-        this.mNoCKy = mNoCKy;
-    }
-
-    public double getmCoCKy() {
-        return mCoCKy;
-    }
-
-    public void setmCoCKy(double mCoCKy) {
-        this.mCoCKy = mCoCKy;
-    }
-
-    public double getmDoanhThu() {
-        return mDoanhThu;
-    }
-
-    public void setmDoanhThu(double mDoanhThu) {
-        this.mDoanhThu = mDoanhThu;
-    }
-
-    public double getmPhanTramNoChiaThu() {
-        return mPhanTramNoChiaThu;
-    }
-
-    public void setmPhanTramNoChiaThu(double mPhanTramNoChiaThu) {
-        this.mPhanTramNoChiaThu = mPhanTramNoChiaThu;
-    }
-
-    public double getmNoToiDa() {
-        return mNoToiDa;
-    }
-
-    public void setmNoToiDa(double mNoToiDa) {
-        this.mNoToiDa = mNoToiDa;
-    }
-
-    public String getmDaiDien() {
-        return mDaiDien;
-    }
-
-    public void setmDaiDien(String mDaiDien) {
-        this.mDaiDien = mDaiDien;
-    }
-
     public String getmDiaChi() {
         return mDiaChi;
     }
@@ -252,7 +155,4 @@ public class Customer {
         this.mYCoordinates = mYCoordinates;
     }
     
-    public Customer(){
-        
-    }
 }

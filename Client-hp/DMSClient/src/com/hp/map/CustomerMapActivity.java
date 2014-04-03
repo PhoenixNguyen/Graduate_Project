@@ -155,6 +155,7 @@ public class CustomerMapActivity extends FragmentActivity
         
         //Get POSITION
         Intent i = getIntent();
+        customerSelected = null;
         customerSelected  = i.getStringExtra("POSITION_CLICK");
         
         for(int j = 0; j < Rest.customerList.size(); j++){

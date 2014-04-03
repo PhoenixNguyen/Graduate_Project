@@ -35,7 +35,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         transaction = session.beginTransaction();
         try{
             
-            session.saveOrUpdate(pCustomer);
+            session.save(pCustomer);
             session.getTransaction().commit();
         }catch(HibernateException e){
             transaction.rollback();
@@ -68,6 +68,24 @@ public class CustomerDAOImpl implements CustomerDAO {
         return true;
     }
     
+    public boolean delete(Customer pCustomer){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.delete(pCustomer);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
     //Get customers who have location
     @Override
     public List<Customer> loadCustomersWithLocations(){

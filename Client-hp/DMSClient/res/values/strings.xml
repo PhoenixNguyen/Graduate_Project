@@ -100,4 +100,8 @@
 	<string name="product_btt_yes">Chấp nhận</string>
 	<string name="product_btt_no">Hủy</string>
 	<string name="product_btt_delete">Xóa</string>
+	<string name="product_discount_title">Sản phẩm khuyến mãi</string>
+	<string name="product_count_hint">số lượng</string>
+	<string name="product_discount_hint">giảm giá (%)</string>
+	
 </resources>

@@ -68,16 +68,18 @@
 		        android:layout_weight="0.5"
 	        	android:layout_width="0dp"
 		        android:layout_height="wrap_content"
-		        android:hint="số lượng"
+		        android:hint="@+string/product_count_hint"
 		        android:numeric="integer"
+		        android:gravity="center"
 		        />
 		 	<EditText
 		        android:id="@+id/discount"
 		        android:layout_weight="0.5"
 	        	android:layout_width="0dp"
 		        android:layout_height="wrap_content"
-		        android:hint="giảm giá (%)"
+		        android:hint="@+string/product_discount_hint"
 		        android:numeric="integer"
+		        android:gravity="center"
 		        />
  	   </LinearLayout>
  	   
@@ -87,7 +89,33 @@
 	        android:layout_height="wrap_content"
 	        android:hint="ghi chú"
 	        />
- 	 
+ 	 <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:layout_marginLeft="5dp" 
+	    android:orientation="horizontal"
+	    android:background="@color/orange"
+	    android:layout_marginTop="30dp"
+	    android:layout_marginBottom="10dp"
+	    >
+	    <TextView
+	        android:id="@+id/product_discount"
+	        android:layout_weight="0.5"
+        	android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@+string/product_discount_title"
+	        android:visibility="gone"
+	        />
+	 	<EditText
+	        android:id="@+id/product_discount_count"
+	        android:layout_weight="0.5"
+       		android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:hint="@+string/product_count_hint"
+	        android:visibility="gone"
+	        />
+	 </LinearLayout>
  	 <LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" 

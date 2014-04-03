@@ -1,6 +1,7 @@
 package com.hp.map;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,7 +108,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		
 		cus_id0.setText("Mã KH: " + cus_id);
 		discount0.setText("Giảm giá (%): " + discount);
-		valuetotal0.setText("Tổng giá trị: " + valuetotal);
+		valuetotal0.setText("Tổng giá trị: " + new BigDecimal(valuetotal).toString());
 	}
 	
 	public void addListView() {
@@ -164,6 +165,12 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
 		note.setText(selectedValue.getmNote()+"");
 		
+		//discount product
+		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
+		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
+		product_discount.setVisibility(View.VISIBLE);
+		product_discount_count.setVisibility(View.VISIBLE);
+		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
 		// if button is clicked, close the custom dialog
@@ -188,10 +195,17 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 					return;
 				}
 				
-				if(discount2.compareTo("") != 0 && String.valueOf(discount2).length() < 10)
-					discount = Integer.parseInt(discount2);
+				if(String.valueOf(discount2).length() < 10){
+					if(discount2.compareTo("") != 0){
+						discount = Integer.parseInt(discount2);
+						if(discount > 100){
+							Toast.makeText(context, "Bạn đã nhập quá 100% ", Toast.LENGTH_SHORT).show();
+							return;
+						}
+					}
+				}
 				else{
-					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "Hãy nhập phần trăm ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				
@@ -277,6 +291,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 			}
 		});
 		
+		dialog.getWindow().setLayout(android.app.ActionBar.LayoutParams.FILL_PARENT, android.app.ActionBar.LayoutParams.WRAP_CONTENT);
 		dialog.show();
 		
 	}

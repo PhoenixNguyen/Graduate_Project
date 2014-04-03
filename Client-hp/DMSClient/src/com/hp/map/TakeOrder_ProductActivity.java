@@ -51,14 +51,14 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	
 	private Spinner spinner;
 	final Context context = this;
-	private int line;
+	public int line;
 	
 	public static List<TakeOrderDetail> ordersDetailList = new ArrayList<TakeOrderDetail>();
 	
-	private TextView total_value;
+	public TextView total_value;
 	
 	private EditText id_search;
-	private ProductArrayAdapter adapter;
+	public ProductArrayAdapter adapter;
 	
 	public TextView title;
 	
@@ -247,6 +247,12 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
 		
+		//discount product
+		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
+		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
+		product_discount.setVisibility(View.VISIBLE);
+		product_discount_count.setVisibility(View.VISIBLE);
+		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
 		// if button is clicked, close the custom dialog
@@ -267,10 +273,17 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 					return;
 				}
 				
-				if(discount2.compareTo("") != 0 && String.valueOf(discount2).length() < 10)
-					discount = Integer.parseInt(discount2);
+				if(String.valueOf(discount2).length() < 10){
+					if(discount2.compareTo("") != 0){
+						discount = Integer.parseInt(discount2);
+						if(discount > 100){
+							Toast.makeText(context, "Bạn đã nhập quá 100% ", Toast.LENGTH_SHORT).show();
+							return;
+						}
+					}
+				}
 				else{
-					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "Hãy nhập phần trăm ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
 					return;
 				}
 				

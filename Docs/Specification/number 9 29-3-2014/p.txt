@@ -1,0 +1,4 @@
+ton hien tai = ton dau + tong nhap - tong xuat
+
+Them chiet khau + thue ...
+Sua giao dien them khach hang

@@ -618,7 +618,11 @@ public class CustomerMapActivity extends FragmentActivity
 		//Reset values and init it
 		InventoryManager_ProductActivity.mProductsMap.clear();
 		InventoryManager_ReviewActivity.takeOrderDetailList.clear();
+		TakeOrder_ProductActivity.timeLine = true;
+		TakeOrder_ProductActivity.add_take_order_detail = false;
+		
 		startActivity(new Intent(context, InventoryManager_TabActivity.class));
+		
 		
 	}
 										       

@@ -15,6 +15,7 @@ import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Dialog;
+import android.app.ActionBar.LayoutParams;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -145,17 +146,18 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
 		note.setText(takeOrderDetailList.get(position).getmNote()+"");
 		
+		//discount product
+		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
+		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
+		product_discount.setVisibility(View.VISIBLE);
+		product_discount_count.setVisibility(View.VISIBLE);
+		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
-//						if(count == null)
-//							return;
-//						
-//						int number = Integer.parseInt(count.getText().toString());
 				
 				String count2 = count.getText().toString();
 				String discount2 = discount.getText().toString();
@@ -169,10 +171,18 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 					return;
 				}
 				
-				if(discount2.compareTo("") != 0 && String.valueOf(discount2).length() < 10)
-					discount = Integer.parseInt(discount2);
+				if(String.valueOf(discount2).length() < 10){
+					if(discount2.compareTo("") != 0){
+						discount = Integer.parseInt(discount2);
+						if(discount > 100){
+							Toast.makeText(context, "Bạn đã nhập quá 100% ", Toast.LENGTH_SHORT).show();
+							return;
+						}
+					}
+				}
 				else{
-					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, "Hãy nhập phần trăm ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					return;
 				}
 				
 				float priceTotal = (float)Math.ceil((takeOrderDetailList.get(position).getmAfterOrderPrice() - 
@@ -211,7 +221,7 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 			}
 		});
 		
-		
+		dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		dialog.show();
 		
 	}

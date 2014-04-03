@@ -242,16 +242,23 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		price.setText(""+selectedValue.getmExportPrices());
 		
 		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
+		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmDiscount() > 0)
+			discount.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmDiscount()+"");
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
+		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmTotal() > 0)
+			count.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmTotal()+"");
 		
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
+		note.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmNote());
 		
 		//discount product
 		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
 		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
 		product_discount.setVisibility(View.VISIBLE);
 		product_discount_count.setVisibility(View.VISIBLE);
+		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmPromotionalProductAmounts() > 0)
+			product_discount_count.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmPromotionalProductAmounts()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");

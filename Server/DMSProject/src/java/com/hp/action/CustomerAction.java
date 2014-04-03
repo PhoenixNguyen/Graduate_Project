@@ -220,49 +220,50 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
                     customer.setmMaDoiTuong(row.getCell(5).getStringCellValue());
                     if(row.getCell(6) != null)
                     customer.setmDoiTuong(row.getCell(6).getStringCellValue());
-                    if(row.getCell(7) != null)
-                    customer.setmNoDKy(row.getCell(7).getNumericCellValue());
-                    if(row.getCell(8) != null)
                     
-                    customer.setmCoDKy(row.getCell(8).getNumericCellValue());
-                    if(row.getCell(9) != null)
-                    customer.setmNoTKy(row.getCell(9).getNumericCellValue());
-                    if(row.getCell(10) != null)
-                    customer.setmTienBan(row.getCell(10).getNumericCellValue());
-                    
-                    if(row.getCell(11) != null)
-                    customer.setmCoTKy(row.getCell(11).getNumericCellValue());
-                    if(row.getCell(12) != null)
-                    customer.setmCKGG(row.getCell(12).getNumericCellValue());
-                    if(row.getCell(13) != null)
-                    customer.setmNhapLai(row.getCell(13).getNumericCellValue());
-                    if(row.getCell(14) != null)
-                    
-                    customer.setmNoCKy(row.getCell(14).getNumericCellValue());
-                    if(row.getCell(15) != null)
-                    customer.setmCoCKy(row.getCell(15).getNumericCellValue());
-                    if(row.getCell(16) != null)
-                    customer.setmDoanhThu(row.getCell(16).getNumericCellValue());
-                    
-                    if(row.getCell(17) != null)
-                    customer.setmPhanTramNoChiaThu(row.getCell(17).getNumericCellValue());
-                    if(row.getCell(18) != null)
-                    customer.setmNoToiDa(row.getCell(18).getNumericCellValue());
-                    if(row.getCell(19) != null)
-                    customer.setmDaiDien(row.getCell(19).getStringCellValue());
+//                    if(row.getCell(7) != null)
+//                        customer.setmNoDKy(row.getCell(7).getNumericCellValue());
+//                    if(row.getCell(8) != null)
+//                    
+//                    customer.setmCoDKy(row.getCell(8).getNumericCellValue());
+//                    if(row.getCell(9) != null)
+//                    customer.setmNoTKy(row.getCell(9).getNumericCellValue());
+//                    if(row.getCell(10) != null)
+//                    customer.setmTienBan(row.getCell(10).getNumericCellValue());
+//                    
+//                    if(row.getCell(11) != null)
+//                    customer.setmCoTKy(row.getCell(11).getNumericCellValue());
+//                    if(row.getCell(12) != null)
+//                    customer.setmCKGG(row.getCell(12).getNumericCellValue());
+//                    if(row.getCell(13) != null)
+//                    customer.setmNhapLai(row.getCell(13).getNumericCellValue());
+//                    if(row.getCell(14) != null)
+//                    
+//                    customer.setmNoCKy(row.getCell(14).getNumericCellValue());
+//                    if(row.getCell(15) != null)
+//                    customer.setmCoCKy(row.getCell(15).getNumericCellValue());
+//                    if(row.getCell(16) != null)
+//                    customer.setmDoanhThu(row.getCell(16).getNumericCellValue());
+//                    
+//                    if(row.getCell(17) != null)
+//                    customer.setmPhanTramNoChiaThu(row.getCell(17).getNumericCellValue());
+//                    if(row.getCell(18) != null)
+//                    customer.setmNoToiDa(row.getCell(18).getNumericCellValue());
+//                    if(row.getCell(19) != null)
+//                    customer.setmDaiDien(row.getCell(19).getStringCellValue());
                     if(row.getCell(20) != null)
-                    customer.setmDiaChi(row.getCell(20).getStringCellValue());
+                        customer.setmDiaChi(row.getCell(20).getStringCellValue());
                     if(row.getCell(21) != null)
-                    customer.setmDienThoai(row.getCell(21).getStringCellValue());
+                        customer.setmDienThoai(row.getCell(21).getStringCellValue());
                     if(row.getCell(22) != null)
-                    customer.setmFax(row.getCell(22).getStringCellValue());
+                        customer.setmFax(row.getCell(22).getStringCellValue());
                     
                     if(row.getCell(23) != null)
-                    customer.setmGhiChu(row.getCell(23).getStringCellValue());
+                        customer.setmGhiChu(row.getCell(23).getStringCellValue());
                     if(row.getCell(24) != null)
-                    customer.setmXCoordinates(row.getCell(24).getNumericCellValue());
+                        customer.setmXCoordinates(row.getCell(24).getNumericCellValue());
                     if(row.getCell(25) != null)
-                    customer.setmYCoordinates(row.getCell(25).getNumericCellValue());
+                        customer.setmYCoordinates(row.getCell(25).getNumericCellValue());
                     
                     
                     //Add to database

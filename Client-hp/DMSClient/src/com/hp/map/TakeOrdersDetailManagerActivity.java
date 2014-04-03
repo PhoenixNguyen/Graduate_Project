@@ -170,6 +170,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
 		product_discount.setVisibility(View.VISIBLE);
 		product_discount_count.setVisibility(View.VISIBLE);
+		product_discount_count.setText(selectedValue.getmPromotionalProductMount()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -185,9 +186,12 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				
 				String count2 = count.getText().toString();
 				String discount2 = discount.getText().toString();
+				String product_discount_count2 = product_discount_count.getText().toString();
 				
 				int number = 0;
 				int discount = 0;
+				int promotionalAmount = 0;
+				
 				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
 					number = Integer.parseInt(count2);
 				else{
@@ -209,12 +213,23 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 					return;
 				}
 				
+				//promotinal product
+				if(String.valueOf(product_discount_count2).length() < 10){
+					if(product_discount_count2.compareTo("") != 0)
+						promotionalAmount = Integer.parseInt(product_discount_count2);
+				}
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				float priceTotal = (float)Math.ceil((selectedValue.getmAfterOrderPrice() - 
 						selectedValue.getmAfterOrderPrice() * discount / 100) * number);
 				selectedValue.setmDiscount(discount);
 				selectedValue.setmNumber(number);
 				selectedValue.setmPriceTotal(priceTotal);
 				selectedValue.setmNote(note.getText().toString());
+				selectedValue.setmPromotionalProductMount(promotionalAmount);
 				
 				//Sys
 				

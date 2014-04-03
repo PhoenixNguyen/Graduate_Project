@@ -68,7 +68,7 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		int line = 0;
 		for(String key : keyset){
 			for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++){
-				if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0){
+				if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0 || TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmPromotionalProductAmounts() > 0){
 					TakeOrderDetail orderDetail = 
 							new TakeOrderDetail("", line++, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmProductID()
 									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmBarcode()
@@ -83,7 +83,9 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 										* TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal())
 									, "", TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal()
 									, "", 0
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmNote());
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmNote()
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmPromotionalProductAmounts()
+									);
 					
 					takeOrderDetailList.add(orderDetail);
 				}
@@ -151,6 +153,7 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
 		product_discount.setVisibility(View.VISIBLE);
 		product_discount_count.setVisibility(View.VISIBLE);
+		product_discount_count.setText(selectedValue.getmPromotionalProductMount()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -161,9 +164,12 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 				
 				String count2 = count.getText().toString();
 				String discount2 = discount.getText().toString();
+				String product_discount_count2 = product_discount_count.getText().toString();
 				
 				int number = 0;
 				int discount = 0;
+				int promotionalAmount = 0;
+				
 				if(count2.compareTo("") != 0 && String.valueOf(count2).length() < 10)
 					number = Integer.parseInt(count2);
 				else{
@@ -185,12 +191,23 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 					return;
 				}
 				
+				//promotinal product
+				if(String.valueOf(product_discount_count2).length() < 10){
+					if(product_discount_count2.compareTo("") != 0)
+						promotionalAmount = Integer.parseInt(product_discount_count2);
+				}
+				else{
+					Toast.makeText(context, "Hãy nhập số lượng nhiều hơn 0 và ít hơn 0.1 tỷ ", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
 				float priceTotal = (float)Math.ceil((takeOrderDetailList.get(position).getmAfterOrderPrice() - 
 						takeOrderDetailList.get(position).getmAfterOrderPrice() * discount / 100) * number);
 				takeOrderDetailList.get(position).setmDiscount(discount);
 				takeOrderDetailList.get(position).setmNumber(number);
 				takeOrderDetailList.get(position).setmPriceTotal(priceTotal);
 				takeOrderDetailList.get(position).setmNote(note.getText().toString());
+				takeOrderDetailList.get(position).setmPromotionalProductMount(promotionalAmount);
 
 				dialog.dismiss();
 				
@@ -199,10 +216,10 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 						android.R.layout.simple_list_item_1, takeOrderDetailList);
 				ordersListView.setAdapter(adapter);
 				
-				//Set call back product list
-				callbackSetMap(selectedValue.getmProductID(), number);
+				//Set call back product list to load again in takeorder_product
+				callbackSetMap(selectedValue.getmProductID(), number, discount, note.getText().toString(), promotionalAmount);
 				//if number = 0 --> remove
-				if(number == 0){
+				if(number == 0 && promotionalAmount == 0){
 					onResume();
 				}
 				
@@ -226,7 +243,7 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		
 	}
 	
-	public void callbackSetMap(String productID, int total){
+	public void callbackSetMap(String productID, int total, int discount, String note, int promotion){
 		
 		Set<String> keyset = TakeOrder_ProductActivity.mProductsMap.keySet();
 		int line = 0;
@@ -236,6 +253,9 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 			for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++){
 				if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmProductID() == productID){
 					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmTotal(total);
+					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmDiscount(discount);
+					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmNote(note);
+					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmPromotionalProductAmounts(promotion);
 					return;
 				}
 			}

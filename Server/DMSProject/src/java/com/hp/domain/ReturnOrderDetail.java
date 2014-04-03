@@ -76,7 +76,17 @@ public class ReturnOrderDetail {
     private Float mExchangeRate;
     @Column(name="chitietdontrahang_ghi_chu")
     private String mNote;
+    @Column(name="chitietdontrahang_hang_khuyen_mai")
+    private int mPromotionalProductMount;
 
+    public int getmPromotionalProductMount() {
+        return mPromotionalProductMount;
+    }
+
+    public void setmPromotionalProductMount(int mPromotionalProductMount) {
+        this.mPromotionalProductMount = mPromotionalProductMount;
+    }
+    
     public String getmNote() {
         return mNote;
     }

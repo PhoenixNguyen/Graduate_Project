@@ -35,19 +35,7 @@ public class Customer {
     private String mX;
     private String mMaDoiTuong;
     private String mDoiTuong;
-    private Double mNoDKy;
-    private Double mCoDKy;
-    private Double mNoTKy;
-    private Double mTienBan;
-    private Double mCoTKy;
-    private Double mCKGG;
-    private Double mNhapLai;
-    private Double mNoCKy;
-    private Double mCoCKy;
-    private Double mDoanhThu;
-    private Double mPhanTramNoChiaThu;
-    private Double mNoToiDa;
-    private String mDaiDien;
+    
     private String mDiaChi;
     private String mDienThoai;
     private String mFax;
@@ -124,111 +112,6 @@ public class Customer {
         this.mDoiTuong = mDoiTuong;
     }
     
-    //@Max(2)
-    @Column(name="khachhang_no_dky")
-    public Double getmNoDKy() {
-        return mNoDKy;
-    }
-
-    public void setmNoDKy(Double mNoDKy) {
-        this.mNoDKy = mNoDKy;
-    }
-    @Column(name="khachhang_co_dky")
-    public Double getmCoDKy() {
-        return mCoDKy;
-    }
-
-    public void setmCoDKy(Double mCoDKy) {
-        this.mCoDKy = mCoDKy;
-    }
-    @Column(name="khachhang_no_tky")
-    public Double getmNoTKy() {
-        return mNoTKy;
-    }
-
-    public void setmNoTKy(Double mNoTKy) {
-        this.mNoTKy = mNoTKy;
-    }
-    @Column(name="khachhang_tien_ban")
-    public Double getmTienBan() {
-        return mTienBan;
-    }
-
-    public void setmTienBan(Double mTienBan) {
-        this.mTienBan = mTienBan;
-    }
-    @Column(name="khachhang_co_tky")
-    public Double getmCoTKy() {
-        return mCoTKy;
-    }
-
-    public void setmCoTKy(Double mCoTKy) {
-        this.mCoTKy = mCoTKy;
-    }
-    @Column(name="khachhang_ck_gg")
-    public Double getmCKGG() {
-        return mCKGG;
-    }
-
-    public void setmCKGG(Double mCKGG) {
-        this.mCKGG = mCKGG;
-    }
-    @Column(name="khachhang_nhap_lai")
-    public Double getmNhapLai() {
-        return mNhapLai;
-    }
-
-    public void setmNhapLai(Double mNhapLai) {
-        this.mNhapLai = mNhapLai;
-    }
-    @Column(name="khachhang_no_cky")
-    public Double getmNoCKy() {
-        return mNoCKy;
-    }
-
-    public void setmNoCKy(Double mNoCKy) {
-        this.mNoCKy = mNoCKy;
-    }
-    @Column(name="khachhang_co_cky")
-    public Double getmCoCKy() {
-        return mCoCKy;
-    }
-
-    public void setmCoCKy(Double mCoCKy) {
-        this.mCoCKy = mCoCKy;
-    }
-    @Column(name="khachhang_doanh_thu")
-    public Double getmDoanhThu() {
-        return mDoanhThu;
-    }
-
-    public void setmDoanhThu(Double mDoanhThu) {
-        this.mDoanhThu = mDoanhThu;
-    }
-    @Column(name="khachhang_ti_le_no_thu")
-    public Double getmPhanTramNoChiaThu() {
-        return mPhanTramNoChiaThu;
-    }
-
-    public void setmPhanTramNoChiaThu(Double mPhanTramNoChiaThu) {
-        this.mPhanTramNoChiaThu = mPhanTramNoChiaThu;
-    }
-    @Column(name="khachhang_no_toi_da")
-    public Double getmNoToiDa() {
-        return mNoToiDa;
-    }
-
-    public void setmNoToiDa(Double mNoToiDa) {
-        this.mNoToiDa = mNoToiDa;
-    }
-    @Column(name="khachhang_dai_dien")
-    public String getmDaiDien() {
-        return mDaiDien;
-    }
-
-    public void setmDaiDien(String mDaiDien) {
-        this.mDaiDien = mDaiDien;
-    }
     @Column(name="khachhang_diachi")
     public String getmDiaChi() {
         return mDiaChi;

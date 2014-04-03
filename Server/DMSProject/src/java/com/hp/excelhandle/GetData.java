@@ -138,23 +138,23 @@ public class GetData {
                     custumer.setmX(row.getCell(tmp++).getStringCellValue());
                     custumer.setmMaDoiTuong(row.getCell(tmp++).getStringCellValue());
                     custumer.setmDoiTuong(row.getCell(tmp++).getStringCellValue());
-                    custumer.setmNoDKy(row.getCell(tmp++).getNumericCellValue());
-                    
-                    custumer.setmCoDKy(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmNoTKy(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmTienBan(row.getCell(tmp++).getNumericCellValue());
-                    
-                    custumer.setmCoTKy(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmCKGG(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmNhapLai(row.getCell(tmp++).getNumericCellValue());
-                    
-                    custumer.setmNoCKy(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmCoCKy(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmDoanhThu(row.getCell(tmp++).getNumericCellValue());
-                    
-                    custumer.setmPhanTramNoChiaThu(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmNoToiDa(row.getCell(tmp++).getNumericCellValue());
-                    custumer.setmDaiDien(row.getCell(tmp++).getStringCellValue());
+//                    custumer.setmNoDKy(row.getCell(tmp++).getNumericCellValue());
+//                    
+//                    custumer.setmCoDKy(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmNoTKy(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmTienBan(row.getCell(tmp++).getNumericCellValue());
+//                    
+//                    custumer.setmCoTKy(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmCKGG(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmNhapLai(row.getCell(tmp++).getNumericCellValue());
+//                    
+//                    custumer.setmNoCKy(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmCoCKy(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmDoanhThu(row.getCell(tmp++).getNumericCellValue());
+//                    
+//                    custumer.setmPhanTramNoChiaThu(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmNoToiDa(row.getCell(tmp++).getNumericCellValue());
+//                    custumer.setmDaiDien(row.getCell(tmp++).getStringCellValue());
                     
                     custumer.setmDiaChi(row.getCell(tmp++).getStringCellValue());
                     custumer.setmDienThoai(row.getCell(tmp++).getStringCellValue());

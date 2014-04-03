@@ -14,10 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import com.hp.rest.XmlElement;
-import com.hp.rest.XmlRootElement;
-
-
 //import javax.xml.bind.annotation.XmlElement;
 //import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,7 +24,6 @@ import com.hp.rest.XmlRootElement;
  */
 
 
-@XmlRootElement
 public class Schedule {
     
     private int mStt;
@@ -50,7 +45,6 @@ public class Schedule {
     	
     }
     
-    @XmlElement
     public int getmStt() {
         return mStt;
     }
@@ -59,7 +53,6 @@ public class Schedule {
         this.mStt = mStt;
     }
 
-    @XmlElement
     public String getmMaNV() {
         return mMaNV;
     }
@@ -68,7 +61,6 @@ public class Schedule {
         this.mMaNV = mMaNV;
     }
 
-    @XmlElement
     public String getmMaKH() {
         return mMaKH;
     }
@@ -77,7 +69,6 @@ public class Schedule {
         this.mMaKH = mMaKH;
     }
 
-    @XmlElement
     public Timestamp getmDate() {
         return mDate;
     }
@@ -86,7 +77,6 @@ public class Schedule {
         this.mDate = mDate;
     }
 
-    @XmlElement
     public boolean ismStatus() {
         return mStatus;
     }

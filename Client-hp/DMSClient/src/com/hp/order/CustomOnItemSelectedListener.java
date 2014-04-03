@@ -148,6 +148,9 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setmNote(
 									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmNote());
 							
+							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setmPromotionalProductAmounts(
+									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmPromotionalProductMount()
+									);
 							
 						}
 					}

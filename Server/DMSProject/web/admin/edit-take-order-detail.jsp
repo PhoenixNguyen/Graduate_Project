@@ -68,6 +68,8 @@
                                  <s:textfield id="dt" type="text" name="mDiscount" label="Giảm giá:" placeholder="Giảm giá"/>
                                  <s:textfield id="dt" type="text" name="mExchangeRate" label="Tỷ giá:" placeholder="Tỷ giá"/>
                                  <s:textfield id="dt" type="text" name="mTax" label="Thuế:" placeholder="Thuế"/>
+                                 <s:textfield id="dt" type="text" name="mNumber" label="Số lượng:" placeholder="Số lượng"/>
+                                 <s:textfield id="dt" type="text" name="mPromotionalProductMount" label="Số lượng hàng khuyến mãi:" placeholder="Số lượng hàng khuyến mãi"/>
                                  
                                  <s:submit/>
                              </s:push>

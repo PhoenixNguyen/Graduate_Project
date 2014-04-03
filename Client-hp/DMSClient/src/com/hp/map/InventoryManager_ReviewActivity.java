@@ -81,7 +81,7 @@ public class InventoryManager_ReviewActivity extends TakeOrder_ReViewActivity{
 				ordersListView.setAdapter(adapter);
 				
 				//Set call back product list
-				callbackSetMap(selectedValue.getmProductID(), number);
+				callbackSetMap(selectedValue.getmProductID(), number, 0, note.getText().toString(), 0);
 				//if number = 0 --> remove
 				if(number == 0){
 					onResume();

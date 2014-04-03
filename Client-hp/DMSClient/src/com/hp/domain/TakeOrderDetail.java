@@ -30,6 +30,15 @@ public class TakeOrderDetail {
     private float mExchangeRate;
     
     private String mNote;
+    private int mPromotionalProductMount;
+
+    public int getmPromotionalProductMount() {
+        return mPromotionalProductMount;
+    }
+
+    public void setmPromotionalProductMount(int mPromotionalProductMount) {
+        this.mPromotionalProductMount = mPromotionalProductMount;
+    }
     
     public String getmNote() {
 		return mNote;
@@ -43,7 +52,7 @@ public class TakeOrderDetail {
 			String mBarcode, String mProductName, float mAfterOrderPrice,
 			float mBeforeOrderPrice, float mTax, int mDiscount,
 			float mPriceTotal, String mStockID, int mNumber, String mUnit,
-			float mExchangeRate, String mNote) {
+			float mExchangeRate, String mNote, int mPromotionalProductMount) {
 		super();
 		this.mTakeOrderID = mTakeOrderID;
 		this.mLine = mLine;
@@ -60,6 +69,7 @@ public class TakeOrderDetail {
 		this.mUnit = mUnit;
 		this.mExchangeRate = mExchangeRate;
 		this.mNote = mNote;
+		this.mPromotionalProductMount = mPromotionalProductMount;
 	}
 
     public TakeOrderDetail(){

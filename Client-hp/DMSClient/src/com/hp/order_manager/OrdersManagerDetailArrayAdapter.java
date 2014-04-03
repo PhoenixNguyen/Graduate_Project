@@ -55,7 +55,8 @@ public class OrdersManagerDetailArrayAdapter extends ArrayAdapter<TakeOrderDetai
         
         featureView.setOriginalPrice(values.get(position).getmAfterOrderPrice()+"");
         featureView.setDiscount(values.get(position).getmDiscount() + "");
-        featureView.setPromoionalProduct("Số lượng");
+        
+        featureView.setPromoionalProduct(values.get(position).getmPromotionalProductMount()+"");
         return featureView;
 	}
 	

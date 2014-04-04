@@ -144,6 +144,10 @@
             android:name="com.hp.map.ProductAdditionActivity"
             android:label="Thêm mặt hàng" />
 		
+		<activity
+            android:name="com.hp.map.ProductEditerActivity"
+            android:label="Sửa mặt hàng" />
+		
     </application>
 
 </manifest>

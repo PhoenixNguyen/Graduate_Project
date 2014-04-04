@@ -1,6 +1,16 @@
 package com.hp.map;
 
+import java.io.IOException;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import com.hp.customer.CustomerArrayAdapter;
+import com.hp.domain.Customer;
 import com.hp.domain.Product;
+import com.hp.rest.Rest;
+import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,9 +22,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class ProductManagerActivity extends TakeOrder_ProductActivity{
 	
+	public static Product selectedValue;
 	public void init(){
 		//Reset values and init it
 		mProductsMap.clear();
@@ -36,7 +48,7 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 	@Override
     public void onItemClick(AdapterView<?> a, View v, final int position, long id) 
     {
- 		final Product selectedValue = (Product) listView.getAdapter().getItem(position);
+ 		selectedValue = (Product) listView.getAdapter().getItem(position);
  		
  		final Dialog dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -54,7 +66,7 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//startActivity(new Intent(context, CustomerEditerActivity.class));
+				startActivity(new Intent(context, ProductEditerActivity.class));
 				
 			}
 		});
@@ -64,10 +76,7 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-//				        Intent t = new Intent(context, CustomerMapActivity.class);
-//				        t.putExtra("POSITION_CLICK", customer.getmMaDoiTuong());
-//				        
-//				        startActivity(t);
+						startActivity(new Intent(context, ProductEditerActivity.class));
 			}
 		});
 		
@@ -76,8 +85,8 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
-//						comfirmDeleteDialog(customer);
-//						dialog.dismiss();
+						comfirmDeleteDialog(selectedValue);
+						dialog.dismiss();
 					}
 				});
 		
@@ -93,5 +102,97 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 		
 		dialog.show();
     }
+	
+	public void comfirmDeleteDialog(final Product product){
+		final Dialog dialog = new Dialog(context);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.customer_comfirm_dialog, null, false);
+		dialog.setContentView(v);
+		dialog.setTitle("Lựa chọn của bạn");
+		
+		final Button edit = (Button)dialog.findViewById(R.id.edit);
+		final Button detail = (Button)dialog.findViewById(R.id.detail);
+		final Button delete = (Button)dialog.findViewById(R.id.delete);
+		delete.setVisibility(View.GONE);
+		final Button cancel = (Button)dialog.findViewById(R.id.cancel);
+		cancel.setVisibility(View.GONE);
+		
+		edit.setText("Chấp nhận");
+		detail.setText("Hủy");
+		
+		edit.setOnClickListener(new OnClickListener() {
+					
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				deleteProduct(product);
+				dialog.dismiss();
+			}
+		});
+		detail.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	public void deleteProduct(Product product){
+		// Check the internet
+		if(isOnline()){
+			System.out.println("Internet access!!____________________");
+		}
+		else{
+			System.out.println("NO Internet access!!____________________");
+			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		// Send
+		ObjectMapper mapper = new ObjectMapper();
+        String cusStr = new String();
+
+		try {
+
+			cusStr = mapper.writeValueAsString(product);
+			
+		} catch (JsonGenerationException ex) {
+
+			ex.printStackTrace();
+
+		} catch (JsonMappingException ex) {
+
+			ex.printStackTrace();
+
+		} catch (IOException ex) {
+
+			ex.printStackTrace();
+
+		}
+       
+		//Order ---------------------------------------------------------------
+		ClientResponse response = Rest.mService.path("webresources").path("deleteProduct").accept("application/json")
+		.type("application/json").post(ClientResponse.class, cusStr);
+
+        String output = response.toString();
+        System.out.println("input 1: " + output);
+        
+        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
+            Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
+            
+            // Refresh
+            onResume();
+            
+            
+        }else
+        	Toast.makeText(context, "Không thể xóa dữ liệu. Khách hàng này đã tồn tại ở dữ liệu khác!", Toast.LENGTH_SHORT).show();
+        
+        System.out.println("Server response .... \n");
+        System.out.println("input 0: " + output);
+	}
 
 }

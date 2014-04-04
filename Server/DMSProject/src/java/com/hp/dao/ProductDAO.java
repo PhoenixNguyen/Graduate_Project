@@ -21,4 +21,6 @@ public interface ProductDAO {
     public Product loadProduct(int pID);
     public boolean saveOrUpdate(Product pProduct);
     public boolean update(Product pProduct);
+    
+    public boolean delete(Product pProduct);
 }

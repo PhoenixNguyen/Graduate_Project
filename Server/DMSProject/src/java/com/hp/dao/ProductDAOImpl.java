@@ -143,4 +143,25 @@ public class ProductDAOImpl implements ProductDAO{
         
         return true;
     }
+    
+    @Override
+    public boolean delete(Product pProduct){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.delete(pProduct);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
 }

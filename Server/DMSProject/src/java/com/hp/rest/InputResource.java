@@ -161,5 +161,59 @@ public class InputResource {
         
     }
     
+    @POST
+    @Path("/updateProduct")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateProduct(String pData) { //String customerID
+        
+       // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        Product product = new Product();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                product = mapper.readValue(pData, Product.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+                
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        ProductDAO productDAO = new ProductDAOImpl();
+        boolean st = productDAO.update(product);
+        System.out.println("____ " + st + "___ " );       
+        return Response.status(200).entity(st+"").build();
+        
+    }
     
+    @POST
+    @Path("/deleteProduct")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteProduct(String pData) { //String customerID
+        
+       // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        Product product = new Product();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                product = mapper.readValue(pData, Product.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+                
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        ProductDAO productDAO = new ProductDAOImpl();
+        boolean st = productDAO.delete(product);
+        System.out.println("____ " + st + "___ " );       
+        return Response.status(200).entity(st+"").build();
+        
+    }
 }

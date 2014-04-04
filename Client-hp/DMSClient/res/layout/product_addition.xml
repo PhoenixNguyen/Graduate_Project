@@ -277,14 +277,18 @@
 	            android:text="@+string/product_provider"
 	            />
 	        
-		    	
-		        <EditText 
+		    	<Spinner 
+		        android:id="@+id/product_provider"
+		        android:layout_weight="0.7"
+	            android:layout_width="0dp"
+		        android:layout_height="wrap_content"/>
+		        <!-- EditText 
 		            android:id="@+id/product_provider"
 		            android:layout_weight="0.7"
 		            android:layout_width="0dp"
 		            android:layout_height="wrap_content"
 		            
-		            />
+		            /-->
             </LinearLayout>
             
             <LinearLayout

@@ -77,7 +77,22 @@
 	<string name="product_title">Đặt hàng</string>
 	<string name="product_group">Nhóm sản phẩm:</string>
 	<string name="product_search_bt">Tìm kiếm</string>
-	<string name="product_total_line">Total Line:</string>
+	<string name="product_total_line">Tổng số:</string>
+	
+	
+	<string name="product_id">Mã sản phẩm:</string>
+	<string name="product_name">Tên sản phẩm:</string>
+	<string name="product_barcode">Mã vạch:</string>
+	<string name="product_brand">Thương hiệu:</string>
+	<string name="product_origin">Xuất sứ:</string>
+	<string name="product_packing">Quy cách:</string>
+	<string name="product_quantification">Đơn vị:</string>
+	<string name="product_tax">Thuế:</string>
+	<string name="product_import_price">Giá nhập:</string>
+	<string name="product_export_price">Giá bán:</string>
+	<string name="product_provider">Nhà cung cấp:</string>
+	<string name="product_description">Mô tả:</string>
+	<string name="product_image_path">Đường dẫn ảnh:</string>
 	
 	<string name="schedule">Lịch trình</string>
 	

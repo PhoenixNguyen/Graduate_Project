@@ -25,11 +25,14 @@ public class ProductArrayAdapter extends ArrayAdapter<Product>{
 	private ArrayList<Product> originalList;
 	private NameFilter filter;
 	
-	public ProductArrayAdapter(Context pContext, int resource, List<Product> pValues){
+	private boolean mManager;
+	
+	public ProductArrayAdapter(Context pContext, int resource, List<Product> pValues, boolean pManager){
 		super(pContext, resource, pValues);
 		this.context = pContext;
 		this.values = pValues;
 		this.resource = resource;
+		this.mManager = pManager;
 		
 		this.originalList = new ArrayList<Product>();
 	    this.originalList.addAll(pValues);
@@ -47,8 +50,12 @@ public class ProductArrayAdapter extends ArrayAdapter<Product>{
 
         featureView.setTitleId(values.get(position).getmProductID());
         featureView.setDescriptionId(values.get(position).getmProductName());
-        featureView.setTotal(values.get(position).getmTotal() + "");
         featureView.setPrice("Giá: "+values.get(position).getmExportPrices() + "");
+        
+        if(!mManager){
+        	featureView.setTotal(values.get(position).getmTotal() + "");
+        }
+        
 
         return featureView;
 	}

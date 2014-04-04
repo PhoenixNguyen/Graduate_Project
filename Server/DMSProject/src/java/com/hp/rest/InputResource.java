@@ -8,7 +8,10 @@ package com.hp.rest;
 
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
+import com.hp.dao.ProductDAO;
+import com.hp.dao.ProductDAOImpl;
 import com.hp.domain.Customer;
+import com.hp.domain.Product;
 import java.io.IOException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -130,4 +133,33 @@ public class InputResource {
         return Response.status(200).entity(st+"").build();
         
     }
+    
+    @POST
+    @Path("/insertProduct")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response insertProduct(String pData) { //String customerID
+        
+       // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        Product product = new Product();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                product = mapper.readValue(pData, Product.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        ProductDAO productDAO = new ProductDAOImpl();
+        boolean st = productDAO.saveOrUpdate(product);
+        System.out.println("____ " + st + "___ " );       
+        return Response.status(200).entity(st+"").build();
+        
+    }
+    
+    
 }

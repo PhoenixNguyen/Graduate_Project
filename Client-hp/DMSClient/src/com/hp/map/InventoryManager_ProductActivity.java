@@ -23,7 +23,7 @@ public class InventoryManager_ProductActivity extends TakeOrder_ProductActivity{
 		title.setText("Quản lý hàng tồn");
 		command = "getProductsList";
 		customerID = "";
-				
+		mManager = false;		
 //		title = (TextView)findViewById(R.id.title);
 //		title.setText("Quản lý kho");
 	}
@@ -93,7 +93,7 @@ public class InventoryManager_ProductActivity extends TakeOrder_ProductActivity{
 				dialog.dismiss();
 				
 				adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1
-						, TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
+						, TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""), mManager);
 				listView.setAdapter(adapter);
 				
 				//SET total line

@@ -37,13 +37,16 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 	
 	public static int mProviderIndex = 0;
 	
+	private boolean mManager;
+	
 	public CustomOnItemSelectedListener(Context context, ListView listView
-			, EditText search, String command, String customerID){
+			, EditText search, String command, String customerID, boolean pManager){
 		this.listView = listView;
 		this.context = context;
 		this.search = search;
 		this.command = command;
 		this.customerID= customerID; 
+		this.mManager = pManager;
 		
 	}
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
@@ -62,8 +65,13 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		
 		addAllProducts();
 		
-		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1, TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + ""));
+		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1
+				, TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + ""), mManager);
 		listView.setAdapter(adapter);
+		//Set total
+		if(mManager)
+			TakeOrder_ProductActivity.total_value.setText(TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").size()+"");
+		//
 		
 		//Add search listenner
 		search.addTextChangedListener(new TextWatcher() {

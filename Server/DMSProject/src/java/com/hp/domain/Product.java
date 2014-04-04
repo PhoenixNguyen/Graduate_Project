@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.Length;
 import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.Pattern;
@@ -22,38 +23,24 @@ import org.hibernate.validator.Valid;
  */
 @Entity
 @Table(name="tb_sanpham")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
-    
     
     private Integer mSerial;
     
-    
 //    @Valid
-    
     private String mProductID;
-    
     private String mBarcode;
-    
     private String mProductName;
-    
     private String mBrand;
-    
     private String mOrigin;
-    
     private String mPackingSpecifications;
-    
     private String mQuantification;
-    
     private Float mVATTax;
-    
     private Float mImportPrices;
-    
     private Float mExportPrices;
-    
     private String mProvider;
-    
     private String mDescription;
-    
     private String mProductImage;
 
     @Id

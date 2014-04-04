@@ -429,12 +429,12 @@ containing a value of this type.
         public static final int DateTimePicker=0x7f06004c;
         public static final int ResetDateTime=0x7f060064;
         public static final int SetDateTime=0x7f060063;
-        public static final int action_over_flow=0x7f06008f;
+        public static final int action_over_flow=0x7f060099;
         public static final int btnLogin=0x7f06004a;
-        public static final int button=0x7f06008e;
+        public static final int button=0x7f060098;
         public static final int calendar=0x7f060019;
         public static final int cancel=0x7f060030;
-        public static final int cb_customer=0x7f06007f;
+        public static final int cb_customer=0x7f060089;
         public static final int class_id=0x7f060078;
         public static final int class_name=0x7f060077;
         public static final int count=0x7f060069;
@@ -461,7 +461,7 @@ containing a value of this type.
         public static final int date_icon=0x7f060022;
         public static final int date_minus=0x7f060054;
         public static final int date_plus=0x7f060052;
-        public static final int date_value=0x7f060084;
+        public static final int date_value=0x7f06008e;
         public static final int delete=0x7f06002f;
         public static final int description=0x7f06003b;
         public static final int detail=0x7f06002e;
@@ -472,15 +472,15 @@ containing a value of this type.
         public static final int discount0=0x7f060041;
         public static final int discount_percent=0x7f060010;
         public static final int discount_value=0x7f060012;
-        public static final int display_table=0x7f060085;
+        public static final int display_table=0x7f06008f;
         public static final int document=0x7f06000c;
         public static final int document_value=0x7f06000d;
         public static final int edit=0x7f06002d;
-        public static final int edit_nhap=0x7f06008b;
-        public static final int edit_ton_cuoi=0x7f060089;
-        public static final int edit_ton_dau=0x7f06008a;
+        public static final int edit_nhap=0x7f060095;
+        public static final int edit_ton_cuoi=0x7f060093;
+        public static final int edit_ton_dau=0x7f060094;
         public static final int end=0x7f060074;
-        public static final int field=0x7f06008c;
+        public static final int field=0x7f060096;
         public static final int footer=0x7f060047;
         public static final int gridview=0x7f06001d;
         public static final int header=0x7f06001a;
@@ -491,12 +491,12 @@ containing a value of this type.
         public static final int hybrid=0x7f060004;
         public static final int id=0x7f06003e;
         public static final int id_search=0x7f060076;
-        public static final int idlaber=0x7f060086;
-        public static final int image=0x7f06008d;
+        public static final int idlaber=0x7f060090;
+        public static final int image=0x7f060097;
         public static final int import_cus=0x7f060023;
-        public static final int init_order=0x7f060090;
+        public static final int init_order=0x7f06009a;
         public static final int input_text=0x7f060032;
-        public static final int inventory_manager=0x7f060092;
+        public static final int inventory_manager=0x7f06009c;
         public static final int legal_info=0x7f060046;
         public static final int linearlayout_discount=0x7f06000e;
         public static final int link_to_register=0x7f06004b;
@@ -506,7 +506,7 @@ containing a value of this type.
         public static final int list_view_product=0x7f060070;
         public static final int lview=0x7f06001f;
         public static final int map=0x7f060037;
-        public static final int menu_legal=0x7f060093;
+        public static final int menu_legal=0x7f06009d;
         public static final int min_container=0x7f06005d;
         public static final int min_display=0x7f06005f;
         public static final int min_minus=0x7f060060;
@@ -518,7 +518,7 @@ containing a value of this type.
         public static final int name=0x7f06003d;
         public static final int new_order=0x7f060071;
         public static final int new_order_detail_bt=0x7f06006e;
-        public static final int new_sale_order=0x7f06007b;
+        public static final int new_sale_order=0x7f060085;
         public static final int next=0x7f06001c;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
@@ -529,34 +529,44 @@ containing a value of this type.
         public static final int order_title_tv=0x7f06006d;
         public static final int origin=0x7f060040;
         public static final int origin0=0x7f06003f;
-        public static final int pager=0x7f06007e;
+        public static final int pager=0x7f060088;
         public static final int password=0x7f060049;
         public static final int previous=0x7f06001b;
         public static final int price=0x7f060068;
-        public static final int priceLabel=0x7f060087;
-        public static final int price_value=0x7f060083;
+        public static final int priceLabel=0x7f060091;
+        public static final int price_value=0x7f06008d;
+        public static final int product_barcode=0x7f06007b;
+        public static final int product_brand=0x7f06007c;
+        public static final int product_description=0x7f060084;
         public static final int product_discount=0x7f06006a;
         public static final int product_discount_count=0x7f06006b;
+        public static final int product_export_price=0x7f060082;
         public static final int product_id=0x7f060079;
+        public static final int product_import_price=0x7f060081;
         public static final int product_name=0x7f060066;
-        public static final int product_name_value=0x7f060082;
+        public static final int product_name_value=0x7f06008c;
+        public static final int product_origin=0x7f06007d;
+        public static final int product_packing=0x7f06007e;
         public static final int product_price=0x7f060067;
-        public static final int product_value=0x7f060088;
+        public static final int product_provider=0x7f060083;
+        public static final int product_quantification=0x7f06007f;
+        public static final int product_tax=0x7f060080;
+        public static final int product_value=0x7f060092;
         public static final int promotional_product=0x7f060045;
         public static final int promotional_product_title=0x7f060044;
-        public static final int return_order=0x7f06007d;
-        public static final int sale=0x7f06007c;
+        public static final int return_order=0x7f060087;
+        public static final int sale=0x7f060086;
         public static final int satellite=0x7f060002;
         public static final int save=0x7f060018;
         public static final int search_button=0x7f060033;
         public static final int search_text=0x7f060031;
         public static final int set=0x7f060011;
         public static final int start=0x7f060072;
-        public static final int stock_id=0x7f060080;
-        public static final int stock_id_value=0x7f060081;
+        public static final int stock_id=0x7f06008a;
+        public static final int stock_id_value=0x7f06008b;
         public static final int sum=0x7f060014;
         public static final int sum_value=0x7f060015;
-        public static final int take_picture=0x7f060091;
+        public static final int take_picture=0x7f06009b;
         public static final int tax=0x7f060013;
         public static final int terrain=0x7f060003;
         public static final int text=0x7f06001e;
@@ -600,30 +610,31 @@ containing a value of this type.
         public static final int orders_manager=0x7f030015;
         public static final int planning=0x7f030016;
         public static final int product=0x7f030017;
-        public static final int return_order=0x7f030018;
-        public static final int sale_order=0x7f030019;
-        public static final int sale_order_dialog_feature=0x7f03001a;
-        public static final int sale_order_manager=0x7f03001b;
-        public static final int sale_order_value=0x7f03001c;
-        public static final int sale_return_order_main=0x7f03001d;
-        public static final int schedule_dialog=0x7f03001e;
-        public static final int schedule_dialog_feature=0x7f03001f;
-        public static final int stock_dialog=0x7f030020;
-        public static final int stock_manager=0x7f030021;
-        public static final int stock_manager_dialog=0x7f030022;
-        public static final int take_images=0x7f030023;
-        public static final int take_order_feature=0x7f030024;
+        public static final int product_addition=0x7f030018;
+        public static final int return_order=0x7f030019;
+        public static final int sale_order=0x7f03001a;
+        public static final int sale_order_dialog_feature=0x7f03001b;
+        public static final int sale_order_manager=0x7f03001c;
+        public static final int sale_order_value=0x7f03001d;
+        public static final int sale_return_order_main=0x7f03001e;
+        public static final int schedule_dialog=0x7f03001f;
+        public static final int schedule_dialog_feature=0x7f030020;
+        public static final int stock_dialog=0x7f030021;
+        public static final int stock_manager=0x7f030022;
+        public static final int stock_manager_dialog=0x7f030023;
+        public static final int take_images=0x7f030024;
+        public static final int take_order_feature=0x7f030025;
     }
     public static final class menu {
         public static final int customer_menu=0x7f0b0000;
         public static final int main=0x7f0b0001;
     }
     public static final class string {
-        public static final int action_check_updates=0x7f07005b;
-        public static final int action_help=0x7f07005a;
-        public static final int action_location_found=0x7f070058;
-        public static final int action_refresh=0x7f070059;
-        public static final int action_search=0x7f070057;
+        public static final int action_check_updates=0x7f070068;
+        public static final int action_help=0x7f070067;
+        public static final int action_location_found=0x7f070065;
+        public static final int action_refresh=0x7f070066;
+        public static final int action_search=0x7f070064;
         public static final int action_settings=0x7f07001b;
         public static final int add_button=0x7f070026;
         /**  Take order 
@@ -736,15 +747,15 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
-        public static final int cus_address=0x7f07006b;
-        public static final int cus_area=0x7f07006a;
-        public static final int cus_fax=0x7f07006d;
-        public static final int cus_id=0x7f070067;
-        public static final int cus_line=0x7f070069;
-        public static final int cus_name=0x7f070066;
-        public static final int cus_note=0x7f07006e;
-        public static final int cus_phone=0x7f07006c;
-        public static final int cus_state=0x7f070068;
+        public static final int cus_address=0x7f070077;
+        public static final int cus_area=0x7f070076;
+        public static final int cus_fax=0x7f070079;
+        public static final int cus_id=0x7f070073;
+        public static final int cus_line=0x7f070075;
+        public static final int cus_name=0x7f070072;
+        public static final int cus_note=0x7f07007a;
+        public static final int cus_phone=0x7f070078;
+        public static final int cus_state=0x7f070074;
         public static final int customer_address=0x7f070035;
         public static final int customer_id=0x7f070033;
         /**  Label for main menu 
@@ -760,7 +771,7 @@ containing a value of this type.
         public static final int customer_title=0x7f070023;
         /**  insert customers 
          */
-        public static final int insert_title=0x7f070065;
+        public static final int insert_title=0x7f070071;
         public static final int legal_info=0x7f070029;
         public static final int location_source_demo_description=0x7f07002b;
         public static final int location_source_demo_label=0x7f07002a;
@@ -774,26 +785,38 @@ containing a value of this type.
          */
         public static final int order_manager=0x7f070045;
         public static final int order_title=0x7f070044;
-        public static final int orders_detail_manager=0x7f070055;
-        public static final int orders_manager=0x7f070054;
+        public static final int orders_detail_manager=0x7f070062;
+        public static final int orders_manager=0x7f070061;
         public static final int password_label=0x7f07001f;
         public static final int planning_label=0x7f070036;
         /**  For customer detail 
          */
         public static final int play_services_not_installed=0x7f070028;
         public static final int product=0x7f070038;
-        public static final int product_btt_delete=0x7f070061;
-        public static final int product_btt_no=0x7f070060;
-        public static final int product_btt_yes=0x7f07005f;
-        public static final int product_count_hint=0x7f070063;
-        public static final int product_discount_hint=0x7f070064;
-        public static final int product_discount_title=0x7f070062;
+        public static final int product_barcode=0x7f070055;
+        public static final int product_brand=0x7f070056;
+        public static final int product_btt_delete=0x7f07006d;
+        public static final int product_btt_no=0x7f07006c;
+        public static final int product_btt_yes=0x7f07006b;
+        public static final int product_count_hint=0x7f07006f;
+        public static final int product_description=0x7f07005e;
+        public static final int product_discount_hint=0x7f070070;
+        public static final int product_discount_title=0x7f07006e;
+        public static final int product_export_price=0x7f07005c;
         public static final int product_group=0x7f070050;
+        public static final int product_id=0x7f070053;
+        public static final int product_image_path=0x7f07005f;
+        public static final int product_import_price=0x7f07005b;
         /**  Product dialog 
          */
-        public static final int product_name=0x7f07005d;
-        public static final int product_price_title=0x7f07005e;
+        public static final int product_name=0x7f070054;
+        public static final int product_origin=0x7f070057;
+        public static final int product_packing=0x7f070058;
+        public static final int product_price_title=0x7f07006a;
+        public static final int product_provider=0x7f07005d;
+        public static final int product_quantification=0x7f070059;
         public static final int product_search_bt=0x7f070051;
+        public static final int product_tax=0x7f07005a;
         /**  For product 
          */
         public static final int product_title=0x7f07004f;
@@ -810,14 +833,14 @@ containing a value of this type.
         public static final int sale_search_bt=0x7f07004e;
         public static final int sale_search_hint=0x7f07004d;
         public static final int sale_title=0x7f070048;
-        public static final int schedule=0x7f070053;
+        public static final int schedule=0x7f070060;
         public static final int search_button_title=0x7f070025;
         public static final int search_hint=0x7f070024;
         public static final int send_demo=0x7f07002e;
         /**  stock_manager 
          */
-        public static final int stock_manager=0x7f07005c;
-        public static final int take_images=0x7f070056;
+        public static final int stock_manager=0x7f070069;
+        public static final int take_images=0x7f070063;
         public static final int text_label=0x7f070021;
         /**  For Login 
          */

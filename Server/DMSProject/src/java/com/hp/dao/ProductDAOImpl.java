@@ -131,7 +131,7 @@ public class ProductDAOImpl implements ProductDAO{
         transaction = session.beginTransaction();
         try{
             
-            session.saveOrUpdate(pProduct);
+            session.save(pProduct);
             session.getTransaction().commit();
         }catch(HibernateException e){
             transaction.rollback();

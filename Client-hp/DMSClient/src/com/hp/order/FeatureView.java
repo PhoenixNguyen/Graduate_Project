@@ -20,6 +20,7 @@ import com.hp.map.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -58,7 +59,12 @@ public final class FeatureView extends FrameLayout {
     }
 
     public synchronized void setTotal(String pTotal) {
-        ((TextView) (findViewById(R.id.total))).setText(pTotal);
+    	TextView total = (TextView) (findViewById(R.id.total));
+    	TextView total_name = (TextView) (findViewById(R.id.total_name));
+    	total.setVisibility(View.VISIBLE);
+    	total_name.setVisibility(View.VISIBLE);
+    	
+		total.setText(pTotal);
     }
 
     public synchronized void setPrice(String pPrice) {

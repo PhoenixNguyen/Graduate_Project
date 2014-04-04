@@ -6,12 +6,15 @@
 
 package com.hp.domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 
 /**
  *
  * @author HP
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product implements Comparable<Product> {
     
     private int mSerial;
@@ -29,9 +32,34 @@ public class Product implements Comparable<Product> {
     private String mDescription;
     private String mProductImage;
 
+    
     private int mTotal;
     private int mDiscount;
     private int mPromotionalProductAmounts;
+	private String mNote;
+    
+    public Product(String mBarcode, String mProductID, String mProductName,
+			String mBrand, String mOrigin, String mPackingSpecifications,
+			String mQuantification, float mVATTax, float mImportPrices,
+			float mExportPrices, String mProvider, String mDescription,
+			String mProductImage) {
+		super();
+		this.mBarcode = mBarcode;
+		this.mProductID = mProductID;
+		this.mProductName = mProductName;
+		this.mBrand = mBrand;
+		this.mOrigin = mOrigin;
+		this.mPackingSpecifications = mPackingSpecifications;
+		this.mQuantification = mQuantification;
+		this.mVATTax = mVATTax;
+		this.mImportPrices = mImportPrices;
+		this.mExportPrices = mExportPrices;
+		this.mProvider = mProvider;
+		this.mDescription = mDescription;
+		this.mProductImage = mProductImage;
+	}
+    
+    public Product(){}
     
     public int getmPromotionalProductAmounts() {
 		return mPromotionalProductAmounts;
@@ -52,8 +80,6 @@ public class Product implements Comparable<Product> {
 		this.mNote = mNote;
 	}
 
-	private String mNote;
-    
     public int compareTo(Product a) {
         if ( this.mTotal > a.mTotal )
             return 1;
@@ -83,9 +109,6 @@ public class Product implements Comparable<Product> {
 		this.mProductName = mProductName;
 	}
 
-    public Product(){
-    	
-    }
     
     public int getmTotal() {
 		return mTotal;

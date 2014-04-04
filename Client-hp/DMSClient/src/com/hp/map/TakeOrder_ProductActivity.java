@@ -55,7 +55,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	
 	public static List<TakeOrderDetail> ordersDetailList = new ArrayList<TakeOrderDetail>();
 	
-	public TextView total_value;
+	public static TextView total_value;
 	
 	private EditText id_search;
 	public ProductArrayAdapter adapter;
@@ -75,6 +75,10 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	
 	public static List<Provider> providersList = new ArrayList<Provider>();
 	
+	//To distinction between: product manager and order
+	public boolean mManager;
+	
+	public Button search_button;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -84,6 +88,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		ordersDetailList.clear();
 		
 		title = (TextView)findViewById(R.id.title);		
+		search_button = (Button)findViewById(R.id.search_button);
 		//Init
 		init();
 		
@@ -91,13 +96,13 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		id_search = (EditText) findViewById(R.id.product_id);
 						
 		total_value = (TextView)findViewById(R.id.total_value);
-		
+
 		List<Product> productsList = new ArrayList<Product>();
 		Product product = new Product(1, "Welcome", "Welcome", "Choose providers list");
 		productsList.add(product);
 		
 		listView = (ListView)findViewById(R.id.list_view_product);
-		adapter = new ProductArrayAdapter(this, android.R.layout.simple_list_item_1, productsList);
+		adapter = new ProductArrayAdapter(this, android.R.layout.simple_list_item_1, productsList, mManager);
 		listView.setAdapter(adapter);
 		
 		
@@ -117,8 +122,8 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				line++;
 			}
 		}
+		
 		total_value.setText(line+"");
-		//
 		
 	}
 	
@@ -131,6 +136,11 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		
 		command = "getProductsList";
 		customerID = "";
+		
+		mManager = false;
+	}
+	
+	public void searchButton(View view){
 		
 	}
 	
@@ -211,7 +221,9 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	  
 	  public void addListenerOnSpinnerItemSelection() {
 			spinner = (Spinner) findViewById(R.id.class_id);
-			spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(this, listView, id_search, command, customerID));
+			spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(this, listView, id_search, command, customerID, mManager));
+			
+			
 		  }
 	  ////////////////////// finish spiner ///////////////////////////////////
 
@@ -320,7 +332,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				dialog.dismiss();
 				
 				adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1
-						, TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
+						, TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""), mManager);
 				listView.setAdapter(adapter);
 				
 				//SET total line
@@ -332,8 +344,9 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 						line++;
 					}
 				}
+				
 				total_value.setText(line+"");
-				//
+				
 			}
 		});
 

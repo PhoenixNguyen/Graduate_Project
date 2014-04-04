@@ -43,6 +43,9 @@ public final class DetailsListData {
         new DetailsList("Quản lý hàng tồn kho",
                 "Quản lý hàng tồn kho",
                 InventoryManagerActivity.class),     
+	    new DetailsList("Quản lý sản phẩm",
+	            "Quản lý sản phẩm",
+	            ProductManagerActivity.class),         
                 
     };
     

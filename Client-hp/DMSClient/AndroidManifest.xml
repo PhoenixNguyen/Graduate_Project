@@ -136,6 +136,14 @@
             android:name="com.hp.map.CustomerEditerActivity"
             android:label="Sửa thông tin khách hàng" />
 		
+		<activity
+            android:name="com.hp.map.ProductManagerActivity"
+            android:label="Quản lý mặt hàng" />
+		
+		<activity
+            android:name="com.hp.map.ProductAdditionActivity"
+            android:label="Thêm mặt hàng" />
+		
     </application>
 
 </manifest>

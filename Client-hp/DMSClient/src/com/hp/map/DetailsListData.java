@@ -46,7 +46,10 @@ public final class DetailsListData {
 	    new DetailsList("Quản lý sản phẩm",
 	            "Quản lý sản phẩm",
 	            ProductManagerActivity.class),         
-                
+        new DetailsList("Thông tin của bạn",
+	            "Thông tin của bạn",
+	            ProfileActivity.class),             
+	            
     };
     
 //    public static DetailsList[] CUSTOMER_LIST ;

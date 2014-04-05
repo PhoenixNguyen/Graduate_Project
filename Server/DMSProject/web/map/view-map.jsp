@@ -155,7 +155,7 @@
             function getLoadCustomer(x) {
                 var staffId = x !== "--select--" ? x : "nullid";//$('#giamDoc').val();
                 //gdID = giamdocId;
-                console.log("Ma nhan vien: " + staffId);
+                console.log("Ma nhan vien (map): " + staffId);
                 $.getJSON('filterStaff.action', {'nhanvienId': staffId},
                 function(data) {
 

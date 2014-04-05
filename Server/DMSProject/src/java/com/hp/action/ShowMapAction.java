@@ -355,6 +355,9 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
+        pushInfo.setStaffID((String)session.getAttribute("staffId"));
+        
         String id = request.getParameter("customer_id");
         if(id==null)
             return INPUT;

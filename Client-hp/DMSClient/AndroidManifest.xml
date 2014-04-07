@@ -50,9 +50,7 @@
         <activity
             android:name=".CustomerMapActivity"
             android:label="@string/marker_label" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/main_label" />
+        
         <activity
             android:name=".CustomerListActivity"
             android:label="@string/customer_list_label" />

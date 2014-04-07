@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.hp.domain.Product;
 import com.hp.domain.TakeOrder;
-import com.hp.map.DetailsList;
 import com.hp.map.R;
 import com.hp.map.R.layout;
 

@@ -1,12 +1,5 @@
 package com.hp.schedule;
 
-import com.hp.domain.Schedule;
-import com.hp.map.DetailsList;
-import com.hp.map.FeatureView;
-import com.hp.map.R;
-import com.hp.map.R.layout;
-import com.hp.map.Schedule_CalendarActivity;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

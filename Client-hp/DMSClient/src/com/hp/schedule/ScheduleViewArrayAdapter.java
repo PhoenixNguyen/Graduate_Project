@@ -1,7 +1,7 @@
 package com.hp.schedule;
 
-import com.hp.map.DetailsList;
-import com.hp.map.FeatureView;
+//import com.hp.map.DetailsList;
+//import com.hp.map.FeatureView;
 import com.hp.map.R;
 import com.hp.map.R.layout;
 import com.hp.schedule.ListViewSchedules;

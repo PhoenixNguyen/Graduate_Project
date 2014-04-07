@@ -16,6 +16,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -23,7 +26,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CustomerAdditionActivity extends MainMenuActivity implements OnClickListener{
+public class CustomerAdditionActivity extends MainMenuActivity{
 	
 	public Context context = this;
 	
@@ -36,16 +39,11 @@ public class CustomerAdditionActivity extends MainMenuActivity implements OnClic
 	public EditText cus_phone;
 	public EditText cus_fax;
 	public EditText cus_note;
-	
-	public TextView title;
-	public ImageButton import_cus;
-	
+		
 	protected void onCreate(Bundle bundle){
 		super.onCreate(bundle);
 		setContentView(R.layout.customer_addition);
-		
-		title = (TextView)findViewById(R.id.title);
-		
+				
 		cus_id = (EditText)findViewById(R.id.cus_id);
 		cus_name = (EditText)findViewById(R.id.cus_name);
 		cus_state = (EditText)findViewById(R.id.cus_state);
@@ -55,15 +53,33 @@ public class CustomerAdditionActivity extends MainMenuActivity implements OnClic
 		cus_phone = (EditText)findViewById(R.id.cus_phone);
 		cus_fax = (EditText)findViewById(R.id.cus_fax);
 		cus_note = (EditText)findViewById(R.id.cus_note);
-		
-		import_cus = (ImageButton)findViewById(R.id.import_cus);
-		import_cus.setOnClickListener(this);
-			
-		
+	
 	}
 	
-	public void onClick(View v){
-		if(v == import_cus){
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.customer_manager_menu, menu);
+		
+		return true;
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+//        case R.id.action_search:
+//        	
+//            return true;
+        case R.id.action_save:
+        	getCustomer();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+	
+	public void getCustomer(){
 			String id = cus_id.getText().toString();
 			String name = cus_name.getText().toString();
 			String state = cus_state.getText().toString();
@@ -81,7 +97,7 @@ public class CustomerAdditionActivity extends MainMenuActivity implements OnClic
 					, fax, note);
 			//insert
 			insertCustomer(customer);
-		}
+		
 	}
 	
 	public void insertCustomer(Customer customer){

@@ -16,6 +16,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -23,14 +26,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CustomerEditerActivity extends CustomerAdditionActivity implements OnClickListener{
+public class CustomerEditerActivity extends CustomerAdditionActivity {
 	
 	
 	protected void onCreate(Bundle bundle){
 		super.onCreate(bundle);
 		setContentView(R.layout.customer_addition);
-		
-		title = (TextView)findViewById(R.id.title);
 		
 		cus_id = (EditText)findViewById(R.id.cus_id);
 		cus_name = (EditText)findViewById(R.id.cus_name);
@@ -42,11 +43,7 @@ public class CustomerEditerActivity extends CustomerAdditionActivity implements 
 		cus_fax = (EditText)findViewById(R.id.cus_fax);
 		cus_note = (EditText)findViewById(R.id.cus_note);
 		
-		import_cus = (ImageButton)findViewById(R.id.import_cus);
-		import_cus.setOnClickListener(this);
-		import_cus.setImageResource(R.drawable.ic_action_done) ;
 		cus_id.setEnabled(false);
-		title.setText("Sửa thông tin");
 		
 		cus_id.setText(CustomerListActivity.customer.getmMaDoiTuong());
 		cus_name.setText(CustomerListActivity.customer.getmDoiTuong());
@@ -54,18 +51,13 @@ public class CustomerEditerActivity extends CustomerAdditionActivity implements 
 		cus_line.setText(CustomerListActivity.customer.getmTuyenBanHangThu() + "");
 		cus_area.setText(CustomerListActivity.customer.getmX());
 		cus_address.setText(CustomerListActivity.customer.getmDiaChi());
-		cus_phone.setText(CustomerListActivity.customer.getmDienThoai());
+		cus_phone.setText(CustomerListActivity.customer.getmDienThoai() +"");
 		cus_fax.setText(CustomerListActivity.customer.getmFax());
 		cus_note.setText(CustomerListActivity.customer.getmGhiChu());
 		
 	}
-	
-	public void getCustomer(){
 		
-	}
-	
-	public void onClick(View v){
-		if(v == import_cus){
+	public void getCustomer(){
 			//String id = cus_id.getText().toString();
 			String name = cus_name.getText().toString();
 			String state = cus_state.getText().toString();
@@ -83,9 +75,10 @@ public class CustomerEditerActivity extends CustomerAdditionActivity implements 
 			CustomerListActivity.customer.setmGhiChu(note);
 			CustomerListActivity.customer.setmTinhThanh(state);
 			CustomerListActivity.customer.setmX(area);
+			CustomerListActivity.customer.setmTuyenBanHangThu(line);
 			//insert
 			insertCustomer(CustomerListActivity.customer);
-		}
+		
 	}
 	
 	public void insertCustomer(Customer customer){

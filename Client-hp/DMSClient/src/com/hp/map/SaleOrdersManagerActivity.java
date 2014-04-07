@@ -59,7 +59,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class SaleOrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
+public class SaleOrdersManagerActivity extends MainMenuActivity implements OnClickListener, DateWatcher {
 
 	private List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
 	private List<TakeOrder> takeOrderListFilter = new ArrayList<TakeOrder>();

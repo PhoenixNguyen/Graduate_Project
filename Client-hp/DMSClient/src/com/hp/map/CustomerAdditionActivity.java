@@ -23,7 +23,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CustomerAdditionActivity extends Activity implements OnClickListener{
+public class CustomerAdditionActivity extends MainMenuActivity implements OnClickListener{
 	
 	public Context context = this;
 	

@@ -29,7 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TakeOrder_AmountActivity extends Activity implements OnClickListener{
+public class TakeOrder_AmountActivity extends MainMenuActivity implements OnClickListener{
 	
 	private Context context = this;
 	

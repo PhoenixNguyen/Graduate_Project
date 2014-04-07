@@ -68,7 +68,7 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-public class Schedule_CalendarActivity extends Activity {
+public class Schedule_CalendarActivity extends MainMenuActivity {
 
 	public GregorianCalendar month, itemmonth;// calendar instances.
 

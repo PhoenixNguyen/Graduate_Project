@@ -95,7 +95,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         List<Customer> courses = null;
         try{
-            courses = session.createQuery("from Customer where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL ").list();
+            courses = session.createQuery("from Customer where mXCoordinates > 0  order by  mXCoordinates desc").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -122,10 +122,10 @@ public class CustomerDAOImpl implements CustomerDAO {
                 if(pStaff == null)
                     courses = session.createQuery("select cus from Customer as cus, Staff as st where "
                             + "st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
-                            + "'  "  //and cus.mXCoordinates is NOT NULL
+                            + "' and cus.mXCoordinates > 0  "  //and cus.mXCoordinates is NOT NULL
                             + " order by  cus.mXCoordinates desc  ").list(); //cus.mYCoordinates is NOT NULL
                 else
-                    courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"' order by  mXCoordinates desc").list();
+                    courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"' and mXCoordinates > 0 order by  mXCoordinates desc").list();
             }
             else
                 courses = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"' order by  mXCoordinates desc").list();

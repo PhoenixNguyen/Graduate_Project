@@ -53,7 +53,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class TakeOrdersManagerActivity extends Activity implements OnClickListener, DateWatcher {
+public class TakeOrdersManagerActivity extends MainMenuActivity implements OnClickListener, DateWatcher {
 
 	private TextView id[];
 	public static List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();

@@ -65,7 +65,7 @@ import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 @SuppressLint("NewApi")
-public class TakeImagesActivity extends Activity {
+public class TakeImagesActivity extends MainMenuActivity {
 
 	protected Button _button;
 	protected ImageView _image;

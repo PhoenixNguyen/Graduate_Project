@@ -43,7 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CustomerListActivity extends Activity{
+public class CustomerListActivity extends MainMenuActivity{
 	
 	private ListView listView;
 	private Context context = this;

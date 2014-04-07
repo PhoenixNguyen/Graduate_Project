@@ -45,7 +45,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TakeOrder_ProductActivity extends Activity implements OnItemClickListener{
+public class TakeOrder_ProductActivity extends MainMenuActivity implements OnItemClickListener{
 	public ListView listView;
 	public static Map<String, List<Product>> mProductsMap = new HashMap<String, List<Product>>();
 	

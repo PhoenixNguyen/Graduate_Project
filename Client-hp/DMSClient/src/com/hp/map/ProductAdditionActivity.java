@@ -30,7 +30,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProductAdditionActivity extends Activity implements OnClickListener{
+public class ProductAdditionActivity extends MainMenuActivity implements OnClickListener{
 	
 	public Context context = this;
 		

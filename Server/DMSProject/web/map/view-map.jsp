@@ -42,10 +42,16 @@
                     },
             </s:iterator>
                 ];
-
+                console.log("__ "+Customers[0].mXCoordinates + Customers[0].mYCoordinates);
+                var x = 21.030336;
+                var y = 105.85814 ;
+                if(Customers[0].mXCoordinates > 0){
+                    x = Customers[0].mXCoordinates;
+                    y = Customers[0].mYCoordinates;
+                }
                 var myOptions = {
                     zoom: 14,
-                    center: new google.maps.LatLng(Customers[0].mXCoordinates, Customers[0].mYCoordinates),
+                    center: new google.maps.LatLng(x, y),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
@@ -262,6 +268,7 @@
                                 pageContext.setAttribute("first", page2);
                             %>
                             <s:subset source="listCustomer" start="%{#attr.first}"  count="10">
+                                
                                 <s:iterator  status="status" >
                                     <li data-poi-id="18299">
                                         <div class="poi-content">
@@ -285,6 +292,7 @@
                                         </div>
                                     </li>
                                 </s:iterator>
+                                    
                             </s:subset>
 
                         </ul>

@@ -70,18 +70,6 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 		order_id = TakeOrdersManagerActivity.selectedValue.getmID();
 		title.setText("Mã HĐ: "+order_id);
 		
-		//init item commons
-		init();
-		
-		getOrderList();
-		addListView();
-	}
-	
-	public void init(){
-		getListDetail = "getTakeOrderDetailList";
-		updateData = "updateDetailOrder";
-		deleteData = "deleteDetailOrder";
-		
 		TextView cus_id0 = (TextView)findViewById(R.id.cus_id);
 		TextView discount0 = (TextView)findViewById(R.id.discount);
 		TextView valuetotal0 = (TextView)findViewById(R.id.valuetotal);
@@ -96,6 +84,20 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 		discount0.setText("Giảm giá (%): " + TakeOrdersManagerActivity.selectedValue.getmDiscount());
 		valuetotal0.setText("Tổng giá trị: " + new BigDecimal(TakeOrdersManagerActivity.selectedValue.getmAfterPrivate()).toString());
 		note2.setText("Ghi chú: " + TakeOrdersManagerActivity.selectedValue.getmNote());
+		
+		//init item commons
+		init();
+		
+		getOrderList();
+		addListView();
+	}
+	
+	public void init(){
+		getListDetail = "getTakeOrderDetailList";
+		updateData = "updateDetailOrder";
+		deleteData = "deleteDetailOrder";
+		
+		
 	}
 	
 	public void onResume(){

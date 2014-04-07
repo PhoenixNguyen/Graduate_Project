@@ -105,7 +105,7 @@ public class LoginActivity extends Activity {
 					//Run thread to do backgroud send location
 					doBackground();
 					// TODO Auto-generated method stub
-					Intent i = new Intent(getApplicationContext(), MainActivity.class);
+					Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
 	            	startActivity(i);
 	            	//new ThreatRealtime("hello").start();
 				}

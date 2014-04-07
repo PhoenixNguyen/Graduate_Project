@@ -2,6 +2,7 @@ package com.hp.map;
 
 
 import com.hp.menu.DetailListData;
+import com.hp.menu.DetailsList;
 import com.hp.menu.DialogArrayAdapter;
 
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
+import android.content.Intent;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -17,13 +19,17 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainMenuActivity extends Activity {
+public class MainMenuActivity extends Activity  {
 
 	public Context context = this; 
+	private ListView lv;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,14 +68,31 @@ public class MainMenuActivity extends Activity {
 		dialog.getWindow().setLayout(2*display.getWidth()/3, LayoutParams.FILL_PARENT);
 		dialog.getWindow().getAttributes().gravity = Gravity.LEFT|Gravity.CENTER_VERTICAL;
 		
-		ListView lv = (ListView)dialog.findViewById(R.id.menu_list_view);
+		lv = (ListView)dialog.findViewById(R.id.menu_list_view);
 		
 		lv.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, DetailListData.MENU_LIST));
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				DetailsList selectedValue = (DetailsList)lv.getAdapter().getItem(arg2);
+				if(selectedValue.activityClass != null){
+					//if sigout
+					if(selectedValue.activityClass == LoginActivity.class){
+						LoginActivity.threadLooper.quit();
+					}
+					startActivity(new Intent(context, selectedValue.activityClass));
+				}
+			}
+		});
 		
 		dialog.show();
 		
 //		ImageView iv = (ImageView)dialog.findViewById(R.id.menu_list_view);
 //		iv.setImageResource(1);
 	}
+
 }
 

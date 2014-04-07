@@ -14,6 +14,10 @@ public class DetailListData {
 	}
 	
 	public static final DetailsList[] MENU_LIST = {
+		new DetailsList("Hồ sơ cá nhân", 0, null),
+		new DetailsList("Hồ sơ", R.drawable.ic_menu_contact, ProfileActivity.class),
+		new DetailsList("Lên kế hoạch", R.drawable.effective_writing, Schedule_CalendarActivity.class),
+		
 		new DetailsList("Đầu vào", 0, null),
 		new DetailsList("Sản phẩm", R.drawable.ic_menu_products, ProductManagerActivity.class),
 		new DetailsList("Khách hàng", R.drawable.ic_menu_customers, CustomerListActivity.class),
@@ -22,9 +26,7 @@ public class DetailListData {
 		new DetailsList("Hóa đơn đặt hàng", R.drawable.ic_menu_orders, TakeOrdersManagerActivity.class),
 		new DetailsList("Quản lý hàng tồn", R.drawable.ic_menu_database, InventoryManagerActivity.class),
 		
-		new DetailsList("Hồ sơ cá nhân", 0, null),
-		new DetailsList("Hồ sơ", R.drawable.ic_menu_contact, ProfileActivity.class),
-		new DetailsList("Lên kế hoạch", R.drawable.effective_writing, Schedule_CalendarActivity.class),
+		
 		
 		new DetailsList("Thông tin", 0, null),
 		new DetailsList("Phần mềm", R.drawable.ic_menu_about, null),

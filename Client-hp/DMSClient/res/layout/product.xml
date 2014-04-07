@@ -42,18 +42,10 @@
     			android:layout_height="0px"/>
 		    <EditText 
 		        android:id="@+id/product_id"
-		        android:layout_weight="0.7"
-	        	android:layout_width="0dip"
-		        android:layout_height="wrap_content"/>
-		    
-		    
-		    <Button 
-		        android:id="@+id/search_button"
-		        android:layout_weight="0.3"
-	        	android:layout_width="0dip"
+	        	android:layout_width= "match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/product_search_bt"
-		        android:onClick="searchButton"
+		        android:hint="@string/search_hint"
+		        android:gravity="center"
 		        />
 		    
 	    </LinearLayout>

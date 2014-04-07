@@ -87,8 +87,8 @@ public class TakeOrder_ProductActivity extends MainMenuActivity implements OnIte
 		//Reset
 		ordersDetailList.clear();
 		
-		title = (TextView)findViewById(R.id.title);		
-		search_button = (Button)findViewById(R.id.search_button);
+		title = (TextView)findViewById(R.id.title);
+		
 		//Init
 		init();
 		

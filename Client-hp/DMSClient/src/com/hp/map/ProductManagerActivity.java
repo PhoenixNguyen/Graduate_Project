@@ -18,6 +18,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -33,7 +36,7 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 		timeLine = true;
 		
 		title.setText("Quản lý sản phẩm");
-		search_button.setText("Thêm");
+		title.setVisibility(View.GONE);
 		
 		command = "getProductsList";
 		customerID = "";
@@ -41,7 +44,30 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 		mManager = true;
 	}
 	
-	public void searchButton(View view){
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.order_menu, menu);
+		
+		return true;
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+//        case R.id.action_search:
+//        	
+//            return true;
+        case R.id.action_add:
+        	insertProduct();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+	
+	public void insertProduct(){
 		startActivity(new Intent(this, ProductAdditionActivity.class));
 	}
 	

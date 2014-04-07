@@ -19,6 +19,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -30,7 +33,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProductAdditionActivity extends MainMenuActivity implements OnClickListener{
+public class ProductAdditionActivity extends MainMenuActivity {
 	
 	public Context context = this;
 		
@@ -50,8 +53,7 @@ public class ProductAdditionActivity extends MainMenuActivity implements OnClick
 	public EditText product_description;
 	public EditText product_image_path;
 	
-	public TextView title;
-	public ImageButton import_cus;
+	
 	
 	public Spinner product_provider;
 	
@@ -60,9 +62,7 @@ public class ProductAdditionActivity extends MainMenuActivity implements OnClick
 	protected void onCreate(Bundle bundle){
 		super.onCreate(bundle);
 		setContentView(R.layout.product_addition);
-		
-		title = (TextView)findViewById(R.id.title);
-		
+				
 		product_id = (EditText)findViewById(R.id.product_id);
 		product_name = (EditText)findViewById(R.id.product_name);
 		product_barcode = (EditText)findViewById(R.id.product_barcode);
@@ -80,8 +80,6 @@ public class ProductAdditionActivity extends MainMenuActivity implements OnClick
 		product_description = (EditText)findViewById(R.id.product_description);
 		//product_image_path = (EditText)findViewById(R.id.product_image_path);
 		
-		import_cus = (ImageButton)findViewById(R.id.import_cus);
-		import_cus.setOnClickListener(this);
 		
 		final List<String> list = new ArrayList<String>();
 		for(int i = 0; i < ProductManagerActivity.providersList.size(); i++){
@@ -108,8 +106,31 @@ public class ProductAdditionActivity extends MainMenuActivity implements OnClick
 		});
 	}
 	
-	public void onClick(View v){
-		if(v == import_cus){
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.customer_manager_menu, menu);
+		
+		return true;
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+//        case R.id.action_search:
+//        	
+//            return true;
+        case R.id.action_save:
+        	getProduct();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+	
+	public void getProduct(){
+		
 			String id = product_id.getText().toString();
 			String name = product_name.getText().toString();
 			String barcode = product_barcode.getText().toString();
@@ -145,7 +166,7 @@ public class ProductAdditionActivity extends MainMenuActivity implements OnClick
 					, "");
 			System.out.println("provider_selected: "+provider_selected);
 			insertProduct(product);
-		}
+		
 	}
 	
 	public void insertProduct(Product product){

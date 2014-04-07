@@ -30,15 +30,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ProductEditerActivity extends ProductAdditionActivity implements OnClickListener{
+public class ProductEditerActivity extends ProductAdditionActivity {
 	
 	
 	protected void onCreate(Bundle bundle){
 		super.onCreate(bundle);
 		setContentView(R.layout.product_addition);
-		
-		title = (TextView)findViewById(R.id.title);
-		
+				
 		product_id = (EditText)findViewById(R.id.product_id);
 		product_name = (EditText)findViewById(R.id.product_name);
 		product_barcode = (EditText)findViewById(R.id.product_barcode);
@@ -56,12 +54,8 @@ public class ProductEditerActivity extends ProductAdditionActivity implements On
 		product_description = (EditText)findViewById(R.id.product_description);
 		//product_image_path = (EditText)findViewById(R.id.product_image_path);
 		
-		import_cus = (ImageButton)findViewById(R.id.import_cus);
-		import_cus.setOnClickListener(this);
-		import_cus.setImageResource(R.drawable.ic_action_done) ;
 		
 		//Set again
-		title.setText("Sửa thông tin");
 		product_id.setText(ProductManagerActivity.selectedValue.getmProductID());
 		product_id.setEnabled(false);
 		product_name.setText(ProductManagerActivity.selectedValue.getmProductName());
@@ -107,8 +101,8 @@ public class ProductEditerActivity extends ProductAdditionActivity implements On
 		});
 	}
 	
-	public void onClick(View v){
-		if(v == import_cus){
+	public void getProduct(){
+		
 			String id = product_id.getText().toString();
 			String name = product_name.getText().toString();
 			String barcode = product_barcode.getText().toString();
@@ -149,7 +143,7 @@ public class ProductEditerActivity extends ProductAdditionActivity implements On
 			
 			System.out.println("provider_selected: "+provider_selected + " name: " + name);
 			insertProduct(ProductManagerActivity.selectedValue);
-		}
+		
 	}
 	
 	public void insertProduct(Product product){

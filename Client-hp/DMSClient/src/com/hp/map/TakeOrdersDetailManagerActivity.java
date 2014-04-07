@@ -66,25 +66,27 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orders_detail_manager);
 				
-		TextView title = (TextView)findViewById(R.id.title);
-		order_id = TakeOrdersManagerActivity.selectedValue.getmID();
-		title.setText("Mã HĐ: "+order_id);
+		if(TakeOrdersManagerActivity.selectedValue != null){
 		
-		TextView cus_id0 = (TextView)findViewById(R.id.cus_id);
-		TextView discount0 = (TextView)findViewById(R.id.discount);
-		TextView valuetotal0 = (TextView)findViewById(R.id.valuetotal);
-		TextView note2 = (TextView)findViewById(R.id.note);
-		
-		cus_id0.setVisibility(View.VISIBLE);
-		discount0.setVisibility(View.VISIBLE);
-		valuetotal0.setVisibility(View.VISIBLE);
-		note2.setVisibility(View.VISIBLE);
-		
-		cus_id0.setText("Mã KH: " + TakeOrdersManagerActivity.selectedValue.getmCustomerID());
-		discount0.setText("Giảm giá (%): " + TakeOrdersManagerActivity.selectedValue.getmDiscount());
-		valuetotal0.setText("Tổng giá trị: " + new BigDecimal(TakeOrdersManagerActivity.selectedValue.getmAfterPrivate()).toString());
-		note2.setText("Ghi chú: " + TakeOrdersManagerActivity.selectedValue.getmNote());
-		
+			TextView title = (TextView)findViewById(R.id.title);
+			order_id = TakeOrdersManagerActivity.selectedValue.getmID();
+			title.setText("Mã HĐ: "+order_id);
+			
+			TextView cus_id0 = (TextView)findViewById(R.id.cus_id);
+			TextView discount0 = (TextView)findViewById(R.id.discount);
+			TextView valuetotal0 = (TextView)findViewById(R.id.valuetotal);
+			TextView note2 = (TextView)findViewById(R.id.note);
+			
+			cus_id0.setVisibility(View.VISIBLE);
+			discount0.setVisibility(View.VISIBLE);
+			valuetotal0.setVisibility(View.VISIBLE);
+			note2.setVisibility(View.VISIBLE);
+			
+			cus_id0.setText("Mã KH: " + TakeOrdersManagerActivity.selectedValue.getmCustomerID());
+			discount0.setText("Giảm giá (%): " + TakeOrdersManagerActivity.selectedValue.getmDiscount());
+			valuetotal0.setText("Tổng giá trị: " + new BigDecimal(TakeOrdersManagerActivity.selectedValue.getmAfterPrivate()).toString());
+			note2.setText("Ghi chú: " + TakeOrdersManagerActivity.selectedValue.getmNote());
+		}
 		//init item commons
 		init();
 		

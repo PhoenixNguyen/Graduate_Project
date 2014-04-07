@@ -29,7 +29,6 @@ import com.sun.jersey.api.client.ClientResponse;
 
 public class InventoryManagerActivity extends TakeOrdersManagerActivity{
 	public void init(){
-			title.setText("Danh sách kiểm kho");
 			activityClass = InventoryManagerDetailActivity.class;
 			getList = "getInventoryManagerList";
 			deleteValue = "deleteInventoryManager";

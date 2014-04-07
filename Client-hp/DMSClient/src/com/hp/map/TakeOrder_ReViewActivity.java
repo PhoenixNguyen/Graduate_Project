@@ -38,8 +38,6 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orders_detail_manager);
 		
-		new_order_detail_bt = (ImageButton)findViewById(R.id.new_order_detail_bt);
-		new_order_detail_bt.setVisibility(View.GONE);
 		
 		//order_id = "180NLB-2014-03-14 02:17:02";
 		
@@ -52,7 +50,6 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 	}
 	
 	public void init(){
-		order_title.setText("Hóa đơn");
 		
 	}
 	

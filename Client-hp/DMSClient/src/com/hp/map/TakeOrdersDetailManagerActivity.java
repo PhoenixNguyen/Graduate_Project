@@ -27,6 +27,9 @@ import android.graphics.drawable.GradientDrawable.Orientation;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -46,7 +49,6 @@ import android.widget.TableRow.LayoutParams;
 
 public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 	
-	private LinearLayout layout;
 	public static String order_id;
 	
 	public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
@@ -54,35 +56,18 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 	public ListView ordersListView;
 	public OrdersManagerDetailArrayAdapter adapter;
 	
-	public TextView order_title;
 	public String getListDetail;
 	
 	public String updateData;
 	public String deleteData;
 	
-	public ImageButton new_order_detail_bt;
-	
-	private String cus_id;
-	private float discount;
-	private float valuetotal;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.orders_detail_manager);
-		
-		new_order_detail_bt = (ImageButton)findViewById(R.id.new_order_detail_bt);
 				
-		order_title = (TextView)findViewById(R.id.order_title_tv);
-		
-		Intent intent = getIntent();
-		order_id = intent.getStringExtra("ORDER_ID");
-		cus_id = intent.getStringExtra("CUS_ID");
-		discount = intent.getFloatExtra("DISCOUNT", 0);
-		valuetotal = intent.getFloatExtra("SUM_TOTAL", 0);
-		
 		TextView title = (TextView)findViewById(R.id.title);
-		
+		order_id = TakeOrdersManagerActivity.selectedValue.getmID();
 		title.setText("Mã HĐ: "+order_id);
 		
 		//init item commons
@@ -93,7 +78,6 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 	}
 	
 	public void init(){
-		order_title.setText("Danh mục chi tiết");
 		getListDetail = "getTakeOrderDetailList";
 		updateData = "updateDetailOrder";
 		deleteData = "deleteDetailOrder";
@@ -101,15 +85,46 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 		TextView cus_id0 = (TextView)findViewById(R.id.cus_id);
 		TextView discount0 = (TextView)findViewById(R.id.discount);
 		TextView valuetotal0 = (TextView)findViewById(R.id.valuetotal);
+		TextView note2 = (TextView)findViewById(R.id.note);
 		
 		cus_id0.setVisibility(View.VISIBLE);
 		discount0.setVisibility(View.VISIBLE);
 		valuetotal0.setVisibility(View.VISIBLE);
+		note2.setVisibility(View.VISIBLE);
 		
-		cus_id0.setText("Mã KH: " + cus_id);
-		discount0.setText("Giảm giá (%): " + discount);
-		valuetotal0.setText("Tổng giá trị: " + new BigDecimal(valuetotal).toString());
+		cus_id0.setText("Mã KH: " + TakeOrdersManagerActivity.selectedValue.getmCustomerID());
+		discount0.setText("Giảm giá (%): " + TakeOrdersManagerActivity.selectedValue.getmDiscount());
+		valuetotal0.setText("Tổng giá trị: " + new BigDecimal(TakeOrdersManagerActivity.selectedValue.getmAfterPrivate()).toString());
+		note2.setText("Ghi chú: " + TakeOrdersManagerActivity.selectedValue.getmNote());
 	}
+	
+	public void onResume(){
+		super.onResume();
+		this.onCreate(null);
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.order_menu, menu);
+		
+		return true;
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+//        case R.id.action_search:
+//        	
+//            return true;
+        case R.id.action_add:
+        	newOrderDetail();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
 	
 	public void addListView() {
 
@@ -437,7 +452,7 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
 				&& cm.getActiveNetworkInfo().isConnectedOrConnecting();
 	}
 	
-	public void newOrderDetail(View view){
+	public void newOrderDetail(){
 		//Status = true
 		TakeOrder_ProductActivity.add_take_order_detail = true;
 		TakeOrder_ProductActivity.timeLine = true;

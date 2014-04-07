@@ -10,28 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
-    >
-    	<RelativeLayout
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
-		    <TextView 
-	        android:id="@+id/order_title_tv"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="25sp"
-	        android:text="@string/order_title"
-	        />
-		    <ImageButton
-	        android:id="@+id/new_order_detail_bt"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:src="@drawable/ic_action_new"
-	        android:onClick="newOrderDetail"
-	        android:layout_alignParentRight="true"
-	        />
-		    
-	    </RelativeLayout>
+    >    	
 	    <TextView 
 	        android:id="@+id/title"
 	        android:layout_width="match_parent"
@@ -52,6 +31,12 @@
 	        />
     	<TextView 
 	        android:id="@+id/valuetotal"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	        />
+    	<TextView 
+	        android:id="@+id/note"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:visibility="gone"

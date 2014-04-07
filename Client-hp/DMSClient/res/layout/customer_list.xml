@@ -8,16 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/orange"
+        android:background="@color/FFFFCC"
         >
-        	<TextView 
-            android:id="@+id/search_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/customer_title"
-            android:textSize="25dp"
-            
-            />
         	
         	<LinearLayout
 		        android:focusable="true" 
@@ -26,28 +18,19 @@
     			android:layout_height="0px"/>
         	<LinearLayout
 		        android:layout_width="match_parent"
-		        android:layout_height="100dp"
+		        android:layout_height="wrap_content"
 		        android:orientation="horizontal"
-		        android:background="@color/orange"
 		        android:gravity="center"
 		        >  
 		    	
         	    <EditText 
 		            android:id="@+id/input_text"
-		            android:layout_weight="0.7"
-		            android:layout_width="0dp"
+		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:hint="@string/search_hint"
+		            android:gravity="center"
 		            />
         	    
-        	    <Button
-		            android:id="@+id/search_button"
-		            android:layout_weight="0.3"
-		            android:layout_width="0dp"
-		            android:layout_height="wrap_content"
-		            android:text="@string/add_button"
-		            android:onClick="insertCustomer"
-		            />
        	    </LinearLayout>
     </LinearLayout>
 	

@@ -112,7 +112,7 @@ public class TakeOrder_AmountActivity extends MainMenuActivity implements OnClic
 		}
 		else
 		{
-			if(TakeOrdersManagerActivity.takeOrderList != null)
+			if(TakeOrdersManagerActivity.takeOrderList != null && TakeOrdersManagerActivity.takeOrderList.size() > 0)
 			for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
 				System.out.println("__++"+TakeOrdersManagerActivity.takeOrderList.get(i).getmID() +" -- " + TakeOrder_ProductActivity.take_order_id);
 	        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 

@@ -28,6 +28,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,29 @@ public class CustomerListActivity extends MainMenuActivity{
 		addListView();
 	}
 
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.order_menu, menu);
+		
+		return true;
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+//        case R.id.action_search:
+//        	
+//            return true;
+        case R.id.action_add:
+        	insertCustomer();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+	
 	public void addListView(){
 		//List view
 		listView = (ListView)findViewById(R.id.list);
@@ -205,7 +229,7 @@ public class CustomerListActivity extends MainMenuActivity{
 		dialog.show();
 	}
 	
-	public void insertCustomer(View view){
+	public void insertCustomer(){
 		startActivity(new Intent(this, CustomerAdditionActivity.class));
 		
 	}

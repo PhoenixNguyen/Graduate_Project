@@ -29,7 +29,7 @@
     <!-- For customers -->
     <string name="customer_list_label">Khách hàng</string>
     <string name="customer_title">Danh sách khách hàng của bạn</string>
-    <string name="search_hint">Gõ mã hoặc tên khách hàng</string>
+    <string name="search_hint">Tìm kiếm</string>
     <string name="search_button_title">Tìm kiếm</string>
     <string name="add_button">Thêm</string>
     

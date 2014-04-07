@@ -48,7 +48,6 @@ public class InventoryManagerDetailActivity extends TakeOrdersDetailManagerActiv
 	public static boolean add_inventory_detail = false;
 
 	public void init(){
-		order_title.setText("Danh mục chi tiết");
 		getListDetail = "getInventoryManagerDetailList";
 		
 		updateData = "updateDetailInventoryManager";

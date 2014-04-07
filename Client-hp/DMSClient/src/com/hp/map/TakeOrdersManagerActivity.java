@@ -39,6 +39,9 @@ import android.text.TextWatcher;
 
 import android.view.LayoutInflater;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -80,6 +83,8 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 	public Class<? extends Activity> activityClass;
 	public String getList;
 	public String deleteValue;
+	
+	public static TakeOrder selectedValue;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +134,29 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 		deleteValue = "deleteOrder";
 	}
 
+	public boolean onCreateOptionsMenu(Menu menu){
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.order_menu, menu);
+		
+		return true;
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+//        case R.id.action_search:
+//        	
+//            return true;
+        case R.id.action_add:
+        	newTakeOrder();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+	
 	public void addListView() {
 
 		// Check the internet
@@ -161,7 +189,7 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 			public void onItemClick(AdapterView<?> a, View v, int position,
 					long id) {
 				System.out.println("Click!");
-				TakeOrder selectedValue = (TakeOrder) ordersListView.getAdapter().getItem(position);
+				selectedValue = (TakeOrder) ordersListView.getAdapter().getItem(position);
 		    	 addCustomerDialog(selectedValue);
 				
 			}
@@ -185,11 +213,7 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 				// show the map
 				Intent intent = new Intent(getApplicationContext(),
 						activityClass);
-				intent.putExtra("ORDER_ID", selectedValue.getmID());
-				intent.putExtra("CUS_ID", selectedValue.getmCustomerID());
-				intent.putExtra("DISCOUNT", selectedValue.getmDiscount());
-				intent.putExtra("SUM_TOTAL", selectedValue.getmAfterPrivate());
-				
+								
 				startActivity(intent);
 		        
 				dialog.dismiss();
@@ -521,7 +545,7 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 	   this.onCreate(null);
 	}
 	
-	public void newTakeOrder(View view){
+	public void newTakeOrder(){
 		startActivity(new Intent(this, CustomerListActivity.class));
 	}
 }

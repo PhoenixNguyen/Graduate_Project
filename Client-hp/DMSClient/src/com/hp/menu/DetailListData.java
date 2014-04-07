@@ -6,6 +6,7 @@ import com.hp.map.LoginActivity;
 import com.hp.map.ProductManagerActivity;
 import com.hp.map.ProfileActivity;
 import com.hp.map.R;
+import com.hp.map.SaleOrdersManagerActivity;
 import com.hp.map.Schedule_CalendarActivity;
 import com.hp.map.TakeOrdersManagerActivity;
 public class DetailListData {
@@ -25,7 +26,7 @@ public class DetailListData {
 		new DetailsList("Hóa đơn", 0, null),
 		new DetailsList("Hóa đơn đặt hàng", R.drawable.ic_menu_orders, TakeOrdersManagerActivity.class),
 		new DetailsList("Quản lý hàng tồn", R.drawable.ic_menu_database, InventoryManagerActivity.class),
-		
+		//new DetailsList("Quản lý bán hàng", R.drawable.ic_menu_database, SaleOrdersManagerActivity.class),
 		
 		
 		new DetailsList("Thông tin", 0, null),

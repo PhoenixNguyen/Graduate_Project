@@ -95,7 +95,15 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         List<Customer> courses = null;
         try{
-            courses = session.createQuery("from Customer where mXCoordinates > 0  order by  mXCoordinates desc").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
+            String q = "from Customer ";
+            Query query = session.createQuery("from Customer where mXCoordinates = 0");
+            
+            query.setMaxResults(10);
+            
+            courses = query.list();
+            //courses = session.createQuery("from Customer where mXCoordinates = 0").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
+            
+            // order by  mXCoordinates desc
         }catch(Exception e){
             e.printStackTrace();
         }

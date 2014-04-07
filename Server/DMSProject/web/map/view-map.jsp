@@ -35,8 +35,8 @@
                 var Customers = [
             <s:iterator value="listCustomer" status="status">
                     {
-                        mXCoordinates: <s:property value="mXCoordinates"/>,
-                                mYCoordinates: <s:property value="mYCoordinates"/>,
+                        mXCoordinates: 0.0,
+                                mYCoordinates: 0.0,
                         mMaDoiTuong: '<s:property value="mMaDoiTuong:"/>'
 
                     },
@@ -88,7 +88,7 @@
                     var marker = new google.maps.Marker({
                         map: map,
                         title: Customers[i].title,
-                        position: new google.maps.LatLng(Customers[i].mXCoordinates, Customers[i].mYCoordinates),
+                        position: new google.maps.LatLng(Customers[i].mXCoordinates, Customers[i].mYCoordinates)
                         //icon: img
                     });
 

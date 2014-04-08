@@ -86,7 +86,29 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         return true;
     }
-    //Get customers who have location
+    
+    public List<Customer> getListCustomers(String pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Customer> courses = null;
+        try{
+            if(pStaff == null)
+                courses = session.createQuery("from Customer order by mMaDoiTuong  ").list(); 
+            else
+                courses = session.createQuery("from Customer where  " 
+                        + " mMaNhanVien='"+pStaff+"' order by mMaDoiTuong ").list(); 
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
     @Override
     public List<Customer> loadCustomersWithLocations(){
         Session session = getSessionFactory().openSession();
@@ -96,10 +118,8 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<Customer> courses = null;
         try{
             String q = "from Customer ";
-            Query query = session.createQuery("from Customer where mXCoordinates = 0");
-            
-            query.setMaxResults(10);
-            
+            Query query = session.createQuery("from Customer where mXCoordinates > 0");
+                        
             courses = query.list();
             //courses = session.createQuery("from Customer where mXCoordinates = 0").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
             

@@ -19,6 +19,8 @@ public interface CustomerDAO {
     public boolean update(Customer pCustomer);
     public boolean delete(Customer pCustomer);
     
+    public List<Customer> getListCustomers(String pStaff);
+            
     public List<Customer> loadCustomersWithLocations();
     //and hava all sales man of manager
     public List<Customer> loadCustomersWithLocations(String pManagerID, String pStaff, String pCustomer);

@@ -35,8 +35,8 @@
                 var Customers = [
             <s:iterator value="listCustomer" status="status">
                     {
-                        mXCoordinates: 0.0,
-                                mYCoordinates: 0.0,
+                        mXCoordinates: <s:property value="mXCoordinates"/>,
+                                mYCoordinates: <s:property value="mYCoordinates"/>,
                         mMaDoiTuong: '<s:property value="mMaDoiTuong:"/>'
 
                     },

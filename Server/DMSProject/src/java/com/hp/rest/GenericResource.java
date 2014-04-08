@@ -390,7 +390,7 @@ public class GenericResource {
         CustomerDAO customerDAO = new CustomerDAOImpl();
         List<Customer> customerList = new ArrayList<Customer>();
 
-        customerList = customerDAO.loadCustomersWithLocations(null, pStaff, null);
+        customerList = customerDAO.getListCustomers(pStaff);
         return customerList;
     }
     

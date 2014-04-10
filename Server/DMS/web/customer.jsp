@@ -55,7 +55,8 @@
         <img src="themes/softed/images/layerPopupBg.gif" style="display: none;">
 
         <table border="0" cellspacing="0" cellpadding="0" width="100%" class="hdrNameBg">
-            <tbody><tr>
+            <tbody>
+                <tr>
                     <td valign="top"><img src="themes/softed/images/vtiger-crm.gif" alt="HOSCO-MANAGEMENT" title="HOSCO-MANAGEMENT" border="0"></td>
                     <td width="100%" align="center">
             <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo: Ngày 27/10. Bắt đầu làm đặc tả phần mềm cho MEDIC   </marquee>
@@ -82,45 +83,50 @@
                 </tbody></table>
         </td>
     </tr>
-</tbody></table>
+</tbody>
+</table>
 
 <div id="miniCal" style="width:300px; position:absolute; display:none; left:100px; top:100px; z-index:100000">
 </div>
 
-<!-- header - master tabs -->
+<!-- MENU header - master tabs -->
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="hdrTabBg">
-    <tbody><tr>
+    <tbody>
+        <tr>
             <td style="width:50px" class="small">&nbsp;</td>
             <td class="small" nowrap=""> 
                 <table border="0" cellspacing="0" cellpadding="0">
 
-                    <tbody><tr>
+                    <tbody>
+                        <tr>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="home.jsp?module=Home&amp;action=index&amp;parenttab=My Home Page">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="home.jsp?module=Rss&amp;action=index&amp;parenttab=Tools">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="home.jsp?module=Campaigns&amp;action=index&amp;parenttab=Marketing">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="home.jsp?module=Leads&amp;action=index&amp;parenttab=Sales">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Support_sub');" onmouseout="fnHideDrop('Support_sub');" align="center" nowrap=""><a href="home.jsp?module=HelpDesk&amp;action=index&amp;parenttab=Support">Hỗ trợ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Support_sub');" onmouseout="fnHideDrop('Support_sub');" align="center" nowrap=""><a href="">Hỗ trợ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Analytics_sub');" onmouseout="fnHideDrop('Analytics_sub');" align="center" nowrap=""><a href="home.jsp?module=Reports&amp;action=index&amp;parenttab=Analytics">Phân tích</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Analytics_sub');" onmouseout="fnHideDrop('Analytics_sub');" align="center" nowrap=""><a href="">Phân tích</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="home.jsp?module=Products&amp;action=index&amp;parenttab=Inventory">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
-                            
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Settings_sub');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="home.jsp?module=Settings&amp;action=index&amp;parenttab=Settings">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Settings_sub');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
 
                         </tr>
 
-                    </tbody></table>
+                    </tbody>
+                </table>
             </td>
             <td align="right" style="padding-right:10px" nowrap="">
                 <table border="0" cellspacing="0" cellpadding="0" id="search" style="border:1px solid #999999;background-color:white">
-                    <tbody><tr>
+                    <tbody>
+                        <tr>
                     <form name="UnifiedSearch" method="post" action="home.jsp" style="margin:0px" onsubmit="VtigerJS_DialogBox.block();"></form>
                     <td style="height:19px;background-color:#ffffef" nowrap="">
                         <a href="javascript:void(0);" onclick="UnifiedSearch_SelectModuleForm(this);"><img src="themes/images/settings_top.gif" align="left" border="0"></a>
@@ -135,11 +141,14 @@
                     </td>
 
         </tr>
-    </tbody></table>
+    </tbody>
+</table>
 </td>
 
 </tr>
-</tbody></table>
+</tbody>
+</table>
+
 <!-- - level 2 tabs starts-->
 <table border="0" cellspacing="0" cellpadding="2" width="100%" class="level2Bg">
     <tbody><tr>
@@ -147,13 +156,13 @@
                 <table border="0" cellspacing="0" cellpadding="0">
                     <tbody><tr>
 
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Campaigns&amp;action=index&amp;parenttab=Marketing">Chiến dịch</a> </td>
-                            <td class="level2SelTab" nowrap=""><a href="home.jsp?module=Accounts&amp;action=index&amp;parenttab=Marketing">Khách hàng</a></td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Contacts&amp;action=index&amp;parenttab=Marketing">Liên hệ</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Webmails&amp;action=index&amp;parenttab=Marketing">Webmails</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Leads&amp;action=index&amp;parenttab=Marketing">Đầu mối</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Calendar&amp;action=index&amp;parenttab=Marketing">Lịch</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Documents&amp;action=index&amp;parenttab=Marketing">Tài liệu</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="">Chiến dịch</a> </td>
+                            <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="">Liên hệ</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="">Webmails</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="">Đầu mối</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="">Lịch</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Documents&amp;action=index&amp;parenttab=">Tài liệu</a> </td>
                         </tr>
                     </tbody>
                 </table>
@@ -166,142 +175,115 @@
 <!-- Drop Down Menu in the Main Tab -->
 <div class="drop_mnu" id="My Home Page_sub" onmouseout="fnHideDrop('My Home Page_sub')" onmouseover="fnShowDrop('My Home Page_sub')">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr><td><a href="home.jsp?module=Home&amp;action=index&amp;parenttab=My Home Page" class="drop_down">Trang chủ</a></td></tr>
+        <tbody>
+            <tr><td><a href="" class="drop_down">Trang chủ</a></td></tr>
 
-        </tbody></table>
+        </tbody>
+    </table>
 </div>
 <div class="drop_mnu" id="Marketing_sub" onmouseout="fnHideDrop('Marketing_sub')" onmouseover="fnShowDrop('Marketing_sub')" style="left: 143px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr><td><a href="home.jsp?module=Campaigns&amp;action=index&amp;parenttab=Marketing" class="drop_down">Chiến dịch</a></td></tr>
-            <tr><td><a href="home.jsp?module=Accounts&amp;action=index&amp;parenttab=Marketing" class="drop_down">Khách hàng</a></td></tr>
-
-        </tbody></table>
+        <tbody>
+            <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>
+            <tr><td><a href="" class="drop_down">Khách hàng</a></td></tr>
+        </tbody>
+    </table>
 </div>
 <div class="drop_mnu" id="Sales_sub" onmouseout="fnHideDrop('Sales_sub')" onmouseover="fnShowDrop('Sales_sub')" style="left: 244px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr><td><a href="home.jsp?module=Leads&amp;action=index&amp;parenttab=Sales" class="drop_down">Đầu mối</a></td></tr>
-
-            <tr><td><a href="home.jsp?module=SalesOrder&amp;action=index&amp;parenttab=Sales" class="drop_down">Đặt hàng</a></td></tr>
-
-        </tbody></table>
+        <tbody>
+            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>
+            <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
+        </tbody>
+    </table>
 </div>
 <div class="drop_mnu" id="Support_sub" onmouseout="fnHideDrop('Support_sub')" onmouseover="fnShowDrop('Support_sub')" style="left: 331px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr><td><a href="home.jsp?module=HelpDesk&amp;action=index&amp;parenttab=Support" class="drop_down">Trợ giúp</a></td></tr>
-
-            <tr><td><a href="home.jsp?module=Contacts&amp;action=index&amp;parenttab=Support" class="drop_down">Liên hệ</a></td></tr>
-
+        <tbody>
+            <tr><td><a href="" class="drop_down">Trợ giúp</a></td></tr>
+            <tr><td><a href="" class="drop_down">Liên hệ</a></td></tr>
         </tbody></table>
 </div>
 <div class="drop_mnu" id="Analytics_sub" onmouseout="fnHideDrop('Analytics_sub')" onmouseover="fnShowDrop('Analytics_sub')" style="left: 401px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-
-
-        <tbody><tr><td><a href="home.jsp?module=Reports&amp;action=index&amp;parenttab=Analytics" class="drop_down">Báo cáo</a></td></tr>
-
-
-            <tr><td><a href="home.jsp?module=Dashboard&amp;action=index&amp;parenttab=Analytics" class="drop_down">Biểu đồ</a></td></tr>
-        </tbody></table>
+        <tbody>
+            <tr><td><a href="" class="drop_down">Báo cáo</a></td></tr>
+            <tr><td><a href="" class="drop_down">Biểu đồ</a></td></tr>
+        </tbody>
+    </table>
 </div>
 <div class="drop_mnu" id="Inventory_sub" onmouseout="fnHideDrop('Inventory_sub')" onmouseover="fnShowDrop('Inventory_sub')" style="left: 488px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tbody><tr><td><a href="home.jsp?module=Products&amp;action=index&amp;parenttab=Inventory" class="drop_down">Sản phẩm</a></td></tr>
-            <tr><td><a href="home.jsp?module=Vendors&amp;action=index&amp;parenttab=Inventory" class="drop_down">Nhà cung cấp</a></td></tr>
-            <tr><td><a href="home.jsp?module=PriceBooks&amp;action=index&amp;parenttab=Inventory" class="drop_down">Bảng giá</a></td></tr>
-            <tr><td><a href="home.jsp?module=PurchaseOrder&amp;action=index&amp;parenttab=Inventory" class="drop_down">Nhập hàng</a></td></tr>
-            <tr><td><a href="home.jsp?module=SalesOrder&amp;action=index&amp;parenttab=Inventory" class="drop_down">Đặt hàng</a></td></tr>
-            <tr><td><a href="home.jsp?module=Quotes&amp;action=index&amp;parenttab=Inventory" class="drop_down">Báo giá</a></td></tr>
+        <tbody>
+            <tr><td><a href="" class="drop_down">Sản phẩm</a></td></tr>
+            <tr><td><a href="" class="drop_down">Nhà cung cấp</a></td></tr>
+            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
+            <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
+            <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
+            <tr><td><a href="" class="drop_down">Báo giá</a></td></tr>
 
-        </tbody></table>
+        </tbody>
+    </table>
 </div>
 <div class="drop_mnu" id="Tools_sub" onmouseout="fnHideDrop('Tools_sub')" onmouseover="fnShowDrop('Tools_sub')" style="left: 567px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="home.jsp?module=Rss&amp;action=index&amp;parenttab=Tools" class="drop_down">Nhân viên</a></td></tr>
+            <tr><td><a href="" class="drop_down">Nhân viên</a></td></tr>
 
         </tbody>
     </table>
 </div>
 <div class="drop_mnu" id="Settings_sub" onmouseout="fnHideDrop('Settings_sub')" onmouseover="fnShowDrop('Settings_sub')" style="left: 647px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-
-
-        <tbody><tr><td><a href="home.jsp?module=Settings&amp;action=index&amp;parenttab=Settings" class="drop_down">Thiết lập</a></td></tr>
-
-
-            <tr><td><a href="home.jsp?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings" class="drop_down">Quản lý phân hệ</a></td></tr>
-        </tbody></table>
-</div>
-
-
-<div id="status" style="position:absolute;display:none;left:850px;top:95px;height:27px;white-space:nowrap;"><img src="themes/softed/images/status.gif"></div>
-
-<script>
-            function openwin()
-                    {
-                    window.open("home.jsp?module=Users&action=about_us", "aboutwin", "height=520,width=515,top=200,left=300")
-                            }
-
-</script>
-
-
-<div id="tracker" style="display: none; position: absolute; z-index: 100000001; left: 0px; top: 0px;" class="layerPopup">
-
-    <table border="0" cellpadding="5" cellspacing="0" width="200">
-        <tbody><tr style="cursor:move;">
-                <td colspan="2" class="mailClientBg small" id="Track_Handle"><strong>Xem gần nhất</strong></td>
-                <td align="right" style="padding:5px;" class="mailClientBg small">
-                    <a href="javascript:;"><img src="themes/images/close.gif" border="0" onclick="fninvsh('tracker')" hspace="5" align="absmiddle"></a>
-                </td></tr>
-        </tbody></table>
-    <table border="0" cellpadding="5" cellspacing="0" width="200" class="hdrNameBg">
         <tbody><tr>
-                <td class="trackerListBullet small" align="center" width="12">1</td>
-                <td class="trackerList small"> <a href="home.jsp?module=SalesOrder&amp;action=DetailView&amp;record=611&amp;parenttab=Marketing">Đặt hàng phần mề...</a> </td><td class="trackerList small">&nbsp;</td></tr>
+                <td><a href="" class="drop_down">Thiết lập</a></td>
+            </tr>
             <tr>
-                <td class="trackerListBullet small" align="center" width="12">2</td>
-                <td class="trackerList small"> <a href="home.jsp?module=SalesOrder&amp;action=DetailView&amp;record=201&amp;parenttab=Marketing">Đặt hàng 1</a> </td><td class="trackerList small">&nbsp;</td></tr>
-            <tr>
-                <td class="trackerListBullet small" align="center" width="12">3</td>
-                <td class="trackerList small"> <a href="home.jsp?module=Accounts&amp;action=DetailView&amp;record=137&amp;parenttab=Marketing">Trần Thị Khanh</a> </td><td class="trackerList small">&nbsp;</td></tr>
-            <tr>
-                <td class="trackerListBullet small" align="center" width="12">4</td>
-                <td class="trackerList small"> <a href="home.jsp?module=Leads&amp;action=DetailView&amp;record=203&amp;parenttab=Marketing">anh Long </a> </td><td class="trackerList small">&nbsp;</td></tr>
-            <tr>
-                <td class="trackerListBullet small" align="center" width="12">5</td>
-                <td class="trackerList small"> <a href="home.jsp?module=Accounts&amp;action=DetailView&amp;record=138&amp;parenttab=Marketing">Nguyễn Can Trường</a> </td><td class="trackerList small">&nbsp;</td></tr>
+                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>
+            </tr>
         </tbody>
     </table>
 </div>
 
+<!-- END Drop Down Menu in the Main Tab -->
+
+<div id="status" style="position:absolute;display:none;left:850px;top:95px;height:27px;white-space:nowrap;"><img src="themes/softed/images/status.gif"></div>
+
 <!--END MENU-->
 
+<!-- TOOLS -->
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
-    <tbody><tr><td style="height:2px"></td></tr>
+    <tbody>
+        <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="home.jsp?action=ListView&amp;module=Accounts&amp;parenttab=Marketing">Khách hàng</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="">Khách hàng</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
-                    <tbody><tr>
+                    <tbody>
+                        <tr>
                             <td class="sep1" style="width:1px;"></td>
                             <td class="small">
                                 <!-- Add and Search -->
                                 <table border="0" cellspacing="0" cellpadding="0">
-                                    <tbody><tr>
+                                    <tbody>
+                                        <tr>
                                             <td>
                                                 <table border="0" cellspacing="0" cellpadding="5">
-                                                    <tbody><tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href="home.jsp?module=Accounts&amp;action=EditView&amp;return_action=DetailView&amp;parenttab=Marketing"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
 
                                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
 
                                                         </tr>
-                                                    </tbody></table>
+                                                    </tbody>
+                                                </table>
                                             </td>
                                         </tr>
-                                    </tbody></table>
+                                    </tbody>
+                                </table>
                             </td>
                             <td style="width:20px;">&nbsp;</td>
                             <td class="small">
@@ -311,13 +293,9 @@
                             <td class="small">
                                 <!-- Import / Export -->
                                 <table border="0" cellspacing="0" cellpadding="5">
-                                    <tbody><tr>
-
-
-
-                                            <td style="padding-right:0px;padding-left:10px;"><a href="home.jsp?module=Accounts&amp;action=Import&amp;step=1&amp;return_module=Accounts&amp;return_action=index&amp;parenttab=Marketing"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
-
-
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
                                             <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
 
 
@@ -325,15 +303,18 @@
                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>
                                         </tr>
                                     </tbody></table>  
-                            </td><td style="width:20px;">&nbsp;</td>
+                            </td>
+                            <td style="width:20px;">&nbsp;</td>
                             <td class="small">
                                 <!-- All Menu -->
                                 <table border="0" cellspacing="0" cellpadding="5">
-                                    <tbody><tr>
+                                    <tbody>
+                                        <tr>
                                             <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                            <td style="padding-left:10px;"><a href="home.jsp?module=Settings&amp;action=ModuleManager&amp;module_settings=true&amp;formodule=Accounts&amp;parenttab=Settings"><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
+                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
                                         </tr>
-                                    </tbody></table>
+                                    </tbody>
+                                </table>
                             </td>
                         </tr>
                     </tbody>
@@ -341,20 +322,27 @@
             </td>
         </tr>
         <tr><td style="height:2px"></td></tr>
-    </tbody></table>                                <div id="searchingUI" style="display:none;">
+    </tbody>
+</table>                                
+
+<!-- END TOOLS -->
+
+<div id="searchingUI" style="display:none;">
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <tbody><tr>
                 <td align="center">
                     <img src="themes/images/searching.gif" alt="Đang tìm... hãy đợi" title="Đang tìm... hãy đợi">
                 </td>
             </tr>
-        </tbody></table>
+        </tbody>
+    </table>
 
 </div>
 
-    
+
 <table border="0" cellspacing="0" cellpadding="0" width="98%" align="center">
-    <tbody><tr>
+    <tbody>
+        <tr>
             <td valign="top"><img src="themes/softed/images/showPanelTopLeft.gif"></td>
 
             <td class="showPanelBg" valign="top" width="100%" style="padding:10px;">
@@ -426,99 +414,73 @@
                         <input name="current_page_boxes" id="current_page_boxes" type="hidden" value="137;138;139;168;174;178;180;186;192;205;210;219;221;223;225;228;230;233;235;248">
                         <!-- List View Master Holder starts -->
                         <table border="0" cellspacing="1" cellpadding="0" width="100%" class="lvtBg">
-                            <tbody><tr>
+                            <tbody>
+                                <tr>
                                     <td>
                                         <!-- List View's Buttons and Filters starts -->
                                         <table border="0" cellspacing="0" cellpadding="2" width="100%" class="small">
-<!--                                            
-                                        </table>
-                                        <!-- List View's Buttons and Filters ends -->
+                                            <!--                                            
+                                                                                    </table>
+                                            <!-- List View's Buttons and Filters ends -->
 
-                                        <div>
-                                            <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
-                                                <!-- Table Headers -->
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="lvtCol"><input type="checkbox" name="selectall" onclick="toggleSelect_ListView(this.checked, & quot; selected_id & quot; )"></td>
-                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tên Khách hàng</a></td>
-                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = smownerid & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Được gán cho</a></td>
-                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = createdtime & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tạo lúc</a></td>
-                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = cf_607 & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Ngày sinh</a></td>
-                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = phone & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Điện thoại</a></td>
-                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = rating & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Đánh giá</a></td>
-                                                        <td class="lvtCol">Hoạt động</td>
-                                                    </tr>
-                                                    <!-- Table Contents -->
-                                                    <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_137" class="lvtColData">
-                                                        <td width="2%"><input type="checkbox" name="selected_id" id="137" value="137" onclick="check_object(this)"></td>
+                                            <div>
+                                                <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                    <!-- Table Headers -->
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="lvtCol"><input type="checkbox" name="selectall" onclick="toggleSelect_ListView(this.checked, & quot; selected_id & quot; )"></td>
+                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tên Khách hàng</a></td>
+                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = smownerid & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Được gán cho</a></td>
+                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = createdtime & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tạo lúc</a></td>
+                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = cf_607 & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Ngày sinh</a></td>
+                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = phone & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Điện thoại</a></td>
+                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = rating & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Đánh giá</a></td>
+                                                            <td class="lvtCol">Hoạt động</td>
+                                                        </tr>
+                                                        <!-- Table Contents -->
+                                                        <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_137" class="lvtColData">
+                                                            <td width="2%"><input type="checkbox" name="selected_id" id="137" value="137" onclick="check_object(this)"></td>
+                                                            <td onmouseover=""><a href="" title="Accounts">Trần Thị Khanh</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">admin <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="assigned_user_id" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">16-04-2011 05:03:14 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="createdtime" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">12-10-1979 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover=""><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )">0915166889</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">Đạt kết quả <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover=""><a href="">Sửa</a>  | <a href=''>Xóa</a></td>
+                                                        </tr>
+                                                        <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_137" class="lvtColData">
+                                                            <td width="2%"><input type="checkbox" name="selected_id" id="137" value="137" onclick="check_object(this)"></td>
+                                                            <td onmouseover=""><a href="" title="Accounts">Trần Thị Khanh</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">admin <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="assigned_user_id" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">16-04-2011 05:03:14 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="createdtime" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">12-10-1979 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover=""><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )">0915166889</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover="">Đạt kết quả <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
+                                                            <td onmouseover=""><a href="">Sửa</a>  | <a href=''>Xóa</a></td>
+                                                        </tr>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="home.jsp?module=Accounts&amp;parenttab=Marketing&amp;action=DetailView&amp;record=137" title="Accounts">Trần Thị Khanh</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">admin <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="assigned_user_id" vtmodule="Accounts" style="display:none;"></span></td>
+                                            <table border="0" cellspacing="0" cellpadding="2" width="100%">
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">16-04-2011 05:03:14 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="createdtime" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">12-10-1979 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )">0915166889</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">Đạt kết quả <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="home.jsp?module=Accounts&amp;action=EditView&amp;record=137&amp;return_module=Accounts&amp;return_action=index&amp;parenttab=Marketing&amp;return_viewname=66">Sửa</a>  | <a href='javascript:confirmdelete("home.jsp%3Fmodule%3DAccounts%26action%3DDelete%26record%3D137%26return_module%3DAccounts%26return_action%3Dindex%26parenttab%3DMarketing%26return_viewname%3D66")'>Xóa</a></td>
-                                                    </tr>
-                                                    <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_138" class="lvtColData">
-                                                        <td width="2%"><input type="checkbox" name="selected_id" id="138" value="138" onclick="check_object(this)"></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="home.jsp?module=Accounts&amp;parenttab=Marketing&amp;action=DetailView&amp;record=138" title="Accounts">Nguyễn Can Trường</a> <span type="vtlib_metainfo" vtrecordid="138" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">admin <span type="vtlib_metainfo" vtrecordid="138" vtfieldname="assigned_user_id" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">16-04-2011 05:07:40 <span type="vtlib_metainfo" vtrecordid="138" vtfieldname="createdtime" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"> <span type="vtlib_metainfo" vtrecordid="138" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="javascript:;" onclick="startCall( & quot; 0912298066 & quot; , & quot; 138 & quot; )">0912298066</a> <span type="vtlib_metainfo" vtrecordid="138" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">Đạt kết quả <span type="vtlib_metainfo" vtrecordid="138" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="home.jsp?module=Accounts&amp;action=EditView&amp;record=138&amp;return_module=Accounts&amp;return_action=index&amp;parenttab=Marketing&amp;return_viewname=66">Sửa</a>  | <a href='javascript:confirmdelete("home.jsp%3Fmodule%3DAccounts%26action%3DDelete%26record%3D138%26return_module%3DAccounts%26return_action%3Dindex%26parenttab%3DMarketing%26return_viewname%3D66")'>Xóa</a></td>
-                                                    </tr>
-                                                    <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_139" class="lvtColData">
-                                                        <td width="2%"><input type="checkbox" name="selected_id" id="139" value="139" onclick="check_object(this)"></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="home.jsp?module=Accounts&amp;parenttab=Marketing&amp;action=DetailView&amp;record=139" title="Accounts">La Thị Hệ</a> <span type="vtlib_metainfo" vtrecordid="139" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">admin <span type="vtlib_metainfo" vtrecordid="139" vtfieldname="assigned_user_id" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">16-04-2011 05:12:23 <span type="vtlib_metainfo" vtrecordid="139" vtfieldname="createdtime" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">09-05-1985 <span type="vtlib_metainfo" vtrecordid="139" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="javascript:;" onclick="startCall( & quot; 0977495569 & quot; , & quot; 139 & quot; )">0977495569</a> <span type="vtlib_metainfo" vtrecordid="139" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">Đạt kết quả <span type="vtlib_metainfo" vtrecordid="139" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="home.jsp?module=Accounts&amp;action=EditView&amp;record=139&amp;return_module=Accounts&amp;return_action=index&amp;parenttab=Marketing&amp;return_viewname=66">Sửa</a>  | <a href='javascript:confirmdelete("home.jsp%3Fmodule%3DAccounts%26action%3DDelete%26record%3D139%26return_module%3DAccounts%26return_action%3Dindex%26parenttab%3DMarketing%26return_viewname%3D66")'>Xóa</a></td>
-                                                    </tr>
-
-                                                </tbody></table>
-                                        </div>
-
-                                        <table border="0" cellspacing="0" cellpadding="2" width="100%">
-
-                                        </table>
+                                            </table>
                                     </td>
                                 </tr>
-                            </tbody></table>
+                            </tbody>
+
+                        </table>
 
                     </form>  
-                       
+
                 </div>
 
             </td>
             <td valign="top"><img src="themes/softed/images/showPanelTopRight.gif"></td>
         </tr>
-    </tbody></table>
+    </tbody>
+</table>
 
 <br><br><br>
 
@@ -531,11 +493,13 @@
     </tbody>
 </table>    
 <script>
-                            var userDateFormat = "dd-mm-yyyy";
-                                    var default_charset = "UTF-8";</script>
-<script type="text/javascript">if (typeof (ActivityReminderCallback) != 'undefined') window.setTimeout(function(){
-                            ActivityReminderCallback();
-                                    }, 22000);</script><!--end body panes-->
+            var userDateFormat = "dd-mm-yyyy";
+            var default_charset = "UTF-8";</script>
+<script type="text/javascript">
+            if (typeof (ActivityReminderCallback) != 'undefined') window.setTimeout(function(){
+    ActivityReminderCallback();
+    }, 22000);
+</script><!--end body panes-->
 
 </body>
 </html>

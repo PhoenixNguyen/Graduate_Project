@@ -9,3 +9,10 @@
 /Client-hp/DMSClient/bin/
 /Client-hp/DMSProject/project.properties
 
+/Server/DMS/build/
+/Server/DMS/dist/
+/Server/DMS/struts-2/lib/
+/Server/DMS/poi-3.9/lib/
+/Server/DMS/lib/
+/Server/DMS/web/WEB-INF/lib/
+

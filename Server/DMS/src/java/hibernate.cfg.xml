@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory >
+        <!--FOR online Server -->
+        <!--property name="hibernate.connection.datasource">jdbc/DMSProject</property-->
+        
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <!--com.hp.filter.CustomMysqlDialect - org.hibernate.dialect.SQLServerDialect -->
+        
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=DMSServer</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="show_sql">true</property>
+        
+    
+        <property name="hbm2ddl.auto">create</property>
+    
+        <mapping class="com.hp.domain.Customer" />
+        <mapping class="com.hp.domain.RoadManagement" />
+        <mapping class="com.hp.domain.User" />
+        <mapping class="com.hp.domain.Staff" />
+        <mapping class="com.hp.domain.Schedule" />
+        
+        <mapping class="com.hp.domain.Provider" />
+        <mapping class="com.hp.domain.Product" />
+        <mapping class="com.hp.domain.TakeOrder" />
+        <mapping class="com.hp.domain.TakeOrderDetail" />
+        
+        <mapping class="com.hp.domain.SaleOrder" />
+        <mapping class="com.hp.domain.SaleOrderDetail" />
+        <mapping class="com.hp.domain.ReturnOrder" />
+        <mapping class="com.hp.domain.ReturnOrderDetail" />
+        <mapping class="com.hp.domain.InventoryManager" />
+        <mapping class="com.hp.domain.InventoryManagerDetail" />
+        
+        <mapping class="com.hp.domain.Stock" />
+                
+  </session-factory>
+</hibernate-configuration>

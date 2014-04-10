@@ -446,7 +446,7 @@
                                                             <td onmouseover="">12-10-1979 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover=""><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )">0915166889</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover="">Đạt kết quả <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><a href="">Sửa</a>  | <a href=''>Xóa</a></td>
+                                                            <td onmouseover=""><a href="">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DProducts%26action%3DDelete%26record%3D142%26return_module%3DProducts%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D62")'>Xóa</a></td>
                                                         </tr>
                                                         <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_137" class="lvtColData">
                                                             <td width="2%"><input type="checkbox" name="selected_id" id="137" value="137" onclick="check_object(this)"></td>
@@ -456,7 +456,7 @@
                                                             <td onmouseover="">12-10-1979 <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover=""><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )">0915166889</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover="">Đạt kết quả <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><a href="">Sửa</a>  | <a href=''>Xóa</a></td>
+                                                            <td onmouseover=""><a href="">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DProducts%26action%3DDelete%26record%3D142%26return_module%3DProducts%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D62")'>Xóa</a></td>
                                                         </tr>
 
                                                     </tbody>

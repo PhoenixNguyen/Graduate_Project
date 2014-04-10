@@ -339,7 +339,7 @@
 
 </div>
 
-
+<!-- KHACH HANG -->
 <table border="0" cellspacing="0" cellpadding="0" width="98%" align="center">
     <tbody>
         <tr>

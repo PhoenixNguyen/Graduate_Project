@@ -168,75 +168,15 @@
 	<td >
 		<table border=0 cellspacing=0 cellpadding=0>
 		<tr>
-			<!-- ASHA: Avoid using this as it gives module name instead of module label. 
-			Now Using the same array QUICKACCESS that is used to show drop down menu
-			(which gives both module name and module label)-->
-			<!--																						      					 
-      						 
-      																		<td class="level2UnSelTab" nowrap> <a href="index.php?module=Campaigns&action=index&parenttab=Marketing">Chiến dịch</a> </td>
-							
-											      					 
-      						 
-      																		<td class="level2SelTab" nowrap><a href="index.php?module=Accounts&action=index&parenttab=Marketing">Khách hàng</a></td>
-							
-											      					 
-      						 
-      																		<td class="level2UnSelTab" nowrap> <a href="index.php?module=Contacts&action=index&parenttab=Marketing">Liên hệ</a> </td>
-							
-											      					 
-      						 
-      																		<td class="level2UnSelTab" nowrap> <a href="index.php?module=Webmails&action=index&parenttab=Marketing">Webmails</a> </td>
-							
-											      					 
-      						 
-      																		<td class="level2UnSelTab" nowrap> <a href="index.php?module=Leads&action=index&parenttab=Marketing">Đầu mối</a> </td>
-							
-											      					 
-      						 
-      																		<td class="level2UnSelTab" nowrap> <a href="index.php?module=Calendar&action=index&parenttab=Marketing">Lịch</a> </td>
-							
-											      					 
-      						 
-      																		<td class="level2UnSelTab" nowrap> <a href="index.php?module=Documents&action=index&parenttab=Marketing">Tài liệu</a> </td>
-							
-																																																						-->
-			
-																										   					
-	   												   							
-	   									
-													<td class="level2UnSelTab" nowrap> <a href="index.php?module=Campaigns&action=index&parenttab=Marketing">Chiến dịch</a> </td>
-							
-												   					
-	   												   							
-	   									
-													<td class="level2SelTab" nowrap><a href="index.php?module=Accounts&action=index&parenttab=Marketing">Khách hàng</a></td>
-							
-												   					
-	   												   							
-	   									
-													<td class="level2UnSelTab" nowrap> <a href="index.php?module=Contacts&action=index&parenttab=Marketing">Liên hệ</a> </td>
-							
-													   					
-	   												   							
-	   									
-													<td class="level2UnSelTab" nowrap> <a href="index.php?module=Webmails&action=index&parenttab=Marketing">Webmails</a> </td>
-							
-												   					
-	   												   							
-	   									
-													<td class="level2UnSelTab" nowrap> <a href="index.php?module=Leads&action=index&parenttab=Marketing">Đầu mối</a> </td>
-							
-												   					
-	   												   							
-	   									
-													<td class="level2UnSelTab" nowrap> <a href="index.php?module=Calendar&action=index&parenttab=Marketing">Lịch</a> </td>
-							
-												   					
-	   												   							
-	   									
-													<td class="level2UnSelTab" nowrap> <a href="index.php?module=Documents&action=index&parenttab=Marketing">Tài liệu</a> </td>
-							
-																																																								</tr>
+
+
+    <td class="level2UnSelTab" nowrap> <a href="index.php?module=Campaigns&action=index&parenttab=Marketing">Chiến dịch</a> </td>
+    <td class="level2SelTab" nowrap><a href="index.php?module=Accounts&action=index&parenttab=Marketing">Khách hàng</a></td>
+    <td class="level2UnSelTab" nowrap> <a href="index.php?module=Contacts&action=index&parenttab=Marketing">Liên hệ</a> </td>
+    <td class="level2UnSelTab" nowrap> <a href="index.php?module=Webmails&action=index&parenttab=Marketing">Webmails</a> </td>
+    <td class="level2UnSelTab" nowrap> <a href="index.php?module=Leads&action=index&parenttab=Marketing">Đầu mối</a> </td>
+    <td class="level2UnSelTab" nowrap> <a href="index.php?module=Calendar&action=index&parenttab=Marketing">Lịch</a> </td>
+    <td class="level2UnSelTab" nowrap> <a href="index.php?module=Documents&action=index&parenttab=Marketing">Tài liệu</a> </td>                                                                                                                                                                                                                                                                                                                                                      </tr>
 		</table>
 	</td>
 </tr>
@@ -393,301 +333,7 @@
 </tbody>
 </table>
 </div>
-<script>
-	var theHandle = document.getElementById("Handle");
-	var theRoot   = document.getElementById("wclock");
-	Drag.init(theHandle, theRoot);
-</script>
 
-
-<div id="qcform" style="position:absolute;width:700px;top:80px;left:450px;z-index:100000;"></div>
-
-<!-- Unified Search module selection feature -->
-<div id="UnifiedSearch_moduleformwrapper" style="position:absolute;width:400px;z-index:100002;display:none;"></div>
-<script type='text/javascript'>
-
-function UnifiedSearch_SelectModuleForm(obj) {
-	if($('UnifiedSearch_moduleform')) {
-		// If we have loaded the form already.
-		UnifiedSearch_SelectModuleFormCallback(obj);
-	} else {
-		$('status').show();
-		new Ajax.Request(
-		'index.php',
-		{queue: {position: 'end', scope: 'command'},
-			method: 'post',
-			postBody: 'module=Home&action=HomeAjax&file=UnifiedSearchModules&ajax=true',
-			onComplete: function(response) {
-				$('status').hide();
-				$('UnifiedSearch_moduleformwrapper').innerHTML = response.responseText;
-				UnifiedSearch_SelectModuleFormCallback(obj);
-			}
-		});
-	}
-}
-function UnifiedSearch_SelectModuleFormCallback(obj) {
-	fnvshobj(obj, 'UnifiedSearch_moduleformwrapper');
-}
-function UnifiedSearch_SelectModuleToggle(flag) {
-	Form.getElements($('UnifiedSearch_moduleform')).each(
-		function(element) {
-			if(element.type == 'checkbox') {
-				element.checked = flag;
-			}
-		}
-	);
-}
-function UnifiedSearch_SelectModuleCancel() {
-	$('UnifiedSearch_moduleformwrapper').hide();
-}
-function UnifiedSearch_SelectModuleSave() {
-	var UnifiedSearch_form = document.forms.UnifiedSearch;
-	UnifiedSearch_form.search_onlyin.value = Form.serialize($('UnifiedSearch_moduleform')).replace(/search_onlyin=/g, '').replace(/&/g,',');
-	UnifiedSearch_SelectModuleCancel();
-}
-
-</script>
-<!-- End -->
-
-<script>
-var gVTModule = 'Accounts';
-function fetch_clock()
-{
-	new Ajax.Request(
-		'index.php',
-		{queue: {position: 'end', scope: 'command'},
-			method: 'post',
-			postBody: 'module=Utilities&action=UtilitiesAjax&file=Clock',
-			onComplete: function(response)
-				    {
-					$("clock_cont").innerHTML=response.responseText;
-					execJS($('clock_cont'));
-				    }
-		}
-	);
-
-}
-
-function fetch_calc()
-{
-	new Ajax.Request(
-		'index.php',
-		{queue: {position: 'end', scope: 'command'},
-			method: 'post',
-			postBody: 'module=Utilities&action=UtilitiesAjax&file=Calculator',
-			onComplete: function(response)
-					{
-						$("calculator_cont").innerHTML=response.responseText;
-						execJS($('calculator_cont'));
-					}
-		}
-	);
-}
-</script>
-
-<script>
-
-function QCreate(qcoptions){
-	var module = qcoptions.options[qcoptions.options.selectedIndex].value;
-	if(module != 'none'){
-		$("status").style.display="inline";
-		if(module == 'Events'){
-			module = 'Calendar';
-			var urlstr = '&activity_mode=Events';
-		}else if(module == 'Calendar'){
-			module = 'Calendar';
-			var urlstr = '&activity_mode=Task';
-		}else{
-			var urlstr = '';
-		}
-		new Ajax.Request(
-			'index.php',
-				{queue: {position: 'end', scope: 'command'},
-				method: 'post',
-				postBody: 'module='+module+'&action='+module+'Ajax&file=QuickCreate'+urlstr,
-				onComplete: function(response){
-					$("status").style.display="none";
-					$("qcform").style.display="inline";
-					$("qcform").innerHTML = response.responseText;
-					// Evaluate all the script tags in the response text.
-					var scriptTags = $("qcform").getElementsByTagName("script");
-					for(var i = 0; i< scriptTags.length; i++){
-						var scriptTag = scriptTags[i];
-						eval(scriptTag.innerHTML);
-					}
-                    eval($("qcform"));
-                    posLay(qcoptions, "qcform");
-				}
-			}
-		);
-	}else{
-		hide('qcform');
-	}
-}
-
-function getFormValidate(divValidate)
-{
-  var st = document.getElementById('qcvalidate');
-  eval(st.innerHTML);
-  for (var i=0; i<qcfieldname.length; i++) {
-		var curr_fieldname = qcfieldname[i];	
-		if(window.document.QcEditView[curr_fieldname] != null)
-		{
-			var type=qcfielddatatype[i].split("~")
-			var input_type = window.document.QcEditView[curr_fieldname].type;	
-			if (type[1]=="M") {
-					if (!qcemptyCheck(curr_fieldname,qcfieldlabel[i],input_type))
-						return false
-				}
-			switch (type[0]) {
-				case "O"  : break;
-				case "V"  : break;
-				case "C"  : break;
-				case "DT" :
-					if (window.document.QcEditView[curr_fieldname] != null && window.document.QcEditView[curr_fieldname].value.replace(/^\s+/g, '').replace(/\s+$/g, '').length!=0)
-					{	 
-						if (type[1]=="M")
-							if (!qcemptyCheck(type[2],qcfieldlabel[i],getObj(type[2]).type))
-								return false
-						if(typeof(type[3])=="undefined") var currdatechk="OTH"
-						else var currdatechk=type[3]
-
-						if (!qcdateTimeValidate(curr_fieldname,type[2],qcfieldlabel[i],currdatechk))
-							return false
-						if (type[4]) {
-							if (!dateTimeComparison(curr_fieldname,type[2],qcfieldlabel[i],type[5],type[6],type[4]))
-								return false
-
-						}
-					}		
-				break;
-				case "D"  :
-					if (window.document.QcEditView[curr_fieldname] != null && window.document.QcEditView[curr_fieldname].value.replace(/^\s+/g, '').replace(/\s+$/g, '').length!=0)
-					{	
-						if(typeof(type[2])=="undefined") var currdatechk="OTH"
-						else var currdatechk=type[2]
-
-							if (!qcdateValidate(curr_fieldname,qcfieldlabel[i],currdatechk))
-								return false
-									if (type[3]) {
-										if (!qcdateComparison(curr_fieldname,qcfieldlabel[i],type[4],type[5],type[3]))
-											return false
-									}
-					}	
-				break;
-				case "T"  :
-					if (window.document.QcEditView[curr_fieldname] != null && window.document.QcEditView[curr_fieldname].value.replace(/^\s+/g, '').replace(/\s+$/g, '').length!=0)
-					{	 
-						if(typeof(type[2])=="undefined") var currtimechk="OTH"
-						else var currtimechk=type[2]
-
-							if (!timeValidate(curr_fieldname,qcfieldlabel[i],currtimechk))
-								return false
-									if (type[3]) {
-										if (!timeComparison(curr_fieldname,qcfieldlabel[i],type[4],type[5],type[3]))
-											return false
-									}
-					}
-				break;
-				case "I"  :
-					if (window.document.QcEditView[curr_fieldname] != null && window.document.QcEditView[curr_fieldname].value.replace(/^\s+/g, '').replace(/\s+$/g, '').length!=0)
-					{	
-						if (window.document.QcEditView[curr_fieldname].value.length!=0)
-						{
-							if (!qcintValidate(curr_fieldname,qcfieldlabel[i]))
-								return false
-							if (type[2]) {
-								if (!qcnumConstComp(curr_fieldname,qcfieldlabel[i],type[2],type[3]))
-									return false
-							}
-						}
-					}
-				break;
-				case "N"  :
-					case "NN" :
-					if (window.document.QcEditView[curr_fieldname] != null && window.document.QcEditView[curr_fieldname].value.replace(/^\s+/g, '').replace(/\s+$/g, '').length!=0)
-					{
-						if (window.document.QcEditView[curr_fieldname].value.length!=0)
-						{
-							if (typeof(type[2])=="undefined") var numformat="any"
-							else var numformat=type[2]
-
-								if (type[0]=="NN") {
-
-									if (!numValidate(curr_fieldname,qcfieldlabel[i],numformat,true))
-										return false
-								} else {
-									if (!numValidate(curr_fieldname,qcfieldlabel[i],numformat))
-										return false
-								}
-							if (type[3]) {
-								if (!numConstComp(curr_fieldname,qcfieldlabel[i],type[3],type[4]))
-									return false
-							}
-						}
-					}
-				break;
-				case "E"  :
-					if (window.document.QcEditView[curr_fieldname] != null && window.document.QcEditView[curr_fieldname].value.replace(/^\s+/g, '').replace(/\s+$/g, '').length!=0)
-					{
-						if (window.document.QcEditView[curr_fieldname].value.length!=0)
-						{
-							var etype = "EMAIL"
-								if (!qcpatternValidate(curr_fieldname,qcfieldlabel[i],etype))
-									return false
-						}
-					}
-				break;
-			}
-		}
-	}
-       //added to check Start Date & Time,if Activity Status is Planned.//start
-        for (var j=0; j<qcfieldname.length; j++)
-		{
-			curr_fieldname = qcfieldname[j];
-			if(window.document.QcEditView[curr_fieldname] != null)
-			{
-				if(qcfieldname[j] == "date_start")
-				{
-					var datelabel = qcfieldlabel[j]
-						var datefield = qcfieldname[j]
-						var startdatevalue = window.document.QcEditView[datefield].value.replace(/^\s+/g, '').replace(/\s+$/g, '')
-				}
-				if(qcfieldname[j] == "time_start")
-				{
-					var timelabel = qcfieldlabel[j]
-						var timefield = qcfieldname[j]
-						var timeval=window.document.QcEditView[timefield].value.replace(/^\s+/g, '').replace(/\s+$/g, '')
-				}
-				if(qcfieldname[j] == "eventstatus" || qcfieldname[j] == "taskstatus")
-				{
-					var statusvalue = window.document.QcEditView[curr_fieldname].options[window.document.QcEditView[curr_fieldname].selectedIndex].value.replace(/^\s+/g, '').replace(/\s+$/g, '')
-					var statuslabel = qcfieldlabel[j++]
-				}
-			}
-		}
-	if(statusvalue == "Planned")
-        {
-               var dateelements=splitDateVal(startdatevalue)
-	       var hourval=parseInt(timeval.substring(0,timeval.indexOf(":")))
-               var minval=parseInt(timeval.substring(timeval.indexOf(":")+1,timeval.length))
-               var dd=dateelements[0]
-               var mm=dateelements[1]
-               var yyyy=dateelements[2]
-
-               var chkdate=new Date()
-               chkdate.setYear(yyyy)
-               chkdate.setMonth(mm-1)
-               chkdate.setDate(dd)
-	       chkdate.setMinutes(minval)
-               chkdate.setHours(hourval)
-		if(!comparestartdate(chkdate)) return false;
-		
-
-	 }//end
-	return true;
-}
-</SCRIPT>
 
 
 <div id="allMenu" onmouseout="fninvsh('allMenu');" onMouseOver="fnvshNrm('allMenu');" style="width:650px;z-index: 10000001;display:none;">
@@ -1122,10 +768,6 @@ function vtiger_news(obj) {
 </div>
 <!-- END -->
 
-<!-- ActivityReminder Customization for callback -->
-<div class="lvtCol fixedLay1" id="ActivityRemindercallback" style="border: 0; right: 0px; bottom: 2px; display:none; padding: 2px; z-index: 10; font-weight: normal;" align="left">
-</div>
-<!-- End -->
 
 <!-- divs for asterisk integration -->
 <div class="lvtCol fixedLay1" id="notificationDiv" style="float: right;  padding-right: 5px; overflow: hidden; border-style: solid; right: 0px; border-color: rgb(141, 141, 141); bottom: 0px; display: none; padding: 2px; z-index: 10; font-weight: normal;" align="left">
@@ -2056,7 +1698,9 @@ function sensex_info()
 		}
 	//window.onunload=LogOut
 	</script>
-		<script language = 'JavaScript' type='text/javascript' src = 'include/js/popup.js'></script><br><br><br><table border=0 cellspacing=0 cellpadding=5 width=100% class=settingsSelectedUI ><tr><td class=small align=left><span style='color: rgb(153, 153, 153);'>HOSCO-CRM</span></td><td class=small align=right><span style='color: rgb(153, 153, 153);'>&copy; 2014 <a href='http://www.hosgroup.com.vn' target='_blank'>hosgroup.com.vn</a></span> </td></tr></table>		<script>
+		<script language = 'JavaScript' type='text/javascript' src = 'include/js/popup.js'></script>
+                <br><br><br>
+                <table border=0 cellspacing=0 cellpadding=5 width=100% class=settingsSelectedUI ><tr><td class=small align=left><span style='color: rgb(153, 153, 153);'>HOSCO-CRM</span></td><td class=small align=right><span style='color: rgb(153, 153, 153);'>&copy; 2014 <a href='http://www.hosgroup.com.vn' target='_blank'>hosgroup.com.vn</a></span> </td></tr></table>		<script>
 			var userDateFormat = "dd-mm-yyyy";
 			var default_charset = "UTF-8";
 		</script>

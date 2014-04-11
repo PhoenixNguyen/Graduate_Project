@@ -275,7 +275,7 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-customer"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
 
                                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                                                                     searchshowhide('searchAcc', 'advSearch');
@@ -350,7 +350,7 @@
                 <br> 
 
 
-                <form name="EditView" method="GET" action="update-customer" id="sub_form" >
+                <form name="EditView" method="POST" action="update-customer" id="sub_form" >
                     <s:push value="customer" >
                         <input type="hidden" name="customer.mStt" value="<s:property value="customer.mStt"/>">
                         <input type="hidden" name="customer.mXCoordinates" value="<s:property value="customer.mXCoordinates"/>">
@@ -404,13 +404,7 @@
                                                             </tr>
 
                                                             <!-- included to handle the edit fields based on ui types -->
-
-
-
                                                             <!-- This is added to display the existing comments -->
-
-
-
                                                             <tr>
                                                                 <td colspan=4 class="detailedViewHeader">
                                                                     <b>Thông tin Khách hàng</b>
@@ -423,18 +417,12 @@
                                                             <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                             <tr style="height:25px">
 
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right>
                                                                     <font color="red">*</font>Tên Khách hàng 			
                                                                 </td>
                                                                 <td width=30% align=left class="dvtCellInfo">
                                                                     <input type="text" name="customer.mDoiTuong" value="<s:property value="mDoiTuong"/>" tabindex=""  tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                 </td>
-
-
-
 
                                                                 <!-- Non Editable field, only configured value will be loaded -->
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã số Khách hàng </td>
@@ -601,9 +589,6 @@
                                                             </tr>
                                                             <tr style="height:25px">
 
-
-
-
                                                                 <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>
@@ -761,23 +746,16 @@
                                                                     <input name="cf_639" tabindex="" type="checkbox" >
                                                                 </td>
 
-
-
-
                                                                 <td width="20%" class="dvtCellLabel" align=right>
-                                                                    <font color="red"></font>Nhu cầu đại lý 			</td>
+                                                                    <font color="red"></font>Nhu cầu đại lý 			
+                                                                </td>
 
                                                                 <td width="30%" align=left class="dvtCellInfo">
                                                                     <input name="cf_640" tabindex="" type="checkbox" >
                                                                 </td>
                                                             </tr>
 
-
-
-
                                                             <!-- This is added to display the existing comments -->
-
-
 
                                                             <tr>
                                                                 <td colspan=2 class="detailedViewHeader">
@@ -790,13 +768,8 @@
                                                             </tr>
 
                                                             <!-- Handle the ui types display -->
-
-
                                                             <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                             <tr style="height:25px">
-
-
-
 
                                                                 <td width=20% class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>
@@ -804,9 +777,6 @@
                                                                 <td width=30% align=left class="dvtCellInfo">
                                                                     <textarea value="<s:property value="mDiaChi"/>" name="customer.mDiaChi" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
                                                                 </td>
-
-
-
 
                                                                 <td width=20% class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>
@@ -816,93 +786,36 @@
                                                                 </td>
                                                             </tr>
                                                             <tr style="height:25px">
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Hộp thư thanh toán </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_pobox" id ="bill_pobox" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Hộp thư vận chuyển </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_pobox" id ="ship_pobox" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
                                                             <tr style="height:25px">
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Thanh toán tại thành phố </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_city" id ="bill_city" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Vận chuyển tới thành phố </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_city" id ="ship_city" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
                                                             <tr style="height:25px">
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Thanh toán tại Tỉnh/Bang </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_state" id ="bill_state" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Vận chuyển tới Tỉnh/Bang </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_state" id ="ship_state" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
                                                             <tr style="height:25px">
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã vùng thanh toán </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_code" id ="bill_code" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã vùng vận chuyển </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_code" id ="ship_code" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
                                                             <tr style="height:25px">
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Thanh toán tại quốc gia </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_country" id ="bill_country" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-
-
-
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Vận chuyển tới quốc gia </td>
-
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_country" id ="ship_country" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
-
-
-
-
                                                             <!-- This is added to display the existing comments -->
-
-
-
                                                             <tr>
                                                                 <td colspan=4 class="detailedViewHeader">
                                                                     <b>Thông tin mô tả</b>
@@ -914,10 +827,6 @@
 
                                                             <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                             <tr style="height:25px">
-
-
-
-
                                                                 <!-- In Add Comment are we should not display anything -->
                                                                 <td width=20% class="dvtCellLabel" align=right>
                                                                     <font color="red"></font> 
@@ -926,22 +835,22 @@
                                                                     <textarea  class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="customer.mGhiChu"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"/><s:property value="mGhiChu"/></textarea>
                                                                 </td>
                                                             </tr>
-
-
-
                                                             <!-- Added to display the Product Details in Inventory-->
 
                                                             <tr>
                                                                 <td  colspan=4 style="padding:5px">
                                                                     <div align="center">
                                                                         <input type='hidden'  name='address_change' value='no'>
-                                                                        <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="this.form.action.value = 'Save';
-                                                                                displaydeleted();
-                                                                                if (formValidate()) {
-                                                                                    if (AjaxDuplicateValidate('Accounts', 'accountname', this.form)) {
-                                                                                        AddressSync(this.form, 137);
-                                                                                    }
-                                                                                }" type="button" name="button" value="  Lưu  " style="width:70px" >		
+                                                                        <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                document.getElementById('sub_form').submit();
+//                                                                                this.form.action.value = 'Save';
+//                                                                                displaydeleted();
+//                                                                                if (formValidate()) {
+//                                                                                    if (AjaxDuplicateValidate('Accounts', 'accountname', this.form)) {
+//                                                                                        AddressSync(this.form, 137);
+//                                                                                    }
+//                                                                                }
+                                                                                " type="button" name="button" value="  Lưu  " style="width:70px" >		
                                                                         <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                     </div>
                                                                 </td>

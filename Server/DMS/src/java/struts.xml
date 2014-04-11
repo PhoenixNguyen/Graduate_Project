@@ -520,6 +520,11 @@
             <result name="input" >home.jsp</result>
         </action>
         
+        <action name="save-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
+            <result name="success" type="redirect">customer-detail?id_cus=${customer.mStt}</result>
+            <result name="input" type="redirect">customer-add.jsp</result>
+        </action>
+        
         <action name="edit-customer" method="editCustomer" class="com.hp.action.CustomerAction">
             <result name="success">customer-edit.jsp</result>
             <result name="input" >home.jsp</result>
@@ -529,6 +534,9 @@
             <result name="success" type="redirect">customer-detail?id_cus=${customer.mStt}</result>
             <result name="input" type="redirect">edit-customer?id_cus=${customer.mStt}</result>
         </action>
+        
+        
+        <!--Not yet handle-->
     </package>
     
     

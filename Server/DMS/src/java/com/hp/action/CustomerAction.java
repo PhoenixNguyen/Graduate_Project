@@ -346,28 +346,23 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         staffsList = staffDAO.getListUser(null);
         
         String test = request.getParameter("mTinhThanh");
-        
         String name  = customer.getmDienThoai();
         
         String pw = demo.getmDienThoai();
         Float y = demo.getmYCoordinates();
-        
-//        int stt = demo2.getStt();
-//        Float point = demo2.getPoint();
-//        System.out.println("__" + stt + "__ " +point);
-        
+   
         System.out.println("__" + pw + "__ " +y +" PARA: " + test);
         System.out.println("__" + name);
         
         if(customer.getmStt() <= 0){
-//            Customer cu1 = new Customer();
-//            cu1.setmMaNhanVien("0");
-//            cu1.setmMaDoiTuong("111");
-//            cu1.setmNoDKy(0.0);
-//            
+
             boolean status = customerDAO.saveOrUpdate(customer);
             customersList = customerDAO.getListCustomer();
-            return SUCCESS;
+            
+            if(status)
+                return SUCCESS;
+            else
+                return INPUT;
         }     
         boolean status = customerDAO.update(customer);
         customersList = customerDAO.getListCustomer();
@@ -389,6 +384,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     }
     
     public String redirect(){
+        staffsList = staffDAO.getListUser(null);
         return SUCCESS;
     }
     

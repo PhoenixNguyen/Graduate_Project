@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="s"  uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -343,18 +343,11 @@
                 <span class="lvtHeaderText">Tạo mới Khách hàng</span> <br>
                 <hr noshade size=1>
                 <br> 
-                <form name="EditView" method="POST" action="index.php" onsubmit="VtigerJS_DialogBox.block();">
+                <form name="EditView" method="POST" action="save-customer" id="sub_form" onsubmit="">
 
-                    <input type="hidden" name="pagenumber" value="">
-                    <input type="hidden" name="module" value="Accounts">
-                    <input type="hidden" name="record" value="">
-                    <input type="hidden" name="mode" value="">
-                    <input type="hidden" name="action">
-                    <input type="hidden" name="parenttab" value="Marketing">
-                    <input type="hidden" name="return_module" value="Accounts">
-                    <input type="hidden" name="return_id" value="">
-                    <input type="hidden" name="return_action" value="DetailView">
-                    <input type="hidden" name="return_viewname" value="">
+                    <input type="hidden" name="customer.mStt" value="0">
+                    <input type="hidden" name="customer.mXCoordinates" value="">
+                    <input type="hidden" name="customer.mYCoordinates" value="">
                     <table border=0 cellspacing=0 cellpadding=0 width=95% align=center>
                         <tr>
                             <td>
@@ -413,12 +406,12 @@
                                                                         <font color="red">*</font>Tên Khách hàng 			
                                                                     </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="accountname" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" name="customer.mDoiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                     <!-- Non Editable field, only configured value will be loaded -->
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã số Khách hàng </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="accountid" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" name="customer.mMaDoiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="height:25px">
@@ -432,7 +425,7 @@
                                                                     </td>
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Điện thoại </td>
 
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="phone" id ="phone" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
+                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="customer.mDienThoai" id ="phone" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                                 </tr>
                                                                 <tr style="height:25px">
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã chứng khoán </td>
@@ -444,7 +437,7 @@
                                                                     </td>
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Fax </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" tabindex="" name="fax" id ="fax" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" tabindex="" name="customer.mFax" id ="fax" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="height:25px">
@@ -452,7 +445,10 @@
                                                                         <font color="red"></font>Thành viên của 			
                                                                     </td>
                                                                     <td width="30%" align=left class="dvtCellInfo">
-                                                                        <input readonly name="account_name" style="border:1px solid #bababa;" type="text" value=""><input name="account_id" type="hidden" value="">&nbsp;<img tabindex="" src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" LANGUAGE=javascript onclick='return window.open("index.php?module=Accounts&action=Popup&popuptype=specific_account_address&form=TasksEditView&form_submit=false&fromlink=&recordid=", "test", "width=640,height=602,resizable=0,scrollbars=0");' align="absmiddle" style='cursor:hand;cursor:pointer'>&nbsp;<input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" LANGUAGE=javascript onClick="this.form.account_id.value = '';
+                                                                        <input readonly name="account_name" style="border:1px solid #bababa;" type="text" value="">
+                                                                        <input name="account_id" type="hidden" value="">&nbsp;
+                                                                        <img tabindex="" src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" LANGUAGE=javascript onclick='' align="absmiddle" style='cursor:hand;cursor:pointer'>&nbsp;
+                                                                        <input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" LANGUAGE=javascript onClick="this.form.account_id.value = '';
                                                                                 this.form.account_name.value = '';
                                                                                 return false;" align="absmiddle" style='cursor:hand;cursor:pointer'>
                                                                     </td>
@@ -467,28 +463,11 @@
                                                                         <input type="radio" tabindex="" name="assigntype" checked value="U" onclick="toggleAssignType(this.value)" >&nbsp;Người dùng
                                                                         <input type="radio" name="assigntype"  value="T" onclick="toggleAssignType(this.value)">&nbsp;Nhóm
                                                                         <span id="assign_user" style="display:block">
-                                                                            <select name="assigned_user_id" class="small">
-                                                                                <option value="1" selected>admin</option>
-                                                                                <option value="2730" >binhnt</option>
-                                                                                <option value="6" >cancv</option>
-                                                                                <option value="10" >cuongtq</option>
-                                                                                <option value="2729" >ducpl</option>
-                                                                                <option value="18" >hungnv</option>
-                                                                                <option value="20" >huylm</option>
-                                                                                <option value="2731" >karofi</option>
-                                                                                <option value="26" >quandm</option>
-                                                                                <option value="25" >quyennt</option>
-                                                                                <option value="21" >sangch</option>
-                                                                                <option value="24" >thamnh</option>
-                                                                                <option value="2725" >ThaoDT</option>
-                                                                                <option value="2726" >ThaoNTT</option>
-                                                                                <option value="5" >thoant</option>
-                                                                                <option value="2727" >thomlt</option>
-                                                                                <option value="2721" >trangnt</option>
-                                                                                <option value="28" >trattp</option>
-                                                                                <option value="2728" >TuyetVT</option>
-                                                                                <option value="15" >vuidt</option>
-                                                                                <option value="27" >yennt</option>
+                                                                            <select name="customer.mMaNhanVien" class="small" >
+                                                                                <s:iterator value="staffsList" status="index">
+                                                                                <option value="<s:property value="staffsList.get(#index.index)"/>" ><s:property value="staffsList.get(#index.index)"/></option>
+                                                                                </s:iterator>
+                                                                            
                                                                             </select>
                                                                         </span>
 
@@ -585,7 +564,7 @@
                                                                         <font color="red"></font>
                                                                         Địa chỉ thanh toán 			</td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <textarea value="" name="bill_street" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
+                                                                        <textarea value="" name="customer.mDiaChi" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
                                                                     </td>
 
                                                                     <td width=20% class="dvtCellLabel" align=right>
@@ -655,7 +634,7 @@
                                                                         <font color="red"></font> 
                                                                         Mô tả 			</td>
                                                                     <td colspan=3>
-                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="description"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
+                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="customer.mGhiChu"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="height:25px"><td>&nbsp;</td></tr>
@@ -663,9 +642,12 @@
                                                                 <tr>
                                                                     <td  colspan=4 style="padding:5px">
                                                                         <div align="center">
-                                                                            <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="this.form.action.value = 'Save';
-                                                                                    if (formValidate())
-                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);" type="button" name="button" value="  Lưu  " style="width:70px" >
+                                                                            <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                document.getElementById('sub_form').submit();
+//                                                                                this.form.action.value = 'Save';
+//                                                                                    if (formValidate())
+//                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
+                                                                                " type="button" name="button" value="  Lưu  " style="width:70px" >
                                                                             <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                         </div>
                                                                     </td>
@@ -698,9 +680,12 @@
                                                                 <tr>
                                                                     <td  colspan=4 style="padding:5px">
                                                                         <div align="center">
-                                                                            <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="this.form.action.value = 'Save';
-                                                                                    if (formValidate())
-                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);" type="button" name="button" value="  Lưu  " style="width:70px" >
+                                                                            <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                document.getElementById('sub_form').submit();
+//                                                                                this.form.action.value = 'Save';
+//                                                                                    if (formValidate())
+//                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
+                                                                                    " type="button" name="button" value="  Lưu  " style="width:70px" >
                                                                             <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                         </div>
                                                                     </td>
@@ -911,76 +896,76 @@
                             </td>
                         </tr>
                     </table>
-            </div>
-        </td>
-        <td align=right valign=top><img src="themes/softed/images/showPanelTopRight.gif"></td>
-    </tr>
-</table>
-</form>
+                    <!--            </div>
+                            </td>
+                            <td align=right valign=top><img src="themes/softed/images/showPanelTopRight.gif"></td>
+                        </tr>
+                    </table>-->
+                </form>
 
-<script>
-    ScrollEffect.limit = 201;
-    ScrollEffect.closelimit = 200;
-</script>
-<script>
-    var fieldname = new Array('accountname', 'account_no', 'phone', 'website', 'fax', 'tickersymbol', 'otherphone', 'account_id', 'email1', 'employees', 'email2', 'ownership', 'rating', 'industry', 'siccode', 'accounttype', 'annual_revenue', 'emailoptout', 'notify_owner', 'assigned_user_id', 'bill_street', 'ship_street', 'bill_city', 'ship_city', 'bill_state', 'ship_state', 'bill_code', 'ship_code', 'bill_country', 'ship_country', 'bill_pobox', 'ship_pobox', 'description', 'campaignrelstatus', 'cf_607', 'cf_638', 'cf_639', 'cf_640')
-    var fieldlabel = new Array('Tên Khách hàng', 'Mã số Khách hàng', 'Điện thoại', 'Website', 'Fax', 'Mã chứng khoán', 'Điện thoại khác', 'Thành viên của', 'Email', 'Số nhân viên', 'Email khác', 'Người sở hữu', 'Đánh giá', 'Ngành nghề', 'Mã ngành', 'Loại', 'Doanh thu hàng năm', 'Từ chối email', 'Thông báo khi dữ liệu này thay đổi', 'Được gán cho', 'Địa chỉ thanh toán', 'Địa chỉ vận chuyển', 'Thanh toán tại thành phố', 'Vận chuyển tới thành phố', 'Thanh toán tại Tỉnh/Bang', 'Vận chuyển tới Tỉnh/Bang', 'Mã vùng thanh toán', 'Mã vùng vận chuyển', 'Thanh toán tại quốc gia', 'Vận chuyển tới quốc gia', 'Hộp thư thanh toán', 'Hộp thư vận chuyển', 'Mô tả', 'Trạng thái', 'Ng&agrave;y sinh', 'Loại Sản Phẩm', 'Nhu cầu gửi đĩa', 'Nhu cầu đại l&yacute;')
-    var fielddatatype = new Array('V~M', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'I~O', 'E~O', 'I~O', 'E~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'I~O', 'C~O', 'C~O', 'V~M', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'D~O', 'V~O', 'C~O', 'C~O')
-</script>
+                <script>
+                    ScrollEffect.limit = 201;
+                    ScrollEffect.closelimit = 200;
+                </script>
+                <script>
+                    var fieldname = new Array('accountname', 'account_no', 'phone', 'website', 'fax', 'tickersymbol', 'otherphone', 'account_id', 'email1', 'employees', 'email2', 'ownership', 'rating', 'industry', 'siccode', 'accounttype', 'annual_revenue', 'emailoptout', 'notify_owner', 'assigned_user_id', 'bill_street', 'ship_street', 'bill_city', 'ship_city', 'bill_state', 'ship_state', 'bill_code', 'ship_code', 'bill_country', 'ship_country', 'bill_pobox', 'ship_pobox', 'description', 'campaignrelstatus', 'cf_607', 'cf_638', 'cf_639', 'cf_640')
+                    var fieldlabel = new Array('Tên Khách hàng', 'Mã số Khách hàng', 'Điện thoại', 'Website', 'Fax', 'Mã chứng khoán', 'Điện thoại khác', 'Thành viên của', 'Email', 'Số nhân viên', 'Email khác', 'Người sở hữu', 'Đánh giá', 'Ngành nghề', 'Mã ngành', 'Loại', 'Doanh thu hàng năm', 'Từ chối email', 'Thông báo khi dữ liệu này thay đổi', 'Được gán cho', 'Địa chỉ thanh toán', 'Địa chỉ vận chuyển', 'Thanh toán tại thành phố', 'Vận chuyển tới thành phố', 'Thanh toán tại Tỉnh/Bang', 'Vận chuyển tới Tỉnh/Bang', 'Mã vùng thanh toán', 'Mã vùng vận chuyển', 'Thanh toán tại quốc gia', 'Vận chuyển tới quốc gia', 'Hộp thư thanh toán', 'Hộp thư vận chuyển', 'Mô tả', 'Trạng thái', 'Ng&agrave;y sinh', 'Loại Sản Phẩm', 'Nhu cầu gửi đĩa', 'Nhu cầu đại l&yacute;')
+                    var fielddatatype = new Array('V~M', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'I~O', 'E~O', 'I~O', 'E~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'I~O', 'C~O', 'C~O', 'V~M', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'V~O', 'D~O', 'V~O', 'C~O', 'C~O')
+                </script>
 
-<!-- vtlib customization: Help information assocaited with the fields -->
-<!-- END --><!-- stopscrmprint --><style>
-.bggray
-{
-    background-color: #dfdfdf;
-}
-.bgwhite
-{
-    background-color: #FFFFFF;
-}
-.copy
-{
-    font-size:9px;
-    font-family: Verdana, Arial, Helvetica, Sans-serif;
-}
-</style>
-<script language=javascript>
-    function LogOut(e)
-    {
-        var nav4 = window.Event ? true : false;
-        var iX, iY;
-        if (nav4)
-        {
-            iX = e.pageX;
-            iY = e.pageY;
-        }
-        else
-        {
-            iX = event.clientX + document.body.scrollLeft;
-            iY = event.clientY + document.body.scrollTop;
+                <!-- vtlib customization: Help information assocaited with the fields -->
+                <!-- END --><!-- stopscrmprint --><style>
+                    .bggray
+                    {
+                        background-color: #dfdfdf;
+                    }
+                    .bgwhite
+                    {
+                        background-color: #FFFFFF;
+                    }
+                    .copy
+                    {
+                        font-size:9px;
+                        font-family: Verdana, Arial, Helvetica, Sans-serif;
+                    }
+                </style>
+                <script language=javascript>
+                    function LogOut(e)
+                    {
+                        var nav4 = window.Event ? true : false;
+                        var iX, iY;
+                        if (nav4)
+                        {
+                            iX = e.pageX;
+                            iY = e.pageY;
+                        }
+                        else
+                        {
+                            iX = event.clientX + document.body.scrollLeft;
+                            iY = event.clientY + document.body.scrollTop;
 
-        }
-        if (iX <= 30 && iY < 0)
-        {
-            w = window.open("index.php?action=Logout&module=Users");
-            w.close();
-        }
-    }
-//window.onunload=LogOut
-</script>
-<script language = 'JavaScript' type='text/javascript' src = 'include/js/popup.js'></script>
-<br><br><br>
-<table border=0 cellspacing=0 cellpadding=5 width=100% class=settingsSelectedUI ><tr><td class=small align=left><span style='color: rgb(153, 153, 153);'>HOSCO-CRM</span></td><td class=small align=right><span style='color: rgb(153, 153, 153);'>&copy; 2014 <a href='http://www.hosgroup.com.vn' target='_blank'>hosgroup.com.vn</a></span> </td></tr></table>		<script>
+                        }
+                        if (iX <= 30 && iY < 0)
+                        {
+                            w = window.open("index.php?action=Logout&module=Users");
+                            w.close();
+                        }
+                    }
+                //window.onunload=LogOut
+                </script>
+                <script language = 'JavaScript' type='text/javascript' src = 'include/js/popup.js'></script>
+                <br><br><br>
+                <table border=0 cellspacing=0 cellpadding=5 width=100% class=settingsSelectedUI ><tr><td class=small align=left><span style='color: rgb(153, 153, 153);'>HOSCO-CRM</span></td><td class=small align=right><span style='color: rgb(153, 153, 153);'>&copy; 2014 <a href='http://www.hosgroup.com.vn' target='_blank'>hosgroup.com.vn</a></span> </td></tr></table>		<script>
     var userDateFormat = "dd-mm-yyyy";
     var default_charset = "UTF-8";
-</script>
-<script type='text/javascript'>if (typeof (ActivityReminderCallback) != 'undefined')
-        window.setTimeout(function() {
-            ActivityReminderCallback();
-        }, 54000);</script><!--end body panes-->
-</td></tr>
-<tr><td colspan="2" align="center">
-    </td></tr></table>
+                </script>
+                <script type='text/javascript'>if (typeof (ActivityReminderCallback) != 'undefined')
+                        window.setTimeout(function() {
+                            ActivityReminderCallback();
+                        }, 54000);</script><!--end body panes-->
+        </td></tr>
+    <tr><td colspan="2" align="center">
+        </td></tr></table>
 </body>
 </html>
 

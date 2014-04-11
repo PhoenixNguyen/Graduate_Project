@@ -294,7 +294,7 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-customer"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
 
                                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                                                                     searchshowhide('searchAcc', 'advSearch');
@@ -365,7 +365,7 @@
                         <tbody>
                             <tr>
                                 <td>		
-                                    <span class="dvHeaderText">[ ACC16 ] Trần Thị Khanh -  Khách hàng Thông tin</span>&nbsp;&nbsp;&nbsp;<span class="small">Cập nhật 861 ngày trước (01 Tháng 12 2011)</span>&nbsp;<span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span><span id="vtbusy_info" style="visibility:hidden;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>
+                                    <span class="dvHeaderText">[ <s:property value="customer.mMaDoiTuong"/> ] </font><s:property value="customer.mDoiTuong"/> - Thông tin Khách hàng </span>&nbsp;&nbsp;&nbsp;<span class="small">Cập nhật 31 ngày trước (01 Tháng 03 2014)</span>&nbsp;<span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span><span id="vtbusy_info" style="visibility:hidden;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>
                                 </td>
                             </tr>
                         </tbody></table>			 

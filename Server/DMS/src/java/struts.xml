@@ -537,6 +537,20 @@
         
         
         <!--Not yet handle-->
+        <action name="take-order" method="redirect" class="com.hp.action.CustomerAction">
+            <result name="success">take-order.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="product-list" method="redirect" class="com.hp.action.CustomerAction">
+            <result name="success">product.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="provider-list" method="redirect" class="com.hp.action.CustomerAction">
+            <result name="success">provider.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
     </package>
     
     

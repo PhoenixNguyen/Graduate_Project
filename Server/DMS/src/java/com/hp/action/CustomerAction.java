@@ -7,6 +7,7 @@
 package com.hp.action;
 
 import com.hp.common.ConfigFile;
+import com.hp.common.ValidateHandle;
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.dao.StaffDAO;
@@ -19,6 +20,7 @@ import com.hp.domain.Staff;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.util.TextUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -323,16 +325,17 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         staffsList = staffDAO.getListUser(null);
         
         String stt = request.getParameter("id_cus");
-        int st;
-        if(stt ==null){
-            return INPUT;
+        int id_cus = ValidateHandle.getInteger(stt);
+        if(id_cus > -1){
+            customersList = customerDAO.getListCustomer();
+            customer = customerDAO.loadCustomer(id_cus);
+            return SUCCESS;
         }
-        st = Integer.parseInt(stt);
+        else
+            return INPUT;
         
-        customersList = customerDAO.getListCustomer();
-        customer = customerDAO.loadCustomer(st);
+        
             
-        return SUCCESS;
     }
     
     public String updateCustomer() throws UnsupportedEncodingException{
@@ -356,7 +359,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         System.out.println("__" + pw + "__ " +y +" PARA: " + test);
         System.out.println("__" + name);
         
-        if(customerSTT <= 0){
+        if(customer.getmStt() <= 0){
 //            Customer cu1 = new Customer();
 //            cu1.setmMaNhanVien("0");
 //            cu1.setmMaDoiTuong("111");
@@ -369,7 +372,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         boolean status = customerDAO.update(customer);
         customersList = customerDAO.getListCustomer();
         
-        return SUCCESS;
+        if(status)
+            return SUCCESS;
+        else
+            return INPUT;
     }
     
     Demo2 demo2 = new Demo2();
@@ -382,4 +388,23 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         this.demo2 = demo2;
     }
     
+    public String redirect(){
+        return SUCCESS;
+    }
+    
+    public String showDetail(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        String para =  request.getParameter("id_cus");
+        
+        int id_cus = ValidateHandle.getInteger(para);
+        if(id_cus > -1){
+            customer = customerDAO.loadCustomer(id_cus);
+            return SUCCESS;
+        }
+        else
+            return INPUT;
+    }
 }

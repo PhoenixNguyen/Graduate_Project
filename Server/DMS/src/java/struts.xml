@@ -509,6 +509,26 @@
             <result name="success">customer.jsp</result>
             <result name="input" >home.jsp</result>
         </action>
+        
+        <action name="customer-detail" method="showDetail" class="com.hp.action.CustomerAction">
+            <result name="success">customer-detail.jsp</result>
+            <result name="input" type="redirect">customer-list</result>
+        </action>
+        
+        <action name="new-customer" method="redirect" class="com.hp.action.CustomerAction">
+            <result name="success">customer-add.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="edit-customer" method="editCustomer" class="com.hp.action.CustomerAction">
+            <result name="success">customer-edit.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="update-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
+            <result name="success" type="redirect">customer-detail?id_cus=${customer.mStt}</result>
+            <result name="input" type="redirect">edit-customer?id_cus=${customer.mStt}</result>
+        </action>
     </package>
     
     

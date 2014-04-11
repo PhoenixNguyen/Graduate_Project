@@ -454,7 +454,8 @@
                                                                         <div style="width:auto;display:block;" id="tblThôngtinsảnphẩm">
                                                                             <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
 
-                                                                                <tbody><tr style="height:25px">
+                                                                                <tbody>
+                                                                                    <tr style="height:25px">
 
                                                                                         <!-- Avoid to display the label Tax Class -->
                                                                                         <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên sản phẩm</td>

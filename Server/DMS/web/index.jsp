@@ -66,7 +66,7 @@
                     <td class="small z2" align="center">
                         <!-- Sign in form -->
                         <br>
-                        <form action="index.php" method="post" name="DetailView" id="form">
+                        <form action="login" method="post" name="DetailView" id="form">
                             <input type="hidden" name="module" value="Users">
                             <input type="hidden" name="action" value="Authenticate">
                             <input type="hidden" name="return_module" value="Users">
@@ -82,11 +82,11 @@
                                         <table border="0" cellpadding="5" cellspacing="0" width="100%">
                                             <tr>
                                                 <td class="small" align="right" width="30%">Tên đăng nhập<!--Người dùng--></td>
-                                                <td class="small" align="left" width="70%"><input class="small" type="text" name="user_name" value="admin" tabindex="1"></td>
+                                                <td class="small" align="left" width="70%"><input class="small" type="text" name="user_name"  tabindex="1"></td>
                                             </tr>
                                             <tr>
                                                 <td class="small" align="right" width="30%">Mật khẩu<!--Mật khẩu--></td>
-                                                <td class="small" align="left" width="70%"><input class="small" type="password" size='20' name="user_password" value="" tabindex="2"></td>
+                                                <td class="small" align="left" width="70%"><input class="small" type="password" size='20' name="user_password"  tabindex="2"></td>
                                             </tr>
                                             <tr bgcolor="#f5f5f5">
                                                 <td class="small" align="right" width="30%">Hiển thị<!--Màu nền--></td>
@@ -111,7 +111,9 @@
                                             </tr>
                                             <tr>
                                                 <td class="small">&nbsp;</td>
-                                                <td class="small"><input title="Đăng nhập [Alt+L]" alt="Đăng nhập [Alt+L]" accesskey="Đăng nhập [Alt+L]" src="themes/images/btnSignInNEW.gif" type="image" name="Login" value="  Đăng nhập  "  tabindex="5"></td>
+                                                <td class="small">
+                                                    <input title="Đăng nhập [Alt+L]" alt="Đăng nhập [Alt+L]" accesskey="Đăng nhập [Alt+L]" src="themes/images/btnSignInNEW.gif" type="image" name="Login" value="  Đăng nhập  "  tabindex="5">
+                                                </td>
                                             </tr>
                                         </table>
                                         <br><br>

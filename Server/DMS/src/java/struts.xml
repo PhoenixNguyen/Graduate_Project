@@ -494,5 +494,29 @@
         </action>
         
     </package>
+    <package name=""  extends="json-default,hibernate-default" namespace="/">
+        <action name="login-success" method="loginStatus" class="com.hp.action.UserAction">
+            <result name="success" >home.jsp</result>
+            <result name="input" >index.jsp</result>
+        </action>
+        <action name="login" method="login" class="com.hp.action.UserAction">
+            <result name="success" type="redirect">login-success</result>
+            <result name="input" >index.jsp</result>
+        </action>
+        
+        <!-- CUSTOMER -->
+        <action name="customer-list" method="displayCustomers" class="com.hp.action.CustomerAction">
+            <result name="success">customer.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+    </package>
     
+    
+    
+    <package name="user"  extends="json-default,hibernate-default" namespace="/user">
+        <action name="login" method="login" class="com.hp.action.UserAction">
+            <result name="success" >/home.jsp</result>
+            <result name="input" >/index.jsp</result>
+        </action>
+    </package>
 </struts>

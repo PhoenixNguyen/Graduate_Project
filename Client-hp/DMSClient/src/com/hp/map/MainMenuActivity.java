@@ -6,6 +6,7 @@ import com.hp.menu.DetailsList;
 import com.hp.menu.DialogArrayAdapter;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ActionBar.LayoutParams;
@@ -16,6 +17,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -30,10 +32,17 @@ public class MainMenuActivity extends Activity  {
 	public Context context = this; 
 	private ListView lv;
 	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu_main);
+		
+		//getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setIcon(R.drawable.ic_drawer);
+		
+		//supportActionBar.setHomeButtonEnabled(true);
 	}
 
 	@Override
@@ -52,6 +61,22 @@ public class MainMenuActivity extends Activity  {
 	        return true;
 	    }
 	    return super.onKeyUp(keyCode, event);
+	}
+	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+	    int itemId = item.getItemId();
+	    switch (itemId) {
+	    case android.R.id.home:
+	    	menuDialog();
+
+	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+	        break;
+
+	    }
+
+	    return true;
 	}
 	
 	public void menuDialog(){

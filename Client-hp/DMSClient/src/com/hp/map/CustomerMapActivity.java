@@ -38,6 +38,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.hp.domain.Customer;
 import com.hp.domain.Schedule;
 import com.hp.domain.RoadManagement;
+import com.hp.menu.DetailListData;
+import com.hp.menu.DetailsList;
+import com.hp.menu.DialogArrayAdapter;
 import com.hp.rest.Rest;
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import com.sun.jersey.api.client.Client;
@@ -51,6 +54,8 @@ import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;import android.location.Location;
 import android.net.ConnectivityManager;
@@ -59,16 +64,24 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.transition.Scene;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -115,6 +128,7 @@ public class CustomerMapActivity extends FragmentActivity
     private LocationClient mLocationClient;
       
     private Context context = this;
+    private ListView lv;
     
  // These settings are the same as the settings for the map. They will in fact give you updates
     // at the maximal rates currently possible.
@@ -151,7 +165,9 @@ public class CustomerMapActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_map);
 
-        
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setIcon(R.drawable.ic_drawer);
         
         //Get POSITION
         Intent i = getIntent();
@@ -231,6 +247,75 @@ public class CustomerMapActivity extends FragmentActivity
         }
     }
     
+    //Left menu ============================================
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+	    if (keyCode == KeyEvent.KEYCODE_MENU) {
+	        // ........
+	    	//Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
+	    	menuDialog();
+	    	
+	        return true;
+	    }
+	    return super.onKeyUp(keyCode, event);
+	}
+	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+	    int itemId = item.getItemId();
+	    switch (itemId) {
+	    case android.R.id.home:
+	    	menuDialog();
+
+	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+	        break;
+
+	    }
+
+	    return true;
+	}
+	
+	public void menuDialog(){
+		final Dialog dialog = new Dialog(this);
+		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View v = li.inflate(R.layout.menu_dialog, null, false);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(v);
+		
+		dialog.setTitle("Danh mục chính");
+		
+		Display display = getWindowManager().getDefaultDisplay();
+		
+		dialog.getWindow().setLayout(2*display.getWidth()/3, LayoutParams.FILL_PARENT);
+		dialog.getWindow().getAttributes().gravity = Gravity.LEFT|Gravity.CENTER_VERTICAL;
+		
+		lv = (ListView)dialog.findViewById(R.id.menu_list_view);
+		
+		lv.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, DetailListData.MENU_LIST));
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				DetailsList selectedValue = (DetailsList)lv.getAdapter().getItem(arg2);
+				if(selectedValue.activityClass != null){
+					//if sigout
+					if(selectedValue.activityClass == LoginActivity.class){
+						LoginActivity.threadLooper.quit();
+					}
+					startActivity(new Intent(context, selectedValue.activityClass));
+				}
+			}
+		});
+		
+		dialog.show();
+		
+//		ImageView iv = (ImageView)dialog.findViewById(R.id.menu_list_view);
+//		iv.setImageResource(1);
+	}
+	//////////////////////////////////////////==========================================
+	
     @Override
     protected void onResume() {
         super.onResume();

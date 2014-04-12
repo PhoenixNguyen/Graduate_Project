@@ -62,7 +62,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         // setting default screen to login.xml
         setContentView(R.layout.login);
-         
+        
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);

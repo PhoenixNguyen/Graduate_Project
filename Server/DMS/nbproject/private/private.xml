@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/product-detail.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/home.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/struts.xml</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/take-order.jsp</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/customer.jsp</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/take-order-detail.jsp</file>
         </group>
     </open-files>
 </project-private>

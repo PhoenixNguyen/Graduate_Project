@@ -93,7 +93,7 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				startActivity(new Intent(context, ProductEditerActivity.class));
-				
+				dialog.dismiss();
 			}
 		});
 		
@@ -103,6 +103,7 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						startActivity(new Intent(context, ProductEditerActivity.class));
+						dialog.dismiss();
 			}
 		});
 		

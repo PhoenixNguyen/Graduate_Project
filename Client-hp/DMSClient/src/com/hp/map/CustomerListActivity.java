@@ -152,7 +152,7 @@ public class CustomerListActivity extends MainMenuActivity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				startActivity(new Intent(context, CustomerEditerActivity.class));
-				
+				dialog.dismiss();
 			}
 		});
 		
@@ -165,6 +165,7 @@ public class CustomerListActivity extends MainMenuActivity{
 				        t.putExtra("POSITION_CLICK", customer.getmMaDoiTuong());
 				        
 				        startActivity(t);
+				        dialog.dismiss();
 			}
 		});
 		

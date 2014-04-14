@@ -556,6 +556,15 @@
             <result name="input" type="redirect">edit-product?id_pdct=${product.mSerial}</result>
         </action>
         
+        <action name="new-product" method="redirect" class="com.hp.action.ProductsAction">
+            <result name="success">product-add.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="save-product" method="updateProduct" class="com.hp.action.ProductsAction">
+            <result name="success" type="redirect">product-detail?id_pdct=${product.mSerial}</result>
+            <result name="input" >product-add.jsp</result>
+        </action>
         <!--Not yet handle-->
         <action name="take-order" method="redirect" class="com.hp.action.CustomerAction">
             <result name="success">take-order.jsp</result>

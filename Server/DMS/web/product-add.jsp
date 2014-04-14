@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 
 <html>
@@ -104,7 +105,7 @@
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -112,7 +113,7 @@
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Analytics_sub');" onmouseout="fnHideDrop('Analytics_sub');" align="center" nowrap=""><a href="">Phân tích</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
 
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Settings_sub');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
@@ -215,8 +216,8 @@
 <div class="drop_mnu" id="Inventory_sub" onmouseout="fnHideDrop('Inventory_sub')" onmouseover="fnShowDrop('Inventory_sub')" style="left: 488px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Sản phẩm</a></td></tr>
-            <tr><td><a href="" class="drop_down">Nhà cung cấp</a></td></tr>
+            <tr><td><a href="product-list" class="drop_down">Sản phẩm</a></td></tr>
+            <tr><td><a href="provider-list" class="drop_down">Nhà cung cấp</a></td></tr>
             <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
             <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
             <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
@@ -257,7 +258,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="">Khách hàng</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Tồn kho &gt; <a class="hdrLink" href="">Sản phẩm</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -353,20 +354,11 @@
 
         <td class="showPanelBg" valign=top width=100%>
 
-            <form name="EditView" method="POST" ENCTYPE="multipart/form-data" action="index.php" onsubmit="VtigerJS_DialogBox.block();">
-                <input type="hidden" name="activity_mode" value="">
-                <INPUT TYPE="HIDDEN" NAME="MAX_FILE_SIZE" VALUE="800000">
-
-                <input type="hidden" name="pagenumber" value="">
-                <input type="hidden" name="module" value="Products">
-                <input type="hidden" name="record" value="">
-                <input type="hidden" name="mode" value="">
-                <input type="hidden" name="action">
-                <input type="hidden" name="parenttab" value="Inventory">
-                <input type="hidden" name="return_module" value="">
-                <input type="hidden" name="return_id" value="">
-                <input type="hidden" name="return_action" value="DetailView">
-                <input type="hidden" name="return_viewname" value="">	     <div class="small" style="padding:20px">
+            <form name="EditView" method="POST" id="sub_form" action="save-product" onsubmit="VtigerJS_DialogBox.block();">
+                <input type="hidden" name="product.mSerial" value="-1">
+                
+                <input type="hidden" name="return_viewname" value="">	     
+                <div class="small" style="padding:20px">
 
                     <span class="lvtHeaderText">Tạo mới Sản phẩm</span> <br>
 
@@ -410,8 +402,11 @@
                                                                 <tr>
                                                                     <td  colspan=4 style="padding:5px">
                                                                         <div align="center">
-                                                                            <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="this.form.action.value = 'Save';
-                                                                                    return validateInventory('Products')" type="submit" name="button" value="  Lưu  " style="width:70px" >
+                                                                            <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                document.getElementById('sub_form').submit();
+//                                                                                this.form.action.value = 'Save';
+//                                                                                    return validateInventory('Products')
+                                                                                " type="submit" name="button" value="  Lưu  " style="width:70px" >
                                                                             <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                         </div>
                                                                     </td>
@@ -425,234 +420,251 @@
                                                                 <!-- Here we should include the uitype handlings-->
                                                                 <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                                 <tr style="height:25px">
-                                                                    <td width=20% class="dvtCellLabel" align=right>
-                                                                        <font color="red">*</font>Tên sản phẩm 			
-                                                                    </td>
-                                                                    <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="productname" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
-                                                                    </td>
-                                                                    <!-- Non Editable field, only configured value will be loaded -->
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã sản phẩm </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input readonly type="text" tabindex="" name="product_no" id ="product_no"  value="AUTO GEN ON SAVE"  class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Có bán sản phẩm 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        <input name="discontinued" tabindex="" type="checkbox" checked>
-                                                                    </td>
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Phần Số </td>
-                                                                    <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" tabindex="" name="productcode" id ="productcode" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
-                                                                    </td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Ngày bắt đầu bán 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
 
-                                                                        <input name="sales_start_date" tabindex="" id="jscal_field_sales_start_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
-                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_sales_start_date">
-                                                                        <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
-                                                                        <script type="text/javascript" id='massedit_calendar_sales_start_date'>
-                                                                            Calendar.setup({
-                                                                                inputField: "jscal_field_sales_start_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_sales_start_date", singleClick: true, step: 1
-                                                                            })
-                                                                        </script>
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red">*</font>Tên sản phẩm 			</td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <input type="text" name="product.mProductName" tabindex="" value="<s:property value="product.mProductName"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                </td>
 
-                                                                    </td>
+                                                                <!-- Non Editable field, only configured value will be loaded -->
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Mã sản phẩm </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <input  type="text" tabindex="" name="product.mProductID" id="product_no" value="<s:property value="product.mProductID"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height:25px">
 
-                                                                    <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>
-                                                                        Nhà sản xuất 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        <select name="manufacturer" tabindex="" class="small">
-                                                                            <option value="--None--" >
-                                                                                --Chưa chọn--
-                                                                            </option>
-                                                                            <option value="AltvetPet Inc." >
-                                                                                Tập đoàn AltvetPet.
-                                                                            </option>
-                                                                            <option value="LexPon Inc." >
-                                                                                Tập đoàn LexPon.
-                                                                            </option>
-                                                                            <option value="MetBeat Corp" >
-                                                                                Công ty Cổ phần MetBeat
-                                                                            </option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>
-                                                                        Loại sản phẩm 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        <select name="productcategory" tabindex="" class="small">
-                                                                            <option value="--None--" >
-                                                                                --Chưa chọn--
-                                                                            </option>
-                                                                            <option value="Hardware" >
-                                                                                Phần cứng
-                                                                            </option>
-                                                                            <option value="Software" >
-                                                                                Phần mềm
-                                                                            </option>
-                                                                            <option value="CRM Applications" >
-                                                                                Ứng dụng CRM
-                                                                            </option>
-                                                                        </select>
-                                                                    </td>
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Mã vạch 			
+                                                                </td>
 
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Ngày bắt đầu hỗ trợ 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        <input name="start_date" tabindex="" id="jscal_field_start_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
-                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_start_date">
-                                                                        <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
-                                                                        <script type="text/javascript" id='massedit_calendar_start_date'>
-                                                                            Calendar.setup({
-                                                                                inputField: "jscal_field_start_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_start_date", singleClick: true, step: 1
-                                                                            })
-                                                                        </script>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <input  type="text" tabindex="" name="product.mBarcode" id="product_no" value="<s:property value="product.mBarcode"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                </td>
 
-                                                                    </td>
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Thương hiệu </td>
 
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Ngày kết thúc bán 			</td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="product.mBrand" id="productcode" value="<s:property value="product.mBrand"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                            </tr>
+                                                            <tr style="height:25px">
 
-                                                                        <input name="sales_end_date" tabindex="" id="jscal_field_sales_end_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
-                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_sales_end_date">
-                                                                        <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Xuất xứ			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
 
-                                                                        <script type="text/javascript" id='massedit_calendar_sales_end_date'>
-                                                                            Calendar.setup({
-                                                                                inputField: "jscal_field_sales_end_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_sales_end_date", singleClick: true, step: 1
-                                                                            })
-                                                                        </script>
-                                                                    </td>
+                                                                    <input name="product.mOrigin" tabindex="" id="jscal_field_sales_start_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="<s:property value="product.mOrigin"/>">
+<!--                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_sales_start_date">
 
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Ngày hết hạn hỗ trợ 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        <input name="expiry_date" tabindex="" id="jscal_field_expiry_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
-                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_expiry_date">
-                                                                        <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
-                                                                        <script type="text/javascript" id='massedit_calendar_expiry_date'>
-                                                                            Calendar.setup({
-                                                                                inputField: "jscal_field_expiry_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_expiry_date", singleClick: true, step: 1
-                                                                            })
-                                                                        </script>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr style="height:25px">
+                                                                    <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
 
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Tên nhà cung cấp 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        <input name="vendor_name" readonly type="text" style="border:1px solid #bababa;" value=""><input name="vendor_id" type="hidden" value="">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" LANGUAGE=javascript onclick='return window.open("index.php?module=Vendors&action=Popup&html=Popup_picker&popuptype=specific&form=EditView&fromlink=", "test", "width=640,height=602,resizable=0,scrollbars=0");' align="absmiddle" style='cursor:hand;cursor:pointer'>
-                                                                        <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" LANGUAGE=javascript onClick="this.form.vendor_id.value = '';
-                                                                                this.form.vendor_name.value = '';
-                                                                                return false;" align="absmiddle" style='cursor:hand;cursor:pointer'>
-                                                                    </td>
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Website 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        &nbsp;&nbsp;http://
-                                                                        <input style="width:74%;" class = 'detailedViewTextBox' type="text" tabindex="" name="website" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="">
-                                                                    </td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Số hiệu nhà cung cấp </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="vendor_part_no" id ="vendor_part_no" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Số hiệu nhà sản xuất </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="mfr_part_no" id ="mfr_part_no" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Ngăn hàng hóa </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="productsheet" id ="productsheet" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Số hiệu </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="serial_no" id ="serial_no" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>
-                                                                        Tài khoản Kế toán 			</td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">
-                                                                        <select name="glacct" tabindex="" class="small">
-                                                                            <option value="300-Sales-Software" >
-                                                                                300-Kinh doanh phần mềm
-                                                                            </option>
-                                                                            <option value="301-Sales-Hardware" >
-                                                                                301-Kinh doanh phần cứng
-                                                                            </option>
-                                                                            <option value="302-Rental-Income" >
-                                                                                302-Cho thuê
-                                                                            </option>
-                                                                            <option value="303-Interest-Income" >
-                                                                                303-Lợi tức
-                                                                            </option>
-                                                                            <option value="304-Sales-Software-Support" >
-                                                                                304-Hỗ trợ kinh doanh phần mềm
-                                                                            </option>
-                                                                            <option value="305-Sales Other" >
-                                                                                305-Kinh doanh khác
-                                                                            </option>
-                                                                            <option value="306-Internet Sales" >
-                                                                                306-Kinh doanh qua mạng
-                                                                            </option>
-                                                                            <option value="307-Service-Hardware Labor" >
-                                                                                307-Gia công phần cứng
-                                                                            </option>
-                                                                            <option value="308-Sales-Books" >
-                                                                                308-Bán sách
-                                                                            </option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr style="height:25px"><td>&nbsp;</td></tr>
-                                                                <tr>
-                                                                    <td colspan=4 class="detailedViewHeader">
-                                                                        <b>Thông tin Giá cả</b>
-                                                                    </td>
-                                                                </tr>
-                                                                <!-- Here we should include the uitype handlings-->
-                                                                <!-- Added this file to display the fields in Create Entity page based on ui types  -->
-                                                                <tr style="height:25px">
+                                                                    <script type="text/javascript" id="massedit_calendar_sales_start_date">
+                                                                        Calendar.setup({
+                                                                            inputField: "jscal_field_sales_start_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_sales_start_date", singleClick: true, step: 1
+                                                                        })
+                                                                    </script>-->
+                                                                </td>
+                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>
+                                                                    Nhà cung cấp			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <select name="product.mProvider" tabindex="" class="small">
+                                                                        <s:iterator value="providerIDList" status="index">
+                                                                        
+                                                                            <option value="<s:property value="providerIDList.get(#index.index)"/>" ><s:property value="providerIDList.get(#index.index)"/></option>
+                                                                        
+                                                                        </s:iterator>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="height:25px">
 
-                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                        <font color="red"></font>Giá đơn vị: (₫) 			
-                                                                    </td>
-                                                                    <td width="30%" align=left class="dvtCellInfo">				
-                                                                        <span id="multiple_currencies">
-                                                                            <input name="unit_price" id="unit_price" tabindex="" type="text" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox';
-                                                                                    updateUnitPrice('unit_price', 'curname1');"  value="0" style="width:60%;">
-                                                                            &nbsp;<a href="javascript:void(0);" onclick="updateUnitPrice('unit_price', 'curname1');
-                                                                                    toggleShowHide('currency_class', 'multiple_currencies');">thêm tiền tệ &raquo;</a>
-                                                                        </span>
-                                                                        <div id="currency_class" class="multiCurrencyEditUI" width="350">
-                                                                            <input type="hidden" name="base_currency" id="base_currency" value="curname1" />
-                                                                            <input type="hidden" name="base_conversion_rate" id="base_currency" value="curname1" />
-                                                                            <table width="100%" height="100%" class="small" cellpadding="5">
-                                                                                <tr class="detailedViewHeader">
+                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>
+                                                                    Loại sản phẩm 			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <select name="productcategory" tabindex="" class="small">
+                                                                        <option value="--None--">
+                                                                            --Chưa chọn--
+                                                                        </option>
+<!--                                                                                            <option value="Hardware">
+                                                                            Phần cứng
+                                                                        </option>
+                                                                        <option value="Software" selected="">
+                                                                            Phần mềm
+                                                                        </option>
+                                                                        <option value="CRM Applications">
+                                                                            Ứng dụng CRM
+                                                                        </option>-->
+                                                                    </select>
+                                                                </td>
+
+<!--                                                                                    <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Thuế			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+
+                                                                    <input name="product.mVATTax" tabindex="" id="jscal_field_start_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="<s:property value="product.mVATTax"/>">
+                                                                    <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_start_date">
+                                                                    <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                                                    <script type="text/javascript" id="massedit_calendar_start_date">
+                                                                        Calendar.setup({
+                                                                            inputField: "jscal_field_start_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_start_date", singleClick: true, step: 1
+                                                                        })
+                                                                    </script>
+
+                                                                </td>-->
+
+                                                            </tr>
+                                                            <tr style="height:25px">
+
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Giá nhập			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+
+                                                                    <input name="product.mImportPrices" tabindex="" id="jscal_field_sales_end_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="<s:property value="product.mImportPrices"/>">
+
+<!--                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_sales_end_date">
+                                                                    <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                                                    <script type="text/javascript" id="massedit_calendar_sales_end_date">
+                                                                        Calendar.setup({
+                                                                            inputField: "jscal_field_sales_end_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_sales_end_date", singleClick: true, step: 1
+                                                                        })
+                                                                    </script>-->
+
+                                                                </td>
+
+<!--                                                                                    <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Giá bán			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+
+                                                                    <input name="product.mExportPrices" tabindex="" id="jscal_field_expiry_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="<s:property value="product.mExportPrices"/>">
+
+                                                                    <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_expiry_date">
+                                                                    <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                                                    <script type="text/javascript" id="massedit_calendar_expiry_date">
+                                                                        Calendar.setup({
+                                                                            inputField: "jscal_field_expiry_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_expiry_date", singleClick: true, step: 1
+                                                                        })
+                                                                    </script>
+
+                                                                </td>-->
+
+                                                            </tr>
+                                                            <tr style="height:25px">
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Đơn vị			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <input name="product.mQuantification"  type="text" style="border:1px solid #bababa;" value="<s:property value="product.mQuantification"/>">
+<!--                                                                                        <input name="vendor_id" type="hidden" value="0">&nbsp;
+                                                                    <img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="return window.open( & quot; index.php?module = Vendors & amp; action = Popup & amp; html = Popup_picker & amp; popuptype = specific & amp; form = EditView & amp; fromlink = & quot; , & quot; test & quot; , & quot; width = 640, height = 602, resizable = 0, scrollbars = 0 & quot; );" align="absmiddle" style="cursor:hand;cursor:pointer">
+                                                                    <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.vendor_id.value = '';
+                                                                            this.form.vendor_name.value = '';
+                                                                            return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
+                                                                </td>
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Quy cách 			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    &nbsp;&nbsp;
+                                                                    <input style="width:74%;" class="detailedViewTextBox" type="text" tabindex="" name="product.mPackingSpecifications" size="27" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="<s:property value="product.mPackingSpecifications"/>">
+                                                                </td>
+
+                                                            </tr>
+<!--                                                                                <tr style="height:25px">
+
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Số hiệu nhà cung cấp </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="vendor_part_no" id="vendor_part_no" value="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Số hiệu nhà sản xuất </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="mfr_part_no" id="mfr_part_no" value="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                            </tr>
+                                                            <tr style="height:25px">
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Ngăn hàng hóa </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="productsheet" id="productsheet" value="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Số hiệu </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="serial_no" id="serial_no" value="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                            </tr>
+                                                            <tr style="height:25px">
+
+                                                                 uitype 111 added for noneditable existing picklist values - ahmed 
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>
+                                                                    Tài khoản Kế toán 			</td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <select name="glacct" tabindex="" class="small">
+                                                                        <option value="300-Sales-Software" selected="">
+                                                                            300-Kinh doanh phần mềm
+                                                                        </option>
+                                                                        <option value="301-Sales-Hardware">
+                                                                            301-Kinh doanh phần cứng
+                                                                        </option>
+                                                                        <option value="302-Rental-Income">
+                                                                            302-Cho thuê
+                                                                        </option>
+                                                                        <option value="303-Interest-Income">
+                                                                            303-Lợi tức
+                                                                        </option>
+                                                                        <option value="304-Sales-Software-Support">
+                                                                            304-Hỗ trợ kinh doanh phần mềm
+                                                                        </option>
+                                                                        <option value="305-Sales Other">
+                                                                            305-Kinh doanh khác
+                                                                        </option>
+                                                                        <option value="306-Internet Sales">
+                                                                            306-Kinh doanh qua mạng
+                                                                        </option>
+                                                                        <option value="307-Service-Hardware Labor">
+                                                                            307-Gia công phần cứng
+                                                                        </option>
+                                                                        <option value="308-Sales-Books">
+                                                                            308-Bán sách
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+
+                                                            </tr>-->
+
+                                                            <tr style="height:25px"><td>&nbsp;</td></tr>
+
+                                                            <tr>
+                                                                <td colspan="4" class="detailedViewHeader">
+                                                                    <b>Thông tin Giá cả</b>
+                                                                </td>
+                                                            </tr>
+
+                                                            <!-- Handle the ui types display -->
+
+
+                                                            <!-- Added this file to display the fields in Create Entity page based on ui types  -->
+                                                            <tr style="height:25px">
+
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Giá đơn vị: (₫) 			</td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">				
+                                                                    <span id="multiple_currencies">
+                                                                        <input name="product.mExportPrices" id="unit_price" tabindex="" type="text" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox';
+                                                                                updateUnitPrice('unit_price', 'curname1');" value="<s:property value="product.mExportPrices"/>" style="width:60%;">
+                                                                        &nbsp;<a href="javascript:void(0);" onclick="updateUnitPrice('unit_price', 'curname1');
+                                                                                toggleShowHide('currency_class', 'multiple_currencies');">thêm tiền tệ »</a>
+                                                                    </span>
+                                                                    <div id="currency_class" class="multiCurrencyEditUI" width="350">
+                                                                        <input type="hidden" name="base_currency" id="base_currency" value="curname1">
+                                                                        <input type="hidden" name="base_conversion_rate" id="base_currency" value="curname1">
+                                                                        <table width="100%" height="100%" class="small" cellpadding="5">
+                                                                            <tbody><tr class="detailedViewHeader">
                                                                                     <th colspan="4">
                                                                                         <b>Giá sản phẩm</b>
                                                                                     </th>
                                                                                     <th align="right">
-                                                                                        <img border="0" style="cursor: pointer;" onclick="toggleShowHide('multiple_currencies', 'currency_class');" src="themes/images/close.gif"/>
+                                                                                        <img border="0" style="cursor: pointer;" onclick="toggleShowHide('multiple_currencies', 'currency_class');" src="themes/images/close.gif">
                                                                                     </th>
                                                                                 </tr>
                                                                                 <tr class="detailedViewHeader">
@@ -664,112 +676,195 @@
                                                                                 </tr>
                                                                                 <tr>
 
-
-
                                                                                     <td align="right" class="dvtCellLabel">
                                                                                         Vietnam, Dong (₫)
                                                                                         <input type="checkbox" name="cur_1_check" id="cur_1_check" class="small" onclick="fnenableDisable(this, '1');
-                                                                                                updateCurrencyValue(this, 'curname1', 'curname1', '1');" checked>
+                                                                                                updateCurrencyValue(this, 'curname1', 'curname1', '1');" checked="">
                                                                                     </td>
                                                                                     <td class="dvtCellInfo" align="left">
-                                                                                        <input  type="text" size="10" class="small" name="curname1" id="curname1" value="0" onBlur="updateUnitPrice('curname1', 'unit_price');
+                                                                                        <input type="text" size="10" class="small" name="curname1" id="curname1" value="0.00" onblur="updateUnitPrice('curname1', 'unit_price');
                                                                                                 fnpriceValidation('curname1');">
                                                                                     </td>
                                                                                     <td class="dvtCellInfo" align="left">
-                                                                                        <input disabled=true type="text" size="10" class="small" name="cur_conv_rate1" value="1">
+                                                                                        <input disabled="true" type="text" size="10" class="small" name="cur_conv_rate1" value="1">
                                                                                     </td>
                                                                                     <td class="dvtCellInfo" align="center">
-                                                                                        <input  type="button" class="crmbutton small edit" id="cur_reset1"  onclick="updateCurrencyValue(this, 'curname1', 'curname1', '1');" value="Phục hồi"/>
+                                                                                        <input type="button" class="crmbutton small edit" id="cur_reset1" onclick="updateCurrencyValue(this, 'curname1', 'curname1', '1');" value="Phục hồi">
                                                                                     </td>
                                                                                     <td class="dvtCellInfo">
-                                                                                        <input  type="radio" class="detailedViewTextBox" id="base_currency1" name="base_currency_input" value="curname1" checked onchange="updateBaseCurrencyValue()" />
+                                                                                        <input type="radio" class="detailedViewTextBox" id="base_currency1" name="base_currency_input" value="curname1" checked="" onchange="updateBaseCurrencyValue()">
                                                                                     </td>
                                                                                 </tr>
-                                                                            </table>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Tiền hoa hồng (%) </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="commissionrate" id ="commissionrate" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <!-- Handle the Tax in Inventory -->
-                                                                    <td align="right" class="dvtCellLabel" style="border:0px solid red;">
-                                                                        VAT (%)
-                                                                        <input type="checkbox" name="tax1_check" id="tax1_check" class="small" onclick="fnshowHide(this, 'tax1')" >
-                                                                    </td>
-                                                                    <td class="dvtCellInfo" align="left" style="border:0px solid red;">
-                                                                        <input type="text" class="detailedViewTextBox" name="tax1" id="tax1" value="10.000" style="visibility:hidden;" onBlur="fntaxValidation('tax1')">
-                                                                    </td>
-                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Tiền hoa hồng (%) </td>
+
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="commissionrate" id="commissionrate" value="0.000" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                            </tr>
+                                                            <tr style="height:25px">
+                                                                <!-- Handle the Tax in Inventory -->
                                                                 <td align="right" class="dvtCellLabel" style="border:0px solid red;">
-                                                                    Sales (%)
-                                                                    <input type="checkbox" name="tax2_check" id="tax2_check" class="small" onclick="fnshowHide(this, 'tax2')" >
+                                                                    VAT (%)
+                                                                    <input type="checkbox" name="tax1_check" id="tax1_check" class="small" onclick="fnshowHide(this, 'tax1')">
                                                                 </td>
                                                                 <td class="dvtCellInfo" align="left" style="border:0px solid red;">
-                                                                    <input type="text" class="detailedViewTextBox" name="tax2" id="tax2" value="10.000" style="visibility:hidden;" onBlur="fntaxValidation('tax2')">
+                                                                    <input type="text" class="detailedViewTextBox" name="product.mVATTax" id="tax1" value="<s:property value="product.mVATTax"/>" style="visibility:hidden;" onblur="fntaxValidation('tax1')">
                                                                 </td>
-                                                    </tr>
-                                                    <td align="right" class="dvtCellLabel" style="border:0px solid red;">
-                                                        Service (%)
-                                                        <input type="checkbox" name="tax3_check" id="tax3_check" class="small" onclick="fnshowHide(this, 'tax3')" >
-                                                    </td>
-                                                    <td class="dvtCellInfo" align="left" style="border:0px solid red;">
-                                                        <input type="text" class="detailedViewTextBox" name="tax3" id="tax3" value="12.500" style="visibility:hidden;" onBlur="fntaxValidation('tax3')">
-                                                    </td>
-                                        </tr>
-                                        <td align="right" class="dvtCellLabel" style="border:0px solid red;">
-                                            NoVAT (%)
-                                            <input type="checkbox" name="tax4_check" id="tax4_check" class="small" onclick="fnshowHide(this, 'tax4')" >
-                                        </td>
-                                        <td class="dvtCellInfo" align="left" style="border:0px solid red;">
-                                            <input type="text" class="detailedViewTextBox" name="tax4" id="tax4" value="0.000" style="visibility:hidden;" onBlur="fntaxValidation('tax4')">
-                                        </td>
-                                        </tr>
+                                                            </tr>
+<!--                                                                                <tr><td align="right" class="dvtCellLabel" style="border:0px solid red;">
+                                                                    Sales (%)
+                                                                    <input type="checkbox" name="tax2_check" id="tax2_check" class="small" onclick="fnshowHide(this, 'tax2')">
+                                                                </td>
+                                                                <td class="dvtCellInfo" align="left" style="border:0px solid red;">
+                                                                    <input type="text" class="detailedViewTextBox" name="tax2" id="tax2" value="10.000" style="visibility:hidden;" onblur="fntaxValidation('tax2')">
+                                                                </td>
+                                                            </tr>
+                                                            <tr><td align="right" class="dvtCellLabel" style="border:0px solid red;">
+                                                                    Service (%)
+                                                                    <input type="checkbox" name="tax3_check" id="tax3_check" class="small" onclick="fnshowHide(this, 'tax3')">
+                                                                </td>
+                                                                <td class="dvtCellInfo" align="left" style="border:0px solid red;">
+                                                                    <input type="text" class="detailedViewTextBox" name="tax3" id="tax3" value="12.500" style="visibility:hidden;" onblur="fntaxValidation('tax3')">
+                                                                </td>
+                                                            </tr>
+                                                            <tr><td align="right" class="dvtCellLabel" style="border:0px solid red;">
+                                                                    NoVAT (%)
+                                                                    <input type="checkbox" name="tax4_check" id="tax4_check" class="small" onclick="fnshowHide(this, 'tax4')">
+                                                                </td>
+                                                                <td class="dvtCellInfo" align="left" style="border:0px solid red;">
+                                                                    <input type="text" class="detailedViewTextBox" name="tax4" id="tax4" value="0.000" style="visibility:hidden;" onblur="fntaxValidation('tax4')">
+                                                                </td>
+                                                            </tr>-->
 
-                                        <td colspan="2" class="dvtCellInfo">&nbsp;</td>
-                                        </tr>
+                                                            <tr>
+                                                                <td colspan="2" class="dvtCellInfo">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="height:25px"><td>&nbsp;</td></tr>
+<!--                                                            <tr>
+                                                                <td colspan="4" class="detailedViewHeader">
+                                                                    <b>Thông tin tồn kho</b>
+                                                                </td>
+                                                            </tr>
+                                                             Handle the ui types display 
 
-                                        <tr style="height:25px"><td>&nbsp;</td></tr>
-                                        <tr>
-                                            <td colspan=4 class="detailedViewHeader">
-                                                <b>Kho H&agrave;ng</b>
-                                            </td>
-                                        </tr>
-                                        <!-- Here we should include the uitype handlings-->
-                                        <!-- Added this file to display the fields in Create Entity page based on ui types  -->
-                                        <tr style="height:25px">
-                                            <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
-                                            <td width="20%" class="dvtCellLabel" align=right>
-                                                <font color="red">*</font>
-                                                Tên kho 			</td>
-                                            <td width="30%" align=left class="dvtCellInfo">
-                                                <select name="cf_628" tabindex="" class="small">
-                                                    <option value="Kho Mien Bac - KMB" >
-                                                        Kho Mien Bac - KMB
-                                                    </option>
-                                                    <option value="Kho Mien Nam - KMN" >
-                                                        Kho Mien Nam - KMN
-                                                    </option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr style="height:25px"><td>&nbsp;</td></tr>
-                                        <tr>
-                                            <td colspan=4 class="detailedViewHeader">
-                                                <b>Thông tin chi tiết</b>
-                                            </td>
-                                        </tr>
-                                        <!-- Here we should include the uitype handlings-->
-                                        <!-- Added this file to display the fields in Create Entity page based on ui types  -->
-                                        <tr style="height:25px">
-                                            <!-- In Add Comment are we should not display anything -->
-                                            <td width=20% class="dvtCellLabel" align=right>
-                                                <font color="red"></font> 
-                                                Mô tả 			</td>
-                                            <td colspan=3>
-                                                <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="description"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
-                                            </td>
-                                        </tr>
+                                                             Added this file to display the fields in Create Entity page based on ui types  
+                                                                                <tr style="height:25px">
+
+                                                                 uitype 111 added for noneditable existing picklist values - ahmed 
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>
+                                                                    Đơn vị sử dụng 			</td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <select name="usageunit" tabindex="" class="small">
+                                                                        <option value="Box">
+                                                                            Hộp
+                                                                        </option>
+
+                                                                    </select>
+                                                                </td>
+
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Số lượng/Đơn vị </td>
+
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="qty_per_unit" id="qty_per_unit" value="0.00" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                            </tr>
+                                                            <tr style="height:25px">
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Tồn kho </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="qtyinstock" id="qtyinstock" value="0" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Mức tồn kho chuẩn </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="reorderlevel" id="reorderlevel" value="0" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                            </tr>
+                                                            <tr style="height:25px">
+
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Người quản lý 			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <select name="assigned_user_id" tabindex="" class="small">
+
+                                                                        <option value="1" selected="">admin</option>
+
+                                                                    </select>
+                                                                </td>
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Số lượng yêu cầu </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="qtyindemand" id="qtyindemand" value="0" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                            </tr>
+                                                            <tr style="height:25px"><td>&nbsp;</td></tr>-->
+                                                            <tr>
+                                                                <td colspan="4" class="detailedViewHeader">
+                                                                    <b>Kho Hàng</b>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Handle the ui types display -->
+
+                                                            <!-- Added this file to display the fields in Create Entity page based on ui types  -->
+                                                            <tr style="height:25px">
+
+                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red">*</font>
+                                                                    Tên kho 			
+                                                                </td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <select name="cf_628" tabindex="" class="small">
+                                                                        <option value="Kho Mien Bac - KMB">
+                                                                            Kho Mien Bac - KMB
+                                                                        </option>
+<!--                                                                                            <option value="Kho Mien Nam - KMN">
+                                                                            Kho Mien Nam - KMN
+                                                                        </option>-->
+                                                                    </select>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr style="height:25px"><td>&nbsp;</td></tr>
+<!--                                                            <tr>
+                                                                <td colspan="4" class="detailedViewHeader">
+                                                                    <b>Thông tin hình ảnh sản phẩm</b>
+                                                                </td>
+                                                            </tr>
+
+                                                             Handle the ui types display 
+                                                             Added this file to display the fields in Create Entity page based on ui types  
+                                                            <tr style="height:25px">
+
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font>Hình ảnh sản phẩm
+                                                                </td>
+                                                                <td colspan="3" width="30%" align="left" class="dvtCellInfo">
+                                                                    <input name="del_file_list" type="hidden" value="">
+                                                                    <div id="files_list" style="border: 1px solid grey; width: 500px; padding: 5px; background: rgb(255, 255, 255) none repeat scroll 0%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; font-size: x-small">Số lượng Tập tin tối đa là 6
+                                                                        <input id="my_file_element" type="file" name="file_0" tabindex="" onchange="validateFilename(this)">
+                                                                        input type="hidden" name="file_1_hidden" value=""/
+                                                                    </div>
+                                                                    <script>
+                                                                        var multi_selector = new MultiSelector(document.getElementById('files_list'), 6);
+                                                                        multi_selector.count = 0
+                                                                        multi_selector.addElement(document.getElementById('my_file_element'));
+                                                                    </script>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr style="height:25px"><td>&nbsp;</td></tr>-->
+                                                            <tr>
+                                                                <td colspan="4" class="detailedViewHeader">
+                                                                    <b>Thông tin chi tiết</b>
+                                                                </td>
+                                                            </tr>
+
+                                                            <!-- Handle the ui types display -->
+                                                            <!-- Added this file to display the fields in Create Entity page based on ui types  -->
+                                                            <tr style="height:25px">
+
+                                                                <!-- In Add Comment are we should not display anything -->
+                                                                <td width="20%" class="dvtCellLabel" align="right">
+                                                                    <font color="red"></font> 
+                                                                    Mô tả 			</td>
+                                                                <td colspan="3">
+                                                                    <textarea class="detailedViewTextBox" tabindex="" onfocus="this.className = 'detailedViewTextBoxOn'" name="product.mDescription" onblur="this.className = 'detailedViewTextBox'" cols="90" rows="8"><s:property value="product.mDescription"/></textarea>
+                                                                </td>
+                                                            </tr>
                                         <tr style="height:25px"><td>&nbsp;</td></tr>
                                         <!-- This if is added to restrict display in more tab-->
                                         <tr>
@@ -821,117 +916,53 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td colspan=4 class="detailedViewHeader">
+                                                    <td colspan="4" class="detailedViewHeader">
                                                         <b>Thông tin tồn kho</b>
                                                     </td>
                                                 </tr>
+                                                <!-- Handle the ui types display -->
 
-                                                <!-- Here we should include the uitype handlings-->
                                                 <!-- Added this file to display the fields in Create Entity page based on ui types  -->
-                                                <tr style="height:25px">
+    <!--                                                                                <tr style="height:25px">
 
-                                                    <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
-                                                    <td width="20%" class="dvtCellLabel" align=right>
+                                                     uitype 111 added for noneditable existing picklist values - ahmed 
+                                                    <td width="20%" class="dvtCellLabel" align="right">
                                                         <font color="red"></font>
                                                         Đơn vị sử dụng 			</td>
-                                                    <td width="30%" align=left class="dvtCellInfo">
+                                                    <td width="30%" align="left" class="dvtCellInfo">
                                                         <select name="usageunit" tabindex="" class="small">
-                                                            <option value="Box" >
+                                                            <option value="Box">
                                                                 Hộp
                                                             </option>
-                                                            <option value="Carton" >
-                                                                Hộp bìa cứng
-                                                            </option>
-                                                            <option value="Dozen" >
-                                                                Dazon
-                                                            </option>
-                                                            <option value="Each" >
-                                                                Mỗi
-                                                            </option>
-                                                            <option value="Hours" >
-                                                                Giờ
-                                                            </option>
-                                                            <option value="Impressions" >
-                                                                Bản in
-                                                            </option>
-                                                            <option value="Lb" >
-                                                                Pound
-                                                            </option>
-                                                            <option value="M" >
-                                                                Mét
-                                                            </option>
-                                                            <option value="Pack" >
-                                                                Gói
-                                                            </option>
-                                                            <option value="Pages" >
-                                                                Trang
-                                                            </option>
-                                                            <option value="Pieces" >
-                                                                Phần
-                                                            </option>
-                                                            <option value="Quantity" >
-                                                                Số lượng
-                                                            </option>
-                                                            <option value="Reams" >
-                                                                Ram giấy
-                                                            </option>
-                                                            <option value="Sheet" >
-                                                                Tấm
-                                                            </option>
-                                                            <option value="Spiral Binder" >
-                                                                Spiral Binder
-                                                            </option>
-                                                            <option value="Sq Ft" >
-                                                                Sq Ft
-                                                            </option>
+
                                                         </select>
                                                     </td>
 
-                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Số lượng/Đơn vị </td>
+                                                    <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Số lượng/Đơn vị </td>
 
-                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="qty_per_unit" id ="qty_per_unit" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
+                                                    <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="qty_per_unit" id="qty_per_unit" value="0.00" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                </tr>-->
+                                                <tr style="height:25px">
+                                                    <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Tồn kho </td>
+                                                    <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="qtyinstock" id="qtyinstock" value="0" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                    <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Mức tồn kho chuẩn </td>
+                                                    <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="reorderlevel" id="reorderlevel" value="0" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                 </tr>
                                                 <tr style="height:25px">
-                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Tồn kho </td>
-                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="qtyinstock" id ="qtyinstock" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mức tồn kho chuẩn </td>
-                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="reorderlevel" id ="reorderlevel" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                </tr>
-                                                <tr style="height:25px">
 
-                                                    <td width="20%" class="dvtCellLabel" align=right>
+                                                    <td width="20%" class="dvtCellLabel" align="right">
                                                         <font color="red"></font>Người quản lý 			
                                                     </td>
-                                                    <td width="30%" align=left class="dvtCellInfo">
+                                                    <td width="30%" align="left" class="dvtCellInfo">
                                                         <select name="assigned_user_id" tabindex="" class="small">
 
-                                                            <option value="1" selected>admin</option>
-                                                            <option value="2730" >binhnt</option>
-                                                            <option value="6" >cancv</option>
-                                                            <option value="10" >cuongtq</option>
-                                                            <option value="2729" >ducpl</option>
-                                                            <option value="18" >hungnv</option>
-                                                            <option value="20" >huylm</option>
-                                                            <option value="2731" >karofi</option>
-                                                            <option value="26" >quandm</option>
-                                                            <option value="25" >quyennt</option>
-                                                            <option value="21" >sangch</option>
-                                                            <option value="24" >thamnh</option>
-                                                            <option value="2725" >ThaoDT</option>
-                                                            <option value="2726" >ThaoNTT</option>
-                                                            <option value="5" >thoant</option>
-                                                            <option value="2727" >thomlt</option>
-                                                            <option value="2721" >trangnt</option>
-                                                            <option value="28" >trattp</option>
-                                                            <option value="2728" >TuyetVT</option>
-                                                            <option value="15" >vuidt</option>
-                                                            <option value="27" >yennt</option>
+                                                            <option value="1" selected="">admin</option>
+
                                                         </select>
                                                     </td>
-                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Số lượng yêu cầu </td>
-                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="qtyindemand" id ="qtyindemand" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
+                                                    <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Số lượng yêu cầu </td>
+                                                    <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="qtyindemand" id="qtyindemand" value="0" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                 </tr>
-
                                                 <tr style="height:25px"><td>&nbsp;</td></tr>
                                                 <tr>
                                                     <td colspan=4 class="detailedViewHeader">
@@ -987,10 +1018,10 @@
     </tr>
 </table>
 </div>
-</td>
+<!--</td>
 <td align=right valign=top><img src="themes/softed/images/showPanelTopRight.gif"></td>
 </tr>
-</table>
+</table>-->
 </form>
 
 <!-- This div is added to get the left and top values to show the tax details-->

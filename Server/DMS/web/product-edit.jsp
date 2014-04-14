@@ -436,7 +436,7 @@
                                                                                     </td>
 
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="product.mBarcode" id="product_no" value="<s:property value="product.mBarcode"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input  type="text" tabindex="" name="product.mBarcode" id="product_no" value="<s:property value="product.mBarcode"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                     </td>
 
                                                                                     <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Thương hiệu </td>
@@ -562,7 +562,7 @@
                                                                                         <font color="red"></font>Đơn vị			
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input name="product.mQuantification" readonly="" type="text" style="border:1px solid #bababa;" value="<s:property value="product.mQuantification"/>">
+                                                                                        <input name="product.mQuantification" type="text" style="border:1px solid #bababa;" value="<s:property value="product.mQuantification"/>">
 <!--                                                                                        <input name="vendor_id" type="hidden" value="0">&nbsp;
                                                                                         <img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="return window.open( & quot; index.php?module = Vendors & amp; action = Popup & amp; html = Popup_picker & amp; popuptype = specific & amp; form = EditView & amp; fromlink = & quot; , & quot; test & quot; , & quot; width = 640, height = 602, resizable = 0, scrollbars = 0 & quot; );" align="absmiddle" style="cursor:hand;cursor:pointer">
                                                                                         <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.vendor_id.value = '';
@@ -890,8 +890,10 @@
                                             </tbody></table>
                                     </td>
                                 </tr>
-                            </tbody></table>
-                    </form></div>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
             </td>
         </tr>
     </tbody></table>

@@ -339,13 +339,17 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         
         System.out.println("id_product: "+id_product);
         
+        //new product
         if(product.getmSerial() <= 0){
-            product.setmSerial(null);
-            product.setmProvider("0");
+            
             System.out.println("OKsave" + product.getmProductID());
             boolean status = productDAO.saveOrUpdate(product);
             productsList = productDAO.getProductList();
-            return SUCCESS;
+            
+            if(status){
+                return SUCCESS;
+            }
+            return INPUT;
         }
         
         System.out.println("OK" + product.getmProductID());
@@ -416,5 +420,10 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         }
         else
             return INPUT;
+    }
+    
+    public String redirect(){
+        providerIDList = providerDAO.getProvidersIDList();
+        return SUCCESS;
     }
 }

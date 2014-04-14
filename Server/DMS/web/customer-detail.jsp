@@ -853,10 +853,10 @@
                                 </td>
 
                                 <!--Hoạt động-->
-                                <td width="22%" valign="top" style="border-left:1px dashed #cccccc;padding:13px">
+<!--                                <td width="22%" valign="top" style="border-left:1px dashed #cccccc;padding:13px">
 
-                                    <!-- right side relevant info -->
-                                    <!-- Action links for Event & Todo START-by Minnie -->
+                                     right side relevant info 
+                                     Action links for Event & Todo START-by Minnie 
                                     <table width="100%" border="0" cellpadding="5" cellspacing="0">
                                         <tbody><tr><td>&nbsp;</td></tr>				
                                             <tr><td align="left" class="genHeaderSmall">Hoạt động</td></tr>
@@ -892,9 +892,9 @@
                                                     <a href="" class="webMnu">Thêm Tác vụ</a>
                                                 </td>
                                             </tr>
-                                            <!-- Start: Actions for Documents Module -->
+                                             Start: Actions for Documents Module 
 
-                                            <!-- End: Actions for Documents Module -->	
+                                             End: Actions for Documents Module 	
                                         </tbody></table>
 
                                     <table width="100%" border="0" cellpadding="5" cellspacing="0">
@@ -916,9 +916,9 @@
                                             </tr>
                                         </tbody></table>
 
-                                    <!-- Action links END -->
+                                     Action links END 
 
-                                    <!-- Mail Merge-->
+                                     Mail Merge
                                     <br>
                                     <form action="index.php" method="post" name="TemplateMerge" id="form">
                                         <input type="hidden" name="module" value="Accounts">
@@ -937,9 +937,10 @@
                                             </tbody></table>
                                     </form>
 
-                                </td>
+                                </td>-->
                             </tr>
-                        </tbody></table>
+                        </tbody>
+                                    </table>
 
 
                     <!-- PUBLIC CONTENTS STOPS-->

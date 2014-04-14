@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 
 <html>
@@ -100,7 +101,7 @@
                     <tbody>
                         <tr>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
-                            <td class="tabSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -112,7 +113,7 @@
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Analytics_sub');" onmouseout="fnHideDrop('Analytics_sub');" align="center" nowrap=""><a href="">Phân tích</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
 
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Settings_sub');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
@@ -257,7 +258,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="">Khách hàng</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Tồn kho &gt; <a class="hdrLink" href="">Sản phẩm</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -422,34 +423,44 @@
                                     <table border=0 cellspacing=1 cellpadding=3 width=100% class="lvt small">
                                         <!-- Table Headers -->
                                         <tr>
-                                            <td class="lvtCol"><input type="checkbox"  name="selectall" onClick=toggleSelect_ListView(this.checked, "selected_id")></td>
+                                            <!--td class="lvtCol"><input type="checkbox"  name="selectall" onClick=toggleSelect_ListView(this.checked, "selected_id")></td-->
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=productname&start=&sorder=ASC");' class='listFormHeaderLinks'>Stt</a></td>
                                             <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=productname&start=&sorder=ASC");' class='listFormHeaderLinks'>Tên sản phẩm</a></td>
-                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=serialno&start=&sorder=ASC");' class='listFormHeaderLinks'>Số hiệu</a></td>
-                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=createdtime&start=&sorder=ASC");' class='listFormHeaderLinks'>Tạo lúc</a></td>
-                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=qtyinstock&start=&sorder=ASC");' class='listFormHeaderLinks'>Tồn kho</a></td>
-                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=cf_628&start=&sorder=ASC");' class='listFormHeaderLinks'>Tên kho</a></td>
-                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=reorderlevel&start=&sorder=ASC");' class='listFormHeaderLinks'>Mức tồn kho chuẩn</a></td>
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=serialno&start=&sorder=ASC");' class='listFormHeaderLinks'>Mã sản phẩm</a></td>
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=createdtime&start=&sorder=ASC");' class='listFormHeaderLinks'>Mã vạch</a></td>
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=qtyinstock&start=&sorder=ASC");' class='listFormHeaderLinks'>Thương hiệu</a></td>
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=qtyinstock&start=&sorder=ASC");' class='listFormHeaderLinks'>Nhà cung cấp</a></td>
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=cf_628&start=&sorder=ASC");' class='listFormHeaderLinks'>Giá</a></td>
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=cf_628&start=&sorder=ASC");' class='listFormHeaderLinks'>Đơn vị</a></td>
+                                            <td class="lvtCol"><a href='javascript:;' onClick='getListViewEntries_js("Products", "parenttab=Inventory&foldername=Default&order_by=reorderlevel&start=&sorder=ASC");' class='listFormHeaderLinks'>Mô tả</a></td>
                                             <td class="lvtCol">Hoạt động</td>
                                         </tr>
                                         <!-- Table Contents -->
+                                        <s:iterator value="productsList" status="index">
                                         <tr bgcolor=white onMouseOver="this.className = 'lvtColDataHover'" onMouseOut="this.className = 'lvtColData'" id="row_142">
-                                            <td width="2%"><input type="checkbox" NAME="selected_id" id="142" value= '142' onClick="check_object(this)"></td>
+                                            <!--td width="2%"><input type="checkbox" NAME="selected_id" id="142" value= '142' onClick="check_object(this)"></td-->
 
-                                            <td onmouseover=""><a href='' title='Products'>Thiết kế web</a> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='productname' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="%{#index.index + 1}"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='productname' vtmodule='Products' style='display:none;'></span></td>
+                                            
+                                            <td onmouseover=""><a href='product-detail?id_pdct=<s:property value="mSerial"/>' title='Products'><s:property value="mProductName"/></a> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='productname' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='serial_no' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="mProductID"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='serial_no' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover="">16-04-2011 05:49:43 <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='createdtime' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="mBarcode"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='createdtime' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover="">7.000 <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='qtyinstock' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="mBrand"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='qtyinstock' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='cf_628' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="mProvider"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='cf_628' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover="">0 <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="mExportPrices"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
+                                            
+                                            <td onmouseover=""><s:property value="mQuantification"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
+                                            
+                                            <td onmouseover=""><s:property value="mDescription"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><a href="">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DProducts%26action%3DDelete%26record%3D142%26return_module%3DProducts%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D62")'>Xóa</a></td>
+                                            <td onmouseover=""><a href="edit-product?id_pdct=<s:property value="mSerial"/>">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DProducts%26action%3DDelete%26record%3D142%26return_module%3DProducts%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D62")'>Xóa</a></td>
                                         </tr>
-                                        
+                                        </s:iterator>
                                     </table>
                                 </div>
 
@@ -460,13 +471,16 @@
 
                 </form>	
 
-                <div id="basicsearchcolumns" style="display:none;"><select name="search_field" id="bas_searchfield" class="txtBox" style="width:150px"><option label="Tên sản phẩm" value="productname">Tên sản phẩm</option>
+                <div id="basicsearchcolumns" style="display:none;">
+                    <select name="search_field" id="bas_searchfield" class="txtBox" style="width:150px"><option label="Tên sản phẩm" value="productname">Tên sản phẩm</option>
                         <option label="Số hiệu" value="serial_no">Số hiệu</option>
                         <option label="Tạo lúc" value="createdtime">Tạo lúc</option>
                         <option label="Tồn kho" value="qtyinstock">Tồn kho</option>
                         <option label="Tên kho" value="cf_628">Tên kho</option>
                         <option label="Mức tồn kho chuẩn" value="reorderlevel">Mức tồn kho chuẩn</option>
-                    </select></div>	  	</div>
+                    </select>
+                </div>	  	
+            </div>
 
         </td>
         <td valign=top><img src="themes/softed/images/showPanelTopRight.gif"></td>

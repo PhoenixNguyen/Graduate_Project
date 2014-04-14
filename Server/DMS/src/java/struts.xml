@@ -535,6 +535,26 @@
             <result name="input" type="redirect">edit-customer?id_cus=${customer.mStt}</result>
         </action>
         
+        <!--PRODUCT-->
+        <action name="product-list" method="displayProducts" class="com.hp.action.ProductsAction">
+            <result name="success">product.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="product-detail" method="displayProduct" class="com.hp.action.ProductsAction">
+            <result name="success">product-detail.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="edit-product" method="displayProduct" class="com.hp.action.ProductsAction">
+            <result name="success">product-edit.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="update-product" method="updateProduct" class="com.hp.action.ProductsAction">
+            <result name="success" type="redirect">product-detail?id_pdct=${product.mSerial}</result>
+            <result name="input" type="redirect">edit-product?id_pdct=${product.mSerial}</result>
+        </action>
         
         <!--Not yet handle-->
         <action name="take-order" method="redirect" class="com.hp.action.CustomerAction">
@@ -542,10 +562,7 @@
             <result name="input" >home.jsp</result>
         </action>
         
-        <action name="product-list" method="redirect" class="com.hp.action.CustomerAction">
-            <result name="success">product.jsp</result>
-            <result name="input" >home.jsp</result>
-        </action>
+        
         
         <action name="provider-list" method="redirect" class="com.hp.action.CustomerAction">
             <result name="success">provider.jsp</result>

@@ -7,6 +7,7 @@
 package com.hp.action;
 
 import com.hp.common.ConfigFile;
+import com.hp.common.ValidateHandle;
 import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.ProductDAO;
@@ -337,7 +338,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         providerIDList = providerDAO.getProvidersIDList();
         
         System.out.println("id_product: "+id_product);
-        if(id_product <= 0){
+        
+        if(product.getmSerial() <= 0){
             product.setmSerial(null);
             product.setmProvider("0");
             System.out.println("OKsave" + product.getmProductID());
@@ -350,7 +352,12 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         boolean status = productDAO.update(product);
         productsList = productDAO.getProductList();
         
-        return SUCCESS;
+        if(status){
+            
+            return SUCCESS;
+        }
+        
+        return INPUT;
     }
     
     public String uploadAnImage(){
@@ -393,5 +400,21 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
             return INPUT;
         }
         return SUCCESS;
+    }
+    
+    public String displayProduct(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        String para =  request.getParameter("id_pdct");
+        
+        int id_pdct = ValidateHandle.getInteger(para);
+        if(id_pdct > -1){
+            product = productDAO.loadProduct(id_pdct);
+            providerIDList = providerDAO.getProvidersIDList();
+            return SUCCESS;
+        }
+        else
+            return INPUT;
     }
 }

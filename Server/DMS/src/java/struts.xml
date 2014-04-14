@@ -566,6 +566,7 @@
             <result name="input" >product-add.jsp</result>
         </action>
         
+        <!--TAKE ORDER-->
         <action name="take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order.jsp</result>
             <result name="input" >home.jsp</result>
@@ -574,6 +575,16 @@
         <action name="take-order-detail" method="loadTakeOrdersDetail" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order-detail.jsp</result>
             <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="take-order-edit" method="loadTakeOrdersDetail" class="com.hp.action.TakeOrderAction">
+            <result name="success">take-order-edit.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="update-take-order" method="updateTakeOrder" class="com.hp.action.TakeOrderAction">
+            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.mID}</result>
+            <result name="input" >take-order-edit.jsp</result>
         </action>
         <!--Not yet handle-->
         

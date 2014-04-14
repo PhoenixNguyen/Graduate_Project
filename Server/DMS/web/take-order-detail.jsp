@@ -383,12 +383,12 @@
                                                 <td class="dvtTabCache" style="width:10px">&nbsp;</td>
                                                 <td class="dvtTabCache" align="right" style="width:100%">
                                                     <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="
-                                                        
-                                                        DetailView.return_module.value = 'SalesOrder';
-                                                            DetailView.return_action.value = 'DetailView';
-                                                            DetailView.return_id.value = '201';
-                                                            DetailView.module.value = 'SalesOrder';
-                                                            submitFormForAction('DetailView', 'EditView');
+                                                        javacript:window.location.href= 'take-order-edit?id_tod=<s:property value="takeOrder.mID"/>'
+//                                                        DetailView.return_module.value = 'SalesOrder';
+//                                                            DetailView.return_action.value = 'DetailView';
+//                                                            DetailView.return_id.value = '201';
+//                                                            DetailView.module.value = 'SalesOrder';
+//                                                            submitFormForAction('DetailView', 'EditView');
                                                         " type="button" name="Edit" value="&nbsp;Sửa&nbsp;">&nbsp;
 <!--                                                    <input title="Sao chép [Alt+U]" accesskey="U" class="crmbutton small create" onclick="DetailView.return_module.value = 'SalesOrder';
                                                             DetailView.return_action.value = 'DetailView';
@@ -636,7 +636,7 @@
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--Assigned To-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Gán cho" onmouseover="hndMouseOver(53, 'Gán cho');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Gán cho">
-                                                                                                <a href="index.php?module=Users&amp;action=DetailView&amp;record=1"><s:property value="takeOrder.mOrderStatus"/></a>         
+                                                                                                <a href=""><s:property value="takeOrder.mOrderStatus"/></a>         
                                                                                                 &nbsp;</span>
 
                                                                                         </td>
@@ -1041,7 +1041,7 @@
                                                                                         <b>Tên mặt hàng</b>
                                                                                     </td>
                                                                                     <td width="10%" class="lvtCol"><b>Mã hàng</b></td>
-                                                                                    <td width="10%" class="lvtCol"><b>Tồn kho</b></td>
+                                                                                    <td width="10%" class="lvtCol"><b>Khuyến mãi</b></td>
 
                                                                                     <td width="10%" class="lvtCol"><b>Số lượng</b></td>
                                                                                     
@@ -1059,7 +1059,7 @@
                                                                                     </td>
                                                                                     <td class="crmTableRow small lineOnTop"><s:property value="mProductName"/></td>
                                                                                     <td class="crmTableRow small lineOnTop"><s:property value="mProductID"/></td>
-                                                                                    <td class="crmTableRow small lineOnTop"><s:property value=""/></td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mPromotionalProductMount"/> sản phẩm</td>
                                                                                     <td class="crmTableRow small lineOnTop"><s:property value="mNumber"/></td>
                                                                                     
                                                                                     <td class="crmTableRow small lineOnTop" align="right">
@@ -1090,7 +1090,7 @@
                                                                                                 <tr><td align="right" nowrap=""><s:property value="mDiscount"/></td></tr>		   
                                                                                             </tbody></table>
                                                                                     </td>
-                                                                                    <td class="crmTableRow small lineOnTop" valign="bottom" align="right"><s:property value="mPriceTotal"/></td>
+                                                                                    <td class="crmTableRow small lineOnTop" valign="bottom" align="right"><s:property value="getText('{0,number,#,##0.00}',{mPriceTotal})"/></td>
                                                                                     <s:set  var="sum" value="%{#sum + mPriceTotal}"/>
                                                                                 </tr>
                                                                                 </s:iterator>
@@ -1264,8 +1264,8 @@
                                             <!-- SO Actions starts -->
                                             <tr>
                                                 <td align="left" style="padding-left:10px;">
-                                                    <a href="javascript: document.DetailView.module.value='Invoice'; document.DetailView.action.value='EditView'; document.DetailView.return_module.value='SalesOrder'; document.DetailView.return_action.value='DetailView'; document.DetailView.return_id.value='201'; document.DetailView.record.value='201'; document.DetailView.convertmode.value='sotoinvoice'; document.DetailView.submit();" class="webMnu"><img src="themes/images/actionGenerateInvoice.gif" hspace="5" align="absmiddle" border="0"></a>
-                                                    <a href="javascript: document.DetailView.module.value='Invoice'; document.DetailView.action.value='EditView'; document.DetailView.return_module.value='SalesOrder'; document.DetailView.return_action.value='DetailView'; document.DetailView.return_id.value='201'; document.DetailView.record.value='201'; document.DetailView.convertmode.value='sotoinvoice'; document.DetailView.submit();" class="webMnu">Tạo Hóa đơn</a> 
+                                                    <a href="" class="webMnu"><img src="themes/images/actionGenerateInvoice.gif" hspace="5" align="absmiddle" border="0"></a>
+                                                    <a href="" class="webMnu">Tạo Hóa đơn</a> 
                                                 </td>
                                             </tr>
                                             <!--
@@ -1318,12 +1318,12 @@
                                             </tr>
 
                                             <!-- Added to give link to  send Invoice PDF through mail -->
-                                            <tr>
+<!--                                            <tr>
                                                 <td align="left" style="padding-left:10px;">
                                                     <a href="" class="webMnu"><img src="themes/images/PDFMail.gif" hspace="5" align="absmiddle" border="0"></a>
                                                     <a href="" class="webMnu">Gửi thư với PDF</a> 
                                                 </td>
-                                            </tr>
+                                            </tr>-->
                                             <!-- To display the Export To PDF link for PO, SO, Quotes and Invoice - ends -->
 
 
@@ -1385,16 +1385,19 @@
                             <td class="dvtSelectedCellBottom" align="center" nowrap="">Đặt hàng Thông tin</td>	
                             <td class="dvtTabCacheBottom" style="width:10px">&nbsp;</td>
                             <td class="dvtTabCacheBottom" align="right" style="width:100%">
-                                <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="DetailView.return_module.value = 'SalesOrder';
-                                                                                            DetailView.return_action.value = 'DetailView';
-                                                                                            DetailView.return_id.value = '201';
-                                                                                            DetailView.module.value = 'SalesOrder';
-                                                                                            submitFormForAction('DetailView', 'EditView');" type="button" name="Edit" value="&nbsp;Sửa&nbsp;">&nbsp;
-                                <input title="Sao chép [Alt+U]" accesskey="U" class="crmbutton small create" onclick="DetailView.return_module.value = 'SalesOrder';
+                                <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="
+                                    javacript:window.location.href= 'take-order-edit?id_tod=<s:property value="takeOrder.mID"/>'
+//                                    DetailView.return_module.value = 'SalesOrder';
+//                                    DetailView.return_action.value = 'DetailView';
+//                                    DetailView.return_id.value = '201';
+//                                    DetailView.module.value = 'SalesOrder';
+//                                    submitFormForAction('DetailView', 'EditView');
+                                    " type="button" name="Edit" value="&nbsp;Sửa&nbsp;">&nbsp;
+<!--                                <input title="Sao chép [Alt+U]" accesskey="U" class="crmbutton small create" onclick="DetailView.return_module.value = 'SalesOrder';
                                         DetailView.return_action.value = 'DetailView';
                                         DetailView.isDuplicate.value = 'true';
                                         DetailView.module.value = 'SalesOrder';
-                                        submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;
+                                        submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;-->
                                 <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="DetailView.return_module.value = 'SalesOrder';
                                         DetailView.return_action.value = 'index';
                                         var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';

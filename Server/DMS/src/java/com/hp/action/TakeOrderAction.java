@@ -168,10 +168,13 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         System.out.println("OKto " + takeOrder.getmID() +" : " +takeOrder.getmCustomerAddress());
         //takeOrder.setmEditer("0");
         boolean status = takeOrderDAO.update(takeOrder);
+        if(status){
+            return SUCCESS;
+        }
         System.out.println(status);
         takeOrdersList = takeOrderDAO.getTakeOrdersList();
         
-        return SUCCESS;
+        return INPUT;
     }
     
     public String exportOrders(){

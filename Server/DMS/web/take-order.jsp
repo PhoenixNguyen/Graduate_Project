@@ -5,10 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>admin - Tồn kho - Đặt hàng - Phần mềm quản lý HOSCO-MANAGEMENT</title>
+        <title>admin - Bán hàng - Đặt hàng - Phần mềm quản lý HOSCO-MANAGEMENT</title>
         <link rel="SHORTCUT ICON" href="themes/images/vtigercrm_icon.ico">	
         <style type="text/css">@import url("themes/softed/style.css");</style>
         <link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
@@ -99,13 +100,13 @@
                     <tbody>
                         <tr>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
-                            <td class="tabSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap="customer-list"><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Support_sub');" onmouseout="fnHideDrop('Support_sub');" align="center" nowrap=""><a href="">Hỗ trợ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -256,7 +257,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="">Khách hàng</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Bán hàng &gt; <a class="hdrLink" href="">Đặt hàng</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -408,35 +409,43 @@
                                         <div>
                                             <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
                                                 <!-- Table Headers -->
-                                                <tbody><tr>
-                                                        <td class="lvtCol"><input type="checkbox" name="selectall" onclick="toggleSelect_ListView(this.checked, & quot; selected_id & quot; )"></td>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="lvtCol">Stt</td>
                                                         <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; SalesOrder & quot; , & quot; parenttab = Inventory & amp; foldername = Default & amp; order_by = salesorder_no & amp; start = 1 & amp; sorder = ASC & amp; viewname = 26 & quot; );" class="listFormHeaderLinks">Mã Đặt hàng</a></td>
-                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; SalesOrder & quot; , & quot; parenttab = Inventory & amp; foldername = Default & amp; order_by = subject & amp; start = 1 & amp; sorder = ASC & amp; viewname = 26 & quot; );" class="listFormHeaderLinks">Tiêu đề</a></td>
+                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; SalesOrder & quot; , & quot; parenttab = Inventory & amp; foldername = Default & amp; order_by = subject & amp; start = 1 & amp; sorder = ASC & amp; viewname = 26 & quot; );" class="listFormHeaderLinks">Ngày đặt hàng</a></td>
+                                                        <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; SalesOrder & quot; , & quot; parenttab = Inventory & amp; foldername = Default & amp; order_by = subject & amp; start = 1 & amp; sorder = ASC & amp; viewname = 26 & quot; );" class="listFormHeaderLinks">Ngày giao hàng</a></td>
                                                         <td class="lvtCol">Tên Khách hàng</td>
-                                                        <td class="lvtCol">Tên Báo giá</td>
+                                                        <td class="lvtCol">Mã Khách hàng</td>
+                                                        <td class="lvtCol">Địa chỉ giao hàng</td>
                                                         <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; SalesOrder & quot; , & quot; parenttab = Inventory & amp; foldername = Default & amp; order_by = total & amp; start = 1 & amp; sorder = ASC & amp; viewname = 26 & quot; );" class="listFormHeaderLinks">Tổng cộng</a></td>
                                                         <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; SalesOrder & quot; , & quot; parenttab = Inventory & amp; foldername = Default & amp; order_by = smownerid & amp; start = 1 & amp; sorder = ASC & amp; viewname = 26 & quot; );" class="listFormHeaderLinks">Gán cho</a></td>
                                                         <td class="lvtCol">Hoạt động</td>
                                                     </tr>
                                                     <!-- Table Contents -->
+                                                    <s:iterator value="takeOrdersList" status="index">
                                                     <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_201" class="lvtColData">
-                                                        <td width="2%"><input type="checkbox" name="selected_id" id="201" value="201" onclick="check_object(this)"></td>
+                                                        <td onmouseover=""><s:property value="%{#index.index +1}"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">SO6 <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="salesorder_no" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="take-order-detail?id_tod=<s:property value="mID"/>" title="Accounts"><s:property value="mID"/></a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="salesorder_no" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="index.php?module=SalesOrder&amp;parenttab=Inventory&amp;action=DetailView&amp;record=201" title="SalesOrder">Đặt hàng 1</a> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="mTakeOrderDate"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="index.php?module=Accounts&amp;action=DetailView&amp;record=139" title="Accounts">La Thị Hệ</a> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="account_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="mDeliveryDate"/><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="account_id" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">-- <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="quote_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="mCustomerName"/><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="quote_id" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">₫6000000.000 <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="hdnGrandTotal" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="" title="Accounts"><s:property value="mCustomerID"/> </a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="hdnGrandTotal" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">admin <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="mCustomerAddress"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="index.php?module=SalesOrder&amp;action=EditView&amp;record=201&amp;return_module=SalesOrder&amp;return_action=index&amp;parenttab=Inventory&amp;return_viewname=26">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DSalesOrder%26action%3DDelete%26record%3D201%26return_module%3DSalesOrder%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D26")'>Xóa</a></td>
+                                                        <td onmouseover="">₫<s:property value="getText('{0,number,#,##0.00}',{mAfterPrivate})"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="hdnGrandTotal" vtmodule="SalesOrder" style="display:none;"></span></td>
+
+                                                        <td onmouseover=""><a href="" title="Accounts"><s:property value="mCreater"/> </a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        
+                                                        <td onmouseover=""><a href="">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DSalesOrder%26action%3DDelete%26record%3D201%26return_module%3DSalesOrder%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D26")'>Xóa</a></td>
                                                     </tr>
-                                                    
+                                                    </s:iterator>
                                                 </tbody>
                                             </table>
                                         </div>

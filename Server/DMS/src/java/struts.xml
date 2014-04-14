@@ -565,11 +565,17 @@
             <result name="success" type="redirect">product-detail?id_pdct=${product.mSerial}</result>
             <result name="input" >product-add.jsp</result>
         </action>
-        <!--Not yet handle-->
-        <action name="take-order" method="redirect" class="com.hp.action.CustomerAction">
+        
+        <action name="take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order.jsp</result>
             <result name="input" >home.jsp</result>
         </action>
+        
+        <action name="take-order-detail" method="loadTakeOrdersDetail" class="com.hp.action.TakeOrderAction">
+            <result name="success">take-order-detail.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        <!--Not yet handle-->
         
         
         

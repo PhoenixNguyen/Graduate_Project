@@ -216,7 +216,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>
-            <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
+            <tr><td><a href="take-order" class="drop_down">Đặt hàng</a></td></tr>
         </tbody>
     </table>
 </div>

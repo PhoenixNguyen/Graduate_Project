@@ -137,12 +137,13 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
-        String order_id = request.getParameter("id_takeorder");
+        String order_id = request.getParameter("id_tod");
         System.out.println(order_id);
         
         if(order_id == null)
             return INPUT;
         
+        takeOrder = takeOrderDAO.getTakeOrder(order_id);
         detailTakeOrdersList = takeOrderDetailDAO.getDetailTakeOrdersList(order_id);
         takeOrdersList = takeOrderDAO.getTakeOrdersList();
         return SUCCESS;

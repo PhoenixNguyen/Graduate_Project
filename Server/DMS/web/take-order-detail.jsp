@@ -5,10 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>admin - Tồn kho - Đặt hàng - Phần mềm quản lý HOSCO-MANAGEMENT</title>
+        <title>admin - Bán hàng - Đặt hàng - Phần mềm quản lý HOSCO-MANAGEMENT</title>
         <link rel="SHORTCUT ICON" href="themes/images/vtigercrm_icon.ico">	
         <style type="text/css">@import url("themes/softed/style.css");</style>
         <link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
@@ -125,9 +126,9 @@
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Support_sub');" onmouseout="fnHideDrop('Support_sub');" align="center" nowrap=""><a href="">Hỗ trợ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -206,7 +207,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>
-            <tr><td><a href="" class="drop_down">Khách hàng</a></td></tr>
+            <tr><td><a href="customer-list" class="drop_down">Khách hàng</a></td></tr>
         </tbody>
     </table>
 </div>
@@ -214,7 +215,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>
-            <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
+            <tr><td><a href="take-order" class="drop_down">Đặt hàng</a></td></tr>
         </tbody>
     </table>
 </div>
@@ -236,8 +237,8 @@
 <div class="drop_mnu" id="Inventory_sub" onmouseout="fnHideDrop('Inventory_sub')" onmouseover="fnShowDrop('Inventory_sub')" style="left: 488px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Sản phẩm</a></td></tr>
-            <tr><td><a href="" class="drop_down">Nhà cung cấp</a></td></tr>
+            <tr><td><a href="product-list" class="drop_down">Sản phẩm</a></td></tr>
+            <tr><td><a href="provider-list" class="drop_down">Nhà cung cấp</a></td></tr>
             <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
             <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
             <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
@@ -278,7 +279,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="">Khách hàng</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Bán hàng &gt; <a class="hdrLink" href="">Đặt hàng</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -294,7 +295,7 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới..." title="Tạo mới..." border="0"></a></td>
 
                                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                                                                     searchshowhide('searchAcc', 'advSearch');
@@ -364,7 +365,7 @@
                         <tbody><tr>
                                 <td>
 
-                                    <span class="lvtHeaderText"><font color="purple">[ SO6 ] </font>Đặt hàng 1 -  Đặt hàng Thông tin</span>&nbsp;&nbsp;&nbsp;<span class="small">Cập nhật 1086 ngày trước (19 Tháng 4 2011)</span>&nbsp;<span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span><span id="vtbusy_info" style="visibility:hidden;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>
+                                    <span class="lvtHeaderText"><font color="purple">[ <s:property value="takeOrder.mID" /> ] </font>Đặt hàng -  Thông tin Đặt hàng </span>&nbsp;&nbsp;&nbsp;<span class="small"></span>&nbsp;<span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span><span id="vtbusy_info" style="visibility:hidden;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>
                                 </td>
                             </tr>
                         </tbody></table>
@@ -381,16 +382,19 @@
                                                 <td class="dvtSelectedCell" align="center" nowrap="">Đặt hàng Thông tin</td>	
                                                 <td class="dvtTabCache" style="width:10px">&nbsp;</td>
                                                 <td class="dvtTabCache" align="right" style="width:100%">
-                                                    <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="DetailView.return_module.value = 'SalesOrder';
+                                                    <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="
+                                                        
+                                                        DetailView.return_module.value = 'SalesOrder';
                                                             DetailView.return_action.value = 'DetailView';
                                                             DetailView.return_id.value = '201';
                                                             DetailView.module.value = 'SalesOrder';
-                                                            submitFormForAction('DetailView', 'EditView');" type="button" name="Edit" value="&nbsp;Sửa&nbsp;">&nbsp;
-                                                    <input title="Sao chép [Alt+U]" accesskey="U" class="crmbutton small create" onclick="DetailView.return_module.value = 'SalesOrder';
+                                                            submitFormForAction('DetailView', 'EditView');
+                                                        " type="button" name="Edit" value="&nbsp;Sửa&nbsp;">&nbsp;
+<!--                                                    <input title="Sao chép [Alt+U]" accesskey="U" class="crmbutton small create" onclick="DetailView.return_module.value = 'SalesOrder';
                                                             DetailView.return_action.value = 'DetailView';
                                                             DetailView.isDuplicate.value = 'true';
                                                             DetailView.module.value = 'SalesOrder';
-                                                            submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;
+                                                            submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;-->
                                                     <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="DetailView.return_module.value = 'SalesOrder';
                                                             DetailView.return_action.value = 'index';
                                                             var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
@@ -411,26 +415,7 @@
                                                     <!-- content cache -->
                                                     <form action="index.php" method="post" name="DetailView" id="form" onsubmit="VtigerJS_DialogBox.block();">
                                                         <input type="hidden" name="parenttab" value="Inventory">
-                                                        <input type="hidden" name="allselectedboxes" id="allselectedboxes">
-                                                        <input type="hidden" name="module" value="SalesOrder">
-                                                        <input type="hidden" name="record" value="201">
-                                                        <input type="hidden" name="isDuplicate" value="false">
-                                                        <input type="hidden" name="action">
-                                                        <input type="hidden" name="return_module">
-                                                        <input type="hidden" name="return_action">
-                                                        <input type="hidden" name="return_id">
-                                                        <input type="hidden" name="member_id">
-                                                        <input type="hidden" name="opportunity_id">
-                                                        <input type="hidden" name="case_id">
-                                                        <input type="hidden" name="task_id">
-                                                        <input type="hidden" name="meeting_id">
-                                                        <input type="hidden" name="call_id">
-                                                        <input type="hidden" name="email_id">
-                                                        <input type="hidden" name="source_module">
-                                                        <input type="hidden" name="entity_id">
-                                                        <input type="hidden" name="convertmode">
-
-
+                                                        
                                                         <!-- Entity informations display - starts -->	
                                                         <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                                             <tbody><tr>
@@ -467,66 +452,67 @@
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tiêu đề" onmouseover="hndMouseOver(2, 'Tiêu đề');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Tiêu đề">Đặt hàng 1</span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Tiêu đề">Đặt hàng</span>
 
                                                                                         </td>
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên Cơ hội</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã hóa đơn</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--PotentialPopup-->
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Cơ hội">&nbsp;<a href="index.php?module=Potentials&amp;action=DetailView&amp;record=0"></a>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Cơ hội">&nbsp;<a href=""><s:property value="takeOrder.mID"/></a>
                                                                                         </td>
                                                                                     </tr>	
                                                                                     <tr style="height:25px">
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Khách hàng thứ</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày đặt hàng</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Khách hàng thứ" onmouseover="hndMouseOver(1, 'Khách hàng thứ');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Khách hàng thứ">2</span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Khách hàng thứ"><s:property value="takeOrder.mTakeOrderDate"/></span>
 
                                                                                         </td>
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã Đặt hàng</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày giao hàng</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;SO6</td>
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mDeliveryDate"/></td>
                                                                                     </tr>	
                                                                                     <tr style="height:25px">
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên Báo giá</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên Khách hàng</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--QuotePopup-->
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Báo giá">&nbsp;<a href="index.php?module=Quotes&amp;action=DetailView&amp;record=0"></a>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Báo giá">&nbsp;
+                                                                                            <a href=""><s:property value="takeOrder.mCustomerName"/></a>
                                                                                         </td>
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Nhập hàng</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã khách hàng</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Nhập hàng" onmouseover="hndMouseOver(1, 'Nhập hàng');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Nhập hàng"></span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Nhập hàng"><s:property value="takeOrder.mCustomerID"/></span>
 
                                                                                         </td>
                                                                                     </tr>	
@@ -534,23 +520,25 @@
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên Liên hệ</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Địa chỉ KH</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--ContactPopup-->
                                                                                         <!-- Ajax edit link not provided for contact - Reports To -->
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Liên hệ">&nbsp;<a href="index.php?module=Contacts&amp;action=DetailView&amp;record=0"> </a></td>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Liên hệ">&nbsp;
+                                                                                            <a href=""><s:property value="takeOrder.mCustomerAddress"/> </a>
+                                                                                        </td>
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày liên quan</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Số điện thoại</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày liên quan" onmouseover="hndMouseOver(5, 'Ngày liên quan');" onmouseout="fnhide('crmspanid');">
                                                                                             &nbsp;&nbsp;<span id="dtlview_Ngày liên quan">
-                                                                                                19-04-2011
+                                                                                                <s:property value="takeOrder.mPhoneNumber"/>
                                                                                             </span>
 
                                                                                         </td>
@@ -560,26 +548,27 @@
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Công ty vận chuyển</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Địa chỉ giao hàng</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--ComboBox-->
 
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Công ty vận chuyển" onmouseover="hndMouseOver(15, 'Công ty vận chuyển');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Công ty vận chuyển"><font color="">FedEx</font></span>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Công ty vận chuyển" onmouseover="hndMouseOver(15, 'Công ty vận chuyển');" onmouseout="fnhide('crmspanid');">
+                                                                                            <span id="dtlview_Công ty vận chuyển"><font color=""><s:property value="takeOrder.mDeliveryAddress"/></font></span>
 
                                                                                         </td>
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Lý do chưa thực hiện</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Hình thức vận chuyển</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Lý do chưa thực hiện" onmouseover="hndMouseOver(1, 'Lý do chưa thực hiện');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Lý do chưa thực hiện"></span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Lý do chưa thực hiện"><s:property value="takeOrder.mShippingVehicle"/></span>
 
                                                                                         </td>
                                                                                     </tr>	
@@ -587,26 +576,27 @@
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tình trạng</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Thuế</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--ComboBox-->
 
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tình trạng" onmouseover="hndMouseOver(15, 'Tình trạng');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Tình trạng"><font color="">Đã tạo</font></span>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tình trạng" onmouseover="hndMouseOver(15, 'Tình trạng');" onmouseout="fnhide('crmspanid');">
+                                                                                            <span id="dtlview_Tình trạng"><font color=""><s:property value="takeOrder.mTax"/></font></span>
 
                                                                                         </td>
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tiền hoa hồng</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giảm giá (%)</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tiền hoa hồng" onmouseover="hndMouseOver(1, 'Tiền hoa hồng');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Tiền hoa hồng"></span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Tiền hoa hồng"><s:property value="takeOrder.mDiscount"/></span>
 
                                                                                         </td>
                                                                                     </tr>	
@@ -614,66 +604,89 @@
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Thuế hàng hóa</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tiền trước thuế</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Thuế hàng hóa" onmouseover="hndMouseOver(1, 'Thuế hàng hóa');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Thuế hàng hóa"></span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Thuế hàng hóa"><s:property value="getText('{0,number,#,##0.00}',{takeOrder.mBeforePrice})"/></span>
 
                                                                                         </td>
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên Khách hàng</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tiền sau thuế</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--AccountPopup-->
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Khách hàng">&nbsp;<a href="index.php?module=Accounts&amp;action=DetailView&amp;record=139">La Thị Hệ</a>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Khách hàng">&nbsp;
+                                                                                            <a href=""><s:property value="getText('{0,number,#,##0.00}',{takeOrder.mAfterPrivate})"/></a>
                                                                                         </td>
                                                                                     </tr>	
                                                                                     <tr style="height:25px">
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Gán cho</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Trạng thái đơn hàng</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--Assigned To-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Gán cho" onmouseover="hndMouseOver(53, 'Gán cho');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Gán cho">
-                                                                                                <a href="index.php?module=Users&amp;action=DetailView&amp;record=1">admin</a>         
+                                                                                                <a href="index.php?module=Users&amp;action=DetailView&amp;record=1"><s:property value="takeOrder.mOrderStatus"/></a>         
                                                                                                 &nbsp;</span>
 
                                                                                         </td>
 
 
-                                                                                        <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tạo lúc</td>
-
-
-                                                                                        <!-- This file is used to display the fields based on the ui type in detailview -->
-
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;19-04-2011 08:26:56</td>
+                                                                                        
                                                                                     </tr>	
                                                                                     <tr style="height:25px">
 
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Cập nhật lúc</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Người tạo</td>
 
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;19-04-2011 08:26:56</td>
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mCreater"/></td>
 
+                                                                                        <!-- Avoid to display the label Tax Class -->
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày tạo</td>
+
+
+                                                                                        <!-- This file is used to display the fields based on the ui type in detailview -->
+
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mOrderEstablishDate"/></td>
 
                                                                                     </tr>	
 
-                                                                                </tbody></table>
+                                                                                    <tr style="height:25px">
+
+
+                                                                                        <!-- Avoid to display the label Tax Class -->
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Người sửa</td>
+
+
+                                                                                        <!-- This file is used to display the fields based on the ui type in detailview -->
+
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mEditer"/></td>
+
+                                                                                        <!-- Avoid to display the label Tax Class -->
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày sửa</td>
+
+
+                                                                                        <!-- This file is used to display the fields based on the ui type in detailview -->
+
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mOrderEditDate"/></td>
+
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
                                                                         </div> <!-- Line added by SAKTI on 10th Apr, 2008 -->
                                                                         <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                             <tbody><tr>
@@ -798,7 +811,8 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextArea/Street-->
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Địa chỉ thanh toán" onmouseover="hndMouseOver(24, 'Địa chỉ thanh toán');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Địa chỉ thanh toán">129 Phố Vọng</span>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Địa chỉ thanh toán" onmouseover="hndMouseOver(24, 'Địa chỉ thanh toán');" onmouseout="fnhide('crmspanid');">&nbsp;
+                                                                                            <span id="dtlview_Địa chỉ thanh toán"><s:property value="takeOrder.mDeliveryAddress"/></span>
 
                                                                                         </td>
 
@@ -809,7 +823,8 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextArea/Street-->
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Địa chỉ vận chuyển" onmouseover="hndMouseOver(24, 'Địa chỉ vận chuyển');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Địa chỉ vận chuyển">129 Phố Vọng</span>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Địa chỉ vận chuyển" onmouseover="hndMouseOver(24, 'Địa chỉ vận chuyển');" onmouseout="fnhide('crmspanid');">&nbsp;
+                                                                                            <span id="dtlview_Địa chỉ vận chuyển"><s:property value="takeOrder.mDeliveryAddress"/></span>
 
                                                                                         </td>
                                                                                     </tr>	
@@ -955,10 +970,11 @@
                                                                                         <!-- we will empty the value of ticket and faq comment -->
                                                                                         <!--  -->
                                                                                         <!-- -->
-                                                                                        <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Điều khoản" onmouseover="hndMouseOver(19, 'Điều khoản');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Điều khoản">
-                                                                                                - Unless otherwise agreed in writing by the supplier all invoices are payable within thirty (30) days of the date of invoice, in the currency of the invoice, drawn on a bank based in India or by such other method as is agreed in advance by the Supplier.
+                                                                                        <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Điều khoản" onmouseover="hndMouseOver(19, 'Điều khoản');" onmouseout="fnhide('crmspanid');">&nbsp;
+                                                                                            <span id="dtlview_Điều khoản">
+<!--                                                                                                - Unless otherwise agreed in writing by the supplier all invoices are payable within thirty (30) days of the date of invoice, in the currency of the invoice, drawn on a bank based in India or by such other method as is agreed in advance by the Supplier.
                                                                                                 <br>&nbsp;
-                                                                                                <br>&nbsp; - All prices are not inclusive of VAT which shall be payable in addition by the Customer at the applicable rate.
+                                                                                                <br>&nbsp; - All prices are not inclusive of VAT which shall be payable in addition by the Customer at the applicable rate.-->
                                                                                             </span>
 
                                                                                         </td>
@@ -993,8 +1009,9 @@
                                                                                         <!-- we will empty the value of ticket and faq comment -->
                                                                                         <!--  -->
                                                                                         <!-- -->
-                                                                                        <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Mô tả" onmouseover="hndMouseOver(19, 'Mô tả');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Mô tả">
-
+                                                                                        <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Mô tả" onmouseover="hndMouseOver(19, 'Mô tả');" onmouseout="fnhide('crmspanid');">&nbsp;
+                                                                                            <span id="dtlview_Mô tả">
+                                                                                                <s:property value="takeOrder.mNote"/>
                                                                                             </span>
 
                                                                                         </td>
@@ -1019,45 +1036,96 @@
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr valign="top">
-                                                                                    <td width="40%" class="lvtCol"><font color="red">*</font>
+                                                                                    <td width="5%" class="lvtCol"><b>Dòng</b></td>
+                                                                                    <td width="10%" class="lvtCol"><font color="red">*</font>
                                                                                         <b>Tên mặt hàng</b>
-                                                                                    </td><td width="10%" class="lvtCol"><b>Tồn kho</b></td>
+                                                                                    </td>
+                                                                                    <td width="10%" class="lvtCol"><b>Mã hàng</b></td>
+                                                                                    <td width="10%" class="lvtCol"><b>Tồn kho</b></td>
 
                                                                                     <td width="10%" class="lvtCol"><b>Số lượng</b></td>
+                                                                                    
                                                                                     <td width="10%" class="lvtCol" align="right"><b>Đơn giá</b></td>
                                                                                     <td width="12%" nowrap="" class="lvtCol" align="right"><b>Tổng số</b></td>
                                                                                     <td width="13%" valign="top" class="lvtCol" align="right"><b>Thành tiền</b></td>
                                                                                 </tr>
-
+                                                                                
+                                                                                <s:set  var="sum" value="0"/>
+                                                                                <s:iterator value="detailTakeOrdersList" status="index">
                                                                                 <tr valign="top">
                                                                                     <td class="crmTableRow small lineOnTop">
-                                                                                        Thiết kế web&nbsp; 				
+                                                                                        <s:property value="mLine"/>&nbsp; 				
                                                                                         <br>
-                                                                                    </td><td class="crmTableRow small lineOnTop">7.000</td><td class="crmTableRow small lineOnTop">1.000</td>
+                                                                                    </td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mProductName"/></td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mProductID"/></td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value=""/></td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mNumber"/></td>
+                                                                                    
                                                                                     <td class="crmTableRow small lineOnTop" align="right">
                                                                                         <table width="100%" border="0" cellpadding="5" cellspacing="0">
                                                                                             <tbody><tr>
-                                                                                                    <td align="right">6000000.000</td>
+                                                                                                    <td align="right"><s:property value="mBeforeOrderPrice"/></td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td align="right">(-)&nbsp;<b><a href="javascript:;" onclick="alert('');
-                                                                                                                                     ">Chiết khấu : </a></b></td>
+                                                                                                    <td align="right">(-)&nbsp;
+                                                                                                        <b><a href="javascript:;" onclick="alert('');
+                                                                                                                                     ">Thuế : </a>
+                                                                                                        </b>
+                                                                                                    </td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td align="right" nowrap="">Giá sau khi chiết khấu : </td>
+                                                                                                    <td align="right" nowrap="">Giá sau thuế : </td>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td align="right" nowrap="">(+)&nbsp;<b><a href="javascript:;" onclick="alert('Giá sau khi chiết khấu = 6000000 \n\n Tổng số thuế = 0.00');">Thuế : </a></b></td>
+                                                                                                    <td align="right" nowrap="">(+)&nbsp;<b><a href="javascript:;" onclick="alert('');">Chiết khấu(giảm giá) : </a></b></td>
                                                                                                 </tr>
                                                                                             </tbody></table>
                                                                                     </td>
                                                                                     <td class="crmTableRow small lineOnTop" align="right">
                                                                                         <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                                                                                            <tbody><tr><td align="right">6000000</td></tr>
-                                                                                                <tr><td align="right">0.00</td></tr>
-                                                                                                <tr><td align="right" nowrap="">6000000</td></tr><tr><td align="right" nowrap="">0.00</td></tr>		   
+                                                                                            <tbody><tr><td align="right"><s:property value="mBeforeOrderPrice * mNumber"/></td></tr>
+                                                                                                <tr><td align="right"><s:property value="mTax"/></td></tr>
+                                                                                                <tr><td align="right" nowrap=""><s:property value="mAfterOrderPrice * mNumber"/></td></tr>
+                                                                                                <tr><td align="right" nowrap=""><s:property value="mDiscount"/></td></tr>		   
                                                                                             </tbody></table>
-                                                                                    </td><td class="crmTableRow small lineOnTop" valign="bottom" align="right">6000000</td></tr></tbody></table><table width="100%" border="0" cellspacing="0" cellpadding="5" class="crmTable"><tbody><tr><td width="88%" class="crmTableRow small" align="right"><b>Cộng tiền hàng</b></td><td width="12%" class="crmTableRow small" align="right"><b>6000000.000</b></td></tr><tr><td align="right" class="crmTableRow small lineOnTop">(-)&nbsp;<b><a href="javascript:;" onclick="alert('Giảm giá = 0');">Chiết khấu</a></b></td><td align="right" class="crmTableRow small lineOnTop">0.00</td></tr><tr><td align="right" class="crmTableRow small">(+)&nbsp;<b>Chi phí vận chuyển và đóng gói</b></td><td align="right" class="crmTableRow small">0.000</td></tr><tr><td align="right" class="crmTableRow small">(+)&nbsp;<b><a href="javascript:;" onclick="alert('Chi phí vận chuyển và đóng gói = 0.000 \nVAT : 4.500 % = 0 \nSales : 10.000 % = 0 \nService : 12.500 % = 0 \n\n Tổng số thuế = 0')">Thuế vận chuyển và đóng gói</a></b></td><td align="right" class="crmTableRow small">0</td></tr><tr><td align="right" class="crmTableRow small">&nbsp;<b>Điều chỉnh thêm bớt</b></td><td align="right" class="crmTableRow small">0.000</td></tr><tr><td align="right" class="crmTableRow small lineOnTop"><b>Tổng tiền thanh toán</b></td><td align="right" class="crmTableRow small lineOnTop">6000000.000</td></tr></tbody></table>
+                                                                                    </td>
+                                                                                    <td class="crmTableRow small lineOnTop" valign="bottom" align="right"><s:property value="mPriceTotal"/></td>
+                                                                                    <s:set  var="sum" value="%{#sum + mPriceTotal}"/>
+                                                                                </tr>
+                                                                                </s:iterator>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="5" class="crmTable">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="88%" class="crmTableRow small" align="right"><b>Cộng tiền hàng</b>
+                                                                                    </td>
+                                                                                    <td width="12%" class="crmTableRow small" align="right"><b><s:property value="getText('{0,number,#,##0.00}',{#sum})"/></b></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="right" class="crmTableRow small lineOnTop">(-)&nbsp;<b><a href="javascript:;" onclick="alert('Giảm giá = <s:property value="takeOrder.mDiscount"/> %');">Chiết khấu (%)</a></b></td>
+                                                                                    <td align="right" class="crmTableRow small lineOnTop"><s:property value="takeOrder.mDiscount"/></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="right" class="crmTableRow small">(+)&nbsp;<b>Chi phí vận chuyển và đóng gói</b></td>
+                                                                                    <td align="right" class="crmTableRow small">0.000</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="right" class="crmTableRow small">(+)&nbsp;<b><a href="javascript:;" onclick="alert('')">Thuế vận chuyển và đóng gói</a></b></td>
+                                                                                    <td align="right" class="crmTableRow small">0</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="right" class="crmTableRow small">&nbsp;<b>Điều chỉnh thêm bớt</b></td>
+                                                                                    <td align="right" class="crmTableRow small">0.000</td>
+                                                                                </tr>
+                                                                                
+                                                                                <tr>
+                                                                                    <td align="right" class="crmTableRow small lineOnTop"><b>Tổng tiền thanh toán</b></td>
+                                                                                    <td align="right" class="crmTableRow small lineOnTop"><s:property value="getText('{0,number,#,##0.00}',{takeOrder.mAfterPrivate})"/></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
 
                                                                     </td>
                                                                     <!-- The following table is used to display the buttons -->

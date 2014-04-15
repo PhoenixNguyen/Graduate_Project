@@ -23,6 +23,7 @@ import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.Dialog;
@@ -30,9 +31,11 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -45,7 +48,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TakeOrder_ProductActivity extends MainMenuActivity implements OnItemClickListener{
+public class TakeOrder_ProductActivity extends Activity implements OnItemClickListener{
 	public ListView listView;
 	public static Map<String, List<Product>> mProductsMap = new HashMap<String, List<Product>>();
 	
@@ -80,6 +83,8 @@ public class TakeOrder_ProductActivity extends MainMenuActivity implements OnIte
 	
 	public Button search_button;
 	
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+	@SuppressLint("NewApi")
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.product);
@@ -89,6 +94,8 @@ public class TakeOrder_ProductActivity extends MainMenuActivity implements OnIte
 		
 		title = (TextView)findViewById(R.id.title);
 		
+//		getActionBar().setHomeButtonEnabled(true);
+//		getActionBar().setIcon(R.drawable.ic_drawer);
 		//Init
 		init();
 		
@@ -139,6 +146,28 @@ public class TakeOrder_ProductActivity extends MainMenuActivity implements OnIte
 		
 		mManager = false;
 	}
+	
+//	@Override
+//	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+//
+//	    int itemId = item.getItemId();
+//	    switch (itemId) {
+//	    case android.R.id.home:
+//	    	menuDialog();
+//
+//	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+//	        break;
+//	        
+////	    case R.id.action_add:
+////        	insertCustomer();
+////            return true;
+//	    default:
+//            return super.onOptionsItemSelected(item);
+//
+//	    }
+//
+//	    return true;
+//	}
 	
 	public void searchButton(View view){
 		

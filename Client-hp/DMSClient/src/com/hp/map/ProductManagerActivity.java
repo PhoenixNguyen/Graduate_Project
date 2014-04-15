@@ -67,6 +67,29 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
         }
     }
 	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+	    int itemId = item.getItemId();
+	    switch (itemId) {
+//	    case android.R.id.home:
+//	    	menuDialog();
+//
+//	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+//	        break;
+	        
+	    case R.id.action_add:
+        	insertProduct();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+
+	    }
+
+	    //return true;
+	}
+	
 	public void insertProduct(){
 		startActivity(new Intent(this, ProductAdditionActivity.class));
 	}

@@ -89,9 +89,15 @@ public class CustomerListActivity extends MainMenuActivity{
 			}
 		});
 		
+		System.out.println("____Preparing UPDAte list");
 		addListView();
 	}
 
+//	public void onResume(){
+//		super.onResume();
+//		this.onCreate(null);
+//	}
+	
 	public boolean onCreateOptionsMenu(Menu menu){
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.order_menu, menu);
@@ -115,7 +121,33 @@ public class CustomerListActivity extends MainMenuActivity{
         }
     }
 	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+	    int itemId = item.getItemId();
+	    switch (itemId) {
+	    case android.R.id.home:
+	    	menuDialog();
+
+	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+	        break;
+	        
+	    case R.id.action_add:
+        	insertCustomer();
+            return true;
+	    default:
+            return super.onOptionsItemSelected(item);
+
+	    }
+
+	    return true;
+	}
+	
 	public void addListView(){
+		System.out.println("____UPDAte list " + Rest.customerList.size());
+		//Update list customer
+		Rest.getCustomersList(Rest.mStaffID);
+				
 		//List view
 		listView = (ListView)findViewById(R.id.list);
 		customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);

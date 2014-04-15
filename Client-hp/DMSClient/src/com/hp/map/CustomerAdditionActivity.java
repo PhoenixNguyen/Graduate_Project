@@ -79,6 +79,29 @@ public class CustomerAdditionActivity extends MainMenuActivity{
         }
     }
 	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+	    int itemId = item.getItemId();
+	    switch (itemId) {
+	    case android.R.id.home:
+	    	menuDialog();
+
+	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+	        break;
+	        
+	    case R.id.action_save:
+        	getCustomer();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+
+	    }
+
+	    return true;
+	}
+	
 	public void getCustomer(){
 			String id = cus_id.getText().toString();
 			String name = cus_name.getText().toString();

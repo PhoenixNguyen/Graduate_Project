@@ -166,8 +166,8 @@ public class CustomerMapActivity extends FragmentActivity
         setContentView(R.layout.customer_map);
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setIcon(R.drawable.ic_drawer);
+//        getActionBar().setHomeButtonEnabled(true);
+//        getActionBar().setIcon(R.drawable.ic_drawer);
         
         //Get POSITION
         Intent i = getIntent();
@@ -217,12 +217,12 @@ public class CustomerMapActivity extends FragmentActivity
     public boolean compareLocation(){
     	double x = Rest.customerList.get(positionClick).getmXCoordinates();
     	double y = Rest.customerList.get(positionClick).getmYCoordinates();
-    	System.out.println("mX va (x - 0.000099): " + mX + " " + (x - 0.000099));
-    	System.out.println("mX va (x + 0.000099): " + mX + " " + (x + 0.000099));
+    	System.out.println("mX va (x - 0.000099): " + mX + " " + (x - 0.000199));
+    	System.out.println("mX va (x + 0.000099): " + mX + " " + (x + 0.000199));
     	
-    	System.out.println("mY va (y - 0.000099): " + mY + " " + (y - 0.000099));
-    	System.out.println("mY va (y + 0.000099): " + mY + " " + (y + 0.000099));
-    	if(mX > (x - 0.000099) && mX < (x + 0.000099) && mY > (y - 0.000099) && mX < (y + 0.000099))
+    	System.out.println("mY va (y - 0.000099): " + mY + " " + (y - 0.000199));
+    	System.out.println("mY va (y + 0.000099): " + mY + " " + (y + 0.000199));
+    	if(mX > (x - 0.001099) && mX < (x + 0.000199) && mY > (y - 0.000199) && mX < (y + 0.000199))
     		return true;
     	else
     		return false;
@@ -232,6 +232,11 @@ public class CustomerMapActivity extends FragmentActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Take appropriate action for each action item click
         switch (item.getItemId()) {
+//        case android.R.id.home:
+//	    	menuDialog();
+//
+//	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+//	    	return true;
         case R.id.init_order:
             initTakeOrder();
             return true;
@@ -259,21 +264,32 @@ public class CustomerMapActivity extends FragmentActivity
 	    return super.onKeyUp(keyCode, event);
 	}
 	
-	@Override
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-
-	    int itemId = item.getItemId();
-	    switch (itemId) {
-	    case android.R.id.home:
-	    	menuDialog();
-
-	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
-	        break;
-
-	    }
-
-	    return true;
-	}
+//	@Override
+//	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+//
+//	    int itemId = item.getItemId();
+//	    switch (itemId) {
+//	    case android.R.id.home:
+//	    	menuDialog();
+//
+//	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+//	        break;
+//	    case R.id.init_order:
+//            initTakeOrder();
+//            return true;
+//        case R.id.take_picture:
+//            takePicture();
+//            return true;
+//        case R.id.inventory_manager:
+//            inventoryManager();
+//            return true;
+//       
+//        default:
+//            return super.onOptionsItemSelected(item);    
+//	    }
+//
+//	    return true;
+//	}
 	
 	public void menuDialog(){
 		final Dialog dialog = new Dialog(this);

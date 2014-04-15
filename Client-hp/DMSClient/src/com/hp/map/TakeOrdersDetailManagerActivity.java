@@ -47,7 +47,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TableRow.LayoutParams;
 
-public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
+public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	public static String order_id;
 	
@@ -129,6 +129,29 @@ public class TakeOrdersDetailManagerActivity extends MainMenuActivity{
             return super.onOptionsItemSelected(item);
         }
     }
+	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+
+	    int itemId = item.getItemId();
+	    switch (itemId) {
+//	    case android.R.id.home:
+//	    	menuDialog();
+//
+//	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
+//	        break;
+	        
+	    case R.id.action_add:
+        	newOrderDetail();
+            return true;
+               
+        default:
+            return super.onOptionsItemSelected(item);
+
+	    }
+
+	    //return true;
+	}
 	
 	public void addListView() {
 

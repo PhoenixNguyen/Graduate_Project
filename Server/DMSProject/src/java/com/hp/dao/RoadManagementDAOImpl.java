@@ -105,18 +105,36 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
             
             else{
 
-                //for(int i= 0; i < khachhang.size(); i++){
+//                //for(int i= 0; i < khachhang.size(); i++){
+//                    List<RoadManagement> tmp = new ArrayList<RoadManagement>();
+//                    if(datefinal.compareTo("") == 0)
+//                        tmp = session.createQuery("from RoadManagement ").list();
+//                    else
+//                        tmp = session.createQuery("from RoadManagement where "
+//                                + " cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+//                    
+//                    if(tmp.size() > 0)
+//                        result.add(tmp);
+//                //}
+//                
+//                return result;
+                
+                List<String> nhanvien = null;
+                nhanvien = session.createQuery("select mID "
+                        + "from Staff "
+                        + " "
+                        ).list();
+                for(int i= 0; i < nhanvien.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
                     if(datefinal.compareTo("") == 0)
-                        tmp = session.createQuery("from RoadManagement ").list();
+                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+nhanvien.get(i)+"'").list();
                     else
-                        tmp = session.createQuery("from RoadManagement where "
-                                + " cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+nhanvien.get(i)+"'"
+                                + " and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
-                //}
-                
+                }
                 return result;
             }
 //            courses = session.createSQLQuery("select tb_quanlyduongdi.* from tb_quanlyduongdi as road,tb_nhanvien as nv  "

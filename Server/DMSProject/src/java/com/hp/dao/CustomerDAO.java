@@ -7,6 +7,7 @@
 package com.hp.dao;
 
 import com.hp.domain.Customer;
+import com.hp.domain.Staff;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,9 @@ public interface CustomerDAO {
     //For MAP schedule
     public List<Customer> loadCustomersWithLocationsForSchedule();
     public List<Customer> loadCustomersWithLocationsForSchedule(String pManagerID, String pStaff);
+    
+    //List staffs contain in schedule
+    public List<Staff> loadStaffsWithLocationsForSchedule();
     
     //Customer detail
     public List<Customer> loadCustomersDetail(String pCustomer);

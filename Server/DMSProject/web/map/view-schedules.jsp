@@ -201,15 +201,17 @@
 
             <div id="bottom_panel">
                 <table id="myDummyTable" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
-                    <col width="10%">
+                    <col width="5%">
                     <col width="30%">
-                    <col width="30%">
-                    <col width="30%">
+                    <col width="15%">
+                    <col width="35%">
+                    <col width="15%">
                     <thead>
                         <tr>
                             <th>Stt</th>
                             <th>Ngày</th>
                             <th>Mã khách hàng</th>
+                            <th>Tên khách hàng</th>
                             <th>Mã nhân viên</th>
                         </tr>
                     </thead>
@@ -225,6 +227,13 @@
                             <td><s:property value="#status.index + 1"/></td>
                             <td><s:property value="%{dateconverted}"/></td>
                             <td><s:property value="mMaKH"/></td>
+                            <td>
+                            <s:iterator value="listCustomer" status="index">
+                                <s:if test="mMaKH == listCustomer.get(#index.index).getmMaDoiTuong()">
+                                    <s:property value="listCustomer.get(#index.index).getmDoiTuong()"/>
+                                </s:if>
+                            </s:iterator>
+                            </td>
                             <td><s:property value="mMaNV"/></td>
                         </tr>
                         </s:iterator>

@@ -383,7 +383,7 @@
                                                 <td class="dvtTabCache" style="width:10px">&nbsp;</td>
                                                 <td class="dvtTabCache" align="right" style="width:100%">
                                                     <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="
-                                                        javacript:window.location.href= 'take-order-edit?id_tod=<s:property value="takeOrder.mID"/>'
+                                                        javacript:window.location.href= 'take-order-edit?id_tod=<s:property value="takeOrder.getmID()"/>'
 //                                                        DetailView.return_module.value = 'SalesOrder';
 //                                                            DetailView.return_action.value = 'DetailView';
 //                                                            DetailView.return_id.value = '201';

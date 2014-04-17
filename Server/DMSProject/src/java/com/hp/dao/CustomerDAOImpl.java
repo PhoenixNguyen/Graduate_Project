@@ -248,6 +248,27 @@ public class CustomerDAOImpl implements CustomerDAO {
         return courses;
     }
     
+    public List<Staff> loadStaffsWithLocationsForSchedule(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Staff> courses = null;
+        try{
+            courses = session.createQuery("select st from Staff as st, Schedule as sc "
+                    + "where st.mID = sc.mMaNV "
+                    + " ").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+        
+    }
+    
     public List<Customer> loadCustomersWithLocationsForSchedule(){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
@@ -268,6 +289,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return courses;
         
     }
+    
     
     public List<Customer> loadCustomersWithLocationsForSchedule(String pManagerID, String pStaff){
         Session session = getSessionFactory().openSession();

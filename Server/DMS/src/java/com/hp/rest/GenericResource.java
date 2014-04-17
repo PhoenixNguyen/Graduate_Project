@@ -628,7 +628,7 @@ public class GenericResource {
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         
         takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getmTakeOrderID());
-        takeOrder.setmAfterPrivate(priceTotal - priceTotal*takeOrder.getmDiscount()/100);
+        takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pTakeOrder + "___ " + st);
@@ -674,7 +674,7 @@ public class GenericResource {
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         
         takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getmTakeOrderID());
-        takeOrder.setmAfterPrivate(priceTotal);
+        takeOrder.setMAfterPrivate(priceTotal);
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pTakeOrder + "___ " + st);
@@ -703,7 +703,7 @@ public class GenericResource {
         
         //Update 
         TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
-        boolean st = takeOrderDetailDAO.delete(takeOrder.getmID());
+        boolean st = takeOrderDetailDAO.delete(takeOrder.getMID());
         if(!st)
             return Response.status(200).entity(st+"").build();
         

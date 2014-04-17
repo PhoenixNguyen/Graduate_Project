@@ -31,24 +31,25 @@
             <script type="text/javascript">
             var arr = new Array();
             <s:iterator value="listRoad" status="status">
-            <s:iterator value="listRoad.get(#status.index)" >
-                console.log(<s:property value="#status.index"/>);
+            <s:iterator value="listRoad.get(#status.index)" status="index">
+                console.log(<s:property value="#status.index"/> + " " +<s:property value="#index.index"/>);
                     
             </s:iterator>
             </s:iterator>
             function initialize() {
                 var i;
+                //For journey
                 var Points = [
-            <s:iterator value="listRoad" status="status">
-            <s:iterator value="listRoad.get(#status.index)" >
-                    {
-                        mXCoordinates: <s:property value="mViDo"/>,
-                                mYCoordinates: <s:property value="mKinhdo"/>,
-                        mMaDoiTuong: '<s:property value="mThoiGian"/>'
+                    <s:iterator value="listRoad" status="status">
+                    <s:iterator value="listRoad.get(#status.index)" >
+                            {
+                                mXCoordinates: <s:property value="mViDo"/>,
+                                        mYCoordinates: <s:property value="mKinhdo"/>,
+                                mMaDoiTuong: '<s:property value="mThoiGian"/>'
 
-                    },
-            </s:iterator>
-            </s:iterator>
+                            },
+                    </s:iterator>
+                    </s:iterator>
                 ];
 
                 var myOptions = {
@@ -91,7 +92,60 @@
                     bindInfoWindow(marker, map, infowindow, contentString[i], Points[i].mMaDoiTuong);
 
                 }
-                //multi polyline
+                
+                //For schedule ---------------------------------------------------------------------------------------------------------
+                var Points2 = [
+                    <s:iterator value="listSchedules" status="status">
+                        <s:iterator value="listCustomerInSchedule" status="index">
+                            <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#index.index).getmMaDoiTuong()">
+                            {
+                                mXCoordinates: <s:property value="listCustomerInSchedule.get(#index.index).getmXCoordinates()"/>,
+                                        mYCoordinates: <s:property value="listCustomerInSchedule.get(#index.index).getmYCoordinates()"/>,
+                                mMaDoiTuong: '<s:property value="listSchedules.get(#status.index).getmMaKH()"/>'
+
+                            },
+                            </s:if>
+                        </s:iterator>
+                    </s:iterator>
+                ];
+                var contentString2 = [
+                    <s:iterator value="listSchedules" status="status">
+                        <s:iterator value="listCustomerInSchedule" status="index">
+                            <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#index.index).getmMaDoiTuong()">
+                                <s:date name="listSchedules.get(#status.index).getmDate()" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                                
+                                    'Thời gian : <s:property value="%{createdDateId}"/> <br/>\
+                                    Mã khách hàng: <s:property value="listSchedules.get(#status.index).getmMaKH()"/> <br/>\
+                                    Tên khách hàng: <s:property value="listCustomerInSchedule.get(#index.index).getmDoiTuong()"/> <br/>\
+                                    Mã nhân viên: <s:property value="listSchedules.get(#status.index).getmMaNV()"/>',
+            
+                                    
+                            </s:if>
+                        </s:iterator>
+                    </s:iterator>
+                                            
+                ];
+                
+                for (i = 0; i < Points2.length; i++) {
+                    size = 15;
+//                    var img = new google.maps.MarkerImage('../images/marker.jpg',
+//                            new google.maps.Size(size, 2 * size),
+//                            new google.maps.Point(0, 0),
+//                            new google.maps.Point(size / 2, size / 2)
+//                            );
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        title: Points2[i].title,
+                        position: new google.maps.LatLng(Points2[i].mXCoordinates, Points2[i].mYCoordinates)
+                        
+                    });
+
+                    bindInfoWindow(marker, map, infowindow, contentString2[i], Points2[i].mMaDoiTuong);
+
+                }
+                
+                //multi polyline - line -------------------------------------------------------------------------------------------------
                 var multi = [
                     <s:iterator value="listRoad" status="status">
                     
@@ -103,8 +157,31 @@
                     ],
                     </s:iterator>  
                 
+                    //Schedule
+                    
+                        <s:iterator value="listStaffs" status="st">
+                                [
+                                <s:iterator value="listSchedules" status="status">
+
+                                        <s:if test="listSchedules.get(#status.index).getmMaNV() == listStaffs.get(#st.index).getmID()">
+                                            
+                                            <s:iterator value="listCustomerInSchedule" status="cus">
+                                                <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#cus.index).getmMaDoiTuong()">
+                                                    new google.maps.LatLng(<s:property value="listCustomerInSchedule.get(#cus.index).getmXCoordinates()"/>,
+                                                                            <s:property value="listCustomerInSchedule.get(#cus.index).getmYCoordinates()"/>),
+                                                </s:if>                            
+                                            </s:iterator>                        
+                                        </s:if>
+                                </s:iterator>
+                                ],
+                        </s:iterator>
+                        
+                    
                 ];
-                var color =  ["#FF0000", "#00FFFF", "#000000", "#006400","#FF8C00", "#8FBC8F", "#9400D3", "#FF1493"];
+                var color =  ["#FF0000", "#00FFFF", "#000000", "#006400","#FF8C00", "#8FBC8F", "#9400D3", "#FF1493"
+                               ,"#FF0023", "#00FFEE", "#000033", "#006455","#FF8C66", "#8FBC9E", "#9400E4", "#FF14AA"
+                             ];
+                console.log("multi: " + multi.length);
                 for (i = 0; i < multi.length; i++) {
                     var flightPath1 = new google.maps.Polyline({
                     path: multi[i],

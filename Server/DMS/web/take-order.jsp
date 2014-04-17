@@ -423,11 +423,11 @@
                                                         <td class="lvtCol">Hoạt động</td>
                                                     </tr>
                                                     <!-- Table Contents -->
-                                                    <s:iterator value="takeOrdersList" status="index">
+                                                    <s:iterator value="takeOrdersList" status="index" var="order">
                                                     <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_201" class="lvtColData">
                                                         <td onmouseover=""><s:property value="%{#index.index +1}"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><a href="take-order-detail?id_tod=<s:property value="mID"/>" title="Accounts"><s:property value="mID"/></a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="salesorder_no" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="take-order-detail?id_tod=<s:property value="mID"/>" title="Accounts"><s:property value="mID" /></a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="salesorder_no" vtmodule="SalesOrder" style="display:none;"></span></td>
 
                                                         <td onmouseover=""><s:property value="mTakeOrderDate"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
 

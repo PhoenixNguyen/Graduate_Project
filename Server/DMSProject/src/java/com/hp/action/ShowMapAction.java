@@ -8,6 +8,8 @@ import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.dao.RoadManagementDAO;
 import com.hp.dao.RoadManagementDAOImpl;
+import com.hp.dao.ScheduleDAO;
+import com.hp.dao.ScheduleDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.UserDAO;
@@ -15,6 +17,8 @@ import com.hp.dao.UserDAOImpl;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Customer;
 import com.hp.domain.PushInfo;
+import com.hp.domain.Schedule;
+import com.hp.domain.Staff;
 import com.hp.domain.User;
 import com.hp.excelhandle.GetData;
 import com.opensymphony.xwork2.ActionContext;
@@ -36,7 +40,14 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
     
     
     private List<Customer> listCustomer = new ArrayList();
+    private List<Staff> listStaffs = new ArrayList();
 
+    //GET SCHEDULE
+    private List<Schedule> listSchedules = new ArrayList();
+    private ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+    private List<Customer> listCustomerInSchedule = new ArrayList();
+
+    
     //Get Road for each customer
     private RoadManagementDAO mRoadManagementDAO = new RoadManagementDAOImpl();
     private List<List<RoadManagement>> listRoad = new ArrayList<List<RoadManagement>>();
@@ -75,6 +86,32 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
     public Object getModel() {
         return pushInfo;
     }
+    
+    
+    public List<Customer> getListCustomerInSchedule() {
+        return listCustomerInSchedule;
+    }
+
+    public void setListCustomerInSchedule(List<Customer> listCustomerInSchedule) {
+        this.listCustomerInSchedule = listCustomerInSchedule;
+    }
+    
+    public List<Staff> getListStaffs() {
+        return listStaffs;
+    }
+
+    public void setListStaffs(List<Staff> listStaffs) {
+        this.listStaffs = listStaffs;
+    }
+    
+    public List<Schedule> getListSchedules() {
+        return listSchedules;
+    }
+
+    public void setListSchedules(List<Schedule> listSchedules) {
+        this.listSchedules = listSchedules;
+    }
+    
     
     public PushInfo getPushInfo() {
         return pushInfo;
@@ -237,6 +274,9 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Get staff of schedules
+        listStaffs = customerDAO.loadStaffsWithLocationsForSchedule();
+                
         userListGiamDoc = userDAO.getListUser(2);
         
         System.out.println(" setDate: " + date + " toDate: " + toDate);
@@ -266,6 +306,13 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
 //                giamdocId = (String)session.getAttribute("giamdocId");
 //                nhanvienId = (String)session.getAttribute("staffId");
                 
+                //GET Schedule
+                listSchedules = scheduleDAO.getSchedulesList((String)session.getAttribute("giamdocId"),
+                        (String)session.getAttribute("staffId"), date, toDate);
+                
+                listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule((String)session.getAttribute("giamdocId"),
+                        (String)session.getAttribute("staffId"));
+                
                 pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
                 pushInfo.setStaffID((String)session.getAttribute("staffId"));
                 pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
@@ -277,6 +324,8 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 filesNameList = getImagesName(listCustomer);
                 
              }else{
+                listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
+                listSchedules = scheduleDAO.getSchedulesList(null, null, date, toDate);
                 listCustomer = customerDAO.loadCustomersWithLocations();
                 listRoad = mRoadManagementDAO.getRoad(null,null,null,date, toDate);
                 //Get images

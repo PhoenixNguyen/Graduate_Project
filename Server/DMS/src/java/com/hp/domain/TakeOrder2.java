@@ -2,7 +2,6 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- * variabe in Object compatable with TakeOrder
  */
 
 package com.hp.domain;
@@ -13,61 +12,83 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.validator.Min;
 
 /**
  *
  * @author HP
  */
 
-@Entity
-@Table(name="tb_hoadonbanhang")
-public class SaleOrder {
+
+public class TakeOrder2 {
     
     @Id
     @GeneratedValue
     
-    @Column(name="hoadonbanhang_stt")
+    @Column(name="hoadondathang_stt")
     private Integer mSerial;
-    @Column(name="hoadonbanhang_ma_hoa_don")
+    @Column(name="hoadondathang_ma_hoa_don")
     private String mID;
-    @Column(name="hoadonbanhang_ngay_ban_hang")
-    private Timestamp mTakeOrderDate;
-    @Column(name="hoadonbanhang_ngay_giao_hang_du_kien")
-    private Timestamp mDeliveryDate;
-    @Column(name="hoadonbanhang_ma_khach_hang")
-    private String mCustomerID;
-    @Column(name="hoadonbanhang_ten_khach_hang")
-    private String mCustomerName;
-    @Column(name="hoadonbanhang_dia_chi")
-    private String mCustomerAddress;
-    @Column(name="hoadonbanhang_so_dien_thoai")
-    private String mPhoneNumber;
-    @Column(name="hoadonbanhang_dia_chi_giao_hang")
-    private String mDeliveryAddress;
-    @Column(name="hoadonbanhang_hinh_thuc_van_chuyen")
-    private String mShippingVehicle;
-    @Column(name="hoadonbanhang_thue" , nullable = true)
-    private Float mTax;
-    @Column(name="hoadonbanhang_tien_truoc_thue")
-    private Float mBeforePrice;
-    @Column(name="hoadonbanhang_tien_sau_thue")
-    private Float mAfterPrivate;
-    @Column(name="hoadonbanhang_giam_gia")
-    private Float mDiscount;
-    @Column(name="hoadonbanhang_trang_thai_don_hang")
-    private Integer mOrderStatus;
-    @Column(name="hoadonbanhang_ngay_tao_hoa_don")
-    private Timestamp mOrderEstablishDate;
-    @Column(name="hoadonbanhang_ngay_sua_hoa_don")
-    private Timestamp mOrderEditDate;
-    @Column(name="hoadonbanhang_nguoi_tao")
-    private String mCreater;
-    @Column(name="hoadonbanhang_nguoi_sua")
-    private String mEditer;
 
-    @Column(name="hoadonbanhang_ghi_chu")
+    public String getmID() {
+        return mID;
+    }
+
+    public void setmID(String mID) {
+        this.mID = mID;
+    }
+    @Column(name="hoadondathang_ngay_dat_hang")
+    private Timestamp mTakeOrderDate;
+    @Column(name="hoadondathang_ngay_giao_hang_du_kien")
+    private Timestamp mDeliveryDate;
+    @Column(name="hoadondathang_ma_khach_hang")
+    private String mCustomerID;
+    @Column(name="hoadondathang_ten_khach_hang")
+    private String mCustomerName;
+    @Column(name="hoadondathang_dia_chi")
+    private String mCustomerAddress;
+    @Column(name="hoadondathang_so_dien_thoai")
+    private String mPhoneNumber;
+    @Column(name="hoadondathang_dia_chi_giao_hang")
+    private String mDeliveryAddress;
+    @Column(name="hoadondathang_hinh_thuc_van_chuyen")
+    private String mShippingVehicle;
+    
+    //@Min(0)
+    @Column(name="hoadondathang_thue" , nullable = true)
+    private Float mTax;
+    @Column(name="hoadondathang_tien_truoc_thue")
+    private Float mBeforePrice;
+    @Column(name="hoadondathang_tien_sau_thue")
+    private Float mAfterPrivate;
+    
+    //@Min(0)
+    
+    @Column(name="hoadondathang_giam_gia")
+    private Float mDiscount;
+    @Column(name="hoadondathang_trang_thai_don_hang")
+    private Integer mOrderStatus;
+    @Column(name="hoadondathang_ngay_tao_hoa_don")
+    private Timestamp mOrderEstablishDate;
+    @Column(name="hoadondathang_ngay_sua_hoa_don")
+    private Timestamp mOrderEditDate;
+    @Column(name="hoadondathang_nguoi_tao")
+    private String mCreater;
+    @Column(name="hoadondathang_nguoi_sua")
+    private String mEditer;
+    @Column(name="hoadondathang_ghi_chu")
     private String mNote;
 
+    private String vd;
+
+    public String getVd() {
+        return vd;
+    }
+
+    public void setVd(String vd) {
+        this.vd = vd;
+    }
+    
     public String getmNote() {
         return mNote;
     }
@@ -76,50 +97,52 @@ public class SaleOrder {
         this.mNote = mNote;
     }
     
-    public SaleOrder(String mID, Timestamp mTakeOrderDate, Timestamp mDeliveryDate, String mCustomerID, String mCustomerName, String mCustomerAddress, String mPhoneNumber, String mDeliveryAddress, String mShippingVehicle, Float mTax, Float mBeforePrice, Float mAfterPrivate, Float mDiscount, Integer mOrderStatus, Timestamp mOrderEstablishDate, Timestamp mOrderEditDate, String mCreater, String mEditer) {
-        this.mID = mID;
-        this.mTakeOrderDate = mTakeOrderDate;
-        this.mDeliveryDate = mDeliveryDate;
-        this.mCustomerID = mCustomerID;
-        this.mCustomerName = mCustomerName;
-        this.mCustomerAddress = mCustomerAddress;
-        this.mPhoneNumber = mPhoneNumber;
-        this.mDeliveryAddress = mDeliveryAddress;
-        this.mShippingVehicle = mShippingVehicle;
-        this.mTax = mTax;
-        this.mBeforePrice = mBeforePrice;
-        this.mAfterPrivate = mAfterPrivate;
-        this.mDiscount = mDiscount;
-        this.mOrderStatus = mOrderStatus;
-        this.mOrderEstablishDate = mOrderEstablishDate;
-        this.mOrderEditDate = mOrderEditDate;
-        this.mCreater = mCreater;
-        this.mEditer = mEditer;
+    public Object[] toArray(){
+        return new Object[]{
+            mID,
+            mTakeOrderDate,
+            mDeliveryDate,
+            mCustomerID,
+            mCustomerName,
+            mCustomerAddress,
+            mPhoneNumber,
+            mDeliveryAddress,
+            mShippingVehicle,
+            mTax,
+            mBeforePrice,
+            mAfterPrivate,
+            mDiscount,
+            mOrderStatus,
+            mOrderEstablishDate,
+            mOrderEditDate,
+            mCreater,
+            mEditer
+        };
     }
-
-    public SaleOrder(){
+    public Object[] toTitleArray(){
+        return new Object[]{
+            "Mã hóa đơn",
+            "Ngày tạo",
+            "Ngày giao",
+            "Mã khách hàng",
+            "Tên khách hàng",
+            "Địa chỉ",
+            "Số điện thoại",
+            "Địa chỉ giao",
+            "Phương tiện",
+            "Thuế",
+            "Giá trước thuế",
+            "Giá sau thuế",
+            "Giảm giá",
+            "Trạng thái",
+            "Ngày lập",
+            "Ngày sửa",
+            "Người tạo",
+            "Người sửa"
+        };
+    }
+    public TakeOrder2(){
         
-    }
-    
-    public SaleOrder(TakeOrder pTakeOrder){
-        this.mID = pTakeOrder.getMID();
-        this.mTakeOrderDate = pTakeOrder.getMTakeOrderDate();
-        this.mDeliveryDate = pTakeOrder.getMDeliveryDate();
-        this.mCustomerID = pTakeOrder.getMCustomerID();
-        this.mCustomerName = pTakeOrder.getMCustomerName();
-        this.mCustomerAddress = pTakeOrder.getMCustomerAddress();
-        this.mPhoneNumber = pTakeOrder.getMPhoneNumber();
-        this.mDeliveryAddress = pTakeOrder.getMDeliveryAddress();
-        this.mShippingVehicle = pTakeOrder.getMShippingVehicle();
-        this.mTax = pTakeOrder.getMTax();
-        this.mBeforePrice = pTakeOrder.getMBeforePrice();
-        this.mAfterPrivate = pTakeOrder.getMAfterPrivate();
-        this.mDiscount = pTakeOrder.getMDiscount();
-        this.mOrderStatus = pTakeOrder.getMOrderStatus();
-        this.mOrderEstablishDate = pTakeOrder.getMOrderEstablishDate();
-        this.mOrderEditDate = pTakeOrder.getMOrderEditDate();
-        this.mCreater = pTakeOrder.getMCreater();
-        this.mEditer = pTakeOrder.getMEditer();
     }
     public Integer getmSerial() {
         return mSerial;
@@ -129,13 +152,13 @@ public class SaleOrder {
         this.mSerial = mSerial;
     }
 
-    public String getmID() {
-        return mID;
-    }
-
-    public void setmID(String mID) {
-        this.mID = mID;
-    }
+//    public String getMID() {
+//        return mID;
+//    }
+//
+//    public void setMID(String mID) {
+//        this.mID = mID;
+//    }
 
     public Timestamp getmTakeOrderDate() {
         return mTakeOrderDate;
@@ -227,6 +250,8 @@ public class SaleOrder {
     }
 
     public Float getmDiscount() {
+        if(mDiscount <=0)
+            mDiscount =0F;
         return mDiscount;
     }
 

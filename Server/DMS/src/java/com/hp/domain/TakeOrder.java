@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.validator.Min;
 
 /**
  *
@@ -45,12 +46,15 @@ public class TakeOrder {
     private String mDeliveryAddress;
     @Column(name="hoadondathang_hinh_thuc_van_chuyen")
     private String mShippingVehicle;
-    @Column(name="hoadondathang_thue" , nullable = true)
+    
+    @Column(name="hoadondathang_thue")
     private Float mTax;
     @Column(name="hoadondathang_tien_truoc_thue")
     private Float mBeforePrice;
     @Column(name="hoadondathang_tien_sau_thue")
     private Float mAfterPrivate;
+    
+    
     @Column(name="hoadondathang_giam_gia")
     private Float mDiscount;
     @Column(name="hoadondathang_trang_thai_don_hang")
@@ -66,11 +70,12 @@ public class TakeOrder {
     @Column(name="hoadondathang_ghi_chu")
     private String mNote;
 
-    public String getmNote() {
+    
+    public String getMNote() {
         return mNote;
     }
 
-    public void setmNote(String mNote) {
+    public void setMNote(String mNote) {
         this.mNote = mNote;
     }
     
@@ -121,156 +126,158 @@ public class TakeOrder {
     public TakeOrder(){
         
     }
-    public Integer getmSerial() {
+    public Integer getMSerial() {
         return mSerial;
     }
 
-    public void setmSerial(Integer mSerial) {
+    public void setMSerial(Integer mSerial) {
         this.mSerial = mSerial;
     }
 
-    public String getmID() {
+    public String getMID() {
         return mID;
     }
 
-    public void setmID(String mID) {
+    public void setMID(String mID) {
         this.mID = mID;
     }
 
-    public Timestamp getmTakeOrderDate() {
+    public Timestamp getMTakeOrderDate() {
         return mTakeOrderDate;
     }
 
-    public void setmTakeOrderDate(Timestamp mTakeOrderDate) {
+    public void setMTakeOrderDate(Timestamp mTakeOrderDate) {
         this.mTakeOrderDate = mTakeOrderDate;
     }
 
-    public Timestamp getmDeliveryDate() {
+    public Timestamp getMDeliveryDate() {
         return mDeliveryDate;
     }
 
-    public void setmDeliveryDate(Timestamp mDeliveryDate) {
+    public void setMDeliveryDate(Timestamp mDeliveryDate) {
         this.mDeliveryDate = mDeliveryDate;
     }
 
-    public String getmCustomerID() {
+    public String getMCustomerID() {
         return mCustomerID;
     }
 
-    public void setmCustomerID(String mCustomerID) {
+    public void setMCustomerID(String mCustomerID) {
         this.mCustomerID = mCustomerID;
     }
 
-    public String getmCustomerName() {
+    public String getMCustomerName() {
         return mCustomerName;
     }
 
-    public void setmCustomerName(String mCustomerName) {
+    public void setMCustomerName(String mCustomerName) {
         this.mCustomerName = mCustomerName;
     }
 
-    public String getmCustomerAddress() {
+    public String getMCustomerAddress() {
         return mCustomerAddress;
     }
 
-    public void setmCustomerAddress(String mCustomerAddress) {
+    public void setMCustomerAddress(String mCustomerAddress) {
         this.mCustomerAddress = mCustomerAddress;
     }
 
-    public String getmPhoneNumber() {
+    public String getMPhoneNumber() {
         return mPhoneNumber;
     }
 
-    public void setmPhoneNumber(String mPhoneNumber) {
+    public void setMPhoneNumber(String mPhoneNumber) {
         this.mPhoneNumber = mPhoneNumber;
     }
 
-    public String getmDeliveryAddress() {
+    public String getMDeliveryAddress() {
         return mDeliveryAddress;
     }
 
-    public void setmDeliveryAddress(String mDeliveryAddress) {
+    public void setMDeliveryAddress(String mDeliveryAddress) {
         this.mDeliveryAddress = mDeliveryAddress;
     }
 
-    public String getmShippingVehicle() {
+    public String getMShippingVehicle() {
         return mShippingVehicle;
     }
 
-    public void setmShippingVehicle(String mShippingVehicle) {
+    public void setMShippingVehicle(String mShippingVehicle) {
         this.mShippingVehicle = mShippingVehicle;
     }
 
-    public Float getmTax() {
+    public Float getMTax() {
         return mTax;
     }
 
-    public void setmTax(Float mTax) {
+    public void setMTax(Float mTax) {
         this.mTax = mTax;
     }
 
     
-    public Float getmBeforePrice() {
+    public Float getMBeforePrice() {
         return mBeforePrice;
     }
 
-    public void setmBeforePrice(Float mBeforePrice) {
+    public void setMBeforePrice(Float mBeforePrice) {
         this.mBeforePrice = mBeforePrice;
     }
 
-    public Float getmAfterPrivate() {
+    public Float getMAfterPrivate() {
         return mAfterPrivate;
     }
 
-    public void setmAfterPrivate(Float mAfterPrivate) {
+    public void setMAfterPrivate(Float mAfterPrivate) {
         this.mAfterPrivate = mAfterPrivate;
     }
 
-    public Float getmDiscount() {
+    public Float getMDiscount() {
+        if(mDiscount <=0)
+            mDiscount =0F;
         return mDiscount;
     }
 
-    public void setmDiscount(Float mDiscount) {
+    public void setMDiscount(Float mDiscount) {
         this.mDiscount = mDiscount;
     }
 
-    public Integer getmOrderStatus() {
+    public Integer getMOrderStatus() {
         return mOrderStatus;
     }
 
-    public void setmOrderStatus(Integer mOrderStatus) {
+    public void setMOrderStatus(Integer mOrderStatus) {
         this.mOrderStatus = mOrderStatus;
     }
 
-    public Timestamp getmOrderEstablishDate() {
+    public Timestamp getMOrderEstablishDate() {
         return mOrderEstablishDate;
     }
 
-    public void setmOrderEstablishDate(Timestamp mOrderEstablishDate) {
+    public void setMOrderEstablishDate(Timestamp mOrderEstablishDate) {
         this.mOrderEstablishDate = mOrderEstablishDate;
     }
 
-    public Timestamp getmOrderEditDate() {
+    public Timestamp getMOrderEditDate() {
         return mOrderEditDate;
     }
 
-    public void setmOrderEditDate(Timestamp mOrderEditDate) {
+    public void setMOrderEditDate(Timestamp mOrderEditDate) {
         this.mOrderEditDate = mOrderEditDate;
     }
 
-    public String getmCreater() {
+    public String getMCreater() {
         return mCreater;
     }
 
-    public void setmCreater(String mCreater) {
+    public void setMCreater(String mCreater) {
         this.mCreater = mCreater;
     }
 
-    public String getmEditer() {
+    public String getMEditer() {
         return mEditer;
     }
 
-    public void setmEditer(String mEditer) {
+    public void setMEditer(String mEditer) {
         this.mEditer = mEditer;
     }
             

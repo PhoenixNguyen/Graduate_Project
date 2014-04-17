@@ -12,7 +12,15 @@ public class Document {
     private String fileFileName;
     private String fileContentType;
     private String fileSize;
+    private Float number;
 
+    public Float getNumber() {
+        return number;
+    }
+
+    public void setNumber(Float number) {
+        this.number = number;
+    }
     
 
     @NotNull(message="Không được để trống!")

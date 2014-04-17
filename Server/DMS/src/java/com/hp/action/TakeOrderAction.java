@@ -6,14 +6,19 @@
 
 package com.hp.action;
 
+import com.hp.dao.ProductDAO;
+import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
+import com.hp.domain.Document;
+import com.hp.domain.Product;
 import com.hp.domain.Staff;
 import com.hp.domain.TakeOrder;
+import com.hp.domain.TakeOrder2;
 import com.hp.domain.TakeOrderDetail;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -23,6 +28,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,6 +39,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -49,7 +57,7 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
     private List<TakeOrder> takeOrdersList = new ArrayList<TakeOrder>();
     private List<TakeOrderDetail> detailTakeOrdersList = new ArrayList<TakeOrderDetail>();
 
-    public TakeOrder takeOrder = new TakeOrder();
+    private TakeOrder takeOrder = new TakeOrder();
 
     public List<String> staffList = new ArrayList<String>();
     private StaffDAO staffDAO = new StaffDAOImpl();
@@ -60,6 +68,25 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
 
     public FileInputStream orderFile;
 
+    Document doc = new Document();
+    private TakeOrder2 takeOrder2 = new TakeOrder2();
+
+    public TakeOrder2 getTakeOrder2() {
+        return takeOrder2;
+    }
+
+    public void setTakeOrder2(TakeOrder2 takeOrder2) {
+        this.takeOrder2 = takeOrder2;
+    }
+    
+    public Document getDoc() {
+        return doc;
+    }
+
+    public void setDoc(Document doc) {
+        this.doc = doc;
+    }
+    
     public FileInputStream getOrderFile() {
         return orderFile;
     }
@@ -164,14 +191,50 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         return SUCCESS;
     }
     
-    public String updateTakeOrder(){
-        System.out.println("OKto " + takeOrder.getmID() +" : " +takeOrder.getmCustomerAddress());
+    public String updateTakeOrder() throws UnsupportedEncodingException{
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF8");
+        
+        System.out.println("OKto " + takeOrder.getMID() +" : " +takeOrder.getMCustomerAddress() + " " + doc.getNumber());//doc.getFileFileName()
         //takeOrder.setmEditer("0");
-        boolean status = takeOrderDAO.update(takeOrder);
+//        takeOrder.setMDeliveryDate(null);
+//        takeOrder.setMOrderEditDate(null);
+//        takeOrder.setMOrderEstablishDate(null);
+//        takeOrder.setMTakeOrderDate(null);
+        
+//        Product product = new Product();
+////                    product.setmStt((int)row.getCell(tmp++).getNumericCellValue());
+//            product.setmBarcode("000122");
+//            product.setmProductID("000122");
+//            product.setmBrand("");
+//            product.setmOrigin("");
+//            product.setmPackingSpecifications("");
+//            product.setmQuantification("");
+//            product.setmExportPrices(0f);
+//            product.setmProvider("nhacungcap1");
+//        //Add to database
+//        ProductDAO productDAO = new ProductDAOImpl();
+//        
+//        if(productDAO.saveOrUpdate(product)){
+//            System.out.println("Add Object " );
+//            return SUCCESS;
+//        }
+        
+        
+        
+        TakeOrder t = new TakeOrder();
+        t.setMID("t1233imjtt");
+        t.setMCustomerID(null);
+        t.setMCreater(null);
+        t.setMEditer(null);
+        
+        boolean status = takeOrderDAO.saveOrUpdate(t);// update(takeOrder);
+        System.out.println(status+" ________________________");
         if(status){
             return SUCCESS;
         }
-        System.out.println(status);
+        System.out.println(status+" ________________________");
         takeOrdersList = takeOrderDAO.getTakeOrdersList();
         
         return INPUT;
@@ -190,7 +253,7 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         Map<String, List<TakeOrderDetail>> data = new HashMap<String, List<TakeOrderDetail>>();
         
         for(int i= 0; i < takeOrdersList.size(); i++){
-            data.put(i+"", takeOrderDetailDAO.getDetailTakeOrdersList(takeOrdersList.get(i).getmID()));
+            data.put(i+"", takeOrderDetailDAO.getDetailTakeOrdersList(takeOrdersList.get(i).getMID()));
             
         }
         

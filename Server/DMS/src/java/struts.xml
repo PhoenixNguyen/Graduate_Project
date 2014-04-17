@@ -301,11 +301,11 @@
         
     </package>
     
-    <package name="admin"  extends="json-default,hibernate-default" namespace="/admin">
+<!--    <package name="admin"  extends="json-default,hibernate-default" namespace="/admin">
 		
         <action name="add-customer" method="addCustomerFromExcelFile" class="com.hp.action.CustomerAction">
-<!--            <result name="success">add-customer-result.jsp</result>
-            <result name="input">add-customer-fail.jsp</result>-->
+            <result name="success">add-customer-result.jsp</result>
+            <result name="input">add-customer-fail.jsp</result>
             <result type="json">
                 <param name="contentType">application/json</param>
             </result>
@@ -321,10 +321,10 @@
             </interceptor-ref>
             <interceptor-ref name="defaultStack"></interceptor-ref>
             
-<!--            <result type="json">
+            <result type="json">
                 <param name="contentType">application/json</param>
             </result>
-            -->
+            
             <result name="success" type="redirect">displayCustomers</result>
             <result name="input" type="redirect">displayCustomers</result>
         </action>
@@ -344,7 +344,7 @@
             <result name="input" >input-page.jsp</result>
         </action>
         
-<!--        display staff-->
+        display staff
         <action name="display-staffs" method="displayStaffs" class="com.hp.action.StaffsAction">
             <result name="success" >input-staffs.jsp</result>
             <result name="input" >input-staffs.jsp</result>
@@ -382,7 +382,7 @@
         </action>
         
         
-        <!--        display products-->
+                display products
         <action name="display-products" method="displayProducts" class="com.hp.action.ProductsAction">
             <result name="success" >input-products.jsp</result>
             <result name="input" >input-products.jsp</result>
@@ -440,7 +440,7 @@
         </action>
         
         
-        <!--        display Take Order ================================================================= -->
+                display Take Order ================================================================= 
         <action name="display-take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
             <result name="success" >take-order-page.jsp</result>
             <result name="input" >take-order-page.jsp</result>
@@ -493,7 +493,7 @@
             <result name="input" >export-orders.jsp</result>
         </action>
         
-    </package>
+    </package>-->
     <package name=""  extends="json-default,hibernate-default" namespace="/">
         <action name="login-success" method="loginStatus" class="com.hp.action.UserAction">
             <result name="success" >home.jsp</result>
@@ -582,7 +582,7 @@
             <result name="input" >home.jsp</result>
         </action>
         
-        <action name="update-take-order" method="updateTakeOrder" class="com.hp.action.TakeOrderAction">
+        <action name="update-t-order" method="updateTakeOrder" class="com.hp.action.TakeOrderAction">
             <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.mID}</result>
             <result name="input" >take-order-edit.jsp</result>
         </action>

@@ -23,6 +23,20 @@
         <![endif]-->
 
         <!-- End -->
+        <script>
+            var selected = <s:property value="selected"/>;
+            console.log(selected);
+            
+            if(selected){
+                var status = false;
+                status = <s:property value="deleteStatus"/>;
+                console.log("status "+status);
+                if(status == "true")
+                    alert("Xóa thành công");
+                else
+                    alert("Không thể xóa do khách hàng đã được sử dụng cho nội dung khác");
+            }
+        </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <a name="top"></a>
@@ -404,16 +418,7 @@
                     <script language="JavaScript" type="text/javascript" src="include/js/ListView.js"></script>
                     <form name="massdelete" method="POST" id="massdelete" onsubmit="VtigerJS_DialogBox.block();">
                         <input name="search_url" id="search_url" type="hidden" value="">
-                        <input name="idlist" id="idlist" type="hidden">
-                        <input name="change_owner" type="hidden">
-                        <input name="change_status" type="hidden">
-                        <input name="action" type="hidden">
-                        <input name="where_export" type="hidden" value="">
-                        <input name="step" type="hidden">
-                        <input name="allids" type="hidden" id="allids" value="137;138;139;168;174;178;180;186;192;205;210;219;221;223;225;228;230;233;235;248">
-                        <input name="selectedboxes" id="selectedboxes" type="hidden" value="">
-                        <input name="allselectedboxes" id="allselectedboxes" type="hidden" value="">
-                        <input name="current_page_boxes" id="current_page_boxes" type="hidden" value="137;138;139;168;174;178;180;186;192;205;210;219;221;223;225;228;230;233;235;248">
+                        
                         <!-- List View Master Holder starts -->
                         <table border="0" cellspacing="1" cellpadding="0" width="100%" class="lvtBg">
                             <tbody>
@@ -430,15 +435,15 @@
                                                     <!-- Table Headers -->
                                                     <tbody>
                                                         <tr>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Stt</a></td>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tên Khách hàng</a></td>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Mã Khách hàng</a></td>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = smownerid & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Được gán cho</a></td>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = createdtime & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tỉnh thành</a></td>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = cf_607 & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Địa chỉ</a></td>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = phone & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Điện thoại</a></td>
-                                                            <td class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = rating & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Ghi chú</a></td>
-                                                            <td class="lvtCol">Hoạt động</td>
+                                                            <td width="5%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Stt</a></td>
+                                                            <td width="20%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tên Khách hàng</a></td>
+                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Mã Khách hàng</a></td>
+                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = smownerid & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Được gán cho</a></td>
+                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = createdtime & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tỉnh thành</a></td>
+                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = cf_607 & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Địa chỉ</a></td>
+                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = phone & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Điện thoại</a></td>
+                                                            <td width="15%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = rating & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Ghi chú</a></td>
+                                                            <td width="10%" class="lvtCol">Hoạt động</td>
                                                         </tr>
                                                         <!-- Table Contents -->
                                                         <s:iterator value="customersList" status="index">
@@ -451,7 +456,7 @@
                                                             <td onmouseover=""><s:property value="mDiaChi"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover=""><s:property value="mDienThoai"/><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )">0915166889</a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover=""><s:property value="mGhiChu"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><a href="">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DProducts%26action%3DDelete%26record%3D142%26return_module%3DProducts%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D62")'>Xóa</a></td>
+                                                            <td onmouseover=""><a href="edit-customer?id_cus=<s:property value="mStt"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-customer?id_cus=<s:property value="mStt"/>")'>Xóa</a></td>
                                                         </tr>
                                                         </s:iterator>
                                                        

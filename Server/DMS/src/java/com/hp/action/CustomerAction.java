@@ -78,6 +78,25 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
 
     private List<String> staffsList = new ArrayList<String>();
 
+    private boolean deleteStatus;
+    private boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    
+    public boolean isDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+    
     public List<String> getStaffsList() {
         return staffsList;
     }
@@ -399,6 +418,31 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         if(id_cus > -1){
             customer = customerDAO.loadCustomer(id_cus);
             return SUCCESS;
+        }
+        else
+            return INPUT;
+    }
+    
+    public String deleteCustomer(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        selected = true;
+        String para =  request.getParameter("id_cus");
+        
+        int id_cus = ValidateHandle.getInteger(para);
+        if(id_cus > -1){
+            customer = customerDAO.loadCustomer(id_cus);
+            deleteStatus = customerDAO.delete(customer);
+            System.out.println("__" + deleteStatus);
+            
+            customersList = customerDAO.getListCustomer();
+        
+            if(deleteStatus)                
+                return SUCCESS;
+            else 
+                return INPUT;
         }
         else
             return INPUT;

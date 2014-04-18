@@ -535,6 +535,10 @@
             <result name="input" type="redirect">edit-customer?id_cus=${customer.mStt}</result>
         </action>
         
+        <action name="delete-customer" method="deleteCustomer" class="com.hp.action.CustomerAction">
+            <result name="success" >customer.jsp</result>
+            <result name="input" >customer.jsp</result>
+        </action>
         <!--PRODUCT-->
         <action name="product-list" method="displayProducts" class="com.hp.action.ProductsAction">
             <result name="success">product.jsp</result>

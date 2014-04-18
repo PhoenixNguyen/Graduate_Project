@@ -463,7 +463,7 @@
                                                                     <input type="text" tabindex="" name="fax" id ="fax" value="<s:property value="mFax"/>" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                 </td>
                                                             </tr>
-                                                            <tr style="height:25px">
+<!--                                                            <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>Thành viên của 			
@@ -479,8 +479,8 @@
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Điện thoại khác </td>
 
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="otherphone" id ="otherphone" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                            </tr>
-                                                            <tr style="height:25px">
+                                                            </tr>-->
+<!--                                                            <tr style="height:25px">
 
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Số nhân viên </td>
 
@@ -489,16 +489,16 @@
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Email </td>
 
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="email1" id ="email1" value="<s:property value=""/>" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                            </tr>
-                                                            <tr style="height:25px">
+                                                            </tr>-->
+<!--                                                            <tr style="height:25px">
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Email khác </td>
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="email2" id ="email2" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Người sở hữu </td>
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ownership" id ="ownership" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                            </tr>
-                                                            <tr style="height:25px">
+                                                            </tr>-->
+<!--                                                            <tr style="height:25px">
 
-                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
+                                                                 uitype 111 added for noneditable existing picklist values - ahmed 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>
                                                                     Ngành nghề 			</td>
@@ -559,7 +559,7 @@
                                                                 </td>
 
 
-                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
+                                                                 uitype 111 added for noneditable existing picklist values - ahmed 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>
                                                                     Đánh giá 			
@@ -586,10 +586,10 @@
                                                                         </option>
                                                                     </select>
                                                                 </td>
-                                                            </tr>
-                                                            <tr style="height:25px">
+                                                            </tr>-->
+<!--                                                            <tr style="height:25px">
 
-                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
+                                                                 uitype 111 added for noneditable existing picklist values - ahmed 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>
                                                                     Loại 			</td>
@@ -634,8 +634,8 @@
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã ngành </td>
 
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="siccode" id ="siccode" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                            </tr>
-                                                            <tr style="height:25px">
+                                                            </tr>-->
+<!--                                                            <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>Từ chối email 			
@@ -652,15 +652,15 @@
                                                                     <input name="annual_revenue" tabindex="" type="text" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"  value="0">
                                                                 </td>
 
-                                                            </tr>
+                                                            </tr>-->
                                                             <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red">*</font>Được gán cho 			
                                                                 </td>
                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                    <input type="radio" tabindex="" name="assigntype" checked value="U" onclick="toggleAssignType(this.value)" >&nbsp;Người dùng
-                                                                    <input type="radio" name="assigntype"  value="T" onclick="toggleAssignType(this.value)">&nbsp;Nhóm
+<!--                                                                    <input type="radio" tabindex="" name="assigntype" checked value="U" onclick="toggleAssignType(this.value)" >&nbsp;Người dùng
+                                                                    <input type="radio" name="assigntype"  value="T" onclick="toggleAssignType(this.value)">&nbsp;Nhóm-->
                                                                     <span id="assign_user" style="display:block">
                                                                         <select name="customer.mMaNhanVien" class="small" >
                                                                             <s:iterator value="staffsList" status="index">
@@ -675,24 +675,24 @@
                                                                         </select>
                                                                     </span>
 
-                                                                    <span id="assign_team" style="display:none">
+<!--                                                                    <span id="assign_team" style="display:none">
                                                                         <select name="assigned_group_id" class="small">';
                                                                             <option value="2" >Đội sales</option>
                                                                             <option value="4" >Nh&oacute;m hỗ trợ</option>
                                                                             <option value="7" >Nh&oacute;m kỹ thuật</option>
                                                                             <option value="3" >Nh&oacute;m Marketing</option>
                                                                         </select>
-                                                                    </span>
+                                                                    </span>-->
                                                                 </td>
 
-                                                                <td width="20%" class="dvtCellLabel" align=right>
+<!--                                                                <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>Thông báo khi dữ liệu này thay đổi 			
-                                                                </td>
-                                                                <td width="30%" align=left class="dvtCellInfo">
+                                                                </td>-->
+<!--                                                                <td width="30%" align=left class="dvtCellInfo">
                                                                     <input name="notify_owner" type="checkbox" tabindex="" checked>
-                                                                </td>
+                                                                </td>-->
                                                             </tr>
-                                                            <tr style="height:25px">
+<!--                                                            <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>Ngày sinh 			
@@ -712,7 +712,7 @@
 
                                                                 </td>
 
-                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
+                                                                 uitype 111 added for noneditable existing picklist values - ahmed 
                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                     <font color="red"></font>
                                                                     Loại Sản Phẩm 			</td>
@@ -753,18 +753,19 @@
                                                                 <td width="30%" align=left class="dvtCellInfo">
                                                                     <input name="cf_640" tabindex="" type="checkbox" >
                                                                 </td>
-                                                            </tr>
+                                                            </tr>-->
 
                                                             <!-- This is added to display the existing comments -->
 
                                                             <tr>
                                                                 <td colspan=2 class="detailedViewHeader">
-                                                                    <b>Thông tin địa chỉ</b></td>
-                                                                <td class="detailedViewHeader">
+                                                                    <b>Thông tin địa chỉ</b>
+                                                                </td>
+<!--                                                                <td class="detailedViewHeader">
                                                                     <input name="cpy" onclick="return copyAddressLeft(EditView)" type="radio"><b>Sao chép địa chỉ vận chuyển</b></td>
                                                                 <td class="detailedViewHeader">
                                                                     <input name="cpy" onclick="return copyAddressRight(EditView)" type="radio"><b>Sao chép địa chỉ thanh toán</b></td>
-                                                                </td>
+                                                                </td>-->
                                                             </tr>
 
                                                             <!-- Handle the ui types display -->
@@ -785,7 +786,7 @@
                                                                     <textarea value="" name="ship_street" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
                                                                 </td>
                                                             </tr>
-                                                            <tr style="height:25px">
+<!--                                                            <tr style="height:25px">
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Hộp thư thanh toán </td>
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_pobox" id ="bill_pobox" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Hộp thư vận chuyển </td>
@@ -814,7 +815,7 @@
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_country" id ="bill_country" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                                 <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Vận chuyển tới quốc gia </td>
                                                                 <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_country" id ="ship_country" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                            </tr>
+                                                            </tr>-->
                                                             <!-- This is added to display the existing comments -->
                                                             <tr>
                                                                 <td colspan=4 class="detailedViewHeader">

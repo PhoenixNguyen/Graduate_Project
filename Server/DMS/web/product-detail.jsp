@@ -44,6 +44,20 @@
             
             
         </script>
+        <script>
+            var selected = <s:property value="selected"/>;
+            console.log(selected);
+            
+            if(selected){
+                var status = false;
+                status = <s:property value="deleteStatus"/>;
+                console.log("status "+status);
+                if(status == "true")
+                    alert("Xóa thành công");
+                else
+                    alert("Không thể xóa do sản phẩm đã được sử dụng cho nội dung khác");
+            }
+        </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <a name="top"></a>
@@ -296,7 +310,7 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-product"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
 
                                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                                                                     searchshowhide('searchAcc', 'advSearch');
@@ -401,10 +415,16 @@
                                                             DetailView.isDuplicate.value = 'true';
                                                             DetailView.module.value = 'Products';
                                                             submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;-->
-                                                    <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="DetailView.return_module.value = 'Products';
-                                                            DetailView.return_action.value = 'index';
-                                                            var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
-                                                            submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);" type="button" name="Delete" value="Xóa">&nbsp;
+                                                    <script>
+                                                        var str = "delete-product?id_pdct=<s:property value="product.mSerial"/>";
+                                                    </script>
+                                                    <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="
+                                                            confirmdelete(''+str);
+//                                                        DetailView.return_module.value = 'Products';
+//                                                            DetailView.return_action.value = 'index';
+//                                                            var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
+//                                                            submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);
+                                                            " type="button" name="Delete" value="Xóa">&nbsp;
 
                                                     
                                                 </td>
@@ -665,7 +685,7 @@
                                                                                 <tbody><tr style="height:25px">
                                                                                         <!-- Avoid to display the label Tax Class -->
                                                                                         <!--CurrencySymbol-->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá đơn vị (₫)</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá bán (₫)</td>
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Giá đơn vị" onmouseover="hndMouseOver(71, 'Giá đơn vị');" onmouseout="fnhide('crmspanid');" valign="top">
@@ -674,23 +694,24 @@
                                                                                         </td>
 
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tiền hoa hồng (%)</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Thuế (%)</td>
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tiền hoa hồng" onmouseover="hndMouseOver(9, 'Tiền hoa hồng (%)');" onmouseout="fnhide('crmspanid');" valign="top">
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Tiền hoa hồng"></span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Tiền hoa hồng"><s:property value="product.mVATTax"/></span>
                                                                                            
                                                                                         </td>
                                                                                     </tr>	
-                                                                                    <tr style="height:25px">
-                                                                                        <!-- Avoid to display the label Tax Class -->
+<!--                                                                                    <tr style="height:25px">
+                                                                                         Avoid to display the label Tax Class 
                                                                                         <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">GTGT</td>
-                                                                                        <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                        <!-- Handle the Tax in Inventory -->
+                                                                                         This file is used to display the fields based on the ui type in detailview 
+                                                                                         Handle the Tax in Inventory 
 
-                                                                                    </tr>	
+                                                                                    </tr>	-->
 
-                                                                                </tbody></table>
+                                                                                </tbody>
+                                                                            </table>
                                                                         </div> <!-- Line added by SAKTI on 10th Apr, 2008 -->
                                                                         <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                             <tbody><tr>
@@ -1088,10 +1109,13 @@
                                         DetailView.isDuplicate.value = 'true';
                                         DetailView.module.value = 'Products';
                                         submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;-->
-                                <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="DetailView.return_module.value = 'Products';
-                                        DetailView.return_action.value = 'index';
-                                        var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
-                                        submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);" type="button" name="Delete" value="Xóa">&nbsp;
+                                <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="
+                                        confirmdelete(''+str);
+//                                    DetailView.return_module.value = 'Products';
+//                                        DetailView.return_action.value = 'index';
+//                                        var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
+//                                        submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);
+                                        " type="button" name="Delete" value="Xóa">&nbsp;
 
                                 
                             </td>

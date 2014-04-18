@@ -570,6 +570,11 @@
             <result name="input" >product-add.jsp</result>
         </action>
         
+        <action name="delete-product" method="deleteProduct" class="com.hp.action.ProductsAction">
+            <result name="success" >product.jsp</result>
+            <result name="input" >product-detail.jsp?id_pdct=${product.mSerial}</result>
+        </action>
+                
         <!--TAKE ORDER-->
         <action name="take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order.jsp</result>

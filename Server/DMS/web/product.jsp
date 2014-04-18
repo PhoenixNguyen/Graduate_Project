@@ -22,6 +22,20 @@
         <![endif]-->
 
         <!-- End -->
+        <script>
+            var selected = <s:property value="selected"/>;
+            console.log(selected);
+            
+            if(selected){
+                var status = false;
+                status = <s:property value="deleteStatus"/>;
+                console.log("status "+status);
+                if(status == "true")
+                    alert("Xóa thành công");
+                else
+                    alert("Không thể xóa do sản phẩm đã được sử dụng cho nội dung khác");
+            }
+        </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <a name="top"></a>
@@ -29,6 +43,7 @@
         <!-- header-vtiger crm name & RSS -->
         <script language="JavaScript" type="text/javascript" src="include/js/json.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/general.js"></script>
+        
         <!-- vtlib customization: Javascript hook --> 
         <script language="JavaScript" type="text/javascript" src="include/js/vtlib.js"></script>
         <!-- END -->
@@ -458,7 +473,7 @@
                                             
                                             <td onmouseover=""><s:property value="mDescription"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><a href="edit-product?id_pdct=<s:property value="mSerial"/>">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DProducts%26action%3DDelete%26record%3D142%26return_module%3DProducts%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D62")'>Xóa</a></td>
+                                            <td onmouseover=""><a href="edit-product?id_pdct=<s:property value="mSerial"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-product?id_pdct=<s:property value="mSerial"/>")'>Xóa</a></td>
                                         </tr>
                                         </s:iterator>
                                     </table>

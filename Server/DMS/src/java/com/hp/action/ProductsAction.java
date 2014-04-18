@@ -96,6 +96,25 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
 
     private int id_product;
 
+    private boolean deleteStatus;
+    private boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    
+    public boolean isDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+    
     public int getId_product() {
         return id_product;
     }
@@ -425,5 +444,30 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String redirect(){
         providerIDList = providerDAO.getProvidersIDList();
         return SUCCESS;
+    }
+    
+    public String deleteProduct(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        selected = true;
+        
+        String para =  request.getParameter("id_pdct");
+        
+        int id_pdct = ValidateHandle.getInteger(para);
+        if(id_pdct > -1){
+            product = productDAO.loadProduct(id_pdct);
+            deleteStatus = productDAO.delete(product);
+            
+            productsList = productDAO.getProductList();
+            
+            if(deleteStatus){
+                return SUCCESS;
+            }
+            else
+                return INPUT;
+        }
+        else
+            return INPUT;
     }
 }

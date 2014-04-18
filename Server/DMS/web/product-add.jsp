@@ -422,7 +422,8 @@
                                                                 <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align="right">
-                                                                    <font color="red">*</font>Tên sản phẩm 			</td>
+                                                                    <font color="red">*</font>Tên sản phẩm 			
+                                                                </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
                                                                     <input type="text" name="product.mProductName" tabindex="" value="<s:property value="product.mProductName"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                 </td>
@@ -647,7 +648,8 @@
                                                             <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align="right">
-                                                                    <font color="red"></font>Giá đơn vị: (₫) 			</td>
+                                                                    <font color="red"></font>Giá bán: (₫) 			
+                                                                </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">				
                                                                     <span id="multiple_currencies">
                                                                         <input name="product.mExportPrices" id="unit_price" tabindex="" type="text" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox';
@@ -699,12 +701,12 @@
                                                                         </table>
                                                                     </div>
                                                                 </td>
-                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Tiền hoa hồng (%) </td>
+                                                                <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Thuế (%) </td>
 
                                                                 <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="commissionrate" id="commissionrate" value="0.000" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
-                                                            <tr style="height:25px">
-                                                                <!-- Handle the Tax in Inventory -->
+<!--                                                            <tr style="height:25px">
+                                                                 Handle the Tax in Inventory 
                                                                 <td align="right" class="dvtCellLabel" style="border:0px solid red;">
                                                                     VAT (%)
                                                                     <input type="checkbox" name="tax1_check" id="tax1_check" class="small" onclick="fnshowHide(this, 'tax1')">
@@ -712,7 +714,7 @@
                                                                 <td class="dvtCellInfo" align="left" style="border:0px solid red;">
                                                                     <input type="text" class="detailedViewTextBox" name="product.mVATTax" id="tax1" value="<s:property value="product.mVATTax"/>" style="visibility:hidden;" onblur="fntaxValidation('tax1')">
                                                                 </td>
-                                                            </tr>
+                                                            </tr>-->
 <!--                                                                                <tr><td align="right" class="dvtCellLabel" style="border:0px solid red;">
                                                                     Sales (%)
                                                                     <input type="checkbox" name="tax2_check" id="tax2_check" class="small" onclick="fnshowHide(this, 'tax2')">

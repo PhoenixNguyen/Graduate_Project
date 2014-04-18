@@ -211,23 +211,23 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
 //                    customer.setmStt((int)row.getCell(tmp++).getNumericCellValue());
                     tmp++;
                     if(row.getCell(1) != null)
-                        customer.setmTinhThanh(row.getCell(1).getStringCellValue());
+                        customer.setMTinhThanh(row.getCell(1).getStringCellValue());
                     if(row.getCell(2) != null)
-                        customer.setmTuyenBanHangThu(row.getCell(2).getStringCellValue());
+                        customer.setMTuyenBanHangThu(row.getCell(2).getStringCellValue());
                     if(row.getCell(3) != null)
-                        customer.setmMaNhanVien(row.getCell(3).getStringCellValue());
+                        customer.setMMaNhanVien(row.getCell(3).getStringCellValue());
                     if(row.getCell(4) != null)
-                        customer.setmX(row.getCell(4).getStringCellValue());
+                        customer.setMX(row.getCell(4).getStringCellValue());
                     if(row.getCell(5) != null)
-                    customer.setmMaDoiTuong(row.getCell(5).getStringCellValue());
+                    customer.setMMaDoiTuong(row.getCell(5).getStringCellValue());
                     if(row.getCell(6) != null)
-                    customer.setmDoiTuong(row.getCell(6).getStringCellValue());
+                    customer.setMDoiTuong(row.getCell(6).getStringCellValue());
                     
 //                    if(row.getCell(7) != null)
-//                        customer.setmNoDKy(row.getCell(7).getNumericCellValue());
+//                        customer.setMNoDKy(row.getCell(7).getNumericCellValue());
 //                    if(row.getCell(8) != null)
 //                    
-//                    customer.setmCoDKy(row.getCell(8).getNumericCellValue());
+//                    customer.setMCoDKy(row.getCell(8).getNumericCellValue());
 //                    if(row.getCell(9) != null)
 //                    customer.setmNoTKy(row.getCell(9).getNumericCellValue());
 //                    if(row.getCell(10) != null)
@@ -254,18 +254,18 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
 //                    if(row.getCell(19) != null)
 //                    customer.setmDaiDien(row.getCell(19).getStringCellValue());
                     if(row.getCell(20) != null)
-                        customer.setmDiaChi(row.getCell(20).getStringCellValue());
+                        customer.setMDiaChi(row.getCell(20).getStringCellValue());
                     if(row.getCell(21) != null)
-                        customer.setmDienThoai(row.getCell(21).getStringCellValue());
+                        customer.setMDienThoai(row.getCell(21).getStringCellValue());
                     if(row.getCell(22) != null)
-                        customer.setmFax(row.getCell(22).getStringCellValue());
+                        customer.setMFax(row.getCell(22).getStringCellValue());
                     
                     if(row.getCell(23) != null)
-                        customer.setmGhiChu(row.getCell(23).getStringCellValue());
+                        customer.setMGhiChu(row.getCell(23).getStringCellValue());
                     if(row.getCell(24) != null)
-                        customer.setmXCoordinates(row.getCell(24).getNumericCellValue());
+                        customer.setMXCoordinates(row.getCell(24).getNumericCellValue());
                     if(row.getCell(25) != null)
-                        customer.setmYCoordinates(row.getCell(25).getNumericCellValue());
+                        customer.setMYCoordinates(row.getCell(25).getNumericCellValue());
                     
                     
                     //Add to database
@@ -346,7 +346,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         staffsList = staffDAO.getListUser(null);
         
         String test = request.getParameter("mTinhThanh");
-        String name  = customer.getmDienThoai();
+        String name  = customer.getMDienThoai();
         
         String pw = demo.getmDienThoai();
         Float y = demo.getmYCoordinates();
@@ -354,7 +354,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         System.out.println("__" + pw + "__ " +y +" PARA: " + test);
         System.out.println("__" + name);
         
-        if(customer.getmStt() <= 0){
+        if(customer.getMStt() <= 0){
 
             boolean status = customerDAO.saveOrUpdate(customer);
             customersList = customerDAO.getListCustomer();

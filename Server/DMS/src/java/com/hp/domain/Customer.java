@@ -27,137 +27,143 @@ import org.hibernate.validator.Valid;
 @Table(name="tb_khachhang")
 
 public class Customer {
-    
-    private int mStt;
-    private String mTinhThanh;
-    private String mTuyenBanHangThu;
-    private String mMaNhanVien;
-    private String mX;
-    private String mMaDoiTuong;
-    private String mDoiTuong;
-    
-    private String mDiaChi;
-    private String mDienThoai;
-    private String mFax;
-    private String mGhiChu;
-    
-    private Double mXCoordinates;
-    private Double mYCoordinates;
-
     @Id
     @GeneratedValue
     
     @Column(name="khachhang_stt")
-    public int getmStt() {
-        return mStt;
-    }
-
-    public void setmStt(int mStt) {
-        this.mStt = mStt;
-    }
-
+    private int mStt;
     @Column(name="khachhang_tinh_thanh")
-    public String getmTinhThanh() {
-        return mTinhThanh;
-    }
-
-    public void setmTinhThanh(String mTinhThanh) {
-        this.mTinhThanh = mTinhThanh;
-    }
+    private String mTinhThanh;
     @Column(name="khachhang_tuyen_ban_hang_thu")
-    public String getmTuyenBanHangThu() {
-        return mTuyenBanHangThu;
-    }
-
-    public void setmTuyenBanHangThu(String mTuyenBanHangThu) {
-        this.mTuyenBanHangThu = mTuyenBanHangThu;
-    }
+    private String mTuyenBanHangThu;
     @Column(name="khachhang_ma_nv")
-    public String getmMaNhanVien() {
-        return mMaNhanVien;
-    }
-
-    public void setmMaNhanVien(String mMaNhanVien) {
-        this.mMaNhanVien = mMaNhanVien;
-    }
+    private String mMaNhanVien;
     @Column(name="khachhang_x")
-    public String getmX() {
-        return mX;
-    }
-
-    public void setmX(String mX) {
-        this.mX = mX;
-    }
-    
+    private String mX;
+      
     @NotEmpty(message = "Mã khách hàng không được trống")
 //    @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã khách hàng chỉ chứa a-z, A-Z, 0-9, .")
 //    @Length(min = 3 , max = 255 ,message= "Mã khách hàng phải có độ dài 3-255 ký tự")
     @Column(name="khachhang_ma_dt")
     @Valid
-    public String getmMaDoiTuong() {
+    private String mMaDoiTuong;
+    @Column(name="khachhang_doi_tuong")
+    private String mDoiTuong;
+    
+    @Column(name="khachhang_diachi")
+    private String mDiaChi;
+    @Column(name="khachhang_dien_thoai")
+    private String mDienThoai;
+    @Column(name="khachhang_fax")
+    private String mFax;
+    @Column(name="khachhang_ghi_chu")
+    private String mGhiChu;
+    
+    @Column(name="khachhang_toa_do_x")
+    private Double mXCoordinates;
+    @Column(name="khachhang_toa_do_y")
+    private Double mYCoordinates;
+
+    
+    public int getMStt() {
+        return mStt;
+    }
+
+    public void setMStt(int mStt) {
+        this.mStt = mStt;
+    }
+
+    public String getMTinhThanh() {
+        return mTinhThanh;
+    }
+
+    public void setMTinhThanh(String mTinhThanh) {
+        this.mTinhThanh = mTinhThanh;
+    }
+    public String getMTuyenBanHangThu() {
+        return mTuyenBanHangThu;
+    }
+
+    public void setMTuyenBanHangThu(String mTuyenBanHangThu) {
+        this.mTuyenBanHangThu = mTuyenBanHangThu;
+    }
+    public String getMMaNhanVien() {
+        return mMaNhanVien;
+    }
+
+    public void setMMaNhanVien(String mMaNhanVien) {
+        this.mMaNhanVien = mMaNhanVien;
+    }
+    public String getMX() {
+        return mX;
+    }
+
+    public void setMX(String mX) {
+        this.mX = mX;
+    }
+  
+    public String getMMaDoiTuong() {
         return mMaDoiTuong;
     }
 
-    public void setmMaDoiTuong(String mMaDoiTuong) {
+    public void setMMaDoiTuong(String mMaDoiTuong) {
         this.mMaDoiTuong = mMaDoiTuong;
     }
     
 
-    @Column(name="khachhang_doi_tuong")
-    public String getmDoiTuong() {
+    public String getMDoiTuong() {
         return mDoiTuong;
     }
 
-    public void setmDoiTuong(String mDoiTuong) {
+    public void setMDoiTuong(String mDoiTuong) {
         this.mDoiTuong = mDoiTuong;
     }
     
-    @Column(name="khachhang_diachi")
-    public String getmDiaChi() {
+    public String getMDiaChi() {
         return mDiaChi;
     }
 
-    public void setmDiaChi(String mDiaChi) {
+    public void setMDiaChi(String mDiaChi) {
         this.mDiaChi = mDiaChi;
     }
-    @Column(name="khachhang_dien_thoai")
-    public String getmDienThoai() {
+    
+    public String getMDienThoai() {
         return mDienThoai;
     }
 
-    public void setmDienThoai(String mDienThoai) {
+    public void setMDienThoai(String mDienThoai) {
         this.mDienThoai = mDienThoai;
     }
-    @Column(name="khachhang_fax")
-    public String getmFax() {
+    
+    public String getMFax() {
         return mFax;
     }
 
-    public void setmFax(String mFax) {
+    public void setMFax(String mFax) {
         this.mFax = mFax;
     }
-    @Column(name="khachhang_ghi_chu")
-    public String getmGhiChu() {
+    
+    public String getMGhiChu() {
         return mGhiChu;
     }
 
-    public void setmGhiChu(String mGhiChu) {
+    public void setMGhiChu(String mGhiChu) {
         this.mGhiChu = mGhiChu;
     }
-    @Column(name="khachhang_toa_do_x")         
-    public Double getmXCoordinates() {
+             
+    public Double getMXCoordinates() {
         return mXCoordinates;
     }
 
-    public void setmXCoordinates(Double mXCoordinates) {
+    public void setMXCoordinates(Double mXCoordinates) {
         this.mXCoordinates = mXCoordinates;
     }
-    @Column(name="khachhang_toa_do_y")
-    public Double getmYCoordinates() {
+    
+    public Double getMYCoordinates() {
         return mYCoordinates;
     }
 
-    public void setmYCoordinates(Double mYCoordinates) {
+    public void setMYCoordinates(Double mYCoordinates) {
         this.mYCoordinates = mYCoordinates;
     }
     

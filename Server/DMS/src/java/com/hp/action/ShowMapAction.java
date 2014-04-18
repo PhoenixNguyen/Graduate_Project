@@ -338,7 +338,7 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         }
         List<String> tmp = new ArrayList<String>();
         String filePath = ServletActionContext.getServletContext().getRealPath("/customer/"
-                            +pList.get(0).getmMaDoiTuong()+"/");
+                            +pList.get(0).getMMaDoiTuong()+"/");
                 File[] files = new File(filePath).listFiles();
                 if(files == null)
                     return null;

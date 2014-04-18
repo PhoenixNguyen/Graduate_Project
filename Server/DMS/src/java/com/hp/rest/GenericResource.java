@@ -179,18 +179,18 @@ public class GenericResource {
             List<Customer> customerList = new ArrayList<Customer>();
 
             customerList = customerDAO.loadCustomersWithLocations(null, pUsername, null);
-            System.out.println("LIST: " + customerList.get(0).getmMaDoiTuong());
+            System.out.println("LIST: " + customerList.get(0).getMMaDoiTuong());
             String xml = "<?xml version=\"1.0\"?> "
                     + "<root>";
 
             for(int i = 0; i < customerList.size(); i++){
-                xml += "<customer id=\""+customerList.get(i).getmMaDoiTuong()+"\"> " 
-                            + "<name>"+customerList.get(i).getmDoiTuong()+"</name> " 
-                            + "<address>"+customerList.get(i).getmDiaChi()+"</address> " 
-                            + "<phone>"+customerList.get(i).getmDienThoai()+"</phone> " 
-                            + "<x>"+customerList.get(i).getmXCoordinates()+"</x>" 
-                            + "<y>"+customerList.get(i).getmYCoordinates()+"</y>"
-                            + "<staffid>"+customerList.get(i).getmMaNhanVien()+"</staffid>"
+                xml += "<customer id=\""+customerList.get(i).getMMaDoiTuong()+"\"> " 
+                            + "<name>"+customerList.get(i).getMDoiTuong()+"</name> " 
+                            + "<address>"+customerList.get(i).getMDiaChi()+"</address> " 
+                            + "<phone>"+customerList.get(i).getMDienThoai()+"</phone> " 
+                            + "<x>"+customerList.get(i).getMXCoordinates()+"</x>" 
+                            + "<y>"+customerList.get(i).getMYCoordinates()+"</y>"
+                            + "<staffid>"+customerList.get(i).getMMaNhanVien()+"</staffid>"
                       + "</customer> ";
             }
              xml += "</root> ";
@@ -317,7 +317,7 @@ public class GenericResource {
         try {
 //			File jsonFile = new File(jsonFilePath);
                 track = mapper.readValue(pTrack, RoadManagement.class);
-                //System.out.println(track.getmMaKhachHang());
+                //System.out.println(track.getMMaKhachHang());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {

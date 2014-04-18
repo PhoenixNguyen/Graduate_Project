@@ -6,6 +6,7 @@
 
 package com.hp.action;
 
+import com.hp.common.ValidateHandle;
 import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
@@ -89,26 +90,63 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
-        String order_id = request.getParameter("id_take_order_detail");
-        System.out.println(order_id);
-        int st;
-        if(order_id ==null){
-            return INPUT;
-        }
-        st = Integer.parseInt(order_id);
-        takeOrderDetail = takeOrderDetailDAO.getTakeOrderDetail(st);
+        String para =  request.getParameter("id_to_d");
         
-        return SUCCESS;
+        int id_pdct = ValidateHandle.getInteger(para);
+        if(id_pdct > -1){
+            takeOrderDetail = takeOrderDetailDAO.getTakeOrderDetail(id_pdct);
+            return SUCCESS;
+        }
+        else 
+            return INPUT;
+        
+//        String order_id = request.getParameter("id_take_order_detail");
+//        System.out.println(order_id);
+//        int st;
+//        if(order_id ==null){
+//            return INPUT;
+//        }
+//        st = Integer.parseInt(order_id);
+//        takeOrderDetail = takeOrderDetailDAO.getTakeOrderDetail(st);
+        
+//        return SUCCESS;
     }
     
     public String updateTakeOrderDetail(){
-        System.out.println("OKto " + takeOrderDetail.getmProductID());
+        System.out.println("OKto " + takeOrderDetail.getMProductID());
         //takeOrder.setmEditer("0");
+        
+        takeOrderDetail.setMPriceTotal((takeOrderDetail.getMBeforeOrderPrice() - 
+                takeOrderDetail.getMBeforeOrderPrice()* takeOrderDetail.getMDiscount()/100) * takeOrderDetail.getMNumber());
+        
         boolean status = takeOrderDetailDAO.update(takeOrderDetail);
         System.out.println(status);
-        takeOrdersList = takeOrderDAO.getTakeOrdersList();
         
-        return SUCCESS;
+        //UPdate TakeOrder
+        List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
+        
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
+        float priceTotal = 0;
+        for(int i = 0; i < list.size(); i++){
+            priceTotal += list.get(i).getMPriceTotal();
+        }
+        
+        TakeOrder takeOrder = new TakeOrder();
+        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        
+        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
+        takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
+        boolean st2 = takeOrderDAO.update(takeOrder);
+        
+        if(status){
+            
+            return SUCCESS;
+        }
+        else
+            return INPUT;
+        //takeOrdersList = takeOrderDAO.getTakeOrdersList();
+        
+        
     }
     
 }

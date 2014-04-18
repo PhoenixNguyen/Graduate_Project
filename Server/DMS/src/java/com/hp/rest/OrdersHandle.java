@@ -592,7 +592,7 @@ public class OrdersHandle {
         
         //Delete all old data
         if(detailList != null && detailList.size() > 0)
-            takeOrderDetailDAO.delete(detailList.get(0).getmTakeOrderID());
+            takeOrderDetailDAO.delete(detailList.get(0).getMTakeOrderID());
         else
             return Response.status(200).entity("").build();
         

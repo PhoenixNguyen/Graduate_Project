@@ -96,20 +96,20 @@ public class SaleOrderDetail {
     }
     
     public SaleOrderDetail(TakeOrderDetail pTakeOrderDetail){
-        this.mTakeOrderID = pTakeOrderDetail.getmTakeOrderID();
-        this.mLine = pTakeOrderDetail.getmLine();
-        this.mProductID = pTakeOrderDetail.getmProductID();
-        this.mBarcode = pTakeOrderDetail.getmBarcode();
-        this.mProductName = pTakeOrderDetail.getmProductName();
-        this.mAfterOrderPrice = pTakeOrderDetail.getmAfterOrderPrice();
-        this.mBeforeOrderPrice = pTakeOrderDetail.getmBeforeOrderPrice();
-        this.mTax = pTakeOrderDetail.getmTax();
-        this.mDiscount = pTakeOrderDetail.getmDiscount();
-        this.mPriceTotal = pTakeOrderDetail.getmPriceTotal();
-        this.mStockID = pTakeOrderDetail.getmStockID();
-        this.mNumber = pTakeOrderDetail.getmNumber();
-        this.mUnit = pTakeOrderDetail.getmUnit();
-        this.mExchangeRate = pTakeOrderDetail.getmExchangeRate();
+        this.mTakeOrderID = pTakeOrderDetail.getMTakeOrderID();
+        this.mLine = pTakeOrderDetail.getMLine();
+        this.mProductID = pTakeOrderDetail.getMProductID();
+        this.mBarcode = pTakeOrderDetail.getMBarcode();
+        this.mProductName = pTakeOrderDetail.getMProductName();
+        this.mAfterOrderPrice = pTakeOrderDetail.getMAfterOrderPrice();
+        this.mBeforeOrderPrice = pTakeOrderDetail.getMBeforeOrderPrice();
+        this.mTax = pTakeOrderDetail.getMTax();
+        this.mDiscount = pTakeOrderDetail.getMDiscount();
+        this.mPriceTotal = pTakeOrderDetail.getMPriceTotal();
+        this.mStockID = pTakeOrderDetail.getMStockID();
+        this.mNumber = pTakeOrderDetail.getMNumber();
+        this.mUnit = pTakeOrderDetail.getMUnit();
+        this.mExchangeRate = pTakeOrderDetail.getMExchangeRate();
     }
     public SaleOrderDetail(){
         

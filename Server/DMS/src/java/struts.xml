@@ -586,6 +586,18 @@
             <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.mID}</result>
             <result name="input" >take-order-edit.jsp</result>
         </action>
+        
+        
+        <action name="edit-takeorder-detail" method="editTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
+            <result name="success">take-order-detail-edit.jsp</result>
+            <result name="input" type="redirect">take-order-detail?id_tod=${takeOrder.mID}</result>
+        </action>
+        
+        <action name="update-takeorder-detail" method="updateTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
+            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrderDetail.mTakeOrderID}</result>
+            <result name="input" >take-order-detail-edit.jsp</result>
+        </action>
+        
         <!--Not yet handle-->
         
         

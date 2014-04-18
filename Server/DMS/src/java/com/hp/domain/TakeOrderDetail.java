@@ -59,19 +59,19 @@ public class TakeOrderDetail {
     @Column(name="chitietdondathang_hang_khuyen_mai")
     private int mPromotionalProductMount;
 
-    public int getmPromotionalProductMount() {
+    public int getMPromotionalProductMount() {
         return mPromotionalProductMount;
     }
 
-    public void setmPromotionalProductMount(int mPromotionalProductMount) {
+    public void setMPromotionalProductMount(int mPromotionalProductMount) {
         this.mPromotionalProductMount = mPromotionalProductMount;
     }
     
-    public String getmNote() {
+    public String getMNote() {
         return mNote;
     }
 
-    public void setmNote(String mNote) {
+    public void setMNote(String mNote) {
         this.mNote = mNote;
     }
     
@@ -118,123 +118,123 @@ public class TakeOrderDetail {
             
         };
     }
-    public Integer getmSerial() {
+    public Integer getMSerial() {
         return mSerial;
     }
 
-    public void setmSerial(Integer mSerial) {
+    public void setMSerial(Integer mSerial) {
         this.mSerial = mSerial;
     }
 
-    public String getmTakeOrderID() {
+    public String getMTakeOrderID() {
         return mTakeOrderID;
     }
 
-    public void setmTakeOrderID(String mTakeOrderID) {
+    public void setMTakeOrderID(String mTakeOrderID) {
         this.mTakeOrderID = mTakeOrderID;
     }
 
-    public Integer getmLine() {
+    public Integer getMLine() {
         return mLine;
     }
 
-    public void setmLine(Integer mLine) {
+    public void setMLine(Integer mLine) {
         this.mLine = mLine;
     }
 
-    public String getmProductID() {
+    public String getMProductID() {
         return mProductID;
     }
 
-    public void setmProductID(String mProductID) {
+    public void setMProductID(String mProductID) {
         this.mProductID = mProductID;
     }
 
-    public String getmBarcode() {
+    public String getMBarcode() {
         return mBarcode;
     }
 
-    public void setmBarcode(String mBarcode) {
+    public void setMBarcode(String mBarcode) {
         this.mBarcode = mBarcode;
     }
 
-    public String getmProductName() {
+    public String getMProductName() {
         return mProductName;
     }
 
-    public void setmProductName(String mProductName) {
+    public void setMProductName(String mProductName) {
         this.mProductName = mProductName;
     }
 
-    public Float getmAfterOrderPrice() {
+    public Float getMAfterOrderPrice() {
         return mAfterOrderPrice;
     }
 
-    public void setmAfterOrderPrice(Float mAfterOrderPrice) {
+    public void setMAfterOrderPrice(Float mAfterOrderPrice) {
         this.mAfterOrderPrice = mAfterOrderPrice;
     }
 
-    public Float getmBeforeOrderPrice() {
+    public Float getMBeforeOrderPrice() {
         return mBeforeOrderPrice;
     }
 
-    public void setmBeforeOrderPrice(Float mBeforeOrderPrice) {
+    public void setMBeforeOrderPrice(Float mBeforeOrderPrice) {
         this.mBeforeOrderPrice = mBeforeOrderPrice;
     }
 
-    public Float getmTax() {
+    public Float getMTax() {
         return mTax;
     }
 
-    public void setmTax(Float mTax) {
+    public void setMTax(Float mTax) {
         this.mTax = mTax;
     }
 
-    public Integer getmDiscount() {
+    public Integer getMDiscount() {
         return mDiscount;
     }
 
-    public void setmDiscount(Integer mDiscount) {
+    public void setMDiscount(Integer mDiscount) {
         this.mDiscount = mDiscount;
     }
 
-    public Float getmPriceTotal() {
+    public Float getMPriceTotal() {
         return mPriceTotal;
     }
 
-    public void setmPriceTotal(Float mPriceTotal) {
+    public void setMPriceTotal(Float mPriceTotal) {
         this.mPriceTotal = mPriceTotal;
     }
 
-    public String getmStockID() {
+    public String getMStockID() {
         return mStockID;
     }
 
-    public void setmStockID(String mStockID) {
+    public void setMStockID(String mStockID) {
         this.mStockID = mStockID;
     }
 
-    public Integer getmNumber() {
+    public Integer getMNumber() {
         return mNumber;
     }
 
-    public void setmNumber(Integer mNumber) {
+    public void setMNumber(Integer mNumber) {
         this.mNumber = mNumber;
     }
 
-    public String getmUnit() {
+    public String getMUnit() {
         return mUnit;
     }
 
-    public void setmUnit(String mUnit) {
+    public void setMUnit(String mUnit) {
         this.mUnit = mUnit;
     }
 
-    public Float getmExchangeRate() {
+    public Float getMExchangeRate() {
         return mExchangeRate;
     }
 
-    public void setmExchangeRate(Float mExchangeRate) {
+    public void setMExchangeRate(Float mExchangeRate) {
         this.mExchangeRate = mExchangeRate;
     }
     

@@ -47,20 +47,20 @@ public class Product {
     @GeneratedValue
     
     @Column(name="sanpham_stt")
-    public Integer getmSerial() {
+    public Integer getMSerial() {
         return mSerial;
     }
 
-    public void setmSerial(Integer mSerial) {
+    public void setMSerial(Integer mSerial) {
         this.mSerial = mSerial;
     }
 
     @Column(name="sanpham_ma_vach")
-    public String getmBarcode() {
+    public String getMBarcode() {
         return mBarcode;
     }
 
-    public void setmBarcode(String mBarcode) {
+    public void setMBarcode(String mBarcode) {
         this.mBarcode = mBarcode;
     }
 
@@ -68,110 +68,110 @@ public class Product {
     @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã sản phẩm chỉ chứa a-z, A-Z, 0-9, ., _")
     @Length(min = 3 , max = 255 ,message= "Mã sản phẩm phải có độ dài 3-255 ký tự")
     @Column(name="sanpham_ma_san_pham")
-    public String getmProductID() {
+    public String getMProductID() {
         return mProductID;
     }
 
-    public void setmProductID(String mProductID) {
+    public void setMProductID(String mProductID) {
         this.mProductID = mProductID;
     }
 
     @Column(name="sanpham_ten_hang_hoa")
-    public String getmProductName() {
+    public String getMProductName() {
         return mProductName;
     }
 
-    public void setmProductName(String mProductName) {
+    public void setMProductName(String mProductName) {
         this.mProductName = mProductName;
     }
 
     @Column(name="sanpham_thuong_hieu")
-    public String getmBrand() {
+    public String getMBrand() {
         return mBrand;
     }
 
-    public void setmBrand(String mBrand) {
+    public void setMBrand(String mBrand) {
         this.mBrand = mBrand;
     }
 
     @Column(name="sanpham_xuat_xu")
-    public String getmOrigin() {
+    public String getMOrigin() {
         return mOrigin;
     }
 
-    public void setmOrigin(String mOrigin) {
+    public void setMOrigin(String mOrigin) {
         this.mOrigin = mOrigin;
     }
 
     @Column(name="sanpham_quy_cach_packing")
-    public String getmPackingSpecifications() {
+    public String getMPackingSpecifications() {
         return mPackingSpecifications;
     }
 
-    public void setmPackingSpecifications(String mPackingSpecifications) {
+    public void setMPackingSpecifications(String mPackingSpecifications) {
         this.mPackingSpecifications = mPackingSpecifications;
     }
 
     @Column(name="sanpham_dinh_luong")
-    public String getmQuantification() {
+    public String getMQuantification() {
         return mQuantification;
     }
 
-    public void setmQuantification(String mQuantification) {
+    public void setMQuantification(String mQuantification) {
         this.mQuantification = mQuantification;
     }
 
     @Column(name="sanpham_thue")
-    public Float getmVATTax() {
+    public Float getMVATTax() {
         return mVATTax;
     }
 
-    public void setmVATTax(Float mVATTax) {
+    public void setMVATTax(Float mVATTax) {
         this.mVATTax = mVATTax;
     }
 
     @Column(name="sanpham_gia_nhap")
-    public Float getmImportPrices() {
+    public Float getMImportPrices() {
         return mImportPrices;
     }
 
-    public void setmImportPrices(Float mImportPrices) {
+    public void setMImportPrices(Float mImportPrices) {
         this.mImportPrices = mImportPrices;
     }
 
     @Column(name="sanpham_gia_ban")
-    public Float getmExportPrices() {
+    public Float getMExportPrices() {
         return mExportPrices;
     }
 
-    public void setmExportPrices(Float mExportPrices) {
+    public void setMExportPrices(Float mExportPrices) {
         this.mExportPrices = mExportPrices;
     }
 
     @Column(name="sanpham_nha_cung_cap")
-    public String getmProvider() {
+    public String getMProvider() {
         return mProvider;
     }
 
-    public void setmProvider(String mProvider) {
+    public void setMProvider(String mProvider) {
         this.mProvider = mProvider;
     }
 
     @Column(name="sanpham_mo_ta")
-    public String getmDescription() {
+    public String getMDescription() {
         return mDescription;
     }
 
-    public void setmDescription(String mDescription) {
+    public void setMDescription(String mDescription) {
         this.mDescription = mDescription;
     }
 
     @Column(name="sanpham_anh_san_pham")
-    public String getmProductImage() {
+    public String getMProductImage() {
         return mProductImage;
     }
 
-    public void setmProductImage(String mProductImage) {
+    public void setMProductImage(String mProductImage) {
         this.mProductImage = mProductImage;
     }
     

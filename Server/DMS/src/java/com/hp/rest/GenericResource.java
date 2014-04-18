@@ -618,16 +618,16 @@ public class GenericResource {
         //Update the order
         List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
         
-        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getmTakeOrderID());
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getmPriceTotal();
+            priceTotal += list.get(i).getMPriceTotal();
         }
         
         TakeOrder takeOrder = new TakeOrder();
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         
-        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getmTakeOrderID());
+        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
         takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
@@ -664,17 +664,17 @@ public class GenericResource {
         //Update the order
         List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
         
-        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getmTakeOrderID());
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getmPriceTotal();
+            priceTotal += list.get(i).getMPriceTotal();
         }
         
         TakeOrder takeOrder = new TakeOrder();
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         
-        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getmTakeOrderID());
-        takeOrder.setMAfterPrivate(priceTotal);
+        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
+        takeOrder.setMAfterPrivate(priceTotal  - priceTotal*takeOrder.getMDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pTakeOrder + "___ " + st);

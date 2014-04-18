@@ -223,13 +223,13 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         
         
         
-        TakeOrder t = new TakeOrder();
-        t.setMID("t1233imjtt");
-        t.setMCustomerID(null);
-        t.setMCreater(null);
-        t.setMEditer(null);
-        
-        boolean status = takeOrderDAO.saveOrUpdate(t);// update(takeOrder);
+//        TakeOrder t = new TakeOrder();
+//        t.setMID("t1233imjtt");
+//        t.setMCustomerID(null);
+//        t.setMCreater(null);
+//        t.setMEditer(null);
+        takeOrder.setMAfterPrivate(takeOrder.getMBeforePrice() - takeOrder.getMBeforePrice() * takeOrder.getMDiscount()/100);
+        boolean status = takeOrderDAO.update(takeOrder);// update(takeOrder);
         System.out.println(status+" ________________________");
         if(status){
             return SUCCESS;

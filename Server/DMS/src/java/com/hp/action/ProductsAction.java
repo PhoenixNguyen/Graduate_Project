@@ -234,29 +234,29 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                     tmp++;
                     if(row.getCell(1) != null)
                         if(row.getCell(1).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                            product.setmBarcode((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
+                            product.setMBarcode((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
                         else
-                            product.setmBarcode(row.getCell(1).getStringCellValue());
+                            product.setMBarcode(row.getCell(1).getStringCellValue());
                     if(row.getCell(1) != null)
-                        product.setmProductID((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
+                        product.setMProductID((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
                     if(row.getCell(2) != null)
-                        product.setmProductName(row.getCell(2).getStringCellValue());
+                        product.setMProductName(row.getCell(2).getStringCellValue());
                     if(row.getCell(3) != null)
-                        product.setmBrand(row.getCell(3).getStringCellValue());
+                        product.setMBrand(row.getCell(3).getStringCellValue());
                     if(row.getCell(4) != null)
-                        product.setmOrigin(row.getCell(4).getStringCellValue());
+                        product.setMOrigin(row.getCell(4).getStringCellValue());
                     if(row.getCell(5) != null)
-                        product.setmPackingSpecifications(row.getCell(5).getNumericCellValue()+"");
+                        product.setMPackingSpecifications(row.getCell(5).getNumericCellValue()+"");
                     
                     if(row.getCell(6) != null){
                         
-                        product.setmQuantification(row.getCell(6).getStringCellValue());
+                        product.setMQuantification(row.getCell(6).getStringCellValue());
                     
                     }
                     if(row.getCell(7) != null)
-                        product.setmExportPrices((float)row.getCell(7).getNumericCellValue());
+                        product.setMExportPrices((float)row.getCell(7).getNumericCellValue());
                     
-                    product.setmProvider("nhacungcap1");
+                    product.setMProvider("nhacungcap1");
                     //Add to database
                     if(productDAO.saveOrUpdate(product)){
                         System.out.println("Add Object " + (i+1));
@@ -340,9 +340,9 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         System.out.println("id_product: "+id_product);
         
         //new product
-        if(product.getmSerial() <= 0){
+        if(product.getMSerial() <= 0){
             
-            System.out.println("OKsave" + product.getmProductID());
+            System.out.println("OKsave" + product.getMProductID());
             boolean status = productDAO.saveOrUpdate(product);
             productsList = productDAO.getProductList();
             
@@ -352,7 +352,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
             return INPUT;
         }
         
-        System.out.println("OK" + product.getmProductID());
+        System.out.println("OK" + product.getMProductID());
         boolean status = productDAO.update(product);
         productsList = productDAO.getProductList();
         
@@ -391,9 +391,9 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
             FileUtils.copyFile(document2.getFile(), fileToCreate);
             
             //update the name
-            System.out.println("OK" + product.getmProductID());
+            System.out.println("OK" + product.getMProductID());
             product = productDAO.loadProduct(st);
-            product.setmProductImage(saveName);
+            product.setMProductImage(saveName);
             boolean status = productDAO.update(product);
             productsList = productDAO.getProductList();
             

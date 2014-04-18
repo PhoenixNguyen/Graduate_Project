@@ -1056,7 +1056,7 @@
                                                                                 <s:iterator value="detailTakeOrdersList" status="index">
                                                                                 <tr valign="top">
                                                                                     <td class="crmTableRow small lineOnTop">
-                                                                                        <a href="edit-takeorder-detail?id_to_d=<s:property value="mSerial"/>">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DSalesOrder%26action%3DDelete%26record%3D201%26return_module%3DSalesOrder%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D26")'>Xóa</a>				
+                                                                                        <a href="edit-takeorder-detail?id_to_d=<s:property value="mSerial"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-takeorder-detail?id_to_d=<s:property value="mSerial"/>&id_tod=<s:property value="mTakeOrderID"/>")'>Xóa</a>				
                                                                                         <br>
                                                                                     </td>
                                                                                     <td class="crmTableRow small lineOnTop">
@@ -1100,6 +1100,28 @@
                                                                                     <s:set  var="sum" value="%{#sum + mPriceTotal}"/>
                                                                                 </tr>
                                                                                 </s:iterator>
+                                                                                
+                                                                                <tr valign="top">
+                                                                                    <td class="crmTableRow small lineOnTop">
+                                                                                        <a href="new-takeorder-detail?id_to_d=<s:property value="mSerial"/>"></a> 			
+                                                                                        <br>
+                                                                                    </td>
+                                                                                    <td class="crmTableRow small lineOnTop">
+                                                                                        
+                                                                                    </td>
+                                                                                    <td class="crmTableRow small lineOnTop"></td>
+                                                                                    <td class="crmTableRow small lineOnTop"></td>
+                                                                                    <td class="crmTableRow small lineOnTop"></td>
+                                                                                    <td class="crmTableRow small lineOnTop"></td>
+                                                                                    
+                                                                                    <td class="crmTableRow small lineOnTop" align="right">
+                                                                                        
+                                                                                    </td>
+                                                                                    <td class="crmTableRow small lineOnTop" align="right">
+                                                                                        
+                                                                                    </td>
+                                                                                    <td class="crmTableRow small lineOnTop" valign="bottom" align="right"></td>
+                                                                                </tr>
                                                                             </tbody>
                                                                         </table>
                                                                         <table width="100%" border="0" cellspacing="0" cellpadding="5" class="crmTable">

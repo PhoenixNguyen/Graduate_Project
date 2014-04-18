@@ -27,7 +27,6 @@ import org.apache.struts2.ServletActionContext;
  * @author HP
  */
 public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
-    private TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
     private TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
     
     private List<TakeOrder> takeOrdersList = new ArrayList<TakeOrder>();
@@ -35,6 +34,19 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
 
     public TakeOrderDetail takeOrderDetail = new TakeOrderDetail();
 
+    TakeOrder takeOrder = new TakeOrder();
+
+    TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+        
+    
+    public TakeOrder getTakeOrder() {
+        return takeOrder;
+    }
+
+    public void setTakeOrder(TakeOrder takeOrder) {
+        this.takeOrder = takeOrder;
+    }
+    
     public TakeOrderDetail getTakeOrderDetail() {
         return takeOrderDetail;
     }
@@ -131,9 +143,6 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
             priceTotal += list.get(i).getMPriceTotal();
         }
         
-        TakeOrder takeOrder = new TakeOrder();
-        TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
-        
         takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
         takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
@@ -147,6 +156,38 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
         //takeOrdersList = takeOrderDAO.getTakeOrdersList();
         
         
+    }
+    
+    public String deleteTakeOrderDetail(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        String para =  request.getParameter("id_to_d");
+        
+        int id_pdct = ValidateHandle.getInteger(para);
+        if(id_pdct > -1){
+            takeOrderDetail = takeOrderDetailDAO.getTakeOrderDetail(id_pdct);
+            boolean st = takeOrderDetailDAO.delete(takeOrderDetail);
+            if(st){
+                //UPdate TakeOrder
+                List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
+
+                list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
+                float priceTotal = 0;
+                for(int i = 0; i < list.size(); i++){
+                    priceTotal += list.get(i).getMPriceTotal();
+                }
+        
+                takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
+                takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
+                boolean st2 = takeOrderDAO.update(takeOrder);
+                return SUCCESS;
+            }
+            else
+                return INPUT;
+        }
+        else 
+            return INPUT;
     }
     
 }

@@ -6,6 +6,7 @@
 
 package com.hp.action;
 
+import com.hp.common.ValidateHandle;
 import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.StaffDAO;
@@ -20,6 +21,8 @@ import com.hp.domain.Staff;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrder2;
 import com.hp.domain.TakeOrderDetail;
+import static com.opensymphony.xwork2.Action.INPUT;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -71,6 +74,25 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
     Document doc = new Document();
     private TakeOrder2 takeOrder2 = new TakeOrder2();
 
+    private boolean deleteStatus;
+    private boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    
+    public boolean isDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+    
     public TakeOrder2 getTakeOrder2() {
         return takeOrder2;
     }
@@ -378,5 +400,33 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         staffList = staffDAO.getListUser(null);
         
         return SUCCESS;
+    }
+    
+    public String deleteTakeOrderDetail(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        selected = true;
+                
+        String para =  request.getParameter("id_tod");
+        
+        //int id_pdct = ValidateHandle.getInteger(para);
+        if(para.compareTo("") != 0){
+            takeOrder = takeOrderDAO.getTakeOrder(para);
+            
+            boolean detailStatus = takeOrderDetailDAO.delete(takeOrder.getMID());
+            if(detailStatus){
+                deleteStatus = takeOrderDAO.delete(takeOrder);
+                
+                takeOrdersList = takeOrderDAO.getTakeOrdersList();
+                return SUCCESS;
+            }
+            else
+                return INPUT;
+            
+            
+        }
+        else 
+            return INPUT;
     }
 }

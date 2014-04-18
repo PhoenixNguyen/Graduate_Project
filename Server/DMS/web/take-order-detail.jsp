@@ -43,6 +43,21 @@
             
             
         </script>
+        
+        <script>
+            var selected = <s:property value="selected"/>;
+            console.log(selected);
+            
+            if(selected){
+                var status = false;
+                status = <s:property value="deleteStatus"/>;
+                console.log("status "+status);
+                if(status == "true")
+                    alert("Xóa thành công");
+                else
+                    alert("Không thể xóa do khách hàng đã được sử dụng cho nội dung khác");
+            }
+        </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <a name="top"></a>
@@ -395,10 +410,16 @@
                                                             DetailView.isDuplicate.value = 'true';
                                                             DetailView.module.value = 'SalesOrder';
                                                             submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;-->
-                                                    <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="DetailView.return_module.value = 'SalesOrder';
-                                                            DetailView.return_action.value = 'index';
-                                                            var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
-                                                            submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);" type="button" name="Delete" value="Xóa">&nbsp;
+                                                    <script>
+                                                        var str = "delete-takeorder?id_tod=<s:property value="takeOrder.mID"/>";
+                                                    </script>
+                                                    <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="
+                                                            confirmdelete(''+str);
+//                                                          DetailView.return_module.value = 'SalesOrder';
+//                                                            DetailView.return_action.value = 'index';
+//                                                            var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
+//                                                            submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);
+                                                            " type="button" name="Delete" value="Xóa">&nbsp;
 
 
                                                 </td>
@@ -1426,10 +1447,14 @@
                                         DetailView.isDuplicate.value = 'true';
                                         DetailView.module.value = 'SalesOrder';
                                         submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;-->
-                                <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="DetailView.return_module.value = 'SalesOrder';
-                                        DetailView.return_action.value = 'index';
-                                        var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
-                                        submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);" type="button" name="Delete" value="Xóa">&nbsp;
+                                
+                                <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="
+                                        confirmdelete(''+str);
+//                                      DetailView.return_module.value = 'SalesOrder';
+//                                        DetailView.return_action.value = 'index';
+//                                        var confirmMsg = 'Bạn muốn xóa bản ghi này chứ?';
+//                                        submitFormForActionWithConfirmation('DetailView', 'Delete', confirmMsg);
+                                        " type="button" name="Delete" value="Xóa">&nbsp;
 
 
                             </td>

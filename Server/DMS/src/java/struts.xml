@@ -612,6 +612,11 @@
             <result name="input" >take-order-detail-edit.jsp</result>
         </action>
         
+        <action name="delete-takeorder" method="deleteTakeOrderDetail" class="com.hp.action.TakeOrderAction">
+            <result name="success" >take-order.jsp</result>
+            <result name="input" >take-order-detail.jsp?id_tod=${takeOrder.mID}</result>
+        </action>
+        
         <!--Not yet handle-->
         
         

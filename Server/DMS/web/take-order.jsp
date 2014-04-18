@@ -21,6 +21,20 @@
         <![endif]-->
 
         <!-- End -->
+        <script>
+            var selected = <s:property value="selected"/>;
+            console.log(selected);
+            
+            if(selected){
+                var status = false;
+                status = <s:property value="deleteStatus"/>;
+                console.log("status "+status);
+                if(status == "true")
+                    alert("Xóa thành công");
+                else
+                    alert("Không thể xóa do khách hàng đã được sử dụng cho nội dung khác");
+            }
+        </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <a name="top"></a>
@@ -443,7 +457,7 @@
 
                                                         <td onmouseover=""><a href="" title="Accounts"><s:property value="mCreater"/> </a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
                                                         
-                                                        <td onmouseover=""><a href="">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DSalesOrder%26action%3DDelete%26record%3D201%26return_module%3DSalesOrder%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D26")'>Xóa</a></td>
+                                                        <td onmouseover=""><a href="take-order-edit?id_tod=<s:property value="mID"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-takeorder?id_tod=<s:property value="mID"/>")'>Xóa</a></td>
                                                     </tr>
                                                     </s:iterator>
                                                 </tbody>

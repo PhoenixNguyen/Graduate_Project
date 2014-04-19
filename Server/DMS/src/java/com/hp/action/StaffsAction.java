@@ -31,6 +31,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,6 +72,35 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
 
     private List<String> usersList = new ArrayList<String>();
 
+    private boolean deleteStatus;
+    private boolean selected;
+    
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    
+    public boolean isDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+    
     public List<String> getUsersList() {
         return usersList;
     }
@@ -269,17 +299,26 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         request.setCharacterEncoding("UTF8");
         usersList = userDAO.getListUser(2);
         
-        String stt = request.getParameter("id_staff");
-        int st;
-        if(stt ==null){
-            return INPUT;
-        }
-        st = Integer.parseInt(stt);
+        String para =  request.getParameter("id_st");
         
-        staffsList = staffDAO.getListStaff();
-        staff = staffDAO.loadStaff(st);
+        int id_st = ValidateHandle.getInteger(para);
+        if(id_st > -1){
+            staff = staffDAO.loadStaff(id_st);
+            return SUCCESS;
+        }
+        else
+            return INPUT;
+        
+//        String stt = request.getParameter("id_staff");
+//        int st;
+//        if(stt ==null){
+//            return INPUT;
+//        }
+//        st = Integer.parseInt(stt);
+//        
+//        staffsList = staffDAO.getListStaff();
+//        staff = staffDAO.loadStaff(st);
             
-        return SUCCESS;
     }
     
     private int staff_serial;
@@ -298,24 +337,47 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         request.setCharacterEncoding("UTF8");
         usersList = userDAO.getListUser(2);
         
-        if(staff_serial <= 0){
-            System.out.println("OK1" + staff.getMID());
-            boolean status = staffDAO.saveOrUpdate(staff);
-            staffsList = staffDAO.getListStaff();
-
-            return SUCCESS;
-        }
-        System.out.println("OK" + staff.getMID());
-        boolean status = staffDAO.update(staff);
-        staffsList = staffDAO.getListStaff();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
         
-        return SUCCESS;
+        Date out = null;
+        System.out.println("OK1" + staff.getMID());
+
+        try{
+            out = sdf2.parse(date);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        staff.setMDate(out);
+        
+        //New
+        if(staff.getMSTT() <= 0){
+            
+            boolean status = staffDAO.saveOrUpdate(staff);
+            //staffsList = staffDAO.getListStaff();
+
+            System.out.println("___ " + status);
+            if(status)
+                return SUCCESS;
+            else
+                return INPUT;
+        }
+        
+        //UPdate
+        System.out.println("OK" + staff.getMID());
+        
+        boolean status = staffDAO.update(staff);
+        if(status)            
+            return SUCCESS;
+        else
+            return INPUT;
     }
     
     public String showDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
-        
         
         String para =  request.getParameter("id_st");
         
@@ -326,5 +388,38 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         }
         else
             return INPUT;
+    }
+    
+    public String deleteStaff(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        selected = true;
+        
+        String para =  request.getParameter("id_st");
+        
+        int id_st = ValidateHandle.getInteger(para);
+        if(id_st > -1){
+            staff = staffDAO.loadStaff(id_st);
+            
+            deleteStatus = staffDAO.delete(staff);
+            
+            staffsList = staffDAO.getListStaff();
+            
+            System.out.println("_______ " +deleteStatus);
+            if(deleteStatus)
+                return SUCCESS;
+            else
+                return INPUT;
+        }
+        else
+            return INPUT;
+    }
+    
+    public String redirect(){
+        //staffsList = staffDAO.getListUser(null);
+        
+        usersList = userDAO.getListUser(2);
+        return SUCCESS;
     }
 }

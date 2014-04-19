@@ -25,4 +25,5 @@ public interface StaffDAO {
     public boolean update(Staff pStaff);
     public boolean saveOrUpdate(Staff pStaff);
             
+    public boolean delete(Staff pStaff);
 }

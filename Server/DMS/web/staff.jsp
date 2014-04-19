@@ -34,7 +34,7 @@
                 if(status == "true")
                     alert("Xóa thành công");
                 else
-                    alert("Không thể xóa do khách hàng đã được sử dụng cho nội dung khác");
+                    alert("Không thể xóa do nhân viên này đã được sử dụng cho nội dung khác");
             }
         </script>
     </head>
@@ -289,7 +289,7 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-customer"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-staff"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Nhân viên..." title="Tạo mới Nhân viên..." border="0"></a></td>
 
                                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
 
@@ -458,7 +458,7 @@
                                                             <td onmouseover=""><s:property value="mJob"/><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )"></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover=""><s:property value="mManager"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
                                                             <td onmouseover=""><s:property value="mStatus"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><a href="edit-staff?id_st=<s:property value="mStt"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-staff?id_st=<s:property value="mSTT"/>")'>Xóa</a></td>
+                                                            <td onmouseover=""><a href="edit-staff?id_st=<s:property value="mSTT"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-staff?id_st=<s:property value="mSTT"/>")'>Xóa</a></td>
                                                         </tr>
                                                         </s:iterator>
                                                        

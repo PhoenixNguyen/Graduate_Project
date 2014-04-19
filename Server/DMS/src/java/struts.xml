@@ -627,6 +627,31 @@
             <result name="success">staff-detail.jsp</result>
             <result name="input" >home.jsp</result>
         </action>
+        
+        <action name="delete-staff" method="deleteStaff" class="com.hp.action.StaffsAction">
+            <result name="success">staff.jsp</result>
+            <result name="input" >staff-detail.jsp?id_st=${staff.getMSTT()}</result>
+        </action>
+        
+        <action name="new-staff" method="redirect" class="com.hp.action.StaffsAction">
+            <result name="success">staff-add.jsp</result>
+            <result name="input" >staff-add.jsp</result>
+        </action>
+        
+        <action name="save-staff" method="updateStaff" class="com.hp.action.StaffsAction">
+            <result name="success">staff-detail.jsp?id_st=${staff.getMSTT()}</result>
+            <result name="input" >staff-add.jsp</result>
+        </action>
+        
+        <action name="edit-staff" method="editStaff" class="com.hp.action.StaffsAction">
+            <result name="success">staff-edit.jsp</result>
+            <result name="input" >staff-detail.jsp</result>
+        </action>
+        
+        <action name="update-staff" method="updateStaff" class="com.hp.action.StaffsAction">
+            <result name="success">staff-detail.jsp?id_st=${staff.getMSTT()}</result>
+            <result name="input" >staff-edit.jsp?id_st=${staff.getMSTT()}</result>
+        </action>
         <!--Not yet handle-->
         
         

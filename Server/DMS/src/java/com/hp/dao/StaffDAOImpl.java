@@ -135,7 +135,26 @@ public class StaffDAOImpl implements StaffDAO{
         transaction = session.beginTransaction();
         try{
             
-            session.saveOrUpdate(pStaff);
+            session.save(pStaff);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    public boolean delete(Staff pStaff){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.delete(pStaff);
             session.getTransaction().commit();
         }catch(HibernateException e){
             transaction.rollback();

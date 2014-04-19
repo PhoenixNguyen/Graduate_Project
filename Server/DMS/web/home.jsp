@@ -229,7 +229,7 @@
 <div class="drop_mnu" id="Tools_sub" onmouseout="fnHideDrop('Tools_sub')" onmouseover="fnShowDrop('Tools_sub')" style="left: 567px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Nhân viên</a></td></tr>
+            <tr><td><a href="staff-list" class="drop_down">Nhân viên</a></td></tr>
 
         </tbody>
     </table>

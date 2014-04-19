@@ -617,6 +617,16 @@
             <result name="input" >take-order-detail.jsp?id_tod=${takeOrder.mID}</result>
         </action>
         
+        <!--STAFF-->
+        <action name="staff-list" method="displayStaffs" class="com.hp.action.StaffsAction">
+            <result name="success">staff.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
+        
+        <action name="staff-detail" method="showDetail" class="com.hp.action.StaffsAction">
+            <result name="success">staff-detail.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
         <!--Not yet handle-->
         
         

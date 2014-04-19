@@ -62,83 +62,83 @@ public class Staff {
     @Column(name="nhanvien_trang_thai")
     private boolean mStatus;
     
-    public Integer getmSTT() {
+    public Integer getMSTT() {
         return mSTT;
     }
 
-    public void setmSTT(Integer mSTT) {
+    public void setMSTT(Integer mSTT) {
         this.mSTT = mSTT;
     }
     
-    public String getmID() {
+    public String getMID() {
         return mID;
     }
 
-    public void setmID(String mID) {
+    public void setMID(String mID) {
         this.mID = mID;
     }
     
-    public String getmPW() {
+    public String getMPW() {
         return mPW;
     }
 
-    public void setmPW(String mPW) {
+    public void setMPW(String mPW) {
         this.mPW = mPW;
     }
     
-    public String getmName() {
+    public String getMName() {
         return mName;
     }
 
-    public void setmName(String mName) {
+    public void setMName(String mName) {
         this.mName = mName;
     }
 
-    public String getmAdress() {
+    public String getMAdress() {
         return mAdress;
     }
 
-    public void setmAdress(String mAdress) {
+    public void setMAdress(String mAdress) {
         this.mAdress = mAdress;
     }
 
-    public String getmJob() {
+    public String getMJob() {
         return mJob;
     }
 
-    public void setmJob(String mJob) {
+    public void setMJob(String mJob) {
         this.mJob = mJob;
     }
 
-    public String getmPhone() {
+    public String getMPhone() {
         return mPhone;
     }
 
-    public void setmPhone(String mPhone) {
+    public void setMPhone(String mPhone) {
         this.mPhone = mPhone;
     }
 
-    public Date getmDate() {
+    public Date getMDate() {
         return mDate;
     }
 
-    public void setmDate(Date mDate) {
+    public void setMDate(Date mDate) {
         this.mDate = mDate;
     }
 
-    public String getmManager() {
+    public String getMManager() {
         return mManager;
     }
 
-    public void setmManager(String mManager) {
+    public void setMManager(String mManager) {
         this.mManager = mManager;
     }
     
-    public boolean ismStatus() {
+    public boolean isMStatus() {
         return mStatus;
     }
 
-    public void setmStatus(boolean mStatus) {
+    public void setMStatus(boolean mStatus) {
         this.mStatus = mStatus;
     }
     

@@ -7,6 +7,7 @@
 package com.hp.action;
 
 import com.hp.common.ConfigFile;
+import com.hp.common.ValidateHandle;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.StaffDAO;
@@ -203,30 +204,30 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                     int tmp = 0;
                    
                     Staff staff = new Staff();
-//                    staff.setmStt((int)row.getCell(tmp++).getNumericCellValue());
+//                    staff.setMStt((int)row.getCell(tmp++).getNumericCellValue());
                     tmp++;
                     if(row.getCell(1) != null)
-                        staff.setmID(row.getCell(1).getStringCellValue());
+                        staff.setMID(row.getCell(1).getStringCellValue());
                     if(row.getCell(2) != null)
-                        staff.setmPW(row.getCell(2).getStringCellValue());
+                        staff.setMPW(row.getCell(2).getStringCellValue());
                     if(row.getCell(3) != null)
-                        staff.setmName(row.getCell(3).getStringCellValue());
+                        staff.setMName(row.getCell(3).getStringCellValue());
                     if(row.getCell(4) != null)
-                        staff.setmAdress(row.getCell(4).getStringCellValue());
+                        staff.setMAdress(row.getCell(4).getStringCellValue());
                     if(row.getCell(5) != null)
-                    staff.setmJob(row.getCell(5).getStringCellValue());
+                    staff.setMJob(row.getCell(5).getStringCellValue());
                     if(row.getCell(6) != null)
-                    staff.setmPhone(row.getCell(6).getStringCellValue());
+                    staff.setMPhone(row.getCell(6).getStringCellValue());
                     
                     if(row.getCell(7) != null){
                         
-                        staff.setmDate(df.parse(row.getCell(7).getStringCellValue()));
+                        staff.setMDate(df.parse(row.getCell(7).getStringCellValue()));
                     
                     }
                     if(row.getCell(8) != null)
-                        staff.setmManager(row.getCell(8).getStringCellValue());
+                        staff.setMManager(row.getCell(8).getStringCellValue());
                     if(row.getCell(9) != null)
-                        staff.setmStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
+                        staff.setMStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
 
                     //Add to database
                     if(staffDAO.saveOrUpdate(staff)){
@@ -298,17 +299,32 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         usersList = userDAO.getListUser(2);
         
         if(staff_serial <= 0){
-            System.out.println("OK1" + staff.getmID());
+            System.out.println("OK1" + staff.getMID());
             boolean status = staffDAO.saveOrUpdate(staff);
             staffsList = staffDAO.getListStaff();
 
             return SUCCESS;
         }
-        System.out.println("OK" + staff.getmID());
+        System.out.println("OK" + staff.getMID());
         boolean status = staffDAO.update(staff);
         staffsList = staffDAO.getListStaff();
         
         return SUCCESS;
     }
     
+    public String showDetail(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        String para =  request.getParameter("id_st");
+        
+        int id_st = ValidateHandle.getInteger(para);
+        if(id_st > -1){
+            staff = staffDAO.loadStaff(id_st);
+            return SUCCESS;
+        }
+        else
+            return INPUT;
+    }
 }

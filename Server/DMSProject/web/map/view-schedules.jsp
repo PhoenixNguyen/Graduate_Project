@@ -220,7 +220,8 @@
                         int page2 = Integer.parseInt(request.getParameter("page")) * 10;
                         pageContext.setAttribute("first", page2);
                         %>
-                        <s:subset source="listSchedules" start="%{#attr.first}"  count="10">
+                        <%--s:subset source="listSchedules" start="%{#attr.first}"  count="10"--%>
+                        <s:subset source="listSchedules" >
                         <s:iterator  status="status" >
                             <s:date id="dateconverted" name="mDate" format="HH:mm:ss dd-MM-yyyy"/>
                         <tr>

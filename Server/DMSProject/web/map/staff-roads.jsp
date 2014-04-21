@@ -36,9 +36,16 @@
                     
             </s:iterator>
             </s:iterator--%>
-                console.log(<s:property value="listScheduleAndCustomer.get(0).get(0).schedule.getmMaKH()"/> );
-             
-                                
+                <s:iterator value="listSchedules" status="status">
+                        <s:iterator value="listScheduleAndCustomer" status="index">
+                            <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
+                            <s:if test="listSchedules.get(#status.index).getmMaKH() == mMaDoiTuong">
+                                //console.log(<s:property value="listSchedules.get(#status.index).getmMaNV()"/>  +"");
+                                console.log(<s:property value="mXCoordinates"/>);
+                            </s:if>
+                            </s:iterator>
+                        </s:iterator>
+                    </s:iterator>    
             function initialize() {
                 var i;
                 //For journey
@@ -100,36 +107,38 @@
                 //For schedule ---------------------------------------------------------------------------------------------------------
                 var Points2 = [
                     <s:iterator value="listSchedules" status="status">
-                        <s:iterator value="listCustomerInSchedule" status="index">
-                            <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#index.index).getmMaDoiTuong()">
+                        <s:iterator value="listScheduleAndCustomer" status="index">
+                            <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
+                                <s:if test="listSchedules.get(#status.index).getmMaKH() == mMaDoiTuong and mXCoordinates > 0">
                             {
-                                mXCoordinates: <s:property value="listCustomerInSchedule.get(#index.index).getmXCoordinates()"/>,
-                                        mYCoordinates: <s:property value="listCustomerInSchedule.get(#index.index).getmYCoordinates()"/>,
-                                mMaDoiTuong: '<s:property value="listSchedules.get(#status.index).getmMaKH()"/>'
+                                mXCoordinates: <s:property value="mXCoordinates"/>,
+                                        mYCoordinates: <s:property value="mYCoordinates"/>,
+                                mMaDoiTuong: '<s:property value="mMaDoiTuong"/>'
 
                             },
                             </s:if>
+                            </s:iterator>
                         </s:iterator>
                     </s:iterator>
                 ];
                 var contentString2 = [
                     <s:iterator value="listSchedules" status="status">
-                        <s:set var="countx" value="0" />
-                        <s:iterator value="listCustomerInSchedule" status="index" >
-                            <s:set var="countx" value="%{#countx + 1}" />
+                        
+                        <s:iterator value="listScheduleAndCustomer" status="index">
+                            <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
+                            <s:if test="listSchedules.get(#status.index).getmMaKH() == mMaDoiTuong and mXCoordinates > 0">
                             
-                            <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#index.index).getmMaDoiTuong()" >
                                 <s:date name="listSchedules.get(#status.index).getmDate()" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
                                 
                                 
                                     'Thời gian : <s:property value="%{createdDateId}"/> <br/>\
                                     Mã khách hàng: <s:property value="listSchedules.get(#status.index).getmMaKH()"/> <br/>\
-                                    Tên khách hàng: <s:property value="listCustomerInSchedule.get(#index.index).getmDoiTuong()"/> <br/>\
+                                    Tên khách hàng: <s:property value="mDoiTuong"/> <br/>\
                                     Mã nhân viên: <s:property value="listSchedules.get(#status.index).getmMaNV()"/> <br/>\
-                                    Thứ tự lịch trình: <s:property value="%{#index.index}"/>',
+                                    Thứ tự lịch trình: <s:property value="%{#index2.index +1 }"/>',
                                    
                             </s:if>
-                            
+                            </s:iterator>
                         </s:iterator>
                     </s:iterator>
                                             

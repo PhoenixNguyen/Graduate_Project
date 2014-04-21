@@ -30,12 +30,15 @@
             
             <script type="text/javascript">
             var arr = new Array();
-            <s:iterator value="listRoad" status="status">
+            <%--s:iterator value="listRoad" status="status">
             <s:iterator value="listRoad.get(#status.index)" status="index">
                 console.log(<s:property value="#status.index"/> + " " +<s:property value="#index.index"/>);
                     
             </s:iterator>
-            </s:iterator>
+            </s:iterator--%>
+                console.log(<s:property value="listScheduleAndCustomer.get(0).get(0).schedule.getmMaKH()"/> );
+             
+                                
             function initialize() {
                 var i;
                 //For journey
@@ -66,10 +69,11 @@
 
                 var contentString = [
                     <s:iterator value="listRoad" status="status">
-                    <s:iterator value="listRoad.get(#status.index)" >
+                    <s:iterator value="listRoad.get(#status.index)" status="index">
                     <s:date name="mThoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
                             'Mã Nhân viên: <s:property value="mMaNhanVien"/> <br/>\
-                            Thời gian:<br/><s:property value="%{createdDateId}"/>',
+                            Thời gian:<br/><s:property value="%{createdDateId}"/> <br/>\
+                            Thứ tự di chuyển: <s:property value="%{#index.index + 1}"/>',
                     </s:iterator>
                     </s:iterator>
                 ];
@@ -110,17 +114,22 @@
                 ];
                 var contentString2 = [
                     <s:iterator value="listSchedules" status="status">
-                        <s:iterator value="listCustomerInSchedule" status="index">
-                            <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#index.index).getmMaDoiTuong()">
+                        <s:set var="countx" value="0" />
+                        <s:iterator value="listCustomerInSchedule" status="index" >
+                            <s:set var="countx" value="%{#countx + 1}" />
+                            
+                            <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#index.index).getmMaDoiTuong()" >
                                 <s:date name="listSchedules.get(#status.index).getmDate()" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                                
                                 
                                     'Thời gian : <s:property value="%{createdDateId}"/> <br/>\
                                     Mã khách hàng: <s:property value="listSchedules.get(#status.index).getmMaKH()"/> <br/>\
                                     Tên khách hàng: <s:property value="listCustomerInSchedule.get(#index.index).getmDoiTuong()"/> <br/>\
-                                    Mã nhân viên: <s:property value="listSchedules.get(#status.index).getmMaNV()"/>',
-            
-                                    
+                                    Mã nhân viên: <s:property value="listSchedules.get(#status.index).getmMaNV()"/> <br/>\
+                                    Thứ tự lịch trình: <s:property value="%{#index.index}"/>',
+                                   
                             </s:if>
+                            
                         </s:iterator>
                     </s:iterator>
                                             
@@ -147,6 +156,7 @@
                 
                 //multi polyline - line -------------------------------------------------------------------------------------------------
                 var multi = [
+                    //Road
                     <s:iterator value="listRoad" status="status">
                     
                     [
@@ -157,16 +167,27 @@
                     ],
                     </s:iterator>  
                 
-                    //Schedule
+                    //Schedule =================================================================================
+                    <s:iterator value="listScheduleAndCustomer" status="status">
                     
-                        <s:iterator value="listStaffs" status="st">
+                    [
+                        <s:iterator value="listScheduleAndCustomer.get(#status.index)"   status="index">
+                            <s:if test="mXCoordinates > 0">
+                                new google.maps.LatLng(<s:property value="mXCoordinates"/>, <s:property value="mYCoordinates"/>),
+                            </s:if>
+                        </s:iterator>
+                        
+                    ],
+                    </s:iterator> 
+                    
+                        <%--s:iterator value="listStaffs" status="st">
                                 [
                                 <s:iterator value="listSchedules" status="status">
 
                                         <s:if test="listSchedules.get(#status.index).getmMaNV() == listStaffs.get(#st.index).getmID()">
                                             
                                             <s:iterator value="listCustomerInSchedule" status="cus">
-                                                <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#cus.index).getmMaDoiTuong()">
+                                                <s:if test="listSchedules.get(#status.index).getmMaKH() == listCustomerInSchedule.get(#cus.index).getmMaDoiTuong() && listCustomerInSchedule.get(#cus.index).getmXCoordinates() > 0">
                                                     new google.maps.LatLng(<s:property value="listCustomerInSchedule.get(#cus.index).getmXCoordinates()"/>,
                                                                             <s:property value="listCustomerInSchedule.get(#cus.index).getmYCoordinates()"/>),
                                                 </s:if>                            
@@ -174,7 +195,7 @@
                                         </s:if>
                                 </s:iterator>
                                 ],
-                        </s:iterator>
+                        </s:iterator--%>
                         
                     
                 ];

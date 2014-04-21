@@ -18,6 +18,7 @@ import com.hp.domain.RoadManagement;
 import com.hp.domain.Customer;
 import com.hp.domain.PushInfo;
 import com.hp.domain.Schedule;
+import com.hp.domain.ScheduleAndCustomer;
 import com.hp.domain.Staff;
 import com.hp.domain.User;
 import com.hp.excelhandle.GetData;
@@ -87,6 +88,15 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         return pushInfo;
     }
     
+    private List<List<Customer>> listScheduleAndCustomer = new ArrayList<List<Customer>>();
+
+    public List<List<Customer>> getListScheduleAndCustomer() {
+        return listScheduleAndCustomer;
+    }
+
+    public void setListScheduleAndCustomer(List<List<Customer>> listScheduleAndCustomer) {
+        this.listScheduleAndCustomer = listScheduleAndCustomer;
+    }
     
     public List<Customer> getListCustomerInSchedule() {
         return listCustomerInSchedule;
@@ -313,6 +323,9 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"));
                 
+                //List customer and schedule
+                listScheduleAndCustomer = customerDAO.customerScheduleList((String)session.getAttribute("giamdocId"), (String)session.getAttribute("staffId"), date, toDate);
+                
                 pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
                 pushInfo.setStaffID((String)session.getAttribute("staffId"));
                 pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
@@ -324,6 +337,11 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 filesNameList = getImagesName(listCustomer);
                 
              }else{
+                //List customer and schedule
+                listScheduleAndCustomer = customerDAO.customerScheduleList(null, null, date, toDate);
+                
+                System.out.println(" ___ " + listScheduleAndCustomer.get(0).get(0).getmXCoordinates());
+                
                 listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
                 listSchedules = scheduleDAO.getSchedulesList(null, null, date, toDate);
                 listCustomer = customerDAO.loadCustomersWithLocations();

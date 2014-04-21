@@ -109,7 +109,7 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         
         List<Schedule> courses = null;
         try{
-            courses = session.createQuery("from Schedule order by mDate").list();
+            courses = session.createQuery("from Schedule order by mMaNV,  mDate").list();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -149,9 +149,9 @@ public class ScheduleDAOImpl implements ScheduleDAO{
             if(pStaff != null)
             {
                 if(datefinal.compareTo("") == 0)
-                    courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' order by mDate").list();
+                    courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' order by mMaNV, mDate").list();
                 else
-                    courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' and cast (mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'  order by mDate").list();
+                    courses = session.createQuery("from Schedule where mMaNV='"+pStaff+"' and cast (mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'  order by mMaNV, mDate").list();
                 
                 return courses;
             }
@@ -160,18 +160,18 @@ public class ScheduleDAOImpl implements ScheduleDAO{
                 if(datefinal.compareTo("") == 0)
                     courses = session.createQuery("select sc from Schedule as sc, Staff as st where "
                         + "st.mID = sc.mMaNV and st.mManager = '" +pManagerID +"'"
-                        + " order by sc.mDate").list();
+                        + " order by sc.mMaNV, sc.mDate").list();
                 else
                 courses = session.createQuery("select sc from Schedule as sc, Staff as st where "
                         + "st.mID = sc.mMaNV and st.mManager = '" +pManagerID +"'"
-                        + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"' order by sc.mDate").list();
+                        + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"' order by sc.mMaNV, sc.mDate").list();
                 return courses;
             }
             else{
                 if(datefinal.compareTo("") == 0)
-                    courses = session.createQuery("from Schedule  order by mDate").list();
+                    courses = session.createQuery("from Schedule  order by mMaNV, mDate").list();
                 else
-                    courses = session.createQuery("from Schedule where cast (mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'  order by mDate").list();
+                    courses = session.createQuery("from Schedule where cast (mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'  order by mMaNV, mDate").list();
                 return courses;
             }
           

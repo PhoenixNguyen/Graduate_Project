@@ -10,6 +10,7 @@ import com.googlecode.s2hibernate.struts2.plugin.annotations.SessionTarget;
 import com.googlecode.s2hibernate.struts2.plugin.annotations.TransactionTarget;
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
 import com.hp.domain.Customer;
+import com.hp.domain.ScheduleAndCustomer;
 import com.hp.domain.Staff;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -278,7 +279,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         try{
             courses = session.createQuery("select cus from Customer as cus, Schedule as sc "
                     + "where cus.mMaDoiTuong = sc.mMaKH "
-                    + "and cus.mXCoordinates is NOT NULL and  cus.mYCoordinates is NOT NULL ").list();
+                    + "and cus.mXCoordinates is NOT NULL and  cus.mYCoordinates is NOT NULL order by sc.mMaNV, sc.mDate  ").list();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -307,9 +308,9 @@ public class CustomerDAOImpl implements CustomerDAO {
                         + "cus.mMaDoiTuong = sc.mMaKH "
                         + "and st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
                         + "' and cus.mXCoordinates is NOT NULL "
-                        + "and  cus.mYCoordinates is NOT NULL ").list();
+                        + "and  cus.mYCoordinates is NOT NULL order by sc.mMaNV, sc.mDate " ).list();
             else
-                courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"'").list();
+                courses = session.createQuery("select cus from Customer as cus, Schedule as sc where cus.mMaDoiTuong = sc.mMaKH and cus.mMaNhanVien='"+pStaff+"' order by sc.mMaNV, sc.mDate ").list();
           
         }catch(Exception e){
             e.printStackTrace();
@@ -399,6 +400,99 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         finally {
             session.close();
+        }
+        
+        return courses;
+    }
+    
+    public List<List<Customer>> customerScheduleList(String pManagerID, String pStaff, String pDate, String pToDate){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<List<Customer>> courses = new ArrayList<List<Customer>>();
+        try{
+            String datefinal="";
+            String toDatefinal="";
+            System.out.println(" DATE: " + pDate); 
+            if(pDate != null && pDate.compareTo("")!= 0 && pToDate.compareTo("")!= 0){
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                
+                Date date = sdf.parse(pDate);
+                datefinal = sdf2.format(date);
+                
+                Date toDate = sdf.parse(pToDate);
+                toDatefinal = sdf2.format(toDate);
+                System.out.println(" DATECONVERT: " + datefinal + " toDatefinal " + toDatefinal);
+            }
+            
+            if(pStaff != null)
+            {
+                    List<Customer> tmp = new ArrayList<Customer>();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + "where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +pStaff+"' order by sc.mMaNV, sc.mDate").list();
+                    else
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + " where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +pStaff+"' "
+                                + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " order by sc.mMaNV, sc.mDate").list();
+                                                                
+                    if(tmp.size() > 0)
+                        courses.add(tmp);
+                //}
+                
+                return courses;
+            }
+            else 
+            if(pManagerID != null){
+                List<String> nhanvien = null;
+                nhanvien = session.createQuery("select mID "
+                        + "from Staff "
+                        + "where mManager ='"+pManagerID+"' "
+                        ).list();
+                for(int i= 0; i < nhanvien.size(); i++){
+                    List<Customer> tmp = new ArrayList<Customer>();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + "where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' order by sc.mMaNV, sc.mDate").list();
+                    else
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + " where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' "
+                                + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " order by sc.mMaNV, sc.mDate").list();
+                                                                
+                    if(tmp.size() > 0)
+                        courses.add(tmp);
+                }
+                return courses;
+            }
+            else{
+                List<String> nhanvien = null;
+                nhanvien = session.createQuery("select mID "
+                        + "from Staff "
+                        + " "
+                        ).list();
+                for(int i= 0; i < nhanvien.size(); i++){
+                    List<Customer> tmp = new ArrayList<Customer>();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + "where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' order by sc.mMaNV, sc.mDate").list();
+                    else
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + " where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' "
+                                + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " order by sc.mMaNV, sc.mDate").list();
+                                                                
+                    if(tmp.size() > 0)
+                        courses.add(tmp);
+                }
+                return courses;
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
         }
         
         return courses;

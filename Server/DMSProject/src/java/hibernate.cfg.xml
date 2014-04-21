@@ -36,6 +36,7 @@
         <mapping class="com.hp.domain.InventoryManagerDetail" />
         
         <mapping class="com.hp.domain.Stock" />
+        
                 
   </session-factory>
 </hibernate-configuration>

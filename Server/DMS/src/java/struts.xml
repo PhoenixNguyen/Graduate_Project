@@ -652,6 +652,31 @@
             <result name="success">staff-detail.jsp?id_st=${staff.getMSTT()}</result>
             <result name="input" >staff-edit.jsp?id_st=${staff.getMSTT()}</result>
         </action>
+        
+        <action name="import-staff" method="redirect" class="com.hp.action.StaffsAction">
+            <result name="success">staff-import.jsp</result>
+            <result name="input" >staff-import.jsp</result>
+        </action>
+        
+        <action name="upload-staff" method="saveFile" class="com.hp.action.StaffsAction">
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            
+            <result name="success">staff-import-commit.jsp</result>
+            <result name="input" >staff-import.jsp</result>
+        </action>
+        
+        <action name="add-staff" method="addStaffFromExcelFile" class="com.hp.action.StaffsAction">
+
+            <result type="json">
+                <param name="contentType">application/json</param>
+            </result>
+            
+        </action>
         <!--Not yet handle-->
         
         

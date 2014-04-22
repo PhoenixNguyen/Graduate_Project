@@ -1,46 +1,55 @@
 <%-- 
-    Document   : home
-    Created on : Apr 9, 2014, 10:11:04 PM
+    Document   : customers-import-commit
+    Created on : Apr 10, 2014, 12:50:27 AM
     Author     : HP
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html>
-
-<html>
-    <head>
-        <title>admin - Nhân viên - Nhân viên - Phần mềm quản lý HOSCO-MANAGEMENT</title>
-        <link rel="SHORTCUT ICON" href="/DMS/themes/images/vtigercrm_icon.ico">  
-        <style type="text/css">@import url("/DMS/themes/softed/style.css");</style>
-        <link rel="stylesheet" type="text/css" media="all" href="/DMS/jscalendar/calendar-win2k-cold-1.css">
-        <!-- ActivityReminder customization for callback -->
-
-        <style type="text/css">div.fixedLay1 { position:fixed; }</style>
-        <!--[if lte IE 6]>
-        <style type="text/css">div.fixedLay { position:absolute; }</style>
-        <![endif]-->
-
-        <!-- End -->
+<html><head>
+	<title>admin - Nhân viên - Xác nhận - Phần mềm quản lý HOSCO-MANAGEMENT</title>
+	<link rel="SHORTCUT ICON" href="themes/images/vtigercrm_icon.ico">	
+	<style type="text/css">@import url("themes/softed/style.css");</style>
+	<link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
+				<!-- ActivityReminder customization for callback -->
+	
+	<style type="text/css">div.fixedLay1 { position:fixed; }</style>
+	<!--[if lte IE 6]>
+	<style type="text/css">div.fixedLay { position:absolute; }</style>
+	<![endif]-->
+	
+        <script language="JavaScript" type="text/javascript" src="jscommon/input-page.js"></script>
+        <script language="JavaScript" type="text/javascript" src="jscommon/jquery.min.js"></script>
+<!--        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>-->
+        
+	<!-- End -->
         <script>
-            var selected = <s:property value="selected"/>;
-            console.log(selected);
-            
-            if(selected){
-                var status = false;
-                status = <s:property value="deleteStatus"/>;
-                console.log("status "+status);
-                if(status == "true")
-                    alert("Xóa thành công");
-                else
-                    alert("Không thể xóa do nhân viên này đã được sử dụng cho nội dung khác");
+            function importStaffs(){
+                console.log('GET');
+                //$("#info").append('hello');
+                $.getJSON('add-staff',
+                    function(data){
+                        console.log('GET2');
+                        var staffsTotal = (data.staffsTotal);
+                        console.log(staffsTotal);
+
+                        var option = $("#info");
+                        option.find('span').remove();
+                        var alert = "Có " + staffsTotal + " nhân viên được thêm!";
+                        option.append($("<span/>").append(alert));
+
+                    }
+                );
             }
+        
         </script>
-    </head>
-    <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
+</head>
+	<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <a name="top"></a>
         <!-- header -->
+                
         <!-- header-vtiger crm name & RSS -->
         <script language="JavaScript" type="text/javascript" src="include/js/json.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/general.js"></script>
@@ -116,11 +125,11 @@
                     <tbody>
                         <tr>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap="customer-list"><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -170,8 +179,7 @@
     <tbody><tr>
             <td>
                 <table border="0" cellspacing="0" cellpadding="0">
-                    <tbody>
-                        <tr>
+                    <tbody><tr>
 
                             <td class="level2UnSelTab" nowrap=""> <a href="">Chiến dịch</a> </td>
                             <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
@@ -179,7 +187,7 @@
                             <td class="level2UnSelTab" nowrap=""> <a href="">Webmails</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Đầu mối</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Lịch</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="">Tài liệu</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Documents&amp;action=index&amp;parenttab=">Tài liệu</a> </td>
                         </tr>
                     </tbody>
                 </table>
@@ -274,7 +282,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Nhân viên &gt; <a class="hdrLink" href="">Danh sách</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Nhân viên &gt; <a class="hdrLink" href="">Xác nhận</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -319,20 +327,21 @@
                                             <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
 <!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                         </tr>
-                                    </tbody></table>  
+                                    </tbody>
+                                </table>  
                             </td>
                             <td style="width:20px;">&nbsp;</td>
-<!--                            <td class="small">
-                                 All Menu 
+                            <td class="small">
+                                <!-- All Menu -->
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
+<!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
+                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
                                         </tr>
                                     </tbody>
                                 </table>
-                            </td>-->
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -356,155 +365,184 @@
 
 </div>
 
-<!-- KHACH HANG -->
-<table border="0" cellspacing="0" cellpadding="0" width="98%" align="center">
-    <tbody>
-        <tr>
-            <td valign="top"><img src="themes/softed/images/showPanelTopLeft.gif"></td>
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="98%" class="small">
+<tbody>
+   <tr>
+	<td valign="top"><img src="themes/softed/images/showPanelTopLeft.gif"></td>
+	<td class="showPanelBg" valign="top" width="100%">
+		<table cellpadding="0" cellspacing="0" width="100%" class="small">
+		   <tbody><tr>
+			<td width="75%" valign="top">
+<!--				<form enctype="multipart/form-data" name="Import" method="POST" action="" onsubmit="VtigerJS_DialogBox.block();">-->
+				<input type="hidden" name="module" value="Products">
+				
 
-            <td class="showPanelBg" valign="top" width="100%" style="padding:10px;">
-                <!-- SIMPLE SEARCH -->
-                <div id="searchAcc" style="display: block;position:relative;">
-                    <form name="basicSearch" method="post" action="home.jsp" onsubmit="return callSearch('Basic');">
-                        <table width="80%" cellpadding="5" cellspacing="0" class="searchUIBasic small" align="center" border="0">
-                            <tbody><tr>
-                                    <td class="searchUIName small" nowrap="" align="left">
-                                        <span class="moduleName">Tìm kiếm</span><br>
-                                        <!-- <img src="themes/images/basicSearchLens.gif" align="absmiddle" alt="Tìm kiếm cơ bản" title="Tìm kiếm cơ bản" border=0>&nbsp;&nbsp;-->
-                                    </td>
-                                    <td class="small" nowrap="" align="right"><b>Tìm kiếm </b></td>
-                                    <td class="small"><input type="text" class="txtBox" style="width:120px" name="search_text"></td>
-                                    <td class="small" nowrap=""><b>Trong</b>&nbsp;</td>
-                                    <td class="small" nowrap="">
-                                        <div id="basicsearchcolumns_real">
-                                            <select name="search_field" id="bas_searchfield" class="txtBox" style="width:150px">
-                                                <option label="Tên Khách hàng" value="accountname">Tên Khách hàng</option>
-                                                <option label="Được gán cho" value="assigned_user_id">Được gán cho</option>
-                                                <option label="Tạo lúc" value="createdtime">Tạo lúc</option>
-                                                <option label="Ngày sinh" value="cf_607">Ngày sinh</option>
-                                                <option label="Điện thoại" value="phone">Điện thoại</option>
-                                                <option label="Đánh giá" value="rating">Đánh giá</option>
-
-                                            </select>
-                                        </div>
-                                        <input type="hidden" name="searchtype" value="BasicSearch">
-                                        <input type="hidden" name="module" value="Accounts">
-                                        <input type="hidden" name="parenttab" value="Marketing">
-                                        <input type="hidden" name="action" value="index">
-                                        <input type="hidden" name="query" value="true">
-                                        <input type="hidden" name="search_cnt">
-                                    </td>
-                                    <td class="small" nowrap="" width="40%">
-                                        <input name="submit" type="button" class="crmbutton small create" onclick="callSearch('Basic');" value=" Thực hiện tìm kiếm ">&nbsp;
-
-                                    </td>
-                                    <td class="small" valign="top" onmouseover="this.style.cursor = 'pointer';" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch')">[x]</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="7" align="center" class="small">
-                                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                                            <tbody><tr>
-                                                    <td class="searchAlph" id="alpha_1" align="center" 
-                                                        onclick=""></td>
-                                                </tr>
-                                            </tbody></table>
-                                    </td>
-                                </tr>
-                            </tbody></table>
-                    </form>
-                </div>                  
-
-                <!-- PUBLIC CONTENTS STARTS-->
-                <div id="ListViewContents" class="small" style="width:100%;">
-                    <script language="JavaScript" type="text/javascript" src="include/js/ListView.js"></script>
-                    <form name="massdelete" method="POST" id="massdelete" onsubmit="VtigerJS_DialogBox.block();">
-                        <input name="search_url" id="search_url" type="hidden" value="">
-                        
-                        <!-- List View Master Holder starts -->
-                        <table border="0" cellspacing="1" cellpadding="0" width="100%" class="lvtBg">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <!-- List View's Buttons and Filters starts -->
-                                        <table border="0" cellspacing="0" cellpadding="2" width="100%" class="small">
-                                            <!--                                            
-                                                                                    </table>
-                                            <!-- List View's Buttons and Filters ends -->
-
-                                            <div>
-                                                <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
-                                                    <!-- Table Headers -->
-                                                    <tbody>
-                                                        <tr>
-                                                            <td width="5%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Stt</a></td>
-                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Tên Nhân viên</a></td>
-                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = accountname & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Mã Nhân viên</a></td>
-                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = smownerid & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Mật khẩu</a></td>
-                                                            <td width="20%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = createdtime & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Địa chỉ</a></td>
-                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = cf_607 & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Điện thoại</a></td>
-                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = phone & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Chức vụ</a></td>
-                                                            <td width="10%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = phone & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Người quản lý</a></td>
-                                                            <td width="5%" class="lvtCol"><a href="javascript:;" onclick="getListViewEntries_js( & quot; Accounts & quot; , & quot; parenttab = Marketing & amp; foldername = Default & amp; order_by = rating & amp; start = 1 & amp; sorder = ASC & amp; viewname = 66 & quot; );" class="listFormHeaderLinks">Trạng thái</a></td>
-                                                            <td width="10%" class="lvtCol">Hoạt động</td>
-                                                        </tr>
-                                                        <!-- Table Contents -->
-                                                        <s:iterator value="staffsList" status="index">
-                                                        <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_137" class="lvtColData">
-                                                            <td onmouseover=""><s:property value="%{#index.index + 1}"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><a href="staff-detail?id_st=<s:property value="mSTT"/>" title="Accounts"><s:property value="mName"/></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><a href="staff-detail?id_st=<s:property value="mSTT"/>" title="Accounts"><s:property value="mID"/></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="accountname" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><s:property value="mPW"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="assigned_user_id" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><s:property value="mAdress"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="createdtime" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><s:property value="mPhone"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><s:property value="mJob"/><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )"></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><s:property value="mManager"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><s:property value="mStatus"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
-                                                            <td onmouseover=""><a href="edit-staff?id_st=<s:property value="mSTT"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-staff?id_st=<s:property value="mSTT"/>")'>Xóa</a></td>
-                                                        </tr>
-                                                        </s:iterator>
-                                                       
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <table border="0" cellspacing="0" cellpadding="2" width="100%">
-
-                                            </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-
-                    </form>  
-
-                </div>
-
-            </td>
-            <td valign="top"><img src="themes/softed/images/showPanelTopRight.gif"></td>
-        </tr>
-    </tbody>
+				<!-- IMPORT LEADS STARTS HERE  -->
+				<br>
+				<table align="center" cellpadding="5" cellspacing="0" width="95%" class="mailClient importLeadUI small">
+				   <tbody><tr>
+					<td class="mailClientBg genHeaderSmall" height="50" valign="middle" align="left">Nhập dữ liệu Nhân viên</td>
+				   </tr>
+				   <tr>
+					<td>&nbsp;</td>
+				   </tr>
+				   <tr>
+					<td align="left" style="padding-left:40px;">
+							<span class="genHeaderGray">Bước 2 of 2 </span>&nbsp;
+						<span class="genHeaderSmall"> </span>
+					</td>
+				   </tr>
+				   <tr>
+					<td align="left" style="padding-left:40px;"> 
+                                            Tên file đã tải lên: <s:property value="document.getFileFileName()"/>
+					</td>
+                                        
+				   </tr>
+                                   <tr>
+                                       <td align="left" style="padding-left:40px;">
+                                           <div id="info">STATUS: 
+                                                <span></span>
+                                            </div>  
+                                       </td>
+                                   </tr>
+				      	
+				   <tr>
+					<td align="right" style="padding-right:40px;" class="reportCreateBottom">
+						<input type="submit" name="button" value=" &nbsp;‹ Quay lại &nbsp; " class="crmbutton small cancel" onclick="
+                                                    
+                                                    //this.form.action.value='Import';this.form.step.value='1'; return true;
+                                                    ">
+						&nbsp;&nbsp;
+						<input type="button" name="button" value=" &nbsp; Nhập dữ liệu › &nbsp; " class="crmbutton small save" onclick="
+                                                    importStaffs();
+                                                    
+                                                    //this.form.action.value='Import';this.form.step.value='3'; check_submit();
+                                                                                                    
+                                                       ">
+					</td>
+				   </tr>
+				  </tbody>
+                                </table>
+<!--				</form>-->
+				<!-- IMPORT LEADS ENDS HERE -->	
+			</td>
+		   </tr>
+		</tbody>
+                </table>
+	</td>
+   </tr>
+</tbody>
 </table>
+<script language="javascript" type="text/javascript">
+function validate_import_map()
+{
+	var tagName;
+	var count = 0;
+	var field_count = "1";
+	var required_fields = new Array();
+	var required_fields_name = new Array();
+	var seq_string = '';
+				required_fields[count] = "productname";
+			required_fields_name[count] = "Tên sản phẩm";
+			count = count + 1;
+						required_fields[count] = "cf_628";
+			required_fields_name[count] = "Tên kho";
+			count = count + 1;
+					
+	for(loop_count = 0; loop_count<field_count;loop_count++)
+	{
+		tagName = document.getElementById('colnum'+loop_count);
+		optionData = tagName.options[tagName.selectedIndex].value;
 
-<br><br><br>
+		if(optionData != -1)
+		{
+			tmp = seq_string.indexOf("\""+optionData+"\"");
+			if(tmp == -1)
+			{
+				seq_string = seq_string + "\""+optionData+"\"";
+			}
+			else
+			{
+				//if a vtiger_field mapped more than once, alert the user and return
+				alert("'"+tagName.options[tagName.selectedIndex].text+" 'là ánh xạ nhiều hơn một lần. Xin vui lòng kiểm tra việc ánh xạ của bạn.");
+				return false;
+			}
+		}
 
-<table border="0" cellspacing="0" cellpadding="5" width="100%" class="settingsSelectedUI">
-    <tbody>
-        <tr>
-            <td class="small" align="left"><span style="color: rgb(153, 153, 153);">HOSCO-CRM</span></td>
-            <td class="small" align="right"><span style="color: rgb(153, 153, 153);">© 2014 <a href="http://www.hosgroup.com.vn" target="_blank">hosgroup.com.vn</a></span> </td>
-        </tr>
-    </tbody>
-</table>    
-<script>
-            var userDateFormat = "dd-mm-yyyy";
-            var default_charset = "UTF-8";</script>
-<script type="text/javascript">
-            if (typeof (ActivityReminderCallback) != 'undefined') window.setTimeout(function(){
-    ActivityReminderCallback();
-    }, 22000);
-</script><!--end body panes-->
+	}
 
-</body>
-</html>
+	//check whether the mandatory vtiger_fields have been mapped.
+	for(inner_loop = 0; inner_loop<required_fields.length;inner_loop++)
+	{
+		if(seq_string.indexOf(required_fields[inner_loop]) == -1)
+		{
+			alert('Xin vui lòng ánh xạ các trường bắt buộc "'+required_fields_name[inner_loop]+'"');
+			return false;
+		}
+	}
+
+	//This is to check whether the save map name has been given or not when save map check box is checked
+	if(document.getElementById("save_map").checked == true)
+	{
+		if(trim(document.getElementById("save_map_as").value) == '')
+		{
+			alert("Xin vui lòng nhập vào tên của việc ánh xạ");
+			return false;
+		}
+	}
+
+	return true;
+}
+</script>
+<!-- stopscrmprint --><style>
+		.bggray
+		{
+			background-color: #dfdfdf;
+		}
+	.bgwhite
+	{
+		background-color: #FFFFFF;
+	}
+	.copy
+	{
+		font-size:9px;
+		font-family: Verdana, Arial, Helvetica, Sans-serif;
+	}
+	</style>
+		<script language="javascript">
+		function LogOut(e)
+		{
+			var nav4 = window.Event ? true : false;
+			var iX,iY;
+			if (nav4)
+			{
+				iX = e.pageX;
+				iY = e.pageY;
+			}
+			else
+			{
+				iX = event.clientX + document.body.scrollLeft;
+				iY = event.clientY + document.body.scrollTop;
+
+			}
+			if (iX <= 30 && iY < 0 )
+			{
+				w=window.open("index.php?action=Logout&module=Users");
+				w.close();
+			}
+		}
+	//window.onunload=LogOut
+	</script>
+		<script language="JavaScript" type="text/javascript" src="include/js/popup.js"></script><br><br><br><table border="0" cellspacing="0" cellpadding="5" width="100%" class="settingsSelectedUI"><tbody><tr><td class="small" align="left"><span style="color: rgb(153, 153, 153);">HOSCO-CRM</span></td><td class="small" align="right"><span style="color: rgb(153, 153, 153);">© 2014 <a href="http://www.hosgroup.com.vn" target="_blank">hosgroup.com.vn</a></span> </td></tr></tbody></table>		<script>
+			var userDateFormat = "dd-mm-yyyy";
+			var default_charset = "UTF-8";
+		</script>
+<script type="text/javascript">if(typeof(ActivityReminderCallback) != 'undefined') window.setTimeout(function(){
+						ActivityReminderCallback();
+					},38000);</script><!--end body panes-->
+
+
+
+
+
+</body></html>

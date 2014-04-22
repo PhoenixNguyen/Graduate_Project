@@ -153,10 +153,12 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         usersList = userDAO.getListUser(2);
                 
         String saveName = document.getFileFileName();
+        if(saveName == null)
+            return INPUT;
         try {
             
             System.out.println(document.getFileContentType());
-            String filePath = ServletActionContext.getServletContext().getRealPath("/database/");
+            String filePath = ServletActionContext.getServletContext().getRealPath("/db_inputs/");
             System.out.println("Server path:" + filePath);
             
             File fileToCreate = new File(filePath, saveName);
@@ -210,7 +212,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                 }
             }
 
-            for(int i = 5; i < rows; i++){
+            for(int i = 1; i < rows; i++){
                 
                 row = sheet.getRow(i);
                 System.out.println("__ Rows: " +(i+1));
@@ -220,45 +222,42 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                     //If the staff id null
                     if(row.getCell(1) == null ||
                             row.getCell(1).getStringCellValue().compareTo("") == 0
-//                            row.getCell(ConfigFile.MA_DOI_TUONG_COL+1) == null ||
-//                            row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_STRING
-//                            row.getCell(ConfigFile.X_COORDINATES_COL) == null ||
-//                            row.getCell(ConfigFile.Y_COORDINATES_COL) == null ||
-//                            row.getCell(ConfigFile.X_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING ||
-//                            row.getCell(ConfigFile.Y_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING
+
                             ){
                         continue;   
                     }
                     
-                    //Init Staff Object
-                    int tmp = 0;
-                   
+                    //Init Staff Object                   
                     Staff staff = new Staff();
-//                    staff.setMStt((int)row.getCell(tmp++).getNumericCellValue());
-                    tmp++;
-                    if(row.getCell(1) != null)
-                        staff.setMID(row.getCell(1).getStringCellValue());
-                    if(row.getCell(2) != null)
-                        staff.setMPW(row.getCell(2).getStringCellValue());
-                    if(row.getCell(3) != null)
-                        staff.setMName(row.getCell(3).getStringCellValue());
-                    if(row.getCell(4) != null)
-                        staff.setMAdress(row.getCell(4).getStringCellValue());
-                    if(row.getCell(5) != null)
-                    staff.setMJob(row.getCell(5).getStringCellValue());
-                    if(row.getCell(6) != null)
-                    staff.setMPhone(row.getCell(6).getStringCellValue());
-                    
-                    if(row.getCell(7) != null){
+                    try{
                         
-                        staff.setMDate(df.parse(row.getCell(7).getStringCellValue()));
-                    
-                    }
-                    if(row.getCell(8) != null)
-                        staff.setMManager(row.getCell(8).getStringCellValue());
-                    if(row.getCell(9) != null)
-                        staff.setMStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
+                        if(row.getCell(1) != null)
+                            staff.setMID(row.getCell(1).getStringCellValue());
+                        if(row.getCell(2) != null)
+                            staff.setMPW(row.getCell(2).getStringCellValue());
+                        if(row.getCell(3) != null)
+                            staff.setMName(row.getCell(3).getStringCellValue());
+                        if(row.getCell(4) != null)
+                            staff.setMAdress(row.getCell(4).getStringCellValue());
+                        if(row.getCell(5) != null)
+                        staff.setMJob(row.getCell(5).getStringCellValue());
+                        if(row.getCell(6) != null)
+                        staff.setMPhone(row.getCell(6).getStringCellValue());
 
+                        if(row.getCell(7) != null){
+
+                            staff.setMDate(df.parse(row.getCell(7).getStringCellValue()));
+
+                        }
+                        if(row.getCell(8) != null)
+                            staff.setMManager(row.getCell(8).getStringCellValue());
+                        if(row.getCell(9) != null)
+                            staff.setMStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
+                        }
+                    catch(Exception e){
+                        e.printStackTrace();
+                        continue;
+                    }
                     //Add to database
                     if(staffDAO.saveOrUpdate(staff)){
                         System.out.println("Add Object " + (i+1));

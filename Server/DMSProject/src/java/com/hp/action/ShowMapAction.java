@@ -320,8 +320,8 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 listSchedules = scheduleDAO.getSchedulesList((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"), date, toDate);
                 
-                listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule((String)session.getAttribute("giamdocId"),
-                        (String)session.getAttribute("staffId"));
+//                listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule((String)session.getAttribute("giamdocId"),
+//                        (String)session.getAttribute("staffId"));
                 
                 //List customer and schedule
                 listScheduleAndCustomer = customerDAO.customerScheduleList((String)session.getAttribute("giamdocId"), (String)session.getAttribute("staffId"), date, toDate);
@@ -342,7 +342,7 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 
                 System.out.println(" ___ " + listScheduleAndCustomer.get(0).get(0).getmXCoordinates());
                 
-                listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
+                //listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
                 listSchedules = scheduleDAO.getSchedulesList(null, null, date, toDate);
                 listCustomer = customerDAO.loadCustomersWithLocations();
                 listRoad = mRoadManagementDAO.getRoad(null,null,null,date, toDate);

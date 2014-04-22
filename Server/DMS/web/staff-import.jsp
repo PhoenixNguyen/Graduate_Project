@@ -372,12 +372,12 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" align="left" valign="top" style="padding-left:40px;">
-                                                    Phần mềm hỗ trợ nhập các bản ghi từ file .xls. Để bắt đầu nhập, chọn file .xls và ấn Next để tiếp tục. <a href="">(Lấy file mẫu)</a>
+                                                    Phần mềm hỗ trợ nhập các bản ghi từ file .xls. Để bắt đầu nhập, chọn file .xls và ấn Next để tiếp tục. <a href="staff-template">(Lấy file mẫu)</a>
                                                 </td>
                                             </tr>
                                             <tr><td align="left" valign="top" colspan="2">&nbsp;</td></tr>
                                             <tr>
-                                                <td align="right" valign="top" width="25%" class="small"><b>Vị trí Tập tin  </b></td>
+                                                <td align="right" valign="top" width="25%" class="small"><b><u>Vị trí Tập tin:</u></b></td>
                                                 <td align="left" valign="top" width="75%">
                                                     <s:actionerror />
                                                     <s:form action="upload-staff" onsubmit="" id="upload_form" enctype="multipart/form-data" validate="true"

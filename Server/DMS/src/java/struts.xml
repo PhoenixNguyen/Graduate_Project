@@ -495,6 +495,13 @@
         
     </package>-->
     <package name=""  extends="json-default,hibernate-default" namespace="/">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult" />
+        </result-types>
+        <interceptors>
+          <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+        </interceptors>
+
         <action name="login-success" method="loginStatus" class="com.hp.action.UserAction">
             <result name="success" >home.jsp</result>
             <result name="input" >index.jsp</result>
@@ -671,12 +678,22 @@
         </action>
         
         <action name="add-staff" method="addStaffFromExcelFile" class="com.hp.action.StaffsAction">
-
-            <result type="json">
-                <param name="contentType">application/json</param>
-            </result>
+            <result name="success" type="json" />
             
         </action>
+        
+        <action name="staff-template" method="getTemplate" class="com.hp.action.StaffsAction">
+            <result name="success" type="stream">
+                <param name="contentType">
+                    application/vnd.ms-excel
+                </param>
+                <param name="inputName">staffTemplate</param>
+                <param name="contentDisposition">attachment;filename=template_import_nhan_vien.xls</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="input" >staff-import.jsp</result>
+        </action>
+        
         <!--Not yet handle-->
         
         

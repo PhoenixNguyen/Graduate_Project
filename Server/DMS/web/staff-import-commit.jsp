@@ -20,28 +20,67 @@
 	<style type="text/css">div.fixedLay { position:absolute; }</style>
 	<![endif]-->
 	
-        <script language="JavaScript" type="text/javascript" src="jscommon/input-page.js"></script>
+<!--        <script language="JavaScript" type="text/javascript" src="jscommon/input-page.js"></script>--> 
         <script language="JavaScript" type="text/javascript" src="jscommon/jquery.min.js"></script>
 <!--        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>-->
         
 	<!-- End -->
-        <script>
-            function importStaffs(){
+        <script type="text/javascript">
+            function importStaff(){
                 console.log('GET');
                 //$("#info").append('hello');
-                $.getJSON('add-staff',
-                    function(data){
+                $.getJSON('add-staff'
+                    ,function(data){
                         console.log('GET2');
-                        var staffsTotal = (data.staffsTotal);
-                        console.log(staffsTotal);
-
+                        console.log('1: ' + data.demo);
+                        
+                        var total = 0;
+                        if(data.staffsTotal != null)
+                            total = (data.staffsTotal);
+                    
+                        console.log(total);
+                        console.log('2: ' + data.staffsTotal);
+                        
                         var option = $("#info");
                         option.find('span').remove();
-                        var alert = "Có " + staffsTotal + " nhân viên được thêm!";
+                        var alert = "Có " + total + " nhân viên được thêm!";
                         option.append($("<span/>").append(alert));
 
                     }
                 );
+            }
+            
+            function importStaffs(){
+                console.log('GET');
+                jQuery.ajax({
+                    url: 'add-staff',
+                    dataType: 'json',
+                    type : 'GET',
+                    //data: 'text=' + jQuery(this).val(),
+//                        data : {
+//                            'actionId': id,
+//                            'actionName': name,
+//                            'actionDescr':descr
+//                        },
+                    async: false ,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function(data) {
+                       
+                        console.log(data.staffsTotal);//jsonData
+                        var total = 0;
+                        if(data.staffsTotal != null)
+                            total = (data.staffsTotal);
+                        
+                        var option = $("#info");
+                        option.find('span').remove();
+                        var alert = "Có " + total + " nhân viên được thêm!";
+                        option.append($("<span/>").append(alert));
+                        
+                    },
+                    error: function(e){  
+                    alert('Error: ' + e);  
+                    }  
+                  });
             }
         
         </script>
@@ -53,12 +92,12 @@
         <!-- header-vtiger crm name & RSS -->
         <script language="JavaScript" type="text/javascript" src="include/js/json.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/general.js"></script>
-        <!-- vtlib customization: Javascript hook --> 
+<!--         vtlib customization: Javascript hook  -->
         <script language="JavaScript" type="text/javascript" src="include/js/vtlib.js"></script>
-        <!-- END -->
+<!--         END -->
         <script language="JavaScript" type="text/javascript" src="include/js/vn.lang.js?"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/QuickCreate.js"></script>
-        <script language="javascript" type="text/javascript" src="include/scriptaculous/prototype.js"></script>
+<!--        <script language="javascript" type="text/javascript" src="include/scriptaculous/prototype.js"></script>-->
         <script language="JavaScript" type="text/javascript" src="include/js/menu.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/calculator/calc.js"></script>
         <script language="JavaScript" type="text/javascript" src="modules/Calendar/script.js"></script>
@@ -68,10 +107,10 @@
         <script type="text/javascript" src="jscalendar/calendar-setup.js"></script>
         <script type="text/javascript" src="jscalendar/lang/calendar-vn.js"></script>
 
-        <!-- asterisk Integration -->
-        <!-- END -->
+<!--         asterisk Integration 
+         END 
 
-        <!-- Custom Header Script -->
+         Custom Header Script -->
         <script type="text/javascript" src="modules/Tooltip/TooltipHeaderScript.js"></script>
         <script type="text/javascript" src="modules/SMSNotifier/SMSNotifierCommon.js"></script>
         <script type="text/javascript" src="modules/ModComments/ModCommentsCommon.js"></script>
@@ -409,7 +448,7 @@
 				   <tr>
 					<td align="right" style="padding-right:40px;" class="reportCreateBottom">
 						<input type="submit" name="button" value=" &nbsp;‹ Quay lại &nbsp; " class="crmbutton small cancel" onclick="
-                                                    
+                                                    window.history.back()
                                                     //this.form.action.value='Import';this.form.step.value='1'; return true;
                                                     ">
 						&nbsp;&nbsp;

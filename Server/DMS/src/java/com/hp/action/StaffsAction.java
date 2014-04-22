@@ -26,6 +26,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
@@ -68,7 +70,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     private Document document = new Document();
     private List<Staff> staffsList = new ArrayList<Staff>();
 
-    private int staffsTotal;
+    private int staffsTotal = 0;
 
     private List<String> usersList = new ArrayList<String>();
 
@@ -76,7 +78,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     private boolean selected;
     
     private String date;
-
+    
     public String getDate() {
         return date;
     }
@@ -188,7 +190,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         int total = 0;
         //Import data
         try {
-            String fileInput = ServletActionContext.getServletContext().getRealPath("/database/"+saveName+"/");
+            String fileInput = ServletActionContext.getServletContext().getRealPath("/db_inputs/"+saveName+"/");
             POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(fileInput));
             HSSFWorkbook wb = new HSSFWorkbook(fs);
             HSSFSheet sheet = wb.getSheetAt(0);
@@ -244,15 +246,19 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                         if(row.getCell(6) != null)
                         staff.setMPhone(row.getCell(6).getStringCellValue());
 
-                        if(row.getCell(7) != null){
+                        if(row.getCell(7) != null && row.getCell(7).getStringCellValue().compareTo("") != 0){
 
                             staff.setMDate(df.parse(row.getCell(7).getStringCellValue()));
 
                         }
                         if(row.getCell(8) != null)
                             staff.setMManager(row.getCell(8).getStringCellValue());
-                        if(row.getCell(9) != null)
-                            staff.setMStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
+                        if(row.getCell(9) != null){
+                            if(row.getCell(9).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                staff.setMStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
+                            else
+                                staff.setMStatus(row.getCell(9).getStringCellValue().compareTo("1") == 0 ? true:false);
+                                }
                         }
                     catch(Exception e){
                         e.printStackTrace();
@@ -262,6 +268,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                     if(staffDAO.saveOrUpdate(staff)){
                         System.out.println("Add Object " + (i+1));
                         total++;
+                        staffsTotal = total;
                     }
                     else
                         continue;
@@ -272,6 +279,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
             ioe.printStackTrace();
             return SUCCESS;
         }
+        
         staffsTotal = total;
         return SUCCESS;
     }
@@ -419,6 +427,34 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         //staffsList = staffDAO.getListUser(null);
         
         usersList = userDAO.getListUser(2);
+        return SUCCESS;
+    }
+    
+    private FileInputStream staffTemplate;
+
+    public FileInputStream getStaffTemplate() {
+        return staffTemplate;
+    }
+
+    public void setStaffTemplate(FileInputStream staffTemplate) {
+        this.staffTemplate = staffTemplate;
+    }
+    
+    public String getTemplate(){
+        String fileInput = ServletActionContext.getServletContext().getRealPath("/db_templates/");
+                
+        try{
+                      
+            staffTemplate = new FileInputStream(new File(fileInput +"\\template_import_nhan_vien.xls"));
+            
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return INPUT;
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+            return INPUT;
+        }
         return SUCCESS;
     }
 }

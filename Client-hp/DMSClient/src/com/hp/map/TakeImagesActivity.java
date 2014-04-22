@@ -41,6 +41,7 @@ import com.sun.xml.messaging.saaj.packaging.mime.internet.MimeMultipart;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -115,11 +116,14 @@ public class TakeImagesActivity extends MainMenuActivity {
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 
 		startActivityForResult(intent, 0);
+		
+		
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.i("MakeMachine", "resultCode: " + resultCode);
+		System.out.println("____________ ACTION");
 		switch (resultCode) {
 		case 0:
 			System.out.println("_____  Cancelled");
@@ -171,6 +175,7 @@ public class TakeImagesActivity extends MainMenuActivity {
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
+		System.out.println("_____  save");
 		outState.putBoolean(TakeImagesActivity.PHOTO_TAKEN, _taken);
 	}
 
@@ -268,12 +273,13 @@ public class TakeImagesActivity extends MainMenuActivity {
 				.type("application/json").post(ClientResponse.class, object);
 
 		if (response.getStatus() != 200) {
-			throw new RuntimeException("Failed : HTTP error code : "
-					+ response.getStatus());
-
+//			throw new RuntimeException("Failed : HTTP error code : "
+//					+ response.getStatus());
+			
+			Toast.makeText(this, "Gửi lỗi, làm ơn xem lại kết nối", Toast.LENGTH_SHORT).show();
 		} else {
 			String output = response.getEntity(String.class);
-
+			Toast.makeText(this, "Đã gửi thành công", Toast.LENGTH_SHORT).show();
 			System.out.println("Server response .... \n");
 			System.out.println(output);
 		}

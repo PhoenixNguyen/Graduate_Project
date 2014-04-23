@@ -617,6 +617,41 @@
             <result name="input" >product-detail.jsp?id_pdct=${product.mSerial}</result>
         </action>
                 
+        <action name="import-product" method="redirect" class="com.hp.action.ProductsAction">
+            <result name="success">product-import.jsp</result>
+            <result name="input" >product-import.jsp</result>
+        </action>
+        
+        <action name="product-template" method="getTemplate" class="com.hp.action.ProductsAction">
+            <result name="success" type="stream">
+                <param name="contentType">
+                    application/vnd.ms-excel
+                </param>
+                <param name="inputName">productTemplate</param>
+                <param name="contentDisposition">attachment;filename=template_import_san_pham.xls</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="input" >product-import.jsp</result>
+        </action>
+        
+        <action name="upload-product" method="saveFile" class="com.hp.action.ProductsAction">
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            
+            <result name="success">product-import-commit.jsp</result>
+            <result name="input" >product-import-commit.jsp</result>
+        </action>
+        
+        <action name="add-product" method="addProductFromExcelFile" class="com.hp.action.ProductsAction">
+            <result name="success" type="json" />
+            
+        </action>
+        
+        
         <!--TAKE ORDER-->
         <action name="take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order.jsp</result>

@@ -266,20 +266,21 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
                         }
                         
                         
+                        //Add to database
+                        if(customerDAO.saveOrUpdate(customer)){
+                            System.out.println("Add Object " + i);
+                            total++;
+                            customersTotal = total;
+                        }
+                        else
+                            continue;
                     }
                     catch(Exception e){
                         e.printStackTrace();
                         continue;
                     }
                     
-                    //Add to database
-                    if(customerDAO.saveOrUpdate(customer)){
-                        System.out.println("Add Object " + i);
-                        total++;
-                        customersTotal = total;
-                    }
-                    else
-                        continue;
+                    
                 }
             }
             

@@ -1,38 +1,103 @@
 <%-- 
-    Document   : customers-import
-    Created on : Apr 10, 2014, 12:48:48 AM
+    Document   : customers-import-commit
+    Created on : Apr 10, 2014, 12:50:27 AM
     Author     : HP
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>admin - Bán hàng - Khách hàng - Phần mềm quản lý HOSCO-MANAGEMENT</title>
-        <link rel="SHORTCUT ICON" href="themes/images/vtigercrm_icon.ico">	
-        <style type="text/css">@import url("themes/softed/style.css");</style>
-        <link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
-        <!-- ActivityReminder customization for callback -->
+<html><head>
+	<title>admin - Sản phẩm - Xác nhận - Phần mềm quản lý HOSCO-MANAGEMENT</title>
+	<link rel="SHORTCUT ICON" href="themes/images/vtigercrm_icon.ico">	
+	<style type="text/css">@import url("themes/softed/style.css");</style>
+	<link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
+				<!-- ActivityReminder customization for callback -->
+	
+	<style type="text/css">div.fixedLay1 { position:fixed; }</style>
+	<!--[if lte IE 6]>
+	<style type="text/css">div.fixedLay { position:absolute; }</style>
+	<![endif]-->
+	
+<!--        <script language="JavaScript" type="text/javascript" src="jscommon/input-page.js"></script>--> 
+        <script language="JavaScript" type="text/javascript" src="jscommon/jquery.min.js"></script>
+<!--        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" ></script>-->
+        
+	<!-- End -->
+        <script type="text/javascript">
+            function importStaff(){
+                console.log('GET');
+                //$("#info").append('hello');
+                $.getJSON('add-staff'
+                    ,function(data){
+                        console.log('GET2');
+                        console.log('1: ' + data.demo);
+                        
+                        var total = 0;
+                        if(data.staffsTotal != null)
+                            total = (data.staffsTotal);
+                    
+                        console.log(total);
+                        console.log('2: ' + data.staffsTotal);
+                        
+                        var option = $("#info");
+                        option.find('span').remove();
+                        var alert = "Có " + total + " nhân viên được thêm!";
+                        option.append($("<span/>").append(alert));
 
-        <style type="text/css">div.fixedLay1 { position:fixed; }</style>
-        <!--[if lte IE 6]>
-        <style type="text/css">div.fixedLay { position:absolute; }</style>
-        <![endif]-->
-
-        <!-- End -->
-    </head>
-    <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
+                    }
+                );
+            }
+            
+            function importProducts(){
+                console.log('GET');
+                jQuery.ajax({
+                    url: 'add-product',
+                    dataType: 'json',
+                    type : 'GET',
+                    //data: 'text=' + jQuery(this).val(),
+//                        data : {
+//                            'actionId': id,
+//                            'actionName': name,
+//                            'actionDescr':descr
+//                        },
+                    async: false ,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function(data) {
+                       
+                        console.log(data.productsTotal);//jsonData
+                        var total = 0;
+                        if(data.productsTotal != null)
+                            total = (data.productsTotal);
+                        
+                        var option = $("#info");
+                        option.find('span').remove();
+                        var alert = "Có " + total + " sản phẩm được thêm!";
+                        option.append($("<span/>").append(alert));
+                        
+                    },
+                    error: function(e){  
+                    alert('Error: ' + e);  
+                    }  
+                  });
+            }
+        
+        </script>
+</head>
+	<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <a name="top"></a>
         <!-- header -->
+                
         <!-- header-vtiger crm name & RSS -->
         <script language="JavaScript" type="text/javascript" src="include/js/json.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/general.js"></script>
-        <!-- vtlib customization: Javascript hook --> 
+<!--         vtlib customization: Javascript hook  -->
         <script language="JavaScript" type="text/javascript" src="include/js/vtlib.js"></script>
-        <!-- END -->
+<!--         END -->
         <script language="JavaScript" type="text/javascript" src="include/js/vn.lang.js?"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/QuickCreate.js"></script>
-        <script language="javascript" type="text/javascript" src="include/scriptaculous/prototype.js"></script>
+<!--        <script language="javascript" type="text/javascript" src="include/scriptaculous/prototype.js"></script>-->
         <script language="JavaScript" type="text/javascript" src="include/js/menu.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/calculator/calc.js"></script>
         <script language="JavaScript" type="text/javascript" src="modules/Calendar/script.js"></script>
@@ -42,10 +107,10 @@
         <script type="text/javascript" src="jscalendar/calendar-setup.js"></script>
         <script type="text/javascript" src="jscalendar/lang/calendar-vn.js"></script>
 
-        <!-- asterisk Integration -->
-        <!-- END -->
+<!--         asterisk Integration 
+         END 
 
-        <!-- Custom Header Script -->
+         Custom Header Script -->
         <script type="text/javascript" src="modules/Tooltip/TooltipHeaderScript.js"></script>
         <script type="text/javascript" src="modules/SMSNotifier/SMSNotifierCommon.js"></script>
         <script type="text/javascript" src="modules/ModComments/ModCommentsCommon.js"></script>
@@ -103,7 +168,7 @@
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -111,7 +176,7 @@
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Analytics_sub');" onmouseout="fnHideDrop('Analytics_sub');" align="center" nowrap=""><a href="">Phân tích</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
 
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Settings_sub');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
@@ -175,7 +240,7 @@
 <div class="drop_mnu" id="My Home Page_sub" onmouseout="fnHideDrop('My Home Page_sub')" onmouseover="fnShowDrop('My Home Page_sub')">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Trang chủ</a></td></tr>
+            <tr><td><a href="/DMS" class="drop_down">Trang chủ</a></td></tr>
 
         </tbody>
     </table>
@@ -184,7 +249,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>
-            <tr><td><a href="" class="drop_down">Khách hàng</a></td></tr>
+            <tr><td><a href="customer-list" class="drop_down">Khách hàng</a></td></tr>
         </tbody>
     </table>
 </div>
@@ -192,7 +257,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>
-            <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
+            <tr><td><a href="take-order" class="drop_down">Đặt hàng</a></td></tr>
         </tbody>
     </table>
 </div>
@@ -214,8 +279,8 @@
 <div class="drop_mnu" id="Inventory_sub" onmouseout="fnHideDrop('Inventory_sub')" onmouseover="fnShowDrop('Inventory_sub')" style="left: 488px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Sản phẩm</a></td></tr>
-            <tr><td><a href="" class="drop_down">Nhà cung cấp</a></td></tr>
+            <tr><td><a href="product-list" class="drop_down">Sản phẩm</a></td></tr>
+            <tr><td><a href="provider-list" class="drop_down">Nhà cung cấp</a></td></tr>
             <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
             <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
             <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
@@ -227,7 +292,7 @@
 <div class="drop_mnu" id="Tools_sub" onmouseout="fnHideDrop('Tools_sub')" onmouseover="fnShowDrop('Tools_sub')" style="left: 567px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Nhân viên</a></td></tr>
+            <tr><td><a href="staff-list" class="drop_down">Nhân viên</a></td></tr>
 
         </tbody>
     </table>
@@ -256,7 +321,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="">Khách hàng</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Sản phẩm &gt; <a class="hdrLink" href="">Xác nhận</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -272,11 +337,9 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-product"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Sản phẩm ..." title="Tạo mới Sản phẩm ..." border="0"></a></td>
 
-                                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
-                                                                    searchshowhide('searchAcc', 'advSearch');
-                                                                    mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
 
                                                         </tr>
                                                     </tbody>
@@ -296,16 +359,15 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
-                                            <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
+                                            <td style="padding-right:0px;padding-left:10px;"><a href="import-product"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Sản phẩm" title="Nhập dữ liệu Sản phẩm" border="0"></a></td>  
+                                            <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" <!--onclick="return selectedRecords('Accounts', 'Marketing')"--><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
 
 
                                             <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
-                                                    mergeshowhide('mergeDup');
-                                                    searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>
+<!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                         </tr>
-                                    </tbody></table>  
+                                    </tbody>
+                                </table>  
                             </td>
                             <td style="width:20px;">&nbsp;</td>
                             <td class="small">
@@ -313,8 +375,8 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
+<!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
+                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -343,137 +405,180 @@
 </div>
 
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="98%" class="small">
-    <tbody><tr>
-            <td valign="top"><img src="themes/softed/images/showPanelTopLeft.gif"></td>
-            <td class="showPanelBg" valign="top" width="100%">
+<tbody>
+   <tr>
+	<td valign="top"><img src="themes/softed/images/showPanelTopLeft.gif"></td>
+	<td class="showPanelBg" valign="top" width="100%">
+		<table cellpadding="0" cellspacing="0" width="100%" class="small">
+		   <tbody><tr>
+			<td width="75%" valign="top">
+<!--				<form enctype="multipart/form-data" name="Import" method="POST" action="" onsubmit="VtigerJS_DialogBox.block();">-->
+				<input type="hidden" name="module" value="Products">
+				
 
-                <!-- Import UI Starts -->
-                <table cellpadding="0" cellspacing="0" width="100%" border="0">
-                    <tbody><tr>
-                            <td width="75%" valign="top">
-                                <form enctype="multipart/form-data" name="Import" method="POST" action="index.php" onsubmit="VtigerJS_DialogBox.block();">
-                                    <input type="hidden" name="module" value="Accounts">
-                                    <input type="hidden" name="step" value="1">
-                                    <input type="hidden" name="source" value="">
-                                    <input type="hidden" name="source_id" value="">
-                                    <input type="hidden" name="action" value="Import">
-                                    <input type="hidden" name="return_module" value="Accounts">
-                                    <input type="hidden" name="return_id" value="">
-                                    <input type="hidden" name="return_action" value="index">
-                                    <input type="hidden" name="parenttab" value="Sales">
+				<!-- IMPORT LEADS STARTS HERE  -->
+				<br>
+				<table align="center" cellpadding="5" cellspacing="0" width="95%" class="mailClient importLeadUI small">
+				   <tbody><tr>
+					<td class="mailClientBg genHeaderSmall" height="50" valign="middle" align="left">Nhập dữ liệu Sản phẩm</td>
+				   </tr>
+				   <tr>
+					<td>&nbsp;</td>
+				   </tr>
+				   <tr>
+					<td align="left" style="padding-left:40px;">
+							<span class="genHeaderGray">Bước 2 of 2 </span>&nbsp;
+						<span class="genHeaderSmall"> </span>
+					</td>
+				   </tr>
+				   <tr>
+					<td align="left" style="padding-left:40px;"> 
+                                            Tên file đã tải lên: <s:property value="document.getFileFileName()"/>
+					</td>
+                                        
+				   </tr>
+                                   <tr>
+                                       <td align="left" style="padding-left:40px;">
+                                           <div id="info">STATUS: 
+                                                <span></span>
+                                            </div>  
+                                       </td>
+                                   </tr>
+				      	
+				   <tr>
+					<td align="right" style="padding-right:40px;" class="reportCreateBottom">
+						<input type="submit" name="button" value=" &nbsp;‹ Quay lại &nbsp; " class="crmbutton small cancel" onclick="
+                                                    window.history.back()
+                                                    //this.form.action.value='Import';this.form.step.value='1'; return true;
+                                                    ">
+						&nbsp;&nbsp;
+						<input type="button" name="button" value=" &nbsp; Nhập dữ liệu › &nbsp; " class="crmbutton small save" onclick="
+                                                    importProducts();
+                                                    
+                                                    //this.form.action.value='Import';this.form.step.value='3'; check_submit();
+                                                                                                    
+                                                       ">
+					</td>
+				   </tr>
+				  </tbody>
+                                </table>
+<!--				</form>-->
+				<!-- IMPORT LEADS ENDS HERE -->	
+			</td>
+		   </tr>
+		</tbody>
+                </table>
+	</td>
+   </tr>
+</tbody>
+</table>
+<script language="javascript" type="text/javascript">
+function validate_import_map()
+{
+	var tagName;
+	var count = 0;
+	var field_count = "1";
+	var required_fields = new Array();
+	var required_fields_name = new Array();
+	var seq_string = '';
+				required_fields[count] = "productname";
+			required_fields_name[count] = "Tên sản phẩm";
+			count = count + 1;
+						required_fields[count] = "cf_628";
+			required_fields_name[count] = "Tên kho";
+			count = count + 1;
+					
+	for(loop_count = 0; loop_count<field_count;loop_count++)
+	{
+		tagName = document.getElementById('colnum'+loop_count);
+		optionData = tagName.options[tagName.selectedIndex].value;
 
-                                    <!-- IMPORT LEADS STARTS HERE  -->
-                                    <br>
-                                    <table align="center" cellpadding="5" cellspacing="0" width="80%" class="mailClient importLeadUI small" border="0">
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2" height="50" valign="middle" align="left" class="mailClientBg  genHeaderSmall">Nhập dữ liệu Khách hàng</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" align="left" valign="top" style="padding-left:40px;">
-                                                    <br>
+		if(optionData != -1)
+		{
+			tmp = seq_string.indexOf("\""+optionData+"\"");
+			if(tmp == -1)
+			{
+				seq_string = seq_string + "\""+optionData+"\"";
+			}
+			else
+			{
+				//if a vtiger_field mapped more than once, alert the user and return
+				alert("'"+tagName.options[tagName.selectedIndex].text+" 'là ánh xạ nhiều hơn một lần. Xin vui lòng kiểm tra việc ánh xạ của bạn.");
+				return false;
+			}
+		}
 
-                                                    <span class="genHeaderGray">Bước 1 of 4  </span>&nbsp; 
-                                                    <span class="genHeaderSmall">Chọn file .CSV</span> 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2" align="left" valign="top" style="padding-left:40px;">
-                                                    Phần mềm hỗ trợ nhập các bản ghi từ file .csv (<b> Comma Separated Values</b> ). Để bắt đầu nhập, chọn file .CSV và ấn Next để tiếp tục.
-                                                </td>
-                                            </tr>
-                                            <tr><td align="left" valign="top" colspan="2">&nbsp;</td></tr>
-                                            <tr>
-                                                <td align="right" valign="top" width="25%" class="small"><b>Vị trí Tập tin  </b></td>
-                                                <td align="left" valign="top" width="75%">
-                                                    <input type="file" name="userfile" size="65" class="small" onchange="validateFilename(this);">&nbsp;
-                                                    <input type="hidden" name="userfile_hidden" value=""><br>
-                                                    <br><b>Có phần đầu</b>&nbsp;<input type="checkbox" name="has_header" checked="">
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Dấu phân cách</b>&nbsp;
-                                                    <select name="delimiter" class="small" style="font-family:Times;">
-                                                        <option value=",">,</option>
-                                                        <option value=";">;</option>
-                                                    </select>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Định dạng</b>&nbsp;
-                                                    <select name="format" class="small">
-                                                        <!-- value must be a known format for mb_convert_encoding() -->
-                                                        <option value="ISO-8859-1">ISO-8859-1</option>
-                                                        <option value="UTF-8">UTF-8</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr><td colspan="2" height="50">&nbsp;</td></tr>
-                                            <tr>
-                                                <td colspan="2" align="right" style="padding-right:40px;" class="reportCreateBottom">
-                                                    <input title="Tiếp" accesskey="" class="crmButton small save" type="submit" name="button" value="  Tiếp › " onclick="this.form.action.value = 'Import';
-                                                            this.form.step.value = '2';
-                                                            return validateFile(this.form);">
-                                                    &nbsp;
-                                                    <input title="Hủy bỏ" accesskey="" class="crmButton small cancel" type="button" name="button" value="Hủy bỏ" onclick="window.history.back()">
+	}
 
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                </form>
-                                <!-- IMPORT LEADS ENDS HERE -->
-                            </td>
-                        </tr>
-                    </tbody></table>
+	//check whether the mandatory vtiger_fields have been mapped.
+	for(inner_loop = 0; inner_loop<required_fields.length;inner_loop++)
+	{
+		if(seq_string.indexOf(required_fields[inner_loop]) == -1)
+		{
+			alert('Xin vui lòng ánh xạ các trường bắt buộc "'+required_fields_name[inner_loop]+'"');
+			return false;
+		}
+	}
 
-            </td>
-            <td valign="top"><img src="themes/softed/images/showPanelTopRight.gif"></td>
-        </tr>
-    </tbody></table>
-<br>
+	//This is to check whether the save map name has been given or not when save map check box is checked
+	if(document.getElementById("save_map").checked == true)
+	{
+		if(trim(document.getElementById("save_map_as").value) == '')
+		{
+			alert("Xin vui lòng nhập vào tên của việc ánh xạ");
+			return false;
+		}
+	}
+
+	return true;
+}
+</script>
 <!-- stopscrmprint --><style>
-    .bggray
-    {
-        background-color: #dfdfdf;
-    }
-    .bgwhite
-    {
-        background-color: #FFFFFF;
-    }
-    .copy
-    {
-        font-size:9px;
-        font-family: Verdana, Arial, Helvetica, Sans-serif;
-    }
-</style>
-<script language="javascript">
-    function LogOut(e)
-    {
-        var nav4 = window.Event ? true : false;
-        var iX, iY;
-        if (nav4)
-        {
-            iX = e.pageX;
-            iY = e.pageY;
-        }
-        else
-        {
-            iX = event.clientX + document.body.scrollLeft;
-            iY = event.clientY + document.body.scrollTop;
+		.bggray
+		{
+			background-color: #dfdfdf;
+		}
+	.bgwhite
+	{
+		background-color: #FFFFFF;
+	}
+	.copy
+	{
+		font-size:9px;
+		font-family: Verdana, Arial, Helvetica, Sans-serif;
+	}
+	</style>
+		<script language="javascript">
+		function LogOut(e)
+		{
+			var nav4 = window.Event ? true : false;
+			var iX,iY;
+			if (nav4)
+			{
+				iX = e.pageX;
+				iY = e.pageY;
+			}
+			else
+			{
+				iX = event.clientX + document.body.scrollLeft;
+				iY = event.clientY + document.body.scrollTop;
 
-        }
-        if (iX <= 30 && iY < 0)
-        {
-            w = window.open("index.php?action=Logout&module=Users");
-            w.close();
-        }
-    }
-//window.onunload=LogOut
-</script>
-<script language="JavaScript" type="text/javascript" src="include/js/popup.js"></script><br><br><br><table border="0" cellspacing="0" cellpadding="5" width="100%" class="settingsSelectedUI"><tbody><tr><td class="small" align="left"><span style="color: rgb(153, 153, 153);">HOSCO-CRM</span></td><td class="small" align="right"><span style="color: rgb(153, 153, 153);">© 2014 <a href="http://www.hosgroup.com.vn" target="_blank">hosgroup.com.vn</a></span> </td></tr></tbody></table>		<script>
-    var userDateFormat = "dd-mm-yyyy";
-    var default_charset = "UTF-8";
-</script>
-<script type="text/javascript">if (typeof (ActivityReminderCallback) != 'undefined')
-        window.setTimeout(function() {
-            ActivityReminderCallback();
-        }, 7000);</script><!--end body panes-->
+			}
+			if (iX <= 30 && iY < 0 )
+			{
+				w=window.open("index.php?action=Logout&module=Users");
+				w.close();
+			}
+		}
+	//window.onunload=LogOut
+	</script>
+		<script language="JavaScript" type="text/javascript" src="include/js/popup.js"></script><br><br><br><table border="0" cellspacing="0" cellpadding="5" width="100%" class="settingsSelectedUI"><tbody><tr><td class="small" align="left"><span style="color: rgb(153, 153, 153);">HOSCO-CRM</span></td><td class="small" align="right"><span style="color: rgb(153, 153, 153);">© 2014 <a href="http://www.hosgroup.com.vn" target="_blank">hosgroup.com.vn</a></span> </td></tr></tbody></table>		<script>
+			var userDateFormat = "dd-mm-yyyy";
+			var default_charset = "UTF-8";
+		</script>
+<script type="text/javascript">if(typeof(ActivityReminderCallback) != 'undefined') window.setTimeout(function(){
+						ActivityReminderCallback();
+					},38000);</script><!--end body panes-->
 
 
 

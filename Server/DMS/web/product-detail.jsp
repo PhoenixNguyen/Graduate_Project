@@ -310,11 +310,9 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-product"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-product"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Sản phẩm..." title="Tạo mới Sản phẩm..." border="0"></a></td>
 
-                                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
-                                                                    searchshowhide('searchAcc', 'advSearch');
-                                                                    mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
 
                                                         </tr>
                                                     </tbody>
@@ -334,14 +332,14 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
-                                            <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
+                                            <td style="padding-right:0px;padding-left:10px;"><a href="import-product"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Sản phẩm" title="Nhập dữ liệu Sản phẩm" border="0"></a></td>  
+                                            <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" <!--onclick="return selectedRecords('Accounts', 'Marketing')"--><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Sản phẩm" title="Xuất dữ liệu Sản phẩm" border="0"></a></td>
 
 
                                             <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
+<!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
                                                     mergeshowhide('mergeDup');
-                                                    searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>
+                                                    searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                         </tr>
                                     </tbody></table>  
                             </td>
@@ -351,8 +349,8 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
+<!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
+                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -562,7 +560,7 @@
                                                                                     </tr>	
                                                                                     <tr style="height:25px">
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá nhập</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá trước thuế</td>
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày kết thúc bán" onmouseover="hndMouseOver(5, 'Ngày kết thúc bán');" onmouseout="fnhide('crmspanid');">
                                                                                             &nbsp;&nbsp;<span id="dtlview_Ngày kết thúc bán">
@@ -571,7 +569,7 @@
                                                                                             
                                                                                         </td>
                                                                                         <!-- Avoid to display the label Tax Class -->
-                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá bán</td>
+                                                                                        <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá sau thuế</td>
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày hết hạn hỗ trợ" onmouseover="hndMouseOver(5, 'Ngày hết hạn hỗ trợ');" onmouseout="fnhide('crmspanid');">

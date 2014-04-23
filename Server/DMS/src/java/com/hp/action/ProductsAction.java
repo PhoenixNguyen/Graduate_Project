@@ -26,6 +26,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -169,7 +170,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         try {
             
             System.out.println(document.getFileContentType());
-            String filePath = ServletActionContext.getServletContext().getRealPath("/database/");
+            String filePath = ServletActionContext.getServletContext().getRealPath("/db_inputs/");
             System.out.println("Server path:" + filePath + "/"+saveName);
             
             File fileToCreate = new File(filePath, saveName);
@@ -199,7 +200,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         int total = 0;
         //Import data
         try {
-            String fileInput = ServletActionContext.getServletContext().getRealPath("/database/"+saveName+"/");
+            String fileInput = ServletActionContext.getServletContext().getRealPath("/db_inputs/"+saveName+"/");
             POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(fileInput));
             HSSFWorkbook wb = new HSSFWorkbook(fs);
             HSSFSheet sheet = wb.getSheetAt(0);
@@ -223,7 +224,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                 }
             }
 
-            for(int i = 17; i < rows; i++){
+            for(int i = 1; i < rows; i++){
                 
                 row = sheet.getRow(i);
                 System.out.println("__ Rows: " +(i+1));
@@ -232,57 +233,100 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                     System.out.println("__ Row: " +(i+1)+" ,Cell number: " + row.getPhysicalNumberOfCells());
                     //If the product id null
                     if(row.getCell(1) == null ||
-                            row.getPhysicalNumberOfCells() < 8 ||
-                            row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_STRING ||
-                            row.getCell(1).getCellType() == HSSFCell.CELL_TYPE_STRING
                             
-//                            row.getCell(ConfigFile.MA_DOI_TUONG_COL+1) == null ||
-//                            row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_STRING
-//                            row.getCell(ConfigFile.X_COORDINATES_COL) == null ||
-//                            row.getCell(ConfigFile.Y_COORDINATES_COL) == null ||
-//                            row.getCell(ConfigFile.X_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING ||
-//                            row.getCell(ConfigFile.Y_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING
+                            ( row.getCell(1).getCellType() == HSSFCell.CELL_TYPE_STRING && row.getCell(1).getStringCellValue().compareTo("") == 0 ) ||
+                            ( row.getCell(1).getCellType() != HSSFCell.CELL_TYPE_STRING && row.getCell(1).getNumericCellValue() <= 0 )
+                          
                             ){
                         continue;   
                     }
                     
                     //Init Product Object
-                    int tmp = 0;
                     Product product = new Product();
-//                    product.setmStt((int)row.getCell(tmp++).getNumericCellValue());
-                    tmp++;
-                    if(row.getCell(1) != null)
-                        if(row.getCell(1).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                            product.setMBarcode((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
-                        else
-                            product.setMBarcode(row.getCell(1).getStringCellValue());
-                    if(row.getCell(1) != null)
-                        product.setMProductID((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
-                    if(row.getCell(2) != null)
-                        product.setMProductName(row.getCell(2).getStringCellValue());
-                    if(row.getCell(3) != null)
-                        product.setMBrand(row.getCell(3).getStringCellValue());
-                    if(row.getCell(4) != null)
-                        product.setMOrigin(row.getCell(4).getStringCellValue());
-                    if(row.getCell(5) != null)
-                        product.setMPackingSpecifications(row.getCell(5).getNumericCellValue()+"");
-                    
-                    if(row.getCell(6) != null){
+//                  
+                    try{
                         
-                        product.setMQuantification(row.getCell(6).getStringCellValue());
-                    
+                        if(row.getCell(1) != null){
+                            if(row.getCell(1).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                product.setMProductID((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
+                            else
+                                product.setMProductID(row.getCell(1).getStringCellValue());
+                        }
+                        if(row.getCell(2) != null){
+                            if(row.getCell(2).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                product.setMBarcode((new BigDecimal(row.getCell(2).getNumericCellValue())).toString());
+                            else
+                                product.setMBarcode(row.getCell(2).getStringCellValue());
+                        }
+                        
+                        if(row.getCell(3) != null)
+                            product.setMProductName(row.getCell(3).getStringCellValue());
+                        if(row.getCell(4) != null)
+                            product.setMBrand(row.getCell(4).getStringCellValue());
+                        if(row.getCell(5) != null)
+                            product.setMOrigin(row.getCell(5).getStringCellValue());
+                        if(row.getCell(6) != null){
+                            if(row.getCell(6).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                product.setMPackingSpecifications(row.getCell(6).getNumericCellValue()+"");
+                            else
+                                product.setMPackingSpecifications(row.getCell(6).getStringCellValue());
+                                                        
+                        }
+                        if(row.getCell(7) != null){
+
+                            product.setMQuantification(row.getCell(7).getStringCellValue());
+
+                        }
+                        
+                        if(row.getCell(8) != null){
+                            if(row.getCell(8).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                product.setMVATTax((float)row.getCell(8).getNumericCellValue());
+                            else
+                                product.setMVATTax(Float.parseFloat(row.getCell(8).getStringCellValue()));
+
+                        }
+                        
+                        if(row.getCell(9) != null){
+                            if(row.getCell(9).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                product.setMImportPrices((float)row.getCell(9).getNumericCellValue());
+                            else
+                                product.setMImportPrices(Float.parseFloat(row.getCell(9).getStringCellValue()));
+
+                        }
+                        
+                        if(row.getCell(10) != null){
+                            if(row.getCell(10).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                product.setMExportPrices((float)row.getCell(10).getNumericCellValue());
+                            else
+                                product.setMExportPrices(Float.parseFloat(row.getCell(10).getStringCellValue()));
+
+                        }
+                        if(row.getCell(11) != null)
+                            product.setMProvider(row.getCell(11).getStringCellValue());
+                        
+                        if(row.getCell(12) != null)
+                            product.setMDescription(row.getCell(12).getStringCellValue());
+                        if(row.getCell(13) != null)
+                            product.setMProductImage(row.getCell(13).getStringCellValue());
+                        
+                        //product.setMProvider("nhacungcap1");
+                        //Add to database
+                        if(productDAO.saveOrUpdate(product)){
+                            System.out.println("Add Object " + (i+1));
+                            total++;
+                            productsTotal = total;
+                        }
+                        else{
+                            int t = 0;
+                            continue;
+                        }
                     }
-                    if(row.getCell(7) != null)
-                        product.setMExportPrices((float)row.getCell(7).getNumericCellValue());
-                    
-                    product.setMProvider("nhacungcap1");
-                    //Add to database
-                    if(productDAO.saveOrUpdate(product)){
-                        System.out.println("Add Object " + (i+1));
-                        total++;
-                    }
-                    else
+                    catch(Exception e){
+                        e.printStackTrace();
                         continue;
+                    }
+                    
+                    
                 }
             }
          
@@ -358,6 +402,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         
         System.out.println("id_product: "+id_product);
         
+        //update price
+        product.setMExportPrices(product.getMImportPrices() + product.getMImportPrices()* product.getMVATTax()/100);
         //new product
         if(product.getMSerial() <= 0){
             
@@ -372,6 +418,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         }
         
         System.out.println("OK" + product.getMProductID());
+        
+        
         boolean status = productDAO.update(product);
         productsList = productDAO.getProductList();
         
@@ -469,5 +517,33 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         }
         else
             return INPUT;
+    }
+    
+    private FileInputStream productTemplate;
+
+    public FileInputStream getProductTemplate() {
+        return productTemplate;
+    }
+
+    public void setProductTemplate(FileInputStream productTemplate) {
+        this.productTemplate = productTemplate;
+    }
+    
+    public String getTemplate(){
+        String fileInput = ServletActionContext.getServletContext().getRealPath("/db_templates/");
+                
+        try{
+                      
+            productTemplate = new FileInputStream(new File(fileInput +"\\template_import_san_pham.xls"));
+            
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return INPUT;
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+            return INPUT;
+        }
+        return SUCCESS;
     }
 }

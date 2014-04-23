@@ -259,19 +259,22 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                             else
                                 staff.setMStatus(row.getCell(9).getStringCellValue().compareTo("1") == 0 ? true:false);
                                 }
+                        
+                        
+                        //Add to database
+                        if(staffDAO.saveOrUpdate(staff)){
+                            System.out.println("Add Object " + (i+1));
+                            total++;
+                            staffsTotal = total;
                         }
+                        else
+                            continue;
+                    }
                     catch(Exception e){
                         e.printStackTrace();
                         continue;
                     }
-                    //Add to database
-                    if(staffDAO.saveOrUpdate(staff)){
-                        System.out.println("Add Object " + (i+1));
-                        total++;
-                        staffsTotal = total;
-                    }
-                    else
-                        continue;
+                    
                 }
             }
             

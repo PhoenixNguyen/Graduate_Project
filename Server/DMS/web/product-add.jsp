@@ -274,11 +274,9 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-product"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Sản phẩm..." title="Tạo mới Sản phẩm..." border="0"></a></td>
 
-                                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
-                                                                    searchshowhide('searchAcc', 'advSearch');
-                                                                    mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
+                                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
 
                                                         </tr>
                                                     </tbody>
@@ -298,14 +296,14 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
-                                            <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
+                                            <td style="padding-right:0px;padding-left:10px;"><a href="import-product"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Sản phẩm" title="Nhập dữ liệu Sản phẩm" border="0"></a></td>  
+                                            <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" <!--onclick="return selectedRecords('Accounts', 'Marketing')"--><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Sản phẩm" title="Xuất dữ liệu Sản phẩm" border="0"></a></td>
 
 
                                             <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
+<!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
                                                     mergeshowhide('mergeDup');
-                                                    searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>
+                                                    searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                         </tr>
                                     </tbody></table>  
                             </td>
@@ -315,8 +313,8 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
+<!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
+                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -522,7 +520,7 @@
                                                                 </td>-->
 
                                                             </tr>
-                                                            <tr style="height:25px">
+<!--                                                            <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align="right">
                                                                     <font color="red"></font>Giá nhập			
@@ -531,17 +529,17 @@
 
                                                                     <input name="product.mImportPrices" tabindex="" id="jscal_field_sales_end_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="<s:property value="product.mImportPrices"/>">
 
-<!--                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_sales_end_date">
+                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_sales_end_date">
                                                                     <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
                                                                     <script type="text/javascript" id="massedit_calendar_sales_end_date">
                                                                         Calendar.setup({
                                                                             inputField: "jscal_field_sales_end_date", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_sales_end_date", singleClick: true, step: 1
                                                                         })
-                                                                    </script>-->
+                                                                    </script>
 
                                                                 </td>
 
-<!--                                                                                    <td width="20%" class="dvtCellLabel" align="right">
+                                                                                    <td width="20%" class="dvtCellLabel" align="right">
                                                                     <font color="red"></font>Giá bán			
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
@@ -556,9 +554,9 @@
                                                                         })
                                                                     </script>
 
-                                                                </td>-->
+                                                                </td>
 
-                                                            </tr>
+                                                            </tr>-->
                                                             <tr style="height:25px">
                                                                 <td width="20%" class="dvtCellLabel" align="right">
                                                                     <font color="red"></font>Đơn vị			
@@ -648,14 +646,15 @@
                                                             <tr style="height:25px">
 
                                                                 <td width="20%" class="dvtCellLabel" align="right">
-                                                                    <font color="red"></font>Giá bán: (₫) 			
+                                                                    <font color="red"></font>Giá trước thuế: (₫) 			
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">				
                                                                     <span id="multiple_currencies">
-                                                                        <input name="product.mExportPrices" id="unit_price" tabindex="" type="text" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox';
-                                                                                updateUnitPrice('unit_price', 'curname1');" value="<s:property value="product.mExportPrices"/>" style="width:60%;">
-                                                                        &nbsp;<a href="javascript:void(0);" onclick="updateUnitPrice('unit_price', 'curname1');
-                                                                                toggleShowHide('currency_class', 'multiple_currencies');">thêm tiền tệ »</a>
+                                                                        <input name="product.mImportPrices" id="unit_price" tabindex="" type="text" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox';
+                                                                                updateUnitPrice('unit_price', 'curname1');" value="<s:property value="product.mImportPrices"/>" style="width:60%;">
+                                                                        &nbsp;
+<!--                                                                        <a href="javascript:void(0);" onclick="updateUnitPrice('unit_price', 'curname1');
+                                                                                toggleShowHide('currency_class', 'multiple_currencies');">thêm tiền tệ »</a>-->
                                                                     </span>
                                                                     <div id="currency_class" class="multiCurrencyEditUI" width="350">
                                                                         <input type="hidden" name="base_currency" id="base_currency" value="curname1">
@@ -703,7 +702,8 @@
                                                                 </td>
                                                                 <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Thuế (%) </td>
 
-                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="commissionrate" id="commissionrate" value="0.000" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                <td width="30%" align="left" class="dvtCellInfo">
+                                                                    <input type="text" tabindex="" name="product.mVATTax" id="commissionrate" value="<s:property value="product.mVATTax"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
 <!--                                                            <tr style="height:25px">
                                                                  Handle the Tax in Inventory 

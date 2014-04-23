@@ -17,12 +17,15 @@ import com.hp.domain.Demo;
 import com.hp.domain.Demo2;
 import com.hp.domain.Document;
 import com.hp.domain.Staff;
+import static com.opensymphony.xwork2.Action.INPUT;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 //import com.opensymphony.xwork2.util.TextUtils;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -152,7 +155,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         try {
             
             System.out.println(document.getFileContentType());
-            String filePath = ServletActionContext.getServletContext().getRealPath("/database/");
+            String filePath = ServletActionContext.getServletContext().getRealPath("/db_inputs/");
             System.out.println("Server path:" + filePath);
             
             File fileToCreate = new File(filePath, saveName);
@@ -180,7 +183,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         int total = 0;
         //Import data
         try {
-            String fileInput = ServletActionContext.getServletContext().getRealPath("/database/"+saveName+"/");
+            String fileInput = ServletActionContext.getServletContext().getRealPath("/db_inputs/"+saveName+"/");
             POIFSFileSystem fs = new POIFSFileSystem(new FileInputStream(fileInput));
             HSSFWorkbook wb = new HSSFWorkbook(fs);
             HSSFSheet sheet = wb.getSheetAt(0);
@@ -204,7 +207,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
                 }
             }
 
-            for(int i = 0; i < rows; i++){
+            for(int i = 1; i < rows; i++){
                 
                 row = sheet.getRow(i);
                 System.out.println("__ Rows: " +(i+1));
@@ -212,85 +215,68 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
                     
                     System.out.println("__ Row: " +(i+1)+" ,Cell number: " + row.getPhysicalNumberOfCells());
                     //If the customer id null
-                    if(row.getCell(ConfigFile.MA_DOI_TUONG_COL) == null ||
-                            row.getCell(ConfigFile.MA_DOI_TUONG_COL).getStringCellValue().compareTo("") == 0 ||
-                            row.getCell(ConfigFile.MA_DOI_TUONG_COL+1) == null ||
-                            row.getCell(0).getCellType() == HSSFCell.CELL_TYPE_STRING
-//                            row.getCell(ConfigFile.X_COORDINATES_COL) == null ||
-//                            row.getCell(ConfigFile.Y_COORDINATES_COL) == null ||
-//                            row.getCell(ConfigFile.X_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING ||
-//                            row.getCell(ConfigFile.Y_COORDINATES_COL).getCellType() == HSSFCell.CELL_TYPE_STRING
+                    if(row.getCell(1) == null ||
+                            row.getCell(1).getStringCellValue().compareTo("") == 0
+
                             ){
                         continue;   
                     }
                     
                     //Init Customer Object
-                    int tmp = 0;
                     Customer customer = new Customer();
 //                    customer.setmStt((int)row.getCell(tmp++).getNumericCellValue());
-                    tmp++;
-                    if(row.getCell(1) != null)
-                        customer.setMTinhThanh(row.getCell(1).getStringCellValue());
-                    if(row.getCell(2) != null)
-                        customer.setMTuyenBanHangThu(row.getCell(2).getStringCellValue());
-                    if(row.getCell(3) != null)
-                        customer.setMMaNhanVien(row.getCell(3).getStringCellValue());
-                    if(row.getCell(4) != null)
-                        customer.setMX(row.getCell(4).getStringCellValue());
-                    if(row.getCell(5) != null)
-                    customer.setMMaDoiTuong(row.getCell(5).getStringCellValue());
-                    if(row.getCell(6) != null)
-                    customer.setMDoiTuong(row.getCell(6).getStringCellValue());
                     
-//                    if(row.getCell(7) != null)
-//                        customer.setMNoDKy(row.getCell(7).getNumericCellValue());
-//                    if(row.getCell(8) != null)
-//                    
-//                    customer.setMCoDKy(row.getCell(8).getNumericCellValue());
-//                    if(row.getCell(9) != null)
-//                    customer.setmNoTKy(row.getCell(9).getNumericCellValue());
-//                    if(row.getCell(10) != null)
-//                    customer.setmTienBan(row.getCell(10).getNumericCellValue());
-//                    
-//                    if(row.getCell(11) != null)
-//                    customer.setmCoTKy(row.getCell(11).getNumericCellValue());
-//                    if(row.getCell(12) != null)
-//                    customer.setmCKGG(row.getCell(12).getNumericCellValue());
-//                    if(row.getCell(13) != null)
-//                    customer.setmNhapLai(row.getCell(13).getNumericCellValue());
-//                    if(row.getCell(14) != null)
-//                    
-//                    customer.setmNoCKy(row.getCell(14).getNumericCellValue());
-//                    if(row.getCell(15) != null)
-//                    customer.setmCoCKy(row.getCell(15).getNumericCellValue());
-//                    if(row.getCell(16) != null)
-//                    customer.setmDoanhThu(row.getCell(16).getNumericCellValue());
-//                    
-//                    if(row.getCell(17) != null)
-//                    customer.setmPhanTramNoChiaThu(row.getCell(17).getNumericCellValue());
-//                    if(row.getCell(18) != null)
-//                    customer.setmNoToiDa(row.getCell(18).getNumericCellValue());
-//                    if(row.getCell(19) != null)
-//                    customer.setmDaiDien(row.getCell(19).getStringCellValue());
-                    if(row.getCell(20) != null)
-                        customer.setMDiaChi(row.getCell(20).getStringCellValue());
-                    if(row.getCell(21) != null)
-                        customer.setMDienThoai(row.getCell(21).getStringCellValue());
-                    if(row.getCell(22) != null)
-                        customer.setMFax(row.getCell(22).getStringCellValue());
-                    
-                    if(row.getCell(23) != null)
-                        customer.setMGhiChu(row.getCell(23).getStringCellValue());
-                    if(row.getCell(24) != null)
-                        customer.setMXCoordinates(row.getCell(24).getNumericCellValue());
-                    if(row.getCell(25) != null)
-                        customer.setMYCoordinates(row.getCell(25).getNumericCellValue());
-                    
+                    try{
+                        if(row.getCell(1) != null)
+                            customer.setMMaDoiTuong(row.getCell(1).getStringCellValue());
+                        if(row.getCell(2) != null)
+                            customer.setMDoiTuong(row.getCell(2).getStringCellValue());
+                        if(row.getCell(3) != null)
+                            customer.setMTinhThanh(row.getCell(3).getStringCellValue());
+                        if(row.getCell(4) != null)
+                            customer.setMX(row.getCell(4).getStringCellValue());
+                        if(row.getCell(5) != null)
+                            customer.setMDiaChi(row.getCell(5).getStringCellValue());
+                        if(row.getCell(6) != null)
+                            customer.setMTuyenBanHangThu(row.getCell(6).getStringCellValue());
+
+                        if(row.getCell(7) != null)
+                            customer.setMDienThoai(row.getCell(7).getStringCellValue());
+                        if(row.getCell(8) != null)
+                            customer.setMFax(row.getCell(8).getStringCellValue());
+                        if(row.getCell(9) != null)
+                            customer.setMMaNhanVien(row.getCell(9).getStringCellValue());
+
+                        if(row.getCell(10) != null)
+                            customer.setMGhiChu(row.getCell(10).getStringCellValue());
+                        
+                        
+                        if(row.getCell(11) != null){
+                            if(row.getCell(11).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                customer.setMXCoordinates(row.getCell(11).getNumericCellValue());
+                            else
+                                customer.setMXCoordinates(Double.parseDouble(row.getCell(12).getStringCellValue()));
+                        }
+                        
+                        if(row.getCell(12) != null){
+                            if(row.getCell(12).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                customer.setMYCoordinates(row.getCell(12).getNumericCellValue());
+                            else
+                                customer.setMYCoordinates(Double.parseDouble(row.getCell(12).getStringCellValue()));
+                        }
+                        
+                        
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                        continue;
+                    }
                     
                     //Add to database
                     if(customerDAO.saveOrUpdate(customer)){
                         System.out.println("Add Object " + i);
                         total++;
+                        customersTotal = total;
                     }
                     else
                         continue;
@@ -447,4 +433,36 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         else
             return INPUT;
     }
+    
+    private FileInputStream customerTemplate;
+
+    public FileInputStream getCustomerTemplate() {
+        return customerTemplate;
+    }
+
+    public void setCustomerTemplate(FileInputStream customerTemplate) {
+        this.customerTemplate = customerTemplate;
+    }
+
+    
+    
+    public String getTemplate(){
+        String fileInput = ServletActionContext.getServletContext().getRealPath("/db_templates/");
+                
+        try{
+                      
+            customerTemplate = new FileInputStream(new File(fileInput +"\\template_import_khach_hang.xls"));
+            
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return INPUT;
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+            return INPUT;
+        }
+        return SUCCESS;
+    }
+    
+    
 }

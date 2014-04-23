@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>admin - Nhân viên - Nhập dữ liệu - Phần mềm quản lý HOSCO-MANAGEMENT</title>
+        <title>admin - Khách hàng - Nhập dữ liệu - Phần mềm quản lý HOSCO-MANAGEMENT</title>
         <link rel="SHORTCUT ICON" href="themes/images/vtigercrm_icon.ico">	
         <style type="text/css">@import url("themes/softed/style.css");</style>
         <link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
@@ -103,9 +103,9 @@
                             <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabSelected" onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap=""><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -258,7 +258,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Nhân viên &gt; <a class="hdrLink" href="">Nhập liệu</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Khách hàng &gt; <a class="hdrLink" href="">Nhập liệu</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -274,7 +274,7 @@
                                                 <table border="0" cellspacing="0" cellpadding="5">
                                                     <tbody>
                                                         <tr>
-                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-staff"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Nhân viên..." title="Tạo mới Nhân viên..." border="0"></a></td>
+                                                            <td style="padding-right:0px;padding-left:10px;"><a href="new-customer"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Khách hàng..." title="Tạo mới Khách hàng..." border="0"></a></td>
 
                                                             <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
 
@@ -296,7 +296,7 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-right:0px;padding-left:10px;"><a href="import-staff"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhân viên" title="Nhập dữ liệu Nhân viên" border="0"></a></td>  
+                                            <td style="padding-right:0px;padding-left:10px;"><a href="import-customer"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
                                             <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" <!--onclick="return selectedRecords('Accounts', 'Marketing')"--><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhân viên" title="Xuất dữ liệu Nhân viên" border="0"></a></td>
 
 
@@ -372,7 +372,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" align="left" valign="top" style="padding-left:40px;">
-                                                    Phần mềm hỗ trợ nhập các bản ghi từ file .xls. Để bắt đầu nhập, chọn file .xls và ấn Next để tiếp tục. <a href="staff-template">(Lấy file mẫu)</a>
+                                                    Phần mềm hỗ trợ nhập các bản ghi từ file .xls. Để bắt đầu nhập, chọn file .xls và ấn Next để tiếp tục. <a href="customer-template">(Lấy file mẫu)</a>
                                                 </td>
                                             </tr>
                                             <tr><td align="left" valign="top" colspan="2">&nbsp;</td></tr>
@@ -380,7 +380,7 @@
                                                 <td align="right" valign="top" width="25%" class="small"><b><u>Vị trí Tập tin:</u></b></td>
                                                 <td align="left" valign="top" width="75%">
                                                     <s:actionerror />
-                                                    <s:form action="upload-staff" onsubmit="" id="upload_form" enctype="multipart/form-data" validate="true"
+                                                    <s:form action="upload-customer" onsubmit="" id="upload_form" enctype="multipart/form-data" validate="true"
                                                             >  
                                                         <s:file type="file" name="document.file" id="upfile"/>
                                                         <br/>

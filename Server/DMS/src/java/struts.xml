@@ -546,6 +546,41 @@
             <result name="success" >customer.jsp</result>
             <result name="input" >customer.jsp</result>
         </action>
+        
+        <action name="import-customer" method="redirect" class="com.hp.action.CustomerAction">
+            <result name="success">customer-import.jsp</result>
+            <result name="input" >customer-import.jsp</result>
+        </action>
+        
+        <action name="customer-template" method="getTemplate" class="com.hp.action.CustomerAction">
+            <result name="success" type="stream">
+                <param name="contentType">
+                    application/vnd.ms-excel
+                </param>
+                <param name="inputName">customerTemplate</param>
+                <param name="contentDisposition">attachment;filename=template_import_khach_hang.xls</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="input" >customer-import.jsp</result>
+        </action>
+        
+        <action name="upload-customer" method="saveFile" class="com.hp.action.CustomerAction">
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            
+            <result name="success">customer-import-commit.jsp</result>
+            <result name="input" >customer-import-commit.jsp</result>
+        </action>
+        
+        <action name="add-customer" method="addCustomerFromExcelFile" class="com.hp.action.CustomerAction">
+            <result name="success" type="json" />
+            
+        </action>
+        
         <!--PRODUCT-->
         <action name="product-list" method="displayProducts" class="com.hp.action.ProductsAction">
             <result name="success">product.jsp</result>

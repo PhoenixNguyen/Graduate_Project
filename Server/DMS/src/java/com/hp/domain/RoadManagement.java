@@ -22,93 +22,85 @@ import javax.persistence.Table;
 @Table(name="tb_quanlyduongdi")
 
 public class RoadManagement {
-    private int mSTT;
-    private String mMaNhanVien;
-    private String mMaKhachHang;
-    private Timestamp mThoiGian;
-    private Float mViDo;
-    private Float mKinhdo;
-    private String mGhiChu;
+    @Id
+    @GeneratedValue
+    
+    @Column(name="quanlyduongdi_stt")
+    private int stt;
+    @Column(name="quanlyduongdi_ma_nhan_vien")
+    private String maNhanVien;
+    @Column(name="quanlyduongdi_ten_nhan_vien")
+    private String tenNhanVien;
+    @Column(name="quanlyduongdi_thoi_gian")
+    private Timestamp thoiGian;
+    @Column(name="quanlyduongdi_vi_do")
+    private Float viDo;
+    @Column(name="quanlyduongdi_kinh_do")
+    private Float kinhDo;
+    @Column(name="quanlyduongdi_ghi_chu")
+    private String ghiChu;
 
+    
+    public String getMaNhanVien() {
+        return maNhanVien;
+    }
+
+    public void setMaNhanVien(String maNhanVien) {
+        this.maNhanVien = maNhanVien;
+    }
+
+    public String getTenNhanVien() {
+        return tenNhanVien;
+    }
+
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
+    }
+
+    public Timestamp getThoiGian() {
+        return thoiGian;
+    }
+
+    public void setThoiGian(Timestamp thoiGian) {
+        this.thoiGian = thoiGian;
+    }
+
+    public Float getViDo() {
+        return viDo;
+    }
+
+    public void setViDo(Float viDo) {
+        this.viDo = viDo;
+    }
+
+    public Float getKinhDo() {
+        return kinhDo;
+    }
+
+    public void setKinhDo(Float kinhDo) {
+        this.kinhDo = kinhDo;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
+    
     public RoadManagement(String pMaNhanVien, String pMaKhachHang, Timestamp pThoiGian, 
     		Float pViDo, Float pKinhdo, String pGhiChu){
-    	this.mMaNhanVien = pMaNhanVien;
-    	this.mMaKhachHang = pMaKhachHang;
-    	this.mThoiGian = pThoiGian;
-    	this.mViDo = pViDo;
-    	this.mKinhdo = pKinhdo;
-    	this.mGhiChu = pGhiChu;
+    	this.maNhanVien = pMaNhanVien;
+    	this.tenNhanVien = pMaKhachHang;
+    	this.thoiGian = pThoiGian;
+    	this.viDo = pViDo;
+    	this.kinhDo = pKinhdo;
+    	this.ghiChu = pGhiChu;
     }
     
     public RoadManagement(){
         
     }
-    
-    @Id
-    @GeneratedValue
-    
-    @Column(name="quanlyduongdi_stt")
-    public int getmSTT() {
-        return mSTT;
-    }
-
-    public void setmSTT(int mSTT) {
-        this.mSTT = mSTT;
-    }
-
-    @Column(name="quanlyduongdi_ma_nhan_vien")
-    public String getmMaNhanVien() {
-        return mMaNhanVien;
-    }
-
-    public void setmMaNhanVien(String mMaNhanVien) {
-        this.mMaNhanVien = mMaNhanVien;
-    }
-
-    @Column(name="quanlyduongdi_ten_nhan_vien")
-    public String getmMaKhachHang() {
-        return mMaKhachHang;
-    }
-
-    public void setmMaKhachHang(String mMaKhachHang) {
-        this.mMaKhachHang = mMaKhachHang;
-    }
-
-    @Column(name="quanlyduongdi_thoi_gian")
-    public Timestamp getmThoiGian() {
-        return mThoiGian;
-    }
-
-    public void setmThoiGian(Timestamp mThoiGian) {
-        this.mThoiGian = mThoiGian;
-    }
-
-    @Column(name="quanlyduongdi_vi_do")
-    public Float getmViDo() {
-        return mViDo;
-    }
-
-    public void setmViDo(Float mViDo) {
-        this.mViDo = mViDo;
-    }
-
-    @Column(name="quanlyduongdi_kinh_do")
-    public Float getmKinhdo() {
-        return mKinhdo;
-    }
-
-    public void setmKinhdo(Float mKinhdo) {
-        this.mKinhdo = mKinhdo;
-    }
-
-    @Column(name="quanlyduongdi_ghi_chu")
-    public String getmGhiChu() {
-        return mGhiChu;
-    }
-
-    public void setmGhiChu(String mGhiChu) {
-        this.mGhiChu = mGhiChu;
-    }
-    
-    
 }

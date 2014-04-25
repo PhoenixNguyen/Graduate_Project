@@ -53,9 +53,9 @@
                     <s:iterator value="listRoad" status="status">
                     <s:iterator value="listRoad.get(#status.index)" >
                             {
-                                mXCoordinates: <s:property value="mViDo"/>,
-                                        mYCoordinates: <s:property value="mKinhdo"/>,
-                                mMaDoiTuong: '<s:property value="mThoiGian"/>'
+                                mXCoordinates: <s:property value="viDo"/>,
+                                        mYCoordinates: <s:property value="kinhDo"/>,
+                                mMaDoiTuong: '<s:property value="thoiGian"/>'
 
                             },
                     </s:iterator>
@@ -64,7 +64,7 @@
 
                 var myOptions = {
                     zoom: 13,
-                    center: new google.maps.LatLng(<s:property value="listRoad.get(0).get(0).getMViDo()"/>, <s:property value="listRoad.get(0).get(0).getMKinhdo()"/>),
+                    center: new google.maps.LatLng(<s:property value="listRoad.get(0).get(0).getViDo()"/>, <s:property value="listRoad.get(0).get(0).getKinhDo()"/>),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
@@ -77,8 +77,8 @@
                 var contentString = [
                     <s:iterator value="listRoad" status="status">
                     <s:iterator value="listRoad.get(#status.index)" status="index">
-                    <s:date name="mThoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
-                            'Mã Nhân viên: <s:property value="mMaNhanVien"/> <br/>\
+                    <s:date name="thoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                            'Mã Nhân viên: <s:property value="maNhanVien"/> <br/>\
                             Thời gian:<br/><s:property value="%{createdDateId}"/> <br/>\
                             Thứ tự di chuyển: <s:property value="%{#index.index + 1}"/>',
                     </s:iterator>
@@ -87,7 +87,7 @@
 
                 for (i = 0; i < Points.length; i++) {
                     size = 15;
-                    var img = new google.maps.MarkerImage('../images/marker.jpg',
+                    var img = new google.maps.MarkerImage('../db_images/marker.jpg',
                             new google.maps.Size(size, 2 * size),
                             new google.maps.Point(0, 0),
                             new google.maps.Point(size / 2, size / 2)
@@ -170,7 +170,7 @@
                     
                     [
                         <s:iterator value="listRoad.get(#status.index)" >
-                                new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
+                                new google.maps.LatLng(<s:property value="viDo"/>, <s:property value="kinhDo"/>),
                         </s:iterator>
                         
                     ],
@@ -227,7 +227,7 @@
                 //Polyline
 //                var flightPlanCoordinates = [
 //                    <s:iterator value="listRoad" status="status">
-//                    new google.maps.LatLng(<s:property value="mViDo"/>, <s:property value="mKinhdo"/>),
+//                    new google.maps.LatLng(<s:property value="viDo"/>, <s:property value="kinhDo"/>),
 //                    </s:iterator>
 //                  ];
 //                  var flightPath = new google.maps.Polyline({
@@ -567,13 +567,13 @@
                         <tbody>
                             <s:iterator value="listRoad" status="status">
                                 <s:iterator value="listRoad.get(#status.index)" >
-                                    <s:date name="mThoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                                    <s:date name="thoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
                                 <tr >
-                                    <td><s:property value="mMaNhanVien"/></td>
+                                    <td><s:property value="maNhanVien"/></td>
                                     <td></td>
                                     <td><s:property value="%{createdDateId}"/></td>
-                                    <td><s:property value="mViDo"/></td>
-                                    <td><s:property value="mKinhdo"/></td>
+                                    <td><s:property value="viDo"/></td>
+                                    <td><s:property value="kinhDo"/></td>
                                 </tr>
                                 </s:iterator>
                             </s:iterator>

@@ -69,10 +69,10 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
 //                for(int i= 0; i < khachhang.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
                     if(datefinal.compareTo("") == 0)
-                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+pNhanVien+"'").list();
+                        tmp = session.createQuery("from RoadManagement where maNhanVien='"+pNhanVien+"'").list();
                     else
-                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+pNhanVien+"'"
-                                + "  and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+                        tmp = session.createQuery("from RoadManagement where maNhanVien='"+pNhanVien+"'"
+                                + "  and cast (thoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -91,10 +91,10 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                 for(int i= 0; i < nhanvien.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();
                     if(datefinal.compareTo("") == 0)
-                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+nhanvien.get(i)+"'").list();
+                        tmp = session.createQuery("from RoadManagement where maNhanVien='"+nhanvien.get(i)+"'").list();
                     else
-                        tmp = session.createQuery("from RoadManagement where mMaNhanVien='"+nhanvien.get(i)+"'"
-                                + " and cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+                        tmp = session.createQuery("from RoadManagement where maNhanVien='"+nhanvien.get(i)+"'"
+                                + " and cast (thoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -110,13 +110,12 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                     if(datefinal.compareTo("") == 0)
                         tmp = session.createQuery("from RoadManagement ").list();
                     else
-                        tmp = session.createQuery("from RoadManagement where "
-                                + " cast (mThoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+                        tmp = session.createQuery("select rm from RoadManagement as rm where "
+                                + " cast (rm.thoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
-                //}
-                
+                //}                
                 return result;
             }
 //            courses = session.createSQLQuery("select tb_quanlyduongdi.* from tb_quanlyduongdi as road,tb_nhanvien as nv  "

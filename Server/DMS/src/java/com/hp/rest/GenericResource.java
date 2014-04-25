@@ -260,11 +260,11 @@ public class GenericResource {
                             
                             //UPDATE into Database
                             RoadManagement roadManagement = new RoadManagement();
-                            roadManagement.setmMaNhanVien(staffid);
-                            roadManagement.setmMaKhachHang(customerid);
-                            roadManagement.setmViDo(x);
-                            roadManagement.setmKinhdo(y);
-                            roadManagement.setmThoiGian(Timestamp.valueOf(dateFormat.format(cal.getTime())));
+                            roadManagement.setMaNhanVien(staffid);
+                            roadManagement.setTenNhanVien(customerid);
+                            roadManagement.setViDo(x);
+                            roadManagement.setKinhDo(y);
+                            roadManagement.setThoiGian(Timestamp.valueOf(dateFormat.format(cal.getTime())));
                             
                             roadManagementDAO.saveOrUpdate(roadManagement);
                             
@@ -301,8 +301,8 @@ public class GenericResource {
         scheduleList = scheduleDAO.getScheduleList(staff, date);
         
 //        Schedule sc = new Schedule();
-//        sc.setmMaKH("fdfd");
-//        sc.setmMaNV("1234fdfd");
+//        sc.setMMaKH("fdfd");
+//        sc.setMMaNV("1234fdfd");
         return scheduleList;
     }
     
@@ -328,7 +328,7 @@ public class GenericResource {
         
         //Update location
         CustomerDAO customerDAO = new CustomerDAOImpl();
-        int st = customerDAO.update(track.getmMaKhachHang(), track.getmViDo(), track.getmKinhdo());
+        int st = customerDAO.update(track.getMaKhachHang(), track.getViDo(), track.getMKinhdo());
         
 //            String output = pTrack.toString();
             System.out.println("____ " + pTrack + "___ " + st);
@@ -364,7 +364,7 @@ public class GenericResource {
 //			File jsonFile = new File(jsonFilePath);
                 schedulesList = mapper.readValue(pSchedule, TypeFactory.defaultInstance().constructCollectionType(List.class,
 					Schedule.class));
-                //System.out.println(schedulesList.get(0).getmMaKH());
+                //System.out.println(schedulesList.get(0).getMMaKH());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -444,7 +444,7 @@ public class GenericResource {
         try {
 //			File jsonFile = new File(jsonFilePath);
                 takeOrder = mapper.readValue(pTakeOrder, TakeOrder.class);
-                //System.out.println(track.getmMaKhachHang());
+                //System.out.println(track.getMMaKhachHang());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -474,7 +474,7 @@ public class GenericResource {
                 detailList = mapper.readValue(pList
                         , TypeFactory.defaultInstance().constructCollectionType(List.class
                         , TakeOrderDetail.class));
-                //System.out.println(schedulesList.get(0).getmMaKH());
+                //System.out.println(schedulesList.get(0).getMMaKH());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -533,7 +533,7 @@ public class GenericResource {
         try {
 //			File jsonFile = new File(jsonFilePath);
                 data = mapper.readValue(pData, DataInfo.class);
-                //System.out.println(track.getmMaKhachHang());
+                //System.out.println(track.getMMaKhachHang());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -600,7 +600,7 @@ public class GenericResource {
         try {
 //			File jsonFile = new File(jsonFilePath);
                 takeOrderDetail = mapper.readValue(pTakeOrder, TakeOrderDetail.class);
-                //System.out.println(track.getmMaKhachHang());
+                //System.out.println(track.getMMaKhachHang());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -646,7 +646,7 @@ public class GenericResource {
         try {
 //			File jsonFile = new File(jsonFilePath);
                 takeOrderDetail = mapper.readValue(pTakeOrder, TakeOrderDetail.class);
-                //System.out.println(track.getmMaKhachHang());
+                //System.out.println(track.getMMaKhachHang());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -692,7 +692,7 @@ public class GenericResource {
         try {
 //			File jsonFile = new File(jsonFilePath);
                 takeOrder = mapper.readValue(pTakeOrder, TakeOrder.class);
-                //System.out.println(track.getmMaKhachHang());
+                //System.out.println(track.getMMaKhachHang());
         } catch (JsonGenerationException e) {
                 e.printStackTrace();
         } catch (JsonMappingException e) {

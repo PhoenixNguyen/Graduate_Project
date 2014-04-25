@@ -7,6 +7,7 @@
 package com.hp.dao;
 
 import com.hp.domain.Customer;
+import com.hp.domain.Staff;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,4 +47,6 @@ public interface CustomerDAO {
     public Customer loadCustomer(String pCustomer);
     public Customer loadCustomer(int pCustomer);
     
+    public List<Staff> loadStaffsWithLocationsForSchedule();
+    public List<List<Customer>> customerScheduleList(String pManagerID, String pStaff, String pDate, String pToDate);
 }

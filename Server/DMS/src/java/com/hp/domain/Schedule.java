@@ -41,47 +41,47 @@ public class Schedule {
     private boolean mStatus;
 
     @XmlElement
-    public int getmStt() {
+    public int getMStt() {
         return mStt;
     }
 
-    public void setmStt(int mStt) {
+    public void setMStt(int mStt) {
         this.mStt = mStt;
     }
 
     @XmlElement
-    public String getmMaNV() {
+    public String getMMaNV() {
         return mMaNV;
     }
 
-    public void setmMaNV(String mMaNV) {
+    public void setMMaNV(String mMaNV) {
         this.mMaNV = mMaNV;
     }
 
     @XmlElement
-    public String getmMaKH() {
+    public String getMMaKH() {
         return mMaKH;
     }
 
-    public void setmMaKH(String mMaKH) {
+    public void setMMaKH(String mMaKH) {
         this.mMaKH = mMaKH;
     }
 
     @XmlElement
-    public Timestamp getmDate() {
+    public Timestamp getMDate() {
         return mDate;
     }
 
-    public void setmDate(Timestamp mDate) {
+    public void setMDate(Timestamp mDate) {
         this.mDate = mDate;
     }
 
     @XmlElement
-    public boolean ismStatus() {
+    public boolean isMStatus() {
         return mStatus;
     }
 
-    public void setmStatus(boolean mStatus) {
+    public void setMStatus(boolean mStatus) {
         this.mStatus = mStatus;
     }
     

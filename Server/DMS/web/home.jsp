@@ -230,7 +230,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr><td><a href="staff-list" class="drop_down">Nhân viên</a></td></tr>
-
+            <tr><td><a href="schedule" class="drop_down">Kế hoạch</a></td></tr>
         </tbody>
     </table>
 </div>

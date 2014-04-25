@@ -95,10 +95,10 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<Customer> courses = null;
         try{
             if(pStaff == null)
-                courses = session.createQuery("from Customer order by mMaDoiTuong  ").list(); 
+                courses = session.createQuery("from Customer order by maDoiTuong  ").list(); 
             else
                 courses = session.createQuery("from Customer where  " 
-                        + " mMaNhanVien='"+pStaff+"' order by mMaDoiTuong ").list(); 
+                        + " maNhanVien='"+pStaff+"' order by maDoiTuong ").list(); 
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -118,7 +118,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<Customer> courses = null;
         try{
             String q = "from Customer ";
-            Query query = session.createQuery("from Customer where mXCoordinates > 0");
+            Query query = session.createQuery("from Customer where coordinateX > 0");
                         
             courses = query.list();
             //courses = session.createQuery("from Customer where mXCoordinates = 0").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
@@ -149,14 +149,14 @@ public class CustomerDAOImpl implements CustomerDAO {
             if(pCustomer == null){
                 if(pStaff == null)
                     courses = session.createQuery("select cus from Customer as cus, Staff as st where "
-                            + "st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
-                            + "' and cus.mXCoordinates > 0  "  //and cus.mXCoordinates is NOT NULL
-                            + " order by  cus.mXCoordinates desc  ").list(); //cus.mYCoordinates is NOT NULL
+                            + "st.id = cus.maNhanVien and st.manager = '" +pManagerID
+                            + "' and cus.coordinateX > 0  "  //and cus.mXCoordinates is NOT NULL
+                            + " order by  cus.coordinateX desc  ").list(); //cus.mYCoordinates is NOT NULL
                 else
-                    courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"' and mXCoordinates > 0 order by  mXCoordinates desc").list();
+                    courses = session.createQuery("from Customer where maNhanVien='"+pStaff+"' and coordinateX > 0 order by  coordinateX desc").list();
             }
             else
-                courses = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"' order by  mXCoordinates desc").list();
+                courses = session.createQuery("from Customer where maDoiTuong='"+pCustomer+"' order by  coordinateX desc").list();
           
         }catch(Exception e){
             e.printStackTrace();
@@ -177,10 +177,10 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<String> courses = null;
         try{
             if(pStaff == null)
-                courses = session.createQuery("select mMaDoiTuong from Customer  ").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
+                courses = session.createQuery("select maDoiTuong from Customer  ").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
             else
-                courses = session.createQuery("select mMaDoiTuong from Customer where  " //mXCoordinates is NOT NULL
-                        + " mMaNhanVien='"+pStaff+"'").list(); //and  mYCoordinates is NOT NULL and 
+                courses = session.createQuery("select maDoiTuong from Customer where  " //mXCoordinates is NOT NULL
+                        + " maNhanVien='"+pStaff+"'").list(); //and  mYCoordinates is NOT NULL and 
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -200,8 +200,8 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         int status = 0;
         try{
-            String str = "update Customer set mXCoordinates ="+pX+ " "
-                    + ", mYCoordinates="+pY+" where mMaDoiTuong='"+pID+ "'" ;
+            String str = "update Customer set coordinateX ="+pX+ " "
+                    + ", coordinateY="+pY+" where maDoiTuong='"+pID+ "'" ;
             Query query = session.createQuery(str);
             status = query.executeUpdate();
             session.getTransaction().commit();
@@ -256,8 +256,8 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<Customer> courses = null;
         try{
             courses = session.createQuery("select cus from Customer as cus, Schedule as sc "
-                    + "where cus.mMaDoiTuong = sc.mMaKH "
-                    + "and cus.mXCoordinates is NOT NULL and  cus.mYCoordinates is NOT NULL ").list();
+                    + "where cus.maDoiTuong = sc.maKH "
+                    + "and cus.coordinateX is NOT NULL and  cus.coordinateY is NOT NULL ").list();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -282,12 +282,12 @@ public class CustomerDAOImpl implements CustomerDAO {
             System.out.print(pManagerID);           
             if(pStaff == null)
                 courses = session.createQuery("select cus from Customer as cus,Staff as st, Schedule as sc where "
-                        + "cus.mMaDoiTuong = sc.mMaKH "
-                        + "and st.mID = cus.mMaNhanVien and st.mManager = '" +pManagerID
-                        + "' and cus.mXCoordinates is NOT NULL "
-                        + "and  cus.mYCoordinates is NOT NULL ").list();
+                        + "cus.maDoiTuong = sc.maKH "
+                        + "and st.id = cus.maNhanVien and st.manager = '" +pManagerID
+                        + "' and cus.coordinateX is NOT NULL "
+                        + "and  cus.coordinateY is NOT NULL ").list();
             else
-                courses = session.createQuery("from Customer where mMaNhanVien='"+pStaff+"'").list();
+                courses = session.createQuery("from Customer where maNhanVien='"+pStaff+"'").list();
           
         }catch(Exception e){
             e.printStackTrace();
@@ -307,7 +307,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         List<Customer> courses = null;
         try{
-            courses = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"'").list();
+            courses = session.createQuery("from Customer where maDoiTuong='"+pCustomer+"'").list();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -327,7 +327,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         List<Customer> courses = null;
         try{
-            courses = session.createQuery("from Customer order by mMaDoiTuong").list();
+            courses = session.createQuery("from Customer order by maDoiTuong").list();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -390,7 +390,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<Staff> courses = null;
         try{
             courses = session.createQuery("select st from Staff as st, Schedule as sc "
-                    + "where st.mID = sc.mMaNV "
+                    + "where st.id = sc.maNV "
                     + " ").list();
         }catch(Exception e){
             e.printStackTrace();
@@ -430,12 +430,12 @@ public class CustomerDAOImpl implements CustomerDAO {
                     List<Customer> tmp = new ArrayList<Customer>();
                     if(datefinal.compareTo("") == 0)
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
-                                + "where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +pStaff+"' order by sc.mMaNV, sc.mDate").list();
+                                + "where sc.maKH = cus.maDoiTuong and sc.maNV='" +pStaff+"' order by sc.maNV, sc.time").list();
                     else
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
-                                + " where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +pStaff+"' "
-                                + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
-                                + " order by sc.mMaNV, sc.mDate").list();
+                                + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +pStaff+"' "
+                                + " and cast (sc.time as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " order by sc.maNV, sc.time").list();
                                                                 
                     if(tmp.size() > 0)
                         courses.add(tmp);
@@ -446,20 +446,20 @@ public class CustomerDAOImpl implements CustomerDAO {
             else 
             if(pManagerID != null){
                 List<String> nhanvien = null;
-                nhanvien = session.createQuery("select mID "
+                nhanvien = session.createQuery("select id "
                         + "from Staff "
-                        + "where mManager ='"+pManagerID+"' "
+                        + "where manager ='"+pManagerID+"' "
                         ).list();
                 for(int i= 0; i < nhanvien.size(); i++){
                     List<Customer> tmp = new ArrayList<Customer>();
                     if(datefinal.compareTo("") == 0)
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
-                                + "where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' order by sc.mMaNV, sc.mDate").list();
+                                + "where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' order by sc.maNV, sc.time").list();
                     else
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
-                                + " where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' "
-                                + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
-                                + " order by sc.mMaNV, sc.mDate").list();
+                                + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' "
+                                + " and cast (sc.time as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " order by sc.maNV, sc.time").list();
                                                                 
                     if(tmp.size() > 0)
                         courses.add(tmp);
@@ -468,7 +468,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             }
             else{
                 List<String> nhanvien = null;
-                nhanvien = session.createQuery("select mID "
+                nhanvien = session.createQuery("select id "
                         + "from Staff "
                         + " "
                         ).list();
@@ -476,12 +476,12 @@ public class CustomerDAOImpl implements CustomerDAO {
                     List<Customer> tmp = new ArrayList<Customer>();
                     if(datefinal.compareTo("") == 0)
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
-                                + "where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' order by sc.mMaNV, sc.mDate").list();
+                                + "where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' order by sc.maNV, sc.time").list();
                     else
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
-                                + " where sc.mMaKH = cus.mMaDoiTuong and sc.mMaNV='" +nhanvien.get(i)+"' "
-                                + " and cast (sc.mDate as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
-                                + " order by sc.mMaNV, sc.mDate").list();
+                                + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' "
+                                + " and cast (sc.time as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " order by sc.maNV, sc.time").list();
                                                                 
                     if(tmp.size() > 0)
                         courses.add(tmp);

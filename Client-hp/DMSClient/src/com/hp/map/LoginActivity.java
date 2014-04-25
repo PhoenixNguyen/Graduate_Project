@@ -66,7 +66,7 @@ public class LoginActivity extends Activity {
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
-        mUsername.setText("");//ba_dinh
+        mUsername.setText("ba_dinh");//ba_dinh
         mPassword = (EditText)findViewById(R.id.password);
         mPassword.setText("123456");
         
@@ -103,7 +103,7 @@ public class LoginActivity extends Activity {
 				if(Rest.getCustomersList(username) == true){
 					
 					//Run thread to do backgroud send location
-					doBackground();
+					//doBackground();
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
 	            	startActivity(i);

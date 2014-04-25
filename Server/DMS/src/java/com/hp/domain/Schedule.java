@@ -24,65 +24,60 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name= "tb_schedule")
-@XmlRootElement(name = "Schedule")
 public class Schedule {
     @Id
     @GeneratedValue
     
     @Column(name="schedule_stt")
-    private int mStt;
+    private int stt;
+
     @Column(name="schedule_ma_nv")
-    private String mMaNV;
+    private String maNV;
     @Column(name="schedule_ma_khach_hang")
-    private String mMaKH;
+    private String maKH;
     @Column(name="schedule_date")
-    private Timestamp mDate;
+    private Timestamp time;
     @Column(name="schedule_trang_thai")
-    private boolean mStatus;
+    private boolean status;
 
-    @XmlElement
-    public int getMStt() {
-        return mStt;
+    public int getStt() {
+        return stt;
     }
 
-    public void setMStt(int mStt) {
-        this.mStt = mStt;
+    public void setStt(int stt) {
+        this.stt = stt;
     }
 
-    @XmlElement
-    public String getMMaNV() {
-        return mMaNV;
+    public String getMaNV() {
+        return maNV;
     }
 
-    public void setMMaNV(String mMaNV) {
-        this.mMaNV = mMaNV;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
-    @XmlElement
-    public String getMMaKH() {
-        return mMaKH;
+    public String getMaKH() {
+        return maKH;
     }
 
-    public void setMMaKH(String mMaKH) {
-        this.mMaKH = mMaKH;
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
     }
 
-    @XmlElement
-    public Timestamp getMDate() {
-        return mDate;
+    public Timestamp getTime() {
+        return time;
     }
 
-    public void setMDate(Timestamp mDate) {
-        this.mDate = mDate;
+    public void setTime(Timestamp date) {
+        this.time = date;
     }
 
-    @XmlElement
-    public boolean isMStatus() {
-        return mStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setMStatus(boolean mStatus) {
-        this.mStatus = mStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
 }

@@ -125,19 +125,19 @@ public class GetData {
                     
                     //Init Customer Object
                     Customer custumer = new Customer();
-                    custumer.setMXCoordinates(row.getCell(ConfigFile.X_COORDINATES_COL).getNumericCellValue());
-                    custumer.setMYCoordinates(row.getCell(ConfigFile.Y_COORDINATES_COL).getNumericCellValue());
+                    custumer.setCoordinateX(row.getCell(ConfigFile.X_COORDINATES_COL).getNumericCellValue());
+                    custumer.setCoordinateY(row.getCell(ConfigFile.Y_COORDINATES_COL).getNumericCellValue());
                     
                     
                     int tmp = 0;
-                    custumer.setMStt((int)row.getCell(tmp++).getNumericCellValue());
-                    custumer.setMTinhThanh(row.getCell(tmp++).getStringCellValue());
-                    custumer.setMTuyenBanHangThu(row.getCell(tmp++).getStringCellValue());
-                    custumer.setMMaNhanVien(row.getCell(tmp++).getStringCellValue());
+                    custumer.setStt((int)row.getCell(tmp++).getNumericCellValue());
+                    custumer.setTinhThanh(row.getCell(tmp++).getStringCellValue());
+                    custumer.setTuyenBanHangThu(row.getCell(tmp++).getStringCellValue());
+                    custumer.setMaNhanVien(row.getCell(tmp++).getStringCellValue());
                     
-                    custumer.setMX(row.getCell(tmp++).getStringCellValue());
-                    custumer.setMMaDoiTuong(row.getCell(tmp++).getStringCellValue());
-                    custumer.setMDoiTuong(row.getCell(tmp++).getStringCellValue());
+                    custumer.setX(row.getCell(tmp++).getStringCellValue());
+                    custumer.setMaDoiTuong(row.getCell(tmp++).getStringCellValue());
+                    custumer.setDoiTuong(row.getCell(tmp++).getStringCellValue());
 //                    custumer.setmNoDKy(row.getCell(tmp++).getNumericCellValue());
 //                    
 //                    custumer.setmCoDKy(row.getCell(tmp++).getNumericCellValue());
@@ -156,11 +156,11 @@ public class GetData {
 //                    custumer.setmNoToiDa(row.getCell(tmp++).getNumericCellValue());
 //                    custumer.setmDaiDien(row.getCell(tmp++).getStringCellValue());
                     
-                    custumer.setMDiaChi(row.getCell(tmp++).getStringCellValue());
-                    custumer.setMDienThoai(row.getCell(tmp++).getStringCellValue());
-                    custumer.setMFax(row.getCell(tmp++).getStringCellValue());
+                    custumer.setDiaChi(row.getCell(tmp++).getStringCellValue());
+                    custumer.setDienThoai(row.getCell(tmp++).getStringCellValue());
+                    custumer.setFax(row.getCell(tmp++).getStringCellValue());
                     
-                    custumer.setMGhiChu(row.getCell(tmp++).getStringCellValue());
+                    custumer.setGhiChu(row.getCell(tmp++).getStringCellValue());
                     
                     
                     listCustomer.add(custumer);
@@ -180,6 +180,6 @@ public class GetData {
         GetData data= new GetData("web/database/customer.xls");
         Customer cus = data.loadCustomer().get(0);
         
-        System.out.println("Customer 1: "+ cus.getMMaDoiTuong() +" X:" + cus.getMXCoordinates() +", Y: "+ cus.getMYCoordinates());
+        System.out.println("Customer 1: "+ cus.getMaDoiTuong() +" X:" + cus.getCoordinateX() +", Y: "+ cus.getCoordinateY());
     }
 }

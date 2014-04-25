@@ -28,9 +28,9 @@ public class StaffDAOImpl implements StaffDAO{
         List<String> courses = null;
         try{
             if(pManager == null)
-                courses = session.createQuery("select mID from Staff ").list();
+                courses = session.createQuery("select id from Staff ").list();
             else
-                courses = session.createQuery("select mID from Staff  where mManager ='"+pManager+"'").list(); //where mManager ='"+pUser+"'"
+                courses = session.createQuery("select id from Staff  where manager ='"+pManager+"'").list(); //where mManager ='"+pUser+"'"
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class StaffDAOImpl implements StaffDAO{
         boolean result = false;
         try{
             
-            String sql = "from Staff where lower(mID)= '"+pUsername.toLowerCase()+"' and lower(mPW)='"+pPassword.toLowerCase()+"' and mStatus= true ";
+            String sql = "from Staff where lower(id)= '"+pUsername.toLowerCase()+"' and lower(pw)='"+pPassword.toLowerCase()+"' and status= true ";
             Query query = (Query) session.createQuery(sql);
 //            query.setString(0, pUsername.toLowerCase());
 //            query.setString(1, pPassword.toLowerCase());

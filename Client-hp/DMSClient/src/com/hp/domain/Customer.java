@@ -51,107 +51,107 @@ public class Customer {
     public String toString(){
     	return mMaDoiTuong + " " + mDoiTuong;
     }
-    public int getmStt() {
+    
+
+    public int getMStt() {
         return mStt;
     }
 
-    public void setmStt(int mStt) {
+    public void setMStt(int mStt) {
         this.mStt = mStt;
     }
 
-    public String getmTinhThanh() {
+    public String getMTinhThanh() {
         return mTinhThanh;
     }
 
-    public void setmTinhThanh(String mTinhThanh) {
+    public void setMTinhThanh(String mTinhThanh) {
         this.mTinhThanh = mTinhThanh;
     }
-
-    public String getmTuyenBanHangThu() {
+    public String getMTuyenBanHangThu() {
         return mTuyenBanHangThu;
     }
 
-    public void setmTuyenBanHangThu(String mTuyenBanHangThu) {
+    public void setMTuyenBanHangThu(String mTuyenBanHangThu) {
         this.mTuyenBanHangThu = mTuyenBanHangThu;
     }
-
-    public String getmMaNhanVien() {
+    public String getMMaNhanVien() {
         return mMaNhanVien;
     }
 
-    public void setmMaNhanVien(String mMaNhanVien) {
+    public void setMMaNhanVien(String mMaNhanVien) {
         this.mMaNhanVien = mMaNhanVien;
     }
-
-    public String getmX() {
+    public String getMX() {
         return mX;
     }
 
-    public void setmX(String mX) {
+    public void setMX(String mX) {
         this.mX = mX;
     }
-
-    public String getmMaDoiTuong() {
+  
+    public String getMMaDoiTuong() {
         return mMaDoiTuong;
     }
 
-    public void setmMaDoiTuong(String mMaDoiTuong) {
+    public void setMMaDoiTuong(String mMaDoiTuong) {
         this.mMaDoiTuong = mMaDoiTuong;
     }
+    
 
-    public String getmDoiTuong() {
+    public String getMDoiTuong() {
         return mDoiTuong;
     }
 
-    public void setmDoiTuong(String mDoiTuong) {
+    public void setMDoiTuong(String mDoiTuong) {
         this.mDoiTuong = mDoiTuong;
     }
-
-    public String getmDiaChi() {
+    
+    public String getMDiaChi() {
         return mDiaChi;
     }
 
-    public void setmDiaChi(String mDiaChi) {
+    public void setMDiaChi(String mDiaChi) {
         this.mDiaChi = mDiaChi;
     }
-
-    public String getmDienThoai() {
+    
+    public String getMDienThoai() {
         return mDienThoai;
     }
 
-    public void setmDienThoai(String mDienThoai) {
+    public void setMDienThoai(String mDienThoai) {
         this.mDienThoai = mDienThoai;
     }
-
-    public String getmFax() {
+    
+    public String getMFax() {
         return mFax;
     }
 
-    public void setmFax(String mFax) {
+    public void setMFax(String mFax) {
         this.mFax = mFax;
     }
-
-    public String getmGhiChu() {
+    
+    public String getMGhiChu() {
         return mGhiChu;
     }
 
-    public void setmGhiChu(String mGhiChu) {
+    public void setMGhiChu(String mGhiChu) {
         this.mGhiChu = mGhiChu;
     }
-
-    public double getmXCoordinates() {
+             
+    public Double getMXCoordinates() {
         return mXCoordinates;
     }
 
-    public void setmXCoordinates(double mXCoordinates) {
+    public void setMXCoordinates(Double mXCoordinates) {
         this.mXCoordinates = mXCoordinates;
     }
-
-    public double getmYCoordinates() {
+    
+    public Double getMYCoordinates() {
         return mYCoordinates;
     }
 
-    public void setmYCoordinates(double mYCoordinates) {
+    public void setMYCoordinates(Double mYCoordinates) {
         this.mYCoordinates = mYCoordinates;
     }
     

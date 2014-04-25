@@ -345,7 +345,7 @@
                 <br> 
                 <form name="EditView" method="POST" action="save-staff" id="sub_form" onsubmit="">
 
-                    <input type="hidden" name="staff.mSTT" value="0">
+                    <input type="hidden" name="staff.stt" value="0">
                     
                     <table border=0 cellspacing=0 cellpadding=0 width=95% align=center>
                         <tr>
@@ -408,13 +408,13 @@
                                                                         <font color="red"></font>Tên Nhân viên 			
                                                                     </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="staff.mName" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" name="staff.name" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                     <!-- Non Editable field, only configured value will be loaded -->
                                                                     
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red">*</font>Mã số Nhân viên </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="staff.mID" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" name="staff.id" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="height:25px">
@@ -424,7 +424,7 @@
                                                                     </td>
                                                                     <td width="30%" align=left class="dvtCellInfo">
                                                                         &nbsp;&nbsp;
-                                                                        <input  style="width:74%;" class = 'detailedViewTextBox' type="text" tabindex="" name="staff.mPW" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="">
+                                                                        <input  style="width:74%;" class = 'detailedViewTextBox' type="text" tabindex="" name="staff.pw" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="">
                                                                     </td>
 <!--                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font> Địa chỉ</td>
 
@@ -435,14 +435,14 @@
                                                                 <tr style="height:25px">
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Điện thoại </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="staff.mPhone" tabindex="" id ="tickersymbol" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn';" onBlur="this.className = 'detailedViewTextBox';
+                                                                        <input type="text" name="staff.phone" tabindex="" id ="tickersymbol" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn';" onBlur="this.className = 'detailedViewTextBox';
                                                                                 sensex_info()">
                                                                         <span id="vtbusy_info" style="display:none;">
                                                                             <img src="themes/images/vtbusy.gif" border="0"></span>
                                                                     </td>
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Chức vụ </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" tabindex="" name="staff.mJob" id ="fax" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" tabindex="" name="staff.job" id ="fax" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                 </tr>
 <!--                                                                <tr style="height:25px">
@@ -468,7 +468,7 @@
 <!--                                                                        <input type="radio" tabindex="" name="assigntype" checked value="U" onclick="toggleAssignType(this.value)" >&nbsp;Người dùng
                                                                         <input type="radio" name="assigntype"  value="T" onclick="toggleAssignType(this.value)">&nbsp;Nhóm-->
                                                                         <span id="assign_user" style="display:block">
-                                                                            <select name="staff.mManager" class="small" >
+                                                                            <select name="staff.manager" class="small" >
                                                                                 <s:iterator value="usersList" status="index">
                                                                                 <option value="<s:property value="usersList.get(#index.index)"/>" ><s:property value="usersList.get(#index.index)"/></option>
                                                                                 </s:iterator>
@@ -490,7 +490,7 @@
                                                                         <font color="red"></font>Trạng thái			
                                                                     </td>
                                                                     <td width="30%" align=left class="dvtCellInfo">
-                                                                        <input type="checkbox" tabindex="" name="staff.mStatus" checked  value="true">
+                                                                        <input type="checkbox" tabindex="" name="staff.status" checked  value="true">
 <!--                                                                        <input name="cf_607" tabindex="" id="jscal_field_cf_607" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
                                                                         <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_cf_607">
                                                                         <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
@@ -510,7 +510,7 @@
                                                                     </td>
                                                                     <td width="30%" align=left class="dvtCellInfo">
                                                                         
-                                                                        <input name="date"  tabindex="" id="jscal_field_cf_607" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
+                                                                        <input name="startDate"  tabindex="" id="jscal_field_cf_607" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
                                                                         <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_cf_607">
                                                                         <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
                                                                         <script type="text/javascript" id='massedit_calendar_cf_607'>
@@ -588,7 +588,7 @@
                                                                         Địa chỉ 			
                                                                     </td>
                                                                     <td colspan=3>
-                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="staff.mAdress"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
+                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="staff.adress"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
                                                                     </td>
                                                                 </tr>
 
@@ -607,7 +607,7 @@
                                                                         Mô tả 			
                                                                     </td>
                                                                     <td colspan=3>
-                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="staff.mNote"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
+                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="staff.note"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="height:25px"><td>&nbsp;</td></tr>

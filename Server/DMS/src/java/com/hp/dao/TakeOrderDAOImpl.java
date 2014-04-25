@@ -50,7 +50,7 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         
         List<TakeOrder> courses = null;
         try{
-                courses = session.createQuery("from TakeOrder order by mTakeOrderDate desc").list();
+                courses = session.createQuery("from TakeOrder order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         
         List<TakeOrder> courses = null;
         try{
-                courses = session.createQuery("from TakeOrder where mCreater='"+pStaff+"' order by mTakeOrderDate desc").list();
+                courses = session.createQuery("from TakeOrder where creater='"+pStaff+"' order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();
@@ -94,8 +94,8 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
                 Date from = sdf.parse(pFrom);
                 Date to = sdf.parse(pTo);
             
-                courses = session.createQuery("from TakeOrder where mCreater='"+pStaff+"'" 
-                                                + " and mTakeOrderDate BETWEEN '" +sdf2.format(from)+ "' "
+                courses = session.createQuery("from TakeOrder where mcreater='"+pStaff+"'" 
+                                                + " and takeOrderDate BETWEEN '" +sdf2.format(from)+ "' "
                                                 + " and '" +sdf2.format(to)+"'").list();
             
         }catch(Exception e){

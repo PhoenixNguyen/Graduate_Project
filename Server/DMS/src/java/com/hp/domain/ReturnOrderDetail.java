@@ -26,212 +26,214 @@ public class ReturnOrderDetail {
     @GeneratedValue
     
     @Column(name="chitietdontrahang_stt")
-    private Integer mSerial;
+    private Integer serial;
 
-    public ReturnOrderDetail(String mTakeOrderID, Integer mLine, String mProductID, String mBarcode, 
-            String mProductName, Float mAfterOrderPrice, Float mBeforeOrderPrice, Float mTax, 
-            Integer mDiscount, Float mPriceTotal, String mStockID, Integer mNumber, String mUnit, Float mExchangeRate) {
-        this.mTakeOrderID = mTakeOrderID;
-        this.mLine = mLine;
-        this.mProductID = mProductID;
-        this.mBarcode = mBarcode;
-        this.mProductName = mProductName;
-        this.mAfterOrderPrice = mAfterOrderPrice;
-        this.mBeforeOrderPrice = mBeforeOrderPrice;
-        this.mTax = mTax;
-        this.mDiscount = mDiscount;
-        this.mPriceTotal = mPriceTotal;
-        this.mStockID = mStockID;
-        this.mNumber = mNumber;
-        this.mUnit = mUnit;
-        this.mExchangeRate = mExchangeRate;
-    }
     @Column(name="chitietdontrahang_ma_hoa_don")
-    private String mTakeOrderID;
+    private String takeOrderID;
     @Column(name="chitietdontrahang_dong")
-    private Integer mLine;
+    private Integer line;
     @Column(name="chitietdontrahang_ma_hang")
-    private String mProductID;
+    private String productID;
     @Column(name="chitietdontrahang_ma_vach")
-    private String mBarcode;
+    private String barcode;
     @Column(name="chitietdontrahang_ten_san_pham")
-    private String mProductName;
+    private String productName;
     @Column(name="chitietdontrahang_don_gia_sau_thue", nullable = true)
-    private Float mAfterOrderPrice;
+    private Float afterOrderPrice;
     @Column(name="chitietdontrahang_don_gia_truoc_thue", nullable = true)
-    private Float mBeforeOrderPrice;
+    private Float beforeOrderPrice;
     @Column(name="chitietdontrahang_thue", nullable = true)
-    private Float mTax;
+    private Float tax;
     @Column(name="chitietdontrahang_giam_gia" , nullable = true)
-    private Integer mDiscount;
+    private Integer discount;
     @Column(name="chitietdontrahang_thanh_tien", nullable = true)
-    private Float mPriceTotal;
+    private Float priceTotal;
     @Column(name="chitietdontrahang_ma_kho", nullable = true)
-    private String mStockID;
+    private String stockID;
     @Column(name="chitietdontrahang_so_luong")
-    private Integer mNumber;
+    private Integer number;
     @Column(name="chitietdontrahang_don_vi_tinh")
-    private String mUnit;
+    private String unit;
     @Column(name="chitietdontrahang_ty_gia", nullable = true)
-    private Float mExchangeRate;
+    private Float exchangeRate;
     @Column(name="chitietdontrahang_ghi_chu")
-    private String mNote;
+    private String note;
     @Column(name="chitietdontrahang_hang_khuyen_mai")
-    private int mPromotionalProductMount;
+    private int promotionalProductMount;
 
-    public int getmPromotionalProductMount() {
-        return mPromotionalProductMount;
-    }
-
-    public void setmPromotionalProductMount(int mPromotionalProductMount) {
-        this.mPromotionalProductMount = mPromotionalProductMount;
-    }
     
-    public String getmNote() {
-        return mNote;
+    public Integer getSerial() {
+        return serial;
     }
 
-    public void setmNote(String mNote) {
-        this.mNote = mNote;
+    public void setSerial(Integer serial) {
+        this.serial = serial;
     }
+
+    public String getTakeOrderID() {
+        return takeOrderID;
+    }
+
+    public void setTakeOrderID(String takeOrderID) {
+        this.takeOrderID = takeOrderID;
+    }
+
+    public Integer getLine() {
+        return line;
+    }
+
+    public void setLine(Integer line) {
+        this.line = line;
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Float getAfterOrderPrice() {
+        return afterOrderPrice;
+    }
+
+    public void setAfterOrderPrice(Float afterOrderPrice) {
+        this.afterOrderPrice = afterOrderPrice;
+    }
+
+    public Float getBeforeOrderPrice() {
+        return beforeOrderPrice;
+    }
+
+    public void setBeforeOrderPrice(Float beforeOrderPrice) {
+        this.beforeOrderPrice = beforeOrderPrice;
+    }
+
+    public Float getTax() {
+        return tax;
+    }
+
+    public void setTax(Float tax) {
+        this.tax = tax;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public Float getPriceTotal() {
+        return priceTotal;
+    }
+
+    public void setPriceTotal(Float priceTotal) {
+        this.priceTotal = priceTotal;
+    }
+
+    public String getStockID() {
+        return stockID;
+    }
+
+    public void setStockID(String stockID) {
+        this.stockID = stockID;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public Float getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public void setExchangeRate(Float exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public int getPromotionalProductMount() {
+        return promotionalProductMount;
+    }
+
+    public void setPromotionalProductMount(int promotionalProductMount) {
+        this.promotionalProductMount = promotionalProductMount;
+    }
+   
     public ReturnOrderDetail(){
         
     }
     public ReturnOrderDetail(SaleOrderDetail pSaleOrderDetail){
-        this.mTakeOrderID = pSaleOrderDetail.getmTakeOrderID();
-        this.mLine = pSaleOrderDetail.getmLine();
-        this.mProductID = pSaleOrderDetail.getmProductID();
-        this.mBarcode = pSaleOrderDetail.getmBarcode();
-        this.mProductName = pSaleOrderDetail.getmProductName();
-        this.mAfterOrderPrice = pSaleOrderDetail.getmAfterOrderPrice();
-        this.mBeforeOrderPrice = pSaleOrderDetail.getmBeforeOrderPrice();
-        this.mTax = pSaleOrderDetail.getmTax();
-        this.mDiscount = pSaleOrderDetail.getmDiscount();
-        this.mPriceTotal = pSaleOrderDetail.getmPriceTotal();
-        this.mStockID = pSaleOrderDetail.getmStockID();
-        this.mNumber = pSaleOrderDetail.getmNumber();
-        this.mUnit = pSaleOrderDetail.getmUnit();
-        this.mExchangeRate = pSaleOrderDetail.getmExchangeRate();
+        this.takeOrderID = pSaleOrderDetail.getTakeOrderID();
+        this.line = pSaleOrderDetail.getLine();
+        this.productID = pSaleOrderDetail.getProductID();
+        this.barcode = pSaleOrderDetail.getBarcode();
+        this.productName = pSaleOrderDetail.getProductName();
+        this.afterOrderPrice = pSaleOrderDetail.getAfterOrderPrice();
+        this.beforeOrderPrice = pSaleOrderDetail.getBeforeOrderPrice();
+        this.tax = pSaleOrderDetail.getTax();
+        this.discount = pSaleOrderDetail.getDiscount();
+        this.priceTotal = pSaleOrderDetail.getPriceTotal();
+        this.stockID = pSaleOrderDetail.getStockID();
+        this.number = pSaleOrderDetail.getNumber();
+        this.unit = pSaleOrderDetail.getUnit();
+        this.exchangeRate = pSaleOrderDetail.getExchangeRate();
     }
     
-    public Integer getmSerial() {
-        return mSerial;
+    public ReturnOrderDetail(String mTakeOrderID, Integer mLine, String mProductID, String mBarcode, 
+            String mProductName, Float mAfterOrderPrice, Float mBeforeOrderPrice, Float mTax, 
+            Integer mDiscount, Float mPriceTotal, String mStockID, Integer mNumber, String mUnit, Float mExchangeRate) {
+        this.takeOrderID = mTakeOrderID;
+        this.line = mLine;
+        this.productID = mProductID;
+        this.barcode = mBarcode;
+        this.productName = mProductName;
+        this.afterOrderPrice = mAfterOrderPrice;
+        this.beforeOrderPrice = mBeforeOrderPrice;
+        this.tax = mTax;
+        this.discount = mDiscount;
+        this.priceTotal = mPriceTotal;
+        this.stockID = mStockID;
+        this.number = mNumber;
+        this.unit = mUnit;
+        this.exchangeRate = mExchangeRate;
     }
-
-    public void setmSerial(Integer mSerial) {
-        this.mSerial = mSerial;
-    }
-
-    public String getmTakeOrderID() {
-        return mTakeOrderID;
-    }
-
-    public void setmTakeOrderID(String mTakeOrderID) {
-        this.mTakeOrderID = mTakeOrderID;
-    }
-
-    public Integer getmLine() {
-        return mLine;
-    }
-
-    public void setmLine(Integer mLine) {
-        this.mLine = mLine;
-    }
-
-    public String getmProductID() {
-        return mProductID;
-    }
-
-    public void setmProductID(String mProductID) {
-        this.mProductID = mProductID;
-    }
-
-    public String getmBarcode() {
-        return mBarcode;
-    }
-
-    public void setmBarcode(String mBarcode) {
-        this.mBarcode = mBarcode;
-    }
-
-    public String getmProductName() {
-        return mProductName;
-    }
-
-    public void setmProductName(String mProductName) {
-        this.mProductName = mProductName;
-    }
-
-    public Float getmAfterOrderPrice() {
-        return mAfterOrderPrice;
-    }
-
-    public void setmAfterOrderPrice(Float mAfterOrderPrice) {
-        this.mAfterOrderPrice = mAfterOrderPrice;
-    }
-
-    public Float getmBeforeOrderPrice() {
-        return mBeforeOrderPrice;
-    }
-
-    public void setmBeforeOrderPrice(Float mBeforeOrderPrice) {
-        this.mBeforeOrderPrice = mBeforeOrderPrice;
-    }
-
-    public Float getmTax() {
-        return mTax;
-    }
-
-    public void setmTax(Float mTax) {
-        this.mTax = mTax;
-    }
-
-    public Integer getmDiscount() {
-        return mDiscount;
-    }
-
-    public void setmDiscount(Integer mDiscount) {
-        this.mDiscount = mDiscount;
-    }
-
-    public Float getmPriceTotal() {
-        return mPriceTotal;
-    }
-
-    public void setmPriceTotal(Float mPriceTotal) {
-        this.mPriceTotal = mPriceTotal;
-    }
-
-    public String getmStockID() {
-        return mStockID;
-    }
-
-    public void setmStockID(String mStockID) {
-        this.mStockID = mStockID;
-    }
-
-    public Integer getmNumber() {
-        return mNumber;
-    }
-
-    public void setmNumber(Integer mNumber) {
-        this.mNumber = mNumber;
-    }
-
-    public String getmUnit() {
-        return mUnit;
-    }
-
-    public void setmUnit(String mUnit) {
-        this.mUnit = mUnit;
-    }
-
-    public Float getmExchangeRate() {
-        return mExchangeRate;
-    }
-
-    public void setmExchangeRate(Float mExchangeRate) {
-        this.mExchangeRate = mExchangeRate;
-    }
-    
 }

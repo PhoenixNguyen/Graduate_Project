@@ -226,19 +226,19 @@
                         <%--s:subset source="listSchedules" start="%{#attr.first}"  count="10"--%>
                         <s:subset source="listSchedules" >
                         <s:iterator  status="status" >
-                            <s:date id="dateconverted" name="mDate" format="HH:mm:ss dd-MM-yyyy"/>
+                            <s:date id="dateconverted" name="time" format="HH:mm:ss dd-MM-yyyy"/>
                         <tr>
                             <td><s:property value="#status.index + 1"/></td>
                             <td><s:property value="%{dateconverted}"/></td>
-                            <td><s:property value="mMaKH"/></td>
+                            <td><s:property value="maKH"/></td>
                             <td>
                             <s:iterator value="listCustomer" status="index">
-                                <s:if test="mMaKH == listCustomer.get(#index.index).getMMaDoiTuong()">
-                                    <s:property value="listCustomer.get(#index.index).getMDoiTuong()"/>
+                                <s:if test="maKH == listCustomer.get(#index.index).getMaDoiTuong()">
+                                    <s:property value="listCustomer.get(#index.index).getDoiTuong()"/>
                                 </s:if>
                             </s:iterator>
                             </td>
-                            <td><s:property value="mMaNV"/></td>
+                            <td><s:property value="maNV"/></td>
                         </tr>
                         </s:iterator>
                         </s:subset>

@@ -248,66 +248,66 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
                         
                         if(row.getCell(1) != null){
                             if(row.getCell(1).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                                product.setMProductID((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
+                                product.setProductID((new BigDecimal(row.getCell(1).getNumericCellValue())).toString());
                             else
-                                product.setMProductID(row.getCell(1).getStringCellValue());
+                                product.setProductID(row.getCell(1).getStringCellValue());
                         }
                         if(row.getCell(2) != null){
                             if(row.getCell(2).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                                product.setMBarcode((new BigDecimal(row.getCell(2).getNumericCellValue())).toString());
+                                product.setBarcode((new BigDecimal(row.getCell(2).getNumericCellValue())).toString());
                             else
-                                product.setMBarcode(row.getCell(2).getStringCellValue());
+                                product.setBarcode(row.getCell(2).getStringCellValue());
                         }
                         
                         if(row.getCell(3) != null)
-                            product.setMProductName(row.getCell(3).getStringCellValue());
+                            product.setProductName(row.getCell(3).getStringCellValue());
                         if(row.getCell(4) != null)
-                            product.setMBrand(row.getCell(4).getStringCellValue());
+                            product.setBrand(row.getCell(4).getStringCellValue());
                         if(row.getCell(5) != null)
-                            product.setMOrigin(row.getCell(5).getStringCellValue());
+                            product.setOrigin(row.getCell(5).getStringCellValue());
                         if(row.getCell(6) != null){
                             if(row.getCell(6).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                                product.setMPackingSpecifications(row.getCell(6).getNumericCellValue()+"");
+                                product.setPackingSpecifications(row.getCell(6).getNumericCellValue()+"");
                             else
-                                product.setMPackingSpecifications(row.getCell(6).getStringCellValue());
+                                product.setPackingSpecifications(row.getCell(6).getStringCellValue());
                                                         
                         }
                         if(row.getCell(7) != null){
 
-                            product.setMQuantification(row.getCell(7).getStringCellValue());
+                            product.setQuantification(row.getCell(7).getStringCellValue());
 
                         }
                         
                         if(row.getCell(8) != null){
                             if(row.getCell(8).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                                product.setMVATTax((float)row.getCell(8).getNumericCellValue());
+                                product.setVatTax((float)row.getCell(8).getNumericCellValue());
                             else
-                                product.setMVATTax(Float.parseFloat(row.getCell(8).getStringCellValue()));
+                                product.setVatTax(Float.parseFloat(row.getCell(8).getStringCellValue()));
 
                         }
                         
                         if(row.getCell(9) != null){
                             if(row.getCell(9).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                                product.setMImportPrices((float)row.getCell(9).getNumericCellValue());
+                                product.setImportPrices((float)row.getCell(9).getNumericCellValue());
                             else
-                                product.setMImportPrices(Float.parseFloat(row.getCell(9).getStringCellValue()));
+                                product.setImportPrices(Float.parseFloat(row.getCell(9).getStringCellValue()));
 
                         }
                         
                         if(row.getCell(10) != null){
                             if(row.getCell(10).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                                product.setMExportPrices((float)row.getCell(10).getNumericCellValue());
+                                product.setExportPrices((float)row.getCell(10).getNumericCellValue());
                             else
-                                product.setMExportPrices(Float.parseFloat(row.getCell(10).getStringCellValue()));
+                                product.setExportPrices(Float.parseFloat(row.getCell(10).getStringCellValue()));
 
                         }
                         if(row.getCell(11) != null)
-                            product.setMProvider(row.getCell(11).getStringCellValue());
+                            product.setProvider(row.getCell(11).getStringCellValue());
                         
                         if(row.getCell(12) != null)
-                            product.setMDescription(row.getCell(12).getStringCellValue());
+                            product.setDescription(row.getCell(12).getStringCellValue());
                         if(row.getCell(13) != null)
-                            product.setMProductImage(row.getCell(13).getStringCellValue());
+                            product.setProductImage(row.getCell(13).getStringCellValue());
                         
                         //product.setMProvider("nhacungcap1");
                         //Add to database
@@ -403,11 +403,11 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         System.out.println("id_product: "+id_product);
         
         //update price
-        product.setMExportPrices(product.getMImportPrices() + product.getMImportPrices()* product.getMVATTax()/100);
+        product.setExportPrices(product.getImportPrices() + product.getImportPrices()* product.getVatTax()/100);
         //new product
-        if(product.getMSerial() <= 0){
+        if(product.getSerial() <= 0){
             
-            System.out.println("OKsave" + product.getMProductID());
+            System.out.println("OKsave" + product.getProductID());
             boolean status = productDAO.saveOrUpdate(product);
             productsList = productDAO.getProductList();
             
@@ -417,7 +417,7 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
             return INPUT;
         }
         
-        System.out.println("OK" + product.getMProductID());
+        System.out.println("OK" + product.getProductID());
         
         
         boolean status = productDAO.update(product);
@@ -458,9 +458,9 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
             FileUtils.copyFile(document2.getFile(), fileToCreate);
             
             //update the name
-            System.out.println("OK" + product.getMProductID());
+            System.out.println("OK" + product.getProductID());
             product = productDAO.loadProduct(st);
-            product.setMProductImage(saveName);
+            product.setProductImage(saveName);
             boolean status = productDAO.update(product);
             productsList = productDAO.getProductList();
             

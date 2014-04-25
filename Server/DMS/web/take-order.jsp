@@ -444,23 +444,23 @@
                                                     <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_201" class="lvtColData">
                                                         <td onmouseover=""><s:property value="%{#index.index +1}"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><a href="take-order-detail?id_tod=<s:property value="mID"/>" title="Accounts"><s:property value="mID" /></a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="salesorder_no" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="take-order-detail?id_tod=<s:property value="id"/>" title="Accounts"><s:property value="id" /></a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="salesorder_no" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><s:property value="mTakeOrderDate"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="takeOrderDate"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="subject" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><s:property value="mDeliveryDate"/><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="account_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="deliveryDate"/><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="account_id" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><s:property value="mCustomerName"/><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="quote_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="customerName"/><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="quote_id" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><a href="" title="Accounts"><s:property value="mCustomerID"/> </a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="hdnGrandTotal" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="" title="Accounts"><s:property value="customerID"/> </a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="hdnGrandTotal" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><s:property value="mCustomerAddress"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><s:property value="customerAddress"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover="">₫<s:property value="getText('{0,number,#,##0.00}',{mAfterPrivate})"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="hdnGrandTotal" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover="">₫<s:property value="getText('{0,number,#,##0.00}',{afterPrivate})"/> <span type="vtlib_metainfo" vtrecordid="201" vtfieldname="hdnGrandTotal" vtmodule="SalesOrder" style="display:none;"></span></td>
 
-                                                        <td onmouseover=""><a href="" title="Accounts"><s:property value="mCreater"/> </a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="" title="Accounts"><s:property value="creater"/> </a><span type="vtlib_metainfo" vtrecordid="201" vtfieldname="assigned_user_id" vtmodule="SalesOrder" style="display:none;"></span></td>
                                                         
-                                                        <td onmouseover=""><a href="take-order-edit?id_tod=<s:property value="mID"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-takeorder?id_tod=<s:property value="mID"/>")'>Xóa</a></td>
+                                                        <td onmouseover=""><a href="take-order-edit?id_tod=<s:property value="id"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-takeorder?id_tod=<s:property value="id"/>")'>Xóa</a></td>
                                                     </tr>
                                                     </s:iterator>
                                                 </tbody>

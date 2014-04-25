@@ -67,7 +67,7 @@ public class SaleOrderDAOImpl implements SaleOrderDAO{
         
         List<SaleOrder> courses = null;
         try{
-                courses = session.createQuery("from SaleOrder where mCreater='"+pStaff+"'").list();
+                courses = session.createQuery("from SaleOrder where creater='"+pStaff+"'").list();
             
         }catch(Exception e){
             e.printStackTrace();

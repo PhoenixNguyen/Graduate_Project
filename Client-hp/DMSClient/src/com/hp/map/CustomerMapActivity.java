@@ -175,7 +175,7 @@ public class CustomerMapActivity extends FragmentActivity
         customerSelected  = i.getStringExtra("POSITION_CLICK");
         
         for(int j = 0; j < Rest.customerList.size(); j++){
-        	if(customerSelected.compareTo(Rest.customerList.get(j).getmMaDoiTuong()) == 0){
+        	if(customerSelected.compareTo(Rest.customerList.get(j).getMMaDoiTuong()) == 0){
         		positionClick = j;
         		mSelectedCustomer = Rest.customerList.get(j);
         	}
@@ -186,10 +186,10 @@ public class CustomerMapActivity extends FragmentActivity
         customer_phone = (TextView) findViewById(R.id.customer_phone);
         customer_address = (TextView) findViewById(R.id.customer_address);
 
-        customer_name.setText(Rest.customerList.get(positionClick).getmDoiTuong());
-        customer_id.setText(Rest.customerList.get(positionClick).getmMaDoiTuong());
-        customer_phone.setText(Rest.customerList.get(positionClick).getmDienThoai());
-        customer_address.setText(Rest.customerList.get(positionClick).getmDiaChi());
+        customer_name.setText(Rest.customerList.get(positionClick).getMDoiTuong());
+        customer_id.setText(Rest.customerList.get(positionClick).getMMaDoiTuong());
+        customer_phone.setText(Rest.customerList.get(positionClick).getMDienThoai());
+        customer_address.setText(Rest.customerList.get(positionClick).getMDiaChi());
         
         setUpMapIfNeeded();
     }
@@ -215,8 +215,8 @@ public class CustomerMapActivity extends FragmentActivity
     }
     
     public boolean compareLocation(){
-    	double x = Rest.customerList.get(positionClick).getmXCoordinates();
-    	double y = Rest.customerList.get(positionClick).getmYCoordinates();
+    	double x = Rest.customerList.get(positionClick).getMXCoordinates();
+    	double y = Rest.customerList.get(positionClick).getMYCoordinates();
     	System.out.println("mX va (x - 0.000099): " + mX + " " + (x - 0.000199));
     	System.out.println("mX va (x + 0.000099): " + mX + " " + (x + 0.000199));
     	
@@ -460,7 +460,7 @@ public class CustomerMapActivity extends FragmentActivity
                     Builder builder = new LatLngBounds.Builder();
                     //for(int i = 0; i< Rest.customerList.size(); i++){
                     		
-                    	builder.include(new LatLng(Rest.customerList.get(positionClick).getmXCoordinates(), Rest.customerList.get(positionClick).getmYCoordinates()));
+                    	builder.include(new LatLng(Rest.customerList.get(positionClick).getMXCoordinates(), Rest.customerList.get(positionClick).getMYCoordinates()));
                         	
                     //}
                     
@@ -483,17 +483,17 @@ public class CustomerMapActivity extends FragmentActivity
     	//Add Markers
     	if(pView == 1){
     		mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(Rest.customerList.get(positionClick).getmXCoordinates(), Rest.customerList.get(positionClick).getmYCoordinates()))
-            .title(Rest.customerList.get(positionClick).getmDoiTuong())
-            .snippet(Rest.customerList.get(positionClick).getmMaDoiTuong()+":"+Rest.customerList.get(positionClick).getmDiaChi())
+            .position(new LatLng(Rest.customerList.get(positionClick).getMXCoordinates(), Rest.customerList.get(positionClick).getMYCoordinates()))
+            .title(Rest.customerList.get(positionClick).getMDoiTuong())
+            .snippet(Rest.customerList.get(positionClick).getMMaDoiTuong()+":"+Rest.customerList.get(positionClick).getMDiaChi())
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     	}
     	else
 	    	for(int i = 0; i< Rest.customerList.size(); i++){
 	    		mMap.addMarker(new MarkerOptions()
-	            .position(new LatLng(Rest.customerList.get(i).getmXCoordinates(), Rest.customerList.get(i).getmYCoordinates()))
-	            .title(Rest.customerList.get(i).getmDoiTuong())
-	            .snippet(Rest.customerList.get(i).getmMaDoiTuong()+":"+Rest.customerList.get(i).getmDiaChi())
+	            .position(new LatLng(Rest.customerList.get(i).getMXCoordinates(), Rest.customerList.get(i).getMYCoordinates()))
+	            .title(Rest.customerList.get(i).getMDoiTuong())
+	            .snippet(Rest.customerList.get(i).getMMaDoiTuong()+":"+Rest.customerList.get(i).getMDiaChi())
 	            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 	    		            	
 	        }
@@ -550,7 +550,7 @@ public class CustomerMapActivity extends FragmentActivity
         
         //Post
         RoadManagement track = new RoadManagement(""
-        		,Rest.customerList.get(positionClick).getmMaDoiTuong()
+        		,Rest.customerList.get(positionClick).getMMaDoiTuong()
         		,Timestamp.valueOf(dateFormat.format(date))
         		,mX
         		,mY

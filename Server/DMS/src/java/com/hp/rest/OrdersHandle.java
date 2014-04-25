@@ -197,10 +197,10 @@ public class OrdersHandle {
         
         //If ReturnOrderDetail exist => update it then return
         ReturnOrderDetail returnOrderDetailExist = 
-                returnOrderDetailDAO.getReturnOrderDetail(returnOrderDetail.getmTakeOrderID(), returnOrderDetail.getmLine());
+                returnOrderDetailDAO.getReturnOrderDetail(returnOrderDetail.getTakeOrderID(), returnOrderDetail.getLine());
         if( returnOrderDetailExist != null){
-            returnOrderDetailExist.setmNumber(returnOrderDetail.getmNumber());
-            returnOrderDetailExist.setmPriceTotal(returnOrderDetail.getmPriceTotal());
+            returnOrderDetailExist.setNumber(returnOrderDetail.getNumber());
+            returnOrderDetailExist.setPriceTotal(returnOrderDetail.getPriceTotal());
             
             boolean b = returnOrderDetailDAO.update(returnOrderDetailExist);
             
@@ -208,7 +208,7 @@ public class OrdersHandle {
         }
         
         //Save return order
-        returnOrder = new ReturnOrder(saleOrderDAO.getSaleOrder(returnOrderDetail.getmTakeOrderID()));
+        returnOrder = new ReturnOrder(saleOrderDAO.getSaleOrder(returnOrderDetail.getTakeOrderID()));
         returnOrderDAO.saveOrUpdate(returnOrder);
                 
         //Save detail return order
@@ -220,16 +220,16 @@ public class OrdersHandle {
         //Update the orderReturn
         List<ReturnOrderDetail> list = new ArrayList<ReturnOrderDetail>();
         
-        list = returnOrderDetailDAO.getDetailReturnOrdersList(returnOrderDetail.getmTakeOrderID());
+        list = returnOrderDetailDAO.getDetailReturnOrdersList(returnOrderDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getmPriceTotal();
+            priceTotal += list.get(i).getPriceTotal();
         }
         
         
         
-        returnOrder = returnOrderDAO.getReturnOrder(returnOrderDetail.getmTakeOrderID());
-        returnOrder.setmAfterPrivate(priceTotal);
+        returnOrder = returnOrderDAO.getReturnOrder(returnOrderDetail.getTakeOrderID());
+        returnOrder.setAfterPrivate(priceTotal);
         boolean st2 = returnOrderDAO.update(returnOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pReturnOrder + "___ " + st);
@@ -592,7 +592,7 @@ public class OrdersHandle {
         
         //Delete all old data
         if(detailList != null && detailList.size() > 0)
-            takeOrderDetailDAO.delete(detailList.get(0).getMTakeOrderID());
+            takeOrderDetailDAO.delete(detailList.get(0).getTakeOrderID());
         else
             return Response.status(200).entity("").build();
         

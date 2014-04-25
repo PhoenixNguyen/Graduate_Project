@@ -341,7 +341,7 @@
 
 
 
-                    <span class="lvtHeaderText"><font color="purple">[ <s:property value="takeOrder.getMID()"/> ] </font>Đặt hàng - Sửa Thông tin Đặt hàng</span> <br>
+                    <span class="lvtHeaderText"><font color="purple">[ <s:property value="takeOrder.getId()"/> ] </font>Đặt hàng - Sửa Thông tin Đặt hàng</span> <br>
 <!--                    Cập nhật 1086 ngày trước (19 Tháng 4 2011)	 -->
 
                     <hr noshade="" size="1">
@@ -349,9 +349,9 @@
 
 
                     <!-- (id="frmEditView") content added to form tag and new hidden field added,  -->
-                    <form id="frmEditView" name="EditView" method="GET" action="update-t-order?id_tod=<s:property value="takeOrder.getMID()"/>" id="sub_form" >
+                    <form id="frmEditView" name="EditView" method="GET" action="update-t-order?id_tod=<s:property value="takeOrder.getId()"/>" id="sub_form" >
                         
-                        <input type="hidden" name="takeOrder.mSerial" value="<s:property value="takeOrder.getMSerial()"/>">
+                        <input type="hidden" name="takeOrder.serial" value="<s:property value="takeOrder.getSerial()"/>">
                         
                         <table border="0" cellspacing="0" cellpadding="0" width="95%" align="center">
                             <tbody><tr>
@@ -416,7 +416,7 @@
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
                                                                                         
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mID" id="exciseduty" value="<s:property value="takeOrder.getMID()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.id" id="exciseduty" value="<s:property value="takeOrder.getId()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
 <!--                                                                                        <input name="potential_id" type="hidden" value="0">&nbsp;
                                                                                         <img tabindex="" src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="selectPotential()" align="absmiddle" style="cursor:hand;cursor:pointer">&nbsp;
                                                                                         <input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.potential_id.value = ''; this.form.potential_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
@@ -427,12 +427,12 @@
 
                                                                                     <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Ngày đặt hàng</td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mTakeOrderDate" id="customerno" value="<s:property value="takeOrder.getMTakeOrderDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.takeOrderDate" id="customerno" value="<s:property value="takeOrder.getTakeOrderDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                     </td>
                                                                                     <!-- Non Editable field, only configured value will be loaded -->
                                                                                     <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Ngày giao hàng </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input  type="text" tabindex="" name="takeOrder.mDeliveryDate" id="salesorder_no" value="<s:property value="takeOrder.getMDeliveryDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                                        <input  type="text" tabindex="" name="takeOrder.deliveryDate" id="salesorder_no" value="<s:property value="takeOrder.getDeliveryDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                                                 </tr>
                                                                                 <tr style="height:25px">
 
@@ -440,7 +440,7 @@
                                                                                         <font color="red"></font>Tên Khách hàng 			
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mCustomerName" id="exciseduty" value="<s:property value="takeOrder.getMCustomerName()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.customerName" id="exciseduty" value="<s:property value="takeOrder.getCustomerName()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
 <!--                                                                                        <input name="quote_id" type="hidden" value="0">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="selectQuote()" align="absmiddle" style="cursor:hand;cursor:pointer">&nbsp;
                                                                                         <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.quote_id.value = ''; this.form.quote_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
                                                                                     </td>
@@ -448,7 +448,7 @@
                                                                                     <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Mã khách hàng</td>
 
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input type="text" readonly="" tabindex="" name="takeOrder.mCustomerID" id="vtiger_purchaseorder" value="<s:property value="takeOrder.getMCustomerID()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                                        <input type="text" readonly="" tabindex="" name="takeOrder.customerID" id="vtiger_purchaseorder" value="<s:property value="takeOrder.getCustomerID()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                                                 </tr>
                                                                                 <tr style="height:25px">
 
@@ -456,7 +456,7 @@
                                                                                         <font color="red"></font>Địa chỉ KH			
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mCustomerAddress" id="exciseduty" value="<s:property value="takeOrder.getMCustomerAddress()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.customerAddress" id="exciseduty" value="<s:property value="takeOrder.getCustomerAddress()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
 <!--                                                                                        <input name="contact_id" type="hidden" value="0">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="selectContact( & quot; false & quot; , & quot; general & quot; , document.EditView)" align="absmiddle" style="cursor:hand;cursor:pointer">&nbsp;
                                                                                         <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.contact_id.value = ''; this.form.contact_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
                                                                                     </td>
@@ -465,7 +465,7 @@
                                                                                         <font color="red"></font>Số điện thoại			
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input type="text" tabindex="" name="takeOrder.mPhoneNumber" id="exciseduty" value="<s:property value="takeOrder.getMPhoneNumber()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input type="text" tabindex="" name="takeOrder.phoneNumber" id="exciseduty" value="<s:property value="takeOrder.getPhoneNumber()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
 <!--                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_duedate">-->
 
 <!--                                                                                        <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
@@ -506,7 +506,7 @@
                                                                                         Chiết khấu (%)			
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input name="takeOrder.mDiscount"  type="text" style="border:1px solid #bababa;" value="<s:property value="takeOrder.getMDiscount()"/>">
+                                                                                        <input name="takeOrder.discount"  type="text" style="border:1px solid #bababa;" value="<s:property value="takeOrder.getDiscount()"/>">
 <!--                                                                                        <input name="contact_id" type="hidden" value="0">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="selectContact( & quot; false & quot; , & quot; general & quot; , document.EditView)" align="absmiddle" style="cursor:hand;cursor:pointer">&nbsp;
                                                                                         <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.contact_id.value = ''; this.form.contact_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
                                                                                     </td>
@@ -521,12 +521,12 @@
 
                                                                                     <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Tiền hàng </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mBeforePrice" id="exciseduty" value="<s:property value="getText('{0,number,#,##0.00}',{takeOrder.getMBeforePrice()})"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.beforePrice" id="exciseduty" value="<s:property value="getText('{0,number,#,##0.00}',{takeOrder.getBeforePrice()})"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                                                     <td width="20%" class="dvtCellLabel" align="right">
                                                                                         <font color="red"></font>Tiền phải trả		
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mAfterPrivate" id="exciseduty" value="<s:property value="getText('{0,number,#,##0.00}',{takeOrder.getMAfterPrivate()})"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.afterPrivate" id="exciseduty" value="<s:property value="getText('{0,number,#,##0.00}',{takeOrder.getAfterPrivate()})"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
 <!--                                                                                        <input name="account_id" type="hidden" value="139">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="return window.open( & quot; index.php?module = Accounts & amp; action = Popup & amp; popuptype = specific_account_address & amp; form = TasksEditView & amp; form_submit = false & amp; fromlink = & quot; , & quot; test & quot; , & quot; width = 640, height = 602, resizable = 0, scrollbars = 0 & quot; );" align="absmiddle" style="cursor:hand;cursor:pointer">
                                                                                         <input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.account_id.value = ''; this.form.account_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
                                                                                     </td>
@@ -541,7 +541,7 @@
 
                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input type="text" readonly="" tabindex="" name="takeOrder.mCreater" id="salescommission" value="<s:property value="takeOrder.getMCreater()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input type="text" readonly="" tabindex="" name="takeOrder.creater" id="salescommission" value="<s:property value="takeOrder.getCreater()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                 </td>
 <!--                                                                                <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.getMCreater()"/></td>-->
 
@@ -552,7 +552,7 @@
                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
 
                                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mOrderEstablishDate" id="exciseduty" value="<s:property value="takeOrder.getMOrderEstablishDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.orderEstablishDate" id="exciseduty" value="<s:property value="takeOrder.getOrderEstablishDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
 <!--                                                                                        <input name="account_id" type="hidden" value="139">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="return window.open( & quot; index.php?module = Accounts & amp; action = Popup & amp; popuptype = specific_account_address & amp; form = TasksEditView & amp; form_submit = false & amp; fromlink = & quot; , & quot; test & quot; , & quot; width = 640, height = 602, resizable = 0, scrollbars = 0 & quot; );" align="absmiddle" style="cursor:hand;cursor:pointer">
                                                                                         <input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.account_id.value = ''; this.form.account_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
                                                                                 </td>
@@ -569,7 +569,7 @@
 
                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input type="text" readonly="" tabindex="" name="takeOrder.mEditer" id="salescommission" value="<s:property value="takeOrder.getMEditer()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input type="text" readonly="" tabindex="" name="takeOrder.editer" id="salescommission" value="<s:property value="takeOrder.getEditer()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                 </td>
 
                                                                                 <!-- Avoid to display the label Tax Class -->
@@ -578,7 +578,7 @@
 
                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.mOrderEditDate" id="exciseduty" value="<s:property value="takeOrder.getMOrderEditDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                        <input readonly="" type="text" tabindex="" name="takeOrder.orderEditDate" id="exciseduty" value="<s:property value="takeOrder.getOrderEditDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
 <!--                                                                                        <input name="account_id" type="hidden" value="139">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="return window.open( & quot; index.php?module = Accounts & amp; action = Popup & amp; popuptype = specific_account_address & amp; form = TasksEditView & amp; form_submit = false & amp; fromlink = & quot; , & quot; test & quot; , & quot; width = 640, height = 602, resizable = 0, scrollbars = 0 & quot; );" align="absmiddle" style="cursor:hand;cursor:pointer">
                                                                                         <input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.account_id.value = ''; this.form.account_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
                                                                                 </td>
@@ -715,7 +715,7 @@
                                                                                         <font color="red">*</font>
                                                                                         Trạng thái hóa đơn 			</td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <select name="takeOrder.mOrderStatus" tabindex="" class="small">
+                                                                                        <select name="takeOrder.orderStatus" tabindex="" class="small">
                                                                                             <option value="0">
                                                                                                 Đang đặt hàng
                                                                                             </option>
@@ -759,7 +759,7 @@
                                                                                         Địa chỉ giao hàng 			
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <textarea value="<s:property value="takeOrder.getMDeliveryAddress()"/>" name="takeOrder.mDeliveryAddress" tabindex="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'" rows="2"><s:property value="takeOrder.mDeliveryAddress"/></textarea>
+                                                                                        <textarea value="<s:property value="takeOrder.getDeliveryAddress()"/>" name="takeOrder.deliveryAddress" tabindex="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'" rows="2"><s:property value="takeOrder.deliveryAddress"/></textarea>
                                                                                     </td>
 
 
@@ -770,7 +770,7 @@
                                                                                         Hình thức vận chuyển 			
                                                                                     </td>
                                                                                     <td width="30%" align="left" class="dvtCellInfo">
-                                                                                        <textarea value="<s:property value="takeOrder.mShippingVehicle"/>" name="takeOrder.mShippingVehicle" tabindex="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'" rows="2"><s:property value="takeOrder.mShippingVehicle"/></textarea>
+                                                                                        <textarea value="<s:property value="takeOrder.shippingVehicle"/>" name="takeOrder.shippingVehicle" tabindex="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'" rows="2"><s:property value="takeOrder.shippingVehicle"/></textarea>
                                                                                     </td>
                                                                                 </tr>
 <!--                                                                                <tr style="height:25px">
@@ -854,7 +854,7 @@
                                                                                         Mô tả 			
                                                                                     </td>
                                                                                     <td colspan="3">
-                                                                                        <textarea class="detailedViewTextBox" tabindex="" onfocus="this.className = 'detailedViewTextBoxOn'" name="takeOrder.mNote" onblur="this.className = 'detailedViewTextBox'" cols="90" rows="8"><s:property value="takeOrder.mNote"/></textarea>
+                                                                                        <textarea class="detailedViewTextBox" tabindex="" onfocus="this.className = 'detailedViewTextBoxOn'" name="takeOrder.note" onblur="this.className = 'detailedViewTextBox'" cols="90" rows="8"><s:property value="takeOrder.note"/></textarea>
                                                                                     </td>
                                                                                 </tr>
 

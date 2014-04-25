@@ -26,153 +26,153 @@ import org.hibernate.validator.Valid;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
     
-    private Integer mSerial;
-    
-//    @Valid
-    private String mProductID;
-    private String mBarcode;
-    private String mProductName;
-    private String mBrand;
-    private String mOrigin;
-    private String mPackingSpecifications;
-    private String mQuantification;
-    private Float mVATTax;
-    private Float mImportPrices;
-    private Float mExportPrices;
-    private String mProvider;
-    private String mDescription;
-    private String mProductImage;
-
     @Id
     @GeneratedValue
     
     @Column(name="sanpham_stt")
-    public Integer getMSerial() {
-        return mSerial;
-    }
-
-    public void setMSerial(Integer mSerial) {
-        this.mSerial = mSerial;
-    }
-
-    @Column(name="sanpham_ma_vach")
-    public String getMBarcode() {
-        return mBarcode;
-    }
-
-    public void setMBarcode(String mBarcode) {
-        this.mBarcode = mBarcode;
-    }
-
+    private Integer serial;
+    
     @NotEmpty(message = "Mã sản phẩm không được trống")
 //    @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã sản phẩm chỉ chứa a-z, A-Z, 0-9, ., _")
 //    @Length(min = 3 , max = 255 ,message= "Mã sản phẩm phải có độ dài 3-255 ký tự")
     @Column(name="sanpham_ma_san_pham")
-    public String getMProductID() {
-        return mProductID;
-    }
-
-    public void setMProductID(String mProductID) {
-        this.mProductID = mProductID;
-    }
-
+    private String productID;
+    @Column(name="sanpham_ma_vach")
+    private String barcode;
     @Column(name="sanpham_ten_hang_hoa")
-    public String getMProductName() {
-        return mProductName;
-    }
-
-    public void setMProductName(String mProductName) {
-        this.mProductName = mProductName;
-    }
-
+    private String productName;
     @Column(name="sanpham_thuong_hieu")
-    public String getMBrand() {
-        return mBrand;
-    }
-
-    public void setMBrand(String mBrand) {
-        this.mBrand = mBrand;
-    }
-
+    private String brand;
     @Column(name="sanpham_xuat_xu")
-    public String getMOrigin() {
-        return mOrigin;
-    }
-
-    public void setMOrigin(String mOrigin) {
-        this.mOrigin = mOrigin;
-    }
-
+    private String origin;
     @Column(name="sanpham_quy_cach_packing")
-    public String getMPackingSpecifications() {
-        return mPackingSpecifications;
-    }
-
-    public void setMPackingSpecifications(String mPackingSpecifications) {
-        this.mPackingSpecifications = mPackingSpecifications;
-    }
-
+    private String packingSpecifications;
     @Column(name="sanpham_dinh_luong")
-    public String getMQuantification() {
-        return mQuantification;
-    }
-
-    public void setMQuantification(String mQuantification) {
-        this.mQuantification = mQuantification;
-    }
-
+    private String quantification;
     @Column(name="sanpham_thue")
-    public Float getMVATTax() {
-        return mVATTax;
-    }
-
-    public void setMVATTax(Float mVATTax) {
-        this.mVATTax = mVATTax;
-    }
-
+    private Float vatTax;
     @Column(name="sanpham_gia_nhap")
-    public Float getMImportPrices() {
-        return mImportPrices;
-    }
-
-    public void setMImportPrices(Float mImportPrices) {
-        this.mImportPrices = mImportPrices;
-    }
-
+    private Float importPrices;
     @Column(name="sanpham_gia_ban")
-    public Float getMExportPrices() {
-        return mExportPrices;
-    }
-
-    public void setMExportPrices(Float mExportPrices) {
-        this.mExportPrices = mExportPrices;
-    }
-
+    private Float exportPrices;
     @Column(name="sanpham_nha_cung_cap")
-    public String getMProvider() {
-        return mProvider;
-    }
-
-    public void setMProvider(String mProvider) {
-        this.mProvider = mProvider;
-    }
-
+    private String provider;
     @Column(name="sanpham_mo_ta")
-    public String getMDescription() {
-        return mDescription;
-    }
-
-    public void setMDescription(String mDescription) {
-        this.mDescription = mDescription;
-    }
-
+    private String description;
     @Column(name="sanpham_anh_san_pham")
-    public String getMProductImage() {
-        return mProductImage;
+    private String productImage;
+
+    public Integer getSerial() {
+        return serial;
     }
 
-    public void setMProductImage(String mProductImage) {
-        this.mProductImage = mProductImage;
+    public void setSerial(Integer serial) {
+        this.serial = serial;
     }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getPackingSpecifications() {
+        return packingSpecifications;
+    }
+
+    public void setPackingSpecifications(String packingSpecifications) {
+        this.packingSpecifications = packingSpecifications;
+    }
+
+    public String getQuantification() {
+        return quantification;
+    }
+
+    public void setQuantification(String quantification) {
+        this.quantification = quantification;
+    }
+
+    public Float getVatTax() {
+        return vatTax;
+    }
+
+    public void setVatTax(Float vatTax) {
+        this.vatTax = vatTax;
+    }
+
+    public Float getImportPrices() {
+        return importPrices;
+    }
+
+    public void setImportPrices(Float importPrices) {
+        this.importPrices = importPrices;
+    }
+
+    public Float getExportPrices() {
+        return exportPrices;
+    }
+
+    public void setExportPrices(Float exportPrices) {
+        this.exportPrices = exportPrices;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
     
 }

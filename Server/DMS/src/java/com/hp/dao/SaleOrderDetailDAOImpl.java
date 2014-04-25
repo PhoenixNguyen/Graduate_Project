@@ -48,7 +48,7 @@ public class SaleOrderDetailDAOImpl implements SaleOrderDetailDAO{
         
         List<SaleOrderDetail> courses = null;
         try{
-                courses = session.createQuery("from SaleOrderDetail where mTakeOrderID='"+pID+"'").list();
+                courses = session.createQuery("from SaleOrderDetail where takeOrderID='"+pID+"'").list();
             
         }catch(Exception e){
             e.printStackTrace();
@@ -125,7 +125,7 @@ public class SaleOrderDetailDAOImpl implements SaleOrderDetailDAO{
         Transaction transaction;
         transaction = session.beginTransaction();
         try{
-            Query q = session.createQuery("delete SaleOrderDetail where mTakeOrderID='"+pID+"'");
+            Query q = session.createQuery("delete SaleOrderDetail where takeOrderID='"+pID+"'");
             q.executeUpdate();
             session.getTransaction().commit();
         }catch(HibernateException e){

@@ -77,14 +77,14 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     private boolean deleteStatus;
     private boolean selected;
     
-    private String date;
-    
-    public String getDate() {
-        return date;
+    private String startDate;
+
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
     
     public boolean isSelected() {
@@ -234,30 +234,30 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                     try{
                         
                         if(row.getCell(1) != null)
-                            staff.setMID(row.getCell(1).getStringCellValue());
+                            staff.setId(row.getCell(1).getStringCellValue());
                         if(row.getCell(2) != null)
-                            staff.setMPW(row.getCell(2).getStringCellValue());
+                            staff.setPw(row.getCell(2).getStringCellValue());
                         if(row.getCell(3) != null)
-                            staff.setMName(row.getCell(3).getStringCellValue());
+                            staff.setName(row.getCell(3).getStringCellValue());
                         if(row.getCell(4) != null)
-                            staff.setMAdress(row.getCell(4).getStringCellValue());
+                            staff.setAdress(row.getCell(4).getStringCellValue());
                         if(row.getCell(5) != null)
-                        staff.setMJob(row.getCell(5).getStringCellValue());
+                        staff.setJob(row.getCell(5).getStringCellValue());
                         if(row.getCell(6) != null)
-                        staff.setMPhone(row.getCell(6).getStringCellValue());
+                        staff.setPhone(row.getCell(6).getStringCellValue());
 
                         if(row.getCell(7) != null && row.getCell(7).getStringCellValue().compareTo("") != 0){
 
-                            staff.setMDate(df.parse(row.getCell(7).getStringCellValue()));
+                            staff.setDate(df.parse(row.getCell(7).getStringCellValue()));
 
                         }
                         if(row.getCell(8) != null)
-                            staff.setMManager(row.getCell(8).getStringCellValue());
+                            staff.setManager(row.getCell(8).getStringCellValue());
                         if(row.getCell(9) != null){
                             if(row.getCell(9).getCellType() != HSSFCell.CELL_TYPE_STRING)
-                                staff.setMStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
+                                staff.setStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
                             else
-                                staff.setMStatus(row.getCell(9).getStringCellValue().compareTo("1") == 0 ? true:false);
+                                staff.setStatus(row.getCell(9).getStringCellValue().compareTo("1") == 0 ? true:false);
                                 }
                         
                         
@@ -351,19 +351,19 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
         
         Date out = null;
-        System.out.println("OK1" + staff.getMID());
+        System.out.println("OK1" + staff.getId());
 
         try{
-            out = sdf2.parse(date);
+            out = sdf2.parse(startDate);
 
         }catch(Exception e){
             e.printStackTrace();
         }
 
-        staff.setMDate(out);
+        staff.setDate(out);
         
         //New
-        if(staff.getMSTT() <= 0){
+        if(staff.getStt() <= 0){
             
             boolean status = staffDAO.saveOrUpdate(staff);
             //staffsList = staffDAO.getListStaff();
@@ -376,7 +376,7 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         }
         
         //UPdate
-        System.out.println("OK" + staff.getMID());
+        System.out.println("OK" + staff.getId());
         
         boolean status = staffDAO.update(staff);
         if(status)            

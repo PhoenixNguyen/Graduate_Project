@@ -222,7 +222,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				ClientResponse response = Rest.mService.path("webresources").path("getSchedule")
 						.accept("application/json")
 						.type("application/json").post(ClientResponse.class
-								,Rest.customerList.get(0).getmMaNhanVien()+"::"+selectedGridDate);
+								,Rest.customerList.get(0).getMMaNhanVien()+"::"+selectedGridDate);
 				
 		        System.out.println("________________ "+ response.toString() + "__ " +response.getLength());
 		        if(response.getLength() > 2 )
@@ -403,7 +403,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		//Get customers list for staff and not have the schedule ========================================
 		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListSchedule")
 				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getmMaNhanVien() +"::"+pDate);
+				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getMMaNhanVien() +"::"+pDate);
         System.out.println("________________ "+ response.toString());
         if(response.getStatus() != 200){
         	dialog.dismiss();
@@ -433,7 +433,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		String[] customer = new String[]{};
 		
 		for(int i = 0; i < schedule.size(); i++){
-			customer = append(customer, schedule.get(i).getmMaDoiTuong());
+			customer = append(customer, schedule.get(i).getMMaDoiTuong());
 			
 		}
 		String[] PRODUCT = 
@@ -475,7 +475,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				List<Schedule> scheduleList = new ArrayList<Schedule>();
 				for(String key : mTakeCustomersList.keySet()){
 					Timestamp value = mTakeCustomersList.get(key);
-					Schedule schedule = new Schedule(Rest.customerList.get(0).getmMaNhanVien()
+					Schedule schedule = new Schedule(Rest.customerList.get(0).getMMaNhanVien()
 							, key
 							, value
 							, false);

@@ -356,7 +356,7 @@
         <td class="showPanelBg" valign=top width=100%>
 
             <form name="EditView" method="POST" id="sub_form" action="save-product" onsubmit="VtigerJS_DialogBox.block();">
-                <input type="hidden" name="product.mSerial" value="-1">
+                <input type="hidden" name="product.serial" value="-1">
                 
                 <input type="hidden" name="return_viewname" value="">	     
                 <div class="small" style="padding:20px">
@@ -426,13 +426,13 @@
                                                                     <font color="red">*</font>Tên sản phẩm 			
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                    <input type="text" name="product.mProductName" tabindex="" value="<s:property value="product.mProductName"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                    <input type="text" name="product.productName" tabindex="" value="<s:property value="product.productName"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                 </td>
 
                                                                 <!-- Non Editable field, only configured value will be loaded -->
                                                                 <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Mã sản phẩm </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                    <input  type="text" tabindex="" name="product.mProductID" id="product_no" value="<s:property value="product.mProductID"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                    <input  type="text" tabindex="" name="product.productID" id="product_no" value="<s:property value="product.productID"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                 </td>
                                                             </tr>
                                                             <tr style="height:25px">
@@ -442,12 +442,12 @@
                                                                 </td>
 
                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                    <input  type="text" tabindex="" name="product.mBarcode" id="product_no" value="<s:property value="product.mBarcode"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                    <input  type="text" tabindex="" name="product.barcode" id="product_no" value="<s:property value="product.barcode"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                 </td>
 
                                                                 <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Thương hiệu </td>
 
-                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="product.mBrand" id="productcode" value="<s:property value="product.mBrand"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                <td width="30%" align="left" class="dvtCellInfo"><input type="text" tabindex="" name="product.brand" id="productcode" value="<s:property value="product.brand"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
                                                             <tr style="height:25px">
 
@@ -456,7 +456,7 @@
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
 
-                                                                    <input name="product.mOrigin" tabindex="" id="jscal_field_sales_start_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="<s:property value="product.mOrigin"/>">
+                                                                    <input name="product.origin" tabindex="" id="jscal_field_sales_start_date" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="<s:property value="product.origin"/>">
 <!--                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_sales_start_date">
 
                                                                     <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
@@ -473,7 +473,7 @@
                                                                     Nhà cung cấp			
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                    <select name="product.mProvider" tabindex="" class="small">
+                                                                    <select name="product.provider" tabindex="" class="small">
                                                                         <s:iterator value="providerIDList" status="index">
                                                                         
                                                                             <option value="<s:property value="providerIDList.get(#index.index)"/>" ><s:property value="providerIDList.get(#index.index)"/></option>
@@ -565,7 +565,7 @@
                                                                     <font color="red"></font>Đơn vị			
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                    <input name="product.mQuantification"  type="text" style="border:1px solid #bababa;" value="<s:property value="product.mQuantification"/>">
+                                                                    <input name="product.quantification"  type="text" style="border:1px solid #bababa;" value="<s:property value="product.quantification"/>">
 <!--                                                                                        <input name="vendor_id" type="hidden" value="0">&nbsp;
                                                                     <img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="return window.open( & quot; index.php?module = Vendors & amp; action = Popup & amp; html = Popup_picker & amp; popuptype = specific & amp; form = EditView & amp; fromlink = & quot; , & quot; test & quot; , & quot; width = 640, height = 602, resizable = 0, scrollbars = 0 & quot; );" align="absmiddle" style="cursor:hand;cursor:pointer">
                                                                     <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.vendor_id.value = '';
@@ -577,7 +577,7 @@
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">
                                                                     &nbsp;&nbsp;
-                                                                    <input style="width:74%;" class="detailedViewTextBox" type="text" tabindex="" name="product.mPackingSpecifications" size="27" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="<s:property value="product.mPackingSpecifications"/>">
+                                                                    <input style="width:74%;" class="detailedViewTextBox" type="text" tabindex="" name="product.packingSpecifications" size="27" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="<s:property value="product.packingSpecifications"/>">
                                                                 </td>
 
                                                             </tr>
@@ -653,8 +653,8 @@
                                                                 </td>
                                                                 <td width="30%" align="left" class="dvtCellInfo">				
                                                                     <span id="multiple_currencies">
-                                                                        <input name="product.mImportPrices" id="unit_price" tabindex="" type="text" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox';
-                                                                                updateUnitPrice('unit_price', 'curname1');" value="<s:property value="product.mImportPrices"/>" style="width:60%;">
+                                                                        <input name="product.importPrices" id="unit_price" tabindex="" type="text" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox';
+                                                                                updateUnitPrice('unit_price', 'curname1');" value="<s:property value="product.importPrices"/>" style="width:60%;">
                                                                         &nbsp;
 <!--                                                                        <a href="javascript:void(0);" onclick="updateUnitPrice('unit_price', 'curname1');
                                                                                 toggleShowHide('currency_class', 'multiple_currencies');">thêm tiền tệ »</a>-->
@@ -706,7 +706,7 @@
                                                                 <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Thuế (%) </td>
 
                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                    <input type="text" tabindex="" name="product.mVATTax" id="commissionrate" value="<s:property value="product.mVATTax"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                    <input type="text" tabindex="" name="product.vatTax" id="commissionrate" value="<s:property value="product.vatTax"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                             </tr>
 <!--                                                            <tr style="height:25px">
                                                                  Handle the Tax in Inventory 
@@ -867,7 +867,7 @@
                                                                     <font color="red"></font> 
                                                                     Mô tả 			</td>
                                                                 <td colspan="3">
-                                                                    <textarea class="detailedViewTextBox" tabindex="" onfocus="this.className = 'detailedViewTextBoxOn'" name="product.mDescription" onblur="this.className = 'detailedViewTextBox'" cols="90" rows="8"><s:property value="product.mDescription"/></textarea>
+                                                                    <textarea class="detailedViewTextBox" tabindex="" onfocus="this.className = 'detailedViewTextBoxOn'" name="product.description" onblur="this.className = 'detailedViewTextBox'" cols="90" rows="8"><s:property value="product.description"/></textarea>
                                                                 </td>
                                                             </tr>
                                         <tr style="height:25px"><td>&nbsp;</td></tr>

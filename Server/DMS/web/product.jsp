@@ -460,23 +460,23 @@
 
                                             <td onmouseover=""><s:property value="%{#index.index + 1}"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='productname' vtmodule='Products' style='display:none;'></span></td>
                                             
-                                            <td onmouseover=""><a href='product-detail?id_pdct=<s:property value="mSerial"/>' title='Products'><s:property value="mProductName"/></a> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='productname' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><a href='product-detail?id_pdct=<s:property value="serial"/>' title='Products'><s:property value="productName"/></a> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='productname' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><s:property value="mProductID"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='serial_no' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="productID"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='serial_no' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><s:property value="mBarcode"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='createdtime' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="barcode"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='createdtime' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><s:property value="mBrand"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='qtyinstock' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="brand"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='qtyinstock' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><s:property value="mProvider"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='cf_628' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="provider"/> <span type='vtlib_metainfo' vtrecordid='142' vtfieldname='cf_628' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><s:property value="mExportPrices"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="exportPrices"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
                                             
-                                            <td onmouseover=""><s:property value="mQuantification"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="quantification"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
                                             
-                                            <td onmouseover=""><s:property value="mDescription"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
+                                            <td onmouseover=""><s:property value="description"/><span type='vtlib_metainfo' vtrecordid='142' vtfieldname='reorderlevel' vtmodule='Products' style='display:none;'></span></td>
 
-                                            <td onmouseover=""><a href="edit-product?id_pdct=<s:property value="mSerial"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-product?id_pdct=<s:property value="mSerial"/>")'>Xóa</a></td>
+                                            <td onmouseover=""><a href="edit-product?id_pdct=<s:property value="serial"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-product?id_pdct=<s:property value="serial"/>")'>Xóa</a></td>
                                         </tr>
                                         </s:iterator>
                                     </table>

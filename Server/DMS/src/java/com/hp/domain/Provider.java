@@ -24,75 +24,75 @@ public class Provider {
     @GeneratedValue
     
     @Column(name="nhacungcap_stt")
-    private int mSerial;
+    private int serial;
+
     @Column(name="nhacungcap_id")
-    private String mID;
+    private String id;
     @Column(name="nhacungcap_ten")
-    private String mName;
+    private String name;
     @Column(name="nhacungcap_dia_chi")
-    private String mAddress;
+    private String address;
     @Column(name="nhacungcap_dien_thoai")
-    private String mPhoneNumber;
+    private String phoneNumber;
     @Column(name="nhacungcap_fax")
-    private String mFax;
+    private String fax;
     @Column(name="nhacungcap_ghi_chu")
-    private String mNote;
+    private String note;
     
-        
-    public int getmSerial() {
-        return mSerial;
-    }
-
-    public void setmSerial(int mSerial) {
-        this.mSerial = mSerial;
-    }
-
-    public String getmID() {
-        return mID;
-    }
-
-    public void setmID(String mID) {
-        this.mID = mID;
-    }
-
-    public String getmName() {
-        return mName;
-    }
-
-    public void setmName(String mName) {
-        this.mName = mName;
-    }
-
-    public String getmAddress() {
-        return mAddress;
-    }
-
-    public void setmAddress(String mAddress) {
-        this.mAddress = mAddress;
-    }
-
-    public String getmPhoneNumber() {
-        return mPhoneNumber;
-    }
-
-    public void setmPhoneNumber(String mPhoneNumber) {
-        this.mPhoneNumber = mPhoneNumber;
-    }
-
-    public String getmFax() {
-        return mFax;
-    }
-
-    public void setmFax(String mFax) {
-        this.mFax = mFax;
-    }
-
-    public String getmNote() {
-        return mNote;
-    }
-
-    public void setmNote(String mNote) {
-        this.mNote = mNote;
-    }
     
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 }

@@ -39,9 +39,9 @@
                 <s:iterator value="listSchedules" status="status">
                         <s:iterator value="listScheduleAndCustomer" status="index">
                             <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
-                            <s:if test="listSchedules.get(#status.index).getMMaKH() == mMaDoiTuong">
-                                //console.log(<s:property value="listSchedules.get(#status.index).getMMaNV()"/>  +"");
-                                console.log(<s:property value="mXCoordinates"/>);
+                            <s:if test="listSchedules.get(#status.index).getMaKH() == maDoiTuong">
+                                //console.log(<s:property value="listSchedules.get(#status.index).getMaNV()"/>  +"");
+                                console.log(<s:property value="coordinateX"/>);
                             </s:if>
                             </s:iterator>
                         </s:iterator>
@@ -109,11 +109,11 @@
                     <s:iterator value="listSchedules" status="status">
                         <s:iterator value="listScheduleAndCustomer" status="index">
                             <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
-                                <s:if test="listSchedules.get(#status.index).getMMaKH() == mMaDoiTuong and mXCoordinates > 0">
+                                <s:if test="listSchedules.get(#status.index).getMaKH() == maDoiTuong and coordinateX > 0">
                             {
-                                mXCoordinates: <s:property value="mXCoordinates"/>,
-                                        mYCoordinates: <s:property value="mYCoordinates"/>,
-                                mMaDoiTuong: '<s:property value="mMaDoiTuong"/>'
+                                mXCoordinates: <s:property value="coordinateX"/>,
+                                        mYCoordinates: <s:property value="coordinateY"/>,
+                                mMaDoiTuong: '<s:property value="maDoiTuong"/>'
 
                             },
                             </s:if>
@@ -126,15 +126,15 @@
                         
                         <s:iterator value="listScheduleAndCustomer" status="index">
                             <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
-                            <s:if test="listSchedules.get(#status.index).getMMaKH() == mMaDoiTuong and mXCoordinates > 0">
+                            <s:if test="listSchedules.get(#status.index).getMaKH() == maDoiTuong and coordinateX > 0">
                             
-                                <s:date name="listSchedules.get(#status.index).getMDate()" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                                <s:date name="listSchedules.get(#status.index).getTime()" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
                                 
                                 
                                     'Thời gian : <s:property value="%{createdDateId}"/> <br/>\
-                                    Mã khách hàng: <s:property value="listSchedules.get(#status.index).getMMaKH()"/> <br/>\
-                                    Tên khách hàng: <s:property value="mDoiTuong"/> <br/>\
-                                    Mã nhân viên: <s:property value="listSchedules.get(#status.index).getMMaNV()"/> <br/>\
+                                    Mã khách hàng: <s:property value="listSchedules.get(#status.index).getMaKH()"/> <br/>\
+                                    Tên khách hàng: <s:property value="doiTuong"/> <br/>\
+                                    Mã nhân viên: <s:property value="listSchedules.get(#status.index).getMaNV()"/> <br/>\
                                     Thứ tự lịch trình: <s:property value="%{#index2.index +1 }"/>',
                                    
                             </s:if>
@@ -181,8 +181,8 @@
                     
                     [
                         <s:iterator value="listScheduleAndCustomer.get(#status.index)"   status="index">
-                            <s:if test="mXCoordinates > 0">
-                                new google.maps.LatLng(<s:property value="mXCoordinates"/>, <s:property value="mYCoordinates"/>),
+                            <s:if test="coordinateX > 0">
+                                new google.maps.LatLng(<s:property value="coordinateX"/>, <s:property value="coordinateY"/>),
                             </s:if>
                         </s:iterator>
                         
@@ -462,17 +462,17 @@
                     <div class="article-content">
                         <div class="article-title">
                             <h2>
-                                <s:property value="listCustomer.get(0).getMDoiTuong()"/>
+                                <s:property value="listCustomer.get(0).getDoiTuong()"/>
                             </h2>
                         </div>
                         <div class="content">
                             <div class="poi-infos">
                                 <p><strong>Địa chỉ:</strong>
-                                    <s:property value="listCustomer.get(0).getMDiaChi()"/></p>
+                                    <s:property value="listCustomer.get(0).getDiaChi()"/></p>
                                 <p><strong>Điện thoại:</strong>
-                                    <s:property value="listCustomer.get(0).getMDienThoai()"/></p>                      </p>
+                                    <s:property value="listCustomer.get(0).getDienThoai()"/></p>                      </p>
                                 <p><strong>Fax</strong>
-                                     <s:property value="listCustomer.get(0).getMFax()"/> </p>
+                                     <s:property value="listCustomer.get(0).getFax()"/> </p>
                                 <p class="poi-website"><strong>Website:</strong> <a target="_blank" href="">
                                                          </a></p>
                             </div>
@@ -508,10 +508,10 @@
                                 <li data-poi-id="2275">
                                     <div class="poi-content">
                                         <div class="poi-photo">
-                                            <img src="../customer/<s:property value="listCustomer.get(0).getMMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" 
-                                                 data-original="../customer/<s:property value="listCustomer.get(0).getMMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" width="64" height="64" alt="Pane e Vino">
+                                            <img src="../db_customers/<s:property value="listCustomer.get(0).getMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" 
+                                                 data-original="../db_customers/<s:property value="listCustomer.get(0).getMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>" width="64" height="64" alt="Pane e Vino">
                                         </div>
-                                        <h2 class="poi-title"><a href="../customer/<s:property value="listCustomer.get(0).getMMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>">Ảnh <s:property value="#status.index+1"/></a></h2>
+                                        <h2 class="poi-title"><a href="../db_customers/<s:property value="listCustomer.get(0).getMaDoiTuong()"/>/<s:property value="filesNameList.get(#status.index)"/>">Ảnh <s:property value="#status.index+1"/></a></h2>
                                         <div class="poi-infos">
                                             <strong>Tiêu đề: <s:property value="filesNameList.get(#status.index)"/>
                                             <div class="poi-rating"><strong>Rating:</strong><div class="rate-wrapper">
@@ -539,7 +539,7 @@
                         </div>-->
 
                     </div>
-                    <div class="article-photo"><img src="../customer/<s:property value="listCustomer.get(0).getMMaDoiTuong()"/>/<s:property value="filesNameList.get(0)"/>" style="margin-top: -44.5px; " width="300" >
+                    <div class="article-photo"><img src="../db_customers/<s:property value="listCustomer.get(0).getMaDoiTuong()"/>/<s:property value="filesNameList.get(0)"/>" style="margin-top: -44.5px; " width="300" >
                     </div>
 
                 </div>

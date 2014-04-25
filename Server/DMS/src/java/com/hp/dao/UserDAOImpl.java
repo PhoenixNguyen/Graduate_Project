@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO{
         transaction = session.beginTransaction();
         
         try{
-            courses = session.createQuery("select mID from User where mPermission = " + pPermission).list();
+            courses = session.createQuery("select id from User where permission = " + pPermission).list();
         }catch(Exception e){
             e.printStackTrace();
         }

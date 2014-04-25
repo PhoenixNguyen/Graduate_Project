@@ -41,8 +41,8 @@ public class CustomerArrayAdapter extends ArrayAdapter<Customer>{
 
         Customer customer = getItem(position);
 
-        featureView.setTitleId(customer.getmMaDoiTuong());
-        featureView.setDescriptionId(customer.getmDoiTuong());
+        featureView.setTitleId(customer.getMMaDoiTuong());
+        featureView.setDescriptionId(customer.getMDoiTuong());
 
         return featureView;
     }

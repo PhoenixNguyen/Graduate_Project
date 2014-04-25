@@ -4,67 +4,79 @@ import java.sql.Timestamp;
 
 public class RoadManagement {
 
-	private int mSTT;
-	private String mMaNhanVien;
-	private String mMaKhachHang;
-    private Timestamp mThoiGian;
-    private float mViDo;
-    private float mKinhdo;
-    private String mGhiChu;
+	private int stt;
+	
+	private String maNhanVien;
+	private String tenNhanVien;
+    private Timestamp thoiGian;
+    private float viDo;
+    private float kinhDo;
+    private String ghiChu;
     
-    public RoadManagement(String pMaNhanVien, String pMaKhachHang, Timestamp pThoiGian, 
+    public RoadManagement(String pMaNhanVien, String pTenNhanVien, Timestamp pThoiGian, 
     		float pViDo, float pKinhdo, String pGhiChu){
-    	this.mMaNhanVien = pMaNhanVien;
-    	this.mMaKhachHang = pMaKhachHang;
-    	this.mThoiGian = pThoiGian;
-    	this.mViDo = pViDo;
-    	this.mKinhdo = pKinhdo;
-    	this.mGhiChu = pGhiChu;
+    	this.maNhanVien = pMaNhanVien;
+    	this.tenNhanVien = pTenNhanVien;
+    	this.thoiGian = pThoiGian;
+    	this.viDo = pViDo;
+    	this.kinhDo = pKinhdo;
+    	this.ghiChu = pGhiChu;
     }
     
-	public int getmSTT() {
-		return mSTT;
+    public int getStt() {
+		return stt;
 	}
 
-	public void setmSTT(int mSTT) {
-		this.mSTT = mSTT;
+	public void setStt(int stt) {
+		this.stt = stt;
 	}
-	
-    public String getmMaNhanVien() {
-		return mMaNhanVien;
+
+	public String getMaNhanVien() {
+		return maNhanVien;
 	}
-	public void setmMaNhanVien(String mMaNhanVien) {
-		this.mMaNhanVien = mMaNhanVien;
+
+	public void setMaNhanVien(String maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
-	public String getmMaKhachHang() {
-		return mMaKhachHang;
+
+	public String getTenNhanVien() {
+		return tenNhanVien;
 	}
-	public void setmMaKhachHang(String mMaKhachHang) {
-		this.mMaKhachHang = mMaKhachHang;
+
+	public void setTenNhanVien(String tenNhanVien) {
+		this.tenNhanVien = tenNhanVien;
 	}
-	public Timestamp getmThoiGian() {
-		return mThoiGian;
+
+	public Timestamp getThoiGian() {
+		return thoiGian;
 	}
-	public void setmThoiGian(Timestamp mThoiGian) {
-		this.mThoiGian = mThoiGian;
+
+	public void setThoiGian(Timestamp thoiGian) {
+		this.thoiGian = thoiGian;
 	}
-	public float getmViDo() {
-		return mViDo;
+
+	public float getViDo() {
+		return viDo;
 	}
-	public void setmViDo(float mViDo) {
-		this.mViDo = mViDo;
+
+	public void setViDo(float viDo) {
+		this.viDo = viDo;
 	}
-	public float getmKinhdo() {
-		return mKinhdo;
+
+	public float getKinhDo() {
+		return kinhDo;
 	}
-	public void setmKinhdo(float mKinhdo) {
-		this.mKinhdo = mKinhdo;
+
+	public void setKinhDo(float kinhDo) {
+		this.kinhDo = kinhDo;
 	}
-	public String getmGhiChu() {
-		return mGhiChu;
+
+	public String getGhiChu() {
+		return ghiChu;
 	}
-	public void setmGhiChu(String mGhiChu) {
-		this.mGhiChu = mGhiChu;
+
+	public void setGhiChu(String ghiChu) {
+		this.ghiChu = ghiChu;
 	}
 	
 	

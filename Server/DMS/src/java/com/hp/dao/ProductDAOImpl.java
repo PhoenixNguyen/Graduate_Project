@@ -27,7 +27,7 @@ public class ProductDAOImpl implements ProductDAO{
         
         List<Product> courses = null;
         try{
-            courses = session.createQuery("from Product where mProvider='" +pProvider+"'" ).list();
+            courses = session.createQuery("from Product where provider='" +pProvider+"'" ).list();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -65,11 +65,11 @@ public class ProductDAOImpl implements ProductDAO{
         
         List<Product> courses = null;
         try{
-            courses = session.createQuery("from Product as p where p.mProvider='" +pProvider+"'" +" and p.mProductID IN " //p.mProvider='" +pProvider+"'" +" and
-                    + "(select distinct sod.mBarcode "
+            courses = session.createQuery("from Product as p where p.provider='" +pProvider+"'" +" and p.productID IN " //p.mProvider='" +pProvider+"'" +" and
+                    + "(select distinct sod.barcode "
                     + " from SaleOrderDetail as sod, SaleOrder as so"
-                    + " where so.mID = sod.mTakeOrderID "
-                    + " and so.mCustomerID='"+pCustomerID+"')" ).list(); //and so.mCustomerID='"+pCustomerID+"'
+                    + " where so.id = sod.takeOrderID "
+                    + " and so.customerID='"+pCustomerID+"')" ).list(); //and so.mCustomerID='"+pCustomerID+"'
         }catch(Exception e){
             e.printStackTrace();
         }

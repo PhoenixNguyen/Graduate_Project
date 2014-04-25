@@ -218,7 +218,7 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF8");
         
-        System.out.println("OKto " + takeOrder.getMID() +" : " +takeOrder.getMCustomerAddress() + " " + doc.getNumber());//doc.getFileFileName()
+        System.out.println("OKto " + takeOrder.getId() +" : " +takeOrder.getCustomerAddress() + " " + doc.getNumber());//doc.getFileFileName()
         //takeOrder.setmEditer("0");
 //        takeOrder.setMDeliveryDate(null);
 //        takeOrder.setMOrderEditDate(null);
@@ -250,7 +250,7 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
 //        t.setMCustomerID(null);
 //        t.setMCreater(null);
 //        t.setMEditer(null);
-        takeOrder.setMAfterPrivate(takeOrder.getMBeforePrice() - takeOrder.getMBeforePrice() * takeOrder.getMDiscount()/100);
+        takeOrder.setAfterPrivate(takeOrder.getBeforePrice() - takeOrder.getBeforePrice() * takeOrder.getDiscount()/100);
         boolean status = takeOrderDAO.update(takeOrder);// update(takeOrder);
         System.out.println(status+" ________________________");
         if(status){
@@ -275,7 +275,7 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         Map<String, List<TakeOrderDetail>> data = new HashMap<String, List<TakeOrderDetail>>();
         
         for(int i= 0; i < takeOrdersList.size(); i++){
-            data.put(i+"", takeOrderDetailDAO.getDetailTakeOrdersList(takeOrdersList.get(i).getMID()));
+            data.put(i+"", takeOrderDetailDAO.getDetailTakeOrdersList(takeOrdersList.get(i).getId()));
             
         }
         
@@ -414,7 +414,7 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         if(para.compareTo("") != 0){
             takeOrder = takeOrderDAO.getTakeOrder(para);
             
-            boolean detailStatus = takeOrderDetailDAO.delete(takeOrder.getMID());
+            boolean detailStatus = takeOrderDetailDAO.delete(takeOrder.getId());
             if(detailStatus){
                 deleteStatus = takeOrderDAO.delete(takeOrder);
                 

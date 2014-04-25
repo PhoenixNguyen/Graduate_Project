@@ -345,9 +345,9 @@
                 <br> 
                 <form name="EditView" method="POST" action="save-customer" id="sub_form" onsubmit="">
 
-                    <input type="hidden" name="customer.mStt" value="0">
-                    <input type="hidden" name="customer.mXCoordinates" value="">
-                    <input type="hidden" name="customer.mYCoordinates" value="">
+                    <input type="hidden" name="customer.stt" value="0">
+                    <input type="hidden" name="customer.coordinateX" value="">
+                    <input type="hidden" name="customer.coordinateY" value="">
                     <table border=0 cellspacing=0 cellpadding=0 width=95% align=center>
                         <tr>
                             <td>
@@ -409,12 +409,12 @@
                                                                         <font color="red">*</font>Tên Khách hàng 			
                                                                     </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="customer.mDoiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" name="customer.doiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                     <!-- Non Editable field, only configured value will be loaded -->
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã số Khách hàng </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" name="customer.mMaDoiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" name="customer.maDoiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="height:25px">
@@ -428,7 +428,7 @@
                                                                     </td>
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Điện thoại </td>
 
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="customer.mDienThoai" id ="phone" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
+                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="customer.dienThoai" id ="phone" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
                                                                 </tr>
                                                                 <tr style="height:25px">
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã chứng khoán </td>
@@ -440,7 +440,7 @@
                                                                     </td>
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Fax </td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" tabindex="" name="customer.mFax" id ="fax" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                        <input type="text" tabindex="" name="customer.fax" id ="fax" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                     </td>
                                                                 </tr>
 <!--                                                                <tr style="height:25px">
@@ -466,7 +466,7 @@
 <!--                                                                        <input type="radio" tabindex="" name="assigntype" checked value="U" onclick="toggleAssignType(this.value)" >&nbsp;Người dùng
                                                                         <input type="radio" name="assigntype"  value="T" onclick="toggleAssignType(this.value)">&nbsp;Nhóm-->
                                                                         <span id="assign_user" style="display:block">
-                                                                            <select name="customer.mMaNhanVien" class="small" >
+                                                                            <select name="customer.maNhanVien" class="small" >
                                                                                 <s:iterator value="staffsList" status="index">
                                                                                 <option value="<s:property value="staffsList.get(#index.index)"/>" ><s:property value="staffsList.get(#index.index)"/></option>
                                                                                 </s:iterator>
@@ -567,7 +567,7 @@
                                                                         <font color="red"></font>
                                                                         Địa chỉ thanh toán 			</td>
                                                                     <td width=30% align=left class="dvtCellInfo">
-                                                                        <textarea value="" name="customer.mDiaChi" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
+                                                                        <textarea value="" name="customer.diaChi" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
                                                                     </td>
 
                                                                     <td width=20% class="dvtCellLabel" align=right>
@@ -577,52 +577,7 @@
                                                                         <textarea value="" name="ship_street" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
                                                                     </td>
                                                                 </tr>
-<!--                                                                <tr style="height:25px">
 
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Hộp thư thanh toán </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_pobox" id ="bill_pobox" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Hộp thư vận chuyển </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_pobox" id ="ship_pobox" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Thanh toán tại thành phố </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_city" id ="bill_city" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Vận chuyển tới thành phố </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_city" id ="ship_city" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Thanh toán tại Tỉnh/Bang </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_state" id ="bill_state" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Vận chuyển tới Tỉnh/Bang </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_state" id ="ship_state" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã vùng thanh toán </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_code" id ="bill_code" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã vùng vận chuyển </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_code" id ="ship_code" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>
-                                                                <tr style="height:25px">
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Thanh toán tại quốc gia </td>
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="bill_country" id ="bill_country" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Vận chuyển tới quốc gia </td>
-
-                                                                    <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="ship_country" id ="ship_country" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                </tr>-->
                                                                 <tr style="height:25px"><td>&nbsp;</td></tr>
                                                                 <tr>
                                                                     <td colspan=4 class="detailedViewHeader">
@@ -637,7 +592,7 @@
                                                                         <font color="red"></font> 
                                                                         Mô tả 			</td>
                                                                     <td colspan=3>
-                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="customer.mGhiChu"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
+                                                                        <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="customer.ghiChu"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"></textarea>
                                                                     </td>
                                                                 </tr>
                                                                 <tr style="height:25px"><td>&nbsp;</td></tr>

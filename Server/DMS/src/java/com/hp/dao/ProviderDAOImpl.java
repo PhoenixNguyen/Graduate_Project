@@ -44,10 +44,10 @@ public class ProviderDAOImpl implements ProviderDAO{
         try{
             courses = session.createQuery("select distinct per "
                     + "from Provider as per, Product as pct, SaleOrder as so, SaleOrderDetail as sod "
-                    + "where per.mID = pct.mProvider and "
-                    + " so.mID = sod.mTakeOrderID and "
-                    + " pct.mProductID = sod.mBarcode and "
-                    + " so.mCustomerID='"+customerID+"'" ).list();
+                    + "where per.id = pct.provider and "
+                    + " so.id = sod.takeOrderID and "
+                    + " pct.productID = sod.barcode and "
+                    + " so.customerID='"+customerID+"'" ).list();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -65,7 +65,7 @@ public class ProviderDAOImpl implements ProviderDAO{
         
         List<String> courses = null;
         try{
-            courses = session.createQuery("select mID from Provider " ).list();
+            courses = session.createQuery("select id from Provider " ).list();
         }catch(Exception e){
             e.printStackTrace();
         }

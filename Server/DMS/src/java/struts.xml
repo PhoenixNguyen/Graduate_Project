@@ -511,14 +511,14 @@
             <result name="input" >index.jsp</result>
         </action>
         
-        <!-- CUSTOMER -->
+        <!-- CUSTOMER  -->
         <action name="customer-list" method="displayCustomers" class="com.hp.action.CustomerAction">
             <result name="success">customer.jsp</result>
             <result name="input" >home.jsp</result>
         </action>
         
         <action name="customer-detail" method="showDetail" class="com.hp.action.CustomerAction">
-            <result name="success">customer-detail.jsp</result>
+            <result name="success">customer-detail.jsp?id_cus=${customer.stt}</result>
             <result name="input" type="redirect">customer-list</result>
         </action>
         
@@ -528,7 +528,7 @@
         </action>
         
         <action name="save-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
-            <result name="success" type="redirect">customer-detail?id_cus=${customer.mStt}</result>
+            <result name="success" type="redirect">customer-detail?id_cus=${customer.stt}</result>
             <result name="input" type="redirect">customer-add.jsp</result>
         </action>
         
@@ -538,13 +538,13 @@
         </action>
         
         <action name="update-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
-            <result name="success" type="redirect">customer-detail?id_cus=${customer.mStt}</result>
-            <result name="input" type="redirect">edit-customer?id_cus=${customer.mStt}</result>
+            <result name="success" type="redirect">customer-detail?id_cus=${customer.stt}</result>
+            <result name="input" type="redirect">edit-customer?id_cus=${customer.stt}</result>
         </action>
         
         <action name="delete-customer" method="deleteCustomer" class="com.hp.action.CustomerAction">
             <result name="success" >customer.jsp</result>
-            <result name="input" >customer.jsp</result>
+            <result name="input" >customer-detail.jsp?id_cus=${customer.stt}</result>
         </action>
         
         <action name="import-customer" method="redirect" class="com.hp.action.CustomerAction">
@@ -598,8 +598,8 @@
         </action>
         
         <action name="update-product" method="updateProduct" class="com.hp.action.ProductsAction">
-            <result name="success" type="redirect">product-detail?id_pdct=${product.mSerial}</result>
-            <result name="input" type="redirect">edit-product?id_pdct=${product.mSerial}</result>
+            <result name="success" type="redirect">product-detail?id_pdct=${product.serial}</result>
+            <result name="input" type="redirect">edit-product?id_pdct=${product.serial}</result>
         </action>
         
         <action name="new-product" method="redirect" class="com.hp.action.ProductsAction">
@@ -608,13 +608,13 @@
         </action>
         
         <action name="save-product" method="updateProduct" class="com.hp.action.ProductsAction">
-            <result name="success" type="redirect">product-detail?id_pdct=${product.mSerial}</result>
+            <result name="success" type="redirect">product-detail?id_pdct=${product.serial}</result>
             <result name="input" >product-add.jsp</result>
         </action>
         
         <action name="delete-product" method="deleteProduct" class="com.hp.action.ProductsAction">
             <result name="success" >product.jsp</result>
-            <result name="input" >product-detail.jsp?id_pdct=${product.mSerial}</result>
+            <result name="input" >product-detail.jsp?id_pdct=${product.serial}</result>
         </action>
                 
         <action name="import-product" method="redirect" class="com.hp.action.ProductsAction">
@@ -669,29 +669,29 @@
         </action>
         
         <action name="update-t-order" method="updateTakeOrder" class="com.hp.action.TakeOrderAction">
-            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.mID}</result>
+            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.id}</result>
             <result name="input" >take-order-edit.jsp</result>
         </action>
         
         
         <action name="edit-takeorder-detail" method="editTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
             <result name="success">take-order-detail-edit.jsp</result>
-            <result name="input" type="redirect">take-order-detail?id_tod=${takeOrder.mID}</result>
+            <result name="input" type="redirect">take-order-detail?id_tod=${takeOrder.id}</result>
         </action>
         
         <action name="update-takeorder-detail" method="updateTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
-            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrderDetail.mTakeOrderID}</result>
+            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrderDetail.takeOrderID}</result>
             <result name="input" >take-order-detail-edit.jsp</result>
         </action>
         
         <action name="delete-takeorder-detail" method="deleteTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
-            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.mID}</result>
+            <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.id}</result>
             <result name="input" >take-order-detail-edit.jsp</result>
         </action>
         
         <action name="delete-takeorder" method="deleteTakeOrderDetail" class="com.hp.action.TakeOrderAction">
             <result name="success" >take-order.jsp</result>
-            <result name="input" >take-order-detail.jsp?id_tod=${takeOrder.mID}</result>
+            <result name="input" >take-order-detail.jsp?id_tod=${takeOrder.id}</result>
         </action>
         
         <!--STAFF-->
@@ -707,7 +707,7 @@
         
         <action name="delete-staff" method="deleteStaff" class="com.hp.action.StaffsAction">
             <result name="success">staff.jsp</result>
-            <result name="input" >staff-detail.jsp?id_st=${staff.getMSTT()}</result>
+            <result name="input" >staff-detail.jsp?id_st=${staff.getStt()}</result>
         </action>
         
         <action name="new-staff" method="redirect" class="com.hp.action.StaffsAction">
@@ -716,7 +716,7 @@
         </action>
         
         <action name="save-staff" method="updateStaff" class="com.hp.action.StaffsAction">
-            <result name="success">staff-detail.jsp?id_st=${staff.getMSTT()}</result>
+            <result name="success">staff-detail.jsp?id_st=${staff.getStt()}</result>
             <result name="input" >staff-add.jsp</result>
         </action>
         
@@ -726,8 +726,8 @@
         </action>
         
         <action name="update-staff" method="updateStaff" class="com.hp.action.StaffsAction">
-            <result name="success">staff-detail.jsp?id_st=${staff.getMSTT()}</result>
-            <result name="input" >staff-edit.jsp?id_st=${staff.getMSTT()}</result>
+            <result name="success">staff-detail.jsp?id_st=${staff.getStt()}</result>
+            <result name="input" >staff-edit.jsp?id_st=${staff.getStt()}</result>
         </action>
         
         <action name="import-staff" method="redirect" class="com.hp.action.StaffsAction">

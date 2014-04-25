@@ -26,125 +26,117 @@ public class User {
     @GeneratedValue
     
     @Column(name="user_stt")
-    private int mStt;
+    private int stt;
+
     @Column(name="user_id")
-    private String mID;
+    private String id;
     @Column(name="user_chuc_danh")
-    private String mChucDanh;
+    private String chucDanh;
     @Column(name="user_ho_ten")
-    private String mHoTen;
+    private String hoTen;
     @Column(name="user_email")
-    private String mEmail;
+    private String email;
     @Column(name="user_so_dien_thoai")
-    private String mSDT;
+    private String sdt;
     @Column(name="user_dia_chi")
-    private String mDiaChi;
+    private String diaChi;
     @Column(name="user_ghi_chu")
-    private String mGhiChu;
+    private String ghiChu;
     @Column(name="user_ngay_tham_gia")
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date mNgayThamGia;
+    private Date ngayThamGia;
     @Column(name="user_permission")
-    private int mPermission;
+    private int permission;
     @Column(name="user_status")
-    private boolean mStatus;
+    private boolean status;
 
-    public int getmStt() {
-        return mStt;
-    }
-
-    public void setmStt(int mStt) {
-        this.mStt = mStt;
-    }
-
-    public String getmID() {
-        return mID;
-    }
-
-    public void setmID(String mID) {
-        this.mID = mID;
-    }
-
-    public String getmChucDanh() {
-        return mChucDanh;
-    }
-
-    public void setmChucDanh(String mChucDanh) {
-        this.mChucDanh = mChucDanh;
-    }
-
-    public String getmHoTen() {
-        return mHoTen;
-    }
-
-    public void setmHoTen(String mHoTen) {
-        this.mHoTen = mHoTen;
-    }
-
-    public String getmEmail() {
-        return mEmail;
-    }
-
-    public void setmEmail(String mEmail) {
-        this.mEmail = mEmail;
-    }
-
-    public String getmSDT() {
-        return mSDT;
-    }
-
-    public void setmSDT(String mSDT) {
-        this.mSDT = mSDT;
-    }
-
-    public String getmDiaChi() {
-        return mDiaChi;
-    }
-
-    public void setmDiaChi(String mDiaChi) {
-        this.mDiaChi = mDiaChi;
-    }
-
-    public String getmGhiChu() {
-        return mGhiChu;
-    }
-
-    public void setmGhiChu(String mGhiChu) {
-        this.mGhiChu = mGhiChu;
-    }
-
-    public Date getmNgayThamGia() {
-        return mNgayThamGia;
-    }
-
-    public void setmNgayThamGia(Date mNgayThamGia) {
-        this.mNgayThamGia = mNgayThamGia;
-    }
-
-    public int getmPermission() {
-        return mPermission;
-    }
-
-    public void setmPermission(int mPermission) {
-        this.mPermission = mPermission;
-    }
-
-    public boolean ismStatus() {
-        return mStatus;
-    }
-
-    public void setmStatus(boolean mStatus) {
-        this.mStatus = mStatus;
-    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public int getStt() {
+        return stt;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getChucDanh() {
+        return chucDanh;
+    }
+
+    public void setChucDanh(String chucDanh) {
+        this.chucDanh = chucDanh;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
+    public Date getNgayThamGia() {
+        return ngayThamGia;
+    }
+
+    public void setNgayThamGia(Date ngayThamGia) {
+        this.ngayThamGia = ngayThamGia;
+    }
+
+    public int getPermission() {
+        return permission;
+    }
+
+    public void setPermission(int permission) {
+        this.permission = permission;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     
 }

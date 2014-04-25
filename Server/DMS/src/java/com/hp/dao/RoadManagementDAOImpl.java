@@ -84,9 +84,9 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
             if(pGiamDoc != null){
                 //Lay danh sach ID nhan vien cua giam doc
                 List<String> nhanvien = null;
-                nhanvien = session.createQuery("select mID "
+                nhanvien = session.createQuery("select id "
                         + "from Staff "
-                        + "where mManager ='"+pGiamDoc+"' "
+                        + "where manager ='"+pGiamDoc+"' "
                         ).list();
                 for(int i= 0; i < nhanvien.size(); i++){
                     List<RoadManagement> tmp = new ArrayList<RoadManagement>();

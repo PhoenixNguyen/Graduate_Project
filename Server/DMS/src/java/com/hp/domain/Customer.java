@@ -31,140 +31,143 @@ public class Customer {
     @GeneratedValue
     
     @Column(name="khachhang_stt")
-    private int mStt;
+    private int stt;
+
     @Column(name="khachhang_tinh_thanh")
-    private String mTinhThanh;
+    private String tinhThanh;
     @Column(name="khachhang_tuyen_ban_hang_thu")
-    private String mTuyenBanHangThu;
+    private String tuyenBanHangThu;
     @Column(name="khachhang_ma_nv")
-    private String mMaNhanVien;
+    private String maNhanVien;
     @Column(name="khachhang_x")
-    private String mX;
+    private String x;
       
     @NotEmpty(message = "Mã khách hàng không được trống")
 //    @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã khách hàng chỉ chứa a-z, A-Z, 0-9, .")
 //    @Length(min = 3 , max = 255 ,message= "Mã khách hàng phải có độ dài 3-255 ký tự")
     @Column(name="khachhang_ma_dt")
     @Valid
-    private String mMaDoiTuong;
+    private String maDoiTuong;
     @Column(name="khachhang_doi_tuong")
-    private String mDoiTuong;
+    private String doiTuong;
     
     @Column(name="khachhang_diachi")
-    private String mDiaChi;
+    private String diaChi;
     @Column(name="khachhang_dien_thoai")
-    private String mDienThoai;
+    private String dienThoai;
     @Column(name="khachhang_fax")
-    private String mFax;
+    private String fax;
     @Column(name="khachhang_ghi_chu")
-    private String mGhiChu;
+    private String ghiChu;
     
     @Column(name="khachhang_toa_do_x")
-    private Double mXCoordinates;
+    private Double coordinateX;
     @Column(name="khachhang_toa_do_y")
-    private Double mYCoordinates;
+    private Double coordinateY;
 
     
-    public int getMStt() {
-        return mStt;
+    public int getStt() {
+        return stt;
     }
 
-    public void setMStt(int mStt) {
-        this.mStt = mStt;
+    public void setStt(int stt) {
+        this.stt = stt;
     }
 
-    public String getMTinhThanh() {
-        return mTinhThanh;
+    public String getTinhThanh() {
+        return tinhThanh;
     }
 
-    public void setMTinhThanh(String mTinhThanh) {
-        this.mTinhThanh = mTinhThanh;
-    }
-    public String getMTuyenBanHangThu() {
-        return mTuyenBanHangThu;
+    public void setTinhThanh(String tinhThanh) {
+        this.tinhThanh = tinhThanh;
     }
 
-    public void setMTuyenBanHangThu(String mTuyenBanHangThu) {
-        this.mTuyenBanHangThu = mTuyenBanHangThu;
-    }
-    public String getMMaNhanVien() {
-        return mMaNhanVien;
+    public String getTuyenBanHangThu() {
+        return tuyenBanHangThu;
     }
 
-    public void setMMaNhanVien(String mMaNhanVien) {
-        this.mMaNhanVien = mMaNhanVien;
-    }
-    public String getMX() {
-        return mX;
+    public void setTuyenBanHangThu(String tuyenBanHangThu) {
+        this.tuyenBanHangThu = tuyenBanHangThu;
     }
 
-    public void setMX(String mX) {
-        this.mX = mX;
-    }
-  
-    public String getMMaDoiTuong() {
-        return mMaDoiTuong;
+    public String getMaNhanVien() {
+        return maNhanVien;
     }
 
-    public void setMMaDoiTuong(String mMaDoiTuong) {
-        this.mMaDoiTuong = mMaDoiTuong;
-    }
-    
-
-    public String getMDoiTuong() {
-        return mDoiTuong;
+    public void setMaNhanVien(String maNhanVien) {
+        this.maNhanVien = maNhanVien;
     }
 
-    public void setMDoiTuong(String mDoiTuong) {
-        this.mDoiTuong = mDoiTuong;
-    }
-    
-    public String getMDiaChi() {
-        return mDiaChi;
+    public String getX() {
+        return x;
     }
 
-    public void setMDiaChi(String mDiaChi) {
-        this.mDiaChi = mDiaChi;
-    }
-    
-    public String getMDienThoai() {
-        return mDienThoai;
+    public void setX(String x) {
+        this.x = x;
     }
 
-    public void setMDienThoai(String mDienThoai) {
-        this.mDienThoai = mDienThoai;
-    }
-    
-    public String getMFax() {
-        return mFax;
+    public String getMaDoiTuong() {
+        return maDoiTuong;
     }
 
-    public void setMFax(String mFax) {
-        this.mFax = mFax;
-    }
-    
-    public String getMGhiChu() {
-        return mGhiChu;
+    public void setMaDoiTuong(String maDoiTuong) {
+        this.maDoiTuong = maDoiTuong;
     }
 
-    public void setMGhiChu(String mGhiChu) {
-        this.mGhiChu = mGhiChu;
-    }
-             
-    public Double getMXCoordinates() {
-        return mXCoordinates;
+    public String getDoiTuong() {
+        return doiTuong;
     }
 
-    public void setMXCoordinates(Double mXCoordinates) {
-        this.mXCoordinates = mXCoordinates;
-    }
-    
-    public Double getMYCoordinates() {
-        return mYCoordinates;
+    public void setDoiTuong(String doiTuong) {
+        this.doiTuong = doiTuong;
     }
 
-    public void setMYCoordinates(Double mYCoordinates) {
-        this.mYCoordinates = mYCoordinates;
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getDienThoai() {
+        return dienThoai;
+    }
+
+    public void setDienThoai(String dienThoai) {
+        this.dienThoai = dienThoai;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
+    public Double getCoordinateX() {
+        return coordinateX;
+    }
+
+    public void setCoordinateX(Double coordinateX) {
+        this.coordinateX = coordinateX;
+    }
+
+    public Double getCoordinateY() {
+        return coordinateY;
+    }
+
+    public void setCoordinateY(Double coordinateY) {
+        this.coordinateY = coordinateY;
     }
     
     public Customer(){

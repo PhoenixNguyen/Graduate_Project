@@ -194,7 +194,7 @@ public class CustomerListActivity extends MainMenuActivity{
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 				        Intent t = new Intent(context, CustomerMapActivity.class);
-				        t.putExtra("POSITION_CLICK", customer.getmMaDoiTuong());
+				        t.putExtra("POSITION_CLICK", customer.getMMaDoiTuong());
 				        
 				        startActivity(t);
 				        dialog.dismiss();

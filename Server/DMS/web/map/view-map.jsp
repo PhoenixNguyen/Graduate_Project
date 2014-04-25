@@ -35,9 +35,9 @@
                 var Customers = [
             <s:iterator value="listCustomer" status="status">
                     {
-                        mXCoordinates: <s:property value="mXCoordinates"/>,
-                                mYCoordinates: <s:property value="mYCoordinates"/>,
-                        mMaDoiTuong: '<s:property value="mMaDoiTuong:"/>'
+                        mXCoordinates: <s:property value="coordinateX"/>,
+                                mYCoordinates: <s:property value="coordinateY"/>,
+                        mMaDoiTuong: '<s:property value="maDoiTuong:"/>'
 
                     },
             </s:iterator>
@@ -63,17 +63,17 @@
 
                 var contentString = [
             <s:iterator value="listCustomer" status="status">
-                    '<div id="boxShow"> <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaDoiTuong"/>">\n\
-                                        <img class= "ImageWrap" border="0" src="../customer/<s:property value="mMaDoiTuong"/>/1.jpg"  ></a>' +
+                    '<div id="boxShow"> <a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>">\n\
+                                        <img class= "ImageWrap" border="0" src="../customer/<s:property value="maDoiTuong"/>/1.jpg"  ></a>' +
                             '<p class= "TextWrap">\n\
-                                <b><a href="customerDetail.action?page=0&customer_id=<s:property value="mMaDoiTuong"/>">Khách hàng: <s:property value="mDoiTuong"/></a></b>' + '<br/><br/>' +
-                            'Mã khách hàng: <s:property value="mMaDoiTuong"/>' + '<br/>' +
-                            'Tỉnh thành: <s:property value="mTinhThanh"/>' + '<br/>' +
-                            'Địa chỉ: <s:property value="mDiaChi"/>' + '<br/>' +
-                            'Điện thoại: <s:property value="mDienThoai"/>' + '<br/>' +
-                            'Fax: <s:property value="mFax"/>' + '<br/>\n\
-                             Tọa độ X: <s:property value="mXCoordinates"/> <br/> \n\
-                             Tọa độ Y: <s:property value="mYCoordinates"/> <br/>   </p></div>',
+                                <b><a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>">Khách hàng: <s:property value="doiTuong"/></a></b>' + '<br/><br/>' +
+                            'Mã khách hàng: <s:property value="maDoiTuong"/>' + '<br/>' +
+                            'Tỉnh thành: <s:property value="tinhThanh"/>' + '<br/>' +
+                            'Địa chỉ: <s:property value="diaChi"/>' + '<br/>' +
+                            'Điện thoại: <s:property value="dienThoai"/>' + '<br/>' +
+                            'Fax: <s:property value="fax"/>' + '<br/>\n\
+                             Tọa độ X: <s:property value="coordinateX"/> <br/> \n\
+                             Tọa độ Y: <s:property value="coordinateY"/> <br/>   </p></div>',
             </s:iterator>
                 ];
 
@@ -274,19 +274,19 @@
                                         <div class="poi-content">
                                             <div class="poi-photo">
 
-                                                <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaDoiTuong"/>">
-                                                    <img src="../customer/<s:property value="mMaDoiTuong"/>/1.jpg"  width="64" height="64" >
+                                                <a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>">
+                                                    <img src="../db_customers/<s:property value="maDoiTuong"/>/1.jpg"  width="64" height="64" >
                                                 </a>
 
                                             </div>
                                             <h2 class="poi-title">
-                                                <a href="customerDetail.action?page=0&customer_id=<s:property value="mMaDoiTuong"/>"><s:property value="mDoiTuong"/></a></h2>
+                                                <a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>"><s:property value="doiTuong"/></a></h2>
                                             <div class="poi-infos">
 
-                                                <strong>Mã khách hàng:</strong> <s:property value="mMaDoiTuong"/> <br/>
-                                                <strong>Địa chỉ:</strong> <s:property value="mDiaChi"/>
+                                                <strong>Mã khách hàng:</strong> <s:property value="maDoiTuong"/> <br/>
+                                                <strong>Địa chỉ:</strong> <s:property value="diaChi"/>
 
-                                                <br><strong>Điện thoại:</strong> <s:property value="mDienThoai"/>
+                                                <br><strong>Điện thoại:</strong> <s:property value="dienThoai"/>
 
                                             </div>
                                         </div>

@@ -166,39 +166,39 @@ public class GenericResource {
     
     //=============================== GET ==========================================
     // This method is called if XML is request
-    @Path("/getCustomer")
-    @GET
-    @Produces(MediaType.TEXT_XML)
-    public String getCustomerToXML(@QueryParam("username") String pUsername,
-                                    @QueryParam("password") String pPassword) {
-        //Check permission
-        StaffDAO staffDAO = new StaffDAOImpl();
-        if(pUsername != null && pPassword != null && staffDAO.authenticate(pUsername, pPassword)){
-         
-            CustomerDAO customerDAO = new CustomerDAOImpl();
-            List<Customer> customerList = new ArrayList<Customer>();
-
-            customerList = customerDAO.loadCustomersWithLocations(null, pUsername, null);
-            System.out.println("LIST: " + customerList.get(0).getMMaDoiTuong());
-            String xml = "<?xml version=\"1.0\"?> "
-                    + "<root>";
-
-            for(int i = 0; i < customerList.size(); i++){
-                xml += "<customer id=\""+customerList.get(i).getMMaDoiTuong()+"\"> " 
-                            + "<name>"+customerList.get(i).getMDoiTuong()+"</name> " 
-                            + "<address>"+customerList.get(i).getMDiaChi()+"</address> " 
-                            + "<phone>"+customerList.get(i).getMDienThoai()+"</phone> " 
-                            + "<x>"+customerList.get(i).getMXCoordinates()+"</x>" 
-                            + "<y>"+customerList.get(i).getMYCoordinates()+"</y>"
-                            + "<staffid>"+customerList.get(i).getMMaNhanVien()+"</staffid>"
-                      + "</customer> ";
-            }
-             xml += "</root> ";
-
-             return xml;
-        }else
-            return null;
-    }
+//    @Path("/getCustomer")
+//    @GET
+//    @Produces(MediaType.TEXT_XML)
+//    public String getCustomerToXML(@QueryParam("username") String pUsername,
+//                                    @QueryParam("password") String pPassword) {
+//        //Check permission
+//        StaffDAO staffDAO = new StaffDAOImpl();
+//        if(pUsername != null && pPassword != null && staffDAO.authenticate(pUsername, pPassword)){
+//         
+//            CustomerDAO customerDAO = new CustomerDAOImpl();
+//            List<Customer> customerList = new ArrayList<Customer>();
+//
+//            customerList = customerDAO.loadCustomersWithLocations(null, pUsername, null);
+//            System.out.println("LIST: " + customerList.get(0).getMMaDoiTuong());
+//            String xml = "<?xml version=\"1.0\"?> "
+//                    + "<root>";
+//
+//            for(int i = 0; i < customerList.size(); i++){
+//                xml += "<customer id=\""+customerList.get(i).getMMaDoiTuong()+"\"> " 
+//                            + "<name>"+customerList.get(i).getMDoiTuong()+"</name> " 
+//                            + "<address>"+customerList.get(i).getMDiaChi()+"</address> " 
+//                            + "<phone>"+customerList.get(i).getMDienThoai()+"</phone> " 
+//                            + "<x>"+customerList.get(i).getMXCoordinates()+"</x>" 
+//                            + "<y>"+customerList.get(i).getMYCoordinates()+"</y>"
+//                            + "<staffid>"+customerList.get(i).getMMaNhanVien()+"</staffid>"
+//                      + "</customer> ";
+//            }
+//             xml += "</root> ";
+//
+//             return xml;
+//        }else
+//            return null;
+//    }
         
     //Update journey
     @Path("/putJourney")
@@ -328,7 +328,7 @@ public class GenericResource {
         
         //Update location
         CustomerDAO customerDAO = new CustomerDAOImpl();
-        int st = customerDAO.update(track.getMaKhachHang(), track.getViDo(), track.getMKinhdo());
+        int st = customerDAO.update(track.getTenNhanVien(), track.getViDo(), track.getKinhDo());
         
 //            String output = pTrack.toString();
             System.out.println("____ " + pTrack + "___ " + st);
@@ -618,17 +618,17 @@ public class GenericResource {
         //Update the order
         List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
         
-        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getMPriceTotal();
+            priceTotal += list.get(i).getPriceTotal();
         }
         
         TakeOrder takeOrder = new TakeOrder();
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         
-        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
-        takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
+        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
+        takeOrder.setAfterPrivate(priceTotal - priceTotal*takeOrder.getDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pTakeOrder + "___ " + st);
@@ -664,17 +664,17 @@ public class GenericResource {
         //Update the order
         List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
         
-        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getMPriceTotal();
+            priceTotal += list.get(i).getPriceTotal();
         }
         
         TakeOrder takeOrder = new TakeOrder();
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         
-        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
-        takeOrder.setMAfterPrivate(priceTotal  - priceTotal*takeOrder.getMDiscount()/100);
+        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
+        takeOrder.setAfterPrivate(priceTotal  - priceTotal*takeOrder.getDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pTakeOrder + "___ " + st);
@@ -703,7 +703,7 @@ public class GenericResource {
         
         //Update 
         TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
-        boolean st = takeOrderDetailDAO.delete(takeOrder.getMID());
+        boolean st = takeOrderDetailDAO.delete(takeOrder.getId());
         if(!st)
             return Response.status(200).entity(st+"").build();
         

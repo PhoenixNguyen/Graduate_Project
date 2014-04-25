@@ -48,7 +48,7 @@ public class ReturnOrderDetailDAOImpl implements ReturnOrderDetailDAO{
         
         List<ReturnOrderDetail> courses = null;
         try{
-                courses = session.createQuery("from ReturnOrderDetail where mTakeOrderID='"+pID+"'").list();
+                courses = session.createQuery("from ReturnOrderDetail where takeOrderID='"+pID+"'").list();
             
         }catch(Exception e){
             e.printStackTrace();
@@ -153,7 +153,7 @@ public class ReturnOrderDetailDAOImpl implements ReturnOrderDetailDAO{
         Transaction transaction;
         transaction = session.beginTransaction();
         try{
-            Query q = session.createQuery("delete ReturnOrderDetail where mTakeOrderID='"+pID+"'");
+            Query q = session.createQuery("delete ReturnOrderDetail where takeOrderID='"+pID+"'");
             q.executeUpdate();
             session.getTransaction().commit();
         }catch(HibernateException e){

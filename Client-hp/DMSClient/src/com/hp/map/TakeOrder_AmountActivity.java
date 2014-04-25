@@ -107,8 +107,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		
 
 		if(!TakeOrder_ProductActivity.add_take_order_detail && CustomerMapActivity.mSelectedCustomer != null){
-			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong());
-			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getmDoiTuong());
+			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getMMaDoiTuong());
+			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getMDoiTuong());
 		}
 		else
 		{
@@ -326,15 +326,15 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			Date date = new  Date();
 			String date2 = df.format(date);
 			
-			String orderID = CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong()+"-" + date2;
+			String orderID = CustomerMapActivity.mSelectedCustomer.getMMaDoiTuong()+"-" + date2;
 			
 			TakeOrder order = new TakeOrder(orderID
 					, Timestamp.valueOf(date2), Timestamp.valueOf(date2)
-					, CustomerMapActivity.mSelectedCustomer.getmMaDoiTuong()
-					, CustomerMapActivity.mSelectedCustomer.getmDoiTuong()
-					, CustomerMapActivity.mSelectedCustomer.getmDiaChi()
-					, CustomerMapActivity.mSelectedCustomer.getmDienThoai()
-					, CustomerMapActivity.mSelectedCustomer.getmDiaChi()
+					, CustomerMapActivity.mSelectedCustomer.getMMaDoiTuong()
+					, CustomerMapActivity.mSelectedCustomer.getMDoiTuong()
+					, CustomerMapActivity.mSelectedCustomer.getMDiaChi()
+					, CustomerMapActivity.mSelectedCustomer.getMDienThoai()
+					, CustomerMapActivity.mSelectedCustomer.getMDiaChi()
 					, ""
 					
 					, 0

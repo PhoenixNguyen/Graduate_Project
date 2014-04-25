@@ -339,7 +339,7 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 //List customer and schedule
                 listScheduleAndCustomer = customerDAO.customerScheduleList(null, null, date, toDate);
                 
-                System.out.println(" ___ " + listScheduleAndCustomer.get(0).get(0).getMXCoordinates());
+                //System.out.println(" ___ " + listScheduleAndCustomer.get(0).get(0).getCoordinateX());
                 
                 //listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
                 listSchedules = scheduleDAO.getSchedulesList(null, null, date, toDate);
@@ -403,8 +403,8 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
             return null;
         }
         List<String> tmp = new ArrayList<String>();
-        String filePath = ServletActionContext.getServletContext().getRealPath("/customer/"
-                            +pList.get(0).getMMaDoiTuong()+"/");
+        String filePath = ServletActionContext.getServletContext().getRealPath("/db_customers/"
+                            +pList.get(0).getMaDoiTuong()+"/");
                 File[] files = new File(filePath).listFiles();
                 if(files == null)
                     return null;

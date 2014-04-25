@@ -125,11 +125,11 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
     }
     
     public String updateTakeOrderDetail(){
-        System.out.println("OKto " + takeOrderDetail.getMProductID());
+        System.out.println("OKto " + takeOrderDetail.getProductID());
         //takeOrder.setmEditer("0");
         
-        takeOrderDetail.setMPriceTotal((takeOrderDetail.getMBeforeOrderPrice() - 
-                takeOrderDetail.getMBeforeOrderPrice()* takeOrderDetail.getMDiscount()/100) * takeOrderDetail.getMNumber());
+        takeOrderDetail.setPriceTotal((takeOrderDetail.getBeforeOrderPrice() - 
+                takeOrderDetail.getBeforeOrderPrice()* takeOrderDetail.getDiscount()/100) * takeOrderDetail.getNumber());
         
         boolean status = takeOrderDetailDAO.update(takeOrderDetail);
         System.out.println(status);
@@ -137,14 +137,14 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
         //UPdate TakeOrder
         List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
         
-        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
+        list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getMPriceTotal();
+            priceTotal += list.get(i).getPriceTotal();
         }
         
-        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
-        takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
+        takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
+        takeOrder.setAfterPrivate(priceTotal - priceTotal*takeOrder.getDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
         
         if(status){
@@ -172,14 +172,14 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
                 //UPdate TakeOrder
                 List<TakeOrderDetail> list = new ArrayList<TakeOrderDetail>();
 
-                list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getMTakeOrderID());
+                list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrderDetail.getTakeOrderID());
                 float priceTotal = 0;
                 for(int i = 0; i < list.size(); i++){
-                    priceTotal += list.get(i).getMPriceTotal();
+                    priceTotal += list.get(i).getPriceTotal();
                 }
         
-                takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getMTakeOrderID());
-                takeOrder.setMAfterPrivate(priceTotal - priceTotal*takeOrder.getMDiscount()/100);
+                takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
+                takeOrder.setAfterPrivate(priceTotal - priceTotal*takeOrder.getDiscount()/100);
                 boolean st2 = takeOrderDAO.update(takeOrder);
                 return SUCCESS;
             }

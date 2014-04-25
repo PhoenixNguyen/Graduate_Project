@@ -67,7 +67,7 @@ public class ReturnOrderDAOImpl implements ReturnOrderDAO{
         
         List<ReturnOrder> courses = null;
         try{
-                courses = session.createQuery("from ReturnOrder where mCreater='"+pStaff+"'").list();
+                courses = session.createQuery("from ReturnOrder where creater='"+pStaff+"'").list();
             
         }catch(Exception e){
             e.printStackTrace();

@@ -383,7 +383,7 @@
                         <tbody><tr>
                                 <td>
 
-                                    <span class="lvtHeaderText"><font color="purple">[ <s:property value="takeOrder.mID" /> ] </font>Đặt hàng -  Thông tin Đặt hàng </span>&nbsp;&nbsp;&nbsp;<span class="small"></span>&nbsp;<span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span><span id="vtbusy_info" style="visibility:hidden;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>
+                                    <span class="lvtHeaderText"><font color="purple">[ <s:property value="takeOrder.id" /> ] </font>Đặt hàng -  Thông tin Đặt hàng </span>&nbsp;&nbsp;&nbsp;<span class="small"></span>&nbsp;<span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span><span id="vtbusy_info" style="visibility:hidden;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>
                                 </td>
                             </tr>
                         </tbody></table>
@@ -401,7 +401,7 @@
                                                 <td class="dvtTabCache" style="width:10px">&nbsp;</td>
                                                 <td class="dvtTabCache" align="right" style="width:100%">
                                                     <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="
-                                                        javacript:window.location.href= 'take-order-edit?id_tod=<s:property value="takeOrder.getMID()"/>'
+                                                        javacript:window.location.href= 'take-order-edit?id_tod=<s:property value="takeOrder.getId()"/>'
 //                                                        DetailView.return_module.value = 'SalesOrder';
 //                                                            DetailView.return_action.value = 'DetailView';
 //                                                            DetailView.return_id.value = '201';
@@ -414,7 +414,7 @@
                                                             DetailView.module.value = 'SalesOrder';
                                                             submitFormForAction('DetailView', 'EditView');" type="button" name="Duplicate" value="Sao chép">&nbsp;-->
                                                     <script>
-                                                        var str = "delete-takeorder?id_tod=<s:property value="takeOrder.mID"/>";
+                                                        var str = "delete-takeorder?id_tod=<s:property value="takeOrder.Id"/>";
                                                     </script>
                                                     <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="
                                                             confirmdelete(''+str);
@@ -487,7 +487,7 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--PotentialPopup-->
-                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Cơ hội">&nbsp;<a href=""><s:property value="takeOrder.mID"/></a>
+                                                                                        <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Cơ hội">&nbsp;<a href=""><s:property value="takeOrder.Id"/></a>
                                                                                         </td>
                                                                                     </tr>	
                                                                                     <tr style="height:25px">
@@ -501,7 +501,7 @@
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Khách hàng thứ" onmouseover="hndMouseOver(1, 'Khách hàng thứ');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Khách hàng thứ"><s:property value="takeOrder.mTakeOrderDate"/></span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Khách hàng thứ"><s:property value="takeOrder.takeOrderDate"/></span>
 
                                                                                         </td>
 
@@ -512,7 +512,7 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mDeliveryDate"/></td>
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.deliveryDate"/></td>
                                                                                     </tr>	
                                                                                     <tr style="height:25px">
 
@@ -524,7 +524,7 @@
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--QuotePopup-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Báo giá">&nbsp;
-                                                                                            <a href=""><s:property value="takeOrder.mCustomerName"/></a>
+                                                                                            <a href=""><s:property value="takeOrder.customerName"/></a>
                                                                                         </td>
 
 
@@ -536,7 +536,7 @@
                                                                                         <!--TextBox-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Nhập hàng" onmouseover="hndMouseOver(1, 'Nhập hàng');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                            &nbsp;&nbsp;<span id="dtlview_Nhập hàng"><s:property value="takeOrder.mCustomerID"/></span>
+                                                                                            &nbsp;&nbsp;<span id="dtlview_Nhập hàng"><s:property value="takeOrder.customerID"/></span>
 
                                                                                         </td>
                                                                                     </tr>	
@@ -551,7 +551,7 @@
                                                                                         <!--ContactPopup-->
                                                                                         <!-- Ajax edit link not provided for contact - Reports To -->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Liên hệ">&nbsp;
-                                                                                            <a href=""><s:property value="takeOrder.mCustomerAddress"/> </a>
+                                                                                            <a href=""><s:property value="takeOrder.customerAddress"/> </a>
                                                                                         </td>
 
 
@@ -562,7 +562,7 @@
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày liên quan" onmouseover="hndMouseOver(5, 'Ngày liên quan');" onmouseout="fnhide('crmspanid');">
                                                                                             &nbsp;&nbsp;<span id="dtlview_Ngày liên quan">
-                                                                                                <s:property value="takeOrder.mPhoneNumber"/>
+                                                                                                <s:property value="takeOrder.phoneNumber"/>
                                                                                             </span>
 
                                                                                         </td>
@@ -607,7 +607,7 @@
                                                                                         <!--ComboBox-->
 
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tình trạng" onmouseover="hndMouseOver(15, 'Tình trạng');" onmouseout="fnhide('crmspanid');">
-                                                                                            <span id="dtlview_Tình trạng"><font color=""><s:property value="takeOrder.mDiscount"/></font></span>
+                                                                                            <span id="dtlview_Tình trạng"><font color=""><s:property value="takeOrder.discount"/></font></span>
 
                                                                                         </td>
 
@@ -660,7 +660,7 @@
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--Assigned To-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Gán cho" onmouseover="hndMouseOver(53, 'Gán cho');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Gán cho">
-                                                                                                <a href=""><s:property value="takeOrder.mOrderStatus"/></a>         
+                                                                                                <a href=""><s:property value="takeOrder.orderStatus"/></a>         
                                                                                                 &nbsp;</span>
 
                                                                                         </td>
@@ -677,7 +677,7 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mCreater"/></td>
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.creater"/></td>
 
                                                                                         <!-- Avoid to display the label Tax Class -->
                                                                                         <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày tạo</td>
@@ -685,7 +685,7 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mOrderEstablishDate"/></td>
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.orderEstablishDate"/></td>
 
                                                                                     </tr>	
 
@@ -698,7 +698,7 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mEditer"/></td>
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.editer"/></td>
 
                                                                                         <!-- Avoid to display the label Tax Class -->
                                                                                         <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày sửa</td>
@@ -706,7 +706,7 @@
 
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.mOrderEditDate"/></td>
+                                                                                        <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.orderEditDate"/></td>
 
                                                                                     </tr>
                                                                                 </tbody>
@@ -836,7 +836,7 @@
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextArea/Street-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Địa chỉ thanh toán" onmouseover="hndMouseOver(24, 'Địa chỉ thanh toán');" onmouseout="fnhide('crmspanid');">&nbsp;
-                                                                                            <span id="dtlview_Địa chỉ thanh toán"><s:property value="takeOrder.mDeliveryAddress"/></span>
+                                                                                            <span id="dtlview_Địa chỉ thanh toán"><s:property value="takeOrder.deliveryAddress"/></span>
 
                                                                                         </td>
 
@@ -848,7 +848,7 @@
                                                                                         <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                         <!--TextArea/Street-->
                                                                                         <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Địa chỉ vận chuyển" onmouseover="hndMouseOver(24, 'Địa chỉ vận chuyển');" onmouseout="fnhide('crmspanid');">&nbsp;
-                                                                                            <span id="dtlview_Địa chỉ vận chuyển"><s:property value="takeOrder.mShippingVehicle"/></span>
+                                                                                            <span id="dtlview_Địa chỉ vận chuyển"><s:property value="takeOrder.shippingVehicle"/></span>
 
                                                                                         </td>
                                                                                     </tr>	
@@ -1036,7 +1036,7 @@
                                                                                         <!-- -->
                                                                                         <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Mô tả" onmouseover="hndMouseOver(19, 'Mô tả');" onmouseout="fnhide('crmspanid');">&nbsp;
                                                                                             <span id="dtlview_Mô tả">
-                                                                                                <s:property value="takeOrder.mNote"/>
+                                                                                                <s:property value="takeOrder.note"/>
                                                                                             </span>
 
                                                                                         </td>
@@ -1080,22 +1080,22 @@
                                                                                 <s:iterator value="detailTakeOrdersList" status="index">
                                                                                 <tr valign="top">
                                                                                     <td class="crmTableRow small lineOnTop">
-                                                                                        <a href="edit-takeorder-detail?id_to_d=<s:property value="mSerial"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-takeorder-detail?id_to_d=<s:property value="mSerial"/>&id_tod=<s:property value="mTakeOrderID"/>")'>Xóa</a>				
+                                                                                        <a href="edit-takeorder-detail?id_to_d=<s:property value="serial"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-takeorder-detail?id_to_d=<s:property value="serial"/>&id_tod=<s:property value="takeOrderID"/>")'>Xóa</a>				
                                                                                         <br>
                                                                                     </td>
                                                                                     <td class="crmTableRow small lineOnTop">
-                                                                                        <s:property value="mLine"/>&nbsp; 				
+                                                                                        <s:property value="line"/>&nbsp; 				
                                                                                         <br>
                                                                                     </td>
-                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mProductName"/></td>
-                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mProductID"/></td>
-                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mPromotionalProductMount"/> sản phẩm</td>
-                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="mNumber"/></td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="productName"/></td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="productID"/></td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="promotionalProductMount"/> sản phẩm</td>
+                                                                                    <td class="crmTableRow small lineOnTop"><s:property value="number"/></td>
                                                                                     
                                                                                     <td class="crmTableRow small lineOnTop" align="right">
                                                                                         <table width="100%" border="0" cellpadding="5" cellspacing="0">
                                                                                             <tbody><tr>
-                                                                                                    <td align="right"><s:property value="mBeforeOrderPrice"/></td>
+                                                                                                    <td align="right"><s:property value="beforeOrderPrice"/></td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td align="right">(-)&nbsp;
@@ -1114,20 +1114,20 @@
                                                                                     </td>
                                                                                     <td class="crmTableRow small lineOnTop" align="right">
                                                                                         <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                                                                                            <tbody><tr><td align="right"><s:property value="mBeforeOrderPrice * mNumber"/></td></tr>
-                                                                                                <tr><td align="right"><s:property value="mTax"/></td></tr>
-                                                                                                <tr><td align="right" nowrap=""><s:property value="mAfterOrderPrice * mNumber"/></td></tr>
-                                                                                                <tr><td align="right" nowrap=""><s:property value="mDiscount"/></td></tr>		   
+                                                                                            <tbody><tr><td align="right"><s:property value="beforeOrderPrice * number"/></td></tr>
+                                                                                                <tr><td align="right"><s:property value="tax"/></td></tr>
+                                                                                                <tr><td align="right" nowrap=""><s:property value="afterOrderPrice * number"/></td></tr>
+                                                                                                <tr><td align="right" nowrap=""><s:property value="discount"/></td></tr>		   
                                                                                             </tbody></table>
                                                                                     </td>
-                                                                                    <td class="crmTableRow small lineOnTop" valign="bottom" align="right"><s:property value="getText('{0,number,#,##0.00}',{mPriceTotal})"/></td>
-                                                                                    <s:set  var="sum" value="%{#sum + mPriceTotal}"/>
+                                                                                    <td class="crmTableRow small lineOnTop" valign="bottom" align="right"><s:property value="getText('{0,number,#,##0.00}',{priceTotal})"/></td>
+                                                                                    <s:set  var="sum" value="%{#sum + priceTotal}"/>
                                                                                 </tr>
                                                                                 </s:iterator>
                                                                                 
                                                                                 <tr valign="top">
                                                                                     <td class="crmTableRow small lineOnTop">
-                                                                                        <a href="new-takeorder-detail?id_to_d=<s:property value="mSerial"/>"></a> 			
+                                                                                        <a href="new-takeorder-detail?id_to_d=<s:property value="serial"/>"></a> 			
                                                                                         <br>
                                                                                     </td>
                                                                                     <td class="crmTableRow small lineOnTop">
@@ -1156,8 +1156,8 @@
                                                                                     <td width="12%" class="crmTableRow small" align="right"><b><s:property value="getText('{0,number,#,##0.00}',{#sum})"/></b></td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td align="right" class="crmTableRow small lineOnTop">(-)&nbsp;<b><a href="javascript:;" onclick="alert('Giảm giá = <s:property value="takeOrder.mDiscount"/> %');">Chiết khấu (%)</a></b></td>
-                                                                                    <td align="right" class="crmTableRow small lineOnTop"><s:property value="takeOrder.mDiscount"/></td>
+                                                                                    <td align="right" class="crmTableRow small lineOnTop">(-)&nbsp;<b><a href="javascript:;" onclick="alert('Giảm giá = <s:property value="takeOrder.discount"/> %');">Chiết khấu (%)</a></b></td>
+                                                                                    <td align="right" class="crmTableRow small lineOnTop"><s:property value="takeOrder.discount"/></td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td align="right" class="crmTableRow small">(+)&nbsp;<b>Chi phí vận chuyển và đóng gói</b></td>
@@ -1174,7 +1174,7 @@
                                                                                 
                                                                                 <tr>
                                                                                     <td align="right" class="crmTableRow small lineOnTop"><b>Tổng tiền thanh toán</b></td>
-                                                                                    <td align="right" class="crmTableRow small lineOnTop"><s:property value="getText('{0,number,#,##0.00}',{takeOrder.mAfterPrivate})"/></td>
+                                                                                    <td align="right" class="crmTableRow small lineOnTop"><s:property value="getText('{0,number,#,##0.00}',{takeOrder.afterPrivate})"/></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>

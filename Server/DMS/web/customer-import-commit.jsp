@@ -250,6 +250,7 @@
         <tbody>
             <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>
             <tr><td><a href="customer-list" class="drop_down">Khách hàng</a></td></tr>
+            <tr><td><a href="map/showMap?page=0" class="drop_down">Vị trí</a></td></tr>
         </tbody>
     </table>
 </div>
@@ -293,6 +294,8 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr><td><a href="staff-list" class="drop_down">Nhân viên</a></td></tr>
+            <tr><td><a href="map/showSchedule?page=0" class="drop_down">Kế hoạch dự kiến</a></td></tr>
+            <tr><td><a href="map/staff-roads" class="drop_down">Hành trình</a></td></tr>
 
         </tbody>
     </table>

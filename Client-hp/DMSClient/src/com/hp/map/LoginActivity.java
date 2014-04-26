@@ -96,14 +96,11 @@ public class LoginActivity extends Activity {
 				
 				//Init Http request
 				System.out.println("__ " + password);
-				if(password.compareTo("123456") != 0){
-					Toast.makeText(context, "Tên đăng nhập và mật khẩu không hợp lệ!", Toast.LENGTH_SHORT).show();
-				}
-				else
-				if(Rest.getCustomersList(username) == true){
-					
+				
+				if(Rest.getStaff(username, password)){
+					Rest.getCustomersList(Rest.mStaff.getId());
 					//Run thread to do backgroud send location
-					//doBackground();
+					doBackground();
 					// TODO Auto-generated method stub
 					Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
 	            	startActivity(i);
@@ -207,7 +204,7 @@ public class LoginActivity extends Activity {
         	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		Date date = new Date();
     		String datestr = dateFormat.format(date);
-        	RoadManagement roadManagement = new RoadManagement(Rest.mStaffID, "", 
+        	RoadManagement roadManagement = new RoadManagement(Rest.mStaff.getId(), "", 
         			Timestamp.valueOf(datestr), pX, pY, "");
         	
         	ObjectMapper mapper = new ObjectMapper();

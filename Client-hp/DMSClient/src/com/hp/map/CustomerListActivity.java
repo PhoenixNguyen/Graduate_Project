@@ -146,7 +146,7 @@ public class CustomerListActivity extends MainMenuActivity{
 	public void addListView(){
 		System.out.println("____UPDAte list " + Rest.customerList.size());
 		//Update list customer
-		Rest.getCustomersList(Rest.mStaffID);
+		Rest.getCustomersList(Rest.mStaff.getId());
 				
 		//List view
 		listView = (ListView)findViewById(R.id.list);
@@ -311,7 +311,7 @@ public class CustomerListActivity extends MainMenuActivity{
             Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
             
             // Refresh
-            if(Rest.getCustomersList(Rest.mStaffID) == true){
+            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
 	            customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);
 	    		listView.setAdapter(customerAdapter);
             }

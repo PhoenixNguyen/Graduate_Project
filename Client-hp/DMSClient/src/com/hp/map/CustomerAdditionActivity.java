@@ -114,7 +114,7 @@ public class CustomerAdditionActivity extends MainMenuActivity{
 			String note = cus_note.getText().toString();
 			
 			Customer customer = new Customer(id, name
-					, Rest.mStaffID, state
+					, Rest.mStaff.getId(), state
 					, line, area
 					, address, phone
 					, fax, note
@@ -168,7 +168,7 @@ public class CustomerAdditionActivity extends MainMenuActivity{
             Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
             
             //Refresh
-            if(Rest.getCustomersList(Rest.mStaffID) == true){
+            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
 	            // open detail
 	            Intent t = new Intent(context, CustomerMapActivity.class);
 		        t.putExtra("POSITION_CLICK", customer.getMaDoiTuong());

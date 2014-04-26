@@ -341,7 +341,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					, pricesTotal - discount, pricesTotal - discount
 					, Integer.parseInt(discount_percent.getText().toString())
 					, 0, Timestamp.valueOf(date2), Timestamp.valueOf(date2)
-					, Rest.mStaffID, Rest.mStaffID);
+					, Rest.mStaff.getId(), Rest.mStaff.getId());
 			
 			//Set order ID
 			for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){

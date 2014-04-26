@@ -41,12 +41,13 @@ public class StaffDAOImpl implements StaffDAO{
         return courses;
     }
             
-    public boolean authenticate(String pUsername, String pPassword){
+    public Staff authenticate(String pUsername, String pPassword){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
         
         boolean result = false;
+        Staff staff = null;
         try{
             
             String sql = "from Staff where lower(id)= '"+pUsername.toLowerCase()+"' and lower(pw)='"+pPassword.toLowerCase()+"' and status= true ";
@@ -54,9 +55,8 @@ public class StaffDAOImpl implements StaffDAO{
 //            query.setString(0, pUsername.toLowerCase());
 //            query.setString(1, pPassword.toLowerCase());
 
-            if(query.uniqueResult() != null)
-                result = true;
-            
+            staff = (Staff)query.uniqueResult();
+                        
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -64,7 +64,7 @@ public class StaffDAOImpl implements StaffDAO{
             session.close();
         }
         
-        return result;
+        return staff;
     }
     
     public List<Staff> getListStaff(){

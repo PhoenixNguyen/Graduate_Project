@@ -17,6 +17,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 
 import com.hp.domain.Customer;
+import com.hp.domain.Staff;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -27,7 +28,9 @@ import com.sun.jersey.spi.service.ServiceFinder;
 public class Rest {
 
 	public static List<Customer> customerList =  new ArrayList<Customer>();
-	public static String mStaffID = new String();
+	//public static String mStaffID = new String();
+	
+	public static Staff mStaff = new Staff();
 	
 	public Rest(String pUrl){
 		
@@ -57,9 +60,50 @@ public class Rest {
 	    //return UriBuilder.fromUri("http://192.168.169.3:8080/DMSProject").build();
 	    //return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8083/DMSProject").build();
 	    //return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8090/DMSProject").build();
-		return UriBuilder.fromUri("http://192.168.0.103:31234/DMS").build();
+		return UriBuilder.fromUri("http://192.168.0.114:31234/DMS").build();
 	  }
 	
+	public static boolean getStaff(String user, String pw){
+		ClientResponse response = Rest.mService.path("webresources").path("getStaff")
+				.accept("application/json")
+				.type("application/json").post(ClientResponse.class, user +"::" + pw);
+        System.out.println("________________ "+ response.toString());
+        
+        if(response.getStatus() != 200){
+        	
+        	return false;
+        }
+        
+        String re = response.getEntity(String.class);
+        System.out.println("________________ "+ re);
+        
+        if(re.compareTo("null") == 0){
+        	return false;
+        }
+        
+        ObjectMapper mapper = new ObjectMapper();
+        
+        try {
+//			File jsonFile = new File(jsonFilePath);
+        	mStaff = mapper.readValue(re, Staff.class);
+			
+			//System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+			return false;
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+        
+        if(mStaff != null)
+        	return true;
+        else
+        	return false;
+	}
 	public static boolean getCustomersList(String pStaff){
 		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListStart")
 				.accept("application/json")
@@ -71,7 +115,7 @@ public class Rest {
         	return false;
         }
         
-        mStaffID = pStaff;
+        //mStaffID = pStaff;
         String re = response.getEntity(String.class);
         System.out.println("________________ "+ re);
         

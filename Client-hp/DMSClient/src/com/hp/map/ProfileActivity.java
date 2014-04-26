@@ -15,7 +15,7 @@ public class ProfileActivity extends MainMenuActivity{
 		setContentView(R.layout.staff_profile);
 		
 		my_info = (TextView)findViewById(R.id.my_info);
-		my_info.setText("Xin chào " + Rest.mStaffID);
+		my_info.setText("Xin chào " + Rest.mStaff.getId() + " - " + Rest.mStaff.getName());
 	}
 	
 	@Override

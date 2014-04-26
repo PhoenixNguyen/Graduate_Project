@@ -17,7 +17,7 @@ public interface StaffDAO {
     //Get list staff co nguoi quan ly = pUser
     public List<String> getListUser(String pUser);
     //authenticate staff
-    public boolean authenticate(String pUsername, String pPassword);
+    public Staff authenticate(String pUsername, String pPassword);
     
     //getList staff objects
     public List<Staff> getListStaff();

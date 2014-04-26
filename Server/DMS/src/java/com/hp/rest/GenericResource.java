@@ -29,6 +29,7 @@ import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Schedule;
+import com.hp.domain.Staff;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import java.io.File;
@@ -380,6 +381,25 @@ public class GenericResource {
         }
             
             return Response.status(200).entity(pSchedule).build();
+    }
+    
+    @POST
+    @Path("/getStaff")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Staff getStaff( String pStaff ) {
+
+        String[] total = pStaff.split("::");
+        
+        String name = total[0];
+        String pw = total[1];
+        
+        StaffDAO staffDAO = new StaffDAOImpl();
+        Staff staff = new Staff();
+        staff = staffDAO.authenticate(name, pw);
+        
+        
+        return staff;
+
     }
     
     @POST

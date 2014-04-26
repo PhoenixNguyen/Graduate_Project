@@ -18,6 +18,10 @@
             <result name="success">generic/getData</result>
         </action>
         
+        <action name="getStaff" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getStaff</result>
+        </action>
+        
         <action name="putJourney" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">generic/putJourney</result>
         </action>

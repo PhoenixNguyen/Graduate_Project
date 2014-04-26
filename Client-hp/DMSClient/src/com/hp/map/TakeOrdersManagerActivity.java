@@ -346,7 +346,7 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 				ClientResponse response = Rest.mService.path("webresources")
 						.path(getList).accept("application/json")
 						.type("application/json")
-						.post(ClientResponse.class, Rest.mStaffID);
+						.post(ClientResponse.class, Rest.mStaff.getId());
 				System.out.println("________________ " + response.toString());
 
 				if (response.getStatus() != 200) {

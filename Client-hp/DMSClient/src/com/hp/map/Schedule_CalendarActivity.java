@@ -222,7 +222,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				ClientResponse response = Rest.mService.path("webresources").path("getSchedule")
 						.accept("application/json")
 						.type("application/json").post(ClientResponse.class
-								,Rest.customerList.get(0).getMaNhanVien()+"::"+selectedGridDate);
+								,Rest.mStaff.getId()+"::"+selectedGridDate);
 				
 		        System.out.println("________________ "+ response.toString() + "__ " +response.getLength());
 		        if(response.getLength() > 2 )

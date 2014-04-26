@@ -591,7 +591,7 @@ public class CustomerMapActivity extends FragmentActivity
             Toast.makeText(context, "Đã gửi vị trí", Toast.LENGTH_SHORT).show();
             // refresh customers
             
-            if(Rest.getCustomersList(Rest.mStaffID) == true){
+            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
 
 				setUpMap();
 			}

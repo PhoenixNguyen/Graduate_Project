@@ -11,6 +11,8 @@ import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
+import com.hp.dao.UserDAO;
+import com.hp.dao.UserDAOImpl;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import com.opensymphony.xwork2.ActionContext;
@@ -27,6 +29,8 @@ import org.apache.struts2.ServletActionContext;
  * @author HP
  */
 public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
+    private UserDAO userDAO = new UserDAOImpl();
+    
     private TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
     
     private List<TakeOrder> takeOrdersList = new ArrayList<TakeOrder>();
@@ -87,6 +91,11 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         String order_id = request.getParameter("id_takeorder");
         System.out.println(order_id);
         
@@ -101,6 +110,11 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
     public String editTakeOrderDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         String para =  request.getParameter("id_to_d");
         
@@ -125,6 +139,14 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
     }
     
     public String updateTakeOrderDetail(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         System.out.println("OKto " + takeOrderDetail.getProductID());
         //takeOrder.setmEditer("0");
         
@@ -161,6 +183,12 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
     public String deleteTakeOrderDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         
         String para =  request.getParameter("id_to_d");
         

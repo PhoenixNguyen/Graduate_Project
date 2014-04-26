@@ -15,6 +15,8 @@ import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
+import com.hp.dao.UserDAO;
+import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Document;
 import com.hp.domain.Product;
 import com.hp.domain.Staff;
@@ -54,6 +56,7 @@ import org.apache.struts2.ServletActionContext;
  * @author HP
  */
 public class TakeOrderAction extends ActionSupport implements ModelDriven{
+    private UserDAO userDAO = new UserDAOImpl();
     private TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
     private TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
     
@@ -186,6 +189,11 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         String order_id = request.getParameter("id_tod");
         System.out.println(order_id);
         
@@ -202,6 +210,12 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
+        
         String order_id = request.getParameter("id_take_order");
         int st;
         if(order_id ==null){
@@ -217,6 +231,12 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF8");
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         
         System.out.println("OKto " + takeOrder.getId() +" : " +takeOrder.getCustomerAddress() + " " + doc.getNumber());//doc.getFileFileName()
         //takeOrder.setmEditer("0");
@@ -263,6 +283,15 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
     }
     
     public String exportOrders(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
+        
         staffList = staffDAO.getListUser(null);
         
         String fileInput = ServletActionContext.getServletContext().getRealPath("/database/");
@@ -396,6 +425,12 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
     }
     
     public String getStaffsList(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         staffList = staffDAO.getListUser(null);
         
@@ -405,6 +440,10 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
     public String deleteTakeOrderDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         selected = true;
                 

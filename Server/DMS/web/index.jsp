@@ -1,22 +1,12 @@
+<%-- 
+    Document   : index
+    Created on : Apr 9, 2014, 10:11:04 PM
+    Author     : HP
+--%>
 
-<!--
-/*********************************************************************************
- * The contents of this file are subject to the SugarCRM Public License Version 1.2
- * ("License"); You may not use this file except in compliance with the 
- * License. You may obtain a copy of the License at http://www.sugarcrm.com/SPL
- * Software distributed under the License is distributed on an  "AS IS"  basis,
- * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
- * the specific language governing rights and limitations under the License.
- * The Original Code is:  SugarCRM Open Source
- * The Initial Developer of the Original Code is SugarCRM, Inc.
- * Portions created by SugarCRM are Copyright (C) SugarCRM, Inc.;
- * All Rights Reserved.
- * Contributor(s): ______________________________________.
- ********************************************************************************/
--->
 
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="s"  uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD html 4.01 Transitional//EN">
 <html>
     <head>
@@ -26,6 +16,25 @@
         
         <style type="text/css">@import url("include/style.css");</style>
         <style type="text/css">@import url("themes/softed/style.css");</style>
+        
+        <%
+            if(session.getAttribute("user_name") != null && session.getAttribute("user_password") != null){
+               
+            
+        %>
+        <jsp:forward page="home.jsp"></jsp:forward>
+        <% 
+            }
+            
+        %>
+        <script>
+            console.log("status ");
+            
+            var user = <s:property value="%{#attr.user_name}"/>;
+            console.log(user + " user ");
+            if(user !== "null")
+                
+        </script>
     </head>
     <body onload=set_focus() style="padding:0; margin:0;"><!-- startscrmprint --><!--Added to display the footer in the login page by Dina-->
         <script type="text/javascript" language="JavaScript">

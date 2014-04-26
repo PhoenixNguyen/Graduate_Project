@@ -220,6 +220,11 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //Lay ve giam doc
         userListGiamDoc = userDAO.getListUser(2);
        System.out.println(" GD: ");
@@ -282,6 +287,12 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
     public String showRoad(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         
         //Get staff of schedules
         listStaffs = customerDAO.loadStaffsWithLocationsForSchedule();
@@ -425,6 +436,11 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
     public String customerDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
         pushInfo.setStaffID((String)session.getAttribute("staffId"));

@@ -12,6 +12,8 @@ import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
+import com.hp.dao.UserDAO;
+import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.Demo;
 import com.hp.domain.Demo2;
@@ -49,7 +51,7 @@ import org.hibernate.validator.Valid;
  */
 public class CustomerAction extends ActionSupport implements ModelDriven{
     
-    
+    private UserDAO userDAO = new UserDAOImpl();
     //Init Customer
     //private Customer customer = new Customer();
     
@@ -149,6 +151,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
+        
         staffsList = staffDAO.getListUser(null);
         
         String saveName = document.getFileFileName();
@@ -174,6 +182,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String addCustomerFromExcelFile(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         String saveName = (String)session.getAttribute("upload-name-file");
         System.out.println("Get Attribute file name: "+saveName);
@@ -293,6 +306,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     }
     
     public String displayCustomers(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         customersList = customerDAO.getListCustomer();
         staffsList = staffDAO.getListUser(null);
         return SUCCESS;
@@ -326,6 +347,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String editCustomer() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
         staffsList = staffDAO.getListUser(null);
@@ -347,6 +374,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String updateCustomer() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
         staffsList = staffDAO.getListUser(null);
@@ -360,8 +393,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         System.out.println("__" + pw + "__ " +y +" PARA: " + test);
         System.out.println("__" + name);
         
+        // NEW
         if(customer.getStt() <= 0){
-
+            customer.setCoordinateX(0d);
+            customer.setCoordinateY(0d);
             boolean status = customerDAO.saveOrUpdate(customer);
             customersList = customerDAO.getListCustomer();
             
@@ -370,6 +405,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
             else
                 return INPUT;
         }     
+        
+        //UPDATE
         boolean status = customerDAO.update(customer);
         customersList = customerDAO.getListCustomer();
         
@@ -390,6 +427,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     }
     
     public String redirect(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         staffsList = staffDAO.getListUser(null);
         return SUCCESS;
     }
@@ -397,6 +442,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String showDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         
         String para =  request.getParameter("id_cus");
@@ -413,6 +463,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     public String deleteCustomer(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         
         selected = true;
@@ -448,6 +503,15 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
     
     
     public String getTemplate(){
+        
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         String fileInput = ServletActionContext.getServletContext().getRealPath("/db_templates/");
                 
         try{

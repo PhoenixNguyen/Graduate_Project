@@ -6,6 +6,8 @@
 
 package com.hp.action;
 
+import com.hp.dao.UserDAO;
+import com.hp.dao.UserDAOImpl;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,8 @@ import org.apache.struts2.ServletActionContext;
  * @author HP
  */
 public class UserAction extends ActionSupport{
+    
+    private UserDAO userDAO = new UserDAOImpl();
     
     public String login(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
@@ -30,7 +34,7 @@ public class UserAction extends ActionSupport{
         
         System.out.println("user: " + username + " pass: " + password);
         
-        if(username.compareTo("") != 0 && password.compareTo("") != 0){
+        if(userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return SUCCESS;
         }
         else
@@ -46,5 +50,15 @@ public class UserAction extends ActionSupport{
             return SUCCESS;
         else
             return INPUT;
+    }
+    
+    public String logout(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        session.setAttribute("user_name", null);
+        session.setAttribute("user_password", null);
+        
+        return SUCCESS;
     }
 }

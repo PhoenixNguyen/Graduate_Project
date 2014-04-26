@@ -30,6 +30,9 @@ public class User {
 
     @Column(name="user_id")
     private String id;
+    @Column(name="user_pw")
+    private String pw;
+
     @Column(name="user_chuc_danh")
     private String chucDanh;
     @Column(name="user_ho_ten")
@@ -67,6 +70,15 @@ public class User {
         this.id = id;
     }
 
+    
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+    
     public String getChucDanh() {
         return chucDanh;
     }

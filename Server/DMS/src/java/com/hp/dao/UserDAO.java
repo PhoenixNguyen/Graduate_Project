@@ -19,4 +19,7 @@ public interface UserDAO {
     //pPermission = 2: Giam doc
     public List<String> getListUser(int pPermission);
     
+    //Authorize
+    public boolean authorize(String username, String password);
+    
 }

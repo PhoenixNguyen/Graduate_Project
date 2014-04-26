@@ -152,6 +152,11 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         usersList = userDAO.getListUser(2);
                 
         String saveName = document.getFileFileName();
@@ -179,6 +184,11 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     public String addStaffFromExcelFile(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         String saveName = (String)session.getAttribute("upload-name-file-staff");
         System.out.println("Get Attribute file name: "+saveName);
@@ -288,6 +298,14 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     }
     
     public String displayStaffs(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         staffsList = staffDAO.getListStaff();
         
         usersList = userDAO.getListUser(2);
@@ -305,6 +323,12 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     public String editStaff() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
         usersList = userDAO.getListUser(2);
@@ -344,6 +368,12 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     public String updateStaff() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         request.setCharacterEncoding("UTF8");
         usersList = userDAO.getListUser(2);
         
@@ -389,6 +419,11 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         String para =  request.getParameter("id_st");
         
         int id_st = ValidateHandle.getInteger(para);
@@ -403,6 +438,11 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     public String deleteStaff(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         selected = true;
         
@@ -427,6 +467,14 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     }
     
     public String redirect(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //staffsList = staffDAO.getListUser(null);
         
         usersList = userDAO.getListUser(2);
@@ -444,6 +492,14 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
     }
     
     public String getTemplate(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         String fileInput = ServletActionContext.getServletContext().getRealPath("/db_templates/");
                 
         try{

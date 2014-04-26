@@ -14,6 +14,8 @@ import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.ProviderDAO;
 import com.hp.dao.ProviderDAOImpl;
+import com.hp.dao.UserDAO;
+import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Product;
 import com.hp.domain.Demo;
 import com.hp.domain.Demo2;
@@ -54,7 +56,7 @@ import org.hibernate.validator.Valid;
  */
 public class ProductsAction extends ActionSupport implements ModelDriven{
     
-    
+    private UserDAO userDAO = new UserDAOImpl();
     //Init Products
     //private Products Product = new Products();
     
@@ -164,6 +166,13 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String saveFile(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
+        
         providerIDList = providerDAO.getProvidersIDList();
         
         String saveName = document.getFileFileName();
@@ -189,6 +198,12 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String addProductFromExcelFile(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         
         String saveName = (String)session.getAttribute("upload-name-file-product");
         System.out.println("Get Attribute file name: "+saveName);
@@ -339,6 +354,13 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     }
     
     public String displayProducts(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         productsList = productDAO.getProductList();
         providerIDList = providerDAO.getProvidersIDList();
         
@@ -356,6 +378,12 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String editProduct() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //request.setCharacterEncoding("UTF-8");
         providerIDList = providerDAO.getProvidersIDList();
         
@@ -377,6 +405,12 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String removeProduct() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF8");
         providerIDList = providerDAO.getProvidersIDList();
@@ -397,6 +431,12 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String updateProduct() throws UnsupportedEncodingException{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         request.setCharacterEncoding("UTF8");
         providerIDList = providerDAO.getProvidersIDList();
         
@@ -434,6 +474,11 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     public String uploadAnImage(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
         
         providerIDList = providerDAO.getProvidersIDList();
         
@@ -477,6 +522,11 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         String para =  request.getParameter("id_pdct");
         
         int id_pdct = ValidateHandle.getInteger(para);
@@ -490,6 +540,15 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     }
     
     public String redirect(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
+        
         providerIDList = providerDAO.getProvidersIDList();
         return SUCCESS;
     }
@@ -498,6 +557,11 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+                
         selected = true;
         
         String para =  request.getParameter("id_pdct");
@@ -530,6 +594,14 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     }
     
     public String getTemplate(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         String fileInput = ServletActionContext.getServletContext().getRealPath("/db_templates/");
                 
         try{

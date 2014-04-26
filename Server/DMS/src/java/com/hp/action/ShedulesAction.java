@@ -176,6 +176,11 @@ public class ShedulesAction extends ActionSupport implements ModelDriven{
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
         //Lay ve giam doc
         userListGiamDoc = userDAO.getListUser(2);
        System.out.println(" GD: ");

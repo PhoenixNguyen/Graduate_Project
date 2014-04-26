@@ -502,54 +502,66 @@
           <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
         </interceptors>
 
-        <action name="login-success" method="loginStatus" class="com.hp.action.UserAction">
+        <!--action name="login-success" method="loginStatus" class="com.hp.action.UserAction">
+            <result name="success" >home.jsp</result>
+            <result name="input" >index.jsp</result>
+        </action-->
+        <action name="login" method="login" class="com.hp.action.UserAction">
             <result name="success" >home.jsp</result>
             <result name="input" >index.jsp</result>
         </action>
-        <action name="login" method="login" class="com.hp.action.UserAction">
-            <result name="success" type="redirect">login-success</result>
-            <result name="input" >index.jsp</result>
-        </action>
         
+        <action name="logout" method="logout" class="com.hp.action.UserAction">
+            <result name="success" >index.jsp</result>
+            <result name="input" >home.jsp</result>
+        </action>
         <!-- CUSTOMER  -->
         <action name="customer-list" method="displayCustomers" class="com.hp.action.CustomerAction">
             <result name="success">customer.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="customer-detail" method="showDetail" class="com.hp.action.CustomerAction">
             <result name="success">customer-detail.jsp?id_cus=${customer.stt}</result>
             <result name="input" type="redirect">customer-list</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="new-customer" method="redirect" class="com.hp.action.CustomerAction">
             <result name="success">customer-add.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="save-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
             <result name="success" type="redirect">customer-detail?id_cus=${customer.stt}</result>
             <result name="input" type="redirect">customer-add.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="edit-customer" method="editCustomer" class="com.hp.action.CustomerAction">
             <result name="success">customer-edit.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="update-customer" method="updateCustomer" class="com.hp.action.CustomerAction">
             <result name="success" type="redirect">customer-detail?id_cus=${customer.stt}</result>
             <result name="input" type="redirect">edit-customer?id_cus=${customer.stt}</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="delete-customer" method="deleteCustomer" class="com.hp.action.CustomerAction">
             <result name="success" >customer.jsp</result>
             <result name="input" >customer-detail.jsp?id_cus=${customer.stt}</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="import-customer" method="redirect" class="com.hp.action.CustomerAction">
             <result name="success">customer-import.jsp</result>
             <result name="input" >customer-import.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="customer-template" method="getTemplate" class="com.hp.action.CustomerAction">
@@ -562,6 +574,7 @@
                 <param name="bufferSize">1024</param>
             </result>
             <result name="input" >customer-import.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="upload-customer" method="saveFile" class="com.hp.action.CustomerAction">
@@ -574,10 +587,12 @@
             
             <result name="success">customer-import-commit.jsp</result>
             <result name="input" >customer-import-commit.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="add-customer" method="addCustomerFromExcelFile" class="com.hp.action.CustomerAction">
             <result name="success" type="json" />
+            <result name="login" >index.jsp</result>
             
         </action>
         
@@ -585,41 +600,49 @@
         <action name="product-list" method="displayProducts" class="com.hp.action.ProductsAction">
             <result name="success">product.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="product-detail" method="displayProduct" class="com.hp.action.ProductsAction">
             <result name="success">product-detail.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="edit-product" method="displayProduct" class="com.hp.action.ProductsAction">
             <result name="success">product-edit.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="update-product" method="updateProduct" class="com.hp.action.ProductsAction">
             <result name="success" type="redirect">product-detail?id_pdct=${product.serial}</result>
             <result name="input" type="redirect">edit-product?id_pdct=${product.serial}</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="new-product" method="redirect" class="com.hp.action.ProductsAction">
             <result name="success">product-add.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="save-product" method="updateProduct" class="com.hp.action.ProductsAction">
             <result name="success" type="redirect">product-detail?id_pdct=${product.serial}</result>
             <result name="input" >product-add.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="delete-product" method="deleteProduct" class="com.hp.action.ProductsAction">
             <result name="success" >product.jsp</result>
             <result name="input" >product-detail.jsp?id_pdct=${product.serial}</result>
+            <result name="login" >index.jsp</result>
         </action>
                 
         <action name="import-product" method="redirect" class="com.hp.action.ProductsAction">
             <result name="success">product-import.jsp</result>
             <result name="input" >product-import.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="product-template" method="getTemplate" class="com.hp.action.ProductsAction">
@@ -632,6 +655,7 @@
                 <param name="bufferSize">1024</param>
             </result>
             <result name="input" >product-import.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="upload-product" method="saveFile" class="com.hp.action.ProductsAction">
@@ -644,6 +668,7 @@
             
             <result name="success">product-import-commit.jsp</result>
             <result name="input" >product-import-commit.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="add-product" method="addProductFromExcelFile" class="com.hp.action.ProductsAction">
@@ -656,83 +681,99 @@
         <action name="take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="take-order-detail" method="loadTakeOrdersDetail" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order-detail.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="take-order-edit" method="loadTakeOrdersDetail" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order-edit.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="update-t-order" method="updateTakeOrder" class="com.hp.action.TakeOrderAction">
             <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.id}</result>
             <result name="input" >take-order-edit.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         
         <action name="edit-takeorder-detail" method="editTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
             <result name="success">take-order-detail-edit.jsp</result>
             <result name="input" type="redirect">take-order-detail?id_tod=${takeOrder.id}</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="update-takeorder-detail" method="updateTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
             <result name="success" type="redirect">take-order-detail?id_tod=${takeOrderDetail.takeOrderID}</result>
             <result name="input" >take-order-detail-edit.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="delete-takeorder-detail" method="deleteTakeOrderDetail" class="com.hp.action.TakeOrderDetailAction">
             <result name="success" type="redirect">take-order-detail?id_tod=${takeOrder.id}</result>
             <result name="input" >take-order-detail-edit.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="delete-takeorder" method="deleteTakeOrderDetail" class="com.hp.action.TakeOrderAction">
             <result name="success" >take-order.jsp</result>
             <result name="input" >take-order-detail.jsp?id_tod=${takeOrder.id}</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <!--STAFF-->
         <action name="staff-list" method="displayStaffs" class="com.hp.action.StaffsAction">
             <result name="success">staff.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="staff-detail" method="showDetail" class="com.hp.action.StaffsAction">
             <result name="success">staff-detail.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="delete-staff" method="deleteStaff" class="com.hp.action.StaffsAction">
             <result name="success">staff.jsp</result>
             <result name="input" >staff-detail.jsp?id_st=${staff.getStt()}</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="new-staff" method="redirect" class="com.hp.action.StaffsAction">
             <result name="success">staff-add.jsp</result>
             <result name="input" >staff-add.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="save-staff" method="updateStaff" class="com.hp.action.StaffsAction">
             <result name="success">staff-detail.jsp?id_st=${staff.getStt()}</result>
             <result name="input" >staff-add.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="edit-staff" method="editStaff" class="com.hp.action.StaffsAction">
             <result name="success">staff-edit.jsp</result>
             <result name="input" >staff-detail.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="update-staff" method="updateStaff" class="com.hp.action.StaffsAction">
             <result name="success">staff-detail.jsp?id_st=${staff.getStt()}</result>
             <result name="input" >staff-edit.jsp?id_st=${staff.getStt()}</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="import-staff" method="redirect" class="com.hp.action.StaffsAction">
             <result name="success">staff-import.jsp</result>
             <result name="input" >staff-import.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="upload-staff" method="saveFile" class="com.hp.action.StaffsAction">
@@ -745,6 +786,7 @@
             
             <result name="success">staff-import-commit.jsp</result>
             <result name="input" >staff-import.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <action name="add-staff" method="addStaffFromExcelFile" class="com.hp.action.StaffsAction">
@@ -762,6 +804,7 @@
                 <param name="bufferSize">1024</param>
             </result>
             <result name="input" >staff-import.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
         
         <!--Not yet handle-->
@@ -771,6 +814,7 @@
         <action name="provider-list" method="redirect" class="com.hp.action.CustomerAction">
             <result name="success">provider.jsp</result>
             <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
     </package>
     
@@ -780,6 +824,7 @@
         <action name="login" method="login" class="com.hp.action.UserAction">
             <result name="success" >/home.jsp</result>
             <result name="input" >/index.jsp</result>
+            <result name="login" >index.jsp</result>
         </action>
     </package>
 </struts>

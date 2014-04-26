@@ -18,7 +18,7 @@
         <style type="text/css">@import url("themes/softed/style.css");</style>
         
         <%
-            if(session.getAttribute("user_name") != null && session.getAttribute("user_password") != null){
+            if((Boolean)session.getAttribute("authorized")){
                
             
         %>

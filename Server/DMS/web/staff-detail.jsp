@@ -485,12 +485,19 @@
                                                                                     <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Website" onmouseover="hndMouseOver(17, 'Website');" onmouseout="fnhide('crmspanid');">&nbsp;
                                                                                         <span id="dtlview_Website"><a href="" target="_blank"></a><s:property value="staff.pw"/></span>
                                                                                     </td>
-<!--                                                                                    <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Địa chỉ</td>
-                                                                                     This file is used to display the fields based on the ui type in detailview 
-                                                                                    TextBox
+                                                                                    <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Quyền hạn</td>
+
                                                                                     <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Điện thoại" onmouseover="hndMouseOver(11, 'Điện thoại');" onmouseout="fnhide('crmspanid');" valign="top">
-                                                                                        &nbsp;&nbsp;<span id="dtlview_Điện thoại"><s:property value="staff.adress"/></span>
-                                                                                    </td>-->
+                                                                                        &nbsp;&nbsp;<span id="dtlview_Điện thoại">
+                                                                                            <s:if test="staff.permission == 1" >
+                                                                                            Quản lý
+                                                                                            </s:if>
+                                                                                            <s:else>
+                                                                                            Nhân viên
+                                                                                            </s:else>
+                                                                                            
+                                                                                        </span>
+                                                                                    </td>
                                                                                 </tr>	
                                                                                 <tr style="height:25px">
                                                                                     <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Điện thoại</td>

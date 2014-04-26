@@ -268,8 +268,14 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
                                 staff.setStatus(row.getCell(9).getNumericCellValue() == 1 ? true:false);
                             else
                                 staff.setStatus(row.getCell(9).getStringCellValue().compareTo("1") == 0 ? true:false);
-                                }
+                        }
                         
+                        if(row.getCell(10) != null){
+                            if(row.getCell(10).getCellType() != HSSFCell.CELL_TYPE_STRING)
+                                staff.setPermission((int)row.getCell(10).getNumericCellValue());
+                            else
+                                staff.setPermission(Integer.parseInt(row.getCell(10).getStringCellValue()));
+                        }
                         
                         //Add to database
                         if(staffDAO.saveOrUpdate(staff)){

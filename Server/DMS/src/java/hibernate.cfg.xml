@@ -9,8 +9,8 @@
         <!--property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.url">jdbc:sqlserver://112.78.3.116:1488;databaseName=DMS_8083_test</property>
         <property name="hibernate.connection.username">hp_dms</property>
-        <property name="hibernate.connection.password">root</property-->
-        <property name="show_sql">true</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="show_sql">true</property-->
         
         <property name="hibernate.dialect">com.hp.filter.CustomMysqlDialect</property>
         <!--com.hp.filter.CustomMysqlDialect - org.hibernate.dialect.SQLServerDialect -->

@@ -66,9 +66,9 @@ public class LoginActivity extends Activity {
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
-        mUsername.setText("ba_dinh");//ba_dinh
+        mUsername.setText("");//ba_dinh
         mPassword = (EditText)findViewById(R.id.password);
-        mPassword.setText("123456");
+        mPassword.setText("");
         
         Button btnLogin = (Button)findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -204,7 +204,7 @@ public class LoginActivity extends Activity {
         	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     		Date date = new Date();
     		String datestr = dateFormat.format(date);
-        	RoadManagement roadManagement = new RoadManagement(Rest.mStaff.getId(), "", 
+        	RoadManagement roadManagement = new RoadManagement(Rest.mStaff.getId(), Rest.mStaff.getName(), 
         			Timestamp.valueOf(datestr), pX, pY, "");
         	
         	ObjectMapper mapper = new ObjectMapper();

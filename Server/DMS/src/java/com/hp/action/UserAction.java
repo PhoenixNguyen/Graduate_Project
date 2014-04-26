@@ -32,9 +32,11 @@ public class UserAction extends ActionSupport{
         session.setAttribute("user_name", username);
         session.setAttribute("user_password", password);
         
+        
         System.out.println("user: " + username + " pass: " + password);
         
         if(userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            session.setAttribute("authorized", true);
             return SUCCESS;
         }
         else
@@ -58,6 +60,7 @@ public class UserAction extends ActionSupport{
         
         session.setAttribute("user_name", null);
         session.setAttribute("user_password", null);
+        session.setAttribute("authorized", false);
         
         return SUCCESS;
     }

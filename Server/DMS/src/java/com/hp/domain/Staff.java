@@ -62,6 +62,16 @@ public class Staff {
     @Column(name="nhanvien_trang_thai")
     private boolean status;
     
+    @Column(name="nhanvien_permission")
+    private Integer permission;
+
+    public Integer getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Integer permission) {
+        this.permission = permission;
+    }
     
     public Integer getStt() {
         return stt;

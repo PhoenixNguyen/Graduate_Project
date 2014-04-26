@@ -426,11 +426,29 @@
                                                                         &nbsp;&nbsp;
                                                                         <input  style="width:74%;" class = 'detailedViewTextBox' type="text" tabindex="" name="staff.pw" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="<s:property value="staff.pw"/>">
                                                                     </td>
-<!--                                                                    <td width=20% class="dvtCellLabel" align=right><font color="red"></font> Địa chỉ</td>
+                                                                    <td width="20%" class="dvtCellLabel" align=right>
+                                                                        <font color="red">*</font>Quyền hạn	
+                                                                    </td>
+                                                                    <td width="30%" align=left class="dvtCellInfo">
+<!--                                                                        <input type="radio" tabindex="" name="assigntype" checked value="U" onclick="toggleAssignType(this.value)" >&nbsp;Người dùng
+                                                                        <input type="radio" name="assigntype"  value="T" onclick="toggleAssignType(this.value)">&nbsp;Nhóm-->
+                                                                        <span id="assign_user" style="display:block">
+                                                                            <select name="staff.permission" class="small" >
+                                                                                <s:if test="staff.permission == 1">
+                                                                                    <option value="1" selected >Quản lý</option>
+                                                                                    <option value="2" >Nhân viên</option>
+                                                                                </s:if>
+                                                                                <s:else>
+                                                                                    <option value="1"  >Quản lý</option>
+                                                                                    <option value="2" selected>Nhân viên</option>
+                                                                                </s:else>
+                                                                                
+                                                                                
+                                                                            </select>
+                                                                        </span>
 
-                                                                    <td width=30% align=left class="dvtCellInfo">
-                                                                        <input type="text" tabindex="" name="staff.mAdress" id ="phone" value="<s:property value="staff.mAdress"/>" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
-                                                                    </td>-->
+                                                                        
+                                                                    </td>
                                                                 </tr>
                                                                 <tr style="height:25px">
                                                                     <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Điện thoại </td>

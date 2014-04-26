@@ -117,7 +117,8 @@ public class CustomerAdditionActivity extends MainMenuActivity{
 					, Rest.mStaffID, state
 					, line, area
 					, address, phone
-					, fax, note);
+					, fax, note
+					, 0d, 0d);
 			//insert
 			insertCustomer(customer);
 		

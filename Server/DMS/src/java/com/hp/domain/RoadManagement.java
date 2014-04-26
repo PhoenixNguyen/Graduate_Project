@@ -27,6 +27,7 @@ public class RoadManagement {
     
     @Column(name="quanlyduongdi_stt")
     private int stt;
+
     @Column(name="quanlyduongdi_ma_nhan_vien")
     private String maNhanVien;
     @Column(name="quanlyduongdi_ten_nhan_vien")
@@ -40,6 +41,14 @@ public class RoadManagement {
     @Column(name="quanlyduongdi_ghi_chu")
     private String ghiChu;
 
+    
+    public int getStt() {
+        return stt;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
+    }
     
     public String getMaNhanVien() {
         return maNhanVien;

@@ -140,7 +140,8 @@ public class Customer {
     
     public Customer(String pMaDoiTuong, String pDoiTuong, String pMaNhanVien,
 			String pTinhThanh, String pTuyenBanHangThu, String pX,
-			String pDiaChi, String pDienThoai, String pFax, String pGhiChu) {
+			String pDiaChi, String pDienThoai, String pFax, String pGhiChu,
+			Double pCoordinateX, Double pCoordinateY) {
 		super();
 		this.maDoiTuong = pMaDoiTuong;
 		this.doiTuong = pDoiTuong;
@@ -152,6 +153,8 @@ public class Customer {
 		this.dienThoai = pDienThoai;
 		this.fax = pFax;
 		this.ghiChu = pGhiChu;
+		this.coordinateX = pCoordinateX;
+		this.coordinateY = pCoordinateY;
 	}
 
 

@@ -47,12 +47,12 @@ public class ProductArrayAdapter extends ArrayAdapter<Product>{
 
         
 
-        featureView.setTitleId(values.get(position).getmProductID());
-        featureView.setDescriptionId(values.get(position).getmProductName());
-        featureView.setPrice("Giá: "+values.get(position).getmExportPrices() + "");
+        featureView.setTitleId(values.get(position).getProductID());
+        featureView.setDescriptionId(values.get(position).getProductName());
+        featureView.setPrice("Giá: "+values.get(position).getExportPrices() + "");
         
         if(!mManager){
-        	featureView.setTotal(values.get(position).getmTotal() + "");
+        	featureView.setTotal(values.get(position).getTotal() + "");
         }
         
 

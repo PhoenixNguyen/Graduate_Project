@@ -24,20 +24,20 @@ public class InventoryManager_ReviewActivity extends TakeOrder_ReViewActivity{
 
 		// set the custom dialog components - text, image and button
 		TextView text = (TextView) dialog.findViewById(R.id.name);
-		text.setText(""+selectedValue.getmProductName());
+		text.setText(""+selectedValue.getProductName());
 
 		TextView price = (TextView) dialog.findViewById(R.id.price);
-		price.setText(""+selectedValue.getmBeforeOrderPrice());
+		price.setText(""+selectedValue.getBeforeOrderPrice());
 		
 		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
 		//discount.setText(takeOrderDetailList.get(position).getmDiscount()+"");
 		discount.setVisibility(View.GONE);
 				
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
-		count.setText(takeOrderDetailList.get(position).getmNumber()+"");
+		count.setText(takeOrderDetailList.get(position).getNumber()+"");
 		
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
-		note.setText(takeOrderDetailList.get(position).getmNote()+"");
+		note.setText(takeOrderDetailList.get(position).getNote()+"");
 		
 		//discount product
 //		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
@@ -65,12 +65,12 @@ public class InventoryManager_ReviewActivity extends TakeOrder_ReViewActivity{
 				
 				
 				
-				float priceTotal = (float)Math.ceil((takeOrderDetailList.get(position).getmAfterOrderPrice() - 
-						takeOrderDetailList.get(position).getmAfterOrderPrice() * discount / 100) * number);
-				takeOrderDetailList.get(position).setmDiscount(discount);
-				takeOrderDetailList.get(position).setmNumber(number);
-				takeOrderDetailList.get(position).setmPriceTotal(priceTotal);
-				takeOrderDetailList.get(position).setmNote(note.getText().toString());
+				float priceTotal = (float)Math.ceil((takeOrderDetailList.get(position).getAfterOrderPrice() - 
+						takeOrderDetailList.get(position).getAfterOrderPrice() * discount / 100) * number);
+				takeOrderDetailList.get(position).setDiscount(discount);
+				takeOrderDetailList.get(position).setNumber(number);
+				takeOrderDetailList.get(position).setPriceTotal(priceTotal);
+				takeOrderDetailList.get(position).setNote(note.getText().toString());
 
 				dialog.dismiss();
 				
@@ -80,7 +80,7 @@ public class InventoryManager_ReviewActivity extends TakeOrder_ReViewActivity{
 				ordersListView.setAdapter(adapter);
 				
 				//Set call back product list
-				callbackSetMap(selectedValue.getmProductID(), number, 0, note.getText().toString(), 0);
+				callbackSetMap(selectedValue.getProductID(), number, 0, note.getText().toString(), 0);
 				//if number = 0 --> remove
 				if(number == 0){
 					onResume();

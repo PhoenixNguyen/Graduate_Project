@@ -242,7 +242,7 @@ public class TakeImagesActivity extends MainMenuActivity {
 		}
 		
 		DataInfo data = new DataInfo(Rest.mStaffID,
-				CustomerMapActivity.mSelectedCustomer.getMMaDoiTuong(),
+				CustomerMapActivity.mSelectedCustomer.getMaDoiTuong(),
 				DataConvert.encodeImageToString(pathSave), "");
 
 		// Convert an Object

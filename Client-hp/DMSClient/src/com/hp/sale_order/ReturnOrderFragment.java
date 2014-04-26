@@ -127,10 +127,10 @@ public class ReturnOrderFragment extends Fragment {
 
 		// set the custom dialog components - text, image and button
 		TextView text = (TextView) dialog.findViewById(R.id.text);
-		text.setText("Tên sản phẩm: "+selectedValue.getmProductName());
+		text.setText("Tên sản phẩm: "+selectedValue.getProductName());
 
 		TextView price = (TextView) dialog.findViewById(R.id.price);
-		price.setText("Giá sản phẩm: "+selectedValue.getmBeforeOrderPrice());
+		price.setText("Giá sản phẩm: "+selectedValue.getBeforeOrderPrice());
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
 		
@@ -145,12 +145,12 @@ public class ReturnOrderFragment extends Fragment {
 					return;
 				
 				int number = Integer.parseInt(count.getText().toString());
-				if(number >  selectedValue.getmNumber()){
+				if(number >  selectedValue.getNumber()){
 					Toast.makeText(context, "Số lượng bạn nhập lớn hơn trong hóa đơn!!", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				selectedValue.setmNumber(number);
-				selectedValue.setmPriceTotal(selectedValue.getmAfterOrderPrice() * number);
+				selectedValue.setNumber(number);
+				selectedValue.setPriceTotal(selectedValue.getAfterOrderPrice() * number);
 				
 				//Sys
 				

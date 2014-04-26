@@ -57,7 +57,7 @@ public class Rest {
 	    //return UriBuilder.fromUri("http://192.168.169.3:8080/DMSProject").build();
 	    //return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8083/DMSProject").build();
 	    //return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8090/DMSProject").build();
-		return UriBuilder.fromUri("http://192.168.0.104:31234/DMS").build();
+		return UriBuilder.fromUri("http://192.168.0.103:31234/DMS").build();
 	  }
 	
 	public static boolean getCustomersList(String pStaff){

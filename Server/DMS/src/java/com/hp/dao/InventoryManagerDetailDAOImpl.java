@@ -48,7 +48,7 @@ public class InventoryManagerDetailDAOImpl implements InventoryManagerDetailDAO{
         
         List<InventoryManagerDetail> courses = null;
         try{
-                courses = session.createQuery("from InventoryManagerDetail where mTakeOrderID='"+pID+"'").list();
+                courses = session.createQuery("from InventoryManagerDetail where takeOrderID='"+pID+"'").list();
             
         }catch(Exception e){
             e.printStackTrace();
@@ -125,7 +125,7 @@ public class InventoryManagerDetailDAOImpl implements InventoryManagerDetailDAO{
         Transaction transaction;
         transaction = session.beginTransaction();
         try{
-            Query q = session.createQuery("delete InventoryManagerDetail where mTakeOrderID='"+pID+"'");
+            Query q = session.createQuery("delete InventoryManagerDetail where takeOrderID='"+pID+"'");
             q.executeUpdate();
             session.getTransaction().commit();
         }catch(HibernateException e){

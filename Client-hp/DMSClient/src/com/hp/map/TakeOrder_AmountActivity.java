@@ -89,8 +89,8 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		pricesTotal = 0;
 		numberTotal = 0;
 		for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
-			numberTotal = numberTotal +  TakeOrder_ReViewActivity.takeOrderDetailList.get(i).getmNumber();
-			pricesTotal = pricesTotal +  TakeOrder_ReViewActivity.takeOrderDetailList.get(i).getmPriceTotal() ;
+			numberTotal = numberTotal +  TakeOrder_ReViewActivity.takeOrderDetailList.get(i).getNumber();
+			pricesTotal = pricesTotal +  TakeOrder_ReViewActivity.takeOrderDetailList.get(i).getPriceTotal() ;
 					
 		}
 		
@@ -107,31 +107,31 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		
 
 		if(!TakeOrder_ProductActivity.add_take_order_detail && CustomerMapActivity.mSelectedCustomer != null){
-			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getMMaDoiTuong());
-			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getMDoiTuong());
+			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getMaDoiTuong());
+			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getDoiTuong());
 		}
 		else
 		{
 			if(TakeOrdersManagerActivity.takeOrderList != null && TakeOrdersManagerActivity.takeOrderList.size() > 0)
 			for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
-				System.out.println("__++"+TakeOrdersManagerActivity.takeOrderList.get(i).getmID() +" -- " + TakeOrder_ProductActivity.take_order_id);
-	        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 
+				System.out.println("__++"+TakeOrdersManagerActivity.takeOrderList.get(i).getId() +" -- " + TakeOrder_ProductActivity.take_order_id);
+	        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getId().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 
 	        			TakeOrder_ProductActivity.take_order_id) == 0){
 	        		System.out.println(" ACC ");
-	        		customer_id.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmID());
-	    			customer_name.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmCustomerName());
+	        		customer_id.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getId());
+	    			customer_name.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getCustomerName());
 	    			
 	    			//Show discount
-	    			discount_percent.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmDiscount() +"");
+	    			discount_percent.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getDiscount() +"");
 	    			//set discount
-					discount = (float)Math.ceil(pricesTotal*TakeOrdersManagerActivity.takeOrderList.get(i).getmDiscount()/100);
+					discount = (float)Math.ceil(pricesTotal*TakeOrdersManagerActivity.takeOrderList.get(i).getDiscount()/100);
 					
 					discount_value.setText((new BigDecimal(discount)).toString());
 					
 					//set sume
 					sum_value.setText((new BigDecimal(pricesTotal - discount)).toString());
 					
-					note.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getmNote());
+					note.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getNote());
 	        		break;
 	        	}
 	        }
@@ -230,7 +230,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					//Set order ID
 					for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
 						
-						TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmTakeOrderID(
+						TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setTakeOrderID(
 								TakeOrder_ProductActivity.take_order_id);
 					}
 					
@@ -240,12 +240,12 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			        String TakeOrderStr = new String();
 			        TakeOrder order = null;
 			        for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
-			        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getmID().compareTo(
+			        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getId().compareTo(
 			        			TakeOrder_ProductActivity.take_order_id) == 0){
 			        		order = TakeOrdersManagerActivity.takeOrderList.get(i);
-			        		order.setmDiscount(Float.parseFloat(discount_percent.getText().toString()));
-			        		order.setmAfterPrivate(pricesTotal - discount);
-			        		order.setmNote(note.getText().toString());
+			        		order.setDiscount(Float.parseFloat(discount_percent.getText().toString()));
+			        		order.setAfterPrivate(pricesTotal - discount);
+			        		order.setNote(note.getText().toString());
 			        		
 			        		break;
 			        	}
@@ -326,15 +326,15 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			Date date = new  Date();
 			String date2 = df.format(date);
 			
-			String orderID = CustomerMapActivity.mSelectedCustomer.getMMaDoiTuong()+"-" + date2;
+			String orderID = CustomerMapActivity.mSelectedCustomer.getMaDoiTuong()+"-" + date2;
 			
 			TakeOrder order = new TakeOrder(orderID
 					, Timestamp.valueOf(date2), Timestamp.valueOf(date2)
-					, CustomerMapActivity.mSelectedCustomer.getMMaDoiTuong()
-					, CustomerMapActivity.mSelectedCustomer.getMDoiTuong()
-					, CustomerMapActivity.mSelectedCustomer.getMDiaChi()
-					, CustomerMapActivity.mSelectedCustomer.getMDienThoai()
-					, CustomerMapActivity.mSelectedCustomer.getMDiaChi()
+					, CustomerMapActivity.mSelectedCustomer.getMaDoiTuong()
+					, CustomerMapActivity.mSelectedCustomer.getDoiTuong()
+					, CustomerMapActivity.mSelectedCustomer.getDiaChi()
+					, CustomerMapActivity.mSelectedCustomer.getDienThoai()
+					, CustomerMapActivity.mSelectedCustomer.getDiaChi()
 					, ""
 					
 					, 0
@@ -345,7 +345,7 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			
 			//Set order ID
 			for(int i = 0; i < TakeOrder_ReViewActivity.takeOrderDetailList.size(); i++){
-				TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setmTakeOrderID(orderID);
+				TakeOrder_ReViewActivity.takeOrderDetailList.get(i).setTakeOrderID(orderID);
 			}
 			
 			// Send

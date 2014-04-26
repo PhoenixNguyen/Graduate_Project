@@ -522,9 +522,9 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 		for(int i = 0; i < takeOrderList.size(); i++){
 			Date compare = null;
 			try {
-				if(takeOrderList.get(i).getmOrderEstablishDate() == null)
+				if(takeOrderList.get(i).getOrderEstablishDate() == null)
 					continue;
-				String date = takeOrderList.get(i).getmOrderEstablishDate().toString();
+				String date = takeOrderList.get(i).getOrderEstablishDate().toString();
 				
 				compare = dateFormat1.parse(date);
 				
@@ -537,7 +537,7 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 					&& compare.before(endDate)){
 				
 				takeOrderListFilter.add(takeOrderList.get(i));
-				System.out.println(takeOrderList.get(i).getmID());
+				System.out.println(takeOrderList.get(i).getId());
 			}
 		}
 		

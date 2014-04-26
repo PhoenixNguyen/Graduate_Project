@@ -459,7 +459,7 @@ public class OrdersHandle {
         
         //Update 
         InventoryManagerDetailDAO takeOrderDetailDAO = new InventoryManagerDetailDAOImpl();
-        boolean st = takeOrderDetailDAO.delete(inventoryManager.getmID());
+        boolean st = takeOrderDetailDAO.delete(inventoryManager.getId());
         if(!st)
             return Response.status(200).entity(st+"").build();
         
@@ -500,17 +500,17 @@ public class OrdersHandle {
         //Update the order
         List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
         
-        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getmTakeOrderID());
+        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getmPriceTotal();
+            priceTotal += list.get(i).getPriceTotal();
         }
         
         InventoryManager inventoryManager = new InventoryManager();
         InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
         
-        inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getmTakeOrderID());
-        inventoryManager.setmAfterPrivate(priceTotal - priceTotal*inventoryManager.getmDiscount()/100);
+        inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getTakeOrderID());
+        inventoryManager.setAfterPrivate(priceTotal - priceTotal*inventoryManager.getDiscount()/100);
         boolean st2 = inventoryManagerDAO.update(inventoryManager);
 //            String output = pTrack.toString();
         System.out.println("____ " + pInventoryManager + "___ " + st);
@@ -546,17 +546,17 @@ public class OrdersHandle {
         //Update the order
         List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
         
-        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getmTakeOrderID());
+        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
-            priceTotal += list.get(i).getmPriceTotal();
+            priceTotal += list.get(i).getPriceTotal();
         }
         
         InventoryManager inventoryManager = new InventoryManager();
         InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
         
-        inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getmTakeOrderID());
-        inventoryManager.setmAfterPrivate(priceTotal);
+        inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getTakeOrderID());
+        inventoryManager.setAfterPrivate(priceTotal);
         boolean st2 = inventoryManagerDAO.update(inventoryManager);
 //            String output = pTrack.toString();
         System.out.println("____ " + pInventoryManager + "___ " + st);
@@ -699,7 +699,7 @@ public class OrdersHandle {
         
         //Delete all old data
         if(detailList != null && detailList.size() > 0)
-            inventoryManagerDetailDAO.delete(detailList.get(0).getmTakeOrderID());
+            inventoryManagerDetailDAO.delete(detailList.get(0).getTakeOrderID());
         else
             return Response.status(200).entity("").build();
         

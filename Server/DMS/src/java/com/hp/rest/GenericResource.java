@@ -549,7 +549,7 @@ public class GenericResource {
                 + today.getHours()+"-"+today.getMinutes()+"-"+today.getSeconds() + ".jpg";
         
         String path = ServletActionContext.getServletContext()
-                .getRealPath("/customer/" );
+                .getRealPath("/db_customers/" );
         
         //Create new folder
         File file = new File(path + "/" + data.getKhachHang());

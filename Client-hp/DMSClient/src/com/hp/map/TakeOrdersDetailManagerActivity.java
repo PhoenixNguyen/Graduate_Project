@@ -69,7 +69,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		if(TakeOrdersManagerActivity.selectedValue != null){
 		
 			TextView title = (TextView)findViewById(R.id.title);
-			order_id = TakeOrdersManagerActivity.selectedValue.getmID();
+			order_id = TakeOrdersManagerActivity.selectedValue.getId();
 			title.setText("Mã HĐ: "+order_id);
 			
 			TextView cus_id0 = (TextView)findViewById(R.id.cus_id);
@@ -82,10 +82,10 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 			valuetotal0.setVisibility(View.VISIBLE);
 			note2.setVisibility(View.VISIBLE);
 			
-			cus_id0.setText("Mã KH: " + TakeOrdersManagerActivity.selectedValue.getmCustomerID());
-			discount0.setText("Giảm giá (%): " + TakeOrdersManagerActivity.selectedValue.getmDiscount());
-			valuetotal0.setText("Tổng giá trị: " + new BigDecimal(TakeOrdersManagerActivity.selectedValue.getmAfterPrivate()).toString());
-			note2.setText("Ghi chú: " + TakeOrdersManagerActivity.selectedValue.getmNote());
+			cus_id0.setText("Mã KH: " + TakeOrdersManagerActivity.selectedValue.getCustomerID());
+			discount0.setText("Giảm giá (%): " + TakeOrdersManagerActivity.selectedValue.getDiscount());
+			valuetotal0.setText("Tổng giá trị: " + new BigDecimal(TakeOrdersManagerActivity.selectedValue.getAfterPrivate()).toString());
+			note2.setText("Ghi chú: " + TakeOrdersManagerActivity.selectedValue.getNote());
 		}
 		//init item commons
 		init();
@@ -193,26 +193,26 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 
 		// set the custom dialog components - text, image and button
 		TextView text = (TextView) dialog.findViewById(R.id.name);
-		text.setText(""+selectedValue.getmProductName());
+		text.setText(""+selectedValue.getProductName());
 
 		TextView price = (TextView) dialog.findViewById(R.id.price);
-		price.setText(""+selectedValue.getmBeforeOrderPrice());
+		price.setText(""+selectedValue.getBeforeOrderPrice());
 		
 		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
-		discount.setText(selectedValue.getmDiscount()+"");
+		discount.setText(selectedValue.getDiscount()+"");
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
-		count.setText(selectedValue.getmNumber()+"");
+		count.setText(selectedValue.getNumber()+"");
 		
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
-		note.setText(selectedValue.getmNote()+"");
+		note.setText(selectedValue.getNote()+"");
 		
 		//discount product
 		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
 		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
 		product_discount.setVisibility(View.VISIBLE);
 		product_discount_count.setVisibility(View.VISIBLE);
-		product_discount_count.setText(selectedValue.getmPromotionalProductMount()+"");
+		product_discount_count.setText(selectedValue.getPromotionalProductMount()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -265,13 +265,13 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 					return;
 				}
 				
-				float priceTotal = (float)Math.ceil((selectedValue.getmAfterOrderPrice() - 
-						selectedValue.getmAfterOrderPrice() * discount / 100) * number);
-				selectedValue.setmDiscount(discount);
-				selectedValue.setmNumber(number);
-				selectedValue.setmPriceTotal(priceTotal);
-				selectedValue.setmNote(note.getText().toString());
-				selectedValue.setmPromotionalProductMount(promotionalAmount);
+				float priceTotal = (float)Math.ceil((selectedValue.getAfterOrderPrice() - 
+						selectedValue.getAfterOrderPrice() * discount / 100) * number);
+				selectedValue.setDiscount(discount);
+				selectedValue.setNumber(number);
+				selectedValue.setPriceTotal(priceTotal);
+				selectedValue.setNote(note.getText().toString());
+				selectedValue.setPromotionalProductMount(promotionalAmount);
 				
 				//Sys
 				

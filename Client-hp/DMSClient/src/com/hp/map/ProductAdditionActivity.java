@@ -85,7 +85,7 @@ public class ProductAdditionActivity extends MainMenuActivity {
 		for(int i = 0; i < ProductManagerActivity.providersList.size(); i++){
 	
 			//Add
-			list.add(ProductManagerActivity.providersList.get(i).getmID());
+			list.add(ProductManagerActivity.providersList.get(i).getId());
 		}
 		
 		

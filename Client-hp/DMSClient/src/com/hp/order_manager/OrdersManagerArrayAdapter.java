@@ -46,9 +46,9 @@ public class OrdersManagerArrayAdapter extends ArrayAdapter<TakeOrder>{
         else
         	featureView.setBackgroundColor(Color.parseColor("#CCFF99"));
 
-        featureView.setTitleId(values.get(position).getmID());
-        featureView.setDescriptionId(values.get(position).getmCustomerName());
-        featureView.setValue((new BigDecimal(values.get(position).getmAfterPrivate())).toString());
+        featureView.setTitleId(values.get(position).getId());
+        featureView.setDescriptionId(values.get(position).getCustomerName());
+        featureView.setValue((new BigDecimal(values.get(position).getAfterPrivate())).toString());
 
         
         return featureView;

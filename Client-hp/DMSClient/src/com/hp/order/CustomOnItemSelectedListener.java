@@ -108,7 +108,7 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		//GET
 		ClientResponse response = Rest.mService.path("webresources").path(command)
 				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, TakeOrder_ProductActivity.providersList.get(k).getmID() );
+				.type("application/json").post(ClientResponse.class, TakeOrder_ProductActivity.providersList.get(k).getId() );
         System.out.println("________________ "+ response.toString());
         if(response.getStatus() != 200){
         	return;
@@ -145,19 +145,19 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 				
 				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(k + "").size(); i++){
 					for(int j = 0; j < TakeOrdersDetailManagerActivity.takeOrderDetailList.size(); j++){
-						if(TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).getmProductID()
-								.compareTo(TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmProductID()) == 0){
+						if(TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).getProductID()
+								.compareTo(TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getProductID()) == 0){
 							
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setmTotal(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmNumber());
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setmDiscount(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmDiscount());
+							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setTotal(
+									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getNumber());
+							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setDiscount(
+									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getDiscount());
 							
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setmNote(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmNote());
+							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setNote(
+									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getNote());
 							
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setmPromotionalProductAmounts(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getmPromotionalProductMount()
+							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setPromotionalProductAmounts(
+									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getPromotionalProductMount()
 									);
 							
 						}

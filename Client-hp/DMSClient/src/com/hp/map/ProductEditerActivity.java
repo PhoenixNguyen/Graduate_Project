@@ -56,27 +56,27 @@ public class ProductEditerActivity extends ProductAdditionActivity {
 		
 		
 		//Set again
-		product_id.setText(ProductManagerActivity.selectedValue.getmProductID());
+		product_id.setText(ProductManagerActivity.selectedValue.getProductID());
 		product_id.setEnabled(false);
-		product_name.setText(ProductManagerActivity.selectedValue.getmProductName());
-		product_barcode.setText(ProductManagerActivity.selectedValue.getmBarcode());
-		product_brand.setText(ProductManagerActivity.selectedValue.getmBrand());
-		product_origin.setText(ProductManagerActivity.selectedValue.getmOrigin());
-		product_packing.setText(ProductManagerActivity.selectedValue.getmPackingSpecifications());
-		product_quantification.setText(ProductManagerActivity.selectedValue.getmQuantification());
-		product_tax.setText(ProductManagerActivity.selectedValue.getmVATTax()+"");
-		product_import_price.setText(ProductManagerActivity.selectedValue.getmImportPrices()+"");
-		product_export_price.setText(ProductManagerActivity.selectedValue.getmExportPrices()+"");
-		product_description.setText(ProductManagerActivity.selectedValue.getmDescription());
+		product_name.setText(ProductManagerActivity.selectedValue.getProductName());
+		product_barcode.setText(ProductManagerActivity.selectedValue.getBarcode());
+		product_brand.setText(ProductManagerActivity.selectedValue.getBrand());
+		product_origin.setText(ProductManagerActivity.selectedValue.getOrigin());
+		product_packing.setText(ProductManagerActivity.selectedValue.getPackingSpecifications());
+		product_quantification.setText(ProductManagerActivity.selectedValue.getQuantification());
+		product_tax.setText(ProductManagerActivity.selectedValue.getVatTax()+"");
+		product_import_price.setText(ProductManagerActivity.selectedValue.getImportPrices()+"");
+		product_export_price.setText(ProductManagerActivity.selectedValue.getExportPrices()+"");
+		product_description.setText(ProductManagerActivity.selectedValue.getDescription());
 		
 		final List<String> list = new ArrayList<String>();
 		int key = 0;
 		for(int i = 0; i < ProductManagerActivity.providersList.size(); i++){
 	
 			//Add
-			list.add(ProductManagerActivity.providersList.get(i).getmID());
+			list.add(ProductManagerActivity.providersList.get(i).getId());
 			
-			if(ProductManagerActivity.selectedValue.getmProvider().compareTo(ProductManagerActivity.providersList.get(i).getmID()) == 0){
+			if(ProductManagerActivity.selectedValue.getProvider().compareTo(ProductManagerActivity.providersList.get(i).getId()) == 0){
 				key = i;
 			}
 		}
@@ -129,17 +129,17 @@ public class ProductEditerActivity extends ProductAdditionActivity {
 			if(export_price!= null && export_price.compareTo("") != 0)
 				ex_pr2 = Float.parseFloat(export_price);
 			
-			ProductManagerActivity.selectedValue.setmProductName(name);
-			ProductManagerActivity.selectedValue.setmBarcode(barcode);
-			ProductManagerActivity.selectedValue.setmBrand(brand);
-			ProductManagerActivity.selectedValue.setmOrigin(origin);
-			ProductManagerActivity.selectedValue.setmPackingSpecifications(packing);
-			ProductManagerActivity.selectedValue.setmQuantification(quantification);
-			ProductManagerActivity.selectedValue.setmVATTax(tax2);
-			ProductManagerActivity.selectedValue.setmImportPrices(im_pr2);
-			ProductManagerActivity.selectedValue.setmExportPrices(ex_pr2);
-			ProductManagerActivity.selectedValue.setmDescription(description);
-			ProductManagerActivity.selectedValue.setmProvider(provider_selected);
+			ProductManagerActivity.selectedValue.setProductName(name);
+			ProductManagerActivity.selectedValue.setBarcode(barcode);
+			ProductManagerActivity.selectedValue.setBrand(brand);
+			ProductManagerActivity.selectedValue.setOrigin(origin);
+			ProductManagerActivity.selectedValue.setPackingSpecifications(packing);
+			ProductManagerActivity.selectedValue.setQuantification(quantification);
+			ProductManagerActivity.selectedValue.setVatTax(tax2);
+			ProductManagerActivity.selectedValue.setImportPrices(im_pr2);
+			ProductManagerActivity.selectedValue.setExportPrices(ex_pr2);
+			ProductManagerActivity.selectedValue.setDescription(description);
+			ProductManagerActivity.selectedValue.setProvider(provider_selected);
 			
 			System.out.println("provider_selected: "+provider_selected + " name: " + name);
 			insertProduct(ProductManagerActivity.selectedValue);
@@ -147,7 +147,7 @@ public class ProductEditerActivity extends ProductAdditionActivity {
 	}
 	
 	public void insertProduct(Product product){
-		System.out.println("22: provider_selected: "+product.getmProvider() + " name: " + product.getmProductName());
+		System.out.println("22: provider_selected: "+product.getProvider() + " name: " + product.getProductName());
 		// Check the internet
 		if(isOnline()){
 			System.out.println("Internet access!!____________________");

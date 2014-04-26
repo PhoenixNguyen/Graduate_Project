@@ -16,72 +16,203 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product implements Comparable<Product> {
+	
+    private Integer serial;
     
-    private int mSerial;
-	private String mBarcode;
-    private String mProductID;
-    private String mProductName;
-    private String mBrand;
-    private String mOrigin;
-    private String mPackingSpecifications;
-    private String mQuantification;
-	private float mVATTax;
-    private float mImportPrices;
-    private float mExportPrices;
-    private String mProvider;
-    private String mDescription;
-    private String mProductImage;
+    private String productID;
+    private String barcode;
+    private String productName;
+    private String brand;
+    private String origin;
+    private String packingSpecifications;
+    private String quantification;
+    private Float vatTax;
+    private Float importPrices;
+    private Float exportPrices;
+    private String provider;
+    private String description;
+    private String productImage;
+
+	private int total;
+    private int discount;
+    private int promotionalProductAmounts;
+	private String note;
+	
+    public Integer getSerial() {
+        return serial;
+    }
+
+    public void setSerial(Integer serial) {
+        this.serial = serial;
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getPackingSpecifications() {
+        return packingSpecifications;
+    }
+
+    public void setPackingSpecifications(String packingSpecifications) {
+        this.packingSpecifications = packingSpecifications;
+    }
+
+    public String getQuantification() {
+        return quantification;
+    }
+
+    public void setQuantification(String quantification) {
+        this.quantification = quantification;
+    }
+
+    public Float getVatTax() {
+        return vatTax;
+    }
+
+    public void setVatTax(Float vatTax) {
+        this.vatTax = vatTax;
+    }
+
+    public Float getImportPrices() {
+        return importPrices;
+    }
+
+    public void setImportPrices(Float importPrices) {
+        this.importPrices = importPrices;
+    }
+
+    public Float getExportPrices() {
+        return exportPrices;
+    }
+
+    public void setExportPrices(Float exportPrices) {
+        this.exportPrices = exportPrices;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
+
+    public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
+	public int getPromotionalProductAmounts() {
+		return promotionalProductAmounts;
+	}
+
+	public void setPromotionalProductAmounts(int promotionalProductAmounts) {
+		this.promotionalProductAmounts = promotionalProductAmounts;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 
     
-    private int mTotal;
-    private int mDiscount;
-    private int mPromotionalProductAmounts;
-	private String mNote;
     
-    public Product(String mBarcode, String mProductID, String mProductName,
-			String mBrand, String mOrigin, String mPackingSpecifications,
-			String mQuantification, float mVATTax, float mImportPrices,
-			float mExportPrices, String mProvider, String mDescription,
-			String mProductImage) {
+    public Product(String pBarcode, String pProductID, String pProductName,
+			String pBrand, String pOrigin, String pPackingSpecifications,
+			String pQuantification, float pVATTax, float pImportPrices,
+			float pExportPrices, String pProvider, String pDescription,
+			String pProductImage) {
 		super();
-		this.mBarcode = mBarcode;
-		this.mProductID = mProductID;
-		this.mProductName = mProductName;
-		this.mBrand = mBrand;
-		this.mOrigin = mOrigin;
-		this.mPackingSpecifications = mPackingSpecifications;
-		this.mQuantification = mQuantification;
-		this.mVATTax = mVATTax;
-		this.mImportPrices = mImportPrices;
-		this.mExportPrices = mExportPrices;
-		this.mProvider = mProvider;
-		this.mDescription = mDescription;
-		this.mProductImage = mProductImage;
+		this.barcode = pBarcode;
+		this.productID = pProductID;
+		this.productName = pProductName;
+		this.brand = pBrand;
+		this.origin = pOrigin;
+		this.packingSpecifications = pPackingSpecifications;
+		this.quantification = pQuantification;
+		this.vatTax = pVATTax;
+		this.importPrices = pImportPrices;
+		this.exportPrices = pExportPrices;
+		this.provider = pProvider;
+		this.description = pDescription;
+		this.productImage = pProductImage;
 	}
     
     public Product(){}
     
-    public int getmPromotionalProductAmounts() {
-		return mPromotionalProductAmounts;
-	}
-	public void setmPromotionalProductAmounts(int mPromotionalProductAmounts) {
-		this.mPromotionalProductAmounts = mPromotionalProductAmounts;
-	}
-	public int getmDiscount() {
-		return mDiscount;
-	}
-	public void setmDiscount(int mDiscount) {
-		this.mDiscount = mDiscount;
-	}
-	public String getmNote() {
-		return mNote;
-	}
-	public void setmNote(String mNote) {
-		this.mNote = mNote;
-	}
+    
 
     public int compareTo(Product a) {
-        if ( this.mTotal > a.mTotal )
+        if ( this.total > a.total )
             return 1;
         else 
             return -1;
@@ -95,141 +226,21 @@ public class Product implements Comparable<Product> {
      }
 	@Override
 	public String toString() {
-		return mProductID +" " + mProductName;
+		return productID +" " + productName;
 				
 	}
 
 
-    public Product(int mSerial, String mBarcode, String mProductID,
-			String mProductName) {
+    public Product(int pSerial, String pBarcode, String pProductID,
+			String pProductName) {
 		super();
-		this.mSerial = mSerial;
-		this.mBarcode = mBarcode;
-		this.mProductID = mProductID;
-		this.mProductName = mProductName;
+		this.serial = pSerial;
+		this.barcode = pBarcode;
+		this.productID = pProductID;
+		this.productName = pProductName;
 	}
 
     
-    public int getmTotal() {
-		return mTotal;
-	}
-
-
-	public void setmTotal(int mTotal) {
-		this.mTotal = mTotal;
-	}
-
-
-    public int getmSerial() {
-        return mSerial;
-    }
-
-    public void setmSerial(int mSerial) {
-        this.mSerial = mSerial;
-    }
-
-    public String getmBarcode() {
-        return mBarcode;
-    }
-
-    public void setmBarcode(String mBarcode) {
-        this.mBarcode = mBarcode;
-    }
-
-    public String getmProductID() {
-        return mProductID;
-    }
-
-    public void setmProductID(String mProductID) {
-        this.mProductID = mProductID;
-    }
-
-    public String getmProductName() {
-        return mProductName;
-    }
-
-    public void setmProductName(String mProductName) {
-        this.mProductName = mProductName;
-    }
-
-    public String getmBrand() {
-        return mBrand;
-    }
-
-    public void setmBrand(String mBrand) {
-        this.mBrand = mBrand;
-    }
-
-    public String getmOrigin() {
-        return mOrigin;
-    }
-
-    public void setmOrigin(String mOrigin) {
-        this.mOrigin = mOrigin;
-    }
-
-    public String getmPackingSpecifications() {
-        return mPackingSpecifications;
-    }
-
-    public void setmPackingSpecifications(String mPackingSpecifications) {
-        this.mPackingSpecifications = mPackingSpecifications;
-    }
-
-    public String getmQuantification() {
-        return mQuantification;
-    }
-
-    public void setmQuantification(String mQuantification) {
-        this.mQuantification = mQuantification;
-    }
-
-    public float getmVATTax() {
-        return mVATTax;
-    }
-
-    public void setmVATTax(float mVATTax) {
-        this.mVATTax = mVATTax;
-    }
-
-    public float getmImportPrices() {
-        return mImportPrices;
-    }
-
-    public void setmImportPrices(float mImportPrices) {
-        this.mImportPrices = mImportPrices;
-    }
-
-    public float getmExportPrices() {
-        return mExportPrices;
-    }
-
-    public void setmExportPrices(float mExportPrices) {
-        this.mExportPrices = mExportPrices;
-    }
-
-    public String getmProvider() {
-        return mProvider;
-    }
-
-    public void setmProvider(String mProvider) {
-        this.mProvider = mProvider;
-    }
-
-    public String getmDescription() {
-        return mDescription;
-    }
-
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
-    }
-
-    public String getmProductImage() {
-        return mProductImage;
-    }
-
-    public void setmProductImage(String mProductImage) {
-        this.mProductImage = mProductImage;
-    }
+   
     
 }

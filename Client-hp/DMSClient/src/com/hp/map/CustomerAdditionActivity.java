@@ -170,7 +170,7 @@ public class CustomerAdditionActivity extends MainMenuActivity{
             if(Rest.getCustomersList(Rest.mStaffID) == true){
 	            // open detail
 	            Intent t = new Intent(context, CustomerMapActivity.class);
-		        t.putExtra("POSITION_CLICK", customer.getMMaDoiTuong());
+		        t.putExtra("POSITION_CLICK", customer.getMaDoiTuong());
 		        
 		        startActivity(t);
             }

@@ -65,23 +65,23 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		int line = 0;
 		for(String key : keyset){
 			for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++){
-				if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0 || TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmPromotionalProductAmounts() > 0){
+				if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getTotal() > 0 || TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getPromotionalProductAmounts() > 0){
 					TakeOrderDetail orderDetail = 
-							new TakeOrderDetail("", line++, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmProductID()
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmBarcode()
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmProductName() 
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices()
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices()
+							new TakeOrderDetail("", line++, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getProductID()
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getBarcode()
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getProductName() 
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getExportPrices()
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getExportPrices()
 									, 0
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmDiscount() 
-									, (float)Math.ceil((TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices() - 
-											TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmExportPrices() *
-											TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmDiscount() / 100)
-										* TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal())
-									, "", TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal()
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getDiscount() 
+									, (float)Math.ceil((TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getExportPrices() - 
+											TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getExportPrices() *
+											TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getDiscount() / 100)
+										* TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getTotal())
+									, "", TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getTotal()
 									, "", 0
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmNote()
-									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmPromotionalProductAmounts()
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getNote()
+									, TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getPromotionalProductAmounts()
 									);
 					
 					takeOrderDetailList.add(orderDetail);
@@ -131,26 +131,26 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 
 		// set the custom dialog components - text, image and button
 		TextView text = (TextView) dialog.findViewById(R.id.name);
-		text.setText(""+selectedValue.getmProductName());
+		text.setText(""+selectedValue.getProductName());
 
 		TextView price = (TextView) dialog.findViewById(R.id.price);
-		price.setText(""+selectedValue.getmBeforeOrderPrice());
+		price.setText(""+selectedValue.getBeforeOrderPrice());
 		
 		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
-		discount.setText(takeOrderDetailList.get(position).getmDiscount()+"");
+		discount.setText(takeOrderDetailList.get(position).getDiscount()+"");
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
-		count.setText(takeOrderDetailList.get(position).getmNumber()+"");
+		count.setText(takeOrderDetailList.get(position).getNumber()+"");
 		
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
-		note.setText(takeOrderDetailList.get(position).getmNote()+"");
+		note.setText(takeOrderDetailList.get(position).getNote()+"");
 		
 		//discount product
 		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
 		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
 		product_discount.setVisibility(View.VISIBLE);
 		product_discount_count.setVisibility(View.VISIBLE);
-		product_discount_count.setText(selectedValue.getmPromotionalProductMount()+"");
+		product_discount_count.setText(selectedValue.getPromotionalProductMount()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -198,13 +198,13 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 					return;
 				}
 				
-				float priceTotal = (float)Math.ceil((takeOrderDetailList.get(position).getmAfterOrderPrice() - 
-						takeOrderDetailList.get(position).getmAfterOrderPrice() * discount / 100) * number);
-				takeOrderDetailList.get(position).setmDiscount(discount);
-				takeOrderDetailList.get(position).setmNumber(number);
-				takeOrderDetailList.get(position).setmPriceTotal(priceTotal);
-				takeOrderDetailList.get(position).setmNote(note.getText().toString());
-				takeOrderDetailList.get(position).setmPromotionalProductMount(promotionalAmount);
+				float priceTotal = (float)Math.ceil((takeOrderDetailList.get(position).getAfterOrderPrice() - 
+						takeOrderDetailList.get(position).getAfterOrderPrice() * discount / 100) * number);
+				takeOrderDetailList.get(position).setDiscount(discount);
+				takeOrderDetailList.get(position).setNumber(number);
+				takeOrderDetailList.get(position).setPriceTotal(priceTotal);
+				takeOrderDetailList.get(position).setNote(note.getText().toString());
+				takeOrderDetailList.get(position).setPromotionalProductMount(promotionalAmount);
 
 				dialog.dismiss();
 				
@@ -214,7 +214,7 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 				ordersListView.setAdapter(adapter);
 				
 				//Set call back product list to load again in takeorder_product
-				callbackSetMap(selectedValue.getmProductID(), number, discount, note.getText().toString(), promotionalAmount);
+				callbackSetMap(selectedValue.getProductID(), number, discount, note.getText().toString(), promotionalAmount);
 				//if number = 0 --> remove
 				if(number == 0 && promotionalAmount == 0){
 					onResume();
@@ -248,11 +248,11 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 		for(String key : keyset){
 			
 			for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++){
-				if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmProductID() == productID){
-					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmTotal(total);
-					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmDiscount(discount);
-					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmNote(note);
-					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setmPromotionalProductAmounts(promotion);
+				if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getProductID() == productID){
+					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setTotal(total);
+					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setDiscount(discount);
+					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setNote(note);
+					TakeOrder_ProductActivity.mProductsMap.get(key).get(i).setPromotionalProductAmounts(promotion);
 					return;
 				}
 			}

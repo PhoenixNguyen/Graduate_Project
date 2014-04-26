@@ -45,15 +45,15 @@ public class CustomerEditerActivity extends CustomerAdditionActivity {
 		
 		cus_id.setEnabled(false);
 		
-		cus_id.setText(CustomerListActivity.customer.getMMaDoiTuong());
-		cus_name.setText(CustomerListActivity.customer.getMDoiTuong());
-		cus_state.setText(CustomerListActivity.customer.getMTinhThanh());
-		cus_line.setText(CustomerListActivity.customer.getMTuyenBanHangThu() + "");
-		cus_area.setText(CustomerListActivity.customer.getMX());
-		cus_address.setText(CustomerListActivity.customer.getMDiaChi());
-		cus_phone.setText(CustomerListActivity.customer.getMDienThoai() +"");
-		cus_fax.setText(CustomerListActivity.customer.getMFax());
-		cus_note.setText(CustomerListActivity.customer.getMGhiChu());
+		cus_id.setText(CustomerListActivity.customer.getMaDoiTuong());
+		cus_name.setText(CustomerListActivity.customer.getDoiTuong());
+		cus_state.setText(CustomerListActivity.customer.getTinhThanh());
+		cus_line.setText(CustomerListActivity.customer.getTuyenBanHangThu() + "");
+		cus_area.setText(CustomerListActivity.customer.getX());
+		cus_address.setText(CustomerListActivity.customer.getDiaChi());
+		cus_phone.setText(CustomerListActivity.customer.getDienThoai() +"");
+		cus_fax.setText(CustomerListActivity.customer.getFax());
+		cus_note.setText(CustomerListActivity.customer.getGhiChu());
 		
 	}
 		
@@ -68,14 +68,14 @@ public class CustomerEditerActivity extends CustomerAdditionActivity {
 			String fax = cus_fax.getText().toString();
 			String note = cus_note.getText().toString();
 			
-			CustomerListActivity.customer.setMDiaChi(address);
-			CustomerListActivity.customer.setMDienThoai(phone);
-			CustomerListActivity.customer.setMDoiTuong(name);
-			CustomerListActivity.customer.setMFax(fax);
-			CustomerListActivity.customer.setMGhiChu(note);
-			CustomerListActivity.customer.setMTinhThanh(state);
-			CustomerListActivity.customer.setMX(area);
-			CustomerListActivity.customer.setMTuyenBanHangThu(line);
+			CustomerListActivity.customer.setDiaChi(address);
+			CustomerListActivity.customer.setDienThoai(phone);
+			CustomerListActivity.customer.setDoiTuong(name);
+			CustomerListActivity.customer.setFax(fax);
+			CustomerListActivity.customer.setGhiChu(note);
+			CustomerListActivity.customer.setTinhThanh(state);
+			CustomerListActivity.customer.setX(area);
+			CustomerListActivity.customer.setTuyenBanHangThu(line);
 			//insert
 			insertCustomer(CustomerListActivity.customer);
 		
@@ -126,7 +126,7 @@ public class CustomerEditerActivity extends CustomerAdditionActivity {
             
             // open detail
             Intent t = new Intent(context, CustomerMapActivity.class);
-	        t.putExtra("POSITION_CLICK", customer.getMMaDoiTuong());
+	        t.putExtra("POSITION_CLICK", customer.getMaDoiTuong());
 	        
 	        startActivity(t);
             

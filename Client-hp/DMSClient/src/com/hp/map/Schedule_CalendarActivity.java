@@ -222,7 +222,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				ClientResponse response = Rest.mService.path("webresources").path("getSchedule")
 						.accept("application/json")
 						.type("application/json").post(ClientResponse.class
-								,Rest.customerList.get(0).getMMaNhanVien()+"::"+selectedGridDate);
+								,Rest.customerList.get(0).getMaNhanVien()+"::"+selectedGridDate);
 				
 		        System.out.println("________________ "+ response.toString() + "__ " +response.getLength());
 		        if(response.getLength() > 2 )
@@ -238,7 +238,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 	//					File jsonFile = new File(jsonFilePath);
 						schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
 								Schedule.class));
-						System.out.println("++++++++++++++ "+schedule.get(0).getmMaKH() +" " +schedule.get(0).getmDate());
+						//System.out.println("++++++++++++++ "+schedule.get(0).getMaKH() +" " +schedule.get(0).getTime());
 					} catch (JsonGenerationException e) {
 						e.printStackTrace();
 					} catch (JsonMappingException e) {
@@ -253,12 +253,12 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					for(int i = 0; i < schedule.size(); i++){
 						Calendar cal = Calendar.getInstance();
-						cal.setTime(schedule.get(i).getmDate());
+						cal.setTime(schedule.get(i).getTime());
 						cal.add(Calendar.HOUR, -7);
 						System.out.println("-____- " +dateFormat.format(cal.getTime()));
 											  
-						scheduleIDList = append(scheduleIDList, schedule.get(i).getmMaKH());
-						listV = append(listV, new ListViewSchedules(schedule.get(i).getmMaKH()
+						scheduleIDList = append(scheduleIDList, schedule.get(i).getMaKH());
+						listV = append(listV, new ListViewSchedules(schedule.get(i).getMaKH()
 								, dateFormat.format(cal.getTime()) ));
 						
 					}
@@ -403,7 +403,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		//Get customers list for staff and not have the schedule ========================================
 		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListSchedule")
 				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getMMaNhanVien() +"::"+pDate);
+				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getMaNhanVien() +"::"+pDate);
         System.out.println("________________ "+ response.toString());
         if(response.getStatus() != 200){
         	dialog.dismiss();
@@ -433,7 +433,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		String[] customer = new String[]{};
 		
 		for(int i = 0; i < schedule.size(); i++){
-			customer = append(customer, schedule.get(i).getMMaDoiTuong());
+			customer = append(customer, schedule.get(i).getMaDoiTuong());
 			
 		}
 		String[] PRODUCT = 
@@ -475,7 +475,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				List<Schedule> scheduleList = new ArrayList<Schedule>();
 				for(String key : mTakeCustomersList.keySet()){
 					Timestamp value = mTakeCustomersList.get(key);
-					Schedule schedule = new Schedule(Rest.customerList.get(0).getMMaNhanVien()
+					Schedule schedule = new Schedule(Rest.customerList.get(0).getMaNhanVien()
 							, key
 							, value
 							, false);

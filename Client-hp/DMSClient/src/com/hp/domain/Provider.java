@@ -14,69 +14,71 @@ package com.hp.domain;
 
 public class Provider {
    
-    private int mSerial;
-    private String mID;
-    private String mName;
-    private String mAddress;
-    private String mPhoneNumber;
-    private String mFax;
-    private String mNote;
+    private int serial;
+
+    private String id;
+    private String name;
+    private String address;
+    private String phoneNumber;
+    private String fax;
+    private String note;
     
-        
-    public int getmSerial() {
-        return mSerial;
+    
+    public int getSerial() {
+        return serial;
     }
 
-    public void setmSerial(int mSerial) {
-        this.mSerial = mSerial;
+    public void setSerial(int serial) {
+        this.serial = serial;
     }
 
-    public String getmID() {
-        return mID;
+    public String getId() {
+        return id;
     }
 
-    public void setmID(String mID) {
-        this.mID = mID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getmName() {
-        return mName;
+    public String getName() {
+        return name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getmAddress() {
-        return mAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setmAddress(String mAddress) {
-        this.mAddress = mAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getmPhoneNumber() {
-        return mPhoneNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setmPhoneNumber(String mPhoneNumber) {
-        this.mPhoneNumber = mPhoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getmFax() {
-        return mFax;
+    public String getFax() {
+        return fax;
     }
 
-    public void setmFax(String mFax) {
-        this.mFax = mFax;
+    public void setFax(String fax) {
+        this.fax = fax;
     }
 
-    public String getmNote() {
-        return mNote;
+    public String getNote() {
+        return note;
     }
 
-    public void setmNote(String mNote) {
-        this.mNote = mNote;
+    public void setNote(String note) {
+        this.note = note;
     }
+    
     
 }

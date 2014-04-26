@@ -50,7 +50,7 @@ public class InventoryManagerDAOImpl implements InventoryManagerDAO{
         
         List<InventoryManager> courses = null;
         try{
-                courses = session.createQuery("from InventoryManager order by mTakeOrderDate desc").list();
+                courses = session.createQuery("from InventoryManager order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class InventoryManagerDAOImpl implements InventoryManagerDAO{
         
         List<InventoryManager> courses = null;
         try{
-                courses = session.createQuery("from InventoryManager where mCreater='"+pStaff+"' order by mTakeOrderDate desc").list();
+                courses = session.createQuery("from InventoryManager where creater='"+pStaff+"' order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();
@@ -94,8 +94,8 @@ public class InventoryManagerDAOImpl implements InventoryManagerDAO{
                 Date from = sdf.parse(pFrom);
                 Date to = sdf.parse(pTo);
             
-                courses = session.createQuery("from InventoryManager where mCreater='"+pStaff+"'" 
-                                                + " and mTakeOrderDate BETWEEN '" +sdf2.format(from)+ "' "
+                courses = session.createQuery("from InventoryManager where creater='"+pStaff+"'" 
+                                                + " and takeOrderDate BETWEEN '" +sdf2.format(from)+ "' "
                                                 + " and '" +sdf2.format(to)+"'").list();
             
         }catch(Exception e){

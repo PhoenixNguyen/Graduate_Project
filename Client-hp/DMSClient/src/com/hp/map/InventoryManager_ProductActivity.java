@@ -43,10 +43,10 @@ public class InventoryManager_ProductActivity extends TakeOrder_ProductActivity{
 
 		// set the custom dialog components - text, image and button
 		EditText text = (EditText) dialog.findViewById(R.id.name);
-		text.setText(""+selectedValue.getmProductName());
+		text.setText(""+selectedValue.getProductName());
 
 		EditText price = (EditText) dialog.findViewById(R.id.price);
-		price.setText(""+selectedValue.getmExportPrices());
+		price.setText(""+selectedValue.getExportPrices());
 		
 		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
 		discount.setVisibility(View.GONE);
@@ -82,9 +82,9 @@ public class InventoryManager_ProductActivity extends TakeOrder_ProductActivity{
 				
 				
 				
-				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmTotal(number);
-				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmDiscount(discount);
-				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmNote(note.getText().toString());
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setTotal(number);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setDiscount(discount);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setNote(note.getText().toString());
 				
 				Collections.sort(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				Collections.reverse(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
@@ -101,7 +101,7 @@ public class InventoryManager_ProductActivity extends TakeOrder_ProductActivity{
 				line = 0;
 				for(String key : keyset){
 				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++)
-					if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0){
+					if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getTotal() > 0){
 						line++;
 					}
 				}

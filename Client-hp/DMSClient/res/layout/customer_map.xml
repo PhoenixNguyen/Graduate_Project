@@ -112,7 +112,7 @@
           android:layout_weight="0.5"
           android:onClick="onSendDemo"
           android:text="@string/send_demo"
-          android:visibility="gone"
+          android:visibility="visible"
           />
         
         <Button

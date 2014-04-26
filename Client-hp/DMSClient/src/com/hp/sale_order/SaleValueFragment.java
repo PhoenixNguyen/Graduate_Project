@@ -38,10 +38,10 @@ public class SaleValueFragment extends Fragment{
 		float valueTotal = 0;
 		
 		for(int i = 0; i < SaleOrderFragment.takeOrderDetailList.size(); i++){
-			saleTotal += SaleOrderFragment.takeOrderDetailList.get(i).getmPriceTotal();
+			saleTotal += SaleOrderFragment.takeOrderDetailList.get(i).getPriceTotal();
 		}
 		for(int i = 0; i < ReturnOrderFragment.takeOrderDetailList.size(); i++){
-			returnTotal += ReturnOrderFragment.takeOrderDetailList.get(i).getmPriceTotal();
+			returnTotal += ReturnOrderFragment.takeOrderDetailList.get(i).getPriceTotal();
 		}
 		
 		valueTotal = saleTotal - returnTotal;

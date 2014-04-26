@@ -125,7 +125,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 		line = 0;
 		for(String key : keyset){
 		for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++)
-			if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0){
+			if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getTotal() > 0){
 				line++;
 			}
 		}
@@ -216,7 +216,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 //			mProductsList[i] = new ArrayList<Product>();
 			
 			//Add
-			list.add(providersList.get(i).getmID());
+			list.add(providersList.get(i).getId());
 		}
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 			android.R.layout.simple_spinner_item, list);
@@ -277,29 +277,29 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 
 		// set the custom dialog components - text, image and button
 		EditText text = (EditText) dialog.findViewById(R.id.name);
-		text.setText(""+selectedValue.getmProductName());
+		text.setText(""+selectedValue.getProductName());
 
 		EditText price = (EditText) dialog.findViewById(R.id.price);
-		price.setText(""+selectedValue.getmExportPrices());
+		price.setText(""+selectedValue.getExportPrices());
 		
 		final EditText discount = (EditText) dialog.findViewById(R.id.discount);
-		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmDiscount() > 0)
-			discount.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmDiscount()+"");
+		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getDiscount() > 0)
+			discount.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getDiscount()+"");
 		
 		final EditText count = (EditText)dialog.findViewById(R.id.count);
-		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmTotal() > 0)
-			count.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmTotal()+"");
+		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getTotal() > 0)
+			count.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getTotal()+"");
 		
 		final EditText note = (EditText) dialog.findViewById(R.id.note);
-		note.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmNote());
+		note.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getNote());
 		
 		//discount product
 		final TextView product_discount = (TextView) dialog.findViewById(R.id.product_discount);
 		final EditText product_discount_count = (EditText) dialog.findViewById(R.id.product_discount_count);
 		product_discount.setVisibility(View.VISIBLE);
 		product_discount_count.setVisibility(View.VISIBLE);
-		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmPromotionalProductAmounts() > 0)
-			product_discount_count.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getmPromotionalProductAmounts()+"");
+		if(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getPromotionalProductAmounts() > 0)
+			product_discount_count.setText(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).getPromotionalProductAmounts()+"");
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Cập nhật");
@@ -349,10 +349,10 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 					return;
 				}
 				
-				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmTotal(number);
-				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmDiscount(discount);
-				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmNote(note.getText().toString());
-				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setmPromotionalProductAmounts(promotionalAmount);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setTotal(number);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setDiscount(discount);
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setNote(note.getText().toString());
+				TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + "").get(position).setPromotionalProductAmounts(promotionalAmount);
 				
 				Collections.sort(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
 				Collections.reverse(TakeOrder_ProductActivity.mProductsMap.get(CustomOnItemSelectedListener.mProviderIndex + ""));
@@ -369,7 +369,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 				line = 0;
 				for(String key : keyset){
 				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(key).size(); i++)
-					if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getmTotal() > 0){
+					if(TakeOrder_ProductActivity.mProductsMap.get(key).get(i).getTotal() > 0){
 						line++;
 					}
 				}

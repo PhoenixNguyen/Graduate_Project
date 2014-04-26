@@ -14,144 +14,157 @@ package com.hp.domain;
 
 public class Stock {
    
-    private int mSerial;
-    private String mStockID;
-    private String mName;
-    private float mPrice;
-    private float mBeginningInventory;
-    private float mInput;
-    private float mLastInventory;
-    private float mBanRa;
-    private float mOrder;
-    private float mDuyet;
-    private float mTotalInventory;
-    private String mNote;
+    private int serial;
+
+    private String stockID;
+    private String productID;
+
+    private String name;
+    private Float price;
+    private Float beginningInventory;
+    private Float input;
+    private Float lastInventory;
+    private Float banRa;
+    private Float order;
+    private Float duyet;
+    private Float totalInventory;
+    private String note;
+
     
-    private String mProductID;
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
+    }
+
+    public String getStockID() {
+        return stockID;
+    }
+
+    public void setStockID(String stockID) {
+        this.stockID = stockID;
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public Float getBeginningInventory() {
+        return beginningInventory;
+    }
+
+    public void setBeginningInventory(Float beginningInventory) {
+        this.beginningInventory = beginningInventory;
+    }
+
+    public Float getInput() {
+        return input;
+    }
+
+    public void setInput(Float input) {
+        this.input = input;
+    }
+
+    public Float getLastInventory() {
+        return lastInventory;
+    }
+
+    public void setLastInventory(Float lastInventory) {
+        this.lastInventory = lastInventory;
+    }
+
+    public Float getBanRa() {
+        return banRa;
+    }
+
+    public void setBanRa(Float banRa) {
+        this.banRa = banRa;
+    }
+
+    public Float getOrder() {
+        return order;
+    }
+
+    public void setOrder(Float order) {
+        this.order = order;
+    }
+
+    public Float getDuyet() {
+        return duyet;
+    }
+
+    public void setDuyet(Float duyet) {
+        this.duyet = duyet;
+    }
+
+    public Float getTotalInventory() {
+        return totalInventory;
+    }
+
+    public void setTotalInventory(Float totalInventory) {
+        this.totalInventory = totalInventory;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+    
 
     public String getmProductID() {
-        return mProductID;
+        return productID;
     }
 
-    public void setmProductID(String mProductID) {
-        this.mProductID = mProductID;
+    public void setmProductID(String pProductID) {
+        this.productID = pProductID;
     }
-    public Stock(String mStockID, String mProductID, String mName, float mPrice,
-			float mBeginningInventory, float mInput, float mLastInventory,
-			float mBanRa, float mOrder, float mDuyet, float mTotalInventory,
-			String mNote) {
+    public Stock(String pStockID, String pProductID, String pName, float pPrice,
+			float pBeginningInventory, float pInput, float pLastInventory,
+			float pBanRa, float pOrder, float pDuyet, float pTotalInventory,
+			String pNote) {
 		super();
-		this.mStockID = mStockID;
-		this.mProductID = mProductID;
-		this.mName = mName;
-		this.mPrice = mPrice;
-		this.mBeginningInventory = mBeginningInventory;
-		this.mInput = mInput;
-		this.mLastInventory = mLastInventory;
-		this.mBanRa = mBanRa;
-		this.mOrder = mOrder;
-		this.mDuyet = mDuyet;
-		this.mTotalInventory = mTotalInventory;
-		this.mNote = mNote;
+		this.stockID = pStockID;
+		this.productID = pProductID;
+		this.name = pName;
+		this.price = pPrice;
+		this.beginningInventory = pBeginningInventory;
+		this.input = pInput;
+		this.lastInventory = pLastInventory;
+		this.banRa = pBanRa;
+		this.order = pOrder;
+		this.duyet = pDuyet;
+		this.totalInventory = pTotalInventory;
+		this.note = pNote;
 	}
 
     public Stock(){
     	
     }
-    public int getmSerial() {
-        return mSerial;
-    }
-
-    public void setmSerial(int mSerial) {
-        this.mSerial = mSerial;
-    }
-
-    public String getmStockID() {
-        return mStockID;
-    }
-
-    public void setmStockID(String mStockID) {
-        this.mStockID = mStockID;
-    }
-
-    public String getmName() {
-        return mName;
-    }
-
-    public void setmName(String name) {
-        this.mName = name;
-    }
-
-    public float getmPrice() {
-        return mPrice;
-    }
-
-    public void setmPrice(float mPrice) {
-        this.mPrice = mPrice;
-    }
-
-    public float getmBeginningInventory() {
-        return mBeginningInventory;
-    }
-
-    public void setmBeginningInventory(float mBeginningInventory) {
-        this.mBeginningInventory = mBeginningInventory;
-    }
-
-    public float getmInput() {
-        return mInput;
-    }
-
-    public void setmInput(float mInput) {
-        this.mInput = mInput;
-    }
-
-    public float getmLastInventory() {
-        return mLastInventory;
-    }
-
-    public void setmLastInventory(float mLastInventory) {
-        this.mLastInventory = mLastInventory;
-    }
-
-    public float getmBanRa() {
-        return mBanRa;
-    }
-
-    public void setmBanRa(float mBanRa) {
-        this.mBanRa = mBanRa;
-    }
-
-    public float getmOrder() {
-        return mOrder;
-    }
-
-    public void setmOrder(float mOrder) {
-        this.mOrder = mOrder;
-    }
-
-    public float getmDuyet() {
-        return mDuyet;
-    }
-
-    public void setmDuyet(float mDuyet) {
-        this.mDuyet = mDuyet;
-    }
-
-    public float getmTotalInventory() {
-        return mTotalInventory;
-    }
-
-    public void setmTotalInventory(float mTotalInventory) {
-        this.mTotalInventory = mTotalInventory;
-    }
-
-    public String getmNote() {
-        return mNote;
-    }
-
-    public void setmNote(String mNote) {
-        this.mNote = mNote;
-    }
+    
     
 }

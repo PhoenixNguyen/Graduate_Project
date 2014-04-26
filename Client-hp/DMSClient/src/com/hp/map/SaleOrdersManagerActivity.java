@@ -166,7 +166,7 @@ public class SaleOrdersManagerActivity extends MainMenuActivity implements OnCli
 		
 		Intent intent = new Intent(getApplicationContext(),
 				SaleOrderDetail_Main_Activity.class);
-		intent.putExtra("ORDER_ID", selectedValue.getmID());
+		intent.putExtra("ORDER_ID", selectedValue.getId());
 
 		startActivity(intent);
 		
@@ -328,7 +328,7 @@ public class SaleOrdersManagerActivity extends MainMenuActivity implements OnCli
 		String[] take_order_id_list = new String[]{};
 		
 		for(int i = 0; i < takeOrderList2.size(); i++){
-			take_order_id_list = append(take_order_id_list, takeOrderList2.get(i).getmID());
+			take_order_id_list = append(take_order_id_list, takeOrderList2.get(i).getId());
 			
 		}
 		
@@ -520,9 +520,9 @@ public class SaleOrdersManagerActivity extends MainMenuActivity implements OnCli
 		for(int i = 0; i < takeOrderList.size(); i++){
 			Date compare = null;
 			try {
-				if(takeOrderList.get(i).getmOrderEstablishDate() == null)
+				if(takeOrderList.get(i).getOrderEstablishDate() == null)
 					continue;
-				String date = takeOrderList.get(i).getmOrderEstablishDate().toString();
+				String date = takeOrderList.get(i).getOrderEstablishDate().toString();
 				
 				compare = dateFormat1.parse(date);
 				
@@ -535,7 +535,7 @@ public class SaleOrdersManagerActivity extends MainMenuActivity implements OnCli
 					&& compare.before(endDate)){
 				
 				takeOrderListFilter.add(takeOrderList.get(i));
-				System.out.println(takeOrderList.get(i).getmID());
+				System.out.println(takeOrderList.get(i).getId());
 			}
 		}
 		

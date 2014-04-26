@@ -26,63 +26,67 @@ import java.util.TimeZone;
 
 public class Schedule {
     
-    private int mStt;
-    private String mMaNV;
-    private String mMaKH;
-    private Timestamp mDate;
-    private boolean mStatus;
+    private int stt;
+
+    private String maNV;
+    private String maKH;
+    private Timestamp time;
+    private boolean status;
+
+    public int getStt() {
+        return stt;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
+    }
+
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp date) {
+        this.time = date;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
 
     @SuppressWarnings("deprecation")
 	public Schedule(String pMaNV, String pMaKH, Timestamp pDate, boolean pStatus){
-    	this.mMaNV = pMaNV;
-    	this.mMaKH = pMaKH;
-    	this.mStatus = pStatus;
+    	this.maNV = pMaNV;
+    	this.maKH = pMaKH;
+    	this.status = pStatus;
     	    	
-    	this.mDate = pDate;
+    	this.time = pDate;
     }
     
     public Schedule(){
     	
     }
     
-    public int getmStt() {
-        return mStt;
-    }
-
-    public void setmStt(int mStt) {
-        this.mStt = mStt;
-    }
-
-    public String getmMaNV() {
-        return mMaNV;
-    }
-
-    public void setmMaNV(String mMaNV) {
-        this.mMaNV = mMaNV;
-    }
-
-    public String getmMaKH() {
-        return mMaKH;
-    }
-
-    public void setmMaKH(String mMaKH) {
-        this.mMaKH = mMaKH;
-    }
-
-    public Timestamp getmDate() {
-        return mDate;
-    }
-
-    public void setmDate(Timestamp mDate) {
-        this.mDate = mDate;
-    }
-
-    public boolean ismStatus() {
-        return mStatus;
-    }
-
-    public void setmStatus(boolean mStatus) {
-        this.mStatus = mStatus;
-    }
+    
     
 }

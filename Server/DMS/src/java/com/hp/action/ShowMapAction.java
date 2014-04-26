@@ -288,6 +288,11 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 
         userListGiamDoc = userDAO.getListUser(2);
         
+        if(date == null || toDate == null || date.compareTo("") ==0 || toDate.compareTo("") == 0){
+            date = "2014-04-01T00:00:00+07:00";
+            toDate = "2014-04-01T00:00:00+07:00";
+        }
+        
         System.out.println(" setDate: " + date + " toDate: " + toDate);
         System.out.println(" GD: ");
         System.out.println(" GD: "+giamdocId+" STaff: "+ nhanvienId); 
@@ -302,7 +307,7 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
             userListCustomer = customerDAO.getListCustomer(null);
             //tat ca khach hang show screen
             if(session.getAttribute("giamdocId") != null || session.getAttribute("staffId") != null || session.getAttribute("khachhangId") != null){
-                System.out.print(" Get something "); 
+                System.out.println(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
                 listCustomer = customerDAO.loadCustomersWithLocations((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"), (String)session.getAttribute("khachhangId"));

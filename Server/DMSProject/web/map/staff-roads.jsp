@@ -427,7 +427,7 @@
                             </li>
                                 
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Từ ngày</a>
-                                <sx:datetimepicker name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate"/>
+                                <sx:datetimepicker name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);"  id="setdate"/>
                                 
                                 
                            

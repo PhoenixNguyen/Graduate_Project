@@ -68,9 +68,11 @@ public final class DialogFeatureView extends FrameLayout {
      */
     public synchronized void setCustomer(final Customer customer) {
     	CheckBox chkBox = (CheckBox) (findViewById(R.id.cb_customer));
-//    	timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
+    	TextView name = (TextView) (findViewById(R.id.name));
     	
     	chkBox.setText(customer.getMaDoiTuong());
+    	name.setText(customer.getDoiTuong());
+    	
     	chkBox.setOnClickListener(new OnClickListener() {
         	 
       	  @Override
@@ -124,7 +126,12 @@ public final class DialogFeatureView extends FrameLayout {
       		}
       		else {
       			//Destroy
-      			Schedule_CalendarActivity.mTakeCustomersList.remove(customer);
+      			for(int i = 0; i < Schedule_CalendarActivity.mTakeCustomersList.size(); i++){
+      				if(Schedule_CalendarActivity.mTakeCustomersList.get(i).getMaKH() == customer.getMaDoiTuong()){
+      					Schedule_CalendarActivity.mTakeCustomersList.remove(i);
+      					break;
+      				}
+      			}
       			
       		}
        

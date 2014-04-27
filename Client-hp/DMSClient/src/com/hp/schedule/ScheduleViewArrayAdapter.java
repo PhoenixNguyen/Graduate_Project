@@ -2,6 +2,7 @@ package com.hp.schedule;
 
 //import com.hp.map.DetailsList;
 //import com.hp.map.FeatureView;
+import com.hp.domain.Schedule;
 import com.hp.map.R;
 import com.hp.map.R.layout;
 import com.hp.schedule.ListViewSchedules;
@@ -13,13 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class ScheduleViewArrayAdapter extends ArrayAdapter<ListViewSchedules>{
+public class ScheduleViewArrayAdapter extends ArrayAdapter<Schedule>{
 	private final Context context;
-	private final ListViewSchedules[] values;
+	private final Schedule[] values;
 	private final int resource;
 	
 	
-	public ScheduleViewArrayAdapter(Context pContext, int resource, ListViewSchedules[] pValues){
+	public ScheduleViewArrayAdapter(Context pContext, int resource, Schedule[] pValues){
 		super(pContext, resource, pValues);
 		this.context = pContext;
 		this.values = pValues;
@@ -33,11 +34,13 @@ public class ScheduleViewArrayAdapter extends ArrayAdapter<ListViewSchedules>{
         } else {
             featureView = new FeatureView(getContext());
         }
-
         
 
-        featureView.setTitleId(values[position].getId());
-        featureView.setDescriptionId(values[position].getTime().toString());
+        featureView.setCustomerID(values[position].getMaKH());
+        featureView.setTime(values[position].getTime() + "");
+        
+        featureView.setCustomerName(values[position].getTenKhachHang());
+        featureView.setStaffID("Nhân viên: " + values[position].getMaNV());
 
         return featureView;
 	}

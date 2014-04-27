@@ -16,7 +16,10 @@ import java.util.List;
  */
 public interface ScheduleDAO {
     public boolean saveOrUpdate(Schedule pSchedule);
-    public List<Schedule> getScheduleList(String pMaNV, String pDate);
+    
+    //if permission = 1 as admin get all data in the date
+    //if permission = 2 its normal
+    public List<Schedule> getScheduleList(String pMaNV, String pDate, int permission);
     
     public int deletechedule(String pID, String pDate);
     

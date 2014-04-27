@@ -68,7 +68,7 @@ public class LoginActivity extends Activity {
         mUsername = (EditText)findViewById(R.id.username);
         mUsername.setText("");//ba_dinh
         mPassword = (EditText)findViewById(R.id.password);
-        mPassword.setText("");
+        mPassword.setText("111111");
         
         Button btnLogin = (Button)findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {

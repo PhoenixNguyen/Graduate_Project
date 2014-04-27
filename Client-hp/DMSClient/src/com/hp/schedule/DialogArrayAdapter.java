@@ -1,5 +1,8 @@
 package com.hp.schedule;
 
+import com.hp.domain.Customer;
+
+import android.app.ListActivity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class DialogArrayAdapter extends ArrayAdapter<String>{
+public class DialogArrayAdapter extends ArrayAdapter<Customer>{
 	private final Context context;
-	private final String[] values;
+	private final Customer[] values;
 	private final int resource;
 	
-	public DialogArrayAdapter(Context pContext, int resource, String[] pValues){
+	public DialogArrayAdapter(Context pContext, int resource, Customer[] pValues){
 		super(pContext, resource, pValues);
 		//Reset list
 //		Schedule_CalendarActivity.mTakeCustomersList.clear();
@@ -32,7 +35,7 @@ public class DialogArrayAdapter extends ArrayAdapter<String>{
 
         
 
-        featureView.setTitleId(values[position]);
+        featureView.setCustomer(values[position]);
 
         return featureView;
 	}

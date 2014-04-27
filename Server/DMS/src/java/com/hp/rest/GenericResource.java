@@ -299,7 +299,10 @@ public class GenericResource {
         ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
         List<Schedule> scheduleList = new ArrayList<Schedule>();
 
-        scheduleList = scheduleDAO.getScheduleList(staff, date);
+        //Check is Admin (manager)
+        StaffDAO staffDAO = new StaffDAOImpl();
+        
+        scheduleList = scheduleDAO.getScheduleList(staff, date, staffDAO.adminAuthenticate(staff));
         
 //        Schedule sc = new Schedule();
 //        sc.setMMaKH("fdfd");
@@ -376,11 +379,13 @@ public class GenericResource {
         
         //Update location
         ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
+        int temp = 0;
         for(int i = 0; i< schedulesList.size(); i++){
-            scheduleDAO.saveOrUpdate(schedulesList.get(i));
+            if(scheduleDAO.saveOrUpdate(schedulesList.get(i)))
+                temp++;
         }
             
-            return Response.status(200).entity(pSchedule).build();
+            return Response.status(200).entity(temp+"").build();
     }
     
     @POST

@@ -19,6 +19,10 @@ public interface StaffDAO {
     //authenticate staff
     public Staff authenticate(String pUsername, String pPassword);
     
+    //authenticate staff is admin?
+    public int adminAuthenticate(String pUsername);
+    
+    
     //getList staff objects
     public List<Staff> getListStaff();
     public Staff loadStaff(int pID);

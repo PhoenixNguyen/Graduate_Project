@@ -14,6 +14,15 @@ public class Staff {
     private Date date;
     private String manager;
     private boolean status;
+    private Integer permission;
+
+    public Integer getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Integer permission) {
+        this.permission = permission;
+    }
     
     
     public Integer getStt() {

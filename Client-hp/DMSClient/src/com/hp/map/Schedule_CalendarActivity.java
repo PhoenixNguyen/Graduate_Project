@@ -87,7 +87,9 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 	final Context context = this;
 		
 	//take customers
-	public static Map<String, Timestamp> mTakeCustomersList = new HashMap<String, Timestamp>();
+	//public static Map<String, Timestamp> mTakeCustomersList = new HashMap<String, Timestamp>();
+	public static List<Schedule> mTakeCustomersList = new ArrayList<Schedule>();
+	
 	public static String mTakeTheDate = new String();
 	
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -247,20 +249,23 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 						e.printStackTrace();
 					}
 					
-					String[] scheduleIDList = new String[]{};
-					ListViewSchedules[] listV = new ListViewSchedules[]{};
+					//String[] scheduleIDList = new String[]{};
+					Schedule[] listV = new Schedule[]{};
 					
 					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					for(int i = 0; i < schedule.size(); i++){
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(schedule.get(i).getTime());
 						cal.add(Calendar.HOUR, -7);
-						System.out.println("-____- " +dateFormat.format(cal.getTime()));
-											  
-						scheduleIDList = append(scheduleIDList, schedule.get(i).getMaKH());
-						listV = append(listV, new ListViewSchedules(schedule.get(i).getMaKH()
-								, dateFormat.format(cal.getTime()) ));
+						schedule.get(i).setTime(Timestamp.valueOf(dateFormat.format(cal.getTime())));
 						
+//						System.out.println("-____- " +dateFormat.format(cal.getTime()));
+//											  
+//						scheduleIDList = append(scheduleIDList, schedule.get(i).getMaKH());
+						listV = append(listV, schedule.get(i));
+						
+						//new ListViewSchedules(schedule.get(i).getMaKH()
+						//, schedule.get(i).get, dateFormat.format(cal.getTime()) )
 					}
 					String[] PRODUCT = 
 							new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
@@ -274,7 +279,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 					     @Override
 					     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
 					     {
-					    	 ListViewSchedules selectedValue = (ListViewSchedules) listView.getAdapter().getItem(position);
+					    	 Schedule selectedValue = (Schedule) listView.getAdapter().getItem(position);
 					    	 addCustomerDialog(selectedValue);
 	//				    	 
 	//				          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
@@ -288,8 +293,8 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		        {
 		        	
 		        	
-		        	ListViewSchedules[] listV = new ListViewSchedules[]{
-		        			new ListViewSchedules("NOT SET", "00-00-00 00:00:00")};
+		        	Schedule[] listV = new Schedule[]{
+		        			new Schedule("", "NOT SET", Timestamp.valueOf("0000-00-00 00:00:00"), false, "", "")};
 		        	listView.setAdapter(new ScheduleViewArrayAdapter(context, android.R.layout.simple_list_item_1, listV));
 		        	listView.setEnabled(false);
 		        }
@@ -299,7 +304,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		});
 	}
 
-	public void addCustomerDialog(final ListViewSchedules selectedValue){
+	public void addCustomerDialog(final Schedule selectedValue){
 		final Dialog dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
@@ -314,7 +319,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 			public void onClick(View v) {
 				// show the map
 				Intent t = new Intent(context, CustomerMapActivity.class);
-		        t.putExtra("POSITION_CLICK", selectedValue.getId());
+		        t.putExtra("POSITION_CLICK", selectedValue.getMaKH());
 		        
 		        startActivity(t);
 		        
@@ -339,19 +344,19 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 					return;
 				}
 				
-				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				Date date = null;
-				try {
-					date = sdf.parse(selectedValue.getTime());
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				System.out.println("_date: "+ sdf.format(date));
+//				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//				Date date = null;
+//				try {
+//					date = sdf.parse(selectedValue.getTime().toString());
+//				} catch (ParseException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				
+//				System.out.println("_date: "+ sdf.format(date));
 //				//Post
 				ClientResponse response = Rest.mService.path("webresources").path("deleteSchedule").accept("application/json")
-						.type("application/json").post(ClientResponse.class, selectedValue.getId()+"::"+sdf.format(date));
+						.type("application/json").post(ClientResponse.class, selectedValue.getMaKH()+"::"+selectedValue.getTime().toString());
 						
 				if (response.getStatus() != 200) {
 		            throw new RuntimeException("Failed : HTTP error code : "
@@ -366,12 +371,12 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		        System.out.println("Server response .... \n");
 		        System.out.println(output);
 		        
-		        if(output.compareTo("status:1") == 0){
-		        	Toast.makeText(context, "Đã xóa!", Toast.LENGTH_SHORT).show();
+		        if(output.compareTo("status:0") == 0){
+		        	Toast.makeText(context, "Không thể xóa, hãy thử lại sau!", Toast.LENGTH_SHORT).show();
 		        	
 		        }
 		        else
-		        	Toast.makeText(context, "Xóa lỗi!", Toast.LENGTH_SHORT).show();
+		        	Toast.makeText(context, "Đã xóa!", Toast.LENGTH_SHORT).show();
 		        
 				dialog.dismiss();
 			}
@@ -403,7 +408,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		//Get customers list for staff and not have the schedule ========================================
 		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListSchedule")
 				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, Rest.customerList.get(0).getMaNhanVien() +"::"+pDate);
+				.type("application/json").post(ClientResponse.class, Rest.mStaff.getId() +"::"+pDate);
         System.out.println("________________ "+ response.toString());
         if(response.getStatus() != 200){
         	dialog.dismiss();
@@ -415,10 +420,10 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
         
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
-        List<Customer> schedule = null;
+        List<Customer> customerList = null;
 		try {
 //			File jsonFile = new File(jsonFilePath);
-			schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+			customerList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
 					Customer.class));
 			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
 		} catch (JsonGenerationException e) {
@@ -430,17 +435,17 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		String[] customer = new String[]{};
+		Customer[] customerArray = new Customer[]{};
 		
-		for(int i = 0; i < schedule.size(); i++){
-			customer = append(customer, schedule.get(i).getMaDoiTuong());
+		for(int i = 0; i < customerList.size(); i++){
+			customerArray = append(customerArray, customerList.get(i));
 			
 		}
 		String[] PRODUCT = 
 				new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
 								"Apple", "Avocado","Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
 		//ListView listViewCus = (ListView)findViewById(R.id.list_view_cus);
-		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, customer));
+		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, customerArray));
 		
 		listViewCus.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -456,6 +461,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 		});
 		
 		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		dialogButton.setText("Gửi");
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -471,26 +477,27 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				}
 				
 				// get map
-				System.out.println("__MAP__");
-				List<Schedule> scheduleList = new ArrayList<Schedule>();
-				for(String key : mTakeCustomersList.keySet()){
-					Timestamp value = mTakeCustomersList.get(key);
-					Schedule schedule = new Schedule(Rest.customerList.get(0).getMaNhanVien()
-							, key
-							, value
-							, false);
-					
-					scheduleList.add(schedule);
-					System.out.println(key + " ___ " + value);
-					
-				}
+//				System.out.println("__MAP__");
+//				List<Schedule> scheduleList = new ArrayList<Schedule>();
+//				for(String key : mTakeCustomersList.keySet()){
+//					Timestamp value = mTakeCustomersList.get(key);
+//					Schedule schedule = new Schedule(Rest.mStaff.getId()
+//							, key
+//							, value
+//							, true
+//							, key.);
+//					
+//					scheduleList.add(schedule);
+//					System.out.println(key + " ___ " + value);
+//					
+//				}
 				//================= put in server======================================
 				ObjectMapper mapper = new ObjectMapper();
 		        String listStr = new String();
 
 				try {
 
-					listStr = mapper.writeValueAsString(scheduleList);
+					listStr = mapper.writeValueAsString(mTakeCustomersList);
 					
 				} catch (JsonGenerationException ex) {
 
@@ -511,16 +518,33 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 						.type("application/json").post(ClientResponse.class, listStr);
 						
 				if (response.getStatus() != 200) {
-		            throw new RuntimeException("Failed : HTTP error code : "
-		                    + response.getStatus());
+					Toast.makeText(context, "Lỗi. Hãy thử lại sau!", Toast.LENGTH_SHORT).show();
+					return;
 		        }
-		        String output = response.toString();
+		        String output = response.getEntity(String.class);
 		        System.out.println("Server response .... \n");
 		        System.out.println(output);
+		        
+		        if(output.compareTo("0") != 0){
+		        	Toast.makeText(context, "Đã lên lịch!", Toast.LENGTH_SHORT).show();
+		        	
+		        }
+		        else
+		        	Toast.makeText(context, "Giá trị trống", Toast.LENGTH_SHORT).show();
 		        
 				/////==================================================================
 				//destroy
 				Schedule_CalendarActivity.mTakeCustomersList.clear();
+				dialog.dismiss();
+			}
+		});
+		
+		Button dialogNOButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		dialogNOButton.setText("Hủy");
+		// if button is clicked, close the custom dialog
+		dialogNOButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});

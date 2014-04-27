@@ -33,6 +33,25 @@ public class Schedule {
     private Timestamp time;
     private boolean status;
 
+    private String tenKhachHang;
+    private String tenNhanVien;
+
+    public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
+    public String getTenNhanVien() {
+        return tenNhanVien;
+    }
+
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
+    }
+    
     public int getStt() {
         return stt;
     }
@@ -75,12 +94,16 @@ public class Schedule {
     
 
     @SuppressWarnings("deprecation")
-	public Schedule(String pMaNV, String pMaKH, Timestamp pDate, boolean pStatus){
+	public Schedule(String pMaNV, String pMaKH, Timestamp pDate, boolean pStatus, 
+			String tenKhachHang, String tenNhanVien){
     	this.maNV = pMaNV;
     	this.maKH = pMaKH;
     	this.status = pStatus;
     	    	
     	this.time = pDate;
+    	
+    	this.tenKhachHang = tenKhachHang;
+    	this.tenNhanVien = tenNhanVien;
     }
     
     public Schedule(){

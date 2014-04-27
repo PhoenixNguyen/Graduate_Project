@@ -40,6 +40,27 @@ public class Schedule {
     @Column(name="schedule_trang_thai")
     private boolean status;
 
+    @Column(name="schedule_ten_khach_hang")
+    private String tenKhachHang;
+    @Column(name="schedule_ten_nhan_vien")
+    private String tenNhanVien;
+
+    public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
+    public String getTenNhanVien() {
+        return tenNhanVien;
+    }
+
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
+    }
+    
     public int getStt() {
         return stt;
     }

@@ -20,11 +20,16 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import com.hp.domain.Customer;
+import com.hp.domain.Schedule;
 import com.hp.map.R;
 import com.hp.map.Schedule_CalendarActivity;
+import com.hp.rest.Rest;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -61,11 +66,11 @@ public final class DialogFeatureView extends FrameLayout {
      *
      * @param titleId the resource id of the title of the demo
      */
-    public synchronized void setTitleId(final String titleId) {
+    public synchronized void setCustomer(final Customer customer) {
     	CheckBox chkBox = (CheckBox) (findViewById(R.id.cb_customer));
 //    	timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
     	
-    	chkBox.setText(titleId);
+    	chkBox.setText(customer.getMaDoiTuong());
     	chkBox.setOnClickListener(new OnClickListener() {
         	 
       	  @Override
@@ -78,21 +83,31 @@ public final class DialogFeatureView extends FrameLayout {
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                	int t = 0;
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        System.out.println( selectedHour + ":" + selectedMinute);
-                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        
-                        String time = Schedule_CalendarActivity.mTakeTheDate +" "+selectedHour + ":" + selectedMinute + ":00";
-                        System.out.println(time);
-                        Date datetime = null;
-                        try {
-							datetime = dateFormat.parse(time);
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-                        Schedule_CalendarActivity.mTakeCustomersList.put(titleId, Timestamp.valueOf(dateFormat.format(datetime)));
+                    	//Ignore first times
+                    	if(t == 1){
+	                        System.out.println( selectedHour + ":" + selectedMinute);
+	                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	                        
+	                        String time = Schedule_CalendarActivity.mTakeTheDate +" "+selectedHour + ":" + selectedMinute + ":00";
+	                        System.out.println(time);
+	                        Date datetime = null;
+	                        try {
+								datetime = dateFormat.parse(time);
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+	                        
+	                        Schedule schedule = new Schedule(Rest.mStaff.getId(), customer.getMaDoiTuong(), Timestamp.valueOf(dateFormat.format(datetime))
+	                        		, true, customer.getDoiTuong(), Rest.mStaff.getName());
+	                        
+	                        Schedule_CalendarActivity.mTakeCustomersList.add(schedule);
+                    	}
+                    	t++;
+                        //Schedule_CalendarActivity.mTakeCustomersList.put(titleId, Timestamp.valueOf(dateFormat.format(datetime)));
                         
 //                        for(String key : Schedule_CalendarActivity.mTakeCustomersList.keySet()){
 //        					Timestamp value = Schedule_CalendarActivity.mTakeCustomersList.get(key);
@@ -109,7 +124,8 @@ public final class DialogFeatureView extends FrameLayout {
       		}
       		else {
       			//Destroy
-      			Schedule_CalendarActivity.mTakeCustomersList.remove(titleId);
+      			Schedule_CalendarActivity.mTakeCustomersList.remove(customer);
+      			
       		}
        
       	  }

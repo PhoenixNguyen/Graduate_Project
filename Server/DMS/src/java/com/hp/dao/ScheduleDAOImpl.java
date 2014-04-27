@@ -45,7 +45,7 @@ public class ScheduleDAOImpl implements ScheduleDAO{
     }
     
     @Override
-    public List<Schedule> getScheduleList(String pMaNV, String pDate){
+    public List<Schedule> getScheduleList(String pMaNV, String pDate, int permission){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
@@ -55,9 +55,15 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         try{
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = sdf.parse(pDate);
-            String str = "from Schedule where lower(maNV)='"+pMaNV.toLowerCase()+"' and time BETWEEN '"
-                    + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') "
-                    + "order by time ";
+            String str;
+            if(permission == 1)
+                str = "from Schedule where time BETWEEN '"
+                        + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') "
+                        + "order by maNV, time ";
+            else
+                str = "from Schedule where lower(maNV)='"+pMaNV.toLowerCase()+"' and time BETWEEN '"
+                        + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') "
+                        + "order by time ";
             
             courses = session.createQuery(str).list();
 //            query.setString(0, pMaNV);

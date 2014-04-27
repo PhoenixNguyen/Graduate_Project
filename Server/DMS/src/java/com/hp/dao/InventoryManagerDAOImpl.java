@@ -62,14 +62,18 @@ public class InventoryManagerDAOImpl implements InventoryManagerDAO{
         return courses;
     }
     
-    public List<InventoryManager> getInventoryManagersList(String pStaff){
+    public List<InventoryManager> getInventoryManagersList(String pStaff, int pPermission){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
         
         List<InventoryManager> courses = null;
         try{
-                courses = session.createQuery("from InventoryManager where creater='"+pStaff+"' order by takeOrderDate desc").list();
+            if(pPermission == 1)
+                courses = session.createQuery("from InventoryManager order by creater, takeOrderDate desc").list();
+            else
+                if(pPermission == 2)
+                    courses = session.createQuery("from InventoryManager where creater='"+pStaff+"' order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();

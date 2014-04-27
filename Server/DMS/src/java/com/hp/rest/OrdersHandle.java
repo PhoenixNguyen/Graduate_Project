@@ -24,6 +24,8 @@ import com.hp.dao.SaleOrderDAO;
 import com.hp.dao.SaleOrderDAOImpl;
 import com.hp.dao.SaleOrderDetailDAO;
 import com.hp.dao.SaleOrderDetailDAOImpl;
+import com.hp.dao.StaffDAO;
+import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.StockDAO;
 import com.hp.dao.StockDAOImpl;
 import com.hp.dao.TakeOrderDAO;
@@ -418,7 +420,11 @@ public class OrdersHandle {
         List<InventoryManager> list = new ArrayList<InventoryManager>();
         
         InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
-        list = inventoryManagerDAO.getInventoryManagersList(pData);
+        
+        //Check is Admin (manager)
+        StaffDAO staffDAO = new StaffDAOImpl();
+        
+        list = inventoryManagerDAO.getInventoryManagersList(pData, staffDAO.adminAuthenticate(pData));
         
         return list;
         

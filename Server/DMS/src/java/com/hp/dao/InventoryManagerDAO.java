@@ -21,7 +21,7 @@ public interface InventoryManagerDAO {
     public InventoryManager getInventoryManager(int pInventoryManager);
     public boolean update(InventoryManager pInventoryManager);
     
-    public List<InventoryManager> getInventoryManagersList(String pStaff);
+    public List<InventoryManager> getInventoryManagersList(String pStaff, int pPermission);
     public List<InventoryManager> getInventoryManagersList(String pStaff, String pFrom, String pTo);
     
     public InventoryManager getInventoryManager(String pID);

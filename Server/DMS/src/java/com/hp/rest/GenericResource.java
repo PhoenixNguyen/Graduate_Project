@@ -351,7 +351,10 @@ public class GenericResource {
         CustomerDAO customerDAO = new CustomerDAOImpl();
         List<Customer> customerList = new ArrayList<Customer>();
 
-        customerList = customerDAO.getListCustomerSchedule(staff, date);
+        //Check is Admin (manager)
+        StaffDAO staffDAO = new StaffDAOImpl();
+        
+        customerList = customerDAO.getListCustomerSchedule(staff, date, staffDAO.adminAuthenticate(staff));
 
         return customerList;
     }
@@ -415,7 +418,10 @@ public class GenericResource {
         CustomerDAO customerDAO = new CustomerDAOImpl();
         List<Customer> customerList = new ArrayList<Customer>();
 
-        customerList = customerDAO.getListCustomers(pStaff);
+        //Check is Admin (manager)
+        StaffDAO staffDAO = new StaffDAOImpl();
+        
+        customerList = customerDAO.getListCustomers(pStaff, staffDAO.adminAuthenticate(pStaff));
         return customerList;
     }
     

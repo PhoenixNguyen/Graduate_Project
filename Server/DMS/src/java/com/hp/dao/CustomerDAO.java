@@ -20,7 +20,7 @@ public interface CustomerDAO {
     public boolean update(Customer pCustomer);
     public boolean delete(Customer pCustomer);
     
-    public List<Customer> getListCustomers(String pStaff);
+    public List<Customer> getListCustomers(String pStaff, int pPermission);
             
     public List<Customer> loadCustomersWithLocations();
     //and hava all sales man of manager
@@ -32,7 +32,7 @@ public interface CustomerDAO {
     public int update(String pID, float pX, float pY);
     
     //get list for schedule (services)
-    public List<Customer> getListCustomerSchedule(String pStaff, String pDate);
+    public List<Customer> getListCustomerSchedule(String pStaff, String pDate, int pPermission);
     
     //For MAP schedule
     public List<Customer> loadCustomersWithLocationsForSchedule();

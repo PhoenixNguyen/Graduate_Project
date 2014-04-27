@@ -87,18 +87,19 @@ public class CustomerDAOImpl implements CustomerDAO {
         return true;
     }
     
-    public List<Customer> getListCustomers(String pStaff){
+    public List<Customer> getListCustomers(String pStaff, int pPermission){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
         
         List<Customer> courses = null;
         try{
-            if(pStaff == null)
+            if(pPermission == 1)
                 courses = session.createQuery("from Customer order by maDoiTuong  ").list(); 
             else
-                courses = session.createQuery("from Customer where  " 
-                        + " maNhanVien='"+pStaff+"' order by maDoiTuong ").list(); 
+                if(pPermission == 2)
+                    courses = session.createQuery("from Customer where  " 
+                            + " maNhanVien='"+pStaff+"' order by maDoiTuong ").list(); 
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -218,7 +219,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
     
     //list customer for schedule
-    public List<Customer> getListCustomerSchedule(String pStaff, String pDate){
+    public List<Customer> getListCustomerSchedule(String pStaff, String pDate, int pPermission){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
@@ -227,14 +228,24 @@ public class CustomerDAOImpl implements CustomerDAO {
         try{
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = sdf.parse(pDate);
-            String str = "select cus1.* from tb_khachhang as cus1 where lower(cus1.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
-                    + " Except "
-                    + "(select cus.* from tb_khachhang as cus, tb_schedule as sc "
-                    + "where cus.khachhang_ma_dt = sc.schedule_ma_khach_hang "
-                    + "and lower(cus.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
-                    + "and sc.schedule_date BETWEEN '"
-                    + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') )";
-                    
+            String str = "";
+            if(pPermission == 1)
+                str = "select cus1.* from tb_khachhang as cus1  "
+                        + " Except "
+                        + "(select cus.* from tb_khachhang as cus, tb_schedule as sc "
+                        + "where cus.khachhang_ma_dt = sc.schedule_ma_khach_hang "
+                        
+                        + " and sc.schedule_date BETWEEN '"
+                        + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') )";
+            else  
+            if(pPermission == 2)
+                str = "select cus1.* from tb_khachhang as cus1 where lower(cus1.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
+                        + " Except "
+                        + "(select cus.* from tb_khachhang as cus, tb_schedule as sc "
+                        + "where cus.khachhang_ma_dt = sc.schedule_ma_khach_hang "
+                        + "and lower(cus.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
+                        + "and sc.schedule_date BETWEEN '"
+                        + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') )";      
             
             courses = session.createSQLQuery(str).addEntity(Customer.class).list();
     

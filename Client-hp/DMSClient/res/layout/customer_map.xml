@@ -107,12 +107,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+          android:id="@+id/send_location"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="0.5"
           android:onClick="onSendDemo"
           android:text="@string/send_demo"
-          android:visibility="visible"
+          android:visibility="gone"
           />
         
         <Button

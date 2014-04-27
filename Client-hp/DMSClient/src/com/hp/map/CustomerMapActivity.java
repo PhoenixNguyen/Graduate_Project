@@ -165,6 +165,10 @@ public class CustomerMapActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_map);
 
+        Button sendLocation = (Button)findViewById(R.id.send_location);
+        if(Rest.mStaff.getPermission() == 1)
+        	sendLocation.setVisibility(View.VISIBLE);
+        
         //getActionBar().setDisplayHomeAsUpEnabled(true);
 //        getActionBar().setHomeButtonEnabled(true);
 //        getActionBar().setIcon(R.drawable.ic_drawer);
@@ -531,6 +535,8 @@ public class CustomerMapActivity extends FragmentActivity
 
     /** Called when the sendDemo button is clicked. */
     public void onSendDemo(View view) {
+    	
+    	
     	//check network
     	if(isOnline()){
 			System.out.println("Internet access!!____________________");

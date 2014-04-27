@@ -8,6 +8,8 @@ package com.hp.rest;
 
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
+import com.hp.dao.CustomerImageDAO;
+import com.hp.dao.CustomerImageDAOImpl;
 import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
 import com.hp.dao.ProviderDAO;
@@ -24,6 +26,7 @@ import com.hp.dao.TakeOrderDetailDAO;
 import com.hp.dao.TakeOrderDetailDAOImpl;
 import com.hp.datahandle.DataConvert;
 import com.hp.domain.Customer;
+import com.hp.domain.CustomerImage;
 import com.hp.domain.DataInfo;
 import com.hp.domain.Product;
 import com.hp.domain.Provider;
@@ -578,6 +581,8 @@ public class GenericResource {
         }
         
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
         Date today = new Date();
         
         String name = data.getNhanVien() +"-"+ df.format(today) +"-"
@@ -600,8 +605,20 @@ public class GenericResource {
         //Save
         saveImage(data.getNoiDung(), (path + "/" + data.getKhachHang()+"/"+ name) );
         
+        //Save in database
+        CustomerImageDAO customerImageDAO = new CustomerImageDAOImpl();
+        CustomerImage customerImage = new CustomerImage();
+        customerImage.setId(name);
+        customerImage.setName(name);
+        customerImage.setCustomerID(data.getKhachHang());
+        customerImage.setStaffID(data.getNhanVien());
+        customerImage.setTime(Timestamp.valueOf(df2.format(today)));
+        
+        
+        boolean status = customerImageDAO.saveOrUpdate(customerImage);
+        
 //            String output = pTrack.toString();
-            System.out.println("____ " + data.getNhanVien()+ "___ " + data.getKhachHang());
+            System.out.println( status + " ____ " + data.getNhanVien()+ "___ " + data.getKhachHang());
             return Response.status(200).entity("______ Success").build();
     }
     

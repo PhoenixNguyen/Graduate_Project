@@ -41,8 +41,9 @@ public class CustomerArrayAdapter extends ArrayAdapter<Customer>{
 
         Customer customer = getItem(position);
 
-        featureView.setTitleId(customer.getMaDoiTuong());
-        featureView.setDescriptionId(customer.getDoiTuong());
+        featureView.setCustomerID(customer.getMaDoiTuong());
+        featureView.setCustomerName(customer.getDoiTuong());
+        featureView.setStaff("Nhân viên quản lý: "+customer.getMaNhanVien());
 
         return featureView;
     }

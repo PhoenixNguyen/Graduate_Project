@@ -49,7 +49,7 @@ public class OrdersManagerArrayAdapter extends ArrayAdapter<TakeOrder>{
         featureView.setTitleId(values.get(position).getId());
         featureView.setDescriptionId(values.get(position).getCustomerName());
         featureView.setValue((new BigDecimal(values.get(position).getAfterPrivate())).toString());
-
+        featureView.setStaff("Người tạo: " + values.get(position).getCreater());
         
         return featureView;
 	}

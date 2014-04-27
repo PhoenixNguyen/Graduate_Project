@@ -533,7 +533,11 @@ public class GenericResource {
         List<TakeOrder> list = new ArrayList<TakeOrder>();
         
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
-        list = takeOrderDAO.getTakeOrdersList(pData);
+        
+        //Check is Admin (manager)
+        StaffDAO staffDAO = new StaffDAOImpl();
+        
+        list = takeOrderDAO.getTakeOrdersList(pData, staffDAO.adminAuthenticate(pData));
         
         return list;
         

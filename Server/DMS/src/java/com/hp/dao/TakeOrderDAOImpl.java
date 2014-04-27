@@ -62,14 +62,18 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         return courses;
     }
     
-    public List<TakeOrder> getTakeOrdersList(String pStaff){
+    public List<TakeOrder> getTakeOrdersList(String pStaff, int pPermission){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
         
         List<TakeOrder> courses = null;
         try{
-                courses = session.createQuery("from TakeOrder where creater='"+pStaff+"' order by takeOrderDate desc").list();
+            if(pPermission == 1)
+                courses = session.createQuery("from TakeOrder order by takeOrderDate desc").list();
+            else
+                if(pPermission == 2)
+                    courses = session.createQuery("from TakeOrder where creater='"+pStaff+"' order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();

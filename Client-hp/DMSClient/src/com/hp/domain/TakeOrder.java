@@ -206,7 +206,7 @@ public class TakeOrder {
     
     @Override
 	public String toString() {
-		return customerID +" "+ customerName;
+		return customerID +" "+ customerName + " " + creater;
 	}
     public TakeOrder(){
     	

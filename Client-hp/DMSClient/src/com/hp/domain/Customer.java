@@ -159,7 +159,7 @@ public class Customer {
 
 
     public String toString(){
-    	return maDoiTuong + " " + doiTuong;
+    	return maDoiTuong + " " + doiTuong + " " + maNhanVien;
     }
     
 

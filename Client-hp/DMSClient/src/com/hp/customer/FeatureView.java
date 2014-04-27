@@ -35,25 +35,21 @@ public final class FeatureView extends FrameLayout {
 
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutInflater.inflate(R.layout.feature, this);
+        layoutInflater.inflate(R.layout.customer_list_detail, this);
     }
 
-    /**
-     * Set the resource id of the title of the demo.
-     *
-     * @param titleId the resource id of the title of the demo
-     */
-    public synchronized void setTitleId(String titleId) {
-        ((TextView) (findViewById(R.id.title))).setText(titleId);
+    
+    public synchronized void setCustomerID(String id) {
+        ((TextView) (findViewById(R.id.title))).setText(id);
     }
 
-    /**
-     * Set the resource id of the description of the demo.
-     *
-     * @param descriptionId the resource id of the description of the demo
-     */
-    public synchronized void setDescriptionId(String descriptionId) {
-        ((TextView) (findViewById(R.id.description))).setText(descriptionId);
+    
+    public synchronized void setCustomerName(String name) {
+        ((TextView) (findViewById(R.id.description))).setText(name);
+    }
+    
+    public synchronized void setStaff(String staff) {
+        ((TextView) (findViewById(R.id.staff))).setText(staff);
     }
 
 }

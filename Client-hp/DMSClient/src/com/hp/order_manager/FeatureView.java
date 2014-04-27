@@ -60,5 +60,9 @@ public final class FeatureView extends FrameLayout {
     public synchronized void setValue(String value) {
         ((TextView) (findViewById(R.id.value))).setText(value);
     }
+    
+    public synchronized void setStaff(String value) {
+        ((TextView) (findViewById(R.id.staff))).setText(value);
+    }
 
 }

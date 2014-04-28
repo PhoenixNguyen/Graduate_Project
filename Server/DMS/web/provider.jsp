@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,7 +59,7 @@
                 <tr>
                     <td valign="top"><img src="themes/softed/images/vtiger-crm.gif" alt="HOSCO-MANAGEMENT" title="HOSCO-MANAGEMENT" border="0"></td>
                     <td width="100%" align="center">
-            <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo: Ngày 27/10. Bắt đầu làm đặc tả phần mềm cho MEDIC   </marquee>
+            <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo: </marquee>
 
         </td>
         <td class="small" nowrap="">
@@ -77,7 +78,7 @@
                         <!-- <td style="padding-left:10px;padding-right:10px" class=small nowrap> <a href="home.jsp?module=Users&action=DetailView&record=1&modechk=prefview">Thiết lập cá nhân</a></td>-->
                         <!-- <td style="padding-left:10px;padding-right:10px" class=small nowrap><a href="http://wiki.hosgroup.com.vn/home.jsp/Main_Page" target="_blank">Hướng dẫn sử dụng online</a></td> -->
 <!--                        <td style="padding-left:10px;padding-right:10px" class=small nowrap><a href="javascript:;" onClick="openwin();">Giới thiệu</a></td>-->
-                        <td style="padding-left:10px;padding-right:10px" class="small" nowrap=""> <a href="logout">Thoát</a> (admin)</td>
+                        <td style="padding-left:10px;padding-right:10px" class="small" nowrap=""> <a href="logout">Thoát</a> (<b><s:property value="#session['user_name']"/></b>)</td>
                     </tr>
                 </tbody></table>
         </td>
@@ -122,7 +123,7 @@
                     </tbody>
                 </table>
             </td>
-            <td align="right" style="padding-right:10px" nowrap="">
+<!--            <td align="right" style="padding-right:10px" nowrap="">
                 <table border="0" cellspacing="0" cellpadding="0" id="search" style="border:1px solid #999999;background-color:white">
                     <tbody>
                         <tr>
@@ -142,7 +143,7 @@
         </tr>
     </tbody>
 </table>
-</td>
+</td>-->
 
 </tr>
 </tbody>
@@ -155,13 +156,13 @@
                 <table border="0" cellspacing="0" cellpadding="0">
                     <tbody><tr>
 
-                            <td class="level2UnSelTab" nowrap=""> <a href="">Chiến dịch</a> </td>
-                            <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
+                            <td class="level2UnSelTab" nowrap=""> <a href=""></a> </td>
+<!--                            <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Liên hệ</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Webmails</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Đầu mối</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Lịch</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="">Tài liệu</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="">Tài liệu</a> </td>-->
                         </tr>
                     </tbody>
                 </table>
@@ -183,7 +184,7 @@
 <div class="drop_mnu" id="Marketing_sub" onmouseout="fnHideDrop('Marketing_sub')" onmouseover="fnShowDrop('Marketing_sub')" style="left: 143px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>-->
             <tr><td><a href="customer-list" class="drop_down">Khách hàng</a></td></tr>
             <tr><td><a href="map/showMap?page=0" class="drop_down">Vị trí</a></td></tr>
         </tbody>
@@ -192,7 +193,7 @@
 <div class="drop_mnu" id="Sales_sub" onmouseout="fnHideDrop('Sales_sub')" onmouseover="fnShowDrop('Sales_sub')" style="left: 244px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>-->
             <tr><td><a href="take-order" class="drop_down">Đặt hàng</a></td></tr>
         </tbody>
     </table>
@@ -217,10 +218,10 @@
         <tbody>
             <tr><td><a href="product-list" class="drop_down">Sản phẩm</a></td></tr>
             <tr><td><a href="provider-list" class="drop_down">Nhà cung cấp</a></td></tr>
-            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
             <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
             <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
-            <tr><td><a href="" class="drop_down">Báo giá</a></td></tr>
+            <tr><td><a href="" class="drop_down">Báo giá</a></td></tr>-->
 
         </tbody>
     </table>
@@ -241,7 +242,7 @@
                 <td><a href="" class="drop_down">Thiết lập</a></td>
             </tr>
             <tr>
-                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>
+<!--                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>-->
             </tr>
         </tbody>
     </table>
@@ -259,7 +260,7 @@
         <tr><td style="height:2px"></td></tr>
         <tr>
 
-            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Marketing &gt; <a class="hdrLink" href="">Khách hàng</a></td>
+            <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Nhà cung cấp &gt; <a class="hdrLink" href="">Nhà cung cấp</a></td>
             <td width="100%" nowrap="">
 
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -297,12 +298,12 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
-                                            <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
+                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu NCC" border="0"></a></td>  
+                                            <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu NCC" title="Xuất dữ liệu NCC" border="0"></a></td>
 
 
                                             <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>
+<!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                         </tr>
                                     </tbody></table>  
                             </td>
@@ -312,8 +313,8 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
+<!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
+                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -424,17 +425,17 @@
                                                     <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" id="row_7121" class="lvtColData">
                                                         <td width="2%"><input type="checkbox" name="selected_id" id="7121" value="7121" onclick="check_object(this)"></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">VEN15 <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="vendor_no" vtmodule="Vendors" style="display:none;"></span></td>
+                                                        <td onmouseover="">VEN15 <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="vendor_no" vtmodule="Vendors" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="index.php?module=Vendors&amp;parenttab=Inventory&amp;action=DetailView&amp;record=7121" title="Vendors">Chị Hương - FSViet</a> <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="vendorname" vtmodule="Vendors" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="index.php?module=Vendors&amp;parenttab=Inventory&amp;action=DetailView&amp;record=7121" title="Vendors">Chị Hương - FSViet</a> <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="vendorname" vtmodule="Vendors" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))">0987144786 <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="phone" vtmodule="Vendors" style="display:none;"></span></td>
+                                                        <td onmouseover="">0987144786 <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="phone" vtmodule="Vendors" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="javascript:InternalMailer(7121,279,'email','Vendors','record_id');"></a> <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="email" vtmodule="Vendors" style="display:none;"></span></td>
+                                                        <td onmouseover=""><a href="javascript:InternalMailer(7121,279,'email','Vendors','record_id');"></a> <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="email" vtmodule="Vendors" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"> <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="category" vtmodule="Vendors" style="display:none;"></span></td>
+                                                        <td onmouseover=""> <span type="vtlib_metainfo" vtrecordid="7121" vtfieldname="category" vtmodule="Vendors" style="display:none;"></span></td>
 
-                                                        <td onmouseover="vtlib_listview.trigger('cell.onmouseover', $(this))" onmouseout="vtlib_listview.trigger('cell.onmouseout', $(this))"><a href="index.php?module=Vendors&amp;action=EditView&amp;record=7121&amp;return_module=Vendors&amp;return_action=index&amp;parenttab=Inventory&amp;return_viewname=27">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DVendors%26action%3DDelete%26record%3D7121%26return_module%3DVendors%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D27")'>Xóa</a></td>
+                                                        <td onmouseover=""><a href="index.php?module=Vendors&amp;action=EditView&amp;record=7121&amp;return_module=Vendors&amp;return_action=index&amp;parenttab=Inventory&amp;return_viewname=27">Sửa</a>  | <a href='javascript:confirmdelete("index.php%3Fmodule%3DVendors%26action%3DDelete%26record%3D7121%26return_module%3DVendors%26return_action%3Dindex%26parenttab%3DInventory%26return_viewname%3D27")'>Xóa</a></td>
                                                     </tr>
                                                     
                                                 </tbody>

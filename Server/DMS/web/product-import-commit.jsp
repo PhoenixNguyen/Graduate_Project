@@ -123,7 +123,7 @@
                 <tr>
                     <td valign="top"><img src="themes/softed/images/vtiger-crm.gif" alt="HOSCO-MANAGEMENT" title="HOSCO-MANAGEMENT" border="0"></td>
                     <td width="100%" align="center">
-            <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo: Ngày 27/10. Bắt đầu làm đặc tả phần mềm cho MEDIC   </marquee>
+            <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo: </marquee>
 
         </td>
         <td class="small" nowrap="">
@@ -142,7 +142,7 @@
                         <!-- <td style="padding-left:10px;padding-right:10px" class=small nowrap> <a href="home.jsp?module=Users&action=DetailView&record=1&modechk=prefview">Thiết lập cá nhân</a></td>-->
                         <!-- <td style="padding-left:10px;padding-right:10px" class=small nowrap><a href="http://wiki.hosgroup.com.vn/home.jsp/Main_Page" target="_blank">Hướng dẫn sử dụng online</a></td> -->
 <!--                        <td style="padding-left:10px;padding-right:10px" class=small nowrap><a href="javascript:;" onClick="openwin();">Giới thiệu</a></td>-->
-                        <td style="padding-left:10px;padding-right:10px" class="small" nowrap=""> <a href="logout">Thoát</a> (admin)</td>
+                        <td style="padding-left:10px;padding-right:10px" class="small" nowrap=""> <a href="logout">Thoát</a> (<b><s:property value="#session['user_name']"/></b>)</td>
                     </tr>
                 </tbody></table>
         </td>
@@ -187,7 +187,7 @@
                     </tbody>
                 </table>
             </td>
-            <td align="right" style="padding-right:10px" nowrap="">
+<!--            <td align="right" style="padding-right:10px" nowrap="">
                 <table border="0" cellspacing="0" cellpadding="0" id="search" style="border:1px solid #999999;background-color:white">
                     <tbody>
                         <tr>
@@ -207,7 +207,7 @@
         </tr>
     </tbody>
 </table>
-</td>
+</td>-->
 
 </tr>
 </tbody>
@@ -220,13 +220,13 @@
                 <table border="0" cellspacing="0" cellpadding="0">
                     <tbody><tr>
 
-                            <td class="level2UnSelTab" nowrap=""> <a href="">Chiến dịch</a> </td>
-                            <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
+                            <td class="level2UnSelTab" nowrap=""> <a href=""></a> </td>
+<!--                            <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Liên hệ</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Webmails</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Đầu mối</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Lịch</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Documents&amp;action=index&amp;parenttab=">Tài liệu</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Documents&amp;action=index&amp;parenttab=">Tài liệu</a> </td>-->
                         </tr>
                     </tbody>
                 </table>
@@ -248,7 +248,7 @@
 <div class="drop_mnu" id="Marketing_sub" onmouseout="fnHideDrop('Marketing_sub')" onmouseover="fnShowDrop('Marketing_sub')" style="left: 143px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>-->
             <tr><td><a href="customer-list" class="drop_down">Khách hàng</a></td></tr>
             <tr><td><a href="map/showMap?page=0" class="drop_down">Vị trí</a></td></tr>
         </tbody>
@@ -257,7 +257,7 @@
 <div class="drop_mnu" id="Sales_sub" onmouseout="fnHideDrop('Sales_sub')" onmouseover="fnShowDrop('Sales_sub')" style="left: 244px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>-->
             <tr><td><a href="take-order" class="drop_down">Đặt hàng</a></td></tr>
         </tbody>
     </table>
@@ -282,10 +282,10 @@
         <tbody>
             <tr><td><a href="product-list" class="drop_down">Sản phẩm</a></td></tr>
             <tr><td><a href="provider-list" class="drop_down">Nhà cung cấp</a></td></tr>
-            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
             <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
             <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
-            <tr><td><a href="" class="drop_down">Báo giá</a></td></tr>
+            <tr><td><a href="" class="drop_down">Báo giá</a></td></tr>-->
 
         </tbody>
     </table>
@@ -306,7 +306,7 @@
                 <td><a href="" class="drop_down">Thiết lập</a></td>
             </tr>
             <tr>
-                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>
+<!--                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>-->
             </tr>
         </tbody>
     </table>

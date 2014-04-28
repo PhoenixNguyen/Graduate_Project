@@ -96,7 +96,7 @@
                 <tr>
                     <td valign="top"><img src="themes/softed/images/vtiger-crm.gif" alt="HOSCO-MANAGEMENT" title="HOSCO-MANAGEMENT" border="0"></td>
                     <td width="100%" align="center">
-            <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo: Ngày 27/10. Bắt đầu làm đặc tả phần mềm cho MEDIC   </marquee>
+            <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo:  </marquee>
 
         </td>
         <td class="small" nowrap="">
@@ -115,7 +115,7 @@
                         <!-- <td style="padding-left:10px;padding-right:10px" class=small nowrap> <a href="home.jsp?module=Users&action=DetailView&record=1&modechk=prefview">Thiết lập cá nhân</a></td>-->
                         <!-- <td style="padding-left:10px;padding-right:10px" class=small nowrap><a href="http://wiki.hosgroup.com.vn/home.jsp/Main_Page" target="_blank">Hướng dẫn sử dụng online</a></td> -->
 <!--                        <td style="padding-left:10px;padding-right:10px" class=small nowrap><a href="javascript:;" onClick="openwin();">Giới thiệu</a></td>-->
-                        <td style="padding-left:10px;padding-right:10px" class="small" nowrap=""> <a href="logout">Thoát</a> (admin)</td>
+                        <td style="padding-left:10px;padding-right:10px" class="small" nowrap=""> <a href="logout">Thoát</a> (<b><s:property value="#session['user_name']"/></b>)</td>
                     </tr>
                 </tbody></table>
         </td>
@@ -137,7 +137,7 @@
                     <tbody>
                         <tr>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
-                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                            <td class="tabUnSelected" onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                             <td class="tabUnSelected" onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                             <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -160,7 +160,7 @@
                     </tbody>
                 </table>
             </td>
-            <td align="right" style="padding-right:10px" nowrap="">
+<!--            <td align="right" style="padding-right:10px" nowrap="">
                 <table border="0" cellspacing="0" cellpadding="0" id="search" style="border:1px solid #999999;background-color:white">
                     <tbody>
                         <tr>
@@ -180,7 +180,7 @@
         </tr>
     </tbody>
 </table>
-</td>
+</td>-->
 
 </tr>
 </tbody>
@@ -193,13 +193,13 @@
                 <table border="0" cellspacing="0" cellpadding="0">
                     <tbody><tr>
 
-                            <td class="level2UnSelTab" nowrap=""> <a href="">Chiến dịch</a> </td>
-                            <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
+                            <td class="level2UnSelTab" nowrap=""> <a href=""></a> </td>
+<!--                            <td class="level2SelTab" nowrap=""><a href="">Khách hàng</a></td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Liên hệ</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Webmails</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Đầu mối</a> </td>
                             <td class="level2UnSelTab" nowrap=""> <a href="">Lịch</a> </td>
-                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Documents&amp;action=index&amp;parenttab=">Tài liệu</a> </td>
+                            <td class="level2UnSelTab" nowrap=""> <a href="home.jsp?module=Documents&amp;action=index&amp;parenttab=">Tài liệu</a> </td>-->
                         </tr>
                     </tbody>
                 </table>
@@ -221,7 +221,7 @@
 <div class="drop_mnu" id="Marketing_sub" onmouseout="fnHideDrop('Marketing_sub')" onmouseover="fnShowDrop('Marketing_sub')" style="left: 143px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Chiến dịch</a></td></tr>-->
             <tr><td><a href="customer-list" class="drop_down">Khách hàng</a></td></tr>
             <tr><td><a href="map/showMap?page=0" class="drop_down">Vị trí</a></td></tr>
         </tbody>
@@ -230,7 +230,7 @@
 <div class="drop_mnu" id="Sales_sub" onmouseout="fnHideDrop('Sales_sub')" onmouseover="fnShowDrop('Sales_sub')" style="left: 244px; top: 75px; display: none;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>-->
             <tr><td><a href="take-order" class="drop_down">Đặt hàng</a></td></tr>
         </tbody>
     </table>
@@ -255,10 +255,10 @@
         <tbody>
             <tr><td><a href="product-list" class="drop_down">Sản phẩm</a></td></tr>
             <tr><td><a href="provider-list" class="drop_down">Nhà cung cấp</a></td></tr>
-            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
+<!--            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
             <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
             <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>
-            <tr><td><a href="" class="drop_down">Báo giá</a></td></tr>
+            <tr><td><a href="" class="drop_down">Báo giá</a></td></tr>-->
 
         </tbody>
     </table>
@@ -279,7 +279,7 @@
                 <td><a href="" class="drop_down">Thiết lập</a></td>
             </tr>
             <tr>
-                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>
+<!--                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>-->
             </tr>
         </tbody>
     </table>
@@ -337,20 +337,20 @@
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
-                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
-                                            <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
+                                            <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Đặt hàng" title="Nhập dữ liệu Đặt hàng" border="0"></a></td>  
+                                            <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Đặt hàng" title="Xuất dữ liệu Đặt hàng" border="0"></a></td>
 
 
                                             <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
+<!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
                                                     mergeshowhide('mergeDup');
-                                                    searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>
+                                                    searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                         </tr>
                                     </tbody></table>  
                             </td>
                             <td style="width:20px;">&nbsp;</td>
-                            <td class="small">
-                                <!-- All Menu -->
+<!--                            <td class="small">
+                                 All Menu 
                                 <table border="0" cellspacing="0" cellpadding="5">
                                     <tbody>
                                         <tr>
@@ -359,7 +359,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </td>
+                            </td>-->
                         </tr>
                     </tbody>
                 </table>
@@ -1314,12 +1314,12 @@
 
                                             <!-- Module based actions starts -->
                                             <!-- SO Actions starts -->
-                                            <tr>
+<!--                                            <tr>
                                                 <td align="left" style="padding-left:10px;">
                                                     <a href="" class="webMnu"><img src="themes/images/actionGenerateInvoice.gif" hspace="5" align="absmiddle" border="0"></a>
                                                     <a href="" class="webMnu">Tạo Hóa đơn</a> 
                                                 </td>
-                                            </tr>
+                                            </tr>-->
                                             <!--
                                             <tr>
                                                  <td align="left" style="padding-left:10px;">
@@ -1350,11 +1350,11 @@
 
                                             <!-- Following condition is added to avoid the Tools section in Products and Vendors because we are not providing the Print and Email Now links throughout all the modules. when we provide these links we will remove this if condition -->
 
-                                            <tr>
+<!--                                            <tr>
                                                 <td align="left">
                                                     <span class="genHeaderSmall">Công cụ</span><br> 
                                                 </td>
-                                            </tr>
+                                            </tr>-->
 
 
 
@@ -1362,12 +1362,12 @@
                                             <!-- To display the Export To PDF link for PO, SO, Quotes and Invoice - starts -->
 
 
-                                            <tr>
+<!--                                            <tr>
                                                 <td align="left" style="padding-left:10px;">
                                                     <a href="" class="webMnu"><img src="themes/images/actionGeneratePDF.gif" hspace="5" align="absmiddle" border="0"></a>
                                                     <a href="" class="webMnu">Xuất ra Tập tin PDF</a>
                                                 </td>
-                                            </tr>
+                                            </tr>-->
 
                                             <!-- Added to give link to  send Invoice PDF through mail -->
 <!--                                            <tr>

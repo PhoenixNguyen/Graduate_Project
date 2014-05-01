@@ -811,15 +811,87 @@
             <result name="login" >index.jsp</result>
         </action>
         
-        <!--Not yet handle-->
-        
-        
-        
-        <action name="provider-list" method="redirect" class="com.hp.action.CustomerAction">
+        <!-- PROVIDER -->
+        <action name="provider-list" method="redirect" class="com.hp.action.ProviderAction">
             <result name="success">provider.jsp</result>
             <result name="input" >home.jsp</result>
             <result name="login" >index.jsp</result>
         </action>
+        
+        <action name="provider-detail" method="displayProvider" class="com.hp.action.ProviderAction">
+            <result name="success">provider-detail.jsp</result>
+            <result name="input" >provider.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="edit-provider" method="displayProvider" class="com.hp.action.ProviderAction">
+            <result name="success">provider-edit.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="update-provider" method="updateProvider" class="com.hp.action.ProviderAction">
+            <result name="success" type="redirect">provider-detail?id_pvd=${provider.serial}</result>
+            <result name="input" type="redirect">edit-provider?id_pvd=${provider.serial}</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="new-provider" method="redirect" class="com.hp.action.ProviderAction">
+            <result name="success">provider-add.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="save-provider" method="updateProvider" class="com.hp.action.ProviderAction">
+            <result name="success" type="redirect">provider-detail?id_pvd=${provider.serial}</result>
+            <result name="input" >provider-add.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="delete-provider" method="deleteProvider" class="com.hp.action.ProviderAction">
+            <result name="success" >provider.jsp</result>
+            <result name="input" >provider-detail.jsp?id_pvd=${provider.serial}</result>
+            <result name="login" >index.jsp</result>
+        </action>
+                
+        <action name="import-provider" method="redirect" class="com.hp.action.ProviderAction">
+            <result name="success">provider-import.jsp</result>
+            <result name="input" >provider-import.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="provider-template" method="getTemplate" class="com.hp.action.ProviderAction">
+            <result name="success" type="stream">
+                <param name="contentType">
+                    application/vnd.ms-excel
+                </param>
+                <param name="inputName">providerTemplate</param>
+                <param name="contentDisposition">attachment;filename=template_import_nha_cung_cap.xls</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="input" >provider-import.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="upload-provider" method="saveFile" class="com.hp.action.ProviderAction">
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    application/vnd.ms-excel
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            
+            <result name="success">provider-import-commit.jsp</result>
+            <result name="input" >provider-import-commit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="add-provider" method="addProviderFromExcelFile" class="com.hp.action.ProviderAction">
+            <result name="success" type="json" />
+            
+        </action>
+        
+        
     </package>
     
     

@@ -18,4 +18,10 @@ public interface ProviderDAO {
     public List<String> getProvidersIDList();
     
     public List<Provider> getProvidersList(String customerID);
+    
+    public Provider loadProvider(int pID);
+    
+    public boolean delete(Provider pProvider);
+    public boolean saveOrUpdate(Provider pProvider);
+    public boolean update(Provider pProvider);
 }

@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>admin - Tồn kho - Sản phẩm - Phần mềm quản lý HOSCO-MANAGEMENT</title>
+        <title>admin - Tồn kho - Nhà cung cấp - Phần mềm quản lý HOSCO-MANAGEMENT</title>
         <link rel="SHORTCUT ICON" href="themes/images/vtigercrm_icon.ico">	
         <style type="text/css">@import url("themes/softed/style.css");</style>
         <link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
@@ -55,7 +55,7 @@
                 if (status == "true")
                     alert("Xóa thành công");
                 else
-                    alert("Không thể xóa do sản phẩm đã được sử dụng cho nội dung khác");
+                    alert("Không thể xóa do Nhà cung cấp đã được sử dụng cho nội dung khác");
             }
         </script>
     </head>
@@ -72,7 +72,7 @@
                 <tr><td style="height:2px"></td></tr>
                 <tr>
 
-                    <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Tồn kho &gt; <a class="hdrLink" href="">Sản phẩm</a></td>
+                    <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Tồn kho &gt; <a class="hdrLink" href="">Nhà cung cấp</a></td>
                     <td width="100%" nowrap="">
 
                         <table border="0" cellspacing="0" cellpadding="0">
@@ -88,11 +88,11 @@
                                                         <table border="0" cellspacing="0" cellpadding="5">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="new-product"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Sản phẩm..." title="Tạo mới Sản phẩm..." border="0"></a></td>
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="new-provider"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Nhà cung cấp..." title="Tạo mới Nhà cung cấp..." border="0"></a></td>
 
                                                                     <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                                                                             searchshowhide('searchAcc', 'advSearch');
-                                                                            mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
+                                                                            mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Nhà cung cấp..." title="Tìm kiếm trong Nhà cung cấp..." border="0"></a></td>
 
                                                                 </tr>
                                                             </tbody>
@@ -112,8 +112,8 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-product"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Sản phẩm" title="Nhập dữ liệu Sản phẩm" border="0"></a></td>  
-                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" <!--onclick="return selectedRecords('Accounts', 'Marketing')"--><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Sản phẩm" title="Xuất dữ liệu Sản phẩm" border="0"></a></td>
+                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-product"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
+                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" <!--onclick="return selectedRecords('Accounts', 'Marketing')"--><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhà cung cấp" title="Xuất dữ liệu Nhà cung cấp" border="0"></a></td>
 
 
                                                     <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
@@ -159,7 +159,7 @@
                                 <tbody><tr>
                                         <td>
 
-                                            <span class="lvtHeaderText"><font color="purple">[ <s:property value="product.productID"/> ] </font><s:property value="product.productName"/> -  Sản phẩm Thông tin</span>&nbsp;&nbsp;&nbsp;
+                                            <span class="lvtHeaderText"><font color="purple">[ <s:property value="provider.id"/> ] </font><s:property value="provider.name"/> -  Thông tin nhà cung cấp</span>&nbsp;&nbsp;&nbsp;
                                             <span class="small">
                                                 <!--                                        Cập nhật 1084 ngày trước (22 Tháng 4 2011)-->
                                             </span>&nbsp;<span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span><span id="vtbusy_info" style="visibility:hidden;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>
@@ -176,17 +176,17 @@
                                                 <tbody><tr>
                                                         <td class="dvtTabCache" style="width:10px" nowrap="">&nbsp;</td>
 
-                                                        <td class="dvtSelectedCell" align="center" nowrap="">Sản phẩm Thông tin</td>	
+                                                        <td class="dvtSelectedCell" align="center" nowrap="">Thông tin nhà cung cấp</td>	
                                                         <td class="dvtTabCache" style="width:10px">&nbsp;</td>
                                                         <td class="dvtTabCache" align="right" style="width:100%">
                                                             <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="
-                                                                    javascript:window.location.href = 'edit-product?id_pdct=<s:property value="product.serial"/>';
+                                                                    javascript:window.location.href = 'edit-provider?id_pvd=<s:property value="provider.serial"/>';
                                                                     return false;
 
                                                                    " type="button" name="Edit" value="&nbsp;Sửa&nbsp;">&nbsp;
-                                                           
+     
                                                             <script>
-                                                                var str = "delete-product?id_pdct=<s:property value="product.serial"/>";
+                                                                var str = "delete-provider?id_pvd=<s:property value="provider.serial"/>";
                                                             </script>
                                                             <input title="Xóa [Alt+D]" accesskey="D" class="crmbutton small delete" onclick="
                                                                     confirmdelete('' + str);
@@ -234,7 +234,7 @@
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td colspan="4" class="dvInnerHeader"><div style="float:left;font-weight:bold;"><div style="float:left;"><a href="javascript:showHideStatus('tblThôngtinsảnphẩm','aidThôngtinsảnphẩm','themes/softed/images/');"><img id="aidThôngtinsảnphẩm" src="themes/images/activate.gif" style="border: 0px solid #000000;" alt="Hide" title="Hide"></a></div><b>&nbsp;Thông tin sản phẩm</b></div></td>
+                                                                                            <td colspan="4" class="dvInnerHeader"><div style="float:left;font-weight:bold;"><div style="float:left;"><a href="javascript:showHideStatus('tblThôngtinsảnphẩm','aidThôngtinsảnphẩm','themes/softed/images/');"><img id="aidThôngtinsảnphẩm" src="themes/images/activate.gif" style="border: 0px solid #000000;" alt="Hide" title="Hide"></a></div><b>&nbsp;Thông tin Nhà cung cấp</b></div></td>
                                                                                         </tr>
                                                                                     </tbody></table>
                                                                                 <div style="width:auto;display:block;" id="tblThôngtinsảnphẩm">
@@ -244,125 +244,68 @@
                                                                                             <tr style="height:25px">
 
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên sản phẩm</td>
+                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tên Nhà cung cấp</td>
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--TextBox-->
                                                                                                 <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên sản phẩm" onmouseover="hndMouseOver(2, 'Tên sản phẩm');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Tên sản phẩm"><s:property value="product.productName"/></span>
+                                                                                                    &nbsp;&nbsp;<span id="dtlview_Tên sản phẩm"><s:property value="provider.name"/></span>
 
                                                                                                 </td>
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã sản phẩm</td>
+                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã Nhà cung cấp</td>
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="product.productID"/></td>
+                                                                                                <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="provider.id"/></td>
                                                                                             </tr>	
                                                                                             <tr style="height:25px">
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã vạch</td>
+                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Địa chỉ</td>
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--CheckBox--> 
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Có bán sản phẩm" onmouseover="hndMouseOver(56, 'Có bán sản phẩm');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Có bán sản phẩm"><s:property value="product.barcode"/>&nbsp;</span>
+                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Có bán sản phẩm" onmouseover="hndMouseOver(56, 'Có bán sản phẩm');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Có bán sản phẩm"><s:property value="provider.address"/>&nbsp;</span>
                                                                                                 </td>    
 
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Thương hiệu</td>
+                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Điện thoại</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--TextBox-->
                                                                                                 <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Phần Số" onmouseover="hndMouseOver(1, 'Phần Số');" onmouseout="fnhide('crmspanid');" valign="top">
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Phần Số"><s:property value="product.brand"/></span>
+                                                                                                    &nbsp;&nbsp;<span id="dtlview_Phần Số"><s:property value="provider.phoneNumber"/></span>
 
                                                                                                 </td>
                                                                                             </tr>	
                                                                                             <tr style="height:25px">
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Xuất xứ</td>
+                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Fax</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày bắt đầu bán" onmouseover="hndMouseOver(5, 'Ngày bắt đầu bán');" onmouseout="fnhide('crmspanid');">
                                                                                                     &nbsp;&nbsp;<span id="dtlview_Ngày bắt đầu bán">
-                                                                                                        <s:property value="product.origin"/>
+                                                                                                        <s:property value="provider.fax"/>
                                                                                                     </span>
 
                                                                                                 </td>
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Nhà cung cấp</td>
+<!--                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Nhà cung cấp</td>
 
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--ComboBox-->
+                                                                                                 This file is used to display the fields based on the ui type in detailview 
+                                                                                                ComboBox
 
                                                                                                 <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Nhà sản xuất" onmouseover="hndMouseOver(15, 'Nhà sản xuất');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Nhà sản xuất"><font color=""><s:property value="product.provider"/></font></span>
 
-                                                                                                </td>
+                                                                                                </td>-->
                                                                                             </tr>	
-                                                                                            <tr style="height:25px">
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Loại sản phẩm</td>
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--ComboBox-->
-
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Loại sản phẩm" onmouseover="hndMouseOver(15, 'Loại sản phẩm');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Loại sản phẩm"><font color=""></font></span>
-
-                                                                                                </td>
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Thuế</td>
-
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày bắt đầu hỗ trợ" onmouseover="hndMouseOver(5, 'Ngày bắt đầu hỗ trợ');" onmouseout="fnhide('crmspanid');">
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Ngày bắt đầu hỗ trợ">
-                                                                                                        <s:property value="product.vatTax"/>
-                                                                                                    </span>
-
-                                                                                                </td>
-
-                                                                                            </tr>	
-                                                                                            <tr style="height:25px">
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá trước thuế</td>
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày kết thúc bán" onmouseover="hndMouseOver(5, 'Ngày kết thúc bán');" onmouseout="fnhide('crmspanid');">
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Ngày kết thúc bán">
-                                                                                                        <s:property value="product.importPrices"/>
-                                                                                                    </span>
-
-                                                                                                </td>
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá sau thuế</td>
-
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Ngày hết hạn hỗ trợ" onmouseover="hndMouseOver(5, 'Ngày hết hạn hỗ trợ');" onmouseout="fnhide('crmspanid');">
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Ngày hết hạn hỗ trợ">
-                                                                                                        <s:property value="product.exportPrices"/>
-                                                                                                    </span>
-
-                                                                                                </td>
-                                                                                            </tr>	
-                                                                                            <tr style="height:25px">
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Đơn vị</td>
-
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--VendorPopup-->
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên nhà cung cấp">&nbsp;
-                                                                                                    <s:property value="product.quantification"/>
-                                                                                                </td>
-
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Quy cách</td>
-
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--WebSite-->
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Website" onmouseover="hndMouseOver(17, 'Website');" onmouseout="fnhide('crmspanid');">&nbsp;
-                                                                                                    <span id="dtlview_Website"><s:property value="product.packingSpecifications"/></span>
-
-                                                                                                </td>
-                                                                                            </tr>	
+                                                                                            	
+                                                                                            	
 
 
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </div> <!-- Line added by SAKTI on 10th Apr, 2008 -->
+                                                                                
+                                                                                
+                                                                                
                                                                                 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                                     <tbody><tr>
                                                                                             <td>&nbsp;</td>
@@ -372,79 +315,7 @@
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td colspan="4" class="dvInnerHeader"><div style="float:left;font-weight:bold;"><div style="float:left;"><a href="javascript:showHideStatus('tblThôngtinGiácả','aidThôngtinGiácả','themes/softed/images/');"><img id="aidThôngtinGiácả" src="themes/images/activate.gif" style="border: 0px solid #000000;" alt="Hide" title="Hide"></a></div><b>&nbsp;Thông tin Giá cả</b></div></td>
-                                                                                        </tr>
-                                                                                    </tbody></table>
-                                                                                <div style="width:auto;display:block;" id="tblThôngtinGiácả">
-                                                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
-                                                                                        <tbody><tr style="height:25px">
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <!--CurrencySymbol-->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Giá bán (₫)</td>
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--TextBox-->
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Giá đơn vị" onmouseover="hndMouseOver(71, 'Giá đơn vị');" onmouseout="fnhide('crmspanid');" valign="top">
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Giá đơn vị"><s:property value="product.exportPrices"/></span>
-
-                                                                                                </td>
-
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Thuế (%)</td>
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--TextBox-->
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tiền hoa hồng" onmouseover="hndMouseOver(9, 'Tiền hoa hồng (%)');" onmouseout="fnhide('crmspanid');" valign="top">
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Tiền hoa hồng"><s:property value="product.vatTax"/></span>
-
-                                                                                                </td>
-                                                                                            </tr>	
-                                                                                            <!--                                                                                    <tr style="height:25px">
-                                                                                                                                                                                     Avoid to display the label Tax Class 
-                                                                                                                                                                                    <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">GTGT</td>
-                                                                                                                                                                                     This file is used to display the fields based on the ui type in detailview 
-                                                                                                                                                                                     Handle the Tax in Inventory 
-                                                                                            
-                                                                                                                                                                                </tr>	-->
-
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div> <!-- Line added by SAKTI on 10th Apr, 2008 -->
-
-                                                                                <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
-                                                                                    <tbody><tr>
-                                                                                            <td>&nbsp;</td>
-                                                                                            <td>&nbsp;</td>
-                                                                                            <td>&nbsp;</td>
-                                                                                            <td align="right">
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td colspan="4" class="dvInnerHeader"><div style="float:left;font-weight:bold;"><div style="float:left;"><a href="javascript:showHideStatus('tblThôngtinhìnhảnhsảnphẩm','aidThôngtinhìnhảnhsảnphẩm','themes/softed/images/');"><img id="aidThôngtinhìnhảnhsảnphẩm" src="themes/images/activate.gif" style="border: 0px solid #000000;" alt="Hide" title="Hide"></a></div><b>&nbsp;Thông tin hình ảnh sản phẩm</b></div></td>
-                                                                                        </tr>
-                                                                                    </tbody></table>
-                                                                                <div style="width:auto;display:block;" id="tblThôngtinhìnhảnhsảnphẩm">
-                                                                                    <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
-
-                                                                                        <tbody><tr style="height:25px">
-
-                                                                                                <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Hình ảnh sản phẩm</td>
-
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!-- for Image Reflection -->
-                                                                                                <td align="left" width="25%&quot;">&nbsp;</td>
-                                                                                            </tr>	
-                                                                                        </tbody></table>
-                                                                                </div> <!-- Line added by SAKTI on 10th Apr, 2008 -->
-                                                                                <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
-                                                                                    <tbody><tr>
-                                                                                            <td>&nbsp;</td>
-                                                                                            <td>&nbsp;</td>
-                                                                                            <td>&nbsp;</td>
-                                                                                            <td align="right">
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td colspan="4" class="dvInnerHeader"><div style="float:left;font-weight:bold;"><div style="float:left;"><a href="javascript:showHideStatus('tblThôngtinchitiết','aidThôngtinchitiết','themes/softed/images/');"><img id="aidThôngtinchitiết" src="themes/images/activate.gif" style="border: 0px solid #000000;" alt="Hide" title="Hide"></a></div><b>&nbsp;Thông tin chi tiết</b></div></td>
+                                                                                            <td colspan="4" class="dvInnerHeader"><div style="float:left;font-weight:bold;"><div style="float:left;"><a href="javascript:showHideStatus('tblThôngtinchitiết','aidThôngtinchitiết','themes/softed/images/');"><img id="aidThôngtinchitiết" src="themes/images/activate.gif" style="border: 0px solid #000000;" alt="Hide" title="Hide"></a></div><b>&nbsp;Ghi chú</b></div></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -452,7 +323,7 @@
                                                                                     <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                                         <tbody><tr style="height:25px">
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mô tả</td>
+                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ghi chú</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--TextArea/Description-->
@@ -460,7 +331,7 @@
                                                                                                 <!--  -->
                                                                                                 <!-- -->
                                                                                                 <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Mô tả" onmouseover="hndMouseOver(19, 'Mô tả');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Mô tả">
-                                                                                                        <s:property value="product.description"/>
+                                                                                                        <s:property value="provider.note"/>
                                                                                                     </span>
 
                                                                                                 </td>
@@ -490,7 +361,8 @@
 
 
                                                             <!-- Added this file to display the Inventory Actions based on the Inventory Modules -->
-                                                            <br><table width="100%" border="0" cellpadding="5" cellspacing="0">
+                                                            <br>
+                                                            <table width="100%" border="0" cellpadding="5" cellspacing="0">
                                                                 <tbody><tr>
                                                                         <td>&nbsp;</td>
                                                                     </tr>
@@ -548,7 +420,8 @@
                                                         </td>
                                                     </tr>
 
-                                                </tbody></table>
+                                                </tbody>
+                                            </table>
                                         </td>
                                     </tr>
                                     <tr>
@@ -557,11 +430,11 @@
                                                 <tbody><tr>
                                                         <td class="dvtTabCacheBottom" style="width:10px" nowrap="">&nbsp;</td>
 
-                                                        <td class="dvtSelectedCellBottom" align="center" nowrap="">Sản phẩm Thông tin</td>	
+                                                        <td class="dvtSelectedCellBottom" align="center" nowrap="">Thông tin Nhà cung cấp</td>	
                                                         <td class="dvtTabCacheBottom" style="width:10px">&nbsp;</td>
                                                         <td class="dvtTabCacheBottom" align="right" style="width:100%">
                                                             <input title="Sửa [Alt+E]" accesskey="E" class="crmbutton small edit" onclick="
-                                                                    javascript:window.location.href = 'edit-product?id_pdct=<s:property value="product.serial"/>';
+                                                                    javascript:window.location.href = 'edit-provider?id_pvd=<s:property value="provider.serial"/>';
                                                                     return false;
 
                                                                    " type="button" name="Edit" value="&nbsp;Sửa&nbsp;">&nbsp;
@@ -574,7 +447,8 @@
 
                                                         </td>
                                                     </tr>
-                                                </tbody></table>
+                                                </tbody>
+                                            </table>
                                         </td>
                                     </tr>
                                 </tbody></table>

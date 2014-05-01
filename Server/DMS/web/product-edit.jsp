@@ -173,9 +173,7 @@
                                                                                                 <div align="center">
                                                                                                     <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
                                                                                                             document.getElementById('sub_form').submit();
-//                                                                                                    this.form.action.value = 'Save';
-//                                                                                                    displaydeleted();
-//                                                                                                    return validateInventory('Products')
+
                                                                                                            " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="Hủy bỏ  " style="width:70px">
                                                                                                 </div>

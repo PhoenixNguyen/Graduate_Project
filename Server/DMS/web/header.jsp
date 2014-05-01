@@ -19,6 +19,8 @@
         <a name="top"></a>
         
         <!-- header-vtiger crm name & RSS -->
+        <script language="JavaScript" type="text/javascript" src="js/admin/jquery.min.js"></script>
+        
         <script language="JavaScript" type="text/javascript" src="include/js/json.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/general.js"></script>
         
@@ -27,7 +29,7 @@
         <!-- END -->
         <script language="JavaScript" type="text/javascript" src="include/js/vn.lang.js?"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/QuickCreate.js"></script>
-        <script language="javascript" type="text/javascript" src="include/scriptaculous/prototype.js"></script>
+<!--        <script language="javascript" type="text/javascript" src="include/scriptaculous/prototype.js"></script>-->
         <script language="JavaScript" type="text/javascript" src="include/js/menu.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/calculator/calc.js"></script>
         <script language="JavaScript" type="text/javascript" src="modules/Calendar/script.js"></script>

@@ -7,8 +7,11 @@
 package com.hp.dao;
 
 import com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory;
+import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
+import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -74,5 +77,89 @@ public class ProviderDAOImpl implements ProviderDAO{
         }
         
         return courses;
+    }
+    
+    public Provider loadProvider(int pID){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        Provider courses = null;
+        try{
+            //Query query = session.createQuery("from Customer where mMaDoiTuong='"+pCustomer+"'");
+            //courses = (Customer)query;
+                    
+            courses = (Provider)session.get(Provider.class, pID);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
+    @Override
+    public boolean update(Provider pProvider){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.update(pProvider);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean saveOrUpdate(Provider pProvider){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.save(pProvider);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean delete(Provider pProvider){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        try{
+            
+            session.delete(pProvider);
+            session.getTransaction().commit();
+        }catch(HibernateException e){
+            
+            transaction.rollback();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
     }
 }

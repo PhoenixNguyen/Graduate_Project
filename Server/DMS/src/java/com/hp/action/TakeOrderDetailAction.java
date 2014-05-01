@@ -166,6 +166,7 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
         }
         
         takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
+        takeOrder.setBeforePrice(priceTotal);
         takeOrder.setAfterPrivate(priceTotal - priceTotal*takeOrder.getDiscount()/100);
         boolean st2 = takeOrderDAO.update(takeOrder);
         
@@ -207,6 +208,7 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
                 }
         
                 takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
+                takeOrder.setBeforePrice(priceTotal);
                 takeOrder.setAfterPrivate(priceTotal - priceTotal*takeOrder.getDiscount()/100);
                 boolean st2 = takeOrderDAO.update(takeOrder);
                 return SUCCESS;

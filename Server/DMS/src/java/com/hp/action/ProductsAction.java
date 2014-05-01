@@ -440,10 +440,14 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         request.setCharacterEncoding("UTF8");
         providerIDList = providerDAO.getProvidersIDList();
         
-        System.out.println("id_product: "+id_product);
+        System.out.println("id_product: "+product.getSerial());
         
         //update price
-        product.setExportPrices(product.getImportPrices() + product.getImportPrices()* product.getVatTax()/100);
+        if(product.getVatTax() == null)
+            product.setVatTax(0f);
+        if(product.getImportPrices() != null)
+            product.setExportPrices(product.getImportPrices() + product.getImportPrices()* product.getVatTax()/100);
+        
         //new product
         if(product.getSerial() <= 0){
             
@@ -456,19 +460,20 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
             }
             return INPUT;
         }
-        
-        System.out.println("OK" + product.getProductID());
-        
-        
-        boolean status = productDAO.update(product);
-        productsList = productDAO.getProductList();
-        
-        if(status){
-            
-            return SUCCESS;
+        else{
+            System.out.println("OK" + product.getProductID());
+
+
+            boolean status = productDAO.update(product);
+            productsList = productDAO.getProductList();
+
+            if(status){
+
+                return SUCCESS;
+            }
+
+            return INPUT;
         }
-        
-        return INPUT;
     }
     
     public String uploadAnImage(){

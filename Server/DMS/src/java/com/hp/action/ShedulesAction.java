@@ -195,7 +195,7 @@ public class ShedulesAction extends ActionSupport implements ModelDriven{
             if(session.getAttribute("giamdocId3") != null || session.getAttribute("staffId3") != null){
                 System.out.print(" Get something "); 
                 //setGiamdocId((String)session.getAttribute("giamdocId"));
-                listSchedules = scheduleDAO.getSchedulesList((String)session.getAttribute("giamdocId3"),
+                listSchedules = scheduleDAO.getSchedulesListForSchedules((String)session.getAttribute("giamdocId3"),
                         (String)session.getAttribute("staffId3"), date, toDate);
                 listCustomer = customerDAO.loadCustomersWithLocationsForSchedule((String)session.getAttribute("giamdocId3"),
                         (String)session.getAttribute("staffId3"));
@@ -206,7 +206,7 @@ public class ShedulesAction extends ActionSupport implements ModelDriven{
                 //get list object id
                 userListStaff = staffDAO.getListUser((String)session.getAttribute("giamdocId3"));
              }else{
-                listSchedules = scheduleDAO.getSchedulesList(null, null, date, toDate);
+                listSchedules = scheduleDAO.getSchedulesListForSchedules(null, null, date, toDate);
                 listCustomer = customerDAO.loadCustomersWithLocationsForSchedule();
                 
                 pushInfo.setManagerID((String)session.getAttribute("giamdocId3"));

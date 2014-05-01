@@ -48,5 +48,5 @@ public interface CustomerDAO {
     public Customer loadCustomer(int pCustomer);
     
     public List<Staff> loadStaffsWithLocationsForSchedule();
-    public List<List<Customer>> customerScheduleList(String pManagerID, String pStaff, String pDate, String pToDate);
+    public List<List<Customer>> customerScheduleList(String pManagerID, String pStaff, String pDate);
 }

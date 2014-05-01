@@ -414,7 +414,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         
     }
     
-    public List<List<Customer>> customerScheduleList(String pManagerID, String pStaff, String pDate, String pToDate){
+    public List<List<Customer>> customerScheduleList(String pManagerID, String pStaff, String pDate){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();
@@ -422,18 +422,16 @@ public class CustomerDAOImpl implements CustomerDAO {
         List<List<Customer>> courses = new ArrayList<List<Customer>>();
         try{
             String datefinal="";
-            String toDatefinal="";
             System.out.println(" DATE: " + pDate); 
-            if(pDate != null && pDate.compareTo("")!= 0 && pToDate.compareTo("")!= 0){
+            if(pDate != null && pDate.compareTo("")!= 0 ){
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 
                 Date date = sdf.parse(pDate);
                 datefinal = sdf2.format(date);
                 
-                Date toDate = sdf.parse(pToDate);
-                toDatefinal = sdf2.format(toDate);
-                System.out.println(" DATECONVERT: " + datefinal + " toDatefinal " + toDatefinal);
+                
+                System.out.println(" DATECONVERT: " + datefinal  );
             }
             
             if(pStaff != null)
@@ -445,7 +443,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     else
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
                                 + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +pStaff+"' "
-                                + " and cast (sc.time as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " and cast (sc.time as date) = '"+datefinal+"' "
                                 + " order by sc.maNV, sc.time").list();
                                                                 
                     if(tmp.size() > 0)
@@ -469,7 +467,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     else
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
                                 + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' "
-                                + " and cast (sc.time as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " and cast (sc.time as date) = '"+datefinal+"' "
                                 + " order by sc.maNV, sc.time").list();
                                                                 
                     if(tmp.size() > 0)
@@ -491,7 +489,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     else
                         tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
                                 + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' "
-                                + " and cast (sc.time as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'"
+                                + " and cast (sc.time as date) = '"+datefinal+"' "
                                 + " order by sc.maNV, sc.time").list();
                                                                 
                     if(tmp.size() > 0)

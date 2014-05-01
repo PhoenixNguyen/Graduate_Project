@@ -31,22 +31,21 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
     Transaction transaction;
     
     @Override
-    public List<List<RoadManagement>> getRoad(String pGiamDoc, String pNhanVien, String pMaKhachHang, String pDate, String pToDate){
+    public List<List<RoadManagement>> getRoad(String pGiamDoc, String pNhanVien, String pMaKhachHang, String pDate){
         List<List<RoadManagement>> result = new ArrayList<List<RoadManagement>>();
         try{
             String datefinal="";
-            String toDatefinal="";
+            
             System.out.println(" DATE: " + pDate); 
-            if(pDate != null && pDate.compareTo("")!= 0 && pToDate.compareTo("")!= 0){
+            if(pDate != null && pDate.compareTo("")!= 0 ){
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 
                 Date date = sdf.parse(pDate);
                 datefinal = sdf2.format(date);
                 
-                Date toDate = sdf.parse(pToDate);
-                toDatefinal = sdf2.format(toDate);
-                System.out.println(" DATECONVERT: " + datefinal + " toDatefinal " + toDatefinal);
+                
+                System.out.println(" DATECONVERT: " + datefinal );
             }
             
 //            if(pMaKhachHang != null){
@@ -72,7 +71,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         tmp = session.createQuery("from RoadManagement where maNhanVien='"+pNhanVien+"'").list();
                     else
                         tmp = session.createQuery("from RoadManagement where maNhanVien='"+pNhanVien+"'"
-                                + "  and cast (thoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+                                + "  and cast (thoiGian as date) = '"+datefinal+"' ").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -94,7 +93,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         tmp = session.createQuery("from RoadManagement where maNhanVien='"+nhanvien.get(i)+"'").list();
                     else
                         tmp = session.createQuery("from RoadManagement where maNhanVien='"+nhanvien.get(i)+"'"
-                                + " and cast (thoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+                                + " and cast (thoiGian as date) = '"+datefinal+"' ").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);
@@ -111,7 +110,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
                         tmp = session.createQuery("from RoadManagement ").list();
                     else
                         tmp = session.createQuery("select rm from RoadManagement as rm where "
-                                + " cast (rm.thoiGian as date) BETWEEN '"+datefinal+"' and '" +toDatefinal+"'").list();
+                                + " cast (rm.thoiGian as date) = '"+datefinal+"'").list();
                     
                     if(tmp.size() > 0)
                         result.add(tmp);

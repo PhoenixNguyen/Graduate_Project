@@ -78,7 +78,6 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
     private String khachhangId;
 
     private String date;
-    private String toDate;
 
     public PushInfo pushInfo = new PushInfo();
 
@@ -130,13 +129,6 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
         this.pushInfo = pushInfo;
     }
     
-    public String getToDate() {
-        return toDate;
-    }
-
-    public void setToDate(String toDate) {
-        this.toDate = toDate;
-    }
     
     public String getDate() {
         return date;
@@ -299,12 +291,11 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 
         userListGiamDoc = userDAO.getListUser(2);
         
-        if(date == null || toDate == null || date.compareTo("") ==0 || toDate.compareTo("") == 0){
+        if(date == null ||  date.compareTo("") ==0 ){
             date = "2014-04-01T00:00:00+07:00";
-            toDate = "2014-04-01T00:00:00+07:00";
         }
         
-        System.out.println(" setDate: " + date + " toDate: " + toDate);
+        System.out.println(" setDate: " + date );
         System.out.println(" GD: ");
         System.out.println(" GD: "+giamdocId+" STaff: "+ nhanvienId); 
         
@@ -326,20 +317,20 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 listRoad = mRoadManagementDAO.getRoad((String)session.getAttribute("giamdocId"),
                         (String)session.getAttribute("staffId"),
                         (String)session.getAttribute("khachhangId"),
-                        date, toDate);
+                        date);
 //                khachhangId = (String)session.getAttribute("khachhangId");
 //                giamdocId = (String)session.getAttribute("giamdocId");
 //                nhanvienId = (String)session.getAttribute("staffId");
                 
                 //GET Schedule
                 listSchedules = scheduleDAO.getSchedulesList((String)session.getAttribute("giamdocId"),
-                        (String)session.getAttribute("staffId"), date, toDate);
+                        (String)session.getAttribute("staffId"), date);
                 
 //                listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule((String)session.getAttribute("giamdocId"),
 //                        (String)session.getAttribute("staffId"));
                 
                 //List customer and schedule
-                listScheduleAndCustomer = customerDAO.customerScheduleList((String)session.getAttribute("giamdocId"), (String)session.getAttribute("staffId"), date, toDate);
+                listScheduleAndCustomer = customerDAO.customerScheduleList((String)session.getAttribute("giamdocId"), (String)session.getAttribute("staffId"), date);
                 
                 pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
                 pushInfo.setStaffID((String)session.getAttribute("staffId"));
@@ -353,14 +344,14 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 
              }else{
                 //List customer and schedule
-                listScheduleAndCustomer = customerDAO.customerScheduleList(null, null, date, toDate);
+                listScheduleAndCustomer = customerDAO.customerScheduleList(null, null, date);
                 
                 //System.out.println(" ___ " + listScheduleAndCustomer.get(0).get(0).getCoordinateX());
                 
                 //listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
-                listSchedules = scheduleDAO.getSchedulesList(null, null, date, toDate);
+                listSchedules = scheduleDAO.getSchedulesList(null, null, date);
                 listCustomer = customerDAO.loadCustomersWithLocations();
-                listRoad = mRoadManagementDAO.getRoad(null,null,null,date, toDate);
+                listRoad = mRoadManagementDAO.getRoad(null,null,null,date);
                 //Get images
                 filesNameList = getImagesName(listCustomer);
                 

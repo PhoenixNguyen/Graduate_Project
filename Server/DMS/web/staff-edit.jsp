@@ -316,7 +316,7 @@
 
                                                                         <tr style="height:25px"><td>&nbsp;</td></tr>
                                                                         <tr>
-                                                                            <td colspan=2 class="detailedViewHeader">
+                                                                            <td colspan="4" class="detailedViewHeader">
                                                                                 <b>Thông tin địa chỉ</b></td>
                                                                             <!--                                                                    <td class="detailedViewHeader">
                                                                                                                                                     <input name="cpy" onclick="return copyAddressLeft(EditView)" type="radio"><b>Sao chép địa chỉ vận chuyển</b></td>
@@ -339,16 +339,16 @@
                                                                             </td>
                                                                         </tr>
 
-                                                                        <tr style="height:25px"><td>&nbsp;</td></tr>
+<!--                                                                        <tr style="height:25px"><td>&nbsp;</td></tr>
                                                                         <tr>
                                                                             <td colspan=4 class="detailedViewHeader">
                                                                                 <b>Thông tin mô tả</b>
                                                                             </td>
                                                                         </tr>
-                                                                        <!-- Here we should include the uitype handlings-->
-                                                                        <!-- Added this file to display the fields in Create Entity page based on ui types  -->
+                                                                         Here we should include the uitype handlings
+                                                                         Added this file to display the fields in Create Entity page based on ui types  
                                                                         <tr style="height:25px">
-                                                                            <!-- In Add Comment are we should not display anything -->
+                                                                             In Add Comment are we should not display anything 
                                                                             <td width=20% class="dvtCellLabel" align=right>
                                                                                 <font color="red"></font> 
                                                                                 Mô tả 			
@@ -356,7 +356,7 @@
                                                                             <td colspan=3>
                                                                                 <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="staff.note"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"><s:property value="staff.note"/></textarea>
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr>-->
                                                                         <tr style="height:25px"><td>&nbsp;</td></tr>
 
                                                                         <tr>

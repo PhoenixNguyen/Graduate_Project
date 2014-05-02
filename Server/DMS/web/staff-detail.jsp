@@ -304,7 +304,15 @@
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <!--TextBox-->
                                                                                             <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Fax" onmouseover="hndMouseOver(11, 'Fax');" onmouseout="fnhide('crmspanid');" valign="top">
-                                                                                                &nbsp;&nbsp;<span id="dtlview_Fax"><s:property value="staff.status"/></span>
+                                                                                                &nbsp;&nbsp;<span id="dtlview_Fax">
+                                                                                                    <s:if test="staff.status == true">
+                                                                                                        Đang hoạt động
+                                                                                                    </s:if>
+                                                                                                    <s:else>
+                                                                                                        Ngừng hoạt động
+                                                                                                    </s:else>
+                                                                                                    
+                                                                                                </span>
 
                                                                                             </td>
                                                                                         </tr>	
@@ -481,9 +489,9 @@
 
                                                                     <!--Mo ta-->
                                                                     <tr>
-                                                                        <td style="padding:5px">
+<!--                                                                        <td style="padding:5px">
 
-                                                                            <!-- Detailed View Code starts here-->
+                                                                             Detailed View Code starts here
                                                                             <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                                 <tbody><tr>
                                                                                         <td>&nbsp;</td>
@@ -493,7 +501,7 @@
                                                                                         </td>
                                                                                     </tr>
 
-                                                                                    <!-- This is added to display the existing comments -->
+                                                                                     This is added to display the existing comments 
 
                                                                                     <tr>
                                                                                         <td colspan="4" class="dvInnerHeader">
@@ -510,11 +518,11 @@
                                                                                         <tr style="height:25px">
                                                                                             <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mô tả</td>
 
-                                                                                            <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                            <!--TextArea/Description-->
-                                                                                            <!-- we will empty the value of ticket and faq comment -->
-                                                                                            <!--  -->
-                                                                                            <!-- -->
+                                                                                             This file is used to display the fields based on the ui type in detailview 
+                                                                                            TextArea/Description
+                                                                                             we will empty the value of ticket and faq comment 
+                                                                                              
+                                                                                             
                                                                                             <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Mô tả" onmouseover="hndMouseOver(19, 'Mô tả');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Mô tả">
                                                                                                     <s:property value="customer.ghiChu"/> <a href="" target="_blank"></a>
                                                                                                 </span>
@@ -522,9 +530,10 @@
                                                                                             </td>
                                                                                         </tr>	
 
-                                                                                    </tbody></table>
+                                                                                    </tbody>
+                                                                                </table>
                                                                             </div>
-                                                                        </td>
+                                                                        </td>-->
                                                                     </tr>
                                                                     <tr>
                                                                         <td style="padding:5px">

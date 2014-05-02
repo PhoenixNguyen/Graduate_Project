@@ -344,16 +344,16 @@ public class ShowMapAction extends ActionSupport implements ModelDriven{
                 
              }else{
                 //List customer and schedule
-                listScheduleAndCustomer = customerDAO.customerScheduleList(null, null, date);
-                
-                //System.out.println(" ___ " + listScheduleAndCustomer.get(0).get(0).getCoordinateX());
-                
-                //listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
-                listSchedules = scheduleDAO.getSchedulesList(null, null, date);
-                listCustomer = customerDAO.loadCustomersWithLocations();
-                listRoad = mRoadManagementDAO.getRoad(null,null,null,date);
-                //Get images
-                filesNameList = getImagesName(listCustomer);
+//                listScheduleAndCustomer = customerDAO.customerScheduleList(null, null, date);
+//                
+//                //System.out.println(" ___ " + listScheduleAndCustomer.get(0).get(0).getCoordinateX());
+//                
+//                //listCustomerInSchedule = customerDAO.loadCustomersWithLocationsForSchedule();
+//                listSchedules = scheduleDAO.getSchedulesList(null, null, date);
+//                listCustomer = customerDAO.loadCustomersWithLocations();
+//                listRoad = mRoadManagementDAO.getRoad(null,null,null,date);
+//                //Get images
+//                filesNameList = getImagesName(listCustomer);
                 
                 pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
                 pushInfo.setStaffID((String)session.getAttribute("staffId"));

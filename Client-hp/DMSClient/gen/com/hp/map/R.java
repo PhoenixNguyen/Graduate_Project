@@ -454,7 +454,7 @@ containing a value of this type.
         public static final int button=0x7f06009d;
         public static final int calendar=0x7f06001c;
         public static final int cancel=0x7f060032;
-        public static final int cb_customer=0x7f06008a;
+        public static final int checkBox1=0x7f06008a;
         public static final int class_id=0x7f060079;
         public static final int class_name=0x7f060078;
         public static final int content_frame=0x7f060006;

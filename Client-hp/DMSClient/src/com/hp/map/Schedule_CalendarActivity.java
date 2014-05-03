@@ -44,6 +44,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -53,6 +54,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -78,7 +80,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 	public ArrayList<String> items; // container to store calendar items which
 									// needs showing the event marker
 	ArrayList<String> event;
-	LinearLayout rLayout;
+	RelativeLayout rLayout;
 	ArrayList<String> date;
 	ArrayList<String> desc;
 
@@ -106,7 +108,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 //		Rest rest = new Rest("njnj");
 //		rest.connectWebservices();
 		
-		rLayout = (LinearLayout) findViewById(R.id.text);
+		rLayout = (RelativeLayout) findViewById(R.id.text);
 		month = (GregorianCalendar) GregorianCalendar.getInstance();
 		itemmonth = (GregorianCalendar) month.clone();
 
@@ -167,8 +169,8 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				//System.out.println("________________ 2 CALL: "+
 			    	//	Rest.mService.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(String.class));
 				// removing the previous view if added
-				if (((LinearLayout) rLayout).getChildCount() > 0) {
-					((LinearLayout) rLayout).removeAllViews();
+				if (((RelativeLayout) rLayout).getChildCount() > 0) {
+					((RelativeLayout) rLayout).removeAllViews();
 				}
 				desc = new ArrayList<String>();
 				date = new ArrayList<String>();
@@ -197,14 +199,26 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				TextView viewDate = new TextView(Schedule_CalendarActivity.this);
 
 				// set some properties of rowTextView or something
-				viewDate.setText("Customers in " + selectedGridDate);
+				viewDate.setText("Ngày " + selectedGridDate);
 				viewDate.setTextSize(20);
 				viewDate.setTextColor(Color.BLACK);
+				viewDate.setId(111);
 				
 				Button add = new Button(Schedule_CalendarActivity.this);
-				add.setText("Add schedules");
-				add.setRight(1);
+				add.setText("Thêm lịch");
+				add.setId(222);
+				
+				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+				viewDate.setLayoutParams(params);
+				
+				params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, viewDate.getId());
+				
+				add.setLayoutParams(params);
+				
 				// add the textview to the linearlayout -----------------------------------
+				
 				rLayout.addView(viewDate);
 				rLayout.addView(add);
 				add.setOnClickListener(new OnClickListener() {
@@ -445,17 +459,17 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
 								"Apple", "Avocado","Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
 		//ListView listViewCus = (ListView)findViewById(R.id.list_view_cus);
-		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, customerArray));
+		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, customerList));
 		
 		listViewCus.setOnItemClickListener(new OnItemClickListener()
 		{
 		     @Override
 		     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
 		     {
-//		    	 String selectedValue = (String) listView.getAdapter().getItem(position);
+//		    	 Customer selectedValue = (Customer) listView.getAdapter().getItem(position);
 //		    	 
-//		          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
-//		    	// custom dialog
+//		         Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
+		    	// custom dialog
 
 		      }
 		});
@@ -549,6 +563,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 			}
 		});
 
+		dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		dialog.show();
 		
 	}

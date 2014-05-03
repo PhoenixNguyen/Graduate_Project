@@ -67,7 +67,7 @@ public final class DialogFeatureView extends FrameLayout {
      * @param titleId the resource id of the title of the demo
      */
     public synchronized void setCustomer(final Customer customer) {
-    	CheckBox chkBox = (CheckBox) (findViewById(R.id.cb_customer));
+    	CheckBox chkBox = (CheckBox) (findViewById(R.id.checkBox1));
     	TextView name = (TextView) (findViewById(R.id.name));
     	
     	chkBox.setText(customer.getMaDoiTuong());
@@ -121,8 +121,6 @@ public final class DialogFeatureView extends FrameLayout {
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 
-//      			Toast.makeText(context,
-//      		 	   "Checked!", Toast.LENGTH_SHORT).show();
       		}
       		else {
       			//Destroy

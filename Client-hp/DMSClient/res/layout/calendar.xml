@@ -65,7 +65,7 @@
         android:numColumns="7"
         android:stretchMode="columnWidth" />
     
-    <LinearLayout 
+    <RelativeLayout 
         android:id="@+id/text"
         android:layout_below="@+id/gridview"
         android:layout_width="match_parent"
@@ -80,8 +80,8 @@
         	    android:layout_height="wrap_content"
         	    android:visibility="gone"
         	    android:text=""/> -->
-        	            	    
-    </LinearLayout>
+        	            	   
+    </RelativeLayout>
 
     </LinearLayout>
     <LinearLayout 

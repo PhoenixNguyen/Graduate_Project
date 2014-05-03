@@ -211,8 +211,8 @@ public class ShedulesAction extends ActionSupport implements ModelDriven{
                 session.setAttribute("staffId3", null);
                 session.setAttribute("giamdocId3", null);
                 
-                pushInfo.setManagerID((String)session.getAttribute("giamdocId3"));
-                pushInfo.setStaffID((String)session.getAttribute("staffId3"));
+//                pushInfo.setManagerID((String)session.getAttribute("giamdocId3"));
+//                pushInfo.setStaffID((String)session.getAttribute("staffId3"));
             }
         }
         //AJAX

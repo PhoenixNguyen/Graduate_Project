@@ -1,5 +1,6 @@
 package com.hp.map;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -96,7 +97,7 @@ public class TakeImagesActivity extends MainMenuActivity {
 		_button.setOnClickListener(new ButtonClickHandler());
 
 		_path = Environment.getExternalStorageDirectory()
-				+ "/images/make_machine_example.jpg";
+				+ "/make_machine_example.jpg";
 	}
 
 	public class ButtonClickHandler implements View.OnClickListener {
@@ -191,14 +192,20 @@ public class TakeImagesActivity extends MainMenuActivity {
 				+ fromInt(c.get(Calendar.YEAR))
 				+ fromInt(c.get(Calendar.HOUR_OF_DAY))
 				+ fromInt(c.get(Calendar.MINUTE))
-				+ fromInt(c.get(Calendar.SECOND));
+				+ fromInt(c.get(Calendar.SECOND)) + "-hp";
 		File imageFileName = new File(imageFileFolder, date.toString() + ".jpg");
 		pathSave = Environment.getExternalStorageDirectory()+ "/DMS/" + imageFileName.getName();
 		try {
 			out = new FileOutputStream(imageFileName);
-			bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
-			out.flush();
+			
+			final int BUFFER_SIZE = 1024 * 8;
+			final BufferedOutputStream bos = new BufferedOutputStream(out, BUFFER_SIZE);
+			bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+			
+			bos.flush();
+			bos.close();
 			out.close();
+			
 			scanPhoto(imageFileName.toString());
 			out = null;
 		} catch (Exception e) {

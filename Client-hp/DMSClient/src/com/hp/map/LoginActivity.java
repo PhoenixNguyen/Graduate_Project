@@ -1,6 +1,7 @@
 package com.hp.map;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -31,11 +33,13 @@ import android.os.Looper;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hp.common.LoadingView;
 import com.hp.domain.RoadManagement;
 import com.hp.rest.Rest;
 import com.sun.jersey.api.client.ClientResponse;
@@ -62,7 +66,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         // setting default screen to login.xml
         setContentView(R.layout.login);
-        
+        		
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         
         mUsername = (EditText)findViewById(R.id.username);
@@ -85,6 +89,19 @@ public class LoginActivity extends Activity {
 					return;
 				}
 				
+				ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "", 
+	                    "Đang tải dữ liệu. Chờ chút ...", true);
+				
+//				InputStream stream = null;
+//			      try {
+//			         stream = getAssets().open("circle.gif");
+//			      } catch (IOException e) {
+//			        e.printStackTrace();
+//			      }
+//			      LoadingView view = new LoadingView(context, stream);
+//			      setContentView(view);
+//			      // ...
+				
 				// Connect server
 		        new Rest("").connectWebservices();
 				
@@ -105,6 +122,10 @@ public class LoginActivity extends Activity {
 					Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
 	            	startActivity(i);
 	            	//new ThreatRealtime("hello").start();
+				}
+				else{
+					dialog.dismiss();
+					Toast.makeText(context, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
 				}
 				
 			}

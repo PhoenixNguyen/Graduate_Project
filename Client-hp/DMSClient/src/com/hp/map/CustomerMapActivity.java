@@ -42,6 +42,8 @@ import com.hp.menu.DetailListData;
 import com.hp.menu.DetailsList;
 import com.hp.menu.DialogArrayAdapter;
 import com.hp.rest.Rest;
+import com.hp.rest.RestAPI;
+import com.hp.rest.RestAPI.GetCustomerListTask;
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -178,10 +180,10 @@ public class CustomerMapActivity extends FragmentActivity
         customerSelected = null;
         customerSelected  = i.getStringExtra("POSITION_CLICK");
         
-        for(int j = 0; j < Rest.customerList.size(); j++){
-        	if(customerSelected.compareTo(Rest.customerList.get(j).getMaDoiTuong()) == 0){
+        for(int j = 0; j < RestAPI.customerList.size(); j++){
+        	if(customerSelected.compareTo(RestAPI.customerList.get(j).getMaDoiTuong()) == 0){
         		positionClick = j;
-        		mSelectedCustomer = Rest.customerList.get(j);
+        		mSelectedCustomer = RestAPI.customerList.get(j);
         	}
         }
         
@@ -190,10 +192,10 @@ public class CustomerMapActivity extends FragmentActivity
         customer_phone = (TextView) findViewById(R.id.customer_phone);
         customer_address = (TextView) findViewById(R.id.customer_address);
 
-        customer_name.setText(Rest.customerList.get(positionClick).getDoiTuong());
-        customer_id.setText(Rest.customerList.get(positionClick).getMaDoiTuong());
-        customer_phone.setText(Rest.customerList.get(positionClick).getDienThoai());
-        customer_address.setText(Rest.customerList.get(positionClick).getDiaChi());
+        customer_name.setText(RestAPI.customerList.get(positionClick).getDoiTuong());
+        customer_id.setText(RestAPI.customerList.get(positionClick).getMaDoiTuong());
+        customer_phone.setText(RestAPI.customerList.get(positionClick).getDienThoai());
+        customer_address.setText(RestAPI.customerList.get(positionClick).getDiaChi());
         
         setUpMapIfNeeded();
     }
@@ -219,8 +221,8 @@ public class CustomerMapActivity extends FragmentActivity
     }
     
     public boolean compareLocation(){
-    	double x = Rest.customerList.get(positionClick).getCoordinateX();
-    	double y = Rest.customerList.get(positionClick).getCoordinateY();
+    	double x = RestAPI.customerList.get(positionClick).getCoordinateX();
+    	double y = RestAPI.customerList.get(positionClick).getCoordinateY();
     	System.out.println("mX va (x - 0.000099): " + mX + " " + (x - 0.000199));
     	System.out.println("mX va (x + 0.000099): " + mX + " " + (x + 0.000199));
     	
@@ -464,7 +466,7 @@ public class CustomerMapActivity extends FragmentActivity
                     Builder builder = new LatLngBounds.Builder();
                     //for(int i = 0; i< Rest.customerList.size(); i++){
                     		
-                    	builder.include(new LatLng(Rest.customerList.get(positionClick).getCoordinateX(), Rest.customerList.get(positionClick).getCoordinateY()));
+                    	builder.include(new LatLng(RestAPI.customerList.get(positionClick).getCoordinateX(), RestAPI.customerList.get(positionClick).getCoordinateY()));
                         	
                     //}
                     
@@ -487,17 +489,17 @@ public class CustomerMapActivity extends FragmentActivity
     	//Add Markers
     	if(pView == 1){
     		mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(Rest.customerList.get(positionClick).getCoordinateX(), Rest.customerList.get(positionClick).getCoordinateY()))
-            .title(Rest.customerList.get(positionClick).getDoiTuong())
-            .snippet(Rest.customerList.get(positionClick).getMaDoiTuong()+":"+Rest.customerList.get(positionClick).getDiaChi())
+            .position(new LatLng(RestAPI.customerList.get(positionClick).getCoordinateX(), RestAPI.customerList.get(positionClick).getCoordinateY()))
+            .title(RestAPI.customerList.get(positionClick).getDoiTuong())
+            .snippet(RestAPI.customerList.get(positionClick).getMaDoiTuong()+":"+RestAPI.customerList.get(positionClick).getDiaChi())
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     	}
     	else
-	    	for(int i = 0; i< Rest.customerList.size(); i++){
+	    	for(int i = 0; i< RestAPI.customerList.size(); i++){
 	    		mMap.addMarker(new MarkerOptions()
-	            .position(new LatLng(Rest.customerList.get(i).getCoordinateX(), Rest.customerList.get(i).getCoordinateY()))
-	            .title(Rest.customerList.get(i).getDoiTuong())
-	            .snippet(Rest.customerList.get(i).getMaDoiTuong()+":"+Rest.customerList.get(i).getDiaChi())
+	            .position(new LatLng(RestAPI.customerList.get(i).getCoordinateX(), RestAPI.customerList.get(i).getCoordinateY()))
+	            .title(RestAPI.customerList.get(i).getDoiTuong())
+	            .snippet(RestAPI.customerList.get(i).getMaDoiTuong()+":"+RestAPI.customerList.get(i).getDiaChi())
 	            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 	    		            	
 	        }
@@ -556,7 +558,7 @@ public class CustomerMapActivity extends FragmentActivity
         
         //Post
         RoadManagement track = new RoadManagement(""
-        		,Rest.customerList.get(positionClick).getMaDoiTuong()
+        		,RestAPI.customerList.get(positionClick).getMaDoiTuong()
         		,Timestamp.valueOf(dateFormat.format(date))
         		,mX
         		,mY
@@ -597,10 +599,15 @@ public class CustomerMapActivity extends FragmentActivity
             Toast.makeText(context, "Đã gửi vị trí", Toast.LENGTH_SHORT).show();
             // refresh customers
             
-            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
-
-				setUpMap();
-			}
+//            if(RestAPI.getCustomersList(Rest.mStaff.getId()) == true){
+//
+//				setUpMap();
+//			}
+            
+            GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
+        	getData.execute();
+        	
+        	setUpMap();
             
         }else
         	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();

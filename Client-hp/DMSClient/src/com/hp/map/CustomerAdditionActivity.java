@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.hp.domain.Customer;
 import com.hp.map.R;
 import com.hp.rest.Rest;
+import com.hp.rest.RestAPI.GetCustomerListTask;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
@@ -168,13 +169,21 @@ public class CustomerAdditionActivity extends MainMenuActivity{
             Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
             
             //Refresh
-            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
-	            // open detail
-	            Intent t = new Intent(context, CustomerMapActivity.class);
-		        t.putExtra("POSITION_CLICK", customer.getMaDoiTuong());
-		        
-		        startActivity(t);
-            }
+//            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
+//	            // open detail
+//	            Intent t = new Intent(context, CustomerMapActivity.class);
+//		        t.putExtra("POSITION_CLICK", customer.getMaDoiTuong());
+//		        
+//		        startActivity(t);
+//            }
+            
+            GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
+        	getData.execute();
+        	
+        	Intent t = new Intent(context, CustomerMapActivity.class);
+	        t.putExtra("POSITION_CLICK", customer.getMaDoiTuong());
+	        
+	        startActivity(t);
             
         }else
         	Toast.makeText(context, "Không thể lưu dữ liệu. Hãy xem lại kết nối, mã KH không được trống và không trùng với khách hàng khác", Toast.LENGTH_SHORT).show();

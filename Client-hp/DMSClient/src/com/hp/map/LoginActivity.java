@@ -2,6 +2,10 @@ package com.hp.map;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,6 +31,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -40,8 +45,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hp.common.LoadingView;
+import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
+import com.hp.rest.CheckingInternet;
 import com.hp.rest.Rest;
+import com.hp.rest.RestAPI;
+import com.hp.rest.RestAPI.GetCustomerListTask;
 import com.sun.jersey.api.client.ClientResponse;
  
 @SuppressLint("NewApi")
@@ -79,54 +88,13 @@ public class LoginActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// Check the internet
-				if(isOnline()){
-					System.out.println("Internet access!!____________________");
-				}
-				else{
-					System.out.println("NO Internet access!!____________________");
-					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-					return;
-				}
-				
-				ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "", 
-	                    "Đang tải dữ liệu. Chờ chút ...", true);
-				
-//				InputStream stream = null;
-//			      try {
-//			         stream = getAssets().open("circle.gif");
-//			      } catch (IOException e) {
-//			        e.printStackTrace();
-//			      }
-//			      LoadingView view = new LoadingView(context, stream);
-//			      setContentView(view);
-//			      // ...
-				
-				// Connect server
-		        new Rest("").connectWebservices();
-				
-				//Get username
-				String username = mUsername.getText().toString();
-				String password = mPassword.getText().toString();
-				
-				System.out.println("USERNAME___" + username);
-				
-				//Init Http request
-				System.out.println("__ " + password);
-				
-				if(Rest.getStaff(username, password)){
-					Rest.getCustomersList(Rest.mStaff.getId());
-					//Run thread to do backgroud send location
-					doBackground();
-					// TODO Auto-generated method stub
-					Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
-	            	startActivity(i);
-	            	//new ThreatRealtime("hello").start();
-				}
-				else{
-					dialog.dismiss();
-					Toast.makeText(context, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
-				}
+				//LOADING DATA
+//				ProgressDialog dialog = ProgressDialog.show(LoginActivity.this, "", 
+//	                    "Đang tải dữ liệu. Chờ chút ...", true);
+
+				//Authenticate
+				new AuthenticateUserTask().execute();
+
 				
 			}
 		});
@@ -165,11 +133,7 @@ public class LoginActivity extends Activity {
         //getLocation();
         
     }
-    public boolean isOnline() { 
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
-		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
-	}
-    
+
     @SuppressLint("NewApi")
 	static <T> T[] append(T[] arr, T element) {
         final int N = arr.length;
@@ -277,4 +241,82 @@ public class LoginActivity extends Activity {
     	moveTaskToBack(true);
     	  
 	}
+    
+        
+    private class AuthenticateUserTask extends AsyncTask<Void,Void,String>
+    {
+    	ProgressDialog dialog;
+    	protected void onPreExecute() {
+    		dialog = ProgressDialog.show(context, "",
+  				  "Đang đăng nhập", true);
+		}
+        protected String doInBackground(Void... params)
+        {
+            //do something  
+			if(CheckingInternet.isOnline()){
+				System.out.println("Internet access!!____________________");
+			}
+			else{
+				dialog.dismiss();									
+				System.out.println("NO Internet access!!____________________");
+								
+				return "nointernet";
+				
+			}
+							
+	
+			// Connect server
+	        new Rest("").connectWebservices();
+			
+			//Get username
+			String username = mUsername.getText().toString();
+			String password = mPassword.getText().toString();
+			
+			System.out.println("USERNAME___" + username);
+			
+			//Init Http request
+			System.out.println("__ " + password);
+			
+			if(Rest.getStaff(username, password)){
+				
+            	
+				return "success";
+				
+			}
+			else{
+				return "";
+			}
+			// =====================================================================================
+	    
+        }
+
+        protected void onPostExecute(String result)
+        {
+            if (result.equals("success")){
+                //do something
+            	//Rest.getCustomersList(Rest.mStaff.getId());
+            	GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
+            	getData.execute();
+            	//System.out.println(" ++ :: "+ getData.customerList.get(0).getMaDoiTuong());
+            	
+				//Run thread to do backgroud send location
+				//doBackground();
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+	        	startActivity(i);
+	        	//new ThreatRealtime("hello").start();
+	        	dialog.dismiss();
+            }
+            else
+            	if (result.equals("nointernet")){
+            		Toast.makeText(context, "Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!", Toast.LENGTH_SHORT).show();
+            	}
+           else
+           {       
+        	   dialog.dismiss();					
+        	   Toast.makeText(context, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+				
+           }
+        }                   
+    }   
 }

@@ -11,6 +11,8 @@ import com.hp.customer.CustomerArrayAdapter;
 import com.hp.domain.Customer;
 import com.hp.order.ProductArrayAdapter;
 import com.hp.rest.Rest;
+import com.hp.rest.RestAPI;
+import com.hp.rest.RestAPI.GetCustomerListTask;
 import com.hp.schedule.ListViewSchedules;
 import com.sun.jersey.api.client.ClientResponse;
 
@@ -144,13 +146,15 @@ public class CustomerListActivity extends MainMenuActivity{
 	}
 	
 	public void addListView(){
-		System.out.println("____UPDAte list " + Rest.customerList.size());
+		//System.out.println("____UPDAte list " + Rest.customerList.size());
 		//Update list customer
-		Rest.getCustomersList(Rest.mStaff.getId());
-				
+		//Rest.getCustomersList(Rest.mStaff.getId());
+		GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
+    	getData.execute();
+    	
 		//List view
 		listView = (ListView)findViewById(R.id.list);
-		customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);
+		customerAdapter = new CustomerArrayAdapter(context, RestAPI.customerList);
 		listView.setAdapter(customerAdapter);
 			
 		listView.setOnItemClickListener(new OnItemClickListener()
@@ -311,11 +315,16 @@ public class CustomerListActivity extends MainMenuActivity{
             Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
             
             // Refresh
-            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
-	            customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);
-	    		listView.setAdapter(customerAdapter);
-            }
+//            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
+//	            customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);
+//	    		listView.setAdapter(customerAdapter);
+//            }
             
+            GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
+        	getData.execute();
+            
+        	customerAdapter = new CustomerArrayAdapter(context, RestAPI.customerList);
+    		listView.setAdapter(customerAdapter);
             
         }else
         	Toast.makeText(context, "Không thể xóa dữ liệu. Khách hàng này đã tồn tại ở dữ liệu khác!", Toast.LENGTH_SHORT).show();

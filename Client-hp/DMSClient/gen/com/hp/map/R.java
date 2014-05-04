@@ -447,8 +447,9 @@ containing a value of this type.
         public static final int DateTimePicker=0x7f060050;
         public static final int ResetDateTime=0x7f060068;
         public static final int SetDateTime=0x7f060067;
-        public static final int action_add=0x7f0600a5;
+        public static final int action_add=0x7f0600a6;
         public static final int action_over_flow=0x7f06009f;
+        public static final int action_refresh=0x7f0600a5;
         public static final int action_save=0x7f06009e;
         public static final int action_websearch=0x7f0600a4;
         public static final int btnLogin=0x7f06004d;

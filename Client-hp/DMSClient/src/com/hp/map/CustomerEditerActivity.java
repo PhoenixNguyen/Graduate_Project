@@ -9,6 +9,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.hp.domain.Customer;
 import com.hp.map.R;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI.ModifyCustomerTask;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
@@ -82,59 +84,15 @@ public class CustomerEditerActivity extends CustomerAdditionActivity {
 	}
 	
 	public void insertCustomer(Customer customer){
-		// Check the internet
-		if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else{
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-			return;
-		}
+		ModifyCustomerTask insertData = new ModifyCustomerTask(context, "updateCustomer", customer, true);
+		insertData.execute();
 		
-		// Send
-		ObjectMapper mapper = new ObjectMapper();
-        String cusStr = new String();
-
-		try {
-
-			cusStr = mapper.writeValueAsString(customer);
+		//loading
+		GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId(),
+			    true, customer);
+        getData.execute();
 			
-		} catch (JsonGenerationException ex) {
-
-			ex.printStackTrace();
-
-		} catch (JsonMappingException ex) {
-
-			ex.printStackTrace();
-
-		} catch (IOException ex) {
-
-			ex.printStackTrace();
-
-		}
-       
-		//Order ---------------------------------------------------------------
-		ClientResponse response = Rest.mService.path("webresources").path("updateCustomer").accept("application/json")
-		.type("application/json").post(ClientResponse.class, cusStr);
-
-        String output = response.toString();
-        System.out.println("input 1: " + output);
-        
-        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-            Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
-            
-            // open detail
-            Intent t = new Intent(context, CustomerMapActivity.class);
-	        t.putExtra("POSITION_CLICK", customer.getMaDoiTuong());
-	        
-	        startActivity(t);
-            
-        }else
-        	Toast.makeText(context, "Không thể lưu dữ liệu. Hãy xem lại kết nối, mã KH không được trống và không trùng với khách hàng khác", Toast.LENGTH_SHORT).show();
-        
-        System.out.println("Server response .... \n");
-        System.out.println("input 0: " + output);
+		
 	}
 
 	

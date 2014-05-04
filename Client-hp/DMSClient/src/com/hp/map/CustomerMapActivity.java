@@ -42,8 +42,9 @@ import com.hp.menu.DetailListData;
 import com.hp.menu.DetailsList;
 import com.hp.menu.DialogArrayAdapter;
 import com.hp.rest.Rest;
-import com.hp.rest.RestAPI;
-import com.hp.rest.RestAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI.ModifyCustomerTask;
 import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -150,8 +151,8 @@ public class CustomerMapActivity extends FragmentActivity
     public static String customerSelected = new String();
     public static Customer mSelectedCustomer;
     //current location
-    public static float mX;
-    public static float mY;
+    public static double mX;
+    public static double mY;
     
     String mUrl = "http://masterpro02.hosco.com.vn:8080/DMSProject/webresources/putJourney"; 
     
@@ -180,10 +181,10 @@ public class CustomerMapActivity extends FragmentActivity
         customerSelected = null;
         customerSelected  = i.getStringExtra("POSITION_CLICK");
         
-        for(int j = 0; j < RestAPI.customerList.size(); j++){
-        	if(customerSelected.compareTo(RestAPI.customerList.get(j).getMaDoiTuong()) == 0){
+        for(int j = 0; j < CustomerAPI.customerList.size(); j++){
+        	if(customerSelected.compareTo(CustomerAPI.customerList.get(j).getMaDoiTuong()) == 0){
         		positionClick = j;
-        		mSelectedCustomer = RestAPI.customerList.get(j);
+        		mSelectedCustomer = CustomerAPI.customerList.get(j);
         	}
         }
         
@@ -192,10 +193,10 @@ public class CustomerMapActivity extends FragmentActivity
         customer_phone = (TextView) findViewById(R.id.customer_phone);
         customer_address = (TextView) findViewById(R.id.customer_address);
 
-        customer_name.setText(RestAPI.customerList.get(positionClick).getDoiTuong());
-        customer_id.setText(RestAPI.customerList.get(positionClick).getMaDoiTuong());
-        customer_phone.setText(RestAPI.customerList.get(positionClick).getDienThoai());
-        customer_address.setText(RestAPI.customerList.get(positionClick).getDiaChi());
+        customer_name.setText(CustomerAPI.customerList.get(positionClick).getDoiTuong());
+        customer_id.setText(CustomerAPI.customerList.get(positionClick).getMaDoiTuong());
+        customer_phone.setText(CustomerAPI.customerList.get(positionClick).getDienThoai());
+        customer_address.setText(CustomerAPI.customerList.get(positionClick).getDiaChi());
         
         setUpMapIfNeeded();
     }
@@ -221,8 +222,8 @@ public class CustomerMapActivity extends FragmentActivity
     }
     
     public boolean compareLocation(){
-    	double x = RestAPI.customerList.get(positionClick).getCoordinateX();
-    	double y = RestAPI.customerList.get(positionClick).getCoordinateY();
+    	double x = CustomerAPI.customerList.get(positionClick).getCoordinateX();
+    	double y = CustomerAPI.customerList.get(positionClick).getCoordinateY();
     	System.out.println("mX va (x - 0.000099): " + mX + " " + (x - 0.000199));
     	System.out.println("mX va (x + 0.000099): " + mX + " " + (x + 0.000199));
     	
@@ -466,7 +467,7 @@ public class CustomerMapActivity extends FragmentActivity
                     Builder builder = new LatLngBounds.Builder();
                     //for(int i = 0; i< Rest.customerList.size(); i++){
                     		
-                    	builder.include(new LatLng(RestAPI.customerList.get(positionClick).getCoordinateX(), RestAPI.customerList.get(positionClick).getCoordinateY()));
+                    	builder.include(new LatLng(CustomerAPI.customerList.get(positionClick).getCoordinateX(), CustomerAPI.customerList.get(positionClick).getCoordinateY()));
                         	
                     //}
                     
@@ -489,17 +490,17 @@ public class CustomerMapActivity extends FragmentActivity
     	//Add Markers
     	if(pView == 1){
     		mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(RestAPI.customerList.get(positionClick).getCoordinateX(), RestAPI.customerList.get(positionClick).getCoordinateY()))
-            .title(RestAPI.customerList.get(positionClick).getDoiTuong())
-            .snippet(RestAPI.customerList.get(positionClick).getMaDoiTuong()+":"+RestAPI.customerList.get(positionClick).getDiaChi())
+            .position(new LatLng(CustomerAPI.customerList.get(positionClick).getCoordinateX(), CustomerAPI.customerList.get(positionClick).getCoordinateY()))
+            .title(CustomerAPI.customerList.get(positionClick).getDoiTuong())
+            .snippet(CustomerAPI.customerList.get(positionClick).getMaDoiTuong()+":"+CustomerAPI.customerList.get(positionClick).getDiaChi())
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
     	}
     	else
-	    	for(int i = 0; i< RestAPI.customerList.size(); i++){
+	    	for(int i = 0; i< CustomerAPI.customerList.size(); i++){
 	    		mMap.addMarker(new MarkerOptions()
-	            .position(new LatLng(RestAPI.customerList.get(i).getCoordinateX(), RestAPI.customerList.get(i).getCoordinateY()))
-	            .title(RestAPI.customerList.get(i).getDoiTuong())
-	            .snippet(RestAPI.customerList.get(i).getMaDoiTuong()+":"+RestAPI.customerList.get(i).getDiaChi())
+	            .position(new LatLng(CustomerAPI.customerList.get(i).getCoordinateX(), CustomerAPI.customerList.get(i).getCoordinateY()))
+	            .title(CustomerAPI.customerList.get(i).getDoiTuong())
+	            .snippet(CustomerAPI.customerList.get(i).getMaDoiTuong()+":"+CustomerAPI.customerList.get(i).getDiaChi())
 	            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 	    		            	
 	        }
@@ -537,18 +538,7 @@ public class CustomerMapActivity extends FragmentActivity
 
     /** Called when the sendDemo button is clicked. */
     public void onSendDemo(View view) {
-    	
-    	
-    	//check network
-    	if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else{
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-			return;
-		}
-    	
+    	    	
     	if(mX <= 0.0 || mY <= 0.0)
     		return;
     	
@@ -557,65 +547,25 @@ public class CustomerMapActivity extends FragmentActivity
         Date date = new Date();
         
         //Post
-        RoadManagement track = new RoadManagement(""
-        		,RestAPI.customerList.get(positionClick).getMaDoiTuong()
-        		,Timestamp.valueOf(dateFormat.format(date))
-        		,mX
-        		,mY
-        		,"");
+//        RoadManagement track = new RoadManagement(""
+//        		,RestAPI.customerList.get(positionClick).getMaDoiTuong()
+//        		,Timestamp.valueOf(dateFormat.format(date))
+//        		,mX
+//        		,mY
+//        		,"");
         
-        ObjectMapper mapper = new ObjectMapper();
-        String locationStr = new String();
-
-		try {
-
-			locationStr = mapper.writeValueAsString(track);
-			
-		} catch (JsonGenerationException ex) {
-
-			ex.printStackTrace();
-
-		} catch (JsonMappingException ex) {
-
-			ex.printStackTrace();
-
-		} catch (IOException ex) {
-
-			ex.printStackTrace();
-
-		}
-       
-
-		ClientResponse response = Rest.mService.path("webresources").path("putLocation").accept("application/json")
-		.type("application/json").post(ClientResponse.class, locationStr);
+        Customer customer = CustomerAPI.customerList.get(positionClick);
+        customer.setCoordinateX(mX);
+        customer.setCoordinateY(mY);
+        
+        ModifyCustomerTask insertData = new ModifyCustomerTask(context, "updateCustomer", customer, true);
+		insertData.execute();
 		
-//		if (response.getStatus() != 200) {
-//            throw new RuntimeException("Failed : HTTP error code : "
-//                    + response.getStatus());
-//        }
-        String output = response.toString();
-        
-        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("1") == 0)) {
-            Toast.makeText(context, "Đã gửi vị trí", Toast.LENGTH_SHORT).show();
-            // refresh customers
-            
-//            if(RestAPI.getCustomersList(Rest.mStaff.getId()) == true){
-//
-//				setUpMap();
-//			}
-            
-            GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
-        	getData.execute();
-        	
-        	setUpMap();
-            
-        }else
-        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-        
-        System.out.println("Server response .... \n");
-        System.out.println(output);
-
-		
+		//loading
+		GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId(),
+			    true, this);
+        getData.execute();
+        		
     }
     
     public enum MIMETypes {

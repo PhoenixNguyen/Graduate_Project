@@ -49,8 +49,8 @@ import com.hp.domain.Customer;
 import com.hp.domain.RoadManagement;
 import com.hp.rest.CheckingInternet;
 import com.hp.rest.Rest;
-import com.hp.rest.RestAPI;
-import com.hp.rest.RestAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
 import com.sun.jersey.api.client.ClientResponse;
  
 @SuppressLint("NewApi")

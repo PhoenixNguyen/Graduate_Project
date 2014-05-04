@@ -11,8 +11,9 @@ import com.hp.customer.CustomerArrayAdapter;
 import com.hp.domain.Customer;
 import com.hp.order.ProductArrayAdapter;
 import com.hp.rest.Rest;
-import com.hp.rest.RestAPI;
-import com.hp.rest.RestAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI.ModifyCustomerTask;
 import com.hp.schedule.ListViewSchedules;
 import com.sun.jersey.api.client.ClientResponse;
 
@@ -117,7 +118,9 @@ public class CustomerListActivity extends MainMenuActivity{
         case R.id.action_add:
         	insertCustomer();
             return true;
-               
+        case R.id.action_refresh:
+        	refreshCustomers();
+            return true;        
         default:
             return super.onOptionsItemSelected(item);
         }
@@ -137,6 +140,9 @@ public class CustomerListActivity extends MainMenuActivity{
 	    case R.id.action_add:
         	insertCustomer();
             return true;
+	    case R.id.action_refresh:
+        	refreshCustomers();
+            return true;   
 	    default:
             return super.onOptionsItemSelected(item);
 
@@ -145,6 +151,11 @@ public class CustomerListActivity extends MainMenuActivity{
 	    return true;
 	}
 	
+	public void refreshCustomers(){
+		GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId(),
+			    true, customerAdapter, listView);
+        getData.execute();
+	}
 	public void addListView(){
 		//System.out.println("____UPDAte list " + Rest.customerList.size());
 		//Update list customer
@@ -154,7 +165,7 @@ public class CustomerListActivity extends MainMenuActivity{
     	
 		//List view
 		listView = (ListView)findViewById(R.id.list);
-		customerAdapter = new CustomerArrayAdapter(context, RestAPI.customerList);
+		customerAdapter = new CustomerArrayAdapter(context, CustomerAPI.customerList);
 		listView.setAdapter(customerAdapter);
 			
 		listView.setOnItemClickListener(new OnItemClickListener()
@@ -272,65 +283,15 @@ public class CustomerListActivity extends MainMenuActivity{
 	}
 	
 	public void deleteCustomer(Customer customer){
-		// Check the internet
-		if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else{
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-			return;
-		}
 		
-		// Send
-		ObjectMapper mapper = new ObjectMapper();
-        String cusStr = new String();
+		ModifyCustomerTask deleteData = new ModifyCustomerTask(context, "deleteCustomer", customer, false);
+		deleteData.execute();
+    	
+        GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId(),
+		    true, customerAdapter, listView);
+        getData.execute();
+		
 
-		try {
-
-			cusStr = mapper.writeValueAsString(customer);
-			
-		} catch (JsonGenerationException ex) {
-
-			ex.printStackTrace();
-
-		} catch (JsonMappingException ex) {
-
-			ex.printStackTrace();
-
-		} catch (IOException ex) {
-
-			ex.printStackTrace();
-
-		}
-       
-		//Order ---------------------------------------------------------------
-		ClientResponse response = Rest.mService.path("webresources").path("deleteCustomer").accept("application/json")
-		.type("application/json").post(ClientResponse.class, cusStr);
-
-        String output = response.toString();
-        System.out.println("input 1: " + output);
-        
-        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-            Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
-            
-            // Refresh
-//            if(Rest.getCustomersList(Rest.mStaff.getId()) == true){
-//	            customerAdapter = new CustomerArrayAdapter(context, Rest.customerList);
-//	    		listView.setAdapter(customerAdapter);
-//            }
-            
-            GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
-        	getData.execute();
-            
-        	customerAdapter = new CustomerArrayAdapter(context, RestAPI.customerList);
-    		listView.setAdapter(customerAdapter);
-            
-        }else
-        	Toast.makeText(context, "Không thể xóa dữ liệu. Khách hàng này đã tồn tại ở dữ liệu khác!", Toast.LENGTH_SHORT).show();
-        
-        System.out.println("Server response .... \n");
-        System.out.println("input 0: " + output);
 	}
 	
 	@SuppressLint("NewApi")
@@ -340,9 +301,5 @@ public class CustomerListActivity extends MainMenuActivity{
         arr[N] = element;
         return arr;
     }
-	
-	public boolean isOnline() { 
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
-		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
-	}
+		
 }

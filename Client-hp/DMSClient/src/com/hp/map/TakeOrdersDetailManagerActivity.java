@@ -15,6 +15,11 @@ import com.hp.domain.TakeOrderDetail;
 import com.hp.order_manager.OrdersManagerArrayAdapter;
 import com.hp.order_manager.OrdersManagerDetailArrayAdapter;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI.ModifyCustomerTask;
+import com.hp.rest.TakeOrderDetailAPI;
+import com.hp.rest.TakeOrderDetailAPI.GetTakeOrderDetailTask;
+import com.hp.rest.TakeOrderDetailAPI.ModifyTakeOrderDetailTask;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
@@ -51,7 +56,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	public static String order_id;
 	
-	public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
+	//public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
 	public Context context = this;
 	public ListView ordersListView;
 	public OrdersManagerDetailArrayAdapter adapter;
@@ -91,7 +96,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		init();
 		
 		getOrderList();
-		addListView();
+		
 	}
 	
 	public void init(){
@@ -155,23 +160,14 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 	
 	public void addListView() {
 
-		// Check the internet
-		if (isOnline()) {
-			System.out.println("Internet access!!____________________");
-		} else {
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(this, "No internet access, please try again later!",
-					Toast.LENGTH_SHORT).show();
-			return;
-		}
-
-		if (takeOrderDetailList.size() == 0) {
+		
+		if (TakeOrderDetailAPI.takeOrderDetailList.size() == 0) {
 			return;
 		}
 
 		ordersListView = (ListView) findViewById(R.id.list_view_product);
 		adapter = new OrdersManagerDetailArrayAdapter(this,
-				android.R.layout.simple_list_item_1, takeOrderDetailList);
+				android.R.layout.simple_list_item_1, TakeOrderDetailAPI.takeOrderDetailList);
 		ordersListView.setAdapter(adapter);
 
 		ordersListView.setOnItemClickListener(new OnItemClickListener() {
@@ -186,8 +182,9 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		});
 	}
 
+	public Dialog dialog;
 	public void addCustomerDialog(final TakeOrderDetail selectedValue, final int position){
-		final Dialog dialog = new Dialog(context);
+		dialog = new Dialog(context);
 		dialog.setContentView(R.layout.order_product_dialog);
 		dialog.setTitle("Thay đổi số lượng");
 
@@ -274,54 +271,10 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				selectedValue.setPromotionalProductMount(promotionalAmount);
 				
 				//Sys
+				ModifyTakeOrderDetailTask update = new ModifyTakeOrderDetailTask(context, updateData, 
+						selectedValue, adapter, ordersListView, TakeOrdersDetailManagerActivity.this);
+				update.execute();
 				
-				ObjectMapper mapper = new ObjectMapper();
-		        String orderDetail = new String();
-
-				try {
-
-					orderDetail = mapper.writeValueAsString(selectedValue);
-					
-				} catch (JsonGenerationException ex) {
-
-					ex.printStackTrace();
-
-				} catch (JsonMappingException ex) {
-
-					ex.printStackTrace();
-
-				} catch (IOException ex) {
-
-					ex.printStackTrace();
-
-				}
-		       
-				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path(updateData).accept("application/json")
-				.type("application/json").post(ClientResponse.class, orderDetail);
-
-		        String output = response.toString();
-		        System.out.println("input 1: " + output);
-		        
-		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-		            Toast.makeText(context, "Đang cập nhật", Toast.LENGTH_SHORT).show();
-		            // refresh customers
-		            
-		            
-		        }else
-		        	Toast.makeText(context, "Không thể cập nhật, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-		        
-		        System.out.println("Server response .... \n");
-		        System.out.println("input 0: " + output);
-		       
-		       
-				dialog.dismiss();
-				
-				//reload
-				getOrderList();
-				adapter = new OrdersManagerDetailArrayAdapter(context,
-						android.R.layout.simple_list_item_1, takeOrderDetailList);
-				ordersListView.setAdapter(adapter);
 			}
 		});
 
@@ -353,15 +306,16 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		
 	}
 	
+	public Dialog dialog2;
 	public void commitDialog(final TakeOrderDetail selectedValue){
-		final Dialog dialog = new Dialog(context);
+		dialog2 = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
-		dialog.setContentView(v);
+		dialog2.setContentView(v);
 		
-		dialog.setTitle("Cảnh báo, xóa bản ghi! ");
+		dialog2.setTitle("Cảnh báo, xóa bản ghi! ");
 	
-		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		Button dialogButton = (Button) dialog2.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Chấp nhận");
 		// if button is clicked, close the custom dialog
 		
@@ -371,113 +325,37 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				
 
 				//Sys
+				ModifyTakeOrderDetailTask update = new ModifyTakeOrderDetailTask(context, deleteData, 
+						selectedValue, adapter, ordersListView, TakeOrdersDetailManagerActivity.this);
+				update.execute();
 				
-				ObjectMapper mapper = new ObjectMapper();
-		        String orderDetail = new String();
-
-				try {
-
-					orderDetail = mapper.writeValueAsString(selectedValue);
-					
-				} catch (JsonGenerationException ex) {
-
-					ex.printStackTrace();
-
-				} catch (JsonMappingException ex) {
-
-					ex.printStackTrace();
-
-				} catch (IOException ex) {
-
-					ex.printStackTrace();
-
-				}
-		       
-				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path(deleteData).accept("application/json")
-				.type("application/json").post(ClientResponse.class, orderDetail);
-
-		        String output = response.toString();
-		        System.out.println("input 1: " + output);
-		        
-		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-		            Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
-		            // refresh customers
-		            
-		            
-		        }else
-		        	Toast.makeText(context, "Không thể xóa, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-		        
-		        System.out.println("Server response .... \n");
-		        System.out.println("input 0: " + output);
-		       
-		       
-				dialog.dismiss();
-				
-				//reload
-				getOrderList();
-				adapter = new OrdersManagerDetailArrayAdapter(context,
-						android.R.layout.simple_list_item_1, takeOrderDetailList);
-				ordersListView.setAdapter(adapter);
 			}
 		});
 
 		//Delete a schedule
-		Button dialogDeleteButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		Button dialogDeleteButton = (Button) dialog2.findViewById(R.id.dialogButtonNO);
 		dialogDeleteButton.setText("Hủy");
 		// if button is clicked, close the custom dialog
 		dialogDeleteButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 							
-				dialog.dismiss();
+				dialog2.dismiss();
 			}
 		});
-		dialog.show();
+		dialog2.show();
 		
 	}
 	
 	public void getOrderList(){
 		//GET From server
-		
-		ClientResponse response = Rest.mService.path("webresources").path(getListDetail)
-				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, order_id);
-        System.out.println("________________ "+ response.toString());
-        
-        if(response.getStatus() != 200){
-        	
-        	return;
-        }
-        
-        String re = response.getEntity(String.class);
-        System.out.println("________________ "+ re);
-        
-        // pair to object
-        ObjectMapper mapper = new ObjectMapper();
-        
-		try {
-//							File jsonFile = new File(jsonFilePath);
-			takeOrderDetailList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
-					TakeOrderDetail.class));
-			//System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-			return ;
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-			return ;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return ;
-		}
+		GetTakeOrderDetailTask getData = new GetTakeOrderDetailTask(context, getListDetail, order_id,
+				    this);
+         getData.execute();
+		  
 	}
 	
-	public boolean isOnline() {
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		return cm.getActiveNetworkInfo() != null
-				&& cm.getActiveNetworkInfo().isConnectedOrConnecting();
-	}
+	
 	
 	public void newOrderDetail(){
 		//Status = true

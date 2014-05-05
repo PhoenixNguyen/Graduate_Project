@@ -93,15 +93,7 @@ public class TakeOrder_ReViewActivity extends TakeOrdersDetailManagerActivity{
 	
 	public void addListView() {
 
-		// Check the internet
-		if (isOnline()) {
-			System.out.println("Internet access!!____________________");
-		} else {
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(this, "No internet access, please try again later!",
-					Toast.LENGTH_SHORT).show();
-			return;
-		}
+		
 
 		if (takeOrderDetailList.size() == 0) {
 			return;

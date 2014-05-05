@@ -153,41 +153,41 @@ public class ProductAPI {
 
 							for (int i = 0; i < TakeOrder_ProductActivity.mProductsMap
 									.get(k + "").size(); i++) {
-								for (int j = 0; j < TakeOrdersDetailManagerActivity.takeOrderDetailList
+								for (int j = 0; j < TakeOrderDetailAPI.takeOrderDetailList
 										.size(); j++) {
 									if (TakeOrder_ProductActivity.mProductsMap
 											.get(k + "")
 											.get(i)
 											.getProductID()
 											.compareTo(
-													TakeOrdersDetailManagerActivity.takeOrderDetailList
+													TakeOrderDetailAPI.takeOrderDetailList
 															.get(j).getProductID()) == 0) {
 
 										TakeOrder_ProductActivity.mProductsMap
 												.get(k + "")
 												.get(i)
 												.setTotal(
-														TakeOrdersDetailManagerActivity.takeOrderDetailList
+														TakeOrderDetailAPI.takeOrderDetailList
 																.get(j).getNumber());
 										TakeOrder_ProductActivity.mProductsMap
 												.get(k + "")
 												.get(i)
 												.setDiscount(
-														TakeOrdersDetailManagerActivity.takeOrderDetailList
+														TakeOrderDetailAPI.takeOrderDetailList
 																.get(j).getDiscount());
 
 										TakeOrder_ProductActivity.mProductsMap
 												.get(k + "")
 												.get(i)
 												.setNote(
-														TakeOrdersDetailManagerActivity.takeOrderDetailList
+														TakeOrderDetailAPI.takeOrderDetailList
 																.get(j).getNote());
 
 										TakeOrder_ProductActivity.mProductsMap
 												.get(k + "")
 												.get(i)
 												.setPromotionalProductAmounts(
-														TakeOrdersDetailManagerActivity.takeOrderDetailList
+														TakeOrderDetailAPI.takeOrderDetailList
 																.get(j)
 																.getPromotionalProductMount());
 

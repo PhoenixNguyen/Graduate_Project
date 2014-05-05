@@ -9,7 +9,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.hp.customer.CustomerArrayAdapter;
 import com.hp.domain.Customer;
 import com.hp.domain.Product;
+import com.hp.rest.ProductAPI.ModifyProductTask;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.ModifyCustomerTask;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
@@ -192,57 +194,11 @@ public class ProductManagerActivity extends TakeOrder_ProductActivity{
 	}
 	
 	public void deleteProduct(Product product){
-		// Check the internet
-		if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else{
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-			return;
-		}
 		
-		// Send
-		ObjectMapper mapper = new ObjectMapper();
-        String cusStr = new String();
-
-		try {
-
-			cusStr = mapper.writeValueAsString(product);
-			
-		} catch (JsonGenerationException ex) {
-
-			ex.printStackTrace();
-
-		} catch (JsonMappingException ex) {
-
-			ex.printStackTrace();
-
-		} catch (IOException ex) {
-
-			ex.printStackTrace();
-
-		}
-       
-		//Order ---------------------------------------------------------------
-		ClientResponse response = Rest.mService.path("webresources").path("deleteProduct").accept("application/json")
-		.type("application/json").post(ClientResponse.class, cusStr);
-
-        String output = response.toString();
-        System.out.println("input 1: " + output);
-        
-        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-            Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
-            
-            // Refresh
-            onResume();
-            
-            
-        }else
-        	Toast.makeText(context, "Không thể xóa dữ liệu. Khách hàng này đã tồn tại ở dữ liệu khác!", Toast.LENGTH_SHORT).show();
-        
-        System.out.println("Server response .... \n");
-        System.out.println("input 0: " + output);
+		ModifyProductTask deleteData = new ModifyProductTask(context, "deleteProduct", product, false, this);
+		deleteData.execute();
+		
+		
 	}
 
 }

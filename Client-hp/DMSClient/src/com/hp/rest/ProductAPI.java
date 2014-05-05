@@ -22,6 +22,7 @@ import com.hp.customer.CustomerArrayAdapter;
 import com.hp.domain.Customer;
 import com.hp.domain.Product;
 import com.hp.map.CustomerMapActivity;
+import com.hp.map.ProductManagerActivity;
 import com.hp.map.TakeOrder_ProductActivity;
 import com.hp.map.TakeOrdersDetailManagerActivity;
 import com.hp.order.ProductArrayAdapter;
@@ -310,4 +311,134 @@ public class ProductAPI {
 		}
 
 	}
+	
+	
+	/////////////////// DELETE AND INSERT AND EDIT/////////////////////////////////////////////////////////////////////////////
+	public static class ModifyProductTask extends AsyncTask<Void,Void,String>
+	{
+		Context context;
+		String method;
+		Product product;
+		
+		boolean insert;
+		
+		//Delete
+		ProductManagerActivity activity;
+		
+		public ModifyProductTask(Context context, String method, Product product, boolean insert){
+			this.context = context;
+			this.method = method;
+			this.product = product;
+			this.insert = insert;
+		}
+		
+		public ModifyProductTask(Context context, String method, Product product, boolean insert, ProductManagerActivity activity){
+			this.context = context;
+			this.method = method;
+			this.product = product;
+			this.insert = insert;
+			this.activity = activity;
+			
+		}
+		
+		ProgressDialog dialog;
+		protected void onPreExecute() {
+		dialog = ProgressDialog.show(context, "",
+			  "Đang xử lý ... ", true);
+		}
+		
+		protected String doInBackground(Void... params)
+		{
+		//do something  
+		if(CheckingInternet.isOnline()){
+			System.out.println("Internet access!!____________________");
+		}
+		else{
+			dialog.dismiss();									
+			System.out.println("NO Internet access!!____________________");
+							
+			return "nointernet";
+			
+		}
+		
+		//Deleting
+		ClientResponse response = Rest.mService.path("webresources").path(method).accept("application/json")
+				.type("application/json").post(ClientResponse.class, ConvertObjectToString(product));
+		
+		String output = response.toString();
+		System.out.println("input 1: " + output);
+		
+		if((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)){
+			
+			return "success";
+		}
+		else{
+				        
+		  return "fail";
+		}
+		// =====================================================================================
+		
+		}
+		
+		protected void onPostExecute(String result)
+		{
+		if (result.equals("success")){
+		  //do something
+			if(!insert){
+				Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
+				activity.onResume();
+			}
+			else{
+				Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
+				
+			}
+			
+			dialog.dismiss();
+		}
+		else
+			if (result.equals("nointernet")){
+				Toast.makeText(context, "Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!", Toast.LENGTH_SHORT).show();
+			}
+		else
+			if (result.equals("fail")){
+				if(!insert)
+					Toast.makeText(context, "Không thể xóa dữ liệu. Sản phẩm này đã tồn tại ở dữ liệu khác!", Toast.LENGTH_SHORT).show();
+				else
+					Toast.makeText(context, "Không thể lưu dữ liệu. Mã Sản phẩm không được trống và không trùng với Sản phẩm khác", Toast.LENGTH_SHORT).show();
+			}
+		else
+		{       
+		 dialog.dismiss();					
+		 Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+			
+		}
+		} 
+		
+		public String  ConvertObjectToString(Product product){
+			ObjectMapper mapper = new ObjectMapper();
+			String cusStr = new String();
+			
+			try {
+			
+				cusStr = mapper.writeValueAsString(product);
+				
+			} catch (JsonGenerationException ex) {
+			
+				ex.printStackTrace();
+			
+			} catch (JsonMappingException ex) {
+			
+				ex.printStackTrace();
+			
+			} catch (IOException ex) {
+			
+				ex.printStackTrace();
+			
+			}
+			
+			return cusStr;
+		}
+	
+	
+	}   
 }

@@ -23,6 +23,11 @@ import com.hp.domain.TakeOrderDetail;
 import com.hp.order_manager.OrdersManagerArrayAdapter;
 import com.hp.order_manager.OrdersManagerDetailArrayAdapter;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.CustomerAPI.ModifyCustomerTask;
+import com.hp.rest.TakeOrderAPI;
+import com.hp.rest.TakeOrderAPI.GetTakeOrderTask;
+import com.hp.rest.TakeOrderAPI.ModifyTakeOrderTask;
 import com.hp.schedule.ListViewSchedules;
 import com.sun.jersey.api.client.ClientResponse;
 
@@ -59,7 +64,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class TakeOrdersManagerActivity extends MainMenuActivity implements OnClickListener, DateWatcher {
 
 	private TextView id[];
-	public static List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
+	//public static List<TakeOrder> takeOrderList = new ArrayList<TakeOrder>();
 	private List<TakeOrder> takeOrderListFilter = new ArrayList<TakeOrder>();
 	private boolean filter = false;
 	
@@ -100,7 +105,7 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 		init();
 		
 		getOrderList();
-		addListView();
+		//addListView();
 
 		id_search = (EditText) findViewById(R.id.id_search);
 
@@ -259,8 +264,9 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 		
 	}
 	
+	public Dialog dialog;
 	public void commitDialog(final TakeOrder selectedValue){
-		final Dialog dialog = new Dialog(context);
+		dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
 		dialog.setContentView(v);
@@ -275,53 +281,10 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 			@Override
 			public void onClick(View v) {
 				//Sys
-				
-				ObjectMapper mapper = new ObjectMapper();
-		        String order = new String();
-
-				try {
-
-					order = mapper.writeValueAsString(selectedValue);
-					
-				} catch (JsonGenerationException ex) {
-
-					ex.printStackTrace();
-
-				} catch (JsonMappingException ex) {
-
-					ex.printStackTrace();
-
-				} catch (IOException ex) {
-
-					ex.printStackTrace();
-
-				}
-		       
-				//Order ---------------------------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path(deleteValue).accept("application/json")
-				.type("application/json").post(ClientResponse.class, order);
-
-		        String output = response.toString();
-		        System.out.println("input 1: " + output);
-		        
-		        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-		            Toast.makeText(context, "Đã xóa", Toast.LENGTH_SHORT).show();
-		            // refresh customers
-		            
-		            
-		        }else
-		        	Toast.makeText(context, "Không thể xóa, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-		        
-		        System.out.println("Server response .... \n");
-		        System.out.println("input 0: " + output);
-		        
-		        dialog.dismiss();
-		        
-		        //Refresh
-		        getOrderList();
-		        adapter = new OrdersManagerArrayAdapter(context,
-						android.R.layout.simple_list_item_1, takeOrderList);
-				ordersListView.setAdapter(adapter);
+				ModifyTakeOrderTask deleteData = new ModifyTakeOrderTask(context, deleteValue, selectedValue, 
+						adapter, ordersListView, TakeOrdersManagerActivity.this);
+				deleteData.execute();
+								
 			}
 		});
 
@@ -340,48 +303,17 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 		
 	}
 	
-	public List<TakeOrder> getOrderList(){
+	public void getOrderList(){
 		// GET From server
 
-				ClientResponse response = Rest.mService.path("webresources")
-						.path(getList).accept("application/json")
-						.type("application/json")
-						.post(ClientResponse.class, Rest.mStaff.getId());
-				System.out.println("________________ " + response.toString());
-
-				if (response.getStatus() != 200) {
-
-					return null;
-				}
-
-				String re = response.getEntity(String.class);
-				System.out.println("________________ " + re);
-
-				// pair to object
-				ObjectMapper mapper = new ObjectMapper();
-
-				try {
-					// File jsonFile = new File(jsonFilePath);
-					takeOrderList = mapper.readValue(re, TypeFactory.defaultInstance()
-							.constructCollectionType(List.class, TakeOrder.class));
-					// System.out.println("++++++++++++++ mdt "+customerList.get(0).getmMaDoiTuong());
-				} catch (JsonGenerationException e) {
-					e.printStackTrace();
-					return null;
-				} catch (JsonMappingException e) {
-					e.printStackTrace();
-					return null;
-				} catch (IOException e) {
-					e.printStackTrace();
-					return null;
-				}
-				
-				return takeOrderList;
+		GetTakeOrderTask getData = new GetTakeOrderTask(context, getList, Rest.mStaff.getId(), this );
+        getData.execute();
+	        
 	}
 	
 	public List<TakeOrder> getOrderList(boolean filter){
 		if(filter == false){
-			return takeOrderList;
+			return TakeOrderAPI.takeOrderList;
 		}
 		
 		else
@@ -519,12 +451,12 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 		}
 		System.out.println(startDate);
 		
-		for(int i = 0; i < takeOrderList.size(); i++){
+		for(int i = 0; i < TakeOrderAPI.takeOrderList.size(); i++){
 			Date compare = null;
 			try {
-				if(takeOrderList.get(i).getOrderEstablishDate() == null)
+				if(TakeOrderAPI.takeOrderList.get(i).getOrderEstablishDate() == null)
 					continue;
-				String date = takeOrderList.get(i).getOrderEstablishDate().toString();
+				String date = TakeOrderAPI.takeOrderList.get(i).getOrderEstablishDate().toString();
 				
 				compare = dateFormat1.parse(date);
 				
@@ -536,8 +468,8 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 			if(compare.after(startDate) 
 					&& compare.before(endDate)){
 				
-				takeOrderListFilter.add(takeOrderList.get(i));
-				System.out.println(takeOrderList.get(i).getId());
+				takeOrderListFilter.add(TakeOrderAPI.takeOrderList.get(i));
+				System.out.println(TakeOrderAPI.takeOrderList.get(i).getId());
 			}
 		}
 		

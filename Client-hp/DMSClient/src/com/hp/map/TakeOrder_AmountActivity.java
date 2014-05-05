@@ -14,6 +14,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import com.hp.domain.TakeOrder;
 import com.hp.rest.Rest;
+import com.hp.rest.TakeOrderAPI;
 import com.hp.rest.CustomerAPI.GetCustomerListTask;
 import com.hp.rest.TakeOrderAPI.PutTakeOrderTask;
 import com.sun.jersey.api.client.ClientResponse;
@@ -114,26 +115,26 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		}
 		else
 		{
-			if(TakeOrdersManagerActivity.takeOrderList != null && TakeOrdersManagerActivity.takeOrderList.size() > 0)
-			for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
-				System.out.println("__++"+TakeOrdersManagerActivity.takeOrderList.get(i).getId() +" -- " + TakeOrder_ProductActivity.take_order_id);
-	        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getId().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 
+			if(TakeOrderAPI.takeOrderList != null && TakeOrderAPI.takeOrderList.size() > 0)
+			for(int i = 0; i < TakeOrderAPI.takeOrderList.size(); i++){
+				System.out.println("__++"+TakeOrderAPI.takeOrderList.get(i).getId() +" -- " + TakeOrder_ProductActivity.take_order_id);
+	        	if(TakeOrderAPI.takeOrderList.get(i).getId().compareTo(                      //TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j) 
 	        			TakeOrder_ProductActivity.take_order_id) == 0){
 	        		System.out.println(" ACC ");
-	        		customer_id.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getId());
-	    			customer_name.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getCustomerName());
+	        		customer_id.setText(TakeOrderAPI.takeOrderList.get(i).getId());
+	    			customer_name.setText(TakeOrderAPI.takeOrderList.get(i).getCustomerName());
 	    			
 	    			//Show discount
-	    			discount_percent.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getDiscount() +"");
+	    			discount_percent.setText(TakeOrderAPI.takeOrderList.get(i).getDiscount() +"");
 	    			//set discount
-					discount = (float)Math.ceil(pricesTotal*TakeOrdersManagerActivity.takeOrderList.get(i).getDiscount()/100);
+					discount = (float)Math.ceil(pricesTotal*TakeOrderAPI.takeOrderList.get(i).getDiscount()/100);
 					
 					discount_value.setText((new BigDecimal(discount)).toString());
 					
 					//set sume
 					sum_value.setText((new BigDecimal(pricesTotal - discount)).toString());
 					
-					note.setText(TakeOrdersManagerActivity.takeOrderList.get(i).getNote());
+					note.setText(TakeOrderAPI.takeOrderList.get(i).getNote());
 	        		break;
 	        	}
 	        }
@@ -241,10 +242,10 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 			        String orderDetailList = new String();
 			        String TakeOrderStr = new String();
 			        TakeOrder order = null;
-			        for(int i = 0; i < TakeOrdersManagerActivity.takeOrderList.size(); i++){
-			        	if(TakeOrdersManagerActivity.takeOrderList.get(i).getId().compareTo(
+			        for(int i = 0; i < TakeOrderAPI.takeOrderList.size(); i++){
+			        	if(TakeOrderAPI.takeOrderList.get(i).getId().compareTo(
 			        			TakeOrder_ProductActivity.take_order_id) == 0){
-			        		order = TakeOrdersManagerActivity.takeOrderList.get(i);
+			        		order = TakeOrderAPI.takeOrderList.get(i);
 			        		order.setDiscount(Float.parseFloat(discount_percent.getText().toString()));
 			        		order.setAfterPrivate(pricesTotal - discount);
 			        		order.setNote(note.getText().toString());

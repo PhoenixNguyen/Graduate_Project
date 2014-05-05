@@ -11,6 +11,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import com.hp.domain.Customer;
 import com.hp.domain.Product;
+import com.hp.rest.ProviderAPI;
 import com.hp.rest.Rest;
 import com.hp.rest.ProductAPI.ModifyProductTask;
 import com.sun.jersey.api.client.ClientResponse;
@@ -83,10 +84,10 @@ public class ProductAdditionActivity extends MainMenuActivity {
 		
 		
 		final List<String> list = new ArrayList<String>();
-		for(int i = 0; i < ProductManagerActivity.providersList.size(); i++){
+		for(int i = 0; i < ProviderAPI.providersList.size(); i++){
 	
 			//Add
-			list.add(ProductManagerActivity.providersList.get(i).getId());
+			list.add(ProviderAPI.providersList.get(i).getId());
 		}
 		
 		

@@ -19,7 +19,9 @@ import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import com.hp.domain.TakeOrderDetail;
 import com.hp.order.*;
+import com.hp.rest.ProviderAPI.GetProviderListTask;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.annotation.SuppressLint;
@@ -76,7 +78,7 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	
 	public static String take_order_id;
 	
-	public static List<Provider> providersList = new ArrayList<Provider>();
+	//public static List<Provider> providersList = new ArrayList<Provider>();
 	
 	//To distinction between: product manager and order
 	public boolean mManager;
@@ -182,71 +184,13 @@ public class TakeOrder_ProductActivity extends Activity implements OnItemClickLi
 	//............... start spiner ........................
 	// add items into spinner dynamically
 	  public void addItemsOnSpinner() {
-		  providersList.clear();
-		String re = getProviderIDList();
-		if(re == null)
-			return;
-		
-        System.out.println("________________ "+ re);
-        
-        // pair to object
-        ObjectMapper mapper = new ObjectMapper();
-        //List<Provider> providersList = null;
-		try {
-//			File jsonFile = new File(jsonFilePath);
-			providersList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
-					Provider.class));
-			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//////////////////////////////////////////////////////////////////////////////////////////
-		
-				
-		spinner = (Spinner) findViewById(R.id.class_id);
-		
-		List<String> list = new ArrayList<String>();
-		for(int i = 0; i < providersList.size(); i++){
-			//Init products list
-//			mProductsMap.put(i+"", value)
-//			mProductsList[i] = new ArrayList<Product>();
-			
-			//Add
-			list.add(providersList.get(i).getId());
-		}
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-			android.R.layout.simple_spinner_item, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(dataAdapter);
+		  
+		GetProviderListTask getData = new GetProviderListTask(context, "getProvidersIDList", spinner,
+			    this);
+        getData.execute();
+	    
 	  }
 	 
-	  public String getProviderIDList(){
-		//GET providers list
-			// Check the internet
-			if(isOnline()){
-				System.out.println("Internet access!!____________________");
-			}
-			else{
-				System.out.println("NO Internet access!!____________________");
-				Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-				return null;
-			}
-			
-			ClientResponse response = Rest.mService.path("webresources").path("getProvidersIDList")
-					.accept("application/json")
-					.type("application/json").get(ClientResponse.class);
-	        System.out.println("________________ "+ response.toString());
-	        if(response.getStatus() != 200){
-	        	return null;
-	        }
-	        
-	        return response.getEntity(String.class);
-	  }
-	  
 	  
 	  public void addListenerOnSpinnerItemSelection() {
 			spinner = (Spinner) findViewById(R.id.class_id);

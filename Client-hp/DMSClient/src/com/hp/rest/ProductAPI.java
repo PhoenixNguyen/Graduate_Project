@@ -117,7 +117,7 @@ public class ProductAPI {
 			else
 				return "success";
 			
-			for(int k = 0; k< TakeOrder_ProductActivity.providersList.size(); k++){
+			for(int k = 0; k< ProviderAPI.providersList.size(); k++){
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
@@ -132,7 +132,7 @@ public class ProductAPI {
 				ClientResponse response = Rest.mService.path("webresources")
 						.path(method).accept("application/json")
 						.type("application/json")
-						.post(ClientResponse.class, TakeOrder_ProductActivity.providersList.get(k).getId());
+						.post(ClientResponse.class, ProviderAPI.providersList.get(k).getId());
 				System.out.println("________________ " + response.toString());
 	
 				if (response.getStatus() != 200) {

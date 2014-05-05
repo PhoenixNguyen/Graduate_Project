@@ -14,6 +14,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import com.hp.domain.TakeOrder;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.TakeOrderAPI.PutTakeOrderTask;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.app.Activity;
@@ -277,45 +279,14 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 						update_detail_command = "updateAddingInventoryDetail";
 					}
 					
+					//UPDATE
 					//Order ---------------------------------------------------------------
-					ClientResponse response = Rest.mService.path("webresources").path(update_main_command).accept("application/json")
-					.type("application/json").post(ClientResponse.class, TakeOrderStr);
-
-			        String output = response.toString();
-			        System.out.println("input 1: " + output);
-			        
-			        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-			            Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
-			            // refresh customers
-			            
-			            
-			        }else
-			        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-			        
-			        System.out.println("Server response .... \n");
-			        System.out.println("input 0: " + output);
-			        
-					//Order detail-------------------------------------------------------------
-			        ClientResponse response2 = Rest.mService.path("webresources").path(update_detail_command).accept("application/json")
-			    			.type("application/json").post(ClientResponse.class, orderDetailList);
-
-			        String output2 = response2.toString();
-			        System.out.println("input 1: " + output2);
-			        
-			        if ((response2.getStatus() == 200) && (response2.getEntity(String.class).compareTo("0") != 0)) {
-			            Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show();
-			            // refresh customers
-			            resetValue();
-			            TakeOrder_ProductActivity.add_take_order_detail = false;
-			            TakeOrder_ProductActivity.timeLine = true;
-			            InventoryManagerDetailActivity.add_inventory_detail = false;
-			            
-			        }else
-			        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-			        
-			        System.out.println("Server response .... \n");
-			        System.out.println("input 0: " + output2);
-				
+					
+					PutTakeOrderTask puttData = new PutTakeOrderTask(context, update_main_command, update_detail_command, 
+							TakeOrderStr, orderDetailList, Rest.mStaff.getId(), this, true
+						    );
+					puttData.execute();
+				      
 				
 				return;
 			}
@@ -372,42 +343,12 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 
 			}
 	       
-			//Order ---------------------------------------------------------------
-			ClientResponse response = Rest.mService.path("webresources").path(putData).accept("application/json")
-			.type("application/json").post(ClientResponse.class, TakeOrderStr);
+			PutTakeOrderTask puttData = new PutTakeOrderTask(context, putData, putDataDetail, 
+					TakeOrderStr, orderDetailList, Rest.mStaff.getId(), this, false
+				    );
+			puttData.execute();
 
-	        String output = response.toString();
-	        System.out.println("input 1: " + output);
-	        
-	        if ((response.getStatus() == 200) && (response.getEntity(String.class).compareTo("true") == 0)) {
-	            Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
-	            // refresh customers
-	            
-	            
-	        }else
-	        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-	        
-	        System.out.println("Server response .... \n");
-	        System.out.println("input 0: " + output);
-	        
-	        //Order detail-------------------------------------------------------------
-	        ClientResponse response2 = Rest.mService.path("webresources").path(putDataDetail).accept("application/json")
-	    			.type("application/json").post(ClientResponse.class, orderDetailList);
-
-	        String output2 = response2.toString();
-	        System.out.println("input 1: " + output2);
-	        
-	        if ((response2.getStatus() == 200) && (response2.getEntity(String.class).compareTo("0") != 0)) {
-	            Toast.makeText(context, "Đã lưu", Toast.LENGTH_SHORT).show();
-	            // refresh customers
-	            resetValue();
-	            
-	        }else
-	        	Toast.makeText(context, "Không thể gửi, hãy xem lại kết nối", Toast.LENGTH_SHORT).show();
-	        
-	        System.out.println("Server response .... \n");
-	        System.out.println("input 0: " + output2);
-	        
+//	        
 	        ////////////////////////// save order detail//////////////////////////////////
 	        
 		}

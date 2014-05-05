@@ -13,7 +13,9 @@ import com.hp.domain.Product;
 
 import com.hp.map.TakeOrder_ProductActivity;
 import com.hp.map.TakeOrdersDetailManagerActivity;
+import com.hp.rest.ProductAPI.GetProductListTask;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
 import com.sun.jersey.api.client.ClientResponse;
 
 import android.content.Context;
@@ -63,113 +65,97 @@ public class CustomOnItemSelectedListener implements OnItemSelectedListener{
 		
 		System.out.println("____ " + data + "___ " );
 		
-		addAllProducts();
 		
-		adapter = new ProductArrayAdapter(context, android.R.layout.simple_list_item_1
-				, TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + ""), mManager);
-		listView.setAdapter(adapter);
-		//Set total
-		if(mManager)
-			TakeOrder_ProductActivity.total_value.setText(TakeOrder_ProductActivity.mProductsMap.get(mProviderIndex + "").size()+"");
-		//
+//		if(TakeOrder_ProductActivity.timeLine == true)
+//			TakeOrder_ProductActivity.mProductsMap.clear();
+//		else
+//			return;
 		
-		//Add search listenner
-		search.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence cs, int arg1, int arg2,
-					int arg3) {
-				// When user changed the Text
-				adapter.getFilter().filter(cs);
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable arg0) {
-				// TODO Auto-generated method stub
-			}
-
-		});
+		//for(int k = 0; k< TakeOrder_ProductActivity.providersList.size(); k++){
+			
+		GetProductListTask getData = new GetProductListTask(context, command,
+			   adapter, listView, mManager, pos, search);
+        getData.execute();
+	        
+		//}
+		//addAllProducts();
+		
+		
 	  }
 	 
 	  public void addAllProducts(){
-		if(TakeOrder_ProductActivity.timeLine == true)
+		  if(TakeOrder_ProductActivity.timeLine == true)
 				TakeOrder_ProductActivity.mProductsMap.clear();
-		else
-			return;
-		
-		for(int k = 0; k< TakeOrder_ProductActivity.providersList.size(); k++){
-		//GET
-		ClientResponse response = Rest.mService.path("webresources").path(command)
-				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, TakeOrder_ProductActivity.providersList.get(k).getId() );
-        System.out.println("________________ "+ response.toString());
-        if(response.getStatus() != 200){
-        	return;
-        }
-        
-        String re = response.getEntity(String.class);
-        System.out.println("________________ "+ re);
-        
-        // pair to object
-        ObjectMapper mapper = new ObjectMapper();
-        List<Product> productsList = new ArrayList<Product>();
-		try {
-//				File jsonFile = new File(jsonFilePath);
-			productsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
-					Product.class));
-			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//////////////////////////////////////////////////////////////////////////////////////////
-		
-		
-		//If mProductsMap have not contained this key then import this list
-		//if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + "")){
-			TakeOrder_ProductActivity.mProductsMap.put(k + "", productsList);
+			else
+				return;
 			
-			//
-			//if add more products for take order
-			if(TakeOrder_ProductActivity.add_take_order_detail){
-				
-				for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(k + "").size(); i++){
-					for(int j = 0; j < TakeOrdersDetailManagerActivity.takeOrderDetailList.size(); j++){
-						if(TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).getProductID()
-								.compareTo(TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getProductID()) == 0){
-							
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setTotal(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getNumber());
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setDiscount(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getDiscount());
-							
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setNote(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getNote());
-							
-							TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setPromotionalProductAmounts(
-									TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getPromotionalProductMount()
-									);
-							
-						}
-					}
-				}
-				
-				TakeOrder_ProductActivity.take_order_id = TakeOrdersDetailManagerActivity.order_id;
-			}
-		//}
-		
-		//timeline = false for not init again
-		TakeOrder_ProductActivity.timeLine = false;
+			for(int k = 0; k< TakeOrder_ProductActivity.providersList.size(); k++){
+		        
+			//GET
+//			ClientResponse response = Rest.mService.path("webresources").path(command)
+//					.accept("application/json")
+//					.type("application/json").post(ClientResponse.class, TakeOrder_ProductActivity.providersList.get(k).getId() );
+//	        System.out.println("________________ "+ response.toString());
+//	        if(response.getStatus() != 200){
+//	        	return;
+//	        }
+//	        
+//	        String re = response.getEntity(String.class);
+//	        System.out.println("________________ "+ re);
+//	        
+//	        // pair to object
+//	        ObjectMapper mapper = new ObjectMapper();
+//	        List<Product> productsList = new ArrayList<Product>();
+//			try {
+//	//				File jsonFile = new File(jsonFilePath);
+//				productsList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
+//						Product.class));
+//				//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
+//			} catch (JsonGenerationException e) {
+//				e.printStackTrace();
+//			} catch (JsonMappingException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			
+//			
+//			//If mProductsMap have not contained this key then import this list
+//			//if(!TakeOrder_ProductActivity.mProductsMap.containsKey(mProviderIndex + "")){
+//				TakeOrder_ProductActivity.mProductsMap.put(k + "", productsList);
+//				
+//				//
+//				//if add more products for take order
+//				if(TakeOrder_ProductActivity.add_take_order_detail){
+//					
+//					for(int i = 0; i < TakeOrder_ProductActivity.mProductsMap.get(k + "").size(); i++){
+//						for(int j = 0; j < TakeOrdersDetailManagerActivity.takeOrderDetailList.size(); j++){
+//							if(TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).getProductID()
+//									.compareTo(TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getProductID()) == 0){
+//								
+//								TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setTotal(
+//										TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getNumber());
+//								TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setDiscount(
+//										TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getDiscount());
+//								
+//								TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setNote(
+//										TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getNote());
+//								
+//								TakeOrder_ProductActivity.mProductsMap.get(k + "").get(i).setPromotionalProductAmounts(
+//										TakeOrdersDetailManagerActivity.takeOrderDetailList.get(j).getPromotionalProductMount()
+//										);
+//								
+//							}
+//						}
+//					}
+//					
+//					TakeOrder_ProductActivity.take_order_id = TakeOrdersDetailManagerActivity.order_id;
+//				}
+//			//}
+//			
+//			//timeline = false for not init again
+//			TakeOrder_ProductActivity.timeLine = false;
 		
 		}
 		

@@ -27,7 +27,9 @@ import org.json.JSONObject;
 
 import com.hp.datahandle.DataConvert;
 import com.hp.domain.DataInfo;
+import com.hp.rest.CustomerAPI.UploadCustomerImageTask;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.ModifyCustomerTask;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -237,64 +239,11 @@ public class TakeImagesActivity extends MainMenuActivity {
 
 	public void upload() {
 		// PUT infomations
-
-		// Check the internet
-		if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else{
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(this, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-			return;
-		}
 		
-		DataInfo data = new DataInfo(Rest.mStaff.getId(),
-				CustomerMapActivity.mSelectedCustomer.getMaDoiTuong(),
-				DataConvert.encodeImageToString(pathSave), "");
-
-		// Convert an Object
-		ObjectMapper mapper = new ObjectMapper();
-		String object = new String();
-
-		try {
-
-			object = mapper.writeValueAsString(data);
-
-		} catch (JsonGenerationException ex) {
-
-			ex.printStackTrace();
-
-		} catch (JsonMappingException ex) {
-
-			ex.printStackTrace();
-
-		} catch (IOException ex) {
-
-			ex.printStackTrace();
-
-		}
-
-		// Post
-		ClientResponse response = Rest.mService.path("webresources")
-				.path("putImage").accept("application/json")
-				.type("application/json").post(ClientResponse.class, object);
-
-		if (response.getStatus() != 200) {
-//			throw new RuntimeException("Failed : HTTP error code : "
-//					+ response.getStatus());
-			
-			Toast.makeText(this, "Gửi lỗi, làm ơn xem lại kết nối", Toast.LENGTH_SHORT).show();
-		} else {
-			String output = response.getEntity(String.class);
-			Toast.makeText(this, "Đã gửi thành công", Toast.LENGTH_SHORT).show();
-			System.out.println("Server response .... \n");
-			System.out.println(output);
-		}
+		UploadCustomerImageTask uploadData = new UploadCustomerImageTask(context, "putImage", pathSave);
+		uploadData.execute();
+//		
 	}
 	
-	public boolean isOnline() { 
-		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); 
-		return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting(); 
-	}
-
+	
 }

@@ -160,25 +160,11 @@ public class CustomerListActivity extends MainMenuActivity{
 		//System.out.println("____UPDAte list " + Rest.customerList.size());
 		//Update list customer
 		//Rest.getCustomersList(Rest.mStaff.getId());
-		GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId());
+		GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId(),
+				listView, customerAdapter, customer,
+				this, true);
     	getData.execute();
     	
-		//List view
-		listView = (ListView)findViewById(R.id.list);
-		customerAdapter = new CustomerArrayAdapter(context, CustomerAPI.customerList);
-		listView.setAdapter(customerAdapter);
-			
-		listView.setOnItemClickListener(new OnItemClickListener()
-		{
-		     @Override
-		     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
-		     {
-		    	customer = (Customer) listView.getAdapter().getItem(position);
-		    	
-		    	//open dialog
-		    	choiceDialog(customer);
-		      }
-		});
 	}
 	
 	public void choiceDialog(final Customer customer){

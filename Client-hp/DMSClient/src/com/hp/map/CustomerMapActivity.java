@@ -169,7 +169,7 @@ public class CustomerMapActivity extends FragmentActivity
         setContentView(R.layout.customer_map);
 
         Button sendLocation = (Button)findViewById(R.id.send_location);
-        if(Rest.mStaff.getPermission() == 1)
+        if(Rest.mStaff.getPermission() == 1 || Rest.mStaff.getPermission() == 3)
         	sendLocation.setVisibility(View.VISIBLE);
         
         //getActionBar().setDisplayHomeAsUpEnabled(true);

@@ -211,7 +211,8 @@
                                                                                                                                                         <input type="radio" name="assigntype"  value="T" onclick="toggleAssignType(this.value)">&nbsp;Nhóm-->
                                                                                 <span id="assign_user" style="display:block">
                                                                                     <select name="staff.permission" class="small" >
-                                                                                        <option value="2" >Nhân viên</option>
+                                                                                        <option value="3" >Nhân viên cập nhật vị trí</option>
+                                                                                        <option value="2" >Nhân viên bán hàng</option>
                                                                                         <option value="1" >Quản lý</option>
                                                                                     </select>
                                                                                 </span>

@@ -234,12 +234,12 @@
                                                                         <td onmouseover=""><s:property value="adress"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="createdtime" vtmodule="Accounts" style="display:none;"></span></td>
                                                                         <td onmouseover=""><s:property value="phone"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="cf_607" vtmodule="Accounts" style="display:none;"></span></td>
                                                                         <td onmouseover=""><s:property value="job"/><a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )"></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
-                                                                            <s:if test="permission == 1">
-                                                                            <td onmouseover="">Quản lý<a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )"></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
-                                                                            </s:if>
-                                                                            <s:else>
-                                                                            <td onmouseover="">Nhân viên<a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )"></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
-                                                                            </s:else>
+                                                                            
+                                                                            <td onmouseover="">
+                                                                                <s:if test="permission == 1">Quản lý</s:if><s:if test="permission == 2">Nhân viên bán hàng</s:if><s:if test="permission == 3">Nhân viên cập nhật vị trí</s:if>
+                                                                                <a href="javascript:;" onclick="startCall( & quot; 0915166889 & quot; , & quot; 137 & quot; )"></a> <span type="vtlib_metainfo" vtrecordid="137" vtfieldname="phone" vtmodule="Accounts" style="display:none;"></span></td>
+                                                                            
+                                                                            
                                                                         <td onmouseover=""><s:property value="manager"/><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
                                                                         <td onmouseover=""><s:if test="status == true">Hoạt động</s:if><s:else>Không hoạt động</s:else><span type="vtlib_metainfo" vtrecordid="137" vtfieldname="rating" vtmodule="Accounts" style="display:none;"></span></td>
                                                                         <td onmouseover=""><a href="edit-staff?id_st=<s:property value="stt"/>">Sửa</a>  | <a href='javascript:confirmdelete("delete-staff?id_st=<s:property value="stt"/>")'>Xóa</a></td>

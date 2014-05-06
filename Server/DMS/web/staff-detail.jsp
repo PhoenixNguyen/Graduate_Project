@@ -269,8 +269,11 @@
                                                                                                     <s:if test="staff.permission == 1" >
                                                                                                         Quản lý
                                                                                                     </s:if>
+                                                                                                    <s:if test="staff.permission == 2" >
+                                                                                                        Nhân viên bán hàng
+                                                                                                    </s:if>
                                                                                                     <s:else>
-                                                                                                        Nhân viên
+                                                                                                        Nhân viên cập nhật vị trí
                                                                                                     </s:else>
 
                                                                                                 </span>

@@ -97,9 +97,9 @@ public class CustomerDAOImpl implements CustomerDAO {
             if(pPermission == 1)
                 courses = session.createQuery("from Customer order by maDoiTuong  ").list(); 
             else
-                if(pPermission == 2)
-                    courses = session.createQuery("from Customer where  " 
-                            + " maNhanVien='"+pStaff+"' order by maDoiTuong ").list(); 
+                
+                courses = session.createQuery("from Customer where  " 
+                        + " maNhanVien='"+pStaff+"' order by maDoiTuong ").list(); 
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -238,7 +238,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                         + " and sc.schedule_date BETWEEN '"
                         + sdf.format(date) +"' and DATEADD(dd, 1, '"+sdf.format(date) +"') )";
             else  
-            if(pPermission == 2)
+            
                 str = "select cus1.* from tb_khachhang as cus1 where lower(cus1.khachhang_ma_nv)='"+pStaff.toLowerCase()+"' "
                         + " Except "
                         + "(select cus.* from tb_khachhang as cus, tb_schedule as sc "

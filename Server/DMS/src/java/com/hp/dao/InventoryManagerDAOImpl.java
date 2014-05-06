@@ -72,8 +72,8 @@ public class InventoryManagerDAOImpl implements InventoryManagerDAO{
             if(pPermission == 1)
                 courses = session.createQuery("from InventoryManager order by creater, takeOrderDate desc").list();
             else
-                if(pPermission == 2)
-                    courses = session.createQuery("from InventoryManager where creater='"+pStaff+"' order by takeOrderDate desc").list();
+                
+                courses = session.createQuery("from InventoryManager where creater='"+pStaff+"' order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();

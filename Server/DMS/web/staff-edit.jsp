@@ -213,11 +213,18 @@
                                                                                     <select name="staff.permission" class="small" >
                                                                                         <s:if test="staff.permission == 1">
                                                                                             <option value="1" selected >Quản lý</option>
-                                                                                            <option value="2" >Nhân viên</option>
+                                                                                            <option value="2" >Nhân viên bán hàng</option>
+                                                                                            <option value="3" >Nhân viên cập nhật vị trí</option>
+                                                                                        </s:if>
+                                                                                        <s:if test="staff.permission == 2">
+                                                                                            <option value="1"  >Quản lý</option>
+                                                                                            <option value="2" selected>Nhân viên bán hàng</option>
+                                                                                            <option value="3" >Nhân viên cập nhật vị trí</option>
                                                                                         </s:if>
                                                                                         <s:else>
                                                                                             <option value="1"  >Quản lý</option>
-                                                                                            <option value="2" selected>Nhân viên</option>
+                                                                                            <option value="2" >Nhân viên bán hàng</option>
+                                                                                            <option value="3" selected>Nhân viên cập nhật vị trí</option>
                                                                                         </s:else>
 
 

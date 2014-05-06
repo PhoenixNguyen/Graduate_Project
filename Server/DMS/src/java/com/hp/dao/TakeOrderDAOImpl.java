@@ -72,8 +72,8 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
             if(pPermission == 1)
                 courses = session.createQuery("from TakeOrder order by takeOrderDate desc").list();
             else
-                if(pPermission == 2)
-                    courses = session.createQuery("from TakeOrder where creater='"+pStaff+"' order by takeOrderDate desc").list();
+                
+                courses = session.createQuery("from TakeOrder where creater='"+pStaff+"' order by takeOrderDate desc").list();
             
         }catch(Exception e){
             e.printStackTrace();

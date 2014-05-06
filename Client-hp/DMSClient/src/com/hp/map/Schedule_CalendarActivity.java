@@ -29,6 +29,11 @@ import com.hp.domain.Customer;
 import com.hp.domain.Schedule;
 import com.hp.order.ProductArrayAdapter;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.ScheduleAPI.GetCustomerListInScheduleTask;
+import com.hp.rest.ScheduleAPI.GetScheduleListTask;
+import com.hp.rest.ScheduleAPI.ModifyScheduleTask;
+import com.hp.rest.ScheduleAPI.PutScheduleListTask;
 import com.hp.schedule.CalendarAdapter;
 import com.hp.schedule.DialogArrayAdapter;
 import com.hp.schedule.ListViewSchedules;
@@ -235,91 +240,21 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 				///////////////////////////////////////////
 				
 				// List customers in schedule -------------------------------------------
-				ClientResponse response = Rest.mService.path("webresources").path("getSchedule")
-						.accept("application/json")
-						.type("application/json").post(ClientResponse.class
-								,Rest.mStaff.getId()+"::"+selectedGridDate);
 				
-		        System.out.println("________________ "+ response.toString() + "__ " +response.getLength());
-		        if(response.getLength() > 2 )
-		        {
-		        
-			        String re = response.getEntity(String.class);
-			        System.out.println("________________ "+ re);
+				GetScheduleListTask getData = new GetScheduleListTask(context, "getSchedule", Rest.mStaff.getId()+"::"+selectedGridDate,
+						listView, Schedule_CalendarActivity.this);
+			    getData.execute();
 			        
-			        // pair to object
-			        ObjectMapper mapper = new ObjectMapper();
-			        List<Schedule> schedule = null;
-					try {
-	//					File jsonFile = new File(jsonFilePath);
-						schedule = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
-								Schedule.class));
-						//System.out.println("++++++++++++++ "+schedule.get(0).getMaKH() +" " +schedule.get(0).getTime());
-					} catch (JsonGenerationException e) {
-						e.printStackTrace();
-					} catch (JsonMappingException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					
-					//String[] scheduleIDList = new String[]{};
-					Schedule[] listV = new Schedule[]{};
-					
-					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					for(int i = 0; i < schedule.size(); i++){
-						Calendar cal = Calendar.getInstance();
-						cal.setTime(schedule.get(i).getTime());
-						cal.add(Calendar.HOUR, -7);
-						schedule.get(i).setTime(Timestamp.valueOf(dateFormat.format(cal.getTime())));
-						
-//						System.out.println("-____- " +dateFormat.format(cal.getTime()));
-//											  
-//						scheduleIDList = append(scheduleIDList, schedule.get(i).getMaKH());
-						listV = append(listV, schedule.get(i));
-						
-						//new ListViewSchedules(schedule.get(i).getMaKH()
-						//, schedule.get(i).get, dateFormat.format(cal.getTime()) )
-					}
-					String[] PRODUCT = 
-							new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
-											"Apple", "Avocado","Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
-					//listView = (ListView)findViewById(R.id.list_view_customers);
-					
-					listView.setAdapter(new ScheduleViewArrayAdapter(context, android.R.layout.simple_list_item_1, listV));
-					
-					listView.setOnItemClickListener(new OnItemClickListener()
-					{
-					     @Override
-					     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
-					     {
-					    	 Schedule selectedValue = (Schedule) listView.getAdapter().getItem(position);
-					    	 addCustomerDialog(selectedValue);
-	//				    	 
-	//				          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
-	//				    	// custom dialog
-	
-					      }
-					});
-				
-		        }
-		        else
-		        {
-		        	
-		        	
-		        	Schedule[] listV = new Schedule[]{
-		        			new Schedule("", "NOT SET", Timestamp.valueOf("0000-00-00 00:00:00"), false, "", "")};
-		        	listView.setAdapter(new ScheduleViewArrayAdapter(context, android.R.layout.simple_list_item_1, listV));
-		        	listView.setEnabled(false);
-		        }
+			       
 
 			}
 
 		});
 	}
 
+	public Dialog dialog;
 	public void addCustomerDialog(final Schedule selectedValue){
-		final Dialog dialog = new Dialog(context);
+		dialog = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
 		dialog.setContentView(v);
@@ -348,16 +283,7 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 			@Override
 			public void onClick(View v) {
 			
-				// Check the internet
-				if(isOnline()){
-					System.out.println("Internet access!!____________________");
-				}
-				else{
-					System.out.println("NO Internet access!!____________________");
-					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-					return;
-				}
-				
+								
 //				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //				Date date = null;
 //				try {
@@ -369,202 +295,64 @@ public class Schedule_CalendarActivity extends MainMenuActivity {
 //				
 //				System.out.println("_date: "+ sdf.format(date));
 //				//Post
-				ClientResponse response = Rest.mService.path("webresources").path("deleteSchedule").accept("application/json")
-						.type("application/json").post(ClientResponse.class, selectedValue.getMaKH()+"::"+selectedValue.getTime().toString());
-						
-				if (response.getStatus() != 200) {
-		            throw new RuntimeException("Failed : HTTP error code : "
-		                    + response.getStatus());
-		        }
-				
-				if(response.getStatus() != 200){
-		        	
-		        	return ;
-		        }
-		        String output = response.getEntity(String.class);
-		        System.out.println("Server response .... \n");
-		        System.out.println(output);
-		        
-		        if(output.compareTo("status:0") == 0){
-		        	Toast.makeText(context, "Không thể xóa, hãy thử lại sau!", Toast.LENGTH_SHORT).show();
-		        	
-		        }
-		        else
-		        	Toast.makeText(context, "Đã xóa!", Toast.LENGTH_SHORT).show();
-		        
-				dialog.dismiss();
+				ModifyScheduleTask deleteData = new ModifyScheduleTask(context, "deleteSchedule", selectedValue.getMaKH()+"::"+selectedValue.getTime().toString(),
+						Schedule_CalendarActivity.this);
+				deleteData.execute();
+			    
 			}
 		});
 		dialog.show();
 		
 	}
 	
+	public Dialog dialogAdd;
 	public void addDialog(String pDate){
-		// Check the internet
-		if(isOnline()){
-			System.out.println("Internet access!!____________________");
-		}
-		else{
-			System.out.println("NO Internet access!!____________________");
-			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-			return;
-		}
-		
-		final Dialog dialog = new Dialog(context);
+				
+		dialogAdd = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.schedule_dialog, null, false);
-		dialog.setContentView(v);
-		listViewCus = (ListView)dialog.findViewById(R.id.list_view_cus);
+		dialogAdd.setContentView(v);
+		listViewCus = (ListView)dialogAdd.findViewById(R.id.list_view_cus);
 		
-		dialog.setTitle("Chọn Khách Hàng");
+		dialogAdd.setTitle("Chọn Khách Hàng");
+		
 		
 		// List customers in schedule -------------------------------------------
 		//Get customers list for staff and not have the schedule ========================================
-		ClientResponse response = Rest.mService.path("webresources").path("getCustomersListSchedule")
-				.accept("application/json")
-				.type("application/json").post(ClientResponse.class, Rest.mStaff.getId() +"::"+pDate);
-        System.out.println("________________ "+ response.toString());
-        if(response.getStatus() != 200){
-        	dialog.dismiss();
-        	return;
-        }
-        
-        String re = response.getEntity(String.class);
-        System.out.println("________________ "+ re);
-        
-        // pair to object
-        ObjectMapper mapper = new ObjectMapper();
-        List<Customer> customerList = null;
-		try {
-//			File jsonFile = new File(jsonFilePath);
-			customerList = mapper.readValue(re, TypeFactory.defaultInstance().constructCollectionType(List.class,
-					Customer.class));
-			//System.out.println("++++++++++++++ "+schedule.get(0).getmMaDoiTuong());
-		} catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		Customer[] customerArray = new Customer[]{};
-		
-		for(int i = 0; i < customerList.size(); i++){
-			customerArray = append(customerArray, customerList.get(i));
-			
-		}
-		String[] PRODUCT = 
-				new String[] {"Apple", "Avocado", "Banana", "Blueberry", "Coconut",
-								"Apple", "Avocado","Apple", "Avocado", "Banana", "Blueberry", "Coconut"};
-		//ListView listViewCus = (ListView)findViewById(R.id.list_view_cus);
-		listViewCus.setAdapter(new DialogArrayAdapter(context, android.R.layout.simple_list_item_1, customerList));
-		
-		listViewCus.setOnItemClickListener(new OnItemClickListener()
-		{
-		     @Override
-		     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
-		     {
-//		    	 Customer selectedValue = (Customer) listView.getAdapter().getItem(position);
-//		    	 
-//		         Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
-		    	// custom dialog
-
-		      }
-		});
-		
-		Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonYES);
+		GetCustomerListInScheduleTask getData = new GetCustomerListInScheduleTask(context, "getCustomersListSchedule", Rest.mStaff.getId() +"::"+pDate,
+			    listViewCus, this);
+        getData.execute();
+	        
+	        
+		Button dialogButton = (Button) dialogAdd.findViewById(R.id.dialogButtonYES);
 		dialogButton.setText("Gửi");
 		// if button is clicked, close the custom dialog
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// Check the internet
-				if(isOnline()){
-					System.out.println("Internet access!!____________________");
-				}
-				else{
-					System.out.println("NO Internet access!!____________________");
-					Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-					return;
-				}
 				
-				// get map
-//				System.out.println("__MAP__");
-//				List<Schedule> scheduleList = new ArrayList<Schedule>();
-//				for(String key : mTakeCustomersList.keySet()){
-//					Timestamp value = mTakeCustomersList.get(key);
-//					Schedule schedule = new Schedule(Rest.mStaff.getId()
-//							, key
-//							, value
-//							, true
-//							, key.);
-//					
-//					scheduleList.add(schedule);
-//					System.out.println(key + " ___ " + value);
-//					
-//				}
-				//================= put in server======================================
-				ObjectMapper mapper = new ObjectMapper();
-		        String listStr = new String();
-
-				try {
-
-					listStr = mapper.writeValueAsString(mTakeCustomersList);
-					
-				} catch (JsonGenerationException ex) {
-
-					ex.printStackTrace();
-
-				} catch (JsonMappingException ex) {
-
-					ex.printStackTrace();
-
-				} catch (IOException ex) {
-
-					ex.printStackTrace();
-
-				}
-				
-				//Post
-				ClientResponse response = Rest.mService.path("webresources").path("putSchedule").accept("application/json")
-						.type("application/json").post(ClientResponse.class, listStr);
-						
-				if (response.getStatus() != 200) {
-					Toast.makeText(context, "Lỗi. Hãy thử lại sau!", Toast.LENGTH_SHORT).show();
-					return;
-		        }
-		        String output = response.getEntity(String.class);
-		        System.out.println("Server response .... \n");
-		        System.out.println(output);
+//				//================= put in server======================================
+				PutScheduleListTask putData = new PutScheduleListTask(context, "putSchedule", mTakeCustomersList,
+					    Schedule_CalendarActivity.this);
+				putData.execute();
 		        
-		        if(output.compareTo("0") != 0){
-		        	Toast.makeText(context, "Đã lên lịch!", Toast.LENGTH_SHORT).show();
-		        	
-		        }
-		        else
-		        	Toast.makeText(context, "Giá trị trống", Toast.LENGTH_SHORT).show();
-		        
-				/////==================================================================
-				//destroy
-				Schedule_CalendarActivity.mTakeCustomersList.clear();
-				dialog.dismiss();
+
+
 			}
 		});
 		
-		Button dialogNOButton = (Button) dialog.findViewById(R.id.dialogButtonNO);
+		Button dialogNOButton = (Button) dialogAdd.findViewById(R.id.dialogButtonNO);
 		dialogNOButton.setText("Hủy");
 		// if button is clicked, close the custom dialog
 		dialogNOButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				dialog.dismiss();
+				dialogAdd.dismiss();
 			}
 		});
 
-		dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		dialog.show();
+		
 		
 	}
 	

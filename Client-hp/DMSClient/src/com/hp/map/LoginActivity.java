@@ -300,7 +300,7 @@ public class LoginActivity extends Activity {
             	//System.out.println(" ++ :: "+ getData.customerList.get(0).getMaDoiTuong());
             	
 				//Run thread to do backgroud send location
-				//doBackground();
+				doBackground();
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
 	        	startActivity(i);

@@ -217,6 +217,7 @@
                 <tbody>
                     <tr><td><a href="product-list" class="drop_down">Sản phẩm</a></td></tr>
                     <tr><td><a href="provider-list" class="drop_down">Nhà cung cấp</a></td></tr>
+                    <tr><td><a href="inventory-manager" class="drop_down">Tồn kho</a></td></tr>
         <!--            <tr><td><a href="" class="drop_down">Bảng giá</a></td></tr>
                     <tr><td><a href="" class="drop_down">Nhập hàng</a></td></tr>
                     <tr><td><a href="" class="drop_down">Đặt hàng</a></td></tr>

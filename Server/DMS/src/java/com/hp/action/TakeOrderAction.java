@@ -239,32 +239,7 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         
         
         System.out.println("OKto " + takeOrder.getId() +" : " +takeOrder.getCustomerAddress() + " " + doc.getNumber());//doc.getFileFileName()
-        //takeOrder.setmEditer("0");
-//        takeOrder.setMDeliveryDate(null);
-//        takeOrder.setMOrderEditDate(null);
-//        takeOrder.setMOrderEstablishDate(null);
-//        takeOrder.setMTakeOrderDate(null);
-        
-//        Product product = new Product();
-////                    product.setmStt((int)row.getCell(tmp++).getNumericCellValue());
-//            product.setmBarcode("000122");
-//            product.setmProductID("000122");
-//            product.setmBrand("");
-//            product.setmOrigin("");
-//            product.setmPackingSpecifications("");
-//            product.setmQuantification("");
-//            product.setmExportPrices(0f);
-//            product.setmProvider("nhacungcap1");
-//        //Add to database
-//        ProductDAO productDAO = new ProductDAOImpl();
-//        
-//        if(productDAO.saveOrUpdate(product)){
-//            System.out.println("Add Object " );
-//            return SUCCESS;
-//        }
-        
-        
-        
+              
 //        TakeOrder t = new TakeOrder();
 //        t.setMID("t1233imjtt");
 //        t.setMCustomerID(null);

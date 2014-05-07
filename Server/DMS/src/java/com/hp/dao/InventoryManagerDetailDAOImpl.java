@@ -41,7 +41,7 @@ public class InventoryManagerDetailDAOImpl implements InventoryManagerDetailDAO{
         return true;
     }
     
-    public List<InventoryManagerDetail> getDetailTakeOrdersList(String pID){
+    public List<InventoryManagerDetail> getInventoryManagerDetailList(String pID){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
         transaction = session.beginTransaction();

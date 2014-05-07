@@ -892,6 +892,55 @@
         </action>
         
         
+        <!--INVENTORY MANAGER-->
+        <action name="inventory-manager" method="refresh" class="com.hp.action.InventoryManagerAction">
+            <result name="success">inventory-manager.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="inventory-manager-detail" method="loadInventoryManagerDetail" class="com.hp.action.InventoryManagerAction">
+            <result name="success">inventory-manager-detail.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="inventory-manager-edit" method="loadInventoryManagerDetail" class="com.hp.action.InventoryManagerAction">
+            <result name="success">inventory-manager-edit.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="update-inventory-manager" method="updateInventoryManager" class="com.hp.action.InventoryManagerAction">
+            <result name="success" type="redirect">inventory-manager-detail?id_inv=${inventoryManager.id}</result>
+            <result name="input" >inventory-manager-edit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        
+        <action name="edit-inventory-manager-detail" method="editInventoryManagerDetail" class="com.hp.action.InventoryManagerDetailAction">
+            <result name="success">inventory-manager-detail-edit.jsp</result>
+            <result name="input" type="redirect">inventory-manager-detail?id_inv=${inventoryManager.id}</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="update-inventory-manager-detail" method="updateInventoryManagerDetail" class="com.hp.action.InventoryManagerDetailAction">
+            <result name="success" type="redirect">inventory-manager-detail?id_inv=${inventoryManagerDetail.takeOrderID}</result>
+            <result name="input" >inventory-manager-detail-edit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="delete-inventory-manager-detail" method="deleteInventoryManagerDetail" class="com.hp.action.InventoryManagerDetailAction">
+            <result name="success" type="redirect">inventory-manager-detail?id_inv=${inventoryManager.id}</result>
+            <result name="input" >inventory-manager-detail.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="delete-inventory-manager" method="deleteInventoryManager" class="com.hp.action.InventoryManagerAction">
+            <result name="success" >inventory-manager.jsp</result>
+            <result name="input" >inventory-manager-detail.jsp?id_inv=${inventoryManager.id}</result>
+            <result name="login" >index.jsp</result>
+        </action>
     </package>
     
     

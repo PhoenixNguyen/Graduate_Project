@@ -437,7 +437,7 @@ public class OrdersHandle {
         List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
         
         InventoryManagerDetailDAO inventoryManagerDetailDAO = new InventoryManagerDetailDAOImpl();
-        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(pData);
+        list = inventoryManagerDetailDAO.getInventoryManagerDetailList(pData);
         
         return list;
         
@@ -506,7 +506,7 @@ public class OrdersHandle {
         //Update the order
         List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
         
-        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getTakeOrderID());
+        list = inventoryManagerDetailDAO.getInventoryManagerDetailList(inventoryManagerDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
             priceTotal += list.get(i).getPriceTotal();
@@ -552,7 +552,7 @@ public class OrdersHandle {
         //Update the order
         List<InventoryManagerDetail> list = new ArrayList<InventoryManagerDetail>();
         
-        list = inventoryManagerDetailDAO.getDetailTakeOrdersList(inventoryManagerDetail.getTakeOrderID());
+        list = inventoryManagerDetailDAO.getInventoryManagerDetailList(inventoryManagerDetail.getTakeOrderID());
         float priceTotal = 0;
         for(int i = 0; i < list.size(); i++){
             priceTotal += list.get(i).getPriceTotal();

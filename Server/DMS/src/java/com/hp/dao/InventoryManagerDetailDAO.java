@@ -17,7 +17,7 @@ public interface InventoryManagerDetailDAO {
     public boolean saveOrUpdate(InventoryManagerDetail pTakeOrder);
     
     //GET
-    public List<InventoryManagerDetail> getDetailTakeOrdersList(String pID);
+    public List<InventoryManagerDetail> getInventoryManagerDetailList(String pID);
     public InventoryManagerDetail getInventoryManagerDetail(int pInventoryManagerDetail);
     public boolean update(InventoryManagerDetail pInventoryManagerDetail);
     

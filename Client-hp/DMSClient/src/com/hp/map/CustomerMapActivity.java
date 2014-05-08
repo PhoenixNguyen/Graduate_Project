@@ -250,6 +250,11 @@ public class CustomerMapActivity extends FragmentActivity
         case R.id.take_picture:
             takePicture();
             return true;
+            
+        case R.id.sale:
+            saleOrder();
+            return true;
+            
         case R.id.inventory_manager:
             inventoryManager();
             return true;
@@ -677,6 +682,16 @@ public class CustomerMapActivity extends FragmentActivity
 	}
 	public void takePicture(){
 		startActivity(new Intent(context, TakeImagesActivity.class));
+	}
+	
+	public void saleOrder(){
+		//Reset values and init it
+		SaleManager_ProductActivity.mProductsMap.clear();
+		SaleManager_ReviewActivity.takeOrderDetailList.clear();
+		TakeOrder_ProductActivity.timeLine = true;
+		TakeOrder_ProductActivity.add_take_order_detail = false;
+		
+		startActivity(new Intent(context, SaleManager_TabActivity.class));
 	}
 	
 	public void inventoryManager(){

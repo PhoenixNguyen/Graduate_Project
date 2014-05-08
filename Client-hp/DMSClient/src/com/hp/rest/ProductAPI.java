@@ -121,7 +121,7 @@ public class ProductAPI {
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
-					dialog.dismiss();
+					
 					System.out.println("NO Internet access!!____________________");
 	
 					return "nointernet";
@@ -271,7 +271,7 @@ public class ProductAPI {
 
 				});
 				
-				dialog.dismiss();
+				
 			} else if (result.equals("nointernet")) {
 				Toast.makeText(context,
 						"Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!",
@@ -280,10 +280,12 @@ public class ProductAPI {
 				Toast.makeText(context, "Không có dữ liệu!", Toast.LENGTH_SHORT)
 						.show();
 			} else {
-				dialog.dismiss();
+				
 				Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
 
 			}
+			
+			dialog.dismiss();
 		}
 
 		public boolean ConvertStringToObjectList(String input) {
@@ -382,36 +384,38 @@ public class ProductAPI {
 		
 		protected void onPostExecute(String result)
 		{
-		if (result.equals("success")){
-		  //do something
-			if(!insert){
-				Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
-				activity.onResume();
+			if (result.equals("success")){
+			  //do something
+				if(!insert){
+					Toast.makeText(context, "Đã xóa ", Toast.LENGTH_SHORT).show();
+					activity.onResume();
+				}
+				else{
+					Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
+					
+				}
+				
+				
 			}
-			else{
-				Toast.makeText(context, "Đã lưu ", Toast.LENGTH_SHORT).show();
+			else
+				if (result.equals("nointernet")){
+					Toast.makeText(context, "Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!", Toast.LENGTH_SHORT).show();
+				}
+			else
+				if (result.equals("fail")){
+					if(!insert)
+						Toast.makeText(context, "Không thể xóa dữ liệu. Sản phẩm này đã tồn tại ở dữ liệu khác!", Toast.LENGTH_SHORT).show();
+					else
+						Toast.makeText(context, "Không thể lưu dữ liệu. Mã Sản phẩm không được trống và không trùng với Sản phẩm khác", Toast.LENGTH_SHORT).show();
+				}
+			else
+			{       
+			 				
+			 Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
 				
 			}
 			
 			dialog.dismiss();
-		}
-		else
-			if (result.equals("nointernet")){
-				Toast.makeText(context, "Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!", Toast.LENGTH_SHORT).show();
-			}
-		else
-			if (result.equals("fail")){
-				if(!insert)
-					Toast.makeText(context, "Không thể xóa dữ liệu. Sản phẩm này đã tồn tại ở dữ liệu khác!", Toast.LENGTH_SHORT).show();
-				else
-					Toast.makeText(context, "Không thể lưu dữ liệu. Mã Sản phẩm không được trống và không trùng với Sản phẩm khác", Toast.LENGTH_SHORT).show();
-			}
-		else
-		{       
-		 dialog.dismiss();					
-		 Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
-			
-		}
 		} 
 		
 		public String  ConvertObjectToString(Product product){

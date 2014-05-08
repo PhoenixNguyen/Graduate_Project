@@ -121,7 +121,7 @@ public class CustomerAPI {
 			if (CheckingInternet.isOnline()) {
 				System.out.println("Internet access!!____________________");
 			} else {
-				dialog.dismiss();
+				
 				System.out.println("NO Internet access!!____________________");
 
 				return "nointernet";
@@ -261,7 +261,7 @@ public class CustomerAPI {
 			if (CheckingInternet.isOnline()) {
 				System.out.println("Internet access!!____________________");
 			} else {
-				dialog.dismiss();
+				
 				System.out.println("NO Internet access!!____________________");
 
 				return "nointernet";
@@ -303,7 +303,7 @@ public class CustomerAPI {
 
 				}
 
-				dialog.dismiss();
+				
 			} else if (result.equals("nointernet")) {
 				Toast.makeText(context,
 						"Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!",
@@ -320,10 +320,12 @@ public class CustomerAPI {
 							"Không thể lưu dữ liệu. Mã KH không được trống và không trùng với khách hàng khác",
 							Toast.LENGTH_SHORT).show();
 			} else {
-				dialog.dismiss();
+				
 				Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
 
 			}
+			
+			dialog.dismiss();
 		}
 
 		public String ConvertObjectToString(Customer customer) {

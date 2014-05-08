@@ -151,6 +151,29 @@
             android:name="com.hp.map.ProfileActivity"
             android:label="Thông tin nhân viên" />
 		
+		<activity
+            android:name="com.hp.map.SaleManagerDetailActivity"
+            android:label="Bán hàng chi tiết" />
+		
+		<activity
+            android:name="com.hp.map.SaleManagerActivity"
+            android:label="Bán hàng" />
+		
+		<activity
+            android:name="com.hp.map.SaleManager_TabActivity"
+            android:label="Chọn sản phẩm" />
+		
+		<activity
+            android:name="com.hp.map.SaleManager_ProductActivity"
+            android:label="Chọn sản phẩm" />
+		<activity
+            android:name="com.hp.map.SaleManager_ReviewActivity"
+            android:label="Xem lại sản phẩm" />
+		
+		<activity
+            android:name="com.hp.map.SaleManager_AmountActivity"
+            android:label="Tổng cộng" />
+		
     </application>
 
 </manifest>

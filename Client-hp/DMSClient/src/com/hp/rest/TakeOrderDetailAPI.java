@@ -8,6 +8,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -36,9 +37,11 @@ public class TakeOrderDetailAPI {
 			ListView ordersListView ;
 			TakeOrdersDetailManagerActivity activity;
 			
+			Dialog dialogTakeOrder;
+			
 			public ModifyTakeOrderDetailTask(Context context, String method,
 					TakeOrderDetail takeOrderDetail, OrdersManagerDetailArrayAdapter adapter,
-					ListView ordersListView , TakeOrdersDetailManagerActivity activity) {
+					ListView ordersListView , TakeOrdersDetailManagerActivity activity, Dialog dialog) {
 				this.context = context;
 				this.method = method;
 				
@@ -46,6 +49,7 @@ public class TakeOrderDetailAPI {
 				this.adapter = adapter;
 				this.ordersListView = ordersListView;
 				this.activity = activity;
+				this.dialogTakeOrder = dialog;
 			}
 
 			ProgressDialog dialog;
@@ -59,7 +63,7 @@ public class TakeOrderDetailAPI {
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
-					dialog.dismiss();
+					
 					System.out.println("NO Internet access!!____________________");
 
 					return "nointernet";
@@ -97,8 +101,8 @@ public class TakeOrderDetailAPI {
 								.show();
 					
 
-					activity.dialog.dismiss();
-					activity.dialog2.dismiss();
+					
+					dialogTakeOrder.dismiss();
 					//reload
 					activity.getOrderList();
 					adapter = new OrdersManagerDetailArrayAdapter(context,
@@ -180,7 +184,7 @@ public class TakeOrderDetailAPI {
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
-					dialog.dismiss();
+					
 					System.out.println("NO Internet access!!____________________");
 
 					return "nointernet";

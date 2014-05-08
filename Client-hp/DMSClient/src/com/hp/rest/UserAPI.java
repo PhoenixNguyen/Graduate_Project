@@ -52,7 +52,7 @@ public class UserAPI {
 				System.out.println("Internet access!!____________________");
 			}
 			else{
-				dialog.dismiss();									
+												
 				System.out.println("NO Internet access!!____________________");
 								
 				return "nointernet";
@@ -108,7 +108,7 @@ public class UserAPI {
 				Intent i = new Intent(activity.getApplicationContext(), ProfileActivity.class);
 				activity.startActivity(i);
 	        	//new ThreatRealtime("hello").start();
-	        	dialog.dismiss();
+	        	
             }
             else
             	if (result.equals("nointernet")){
@@ -116,10 +116,12 @@ public class UserAPI {
             	}
            else
            {       
-        	   dialog.dismiss();					
+        	   					
         	   Toast.makeText(context, "Sai tên đăng nhập hoặc mật khẩu", Toast.LENGTH_SHORT).show();
 				
            }
+            
+            dialog.dismiss();
         }   
         
         public boolean convertStringToObject(String str){

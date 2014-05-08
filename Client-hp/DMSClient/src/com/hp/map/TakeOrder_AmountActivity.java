@@ -108,11 +108,12 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 		save.setOnClickListener(this);
 		
 		
-
+		//Add Take Order
 		if(!TakeOrder_ProductActivity.add_take_order_detail && CustomerMapActivity.mSelectedCustomer != null){
 			customer_id.setText(CustomerMapActivity.mSelectedCustomer.getMaDoiTuong());
 			customer_name.setText(CustomerMapActivity.mSelectedCustomer.getDoiTuong());
 		}
+		//ELSE Update TakeOrder
 		else
 		{
 			if(TakeOrderAPI.takeOrderList != null && TakeOrderAPI.takeOrderList.size() > 0)
@@ -275,11 +276,17 @@ public class TakeOrder_AmountActivity extends Activity implements OnClickListene
 					String update_detail_command = "addOrdersDetailForTakeOrder";
 					
 					//If update Inventory
-					if(InventoryManagerDetailActivity.add_inventory_detail){
+					if(TakeOrdersDetailManagerActivity.add_detail == 1){
 						update_main_command = "updateAddingInventory";
 						update_detail_command = "updateAddingInventoryDetail";
 					}
+					else
 					
+					//If update Sale order
+					if(TakeOrdersDetailManagerActivity.add_detail == 2){
+						update_main_command = "updateAddingSaleOrder";
+						update_detail_command = "updateAddingSaleOrderDetail";
+					}
 					//UPDATE
 					//Order ---------------------------------------------------------------
 					

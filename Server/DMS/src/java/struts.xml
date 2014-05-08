@@ -185,6 +185,32 @@
         </action>
         
         
+        <action name="updateAddingSaleOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/updateAddingSaleOrder</result>
+        </action>
+        
+        <action name="updateAddingSaleOrderDetail" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/updateAddingSaleOrderDetail</result>
+        </action>
+        
+        <action name="putOriginalSaleOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/putOriginalSaleOrder</result>
+        </action>
+        <action name="putOriginalSaleOrderDetail" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/putOriginalSaleOrderDetail</result>
+        </action>
+        
+        <action name="updateDetailSaleOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/updateDetailSaleOrder</result>
+        </action>
+        <action name="deleteDetailSaleOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/deleteDetailSaleOrder</result>
+        </action>
+        
+        <action name="deleteSaleOrder" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">order/deleteSaleOrder</result>
+        </action>
+        
         <action name="vd" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">input/vd</result>
         </action>

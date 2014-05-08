@@ -28,6 +28,7 @@ import com.hp.map.InventoryManagerDetailActivity;
 import com.hp.map.R;
 import com.hp.map.TakeOrder_AmountActivity;
 import com.hp.map.TakeOrder_ProductActivity;
+import com.hp.map.TakeOrdersDetailManagerActivity;
 import com.hp.map.TakeOrdersManagerActivity;
 import com.hp.order_manager.OrdersManagerArrayAdapter;
 import com.sun.jersey.api.client.ClientResponse;
@@ -76,7 +77,7 @@ public class TakeOrderAPI {
 			if (CheckingInternet.isOnline()) {
 				System.out.println("Internet access!!____________________");
 			} else {
-				dialog.dismiss();
+				
 				System.out.println("NO Internet access!!____________________");
 
 				return "nointernet";
@@ -123,7 +124,7 @@ public class TakeOrderAPI {
 				if(update){
 		            TakeOrder_ProductActivity.add_take_order_detail = false;
 		            TakeOrder_ProductActivity.timeLine = true;
-		            InventoryManagerDetailActivity.add_inventory_detail = false;
+		            TakeOrdersDetailManagerActivity.add_detail = 0;
 				}
 				
 			} else if (result.equals("nointernet")) {
@@ -204,7 +205,7 @@ public class TakeOrderAPI {
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
-					dialog.dismiss();
+					
 					System.out.println("NO Internet access!!____________________");
 
 					return "nointernet";
@@ -249,7 +250,7 @@ public class TakeOrderAPI {
 							android.R.layout.simple_list_item_1, takeOrderList);
 					ordersListView.setAdapter(adapter);
 
-					dialog.dismiss();
+					
 				} else if (result.equals("nointernet")) {
 					Toast.makeText(context,
 							"Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!",
@@ -261,10 +262,12 @@ public class TakeOrderAPI {
 								"Không thể xóa. Dữ liệu đang được sử dụng cho đối tượng khác",
 								Toast.LENGTH_SHORT).show();
 				} else {
-					dialog.dismiss();
+					
 					Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
 
 				}
+				
+				dialog.dismiss();
 			}
 
 			public String ConvertObjectToString(TakeOrder takeOrder) {
@@ -324,7 +327,7 @@ public class TakeOrderAPI {
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
-					dialog.dismiss();
+					
 					System.out.println("NO Internet access!!____________________");
 
 					return "nointernet";

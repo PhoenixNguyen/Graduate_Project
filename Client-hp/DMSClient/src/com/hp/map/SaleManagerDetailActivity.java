@@ -43,21 +43,20 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TableRow.LayoutParams;
 
-public class InventoryManagerDetailActivity extends TakeOrdersDetailManagerActivity{
+public class SaleManagerDetailActivity extends TakeOrdersDetailManagerActivity{
 	
-	//public static boolean add_inventory_detail = false;
 
 	public void init(){
-		getListDetail = "getInventoryManagerDetailList";
+		getListDetail = "getSaleOrderDetailList";
 		
-		updateData = "updateDetailInventoryManager";
-		deleteData = "deleteDetailInventoryManager";
+		updateData = "updateDetailSaleOrder";
+		deleteData = "deleteDetailSaleOrder";
 		
 		//
 		TakeOrder_ProductActivity.timeLine = true;
 		
 		//
-		add_detail = 1;
+		TakeOrdersDetailManagerActivity.add_detail = 2;
 	}
 	
 //	public void newOrderDetail(View view){
@@ -65,7 +64,7 @@ public class InventoryManagerDetailActivity extends TakeOrdersDetailManagerActiv
 //		TakeOrder_ProductActivity.add_take_order_detail = true;
 //		TakeOrder_ProductActivity.timeLine = true;
 //		
-//		startActivity(new Intent(this, InventoryManager_TabActivity.class));
+//		startActivity(new Intent(this, SaleManager_TabActivity.class));
 //		
 //	}
 	
@@ -74,7 +73,7 @@ public class InventoryManagerDetailActivity extends TakeOrdersDetailManagerActiv
 		TakeOrder_ProductActivity.add_take_order_detail = true;
 		TakeOrder_ProductActivity.timeLine = true;
 		
-		startActivity(new Intent(this, InventoryManager_TabActivity.class));
+		startActivity(new Intent(this, SaleManager_TabActivity.class));
 		
 	}
 }

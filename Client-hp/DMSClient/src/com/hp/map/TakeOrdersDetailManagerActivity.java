@@ -54,6 +54,9 @@ import android.widget.TableRow.LayoutParams;
 
 public class TakeOrdersDetailManagerActivity extends Activity{
 	
+	//add_detail= 0 if update takeorder, add_detail= 1 if update inventory, add_detail= 2 if update sale order
+	public static int add_detail = 0;
+	
 	public static String order_id;
 	
 	//public static List<TakeOrderDetail> takeOrderDetailList = new ArrayList<TakeOrderDetail>();
@@ -104,7 +107,8 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		updateData = "updateDetailOrder";
 		deleteData = "deleteDetailOrder";
 		
-		
+		//update takeorder
+		add_detail = 0;
 	}
 	
 	public void onResume(){
@@ -182,9 +186,9 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		});
 	}
 
-	public Dialog dialog;
+	
 	public void addCustomerDialog(final TakeOrderDetail selectedValue, final int position){
-		dialog = new Dialog(context);
+		final Dialog dialog = new Dialog(context);
 		dialog.setContentView(R.layout.order_product_dialog);
 		dialog.setTitle("Thay đổi số lượng");
 
@@ -272,7 +276,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				
 				//Sys
 				ModifyTakeOrderDetailTask update = new ModifyTakeOrderDetailTask(context, updateData, 
-						selectedValue, adapter, ordersListView, TakeOrdersDetailManagerActivity.this);
+						selectedValue, adapter, ordersListView, TakeOrdersDetailManagerActivity.this, dialog);
 				update.execute();
 				
 			}
@@ -306,9 +310,9 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 		
 	}
 	
-	public Dialog dialog2;
+	
 	public void commitDialog(final TakeOrderDetail selectedValue){
-		dialog2 = new Dialog(context);
+		final Dialog dialog2 = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = li.inflate(R.layout.customer_selected_dialog, null, false);
 		dialog2.setContentView(v);
@@ -326,7 +330,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 
 				//Sys
 				ModifyTakeOrderDetailTask update = new ModifyTakeOrderDetailTask(context, deleteData, 
-						selectedValue, adapter, ordersListView, TakeOrdersDetailManagerActivity.this);
+						selectedValue, adapter, ordersListView, TakeOrdersDetailManagerActivity.this, dialog2);
 				update.execute();
 				
 			}

@@ -732,4 +732,272 @@ public class OrdersHandle {
         return Response.status(200).entity(count+"").build();
     }
     
+    @POST
+    @Path("/updateAddingSaleOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateAddingSaleOrder( String pOrder ) {
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        SaleOrder saleOrder = new SaleOrder();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                saleOrder = mapper.readValue(pOrder, SaleOrder.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
+        boolean b = saleOrderDAO.update(saleOrder);
+        
+        return Response.status(200).entity(b+"").build();
+    }
+    
+    @POST
+    @Path("/updateAddingSaleOrderDetail")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateAddingSaleOrderDetail( String pList ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<SaleOrderDetail> detailList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                detailList = mapper.readValue(pList
+                        , TypeFactory.defaultInstance().constructCollectionType(List.class
+                        , SaleOrderDetail.class));
+                //System.out.println(schedulesList.get(0).getmMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        int count = 0;
+        SaleOrderDetailDAO saleOrderDetailDAO = new SaleOrderDetailDAOImpl();
+        SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
+        
+        //Delete all old data
+        if(detailList != null && detailList.size() > 0)
+            saleOrderDetailDAO.delete(detailList.get(0).getTakeOrderID());
+        else
+            return Response.status(200).entity("").build();
+        
+        float priceTotal = 0;
+        //Add new all data
+        for(int i = 0; i< detailList.size(); i++){
+            if(saleOrderDetailDAO.saveOrUpdate(detailList.get(i)))
+                count ++;
+            
+            //update price
+            //priceTotal += detailList.get(i).getmPriceTotal();
+        }
+        
+//        //Update takeorder
+//       
+//        TakeOrder takeOrder = new TakeOrder();
+//        
+//        takeOrder = takeOrderDAO.getTakeOrder(detailList.get(0).getmTakeOrderID());
+//        takeOrder.setmAfterPrivate(priceTotal - priceTotal*takeOrder.getmDiscount()/100);
+//        boolean st2 = takeOrderDAO.update(takeOrder);
+        
+        
+        System.out.println("pTakeOrderDetail: " + count +"____ " + pList);
+        return Response.status(200).entity(count+"").build();
+    }
+    
+    @POST
+    @Path("/putOriginalSaleOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putOriginalSaleOrder( String pSaleOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        SaleOrder saleOrder = new SaleOrder();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                saleOrder = mapper.readValue(pSaleOrder, SaleOrder.class);
+                //System.out.println(track.getMMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
+        boolean st = saleOrderDAO.saveOrUpdate(saleOrder);
+//            String output = pTrack.toString();
+            System.out.println("pTakeOrder: " + st +"____ " + pSaleOrder);
+            return Response.status(200).entity(st+"").build();
+    }
+    
+    @POST
+    @Path("/putOriginalSaleOrderDetail")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putOriginalSaleOrderDetail( String pList ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        List<SaleOrderDetail> detailList = null;
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                detailList = mapper.readValue(pList
+                        , TypeFactory.defaultInstance().constructCollectionType(List.class
+                        , SaleOrderDetail.class));
+                //System.out.println(schedulesList.get(0).getMMaKH());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        int count = 0;
+        SaleOrderDetailDAO saleOrderDetailDAO = new SaleOrderDetailDAOImpl();
+        for(int i = 0; i< detailList.size(); i++){
+            if(saleOrderDetailDAO.saveOrUpdate(detailList.get(i)))
+                count ++;
+            
+        }
+        System.out.println("pTakeOrderDetail: " + count +"____ " + pList);
+        return Response.status(200).entity(count+"").build();
+    }
+    
+    @POST
+    @Path("/updateDetailSaleOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateDetailSaleOrder( String pSaleOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        SaleOrderDetail saleOrderDetail = new SaleOrderDetail();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                saleOrderDetail = mapper.readValue(pSaleOrder, SaleOrderDetail.class);
+                //System.out.println(track.getMMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update location
+        SaleOrderDetailDAO saleOrderDetailDAO = new SaleOrderDetailDAOImpl();
+        boolean st = saleOrderDetailDAO.update(saleOrderDetail);
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Update the order
+        List<SaleOrderDetail> list = new ArrayList<SaleOrderDetail>();
+        
+        list = saleOrderDetailDAO.getDetailSaleOrdersList(saleOrderDetail.getTakeOrderID());
+        float priceTotal = 0;
+        for(int i = 0; i < list.size(); i++){
+            priceTotal += list.get(i).getPriceTotal();
+        }
+        
+        SaleOrder saleOrder = new SaleOrder();
+        SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
+        
+        saleOrder = saleOrderDAO.getSaleOrder(saleOrderDetail.getTakeOrderID());
+        saleOrder.setAfterPrivate(priceTotal - priceTotal*saleOrder.getDiscount()/100);
+        boolean st2 = saleOrderDAO.update(saleOrder);
+//            String output = pTrack.toString();
+        System.out.println("____ " + pSaleOrder + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
+    
+    @POST
+    @Path("/deleteDetailSaleOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteDetailSaleOrder( String pSaleOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        SaleOrderDetail saleOrderDetail = new SaleOrderDetail();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                saleOrderDetail = mapper.readValue(pSaleOrder, SaleOrderDetail.class);
+                //System.out.println(track.getMMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        SaleOrderDetailDAO saleOrderDetailDAO = new SaleOrderDetailDAOImpl();
+        boolean st = saleOrderDetailDAO.delete(saleOrderDetail);
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Update the order
+        List<SaleOrderDetail> list = new ArrayList<SaleOrderDetail>();
+        
+        list = saleOrderDetailDAO.getDetailSaleOrdersList(saleOrderDetail.getTakeOrderID());
+        float priceTotal = 0;
+        for(int i = 0; i < list.size(); i++){
+            priceTotal += list.get(i).getPriceTotal();
+        }
+        
+        SaleOrder saleOrder = new SaleOrder();
+        SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
+        
+        saleOrder = saleOrderDAO.getSaleOrder(saleOrderDetail.getTakeOrderID());
+        saleOrder.setAfterPrivate(priceTotal  - priceTotal*saleOrder.getDiscount()/100);
+        boolean st2 = saleOrderDAO.update(saleOrder);
+//            String output = pTrack.toString();
+        System.out.println("____ " + pSaleOrder + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
+    
+    @POST
+    @Path("/deleteSaleOrder")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteSaleOrder( String pSaleOrder ) {
+
+        // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        SaleOrder saleOrder = new SaleOrder();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                saleOrder = mapper.readValue(pSaleOrder, SaleOrder.class);
+                //System.out.println(track.getMMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        //Update 
+        SaleOrderDetailDAO saleOrderDetailDAO = new SaleOrderDetailDAOImpl();
+        boolean st = saleOrderDetailDAO.delete(saleOrder.getId());
+        if(!st)
+            return Response.status(200).entity(st+"").build();
+        
+        //Delete Order
+        SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
+        boolean st2 = saleOrderDAO.delete(saleOrder);
+        
+        System.out.println("____ " + pSaleOrder + "___ " + st);
+        return Response.status(200).entity(st2+"").build();
+    }
 }

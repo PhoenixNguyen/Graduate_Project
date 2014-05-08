@@ -71,7 +71,7 @@ public class ScheduleAPI {
 			if (CheckingInternet.isOnline()) {
 				System.out.println("Internet access!!____________________");
 			} else {
-				dialog.dismiss();
+				
 				System.out.println("NO Internet access!!____________________");
 
 				return "nointernet";
@@ -209,7 +209,7 @@ public class ScheduleAPI {
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
-					dialog.dismiss();
+					
 					System.out.println("NO Internet access!!____________________");
 
 					return "nointernet";
@@ -330,7 +330,7 @@ public class ScheduleAPI {
 				if (CheckingInternet.isOnline()) {
 					System.out.println("Internet access!!____________________");
 				} else {
-					dialog.dismiss();
+					
 					System.out.println("NO Internet access!!____________________");
 
 					return "nointernet";

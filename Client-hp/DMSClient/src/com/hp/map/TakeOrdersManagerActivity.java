@@ -68,12 +68,12 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 	private List<TakeOrder> takeOrderListFilter = new ArrayList<TakeOrder>();
 	private boolean filter = false;
 	
-	private ListView ordersListView;
+	public ListView ordersListView;
 
 	private EditText id_search;
 	private EditText name_search;
 
-	private OrdersManagerArrayAdapter adapter;
+	public OrdersManagerArrayAdapter adapter;
 
 	private EditText start;
 	private EditText end;
@@ -81,7 +81,7 @@ public class TakeOrdersManagerActivity extends MainMenuActivity implements OnCli
 	private String result_string_start;
 	private String result_string_end;
 	
-	private Context context = this;
+	public Context context = this;
 	
 	public TextView title;
 	

@@ -194,6 +194,7 @@
                 <tbody>
         <!--            <tr><td><a href="" class="drop_down">Đầu mối</a></td></tr>-->
                     <tr><td><a href="take-order" class="drop_down">Đặt hàng</a></td></tr>
+                    <tr><td><a href="sale-order" class="drop_down">Bán hàng</a></td></tr>
                 </tbody>
             </table>
         </div>

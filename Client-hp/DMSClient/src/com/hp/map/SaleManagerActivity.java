@@ -83,16 +83,6 @@ public class SaleManagerActivity extends TakeOrdersManagerActivity{
 	public Dialog dialogLoad;
 	public void loadTakeOrderDialog(String pDate){
 		
-				
-//		// Check the internet
-//		if(isOnline()){
-//			System.out.println("Internet access!!____________________");
-//		}
-//		else{
-//			System.out.println("NO Internet access!!____________________");
-//			Toast.makeText(context, "No internet access, please try again later!", Toast.LENGTH_SHORT).show();
-//			return;
-//		}
 		
 		dialogLoad = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

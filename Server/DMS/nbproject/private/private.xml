@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/inventory-manager.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/rest/GenericResource.java</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/rest/OrdersHandle.java</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/struts.xml</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/action/InventoryManagerAction.java</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/domain/InventoryManager.java</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/inventory-manager-detail.jsp</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/domain/InventoryManagerDetail.java</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/action/TakeOrderAction.java</file>
         </group>
     </open-files>
 </project-private>

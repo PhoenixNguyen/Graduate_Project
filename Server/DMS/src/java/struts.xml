@@ -967,6 +967,58 @@
             <result name="input" >inventory-manager-detail.jsp?id_inv=${inventoryManager.id}</result>
             <result name="login" >index.jsp</result>
         </action>
+        
+        
+        
+        <!--SALE ORDER-->
+        <action name="sale-order" method="loadSaleOrders" class="com.hp.action.SaleOrderAction">
+            <result name="success">sale-order.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="sale-order-detail" method="loadSaleOrderDetail" class="com.hp.action.SaleOrderAction">
+            <result name="success">sale-order-detail.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="sale-order-edit" method="loadSaleOrderDetail" class="com.hp.action.SaleOrderAction">
+            <result name="success">sale-order-edit.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="update-sale-order" method="updateSaleOrder" class="com.hp.action.SaleOrderAction">
+            <result name="success" type="redirect">sale-order-detail?id_so=${saleOrder.id}</result>
+            <result name="input" >sale-order-edit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        
+        <action name="edit-saleorder-detail" method="editSaleOrderDetail" class="com.hp.action.SaleOrderDetailAction">
+            <result name="success">sale-order-detail-edit.jsp</result>
+            <result name="input" type="redirect">sale-order-detail?id_sod=${saleOrder.id}</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="update-saleorder-detail" method="updateSaleOrderDetail" class="com.hp.action.SaleOrderDetailAction">
+            <result name="success" type="redirect">sale-order-detail?id_so=${saleOrderDetail.takeOrderID}</result>
+            <result name="input" >sale-order-detail-edit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="delete-saleorder-detail" method="deleteSaleOrderDetail" class="com.hp.action.SaleOrderDetailAction">
+            <result name="success" type="redirect">sale-order-detail?id_so=${saleOrder.id}</result>
+            <result name="input" >sale-order-detail-edit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="delete-saleorder" method="deleteSaleOrder" class="com.hp.action.SaleOrderAction">
+            <result name="success" >sale-order.jsp</result>
+            <result name="input" >sale-order-detail.jsp?id_so=${saleOrder.id}</result>
+            <result name="login" >index.jsp</result>
+        </action>
     </package>
     
     

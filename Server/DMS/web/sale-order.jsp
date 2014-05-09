@@ -126,40 +126,32 @@
                     <td class="showPanelBg" valign="top" width="100%" style="padding:10px;">
                         <!-- SIMPLE SEARCH -->
                         <div id="searchAcc" style="display: block;position:relative;">
-                            <form name="basicSearch" method="post" action="home.jsp" onsubmit="return callSearch('Basic');">
+                            <form name="basicSearch" method="GET" action="search-saleorder" id="sub_form">
                                 <table width="80%" cellpadding="5" cellspacing="0" class="searchUIBasic small" align="center" border="0">
-                                    <tbody><tr>
+                                    <tbody>
+                                        <tr>
                                             <td class="searchUIName small" nowrap="" align="left">
                                                 <span class="moduleName">Tìm kiếm</span><br>
                                                 <!-- <img src="themes/images/basicSearchLens.gif" align="absmiddle" alt="Tìm kiếm cơ bản" title="Tìm kiếm cơ bản" border=0>&nbsp;&nbsp;-->
                                             </td>
-                                            <td class="small" nowrap="" align="right"><b>Tìm kiếm </b></td>
-                                            <td class="small"><input type="text" class="txtBox" style="width:120px" name="search_text"></td>
-                                            <td class="small" nowrap=""><b>Trong</b>&nbsp;</td>
-                                            <td class="small" nowrap="">
-                                                <div id="basicsearchcolumns_real">
-                                                    <select name="search_field" id="bas_searchfield" class="txtBox" style="width:150px">
-                                                        <option label="Tên Khách hàng" value="accountname">Tên Khách hàng</option>
-                                                        <option label="Được gán cho" value="assigned_user_id">Được gán cho</option>
-                                                        <option label="Tạo lúc" value="createdtime">Tạo lúc</option>
-                                                        <option label="Ngày sinh" value="cf_607">Ngày sinh</option>
-                                                        <option label="Điện thoại" value="phone">Điện thoại</option>
-                                                        <option label="Đánh giá" value="rating">Đánh giá</option>
+                                            <%
+                                            String str = "";
+                                            if(request.getParameter("search_text")== null){
+                                                str = "";
+                                                session.setAttribute("search_text", str);
+                                            }
+                                            else{
+                                                session.setAttribute("search_text", request.getParameter("search_text"));
+                                            }
+                                            %>
+                                            <td class="small" ><input type="text" class="txtBox" style="width:400px" name="search_text" value="<s:property value="%{#attr.search_text}"/>"></td>
 
-                                                    </select>
-                                                </div>
-                                                <input type="hidden" name="searchtype" value="BasicSearch">
-                                                <input type="hidden" name="module" value="Accounts">
-                                                <input type="hidden" name="parenttab" value="Marketing">
-                                                <input type="hidden" name="action" value="index">
-                                                <input type="hidden" name="query" value="true">
-                                                <input type="hidden" name="search_cnt">
-                                            </td>
                                             <td class="small" nowrap="" width="40%">
-                                                <input name="submit" type="button" class="crmbutton small create" onclick="callSearch('Basic');" value=" Thực hiện tìm kiếm ">&nbsp;
-
+                                                <input name="submit" type="submit" class="crmbutton small create" onclick="
+                                                    document.getElementById('sub_form').submit();
+                                                    //alert('hêlo');
+                                                    " value=" Thực hiện tìm kiếm ">&nbsp;
                                             </td>
-                                            <td class="small" valign="top" onmouseover="this.style.cursor = 'pointer';" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch')">[x]</td>
                                         </tr>
                                         <tr>
                                             <td colspan="7" align="center" class="small">
@@ -168,12 +160,14 @@
                                                             <td class="searchAlph" id="alpha_1" align="center" 
                                                                 onclick=""></td>
                                                         </tr>
-                                                    </tbody></table>
+                                                    </tbody>
+                                                </table>
                                             </td>
                                         </tr>
-                                    </tbody></table>
+                                    </tbody>
+                                </table>
                             </form>
-                        </div>    
+                        </div>   
 
                         <!-- PUBLIC CONTENTS STARTS-->
                         <div id="ListViewContents" class="small" style="width:100%;">

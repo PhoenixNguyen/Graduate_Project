@@ -178,4 +178,20 @@ public class SaleOrderAction extends ActionSupport implements ModelDriven{
         else 
             return INPUT;
     }
+    
+    public String searchSale(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
+        String para =  request.getParameter("search_text");
+        System.out.println("__" + para);
+        saleOrderList = saleOrderDAO.getSearchSaleList(para);
+        
+        return SUCCESS;
+    }
 }

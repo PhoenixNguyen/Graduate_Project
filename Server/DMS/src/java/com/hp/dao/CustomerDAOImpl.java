@@ -504,4 +504,42 @@ public class CustomerDAOImpl implements CustomerDAO {
         
         return courses;
     }
+    
+    //Search customers
+    public List<Customer> getSearchCustomerList(String pText){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Customer> courses = null;
+        try{
+            String str = "from Customer where "
+                    + " lower(tinhThanh) like :pText "
+                    + " or lower(tuyenBanHangThu) like :pText "
+                    + " or lower(maNhanVien) like :pText "
+                    + " or lower(x) like :pText "
+                    + " or lower(maDoiTuong) like :pText "
+                    + " or lower(doiTuong) like :pText "
+                    + " or lower(diaChi) like :pText "
+                    
+                    + " or lower(dienThoai) like :pText "
+                    + " or lower(fax) like :pText "
+                    + " or lower(ghiChu) like :pText "
+                    //+ " or lower(diaChi) like :pText "
+                    
+                    + " order by maDoiTuong";
+            Query query = session.createQuery(str);
+            query.setParameter("pText", "%" +pText.toLowerCase()+ "%");
+            
+            courses = query.list();
+            //courses = session.createQuery("from Customer where lower()order by maDoiTuong").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
 }

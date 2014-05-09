@@ -529,5 +529,19 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         return SUCCESS;
     }
     
-    
+    public String searchCustomers(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        
+        String para =  request.getParameter("search_text");
+        System.out.println("__" + para);
+        customersList = customerDAO.getSearchCustomerList(para);
+        
+        return SUCCESS;
+    }
 }

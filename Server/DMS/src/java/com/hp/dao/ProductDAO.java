@@ -23,4 +23,7 @@ public interface ProductDAO {
     public boolean update(Product pProduct);
     
     public boolean delete(Product pProduct);
+    
+    //Search product
+    public List<Product> getSearchProductList(String pText);
 }

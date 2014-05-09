@@ -8,10 +8,12 @@ package com.hp.dao;
 
 import com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory;
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
+import com.hp.domain.Customer;
 import com.hp.domain.Product;
 import com.hp.domain.Provider;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -161,5 +163,38 @@ public class ProviderDAOImpl implements ProviderDAO{
         }
         
         return true;
+    }
+    
+    //Search Provider
+    public List<Provider> getSearchProviderList(String pText){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Provider> courses = null;
+        try{
+            String str = "from Provider where "
+                    + " lower(id) like :pText "
+                    + " or lower(name) like :pText "
+                    + " or lower(address) like :pText "
+                    + " or lower(phoneNumber) like :pText "
+                    + " or lower(fax) like :pText "
+                    + " or lower(note) like :pText "
+                    
+                    
+                    + " order by id";
+            Query query = session.createQuery(str);
+            query.setParameter("pText", "%" +pText.toLowerCase()+ "%");
+            
+            courses = query.list();
+            //courses = session.createQuery("from Customer where lower()order by maDoiTuong").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
     }
 }

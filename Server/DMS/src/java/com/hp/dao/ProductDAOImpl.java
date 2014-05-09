@@ -8,10 +8,12 @@ package com.hp.dao;
 
 import com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory;
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
+import com.hp.domain.Customer;
 import com.hp.domain.Product;
 import com.hp.domain.Staff;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -163,5 +165,44 @@ public class ProductDAOImpl implements ProductDAO{
         }
         
         return true;
+    }
+    
+    //Search product
+    public List<Product> getSearchProductList(String pText){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Product> courses = null;
+        try{
+            String str = "from Product where "
+                    + " lower(productID) like :pText "
+                    + " or lower(barcode) like :pText "
+                    + " or lower(productName) like :pText "
+                    + " or lower(brand) like :pText "
+                    + " or lower(origin) like :pText "
+                    + " or lower(packingSpecifications) like :pText "
+                    + " or lower(quantification) like :pText "
+                    
+                    + " or lower(vatTax) like :pText "
+                    + " or lower(importPrices) like :pText "
+                    + " or lower(exportPrices) like :pText "
+                    + " or lower(provider) like :pText "
+                    + " or lower(description) like :pText "
+                    
+                    + " order by productID";
+            Query query = session.createQuery(str);
+            query.setParameter("pText", "%" +pText.toLowerCase()+ "%");
+            
+            courses = query.list();
+            //courses = session.createQuery("from Customer where lower()order by maDoiTuong").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
     }
 }

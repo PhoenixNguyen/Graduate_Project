@@ -28,4 +28,7 @@ public interface InventoryManagerDAO {
     
     //delete
     public boolean delete(InventoryManager pInventoryManager);
+    
+    //Search InventoryManager
+    public List<InventoryManager> getSearchInventoryList(String pText);
 }

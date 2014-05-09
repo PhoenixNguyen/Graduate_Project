@@ -28,4 +28,7 @@ public interface TakeOrderDAO {
     
     //delete
     public boolean delete(TakeOrder pTakeOrder);
+    
+    //Search TakeOrder
+    public List<TakeOrder> getSearchTakeOrderList(String pText);
 }

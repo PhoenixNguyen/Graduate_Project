@@ -25,4 +25,7 @@ public interface SaleOrderDAO {
     
     //delete
     public boolean delete(SaleOrder pSaleOrder);
+    
+    //Search SaleOrder
+    public List<SaleOrder> getSearchSaleList(String pText);
 }

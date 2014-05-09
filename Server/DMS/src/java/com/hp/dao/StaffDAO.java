@@ -30,4 +30,7 @@ public interface StaffDAO {
     public boolean saveOrUpdate(Staff pStaff);
             
     public boolean delete(Staff pStaff);
+    
+    //Search Staff
+    public List<Staff> getSearchStaffList(String pText);
 }

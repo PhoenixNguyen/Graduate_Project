@@ -159,4 +159,49 @@ public class SaleOrderDAOImpl implements SaleOrderDAO{
         
         return true;
     }
+    
+    //Search SaleOrder
+    public List<SaleOrder> getSearchSaleList(String pText){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<SaleOrder> courses = null;
+        try{
+            String str = "from SaleOrder where "
+                    + " lower(id) like :pText "
+                    + " or lower(takeOrderDate) like :pText "
+                    + " or lower(deliveryDate) like :pText "
+                    + " or lower(customerID) like :pText "
+                    + " or lower(customerName) like :pText "
+                    + " or lower(customerAddress) like :pText "
+                    + " or lower(phoneNumber) like :pText "
+                    
+                    + " or lower(deliveryAddress) like :pText "
+                    + " or lower(shippingVehicle) like :pText "
+                    + " or lower(tax) like :pText "
+                    + " or lower(afterPrivate) like :pText "
+                    
+                    + " or lower(orderStatus) like :pText "
+                    + " or lower(orderEstablishDate) like :pText "
+                    + " or lower(orderEditDate) like :pText "
+                    + " or lower(creater) like :pText "
+                    + " or lower(editer) like :pText "
+                    + " or lower(note) like :pText "
+                            
+                    + " order by id";
+            Query query = session.createQuery(str);
+            query.setParameter("pText", "%" +pText.toLowerCase()+ "%");
+            
+            courses = query.list();
+            //courses = session.createQuery("from Customer where lower()order by maDoiTuong").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
 }

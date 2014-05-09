@@ -24,4 +24,7 @@ public interface ProviderDAO {
     public boolean delete(Provider pProvider);
     public boolean saveOrUpdate(Provider pProvider);
     public boolean update(Provider pProvider);
+    
+    //Search Provider
+    public List<Provider> getSearchProviderList(String pText);
 }

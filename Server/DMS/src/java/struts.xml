@@ -626,6 +626,13 @@
             
         </action>
         
+        <action name="search-customer" method="searchCustomers" class="com.hp.action.CustomerAction">
+            <result name="success">customer.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+            
+        </action>
+        
         <!--PRODUCT-->
         <action name="product-list" method="displayProducts" class="com.hp.action.ProductsAction">
             <result name="success">product.jsp</result>
@@ -706,8 +713,20 @@
             
         </action>
         
+        <action name="search-product" method="searchProducts" class="com.hp.action.ProductsAction">
+            <result name="success">product.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+            
+        </action>
         
         <!--TAKE ORDER-->
+        <action name="search-takeorder" method="searchTakeOrder" class="com.hp.action.TakeOrderAction">
+            <result name="success">take-order.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+            
+        </action>
         <action name="take-order" method="loadTakeOrders" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order.jsp</result>
             <result name="input" >home.jsp</result>
@@ -758,6 +777,14 @@
         </action>
         
         <!--STAFF-->
+        
+        <action name="search-staff" method="searchStaff" class="com.hp.action.StaffsAction">
+            <result name="success">staff.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+            
+        </action>
+        
         <action name="staff-list" method="displayStaffs" class="com.hp.action.StaffsAction">
             <result name="success">staff.jsp</result>
             <result name="input" >home.jsp</result>
@@ -838,6 +865,14 @@
         </action>
         
         <!-- PROVIDER -->
+        
+        <action name="search-provider" method="searchProvider" class="com.hp.action.ProviderAction">
+            <result name="success">provider.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+            
+        </action>
+        
         <action name="provider-list" method="redirect" class="com.hp.action.ProviderAction">
             <result name="success">provider.jsp</result>
             <result name="input" >home.jsp</result>
@@ -919,6 +954,14 @@
         
         
         <!--INVENTORY MANAGER-->
+        
+        <action name="search-inventory" method="searchInventory" class="com.hp.action.InventoryManagerAction">
+            <result name="success">inventory-manager.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+            
+        </action>
+        
         <action name="inventory-manager" method="refresh" class="com.hp.action.InventoryManagerAction">
             <result name="success">inventory-manager.jsp</result>
             <result name="input" >home.jsp</result>
@@ -971,6 +1014,14 @@
         
         
         <!--SALE ORDER-->
+        
+        <action name="search-saleorder" method="searchSale" class="com.hp.action.SaleOrderAction">
+            <result name="success">sale-order.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+            
+        </action>
+        
         <action name="sale-order" method="loadSaleOrders" class="com.hp.action.SaleOrderAction">
             <result name="success">sale-order.jsp</result>
             <result name="input" >home.jsp</result>

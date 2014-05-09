@@ -421,7 +421,7 @@
 
         <!--    Footer-->
         <s:include value="footer.jsp"></s:include>
-
+        
     </body>
 </html>
 

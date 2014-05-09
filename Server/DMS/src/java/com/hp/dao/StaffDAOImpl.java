@@ -193,4 +193,42 @@ public class StaffDAOImpl implements StaffDAO{
         return true;
     }
     
+    //Search Staff
+    public List<Staff> getSearchStaffList(String pText){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Staff> courses = null;
+        try{
+            String str = "from Staff where "
+                    + " lower(id) like :pText "
+                    + " or lower(name) like :pText "
+                    + " or lower(adress) like :pText "
+                    + " or lower(job) like :pText "
+                    + " or lower(phone) like :pText "
+                    + " or lower(date) like :pText "
+                    + " or lower(manager) like :pText "
+                    
+                    + " or lower(status) like :pText "
+                    + " or lower(permission) like :pText "
+                    //+ " or lower(ghiChu) like :pText "
+                    //+ " or lower(diaChi) like :pText "
+                    
+                    + " order by id";
+            Query query = session.createQuery(str);
+            query.setParameter("pText", "%" +pText.toLowerCase()+ "%");
+            
+            courses = query.list();
+            //courses = session.createQuery("from Customer where lower()order by maDoiTuong").list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
 }

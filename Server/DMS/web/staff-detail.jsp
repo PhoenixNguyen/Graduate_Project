@@ -272,9 +272,9 @@
                                                                                                     <s:if test="staff.permission == 2" >
                                                                                                         Nhân viên bán hàng
                                                                                                     </s:if>
-                                                                                                    <s:else>
+                                                                                                    <s:if test="staff.permission == 3" >
                                                                                                         Nhân viên cập nhật vị trí
-                                                                                                    </s:else>
+                                                                                                    </s:if>
 
                                                                                                 </span>
                                                                                             </td>

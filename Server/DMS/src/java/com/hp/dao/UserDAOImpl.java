@@ -62,6 +62,29 @@ public class UserDAOImpl implements UserDAO{
         return status;
     }
     
+    public User getUser(String username){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        User user = null;
+        try{
+            String sql = "from User where lower(id)='"+username.toLowerCase()+"' "  +" and status = true";
+            Query query = session.createQuery(sql);
+            
+            user = (User)query.uniqueResult();
+                      
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return user;
+    }
+    
     
     
 }

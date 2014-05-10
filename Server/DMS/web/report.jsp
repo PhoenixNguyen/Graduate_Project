@@ -204,7 +204,7 @@
                                                 </tr>
                                                 <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
                                                     <td>1</td>
-                                                    <td><a href="">Báo cáo chi tiết Đặt hàng</a>
+                                                    <td><a href="report-takeorder">Báo cáo chi tiết Đặt hàng</a>
                                                     </td>
                                                     <td>Báo cáo chi tiết Đặt hàng</td>
                                                     
@@ -241,16 +241,7 @@
                                                 <!-- Custom Report Group's Buttons -->
                                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                                     <tr>
-<!--                                                        <td  id="repposition1" width="5%" align="right">
-                                                            <input name="newReportInThisModule" value="Tạo Báo cáo..." class="crmButton small create" onclick="
-                                                                gcurrepfolderid = 12; fnvshobj(this, 'reportLay')" type="button">
-                                                        </td>
-                                                        <td  width="75%" align="right">
-                                                            <input type="button" name="Edit" value=" Đổi tên thư mục " class="crmbutton small edit" onClick='EditFolder("12", "B&aacute;o c&aacute;o về Tồn kho", "B&aacute;o c&aacute;o về Tồn kho"), fnvshobj(this, "orgLay");'>&nbsp;
-                                                        </td>
-                                                        <td align="right">
-                                                            <input type="button" name="delete" value=" Xóa thư mục " class="crmbutton small delete" onClick="DeleteFolder('12');">
-                                                        </td>-->
+
                                                     </tr>
                                                 </table>
                                             </td>
@@ -285,9 +276,9 @@
                                     <table class="reportsListTable" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">		
                                         <tr>
                                             <td class="mailSubHeader" align="left" colspan="3" style="font-weight:bold;">
-                                                <span id='folder13'> B&aacute;o c&aacute;o về Hợp đồng</span>
+                                                <span id='folder13'> B&aacute;o c&aacute;o về Bán hàng</span>
                                                 <i><font color='#C0C0C0'>
-                                                    - B&aacute;o c&aacute;o về Hợp đồng
+                                                    - B&aacute;o c&aacute;o về Bán hàng
                                                     </font></i>
 
                                             </td>
@@ -296,15 +287,7 @@
                                             <td  class="hdrNameBg" colspan="3" style="padding: 5px;" align="right" >
 <!--                                                 Custom Report Group's Buttons -->
                                                 <table width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
-<!--                                                        <td  id="repposition2" width="5%" align="right"><input name="newReportInThisModule" value="Tạo Báo cáo..." class="crmButton small create" onclick="gcurrepfolderid = 13;
-                        fnvshobj(this, 'reportLay')" type="button">
-                                                        </td>
-                                                        <td  width="75%" align="right">
-                                                            <input type="button" name="Edit" value=" Đổi tên thư mục " class="crmbutton small edit" onClick='EditFolder("13", "B&aacute;o c&aacute;o về Hợp đồng", "B&aacute;o c&aacute;o về Hợp đồng"), fnvshobj(this, "orgLay");'>&nbsp;
-                                                        </td>
-                                                        <td align="right">
-                                                            <input type="button" name="delete" value=" Xóa thư mục " class="crmbutton small delete" onClick="DeleteFolder('13');">
-                                                        </td>-->
+
                                                     </tr>
                                                 </table>
                                             </td>
@@ -320,7 +303,7 @@
                                                             <td class="lvtCol" align="left" width="35%">Tên báo cáo</td>
                                                             <td class="lvtCol" align="left" width="50%">Mô tả</td>
                                                         </tr>
-                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
+<!--                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
                                                             <td>
                                                                 1
                                                             </td>
@@ -346,7 +329,7 @@
                                                             </td>
                                                             <td align="left">adadadada</td>
                                                             
-                                                        </tr>
+                                                        </tr>-->
                                                     </tbody>
                                                 </table>
                                             </td>

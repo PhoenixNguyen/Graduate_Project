@@ -27,7 +27,7 @@
 
         <!--    Header & menu-->
         <s:include value="header.jsp" >
-            <s:param name="page_param" value="'customer'" />
+            <s:param name="page_param" value="'report'" />
         </s:include>
 
 
@@ -80,26 +80,65 @@
 
                                     <table border=0 cellspacing=0 cellpadding=0 width=80%>
                                         <tr>
+                                            <s:if test="user.getPermission() == 1">
+                                            <td align=left class=small><b>Chọn Giám đốc</b></td><td class=small>&nbsp;</td>
+                                            </s:if>
                                             <td align=left class=small><b>Chọn Nhân viên </b></td><td class=small>&nbsp;</td>
                                             <td align=left class=small><b>Chọn Khách hàng </b></td><td class=small>&nbsp;</td>
                                             <td align=left class=small><b>Ngày bắt đầu </b></td><td class=small>&nbsp;</td>
                                             <td align=left class=small><b>Ngày kết thúc </b>
                                         </tr>
                                         <tr>
-                                            <td align="left" width="30%">
-                                                <select name="stdDateFilterField" class="small" style="width:98%" onchange="standardFilterDisplay();">
-                                                    <option value="">Nhân viên 1</option>
-
+                                            <s:push value="pushInfo">
+                                            <s:if test="user.getPermission() == 1">
+                                            <td align="left" width="20%">
+                                                <select name="pushInfo.managerID"  class="small" style="width:98%" onchange="onClickManager(options[selectedIndex].text);">
+                                                    <option value="--select--">--select--</option>
+                                                    <s:iterator value="userListGiamDoc" status="index" >
+                                                        <s:if test="pushInfo.managerID == userListGiamDoc.get(#index.index)">
+                                                            <option value="<s:property />" selected="selected"><s:property /></option>
+                                                        </s:if>
+                                                        <s:else>
+                                                            <option value="<s:property />"><s:property /></option>
+                                                        </s:else>
+                                                    </s:iterator>
                                                 </select>
                                             </td>
                                             <td class=small>&nbsp;</td>
-                                            <td align="left" width="30%">
-                                                <select name="stdDateFilterField" class="small" style="width:98%" onchange="standardFilterDisplay();">
-                                                    <option value="">Khách hàng 1</option>
+                                            </s:if>
+                                            
+                                            <td align="left" width="20%">
+                                                <select name="pushInfo.staffID" class="small" style="width:98%" onchange="onClickStaff(options[selectedIndex].text);" id="staff">
+                                                    <option value="--select--">--select--</option>
+                                                    <s:iterator value="userListStaff" status="index" >
+                                                        
+                                                        <s:if test="pushInfo.staffID == userListStaff.get(#index.index)">
+                                                            <option value="<s:property />" selected="selected"><s:property /></option>
+                                                        </s:if>
+                                                        <s:else>
+                                                            <option value="<s:property />"><s:property /></option>
+                                                        </s:else>
 
+                                                        
+                                                    </s:iterator>
                                                 </select>
                                             </td>
                                             <td class=small>&nbsp;</td>
+                                            <td align="left" width="20%">
+                                                <select name="pushInfo.customerID" class="small" style="width:98%" onchange="onClickCustomer(options[selectedIndex].text);" id="customer">
+                                                    <option value="--select--">--select--</option>
+                                                    <s:iterator value="userListCustomer" status="index" >
+                                                        <s:if test="pushInfo.customerID == userListCustomer.get(#index.index)">
+                                                            <option value="<s:property />" selected="selected"><s:property /></option>
+                                                        </s:if>
+                                                        <s:else>
+                                                            <option value="<s:property />"><s:property /></option>
+                                                        </s:else>
+                                                    </s:iterator>
+                                                </select>
+                                            </td>
+                                            <td class=small>&nbsp;</td>
+                                            </s:push>
                                             <td align=left width="20%">
                                                 <table border=0 cellspacing=0 cellpadding=2>
                                                     <tr>
@@ -132,7 +171,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="center" colspan="8" style="padding:5px"><input name="generatenw" value=" Tạo báo cáo " class="crmbutton small create" type="button" onClick="generateReport(20);"></td>
+                                            <td align="center" colspan="8" style="padding:5px"><input name="generatenw" value=" Tạo báo cáo " class="crmbutton small create" type="button" onClick="window.location.href='filter-result'"></td>
                                         </tr>
                                     </table>
 
@@ -161,7 +200,7 @@
                                                 <tbody><tr>
                                                         <td align="left" width="75%">
                                                             <span class="genHeaderGray">
-                                                                Báo cáo chi tiết Nhập hàng
+                                                                Báo cáo chi tiết Đặt hàng
                                                             </span><br>
                                                         </td>
                                                         <td align="right" width="25%">
@@ -173,16 +212,73 @@
                                                     <tr>
                                                         <td colspan="2">
 
-                                                            <table cellpadding="5" cellspacing="0" align="center" class="rptTable"><tr><td class='rptCellLabel'>Tiêu đề</td><td class='rptCellLabel'>Tên Báo giá</td><td class='rptCellLabel'>Tên Liên hệ</td><td class='rptCellLabel'>Ngày liên quan</td><td class='rptCellLabel'>Công ty vận chuyển</td><td class='rptCellLabel'>Tình trạng</td><td class='rptCellLabel'>Tên Khách hàng</td><td class='rptCellLabel'>Tiền hoa hồng</td><td class='rptCellLabel'>Thuế hàng hóa</td><td class='rptCellLabel'>Gán cho</td><td class='rptCellLabel'>LBL ACTION</td></tr><tr><tr><td class='rptData'>Đặt h&agrave;ng 1</td><td class='rptData'>-</td><td class='rptData'>-</td><td class='rptData'>19-04-2011</td><td class='rptData'>FedEx</td><td class='rptData'>Created</td><td class='rptData'>La Thị Hệ</td><td class='rptData'>0.000</td><td class='rptData'>0.000</td><td class='rptData'>admin</td><td class='rptData'><a href='index.php?module=SalesOrder&action=DetailView&record=201' target='_blank'>LBL_VIEW_DETAILS</a></td></tr><tr><td class='rptData'>Đặt h&agrave;ng phần mềm nh&agrave; h&agrave;ng</td><td class='rptData'>-</td><td class='rptData'>-</td><td class='rptData'>25-05-2011</td><td class='rptData'>FedEx</td><td class='rptData'>Created</td><td class='rptData'>Trần Thị Khanh</td><td class='rptData'>0.000</td><td class='rptData'>0.000</td><td class='rptData'>admin</td><td class='rptData'><a href='index.php?module=SalesOrder&action=DetailView&record=611' target='_blank'>LBL_VIEW_DETAILS</a></td></tr><tr><td class='rptData'>Đơn đặt h&agrave;ng ABC</td><td class='rptData'>-</td><td class='rptData'>-</td><td class='rptData'>27-06-2011</td><td class='rptData'>FedEx</td><td class='rptData'>Approved</td><td class='rptData'>anh Đạt - Điện m&aacute;y Tiến đạt</td><td class='rptData'>0.000</td><td class='rptData'>0.000</td><td class='rptData'>admin</td><td class='rptData'><a href='index.php?module=SalesOrder&action=DetailView&record=793' target='_blank'>LBL_VIEW_DETAILS</a></td></tr></tr></table><script type='text/javascript' id='__reportrun_directoutput_recordcount_script'>
+                                                            <table cellpadding="5" cellspacing="0" align="center" class="rptTable">
+                                                                <tr>
+                                                                    <td class='rptCellLabel'>Tiêu đề</td>
+                                                                    <td class='rptCellLabel'>Tên Báo giá</td>
+                                                                    <td class='rptCellLabel'>Tên Liên hệ</td>
+                                                                    <td class='rptCellLabel'>Ngày liên quan</td>
+                                                                    <td class='rptCellLabel'>Công ty vận chuyển</td>
+                                                                    <td class='rptCellLabel'>Tình trạng</td>
+                                                                    <td class='rptCellLabel'>Tên Khách hàng</td>
+                                                                    <td class='rptCellLabel'>Tiền hoa hồng</td>
+                                                                    <td class='rptCellLabel'>Thuế hàng hóa</td>
+                                                                    <td class='rptCellLabel'>Gán cho</td>
+                                                                    <td class='rptCellLabel'>LBL ACTION</td>
+                                                                </tr>
+                                                                <tr>
+                                                                <tr>
+                                                                    <td class='rptData'>Đặt h&agrave;ng 1</td>
+                                                                    <td class='rptData'>-</td>
+                                                                    <td class='rptData'>-</td>
+                                                                    <td class='rptData'>19-04-2011</td>
+                                                                    <td class='rptData'>FedEx</td>
+                                                                    <td class='rptData'>Created</td>
+                                                                    <td class='rptData'>La Thị Hệ</td>
+                                                                    <td class='rptData'>0.000</td>
+                                                                    <td class='rptData'>0.000</td>
+                                                                    <td class='rptData'>admin</td>
+                                                                    <td class='rptData'><a href='' target='_blank'>LBL_VIEW_DETAILS</a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class='rptData'>Đặt h&agrave;ng phần mềm nh&agrave; h&agrave;ng</td>
+                                                                    <td class='rptData'>-</td>
+                                                                    <td class='rptData'>-</td>
+                                                                    <td class='rptData'>25-05-2011</td>
+                                                                    <td class='rptData'>FedEx</td>
+                                                                    <td class='rptData'>Created</td>
+                                                                    <td class='rptData'>Trần Thị Khanh</td>
+                                                                    <td class='rptData'>0.000</td>
+                                                                    <td class='rptData'>0.000</td>
+                                                                    <td class='rptData'>admin</td>
+                                                                    <td class='rptData'><a href='' target='_blank'>LBL_VIEW_DETAILS</a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class='rptData'>Đơn đặt h&agrave;ng ABC</td>
+                                                                    <td class='rptData'>-</td>
+                                                                    <td class='rptData'>-</td>
+                                                                    <td class='rptData'>27-06-2011</td>
+                                                                    <td class='rptData'>FedEx</td>
+                                                                    <td class='rptData'>Approved</td>
+                                                                    <td class='rptData'>anh Đạt - Điện m&aacute;y Tiến đạt</td>
+                                                                    <td class='rptData'>0.000</td>
+                                                                    <td class='rptData'>0.000</td>
+                                                                    <td class='rptData'>admin</td>
+                                                                    <td class='rptData'><a href='' target='_blank'>LBL_VIEW_DETAILS</a></td>
+                                                                </tr>
+                                                    </tr>
+                                            </table>
+                                                            <script type='text/javascript' id='__reportrun_directoutput_recordcount_script'>
                                                                 if ($('_reportrun_total'))
-                                                                    $('_reportrun_total').innerHTML = 3;</script>					
+                                                                    $('_reportrun_total').innerHTML = 3;
+                                                            </script>					
                                         </td>
                                     </tr>
                                     <tr><td colspan="2">&nbsp;</td></tr>
                                     <tr><td colspan="2">&nbsp;</td></tr>
                                     <tr><td colspan="2">
                                         </td></tr>
-                                    <tr><td colspan="2">nbsp;</td></tr>
+                                    <tr><td colspan="2">&nbsp;</td></tr>
                                 </tbody>
                             </table>
                     </td>

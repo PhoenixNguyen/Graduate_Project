@@ -19,7 +19,9 @@
         <a name="top"></a>
         
         <!-- header-vtiger crm name & RSS -->
-        <script language="JavaScript" type="text/javascript" src="js/admin/jquery.min.js"></script>
+<!--        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>-->
+        <script language="JavaScript" type="text/javascript" src="js/jquery.min.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/ajax_option.js"></script>
         
         <script language="JavaScript" type="text/javascript" src="include/js/json.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/general.js"></script>
@@ -208,7 +210,7 @@
         <div class="drop_mnu" id="Analytics_sub" onmouseout="fnHideDrop('Analytics_sub')" onmouseover="fnShowDrop('Analytics_sub')" style="left: 401px; top: 75px; display: none;">
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tbody>
-                    <tr><td><a href="" class="drop_down">Báo cáo</a></td></tr>
+                    <tr><td><a href="report" class="drop_down">Báo cáo</a></td></tr>
                     <tr><td><a href="" class="drop_down">Biểu đồ</a></td></tr>
                 </tbody>
             </table>

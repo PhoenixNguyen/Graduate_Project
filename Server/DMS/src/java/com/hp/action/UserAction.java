@@ -37,6 +37,7 @@ public class UserAction extends ActionSupport{
         
         if(userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             session.setAttribute("authorized", true);
+            session.setAttribute("USER", userDAO.getUser(username));
             return SUCCESS;
         }
         else
@@ -61,6 +62,7 @@ public class UserAction extends ActionSupport{
         session.setAttribute("user_name", null);
         session.setAttribute("user_password", null);
         session.setAttribute("authorized", false);
+        session.setAttribute("USER", null);
         
         return SUCCESS;
     }

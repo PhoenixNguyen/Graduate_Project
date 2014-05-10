@@ -22,4 +22,6 @@ public interface UserDAO {
     //Authorize
     public boolean authorize(String username, String password);
     
+    //Get user
+    public User getUser(String username);
 }

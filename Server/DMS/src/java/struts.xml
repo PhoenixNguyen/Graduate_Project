@@ -1111,6 +1111,22 @@
             <result name="login" >index.jsp</result>
         </action>
         
+        <action name="export-takeorder-xls" method="exportTakeOrderList" class="com.hp.action.ReportTakeOrderAction">
+            <result name="success" type="stream">
+                <param name="contentType">
+                    image/png,image/gif,image/jpeg,image/pjpeg,application/rar,application/zip
+                    ,application/octet-stream,text/plain
+                    ,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                    , application/vnd.ms-powerpoint
+                    , application/pdf
+                </param>
+                <param name="inputName">orderFile</param>
+                <param name="contentDisposition">attachment;filename=take-order-list.xls</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="input" >report-takeorder.jsp</result>
+        </action>
+        
     </package>
     
     

@@ -189,7 +189,7 @@
                             <br>
                             <table align="center" border="0" cellpadding="5" cellspacing="0" width="100%" class="mailSubHeader">
                                 <tbody><tr>
-                                        <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="goToURL(CrearEnlace('CreateXL', 20));" title="Xuất dữ liệu Excel" ></td>
+                                        <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-takeorder-xls'" title="Xuất dữ liệu Excel" ></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -208,7 +208,7 @@
                                                             </span><br>
                                                         </td>
                                                         <td align="right" width="25%">
-                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'></span>  Bản ghi</span>
+                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'><s:property value="takeOrdersList.size()"/></span>  Bản ghi</span>
                                                         </td>
                                                     </tr>
                                                     <tr><td id="report_info" align="left" colspan="2">&nbsp;</td></tr>
@@ -232,6 +232,10 @@
                                                                     <td class='rptCellLabel'>Gán cho</td>
                                                                     <td class='rptCellLabel'>Hành động</td>
                                                                 </tr>
+                                                                <s:set id="sum_all" value="0"/>
+                                                                <s:set id="sum_discount_all" value="0"/>
+                                                                <s:set id="sum_total_all" value="0"/>
+                                                                
                                                                 <s:iterator value="takeOrdersList" status="index">
                                                                 <tr>
                                                                     <td class='rptData'><s:property value="id"/></td>
@@ -262,12 +266,30 @@
                                                                     <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum_discount})"/></td>
                                                                     
                                                                     <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum_total*discount/100})"/></td>
-                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{afterPrivate})"/></td>
+                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum-#sum_discount-#sum_total*discount/100})"/></td>
                                                                     <td class='rptData'><s:property value="creater"/></td>
                                                                     <td class='rptData'><a href='take-order-detail?id_tod=<s:property value="id"/>' target='_blank'>Xem chi tiết</a></td>
                                                                 </tr>
+                                                                <s:set id="sum_all" value="%{#sum_all + #sum}"/>
+                                                                <s:set id="sum_discount_all" value="%{#sum_discount_all + #sum_discount}"/>
+                                                                <s:set id="sum_total_all" value="%{#sum_total_all + #sum_total*discount/100}"/>
                                                                 </s:iterator>
-                                                        
+                                                                
+                                                                <tr>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_all})"/></td>
+                                                                    <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_discount_all})"/></td>
+                                                                    <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_total_all})"/></td>
+                                                                    <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_all - #sum_discount_all - #sum_total_all})"/></td>
+                                                                    <td class='rptCellLabel'></td>
+                                                                    <td class='rptCellLabel'>Hành động</td>
+                                                                </tr>
                                                             </table>
                                                             <script type='text/javascript' id='__reportrun_directoutput_recordcount_script'>
                                                                 if ($('_reportrun_total'))
@@ -292,7 +314,7 @@
         <table align="center" border="0" cellpadding="5" cellspacing="0" width="100%" class="mailSubHeader">
             <tbody>
                 <tr>
-                    <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="goToURL(CrearEnlace('CreateXL', 20));" title="Xuất dữ liệu Excel" ></td>
+                    <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-takeorder-xls'" title="Xuất dữ liệu Excel" ></td>
                 </tr>
             </tbody>
         </table>

@@ -37,9 +37,8 @@
                     <td class="showPanelBg" style="padding: 10px;" valign="top" width="100%">
 
 
-
                         <table class="small reportGenHdr mailClient mailClientBg" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-                            <form name="NewReport" action="index.php" method="POST" onsubmit="VtigerJS_DialogBox.block();">
+<!--                            <form name="NewReport" action="filter-result" method="POST"  id="sub_form">
                                 <input type="hidden" name="booleanoperator" value="5"/>
                                 <input type="hidden" name="record" value="20"/>
                                 <input type="hidden" name="reload" value=""/>    
@@ -49,7 +48,7 @@
                                 <input type="hidden" name="reportName"/>
                                 <input type="hidden" name="folderid" value="10"/>
                                 <input type="hidden" name="reportDesc"/>
-                                <input type="hidden" name="folder"/>
+                                <input type="hidden" name="folder"/>-->
 
                                 <tbody>
                                     <tr>
@@ -77,7 +76,7 @@
                         <table class="small reportGenerateTable" align="center" cellpadding="5" cellspacing="0" width="95%" border=0>
                             <tr>
                                 <td align=center class=small>
-
+                                    <form id="sub_form" method="POST" action="filter-result">
                                     <table border=0 cellspacing=0 cellpadding=0 width=80%>
                                         <tr>
                                             <s:if test="user.getPermission() == 1">
@@ -142,12 +141,16 @@
                                             <td align=left width="20%">
                                                 <table border=0 cellspacing=0 cellpadding=2>
                                                     <tr>
-                                                        <td align=left><input name="startdate" id="jscal_field_date_start" type="text" size="10" class="importBox" style="width:70px;" value=""></td>
-                                                        <td valign=absmiddle align=left><img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_date_start"><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                                        <s:date format="dd-MM-yyyy" id="dateconverted" name="startDate"/>
+                                                        <td align=left><input name="startDate" id="jscal_field_date_start" type="text" size="10" class="importBox" style="width:70px;" value="<s:property value="startDate"/>"></td>
+                                                        <td valign=absmiddle align=left>
+                                                            <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_date_start">
+                                                            <font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
                                                             <script type="text/javascript">
                                                                 Calendar.setup({
                                                                     inputField: "jscal_field_date_start", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_date_start", singleClick: true, step: 1
                                                                 });
+                                                                
                                                             </script>
 
                                                         </td>
@@ -158,7 +161,7 @@
                                             <td align=left width=20%>
                                                 <table border=0 cellspacing=0 cellpadding=2>
                                                     <tr>
-                                                        <td align=left><input name="enddate" id="jscal_field_date_end" type="text" size="10" class="importBox" style="width:70px;" value=""></td>
+                                                        <td align=left><input name="endDate" id="jscal_field_date_end" type="text" size="10" class="importBox" style="width:70px;" value="<s:property value="endDate"/>"></td>
                                                         <td valign=absmiddle align=left><img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_date_end"><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
                                                             <script type="text/javascript">
                                                                 Calendar.setup({
@@ -171,10 +174,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="center" colspan="8" style="padding:5px"><input name="generatenw" value=" Tạo báo cáo " class="crmbutton small create" type="button" onClick="window.location.href='filter-result'"></td>
+                                            <td align="center" colspan="8" style="padding:5px"><input name="generatenw" value=" Tạo báo cáo " class="crmbutton small create" type="submit" ></td>
                                         </tr>
                                     </table>
-
+                                    </form>
                                 </td>
                             </tr>
                         </table>
@@ -197,7 +200,8 @@
 
                                         <td style="padding: 5px;" valign="top">
                                             <table cellpadding="0" cellspacing="0" width="100%">
-                                                <tbody><tr>
+                                                <tbody>
+                                                    <tr>
                                                         <td align="left" width="75%">
                                                             <span class="genHeaderGray">
                                                                 Báo cáo chi tiết Đặt hàng
@@ -214,66 +218,63 @@
 
                                                             <table cellpadding="5" cellspacing="0" align="center" class="rptTable">
                                                                 <tr>
-                                                                    <td class='rptCellLabel'>Tiêu đề</td>
-                                                                    <td class='rptCellLabel'>Tên Báo giá</td>
-                                                                    <td class='rptCellLabel'>Tên Liên hệ</td>
-                                                                    <td class='rptCellLabel'>Ngày liên quan</td>
-                                                                    <td class='rptCellLabel'>Công ty vận chuyển</td>
+                                                                    <td class='rptCellLabel'>Số hóa đơn</td>
+                                                                    <td class='rptCellLabel'>Ngày đặt hàng</td>
+                                                                    <td class='rptCellLabel'>Ngày giao hàng</td>
+                                                                    <td class='rptCellLabel'>Tên khách hàng</td>
+                                                                    <td class='rptCellLabel'>Mã khách hàng</td>
+                                                                    <td class='rptCellLabel'>Địa chỉ giao hàng</td>
                                                                     <td class='rptCellLabel'>Tình trạng</td>
-                                                                    <td class='rptCellLabel'>Tên Khách hàng</td>
-                                                                    <td class='rptCellLabel'>Tiền hoa hồng</td>
-                                                                    <td class='rptCellLabel'>Thuế hàng hóa</td>
+                                                                    <td class='rptCellLabel'>Tổng cộng</td>
+                                                                    <td class='rptCellLabel'>Chiết khấu mặt hàng</td>
+                                                                    <td class='rptCellLabel'>Chiết khấu hóa đơn</td>
+                                                                    <td class='rptCellLabel'>Thành tiền</td>
                                                                     <td class='rptCellLabel'>Gán cho</td>
-                                                                    <td class='rptCellLabel'>LBL ACTION</td>
+                                                                    <td class='rptCellLabel'>Hành động</td>
                                                                 </tr>
+                                                                <s:iterator value="takeOrdersList" status="index">
                                                                 <tr>
-                                                                <tr>
-                                                                    <td class='rptData'>Đặt h&agrave;ng 1</td>
-                                                                    <td class='rptData'>-</td>
-                                                                    <td class='rptData'>-</td>
-                                                                    <td class='rptData'>19-04-2011</td>
-                                                                    <td class='rptData'>FedEx</td>
-                                                                    <td class='rptData'>Created</td>
-                                                                    <td class='rptData'>La Thị Hệ</td>
-                                                                    <td class='rptData'>0.000</td>
-                                                                    <td class='rptData'>0.000</td>
-                                                                    <td class='rptData'>admin</td>
-                                                                    <td class='rptData'><a href='' target='_blank'>LBL_VIEW_DETAILS</a></td>
+                                                                    <td class='rptData'><s:property value="id"/></td>
+                                                                    <td class='rptData'><s:property value="takeOrderDate"/></td>
+                                                                    <td class='rptData'><s:property value="deliveryDate"/></td>
+                                                                    <td class='rptData'><s:property value="customerName"/></td>
+                                                                    <td class='rptData'><s:property value="customerID"/></td>
+                                                                    <td class='rptData'><s:property value="deliveryAddress"/></td>
+                                                                    <td class='rptData'>
+                                                                        <s:if test="orderStatus == 0">Đang đặt hàng</s:if>
+                                                                        <s:if test="orderStatus == 1">Đã duyệt</s:if>
+                                                                        <s:if test="orderStatus == 2">Hoàn thành</s:if>
+                                                                        <s:if test="orderStatus == 3">Hủy</s:if>
+                                                                    </td>
+                                                                    <s:set id="sum" value="0"/>
+                                                                    <s:set id="sum_discount" value="0"/>
+                                                                    <s:set id="sum_total" value="0"/>
+                                                                    <s:iterator value="takeOrderDetailList" status="to">
+                                                                        <s:if test="#index.index == #to.index">
+                                                                        <s:iterator value="takeOrderDetailList.get(#to.index)" status="detail">
+                                                                            <s:set id="sum" value="%{#sum + afterOrderPrice*number}"/>
+                                                                            <s:set id="sum_discount" value="%{#sum_discount + (afterOrderPrice*discount/100) * number}"/>
+                                                                            <s:set id="sum_total" value="%{#sum_total + priceTotal}"/>
+                                                                        </s:iterator>
+                                                                        </s:if>
+                                                                    </s:iterator>
+                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum})"/></td>
+                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum_discount})"/></td>
+                                                                    
+                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum_total*discount/100})"/></td>
+                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{afterPrivate})"/></td>
+                                                                    <td class='rptData'><s:property value="creater"/></td>
+                                                                    <td class='rptData'><a href='take-order-detail?id_tod=<s:property value="id"/>' target='_blank'>Xem chi tiết</a></td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td class='rptData'>Đặt h&agrave;ng phần mềm nh&agrave; h&agrave;ng</td>
-                                                                    <td class='rptData'>-</td>
-                                                                    <td class='rptData'>-</td>
-                                                                    <td class='rptData'>25-05-2011</td>
-                                                                    <td class='rptData'>FedEx</td>
-                                                                    <td class='rptData'>Created</td>
-                                                                    <td class='rptData'>Trần Thị Khanh</td>
-                                                                    <td class='rptData'>0.000</td>
-                                                                    <td class='rptData'>0.000</td>
-                                                                    <td class='rptData'>admin</td>
-                                                                    <td class='rptData'><a href='' target='_blank'>LBL_VIEW_DETAILS</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class='rptData'>Đơn đặt h&agrave;ng ABC</td>
-                                                                    <td class='rptData'>-</td>
-                                                                    <td class='rptData'>-</td>
-                                                                    <td class='rptData'>27-06-2011</td>
-                                                                    <td class='rptData'>FedEx</td>
-                                                                    <td class='rptData'>Approved</td>
-                                                                    <td class='rptData'>anh Đạt - Điện m&aacute;y Tiến đạt</td>
-                                                                    <td class='rptData'>0.000</td>
-                                                                    <td class='rptData'>0.000</td>
-                                                                    <td class='rptData'>admin</td>
-                                                                    <td class='rptData'><a href='' target='_blank'>LBL_VIEW_DETAILS</a></td>
-                                                                </tr>
-                                                    </tr>
-                                            </table>
+                                                                </s:iterator>
+                                                        
+                                                            </table>
                                                             <script type='text/javascript' id='__reportrun_directoutput_recordcount_script'>
                                                                 if ($('_reportrun_total'))
                                                                     $('_reportrun_total').innerHTML = 3;
                                                             </script>					
-                                        </td>
-                                    </tr>
+                                                        </td>
+                                                    </tr>
                                     <tr><td colspan="2">&nbsp;</td></tr>
                                     <tr><td colspan="2">&nbsp;</td></tr>
                                     <tr><td colspan="2">

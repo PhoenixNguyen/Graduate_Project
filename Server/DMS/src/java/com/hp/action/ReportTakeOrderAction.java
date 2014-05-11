@@ -12,10 +12,13 @@ import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
+import com.hp.dao.TakeOrderDetailDAO;
+import com.hp.dao.TakeOrderDetailDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.PushInfo;
 import com.hp.domain.TakeOrder;
+import com.hp.domain.TakeOrderDetail;
 import com.hp.domain.User;
 import static com.opensymphony.xwork2.Action.LOGIN;
 import static com.opensymphony.xwork2.Action.SUCCESS;
@@ -41,6 +44,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
     private StaffDAO staffDAO = new StaffDAOImpl();
     private CustomerDAO customerDAO = new CustomerDAOImpl();
     private TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
+    private TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
     
     private List<String> userListGiamDoc = new ArrayList<String>();
     private List<String> userListStaff = new ArrayList<String>();
@@ -55,6 +59,35 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
 
     private List<TakeOrder> takeOrdersList = new ArrayList<TakeOrder>();
 
+    private String startDate;
+    private String endDate;
+
+    private List<List<TakeOrderDetail>> takeOrderDetailList = new ArrayList<List<TakeOrderDetail>>();
+
+    public List<List<TakeOrderDetail>> getTakeOrderDetailList() {
+        return takeOrderDetailList;
+    }
+
+    public void setTakeOrderDetailList(List<List<TakeOrderDetail>> takeOrderDetailList) {
+        this.takeOrderDetailList = takeOrderDetailList;
+    }
+    
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+    
     public List<TakeOrder> getTakeOrdersList() {
         return takeOrdersList;
     }
@@ -221,9 +254,14 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         userListCustomer = customerDAO.getListCustomer(pushInfo.getStaffID());
         
         
+        System.out.println("DATE: "+startDate);
+        
         takeOrdersList = takeOrderDAO.getTakeOrdersList();
-        
-        
+        for(int i = 0; i < takeOrdersList.size(); i++){
+            List<TakeOrderDetail> list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrdersList.get(i).getId());
+            takeOrderDetailList.add(list);
+        }
+            
         return SUCCESS;
         
     }

@@ -54,16 +54,31 @@ function onClickCustomer(x) {
     function(data) {
 
         var divisionList = (data.userListStaff);
-        //console.log("log: " + divisionList);
-//                             var options = $("#staff");
-//                             options.find('option')
-//                 .remove()
-//                 .end();
-//                  options.append($("<option />").val("-1").text("--select--"));
-//             $.each(divisionList, function(k , v) {
-//
-//                 options.append($("<option />").val(k).text(v));
-//             });
+      
+    }
+    );
+}
+
+function onClickStartDate(x){
+    var date = x ;
+    console.log("Date: " + date);
+    $.getJSON('start-date-filter.action', {'startDate': date},
+    function(data) {
+
+        //var divisionList = (data.userListStaff);
+      
+    }
+    );
+}
+
+function onClickEndDate(x){
+    var date = x ;
+    console.log("Date: " + date);
+    $.getJSON('end-date-filter.action', {'endDate': date},
+    function(data) {
+
+        //var divisionList = (data.userListStaff);
+      
     }
     );
 }

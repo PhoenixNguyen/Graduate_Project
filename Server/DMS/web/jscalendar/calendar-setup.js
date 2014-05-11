@@ -112,6 +112,7 @@ Calendar.setup = function (params) {
 		}
 		if (update && p.inputField) {
 			p.inputField.value = cal.date.print(p.ifFormat);
+                        //onClickStartDate(cal.date.print(p.ifFormat));
 			if (typeof p.inputField.onchange == "function")
 				p.inputField.onchange();
 		}

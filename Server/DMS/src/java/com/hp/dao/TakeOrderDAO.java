@@ -31,4 +31,7 @@ public interface TakeOrderDAO {
     
     //Search TakeOrder
     public List<TakeOrder> getSearchTakeOrderList(String pText);
+    
+    //Get TakeOrders to report
+    public List<TakeOrder> getTakeOrderList(String pManagerID, String pStaff, String pCustomer, String pDate, String pToDate);
 }

@@ -256,7 +256,9 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         
         System.out.println("DATE: "+startDate);
         
-        takeOrdersList = takeOrderDAO.getTakeOrdersList();
+        takeOrdersList = takeOrderDAO.getTakeOrderList(pushInfo.getManagerID(), pushInfo.getStaffID(), 
+                pushInfo.getCustomerID(), startDate, endDate);
+        
         for(int i = 0; i < takeOrdersList.size(); i++){
             List<TakeOrderDetail> list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrdersList.get(i).getId());
             takeOrderDetailList.add(list);

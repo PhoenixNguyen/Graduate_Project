@@ -241,4 +241,87 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         
         return courses;
     }
+    
+    //Get TakeOrders to report
+    public List<TakeOrder> getTakeOrderList(String pManagerID, String pStaff, String pCustomer, String pDate, String pToDate){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<TakeOrder> courses = null;
+        
+        try{
+            String datefinal="";
+            String toDateFinal = "";
+            System.out.println(" DATE: " + pDate); 
+            if(pDate != null && pDate.compareTo("")!= 0 && pToDate.compareTo("") != 0){
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                
+                Date date = sdf.parse(pDate);
+                datefinal = sdf2.format(date);
+                
+                Date date2 = sdf.parse(pToDate);
+                toDateFinal = sdf2.format(date2);
+                
+                System.out.println(" DATECONVERT: " + datefinal );
+            }
+            
+            System.out.print(pManagerID);           
+            String sql = "";
+            if(pCustomer != null){
+                if(datefinal.compareTo("") == 0)
+                    sql = "from TakeOrder where customerID='"+pCustomer+"' order by takeOrderDate";
+                else
+                    sql = "from TakeOrder where customerID='"+pCustomer+"' "
+                            + " and cast (takeOrderDate as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"' "
+                            + " order by takeOrderDate";
+            }
+            else
+                
+            if(pStaff != null)
+            {
+                if(datefinal.compareTo("") == 0)
+                    sql = "from TakeOrder where creater='"+pStaff+"' order by takeOrderDate";
+                else
+                    sql = "from TakeOrder where creater='"+pStaff+"' "
+                            + " and cast (takeOrderDate as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"' "
+                            + " order by takeOrderDate";
+
+            }
+            else 
+            if(pManagerID != null){
+                if(datefinal.compareTo("") == 0)
+                    sql = "select to from TakeOrder as to, Staff as st where "
+                            + " st.id = to.creater and st.manager = '" +pManagerID +"'"
+                            + " order by to.takeOrderDate";
+                else
+                    sql = "select to from TakeOrder as to, Staff as st where "
+                            + " st.id = to.creater and st.manager = '" +pManagerID +"'"
+                            + " and cast (to.takeOrderDate as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"' "
+                            + " order by to.takeOrderDate";
+                
+                    
+            }
+            else{
+                if(datefinal.compareTo("") == 0)
+                    sql = "from TakeOrder order by takeOrderDate";
+                else
+                    sql = "from TakeOrder where  "
+                            + "  cast (takeOrderDate as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"' "
+                            + " order by takeOrderDate";
+                
+            }
+            
+            courses = session.createQuery(sql).list();
+          
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
 }

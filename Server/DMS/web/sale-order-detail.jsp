@@ -652,7 +652,7 @@
 
                                                                                         <tr>
                                                                                             <td align="right" class="crmTableRow small lineOnTop"><b>Tổng tiền thanh toán</b></td>
-                                                                                            <td align="right" class="crmTableRow small lineOnTop"><s:property value="getText('{0,number,#,##0.00}',{saleOrder.afterPrivate})"/></td>
+                                                                                            <td align="right" class="crmTableRow small lineOnTop"><s:property value="getText('{0,number,#,##0.00}',{#sum - #sum * saleOrder.discount/100})"/></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>

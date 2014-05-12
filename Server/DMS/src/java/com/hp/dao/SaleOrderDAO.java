@@ -28,4 +28,7 @@ public interface SaleOrderDAO {
     
     //Search SaleOrder
     public List<SaleOrder> getSearchSaleList(String pText);
+    
+    //Get SaleOrders to report
+    public List<SaleOrder> getSaleOrderList(String pManagerID, String pStaff, String pCustomer, String pDate, String pToDate);
 }

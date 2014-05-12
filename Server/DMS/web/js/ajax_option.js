@@ -1,10 +1,19 @@
 //chon giam doc
-function onClickManager(x) {
-
+function onClickManager(x , y) {
+    var manager_filter;
+    switch(y){
+        case "sale":
+            manager_filter = "manager-filter-sale.action";
+            break;
+        case "take":
+            manager_filter = "manager-filter.action";
+            break;
+    }
+        
     var giamdocId = x !== "--select--" ? x : "nullid";//$('#giamDoc').val();
     gdID = giamdocId;
     console.log("Ma giam doc: " + giamdocId);
-    $.getJSON('manager-filter.action', {'giamdocId': giamdocId},
+    $.getJSON(manager_filter, {'giamdocId': giamdocId},
     function(data) {
 
         var divisionList = (data.userListStaff);
@@ -23,11 +32,21 @@ function onClickManager(x) {
 }
 
 //Chon nhan vien
-function onClickStaff(x) {
+function onClickStaff(x , y) {
+    var staff_filter;
+    switch(y){
+        case "sale":
+            staff_filter = "staff-filter-sale.action";
+            break;
+        case "take":
+            staff_filter = "staff-filter.action";
+            break;
+    }
+    
     var staffId = x !== "--select--" ? x : "nullid";//$('#giamDoc').val();
     //gdID = giamdocId;
     console.log("Ma nhan vien: " + staffId);
-    $.getJSON('staff-filter.action', {'nhanvienId': staffId},
+    $.getJSON(staff_filter, {'nhanvienId': staffId},
     function(data) {
 
         var divisionList = (data.userListCustomer);
@@ -46,11 +65,21 @@ function onClickStaff(x) {
 }
 
 //Chon khac hang
-function onClickCustomer(x) {
+function onClickCustomer(x , y) {
+    var customer_filter;
+    switch(y){
+        case "sale":
+            customer_filter = "customer-filter-sale.action";
+            break;
+        case "take":
+            customer_filter = "customer-filter.action";
+            break;
+    }
+    
     var staffId = x !== "--select--" ? x : "nullid";//$('#giamDoc').val();
     //gdID = giamdocId;
     console.log("Ma nhan vien: " + staffId);
-    $.getJSON('customer-filter.action', {'khachhangId': staffId},
+    $.getJSON(customer_filter, {'khachhangId': staffId},
     function(data) {
 
         var divisionList = (data.userListStaff);

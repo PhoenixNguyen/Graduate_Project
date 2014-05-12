@@ -279,7 +279,8 @@
                                                 <span id='folder13'> B&aacute;o c&aacute;o về Bán hàng</span>
                                                 <i><font color='#C0C0C0'>
                                                     - B&aacute;o c&aacute;o về Bán hàng
-                                                    </font></i>
+                                                    </font>
+                                                </i>
 
                                             </td>
                                         </tr>
@@ -303,33 +304,16 @@
                                                             <td class="lvtCol" align="left" width="35%">Tên báo cáo</td>
                                                             <td class="lvtCol" align="left" width="50%">Mô tả</td>
                                                         </tr>
-<!--                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
+                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
                                                             <td>
                                                                 1
                                                             </td>
-                                                            <td align="left"><a href="">B&aacute;o c&aacute;o hợp đồng</a>
+                                                            <td align="left"><a href="report-saleorder">Báo cáo bán hàng theo hóa đơn</a>
                                                             </td>
-                                                            <td align="left"></td>
+                                                            <td align="left">Báo cáo bán hàng theo hóa đơn</td>
                                                             
                                                         </tr>
-                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
-                                                            <td>
-                                                                2
-                                                            </td>
-                                                            <td align="left"><a href="">B&aacute;o c&aacute;o hợp đồng đang chốt</a>
-                                                            </td>
-                                                            <td align="left"></td>
-                                                            
-                                                        </tr>
-                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
-                                                            <td>
-                                                                3
-                                                            </td>
-                                                            <td align="left"><a href="">abc</a>
-                                                            </td>
-                                                            <td align="left">adadadada</td>
-                                                            
-                                                        </tr>-->
+                                                        
                                                     </tbody>
                                                 </table>
                                             </td>

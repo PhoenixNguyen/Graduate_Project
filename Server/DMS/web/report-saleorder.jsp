@@ -54,7 +54,7 @@
                                     <tr>
                                         <td style="padding: 10px; text-align: left;" width="70%">
                                             <span class="moduleName">
-                                                Báo cáo chi tiết Đặt hàng
+                                                Báo cáo chi tiết Bán hàng
                                             </span>&nbsp;&nbsp;
                                             <!--                                            <input type="button" name="custReport" value="Sửa Báo cáo" class="crmButton small edit" onClick="editReport('20');">-->
                                             <br>
@@ -76,7 +76,7 @@
                         <table class="small reportGenerateTable" align="center" cellpadding="5" cellspacing="0" width="95%" border=0>
                             <tr>
                                 <td align=center class=small>
-                                    <form id="sub_form" method="POST" action="filter-result">
+                                    <form id="sub_form" method="POST" action="filter-result-sale">
                                     <table border=0 cellspacing=0 cellpadding=0 width=80%>
                                         <tr>
                                             <s:if test="user.getPermission() == 1">
@@ -91,7 +91,7 @@
                                             <s:push value="pushInfo">
                                             <s:if test="user.getPermission() == 1">
                                             <td align="left" width="20%">
-                                                <select name="pushInfo.managerID"  class="small" style="width:98%" onchange="onClickManager(options[selectedIndex].text , 'take');">
+                                                <select name="pushInfo.managerID"  class="small" style="width:98%" onchange="onClickManager(options[selectedIndex].text , 'sale');">
                                                     <option value="--select--">--select--</option>
                                                     <s:iterator value="userListGiamDoc" status="index" >
                                                         <s:if test="pushInfo.managerID == userListGiamDoc.get(#index.index)">
@@ -107,7 +107,7 @@
                                             </s:if>
                                             
                                             <td align="left" width="20%">
-                                                <select name="pushInfo.staffID" class="small" style="width:98%" onchange="onClickStaff(options[selectedIndex].text , 'take');" id="staff">
+                                                <select name="pushInfo.staffID" class="small" style="width:98%" onchange="onClickStaff(options[selectedIndex].text , 'sale');" id="staff">
                                                     <option value="--select--">--select--</option>
                                                     <s:iterator value="userListStaff" status="index" >
                                                         
@@ -124,7 +124,7 @@
                                             </td>
                                             <td class=small>&nbsp;</td>
                                             <td align="left" width="20%">
-                                                <select name="pushInfo.customerID" class="small" style="width:98%" onchange="onClickCustomer(options[selectedIndex].text , 'take');" id="customer">
+                                                <select name="pushInfo.customerID" class="small" style="width:98%" onchange="onClickCustomer(options[selectedIndex].text , 'sale');" id="customer">
                                                     <option value="--select--">--select--</option>
                                                     <s:iterator value="userListCustomer" status="index" >
                                                         <s:if test="pushInfo.customerID == userListCustomer.get(#index.index)">
@@ -189,7 +189,7 @@
                             <br>
                             <table align="center" border="0" cellpadding="5" cellspacing="0" width="100%" class="mailSubHeader">
                                 <tbody><tr>
-                                        <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-takeorder-xls'" title="Xuất dữ liệu Excel" ></td>
+                                        <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-saleorder-xls'" title="Xuất dữ liệu Excel" ></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -204,11 +204,11 @@
                                                     <tr>
                                                         <td align="left" width="75%">
                                                             <span class="genHeaderGray">
-                                                                Báo cáo chi tiết Đặt hàng
+                                                                Báo cáo chi tiết Bán hàng
                                                             </span><br>
                                                         </td>
                                                         <td align="right" width="25%">
-                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'><s:property value="takeOrdersList.size()"/></span>  Bản ghi</span>
+                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'><s:property value="saleOrdersList.size()"/></span>  Bản ghi</span>
                                                         </td>
                                                     </tr>
                                                     <tr><td id="report_info" align="left" colspan="2">&nbsp;</td></tr>
@@ -219,7 +219,7 @@
                                                             <table cellpadding="5" cellspacing="0" align="center" class="rptTable">
                                                                 <tr>
                                                                     <td class='rptCellLabel'>Số hóa đơn</td>
-                                                                    <td class='rptCellLabel'>Ngày đặt hàng</td>
+                                                                    <td class='rptCellLabel'>Ngày Bán hàng</td>
                                                                     <td class='rptCellLabel'>Ngày giao hàng</td>
                                                                     <td class='rptCellLabel'>Tên khách hàng</td>
                                                                     <td class='rptCellLabel'>Mã khách hàng</td>
@@ -236,7 +236,7 @@
                                                                 <s:set id="sum_discount_all" value="0"/>
                                                                 <s:set id="sum_total_all" value="0"/>
                                                                 
-                                                                <s:iterator value="takeOrdersList" status="index">
+                                                                <s:iterator value="saleOrdersList" status="index">
                                                                 <tr>
                                                                     <td class='rptData'><s:property value="id"/></td>
                                                                     <td class='rptData'><s:property value="takeOrderDate"/></td>
@@ -245,7 +245,7 @@
                                                                     <td class='rptData'><s:property value="customerID"/></td>
                                                                     <td class='rptData'><s:property value="deliveryAddress"/></td>
                                                                     <td class='rptData'>
-                                                                        <s:if test="orderStatus == 0">Đang đặt hàng</s:if>
+                                                                        <s:if test="orderStatus == 0">Đang bán hàng</s:if>
                                                                         <s:if test="orderStatus == 1">Đã duyệt</s:if>
                                                                         <s:if test="orderStatus == 2">Hoàn thành</s:if>
                                                                         <s:if test="orderStatus == 3">Hủy</s:if>
@@ -253,9 +253,9 @@
                                                                     <s:set id="sum" value="0"/>
                                                                     <s:set id="sum_discount" value="0"/>
                                                                     <s:set id="sum_total" value="0"/>
-                                                                    <s:iterator value="takeOrderDetailList" status="to">
+                                                                    <s:iterator value="saleOrderDetailList" status="to">
                                                                         <s:if test="#index.index == #to.index">
-                                                                        <s:iterator value="takeOrderDetailList.get(#to.index)" status="detail">
+                                                                        <s:iterator value="saleOrderDetailList.get(#to.index)" status="detail">
                                                                             <s:set id="sum" value="%{#sum + afterOrderPrice*number}"/>
                                                                             <s:set id="sum_discount" value="%{#sum_discount + (afterOrderPrice*discount/100) * number}"/>
                                                                             <s:set id="sum_total" value="%{#sum_total + priceTotal}"/>
@@ -268,7 +268,7 @@
                                                                     <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum_total*discount/100})"/></td>
                                                                     <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{#sum-#sum_discount-#sum_total*discount/100})"/></td>
                                                                     <td class='rptData'><s:property value="creater"/></td>
-                                                                    <td class='rptData'><a href='take-order-detail?id_tod=<s:property value="id"/>' target='_blank'>Xem chi tiết</a></td>
+                                                                    <td class='rptData'><a href='sale-order-detail?id_so=<s:property value="id"/>' target='_blank'>Xem chi tiết</a></td>
                                                                 </tr>
                                                                 <s:set id="sum_all" value="%{#sum_all + #sum}"/>
                                                                 <s:set id="sum_discount_all" value="%{#sum_discount_all + #sum_discount}"/>
@@ -314,7 +314,7 @@
         <table align="center" border="0" cellpadding="5" cellspacing="0" width="100%" class="mailSubHeader">
             <tbody>
                 <tr>
-                    <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-takeorder-xls'" title="Xuất dữ liệu Excel" ></td>
+                    <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-saleorder-xls'" title="Xuất dữ liệu Excel" ></td>
                 </tr>
             </tbody>
         </table>

@@ -8,17 +8,17 @@ package com.hp.action;
 
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
+import com.hp.dao.SaleOrderDAO;
+import com.hp.dao.SaleOrderDAOImpl;
+import com.hp.dao.SaleOrderDetailDAO;
+import com.hp.dao.SaleOrderDetailDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
-import com.hp.dao.TakeOrderDAO;
-import com.hp.dao.TakeOrderDAOImpl;
-import com.hp.dao.TakeOrderDetailDAO;
-import com.hp.dao.TakeOrderDetailDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.PushInfo;
-import com.hp.domain.TakeOrder;
-import com.hp.domain.TakeOrderDetail;
+import com.hp.domain.SaleOrder;
+import com.hp.domain.SaleOrderDetail;
 import com.hp.domain.User;
 import static com.opensymphony.xwork2.Action.LOGIN;
 import static com.opensymphony.xwork2.Action.SUCCESS;
@@ -53,7 +53,7 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author HP
  */
-public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
+public class ReportSaleOrderAction extends ActionSupport implements ModelDriven{
     public Object getModel(){
         return pushInfo;
     }
@@ -61,8 +61,8 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
     private UserDAO userDAO = new UserDAOImpl();
     private StaffDAO staffDAO = new StaffDAOImpl();
     private CustomerDAO customerDAO = new CustomerDAOImpl();
-    private TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
-    private TakeOrderDetailDAO takeOrderDetailDAO = new TakeOrderDetailDAOImpl();
+    private SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
+    private SaleOrderDetailDAO saleOrderDetailDAO = new SaleOrderDetailDAOImpl();
     
     private List<String> userListGiamDoc = new ArrayList<String>();
     private List<String> userListStaff = new ArrayList<String>();
@@ -75,12 +75,12 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
     private String nhanvienId;
     private String khachhangId;
 
-    private List<TakeOrder> takeOrdersList = new ArrayList<TakeOrder>();
+    private List<SaleOrder> saleOrdersList = new ArrayList<SaleOrder>();
 
     private String startDate;
     private String endDate;
 
-    private List<List<TakeOrderDetail>> takeOrderDetailList = new ArrayList<List<TakeOrderDetail>>();
+    private List<List<SaleOrderDetail>> saleOrderDetailList = new ArrayList<List<SaleOrderDetail>>();
 
     public FileInputStream orderFile;
     String outputFile;
@@ -101,12 +101,12 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         this.orderFile = orderFile;
     }
     
-    public List<List<TakeOrderDetail>> getTakeOrderDetailList() {
-        return takeOrderDetailList;
+    public List<List<SaleOrderDetail>> getSaleOrderDetailList() {
+        return saleOrderDetailList;
     }
 
-    public void setTakeOrderDetailList(List<List<TakeOrderDetail>> takeOrderDetailList) {
-        this.takeOrderDetailList = takeOrderDetailList;
+    public void setSaleOrderDetailList(List<List<SaleOrderDetail>> saleOrderDetailList) {
+        this.saleOrderDetailList = saleOrderDetailList;
     }
     
     public String getStartDate() {
@@ -125,12 +125,12 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         this.endDate = endDate;
     }
     
-    public List<TakeOrder> getTakeOrdersList() {
-        return takeOrdersList;
+    public List<SaleOrder> getSaleOrdersList() {
+        return saleOrdersList;
     }
 
-    public void setTakeOrdersList(List<TakeOrder> takeOrdersList) {
-        this.takeOrdersList = takeOrdersList;
+    public void setSaleOrdersList(List<SaleOrder> saleOrdersList) {
+        this.saleOrdersList = saleOrdersList;
     }
     
     public String getGiamdocId() {
@@ -293,17 +293,17 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         
         System.out.println("DATE: "+startDate);
         
-        takeOrdersList = takeOrderDAO.getTakeOrderList(pushInfo.getManagerID(), pushInfo.getStaffID(), 
+        saleOrdersList = saleOrderDAO.getSaleOrderList(pushInfo.getManagerID(), pushInfo.getStaffID(), 
                 pushInfo.getCustomerID(), startDate, endDate);
         
-        for(int i = 0; i < takeOrdersList.size(); i++){
-            List<TakeOrderDetail> list = takeOrderDetailDAO.getDetailTakeOrdersList(takeOrdersList.get(i).getId());
-            takeOrderDetailList.add(list);
+        for(int i = 0; i < saleOrdersList.size(); i++){
+            List<SaleOrderDetail> list = saleOrderDetailDAO.getDetailSaleOrdersList(saleOrdersList.get(i).getId());
+            saleOrderDetailList.add(list);
         }
             
         //Save it to export excel file
-        session.setAttribute("takeOrdersList", takeOrdersList);
-        session.setAttribute("takeOrderDetailList", takeOrderDetailList);
+        session.setAttribute("saleOrdersList", saleOrdersList);
+        session.setAttribute("saleOrderDetailList", saleOrderDetailList);
         session.setAttribute("startDate", startDate);
         session.setAttribute("endDate", endDate);
         
@@ -311,7 +311,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         
     }
     
-    public String exportTakeOrderList(){
+    public String exportSaleOrderList(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
@@ -323,8 +323,8 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         }
         
         //GET DATA
-        takeOrdersList = (List<TakeOrder>)session.getAttribute("takeOrdersList");
-        takeOrderDetailList = (List<List<TakeOrderDetail>>)session.getAttribute("takeOrderDetailList");
+        saleOrdersList = (List<SaleOrder>)session.getAttribute("saleOrdersList");
+        saleOrderDetailList = (List<List<SaleOrderDetail>>)session.getAttribute("saleOrderDetailList");
         
         String fileInput = ServletActionContext.getServletContext().getRealPath("/db_exports/");
         String start = (String)session.getAttribute("startDate");
@@ -333,12 +333,12 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         //
         //Write
         HSSFWorkbook workBook = new HSSFWorkbook();
-        HSSFSheet sheet = workBook.createSheet("Take Order");
+        HSSFSheet sheet = workBook.createSheet("Sale Order");
         //sheet.autoSizeColumn(200);
         sheet.setColumnWidth(0, 1000);
         sheet.setDefaultColumnWidth(20);
         
-        //TakeOrder title
+        //SaleOrder title
         for(int i = 1; i < 2; i++){
             //
             Row rowstart = sheet.createRow(0);
@@ -366,7 +366,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
             cellStyle.setFont(headerFont);
             
             cell0.setCellStyle(cellStyle);
-            cell0.setCellValue("Báo cáo hóa đơn đặt hàng");
+            cell0.setCellValue("Báo cáo hóa đơn bán hàng");
             
             //Row date
             Row row1 = sheet.createRow(i+1);
@@ -417,8 +417,8 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
             
             
         }
-        //Write TakeOrder
-        for(int i = 0; i < takeOrdersList.size(); i++){
+        //Write SaleOrder
+        for(int i = 0; i < saleOrdersList.size(); i++){
             Row row = sheet.createRow(i+5);
             int cellnum = 0;
             
@@ -427,7 +427,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
             cell0.setCellValue(i+1);
            
             //Set content
-            for(Object obj : objectArray(takeOrdersList.get(i), takeOrderDetailList.get(i))){
+            for(Object obj : objectArray(saleOrdersList.get(i), saleOrderDetailList.get(i))){
                 Cell cell = row.createCell(cellnum++);
                 
                 if(obj instanceof Timestamp) 
@@ -452,7 +452,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
             }
             
             //SUM ROW
-            if( i == (takeOrdersList.size()-1)){
+            if( i == (saleOrdersList.size()-1)){
                 Row rowEnd = sheet.createRow(i+7);
                 for(int j = (titleArray().length-5); j< (titleArray().length-1);j++){
                     Cell cell = rowEnd.createCell(j);
@@ -461,7 +461,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
             }
         }
         
-        outputFile = "BaoCaoHoaDonDatHang"+start+" - "+end+".xls";
+        outputFile = "BaoCaoHoaDonBanHang"+start+" - "+end+".xls";
         try{
             FileOutputStream output = new FileOutputStream(new File(fileInput +"\\" + outputFile));
             
@@ -484,7 +484,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         return new Object[]{
             "Stt",
             "Mã hóa đơn",
-            "Ngày đặt hàng",
+            "Ngày bán hàng",
             "Ngày giao hàng",
             "Tên khách hàng",
             "Mã khách hàng",
@@ -516,7 +516,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
     BigDecimal sum_discount_total_all = new BigDecimal(0);
     BigDecimal sum_total_all = new BigDecimal(0);
     
-    public Object[] objectArray(TakeOrder takeOrder, List<TakeOrderDetail> detailList){
+    public Object[] objectArray(SaleOrder saleOrder, List<SaleOrderDetail> detailList){
         
         BigDecimal sum = new BigDecimal(0);
         BigDecimal sum_discount = new BigDecimal(0);
@@ -530,12 +530,12 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
             sum_discount_total =  sum_discount_total.add(new BigDecimal(detailList.get(i).getPriceTotal()));
         }
         
-        sum_discount_total = sum_discount_total.multiply(new BigDecimal( takeOrder.getDiscount()/100));
+        sum_discount_total = sum_discount_total.multiply(new BigDecimal( saleOrder.getDiscount()/100));
         
         String status = "";
-        switch(takeOrder.getOrderStatus()){
+        switch(saleOrder.getOrderStatus()){
             case 0:
-                status = "Đang đặt hàng";
+                status = "Đang bán hàng";
                 break;
             case 1:
                 status = "Đã duyệt";
@@ -554,12 +554,12 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         //sum_total_all = sum_all.subtract(sum_discount_all).subtract(sum_discount_total_all);
        
         return new Object[]{
-            takeOrder.getId(),
-            takeOrder.getTakeOrderDate().toString(),
-            takeOrder.getDeliveryDate().toString(),
-            takeOrder.getCustomerName(),
-            takeOrder.getCustomerID(),
-            takeOrder.getDeliveryAddress(),
+            saleOrder.getId(),
+            saleOrder.getTakeOrderDate().toString(),
+            saleOrder.getDeliveryDate().toString(),
+            saleOrder.getCustomerName(),
+            saleOrder.getCustomerID(),
+            saleOrder.getDeliveryAddress(),
             status,
             //str1, str2, str3, str4,
             sum.doubleValue(),
@@ -567,8 +567,8 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
             sum_discount_total.doubleValue(),
             
             (sum.subtract(sum_discount)).subtract(sum_discount_total).doubleValue(),
-            //takeOrder.getAfterPrivate(),
-            takeOrder.getCreater()
+            //saleOrder.getAfterPrivate(),
+            saleOrder.getCreater()
             
         };
     }

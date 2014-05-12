@@ -229,7 +229,7 @@ public class ReportSaleOrderAction extends ActionSupport implements ModelDriven{
         
         if(giamdocId != null){
             userListStaff = staffDAO.getListUser(giamdocId);
-            
+            session.setAttribute("khachhangId", null);
             session.setAttribute("giamdocId", giamdocId);
 //            session.setAttribute("staffId", null);
 //            session.setAttribute("khachhangId", null);

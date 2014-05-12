@@ -27,6 +27,13 @@ function onClickManager(x , y) {
 
             options.append($("<option />").val(k).text(v));
         });
+        
+        //Set customer is null
+        var customer = $("#customer");
+        customer.find('option')
+                .remove()
+                .end();
+        customer.append($("<option />").val("-1").text("--select--"));
     }
     );
 }

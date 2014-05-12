@@ -46,6 +46,7 @@
         <mapping class="com.hp.domain.Stock" />
         <mapping class="com.hp.domain.CustomerImage" />
         
+        <mapping class="com.hp.domain.ReportSaleWithProduct" />
                 
   </session-factory>
 </hibernate-configuration>

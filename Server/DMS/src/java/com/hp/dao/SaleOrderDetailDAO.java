@@ -6,6 +6,7 @@
 
 package com.hp.dao;
 
+import com.hp.domain.ReportSaleWithProduct;
 import com.hp.domain.SaleOrderDetail;
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface SaleOrderDetailDAO {
     public boolean delete(SaleOrderDetail pSaleOrderDetail);
     //delete where order id
     public boolean delete(String pID);
+    
+    //Get report Sale order with products
+    public List<ReportSaleWithProduct> getProductReportList(String pManagerID, String pStaff, String pCustomer, String pDate, String pToDate);
 }

@@ -257,7 +257,7 @@
                                                             <td class="lvtCol" align="left" width="35%">Tên báo cáo</td>
                                                             <td class="lvtCol" align="left" width="50%">Mô tả</td>
                                                         </tr>
-                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
+<!--                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
                                                             <td>
                                                                 1
                                                             </td>
@@ -265,7 +265,7 @@
                                                             </td>
                                                             <td align="left"></td>
                                                             
-                                                        </tr>
+                                                        </tr>-->
                                                     </tbody>
                                                 </table>
                                             </td>
@@ -311,6 +311,16 @@
                                                             <td align="left"><a href="report-saleorder">Báo cáo bán hàng theo hóa đơn</a>
                                                             </td>
                                                             <td align="left">Báo cáo bán hàng theo hóa đơn</td>
+                                                            
+                                                        </tr>
+                                                        
+                                                        <tr class="lvtColData" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" bgcolor="white">
+                                                            <td>
+                                                                2
+                                                            </td>
+                                                            <td align="left"><a href="report-sale-products">Báo cáo bán hàng theo sản phẩm</a>
+                                                            </td>
+                                                            <td align="left">Báo cáo bán hàng theo sản phẩm</td>
                                                             
                                                         </tr>
                                                         

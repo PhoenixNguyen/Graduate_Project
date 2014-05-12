@@ -1203,13 +1203,13 @@
             <result name="login" >index.jsp</result>
         </action>
         
-        <action name="report-sale-products" method="refresh" class="com.hp.action.ReportTakeOrderAction">
+        <action name="report-sale-products" method="refresh" class="com.hp.action.ReportSaleWithProductsAction">
             <result name="success">report-sale-products.jsp</result>
             <result name="input" >home.jsp</result>
             <result name="login" >index.jsp</result>
         </action>
         
-        <action name="export-sale-product-xls" method="exportTakeOrderList" class="com.hp.action.ReportTakeOrderAction">
+        <action name="export-sale-product-xls" method="exportSaleOrderList" class="com.hp.action.ReportSaleWithProductsAction">
             <result name="success" type="stream">
                 <param name="contentType">
                     image/png,image/gif,image/jpeg,image/pjpeg,application/rar,application/zip
@@ -1222,7 +1222,7 @@
                 <param name="contentDisposition">attachment;filename=${outputFile}</param>
                 <param name="bufferSize">1024</param>
             </result>
-            <result name="input" >report-takeorder.jsp</result>
+            <result name="input" >report-sale-products.jsp</result>
         </action>
     </package>
     

@@ -54,7 +54,7 @@
                                     <tr>
                                         <td style="padding: 10px; text-align: left;" width="70%">
                                             <span class="moduleName">
-                                                Báo cáo chi tiết Đặt hàng
+                                                Báo cáo Bán hàng theo sản phẩm
                                             </span>&nbsp;&nbsp;
                                             <!--                                            <input type="button" name="custReport" value="Sửa Báo cáo" class="crmButton small edit" onClick="editReport('20');">-->
                                             <br>
@@ -189,7 +189,7 @@
                             <br>
                             <table align="center" border="0" cellpadding="5" cellspacing="0" width="100%" class="mailSubHeader">
                                 <tbody><tr>
-                                        <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-takeorder-xls'" title="Xuất dữ liệu Excel" ></td>
+                                        <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-sale-product-xls'" title="Xuất dữ liệu Excel" ></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -248,7 +248,7 @@
                                                                     <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{amount})"/></td>
                                                                     <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{discount})"/></td>
                                                                     
-                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{revenue})"/></td>
+                                                                    <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{amount-discount})"/></td>
                                                                     
                                                                     <td class='rptData'><a href='take-order-detail?id_tod=<s:property value="id"/>' target='_blank'>Xem chi tiết</a></td>
                                                                 </tr>
@@ -267,7 +267,7 @@
                                                                     <td class='rptCellLabel'></td>
                                                                     <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_amount})"/></td>
                                                                     <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_discount})"/></td>
-                                                                    <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_revenue})"/></td>
+                                                                    <td class='rptCellLabel'><s:property value="getText('{0,number,#,##0.00}',{#sum_amount - #sum_discount})"/></td>
                                                                     
                                                                     <td class='rptCellLabel'></td>
                                                                 </tr>
@@ -295,7 +295,7 @@
         <table align="center" border="0" cellpadding="5" cellspacing="0" width="100%" class="mailSubHeader">
             <tbody>
                 <tr>
-                    <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-takeorder-xls'" title="Xuất dữ liệu Excel" ></td>
+                    <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-sale-product-xls'" title="Xuất dữ liệu Excel" ></td>
                 </tr>
             </tbody>
         </table>

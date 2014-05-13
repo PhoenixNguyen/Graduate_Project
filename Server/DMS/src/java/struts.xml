@@ -1226,7 +1226,13 @@
         </action>
     </package>
     
-    
+    <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">
+        <action name="view-locations" method="refresh" class="com.hp.action.ViewLocationsAction">
+            <result name="success">view-locations.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+    </package>
     
     <package name="user"  extends="json-default,hibernate-default" namespace="/user">
         <action name="login" method="login" class="com.hp.action.UserAction">

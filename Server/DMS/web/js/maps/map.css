@@ -1,0 +1,76 @@
+html {
+ height: 100% 
+}
+body {
+ height: 100%; margin: 0; padding: 0 
+}
+
+#canvas{
+    position:relative;
+    height: 100%;
+    //width:300px;
+}
+
+#map-canvas { 
+    //position:absolute;
+    //left:0px;
+    //top:0px;
+    //z-index:-1;
+	height: 74% 
+}
+
+
+#info{
+	
+        //display: block;
+        height: 17% ;
+        //z-index: 10;
+        //position: absolute;
+        //margin-top: -100px;
+}
+
+#page{
+	float: left;
+	width: 200px;
+	height: 100%;
+	overflow: auto;
+	background: #F7EFEF;
+}
+
+#detail{
+	height: 100%;
+	
+}
+.gallery li{
+	display: inline-block;
+	list-style: none;
+	width: 200px;
+	height: 95%;
+	margin: 0 3px 3px 0;
+	text-align: center;
+
+}
+
+.gallery  img{
+	width: 100%;
+	height: 100%;
+}
+
+div#detail ul {
+   	
+    overflow-x: scroll;
+    white-space: nowrap
+}
+
+.frag li{
+	display: inline;
+	list-style: none;
+	margin: 0 5px 5px 0;
+	text-align: center;
+	float: left;
+}
+div#page ul{
+	margin-left: -5px;
+}
+
+

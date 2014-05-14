@@ -195,7 +195,7 @@ public class ReportSaleWithProductsAction extends ActionSupport implements Model
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
             return LOGIN;
         }
         
@@ -214,7 +214,7 @@ public class ReportSaleWithProductsAction extends ActionSupport implements Model
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
             return LOGIN;
         }
         
@@ -268,7 +268,7 @@ public class ReportSaleWithProductsAction extends ActionSupport implements Model
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
             return LOGIN;
         }
         
@@ -303,7 +303,7 @@ public class ReportSaleWithProductsAction extends ActionSupport implements Model
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
             return LOGIN;
         }
         

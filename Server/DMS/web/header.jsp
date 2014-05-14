@@ -233,7 +233,7 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr><td><a href="staff-list" class="drop_down">Nhân viên</a></td></tr>
-                    <tr><td><a href="map/showSchedule?page=0" class="drop_down">Kế hoạch dự kiến</a></td></tr>
+                    <tr><td><a href="report-schedules" class="drop_down">Kế hoạch dự kiến</a></td></tr>
                     <tr><td><a href="maps/view-journeys" class="drop_down">Quản lý hành trình</a></td></tr>
 
                 </tbody>

@@ -1224,6 +1224,21 @@
             </result>
             <result name="input" >report-sale-products.jsp</result>
         </action>
+        
+        
+        <!-- Report SCHEDULE -->
+        <action name="filter-result-schedule" method="filterResult" class="com.hp.action.ReportScheduleAction">
+            <result name="success">report-schedules.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="report-schedules" method="refresh" class="com.hp.action.ReportScheduleAction">
+            <result name="success">report-schedules.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
     </package>
     
     <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">

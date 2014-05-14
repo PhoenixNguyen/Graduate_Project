@@ -112,3 +112,38 @@ h2 span {
 }
 
 
+/*IN MAP*/
+#boxShow{
+    width: 440px;
+    height: 220px;
+    background-color: #F0F0F0;
+}
+
+#boxShow a{
+    color: #2caf1e;
+    font-size: 18px;
+}
+img{
+    background-image:url('/DMS/db_customers/default.jpg');
+}
+
+.poi-photo img{
+    
+}
+.TextWrap{
+    float: right;
+    margin: 10px;
+
+    width: 200px;
+    height: 200px;
+}
+
+.ImageWrap{
+    float: left;
+    margin: 10px;
+    margin-right: 10px;
+
+    width: 200px;
+    height: 200px;
+}
+

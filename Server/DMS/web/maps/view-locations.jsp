@@ -200,6 +200,7 @@
 
             <div id="info">
                 <div id="page">
+                    Trang
                     <ul class="frag">
                         <%
                             int min = 0;

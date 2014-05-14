@@ -147,3 +147,13 @@ img{
     height: 200px;
 }
 
+#filter{
+    width: 200px;
+    position: absolute;
+    /* margin-right: -1000px; */
+    float: right;
+    margin-top: -12%;
+    display: block;
+    margin-left: 85%;
+}
+

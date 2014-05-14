@@ -198,6 +198,104 @@
 
             </div>
 
+            <div id="filter">
+                <table border=0 cellspacing=0 cellpadding=0 width="200px">
+                                            
+                    <tr align=left class=small><b>Chọn Giám đốc</b></tr>
+                        
+                    <s:push value="pushInfo">
+                    
+                    <tr align="left" width="20%">
+                        <select name="pushInfo.managerID"  class="small" style="width:98%" onchange="onClickManager(options[selectedIndex].text , 'take');">
+                            <option value="--select--">--select--</option>
+                            <s:iterator value="userListGiamDoc" status="index" >
+                                <s:if test="pushInfo.managerID == userListGiamDoc.get(#index.index)">
+                                    <option value="<s:property />" selected="selected"><s:property /></option>
+                                </s:if>
+                                <s:else>
+                                    <option value="<s:property />"><s:property /></option>
+                                </s:else>
+                            </s:iterator>
+                        </select>
+                    </tr>
+                   
+                    
+                    <tr align=left class=small><b>Chọn Nhân viên </b></tr>
+                    <tr align="left" width="20%">
+                        <select name="pushInfo.staffID" class="small" style="width:98%" onchange="onClickStaff(options[selectedIndex].text , 'take');" id="staff">
+                            <option value="--select--">--select--</option>
+                            <s:iterator value="userListStaff" status="index" >
+
+                                <s:if test="pushInfo.staffID == userListStaff.get(#index.index)">
+                                    <option value="<s:property />" selected="selected"><s:property /></option>
+                                </s:if>
+                                <s:else>
+                                    <option value="<s:property />"><s:property /></option>
+                                </s:else>
+
+
+                            </s:iterator>
+                        </select>
+                    </tr>
+                    
+                    <tr align=left class=small><b>Chọn Khách hàng </b></tr>
+                    <tr align="left" width="20%">
+                        <select name="pushInfo.customerID" class="small" style="width:98%" onchange="onClickCustomer(options[selectedIndex].text , 'take');" id="customer">
+                            <option value="--select--">--select--</option>
+                            <s:iterator value="userListCustomer" status="index" >
+                                <s:if test="pushInfo.customerID == userListCustomer.get(#index.index)">
+                                    <option value="<s:property />" selected="selected"><s:property /></option>
+                                </s:if>
+                                <s:else>
+                                    <option value="<s:property />"><s:property /></option>
+                                </s:else>
+                            </s:iterator>
+                        </select>
+                    </tr>
+                    
+                    </s:push>
+<!--                    <tr align=left class=small><b>Ngày bắt đầu </b></tr>
+                    <tr align=left width="20%">
+                        <table border=0 cellspacing=0 cellpadding=2>
+                            <tr>
+                                <s:date format="dd-MM-yyyy" id="dateconverted" name="startDate"/>
+                                <td align=left><input name="startDate" id="jscal_field_date_start" type="text" size="10" class="importBox" style="width:70px;" value="<s:property value="startDate"/>"></td>
+                                <td valign=absmiddle align=left>
+                                    <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_date_start">
+                                    <font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            inputField: "jscal_field_date_start", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_date_start", singleClick: true, step: 1
+                                        });
+
+                                    </script>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </tr>
+                   
+                    <tr align=left class=small><b>Ngày kết thúc </b></tr>
+                    <tr align=left width=20%>
+                        <table border=0 cellspacing=0 cellpadding=2>
+                            <tr>
+                                <td align=left><input name="endDate" id="jscal_field_date_end" type="text" size="10" class="importBox" style="width:70px;" value="<s:property value="endDate"/>"></td>
+                                <td valign=absmiddle align=left><img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_date_end"><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                    <script type="text/javascript">
+                                        Calendar.setup({
+                                            inputField: "jscal_field_date_end", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_date_end", singleClick: true, step: 1
+                                        });
+                                    </script>
+                                </td>
+                            </tr>
+                        </table>
+                    </tr>-->
+                
+                
+                    <tr align="center" colspan="8" style="padding:5px"><input name="generatenw" value=" Lọc kết quả " class="crmbutton small create" type="submit" ></tr>
+                
+                </table>
+            </div>
             <div id="info">
                 <div id="page">
                     Trang

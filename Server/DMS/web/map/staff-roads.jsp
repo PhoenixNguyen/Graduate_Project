@@ -30,22 +30,7 @@
             
             <script type="text/javascript">
             var arr = new Array();
-            <%--s:iterator value="listRoad" status="status">
-            <s:iterator value="listRoad.get(#status.index)" status="index">
-                console.log(<s:property value="#status.index"/> + " " +<s:property value="#index.index"/>);
-                    
-            </s:iterator>
-            </s:iterator--%>
-                <s:iterator value="listSchedules" status="status">
-                        <s:iterator value="listScheduleAndCustomer" status="index">
-                            <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
-                            <s:if test="listSchedules.get(#status.index).getMaKH() == maDoiTuong">
-                                //console.log(<s:property value="listSchedules.get(#status.index).getMaNV()"/>  +"");
-                                console.log(<s:property value="coordinateX"/>);
-                            </s:if>
-                            </s:iterator>
-                        </s:iterator>
-                    </s:iterator>    
+            
             function initialize() {
                 var i;
                 //For journey
@@ -188,25 +173,7 @@
                         
                     ],
                     </s:iterator> 
-                    
-                        <%--s:iterator value="listStaffs" status="st">
-                                [
-                                <s:iterator value="listSchedules" status="status">
-
-                                        <s:if test="listSchedules.get(#status.index).getMMaNV() == listStaffs.get(#st.index).getMID()">
-                                            
-                                            <s:iterator value="listCustomerInSchedule" status="cus">
-                                                <s:if test="listSchedules.get(#status.index).getMMaKH() == listCustomerInSchedule.get(#cus.index).getMMaDoiTuong() && listCustomerInSchedule.get(#cus.index).getMXCoordinates() > 0">
-                                                    new google.maps.LatLng(<s:property value="listCustomerInSchedule.get(#cus.index).getMXCoordinates()"/>,
-                                                                            <s:property value="listCustomerInSchedule.get(#cus.index).getMYCoordinates()"/>),
-                                                </s:if>                            
-                                            </s:iterator>                        
-                                        </s:if>
-                                </s:iterator>
-                                ],
-                        </s:iterator--%>
-                        
-                    
+                                        
                 ];
                 var color =  ["#FF0000", "#00FFFF", "#000000", "#006400","#FF8C00", "#8FBC8F", "#9400D3", "#FF1493"
                                ,"#FF0023", "#00FFEE", "#000033", "#006455","#FF8C66", "#8FBC9E", "#9400E4", "#FF14AA"
@@ -224,21 +191,7 @@
                   flightPath1.setMap(map);
 
                 }
-                //Polyline
-//                var flightPlanCoordinates = [
-//                    <s:iterator value="listRoad" status="status">
-//                    new google.maps.LatLng(<s:property value="viDo"/>, <s:property value="kinhDo"/>),
-//                    </s:iterator>
-//                  ];
-//                  var flightPath = new google.maps.Polyline({
-//                    path: flightPlanCoordinates,
-//                    geodesic: true,
-//                    strokeColor: '#FF0000',
-//                    strokeOpacity: 1.0,
-//                    strokeWeight: 2
-//                  });
-//
-//                  flightPath.setMap(map);
+                
 
             }
             function getListToShowPolyline(){
@@ -427,7 +380,7 @@
                             </li>
                                 
                             <li class="category-wrapper" data-rel="#booknow-form"><a href="#">Ngày</a>
-                                <sx:datetimepicker name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate"/>
+                                <sx:datetimepicker  name="date" displayFormat="yyyy-MM-dd" valueNotifyTopics="/value" onchange="setDate(this);" id="setdate"/>
                                 
                                 
                            

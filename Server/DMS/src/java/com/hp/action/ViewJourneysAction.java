@@ -8,12 +8,18 @@ package com.hp.action;
 
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
+import com.hp.dao.RoadManagementDAO;
+import com.hp.dao.RoadManagementDAOImpl;
+import com.hp.dao.ScheduleDAO;
+import com.hp.dao.ScheduleDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.PushInfo;
+import com.hp.domain.RoadManagement;
+import com.hp.domain.Schedule;
 import com.hp.domain.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,7 +34,7 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author HP
  */
-public class ViewLocationsAction extends ActionSupport implements ModelDriven{
+public class ViewJourneysAction extends ActionSupport implements ModelDriven{
     public Object getModel(){
         return pushInfo;
     }
@@ -36,11 +42,52 @@ public class ViewLocationsAction extends ActionSupport implements ModelDriven{
     private UserDAO userDAO = new UserDAOImpl();
     private CustomerDAO customerDAO = new CustomerDAOImpl();
     private StaffDAO staffDAO = new StaffDAOImpl();
+    private RoadManagementDAO roadManagementDAO = new RoadManagementDAOImpl();
+    private ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
     
     public PushInfo pushInfo = new PushInfo();
     User user = new User();
     private List<Customer> listCustomer = new ArrayList();
 
+    private List<List<RoadManagement>> listRoad = new ArrayList<List<RoadManagement>>();
+    private List<Schedule> listSchedules = new ArrayList();
+
+    private String date;
+
+    private List<List<Customer>> listScheduleAndCustomer = new ArrayList<List<Customer>>();
+
+    public List<List<Customer>> getListScheduleAndCustomer() {
+        return listScheduleAndCustomer;
+    }
+
+    public void setListScheduleAndCustomer(List<List<Customer>> listScheduleAndCustomer) {
+        this.listScheduleAndCustomer = listScheduleAndCustomer;
+    }
+    
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public List<Schedule> getListSchedules() {
+        return listSchedules;
+    }
+
+    public void setListSchedules(List<Schedule> listSchedules) {
+        this.listSchedules = listSchedules;
+    }
+    
+    public List<List<RoadManagement>> getListRoad() {
+        return listRoad;
+    }
+
+    public void setListRoad(List<List<RoadManagement>> listRoad) {
+        this.listRoad = listRoad;
+    }
+    
     public List<String> getUserListGiamDoc() {
         return userListGiamDoc;
     }
@@ -135,6 +182,15 @@ public class ViewLocationsAction extends ActionSupport implements ModelDriven{
         
         listCustomer = customerDAO.loadCustomersWithLocations(pushInfo.getManagerID(), pushInfo.getStaffID(), 
                 pushInfo.getCustomerID());
+        
+        listRoad = roadManagementDAO.getRoad(pushInfo.getManagerID(), pushInfo.getStaffID(), 
+                pushInfo.getCustomerID(),
+                        date);
+        listSchedules = scheduleDAO.getSchedulesList(pushInfo.getManagerID(), pushInfo.getStaffID(), 
+                pushInfo.getCustomerID(), date);
+        
+        listScheduleAndCustomer = customerDAO.customerScheduleList(pushInfo.getManagerID(), pushInfo.getStaffID(), 
+                pushInfo.getCustomerID(), date);
         return SUCCESS;
     }
 }

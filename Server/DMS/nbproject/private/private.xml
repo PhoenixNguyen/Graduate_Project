@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/action/ShowMapAction.java</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/maps/view-locations.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/action/ReportTakeOrderAction.java</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/js/maps/map.css</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/dao/SaleOrderDetailDAOImpl.java</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/struts.xml</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/header.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/map/view-map.jsp</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/action/ViewLocationsAction.java</file>
         </group>
     </open-files>

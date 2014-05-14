@@ -1227,18 +1227,55 @@
     </package>
     
     <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">
+        
+        <!-- FITER PARAMETER-->
+        <action name="manager-filter" method="filter" class="com.hp.action.ReportTakeOrderAction"  >
+              
+          <result  type="json" >
+              <param name="contentType">application/json</param>
+          </result>
+        </action>
+        <action name="staff-filter" method="filter" class="com.hp.action.ReportTakeOrderAction"  >
+              
+          <result  type="json" >
+              <param name="contentType">application/json</param>
+          </result>
+        </action>
+        <action name="customer-filter" method="filter" class="com.hp.action.ReportTakeOrderAction"  >
+              
+          <result  type="json" >
+              <param name="contentType">application/json</param>
+          </result>
+        </action>
+        
+        
         <action name="view-locations" method="refresh" class="com.hp.action.ViewLocationsAction">
             <result name="success">view-locations.jsp</result>
-            <result name="input" >home.jsp</result>
-            <result name="login" >index.jsp</result>
+            <result name="input" type="redirect">../home.jsp</result>
+            <result name="login" type="redirect">../index.jsp</result>
         </action>
         
         <action name="filter-result" method="filterResult" class="com.hp.action.ViewLocationsAction">
             <result name="success">view-locations.jsp</result>
-            <result name="input" >home.jsp</result>
-            <result name="login" >index.jsp</result>
+            <result name="input" type="redirect">../home.jsp</result>
+            <result name="login" type="redirect">../index.jsp</result>
+        </action>
+        
+        <!-- JOURNEY -->
+        <action name="view-journeys" method="refresh" class="com.hp.action.ViewJourneysAction">
+            <result name="success">view-journeys.jsp</result>
+            <result name="input" type="redirect">../home.jsp</result>
+            <result name="login" type="redirect">../index.jsp</result>
+        </action>
+        
+        <action name="filter-result-journey" method="filterResult" class="com.hp.action.ViewJourneysAction">
+            <result name="success">view-journeys.jsp</result>
+            <result name="input" type="redirect">../home.jsp</result>
+            <result name="login" type="redirect">../index.jsp</result>
         </action>
     </package>
+    
+    
     
     <package name="user"  extends="json-default,hibernate-default" namespace="/user">
         <action name="login" method="login" class="com.hp.action.UserAction">

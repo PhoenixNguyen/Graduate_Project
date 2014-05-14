@@ -27,4 +27,6 @@ public interface ScheduleDAO {
     public List<Schedule> getSchedulesList();
     public List<Schedule> getSchedulesList(String pManagerID, String pStaff, String pDate);
     public List<Schedule> getSchedulesListForSchedules(String pManagerID, String pStaff, String pDate, String pToDate);
+    
+    public List<Schedule> getSchedulesList(String pManagerID, String pStaff, String pCustomer, String pDate);
 }

@@ -505,6 +505,116 @@ public class CustomerDAOImpl implements CustomerDAO {
         return courses;
     }
     
+    public List<List<Customer>> customerScheduleList(String pManagerID, String pStaff, String pCustomer, String pDate){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<List<Customer>> courses = new ArrayList<List<Customer>>();
+        try{
+            String datefinal="";
+            System.out.println(" DATE: " + pDate); 
+            if(pDate != null && pDate.compareTo("")!= 0 ){
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                
+                Date date = sdf.parse(pDate);
+                datefinal = sdf2.format(date);
+                
+                
+                System.out.println(" DATECONVERT: " + datefinal  );
+            }
+            
+            if(pCustomer != null)
+            {
+                    List<Customer> tmp = new ArrayList<Customer>();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + "where sc.maKH = cus.maDoiTuong and sc.maKH='" +pCustomer+"' order by sc.maNV, sc.time").list();
+                    else
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + " where sc.maKH = cus.maDoiTuong and sc.maKH='" +pCustomer+"' "
+                                + " and cast (sc.time as date) = '"+datefinal+"' "
+                                + " order by sc.maNV, sc.time").list();
+                                                                
+                    if(tmp.size() > 0)
+                        courses.add(tmp);
+                //}
+                
+                return courses;
+            }
+            else 
+                
+            if(pStaff != null)
+            {
+                    List<Customer> tmp = new ArrayList<Customer>();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + "where sc.maKH = cus.maDoiTuong and sc.maNV='" +pStaff+"' order by sc.maNV, sc.time").list();
+                    else
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +pStaff+"' "
+                                + " and cast (sc.time as date) = '"+datefinal+"' "
+                                + " order by sc.maNV, sc.time").list();
+                                                                
+                    if(tmp.size() > 0)
+                        courses.add(tmp);
+                //}
+                
+                return courses;
+            }
+            else 
+            if(pManagerID != null){
+                List<String> nhanvien = null;
+                nhanvien = session.createQuery("select id "
+                        + "from Staff "
+                        + "where manager ='"+pManagerID+"' "
+                        ).list();
+                for(int i= 0; i < nhanvien.size(); i++){
+                    List<Customer> tmp = new ArrayList<Customer>();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + "where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' order by sc.maNV, sc.time").list();
+                    else
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' "
+                                + " and cast (sc.time as date) = '"+datefinal+"' "
+                                + " order by sc.maNV, sc.time").list();
+                                                                
+                    if(tmp.size() > 0)
+                        courses.add(tmp);
+                }
+                return courses;
+            }
+            else{
+                List<String> nhanvien = null;
+                nhanvien = session.createQuery("select id "
+                        + "from Staff "
+                        + " "
+                        ).list();
+                for(int i= 0; i < nhanvien.size(); i++){
+                    List<Customer> tmp = new ArrayList<Customer>();
+                    if(datefinal.compareTo("") == 0)
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + "where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' order by sc.maNV, sc.time").list();
+                    else
+                        tmp = session.createQuery("select cus from Schedule as sc, Customer as cus "
+                                + " where sc.maKH = cus.maDoiTuong and sc.maNV='" +nhanvien.get(i)+"' "
+                                + " and cast (sc.time as date) = '"+datefinal+"' "
+                                + " order by sc.maNV, sc.time").list();
+                                                                
+                    if(tmp.size() > 0)
+                        courses.add(tmp);
+                }
+                return courses;
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return courses;
+    }
     //Search customers
     public List<Customer> getSearchCustomerList(String pText){
         Session session = getSessionFactory().openSession();

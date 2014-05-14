@@ -38,7 +38,7 @@ public class RoadManagementDAOImpl implements RoadManagementDAO{
             
             System.out.println(" DATE: " + pDate); 
             if(pDate != null && pDate.compareTo("")!= 0 ){
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 
                 Date date = sdf.parse(pDate);

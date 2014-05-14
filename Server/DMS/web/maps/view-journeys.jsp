@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Xem vị trí khách hàng</title>
+        <title>Quản lý hành trình</title>
         <link REL="SHORTCUT ICON" HREF="/DMS/themes/images/vtigercrm_icon.ico">
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <style type="text/css">
@@ -18,11 +18,17 @@
         </style>
         <!--    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
             </script>-->
+        <script type="text/javascript" src="/DMS/jscalendar/calendar.js"></script>
+        <script type="text/javascript" src="/DMS/jscalendar/calendar-setup.js"></script>
+        <script type="text/javascript" src="/DMS/jscalendar/lang/calendar-vn.js"></script>
+        
         <script language="JavaScript" type="text/javascript" src="/DMS/js/jquery.min.js"></script>
         <script language="JavaScript" type="text/javascript" src="/DMS/js/wz_jsgraphics.js"></script>
 
         <script language="JavaScript" type="text/javascript" src="/DMS/js/ajax_option.js"></script>
         
+        
+        <link rel="stylesheet" type="text/css" href="/DMS/jscalendar/calendar-win2k-cold-1.css">
 <!--        <script type='text/javascript' src="http://www.walterzorn.de/en/scripts/wz_jsgraphics.js"></script>-->
         
         <link rel="stylesheet" type="text/css" href="/DMS/js/maps/map.css">
@@ -35,27 +41,30 @@
             var map;
             function initialize() {
                 var i;
-                var Customers = [
-            <s:iterator value="listCustomer" status="status">
-                    {
-                        mXCoordinates: <s:property value="coordinateX"/>,
-                                mYCoordinates: <s:property value="coordinateY"/>,
-                        mMaDoiTuong: '<s:property value="maDoiTuong:"/>'
+                //For journey
+                var Points = [
+                    <s:iterator value="listRoad" status="status">
+                    <s:iterator value="listRoad.get(#status.index)" >
+                            {
+                                mXCoordinates: <s:property value="viDo"/>,
+                                        mYCoordinates: <s:property value="kinhDo"/>,
+                                mMaDoiTuong: '<s:property value="thoiGian"/>'
 
-                    },
-            </s:iterator>
+                            },
+                    </s:iterator>
+                    </s:iterator>
                 ];
-                //console.log("__ "+Customers[0].mXCoordinates + Customers[0].mYCoordinates);
+
                 var x = 21.030336;
                 var y = 105.85814 ;
-                if(Customers.length > 0){
-                    if(Customers[0].mXCoordinates > 0){
-                        x = Customers[0].mXCoordinates;
-                        y = Customers[0].mYCoordinates;
+                if(Points.length > 0){
+                    if(Points[0].mYCoordinates > 0){
+                        x = Points[0].mXCoordinates;
+                        y = Points[0].mYCoordinates;
                     }
                 }
                 var myOptions = {
-                    zoom: 14,
+                    zoom: 13,
                     center: new google.maps.LatLng(x, y),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
@@ -67,24 +76,19 @@
                 });
 
                 var contentString = [
-            <s:iterator value="listCustomer" status="status">
-                    '<div id="boxShow"> <a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>">\n\
-                                        <img class= "ImageWrap" border="0" src="../customer/<s:property value="maDoiTuong"/>/1.jpg"  ></a>' +
-                            '<p class= "TextWrap">\n\
-                                <b><a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>">Khách hàng: <s:property value="doiTuong"/></a></b>' + '<br/><br/>' +
-                            'Mã khách hàng: <s:property value="maDoiTuong"/>' + '<br/>' +
-                            'Tỉnh thành: <s:property value="tinhThanh"/>' + '<br/>' +
-                            'Địa chỉ: <s:property value="diaChi"/>' + '<br/>' +
-                            'Điện thoại: <s:property value="dienThoai"/>' + '<br/>' +
-                            'Fax: <s:property value="fax"/>' + '<br/>\n\
-                             Tọa độ X: <s:property value="coordinateX"/> <br/> \n\
-                             Tọa độ Y: <s:property value="coordinateY"/> <br/>   </p></div>',
-            </s:iterator>
+                    <s:iterator value="listRoad" status="status">
+                    <s:iterator value="listRoad.get(#status.index)" status="index">
+                    <s:date name="thoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                            'Mã Nhân viên: <s:property value="maNhanVien"/> <br/>\
+                            Thời gian:<br/><s:property value="%{createdDateId}"/> <br/>\
+                            Thứ tự di chuyển: <s:property value="%{#index.index + 1}"/>',
+                    </s:iterator>
+                    </s:iterator>
                 ];
 
-                for (i = 0; i < Customers.length; i++) {
+                for (i = 0; i < Points.length; i++) {
                     size = 15;
-                    var img = new google.maps.MarkerImage('../images/marker.jpg',
+                    var img = new google.maps.MarkerImage('../db_images/marker.jpg',
                             new google.maps.Size(size, 2 * size),
                             new google.maps.Point(0, 0),
                             new google.maps.Point(size / 2, size / 2)
@@ -92,17 +96,124 @@
 
                     var marker = new google.maps.Marker({
                         map: map,
-                        title: Customers[i].title,
-                        position: new google.maps.LatLng(Customers[i].mXCoordinates, Customers[i].mYCoordinates)
-                        //icon: img
+                        title: Points[i].title,
+                        position: new google.maps.LatLng(Points[i].mXCoordinates, Points[i].mYCoordinates),
+                        icon: img
                     });
 
-                    bindInfoWindow(marker, map, infowindow, contentString[i], Customers[i].mMaDoiTuong);
+                    bindInfoWindow(marker, map, infowindow, contentString[i], Points[i].mMaDoiTuong);
 
                 }
+                
+                //For schedule ---------------------------------------------------------------------------------------------------------
+                var Points2 = [
+                    <s:iterator value="listSchedules" status="status">
+                        <s:iterator value="listScheduleAndCustomer" status="index">
+                            <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
+                                <s:if test="listSchedules.get(#status.index).getMaKH() == maDoiTuong and coordinateX > 0">
+                            {
+                                mXCoordinates: <s:property value="coordinateX"/>,
+                                        mYCoordinates: <s:property value="coordinateY"/>,
+                                mMaDoiTuong: '<s:property value="maDoiTuong"/>'
+
+                            },
+                            </s:if>
+                            </s:iterator>
+                        </s:iterator>
+                    </s:iterator>
+                ];
+                var contentString2 = [
+                    <s:iterator value="listSchedules" status="status">
+                        
+                        <s:iterator value="listScheduleAndCustomer" status="index">
+                            <s:iterator value="listScheduleAndCustomer.get(#index.index)"   status="index2">
+                            <s:if test="listSchedules.get(#status.index).getMaKH() == maDoiTuong and coordinateX > 0">
+                            
+                                <s:date name="listSchedules.get(#status.index).getTime()" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
+                                
+                                
+                                    'Thời gian : <s:property value="%{createdDateId}"/> <br/>\
+                                    Mã khách hàng: <s:property value="listSchedules.get(#status.index).getMaKH()"/> <br/>\
+                                    Tên khách hàng: <s:property value="doiTuong"/> <br/>\
+                                    Mã nhân viên: <s:property value="listSchedules.get(#status.index).getMaNV()"/> <br/>\
+                                    Thứ tự lịch trình: <s:property value="%{#index2.index +1 }"/>',
+                                   
+                            </s:if>
+                            </s:iterator>
+                        </s:iterator>
+                    </s:iterator>
+                                            
+                ];
+                
+                for (i = 0; i < Points2.length; i++) {
+                    size = 15;
+//                    var img = new google.maps.MarkerImage('../images/marker.jpg',
+//                            new google.maps.Size(size, 2 * size),
+//                            new google.maps.Point(0, 0),
+//                            new google.maps.Point(size / 2, size / 2)
+//                            );
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        title: Points2[i].title,
+                        position: new google.maps.LatLng(Points2[i].mXCoordinates, Points2[i].mYCoordinates)
+                        
+                    });
+
+                    bindInfoWindow(marker, map, infowindow, contentString2[i], Points2[i].mMaDoiTuong);
+
+                }
+                
+                //multi polyline - line -------------------------------------------------------------------------------------------------
+                var multi = [
+                    //Road
+                    <s:iterator value="listRoad" status="status">
+                    
+                    [
+                        <s:iterator value="listRoad.get(#status.index)" >
+                                new google.maps.LatLng(<s:property value="viDo"/>, <s:property value="kinhDo"/>),
+                        </s:iterator>
+                        
+                    ],
+                    </s:iterator>  
+                
+                    //Schedule =================================================================================
+                    <s:iterator value="listScheduleAndCustomer" status="status">
+                    
+                    [
+                        <s:iterator value="listScheduleAndCustomer.get(#status.index)"   status="index">
+                            <s:if test="coordinateX > 0">
+                                new google.maps.LatLng(<s:property value="coordinateX"/>, <s:property value="coordinateY"/>),
+                            </s:if>
+                        </s:iterator>
+                        
+                    ],
+                    </s:iterator> 
+                                        
+                ];
+                var color =  ["#FF0000", "#00FFFF", "#000000", "#006400","#FF8C00", "#8FBC8F", "#9400D3", "#FF1493"
+                               ,"#FF0023", "#00FFEE", "#000033", "#006455","#FF8C66", "#8FBC9E", "#9400E4", "#FF14AA"
+                             ];
+                console.log("multi: " + multi.length);
+                for (i = 0; i < multi.length; i++) {
+                    var flightPath1 = new google.maps.Polyline({
+                    path: multi[i],
+                    geodesic: true,
+                    strokeColor: color[Math.floor(Math.random() * color.length)] ,
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                  });
+
+                  flightPath1.setMap(map);
+
+                }
+                
 
             }
-
+            function getListToShowPolyline(){
+                var list = [{},{}];
+            }
+            
             function bindInfoWindow(marker, map, infowindow, html, Ltitle) {
                 google.maps.event.addListener(marker, 'click', function() {
                     infowindow.setContent(html);
@@ -115,6 +226,7 @@
                 });
             }
             google.maps.event.addDomListener(window, 'load', initialize);
+        
             
             function toPixel(x , y){
                 var end = new google.maps.LatLng(x, y);
@@ -204,8 +316,8 @@
 
             </div>
 
-            <div id="filter">
-                <form id="sub_form" method="POST" action="filter-result?page=0">
+            <div id="filter" style="margin-top: -17%;">
+                <form id="sub_form" method="POST" action="filter-result-journey">
                 <table border=0 cellspacing=0 cellpadding=0 width="200px">
                                             
                     <tr align=left class=small><b>Chọn Giám đốc</b></tr>
@@ -261,14 +373,16 @@
                     </tr>
                     
                     </s:push>
-<!--                    <tr align=left class=small><b>Ngày bắt đầu </b></tr>
+                    <tr align=left class=small><b>Chọn ngày </b></tr>
                     <tr align=left width="20%">
                         <table border=0 cellspacing=0 cellpadding=2>
                             <tr>
-                                <s:date format="dd-MM-yyyy" id="dateconverted" name="startDate"/>
-                                <td align=left><input name="startDate" id="jscal_field_date_start" type="text" size="10" class="importBox" style="width:70px;" value="<s:property value="startDate"/>"></td>
-                                <td valign=absmiddle align=left>
-                                    <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_date_start">
+                                
+                                <s:date format="dd-MM-yyyy" id="dateconverted" name="date"/>
+                                <td align=right><input name="date" id="jscal_field_date_start" type="text" size="10" class="importBox" style="width:70px;margin-left: 30px;" value="<s:property value="date"/>"></td>
+                                <td valign=absmiddle align=right>
+                                    <img style="margin-left: -110px;margin-top: -5px;position: absolute;
+                                            "src="/DMS/themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_date_start">
                                     <font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
                                     <script type="text/javascript">
                                         Calendar.setup({
@@ -278,9 +392,10 @@
                                     </script>
 
                                 </td>
+                                
                             </tr>
                         </table>
-                    </tr>
+                    </tr><!--
                    
                     <tr align=left class=small><b>Ngày kết thúc </b></tr>
                     <tr align=left width=20%>
@@ -307,57 +422,24 @@
             </div>
             <div id="info">
                 <div id="page">
-                    Trang
-                    <ul class="frag">
-                        <%
-                            int min = 0;
-                            if(request.getParameter("page") != null){
-                                int currPage = Integer.parseInt(request.getParameter("page"));
-                                session.setAttribute("currPage", currPage);
-                            }
-                        %>
-                        <li><a href="?page=<s:property value="#attr.currPage - 1"/>">&lt;</a></li>
-                        <s:iterator  value="listCustomer" status="status" >
-                            <s:if test="#status.index < (listCustomer.size() -1)/30+1">
-                            <li ><a href="?page=<s:property value="#status.index"/>">
-                                    
-                                    <s:if test="#attr.currPage == #status.index">
-                                    [<s:property value="#status.index"/>]
-                                    </s:if>
-                                    <s:else>
-                                        <s:property value="#status.index"/>
-                                    </s:else>
-                                    
-                                </a></li>
-                            </s:if>
-                        </s:iterator>    
-                        <li ><a href="?page=<s:property value="#attr.currPage + 1"/>">&gt;</a></li>    
-                       
-                    </ul>
+                    Danh sách vị trí lần lượt
                 </div>
 
                 <div id="detail">
                     <ul class="gallery">
-                            <%
-                            if(request.getParameter("page") != null){
-                                int page2 = Integer.parseInt(request.getParameter("page")) * 30;
-                                pageContext.setAttribute("first", page2);
-                            }
-                            %>
-                            <s:subset source="listCustomer" start="%{#attr.first}"  count="30">
-                                
-                                <s:iterator  status="status" >
+                            <s:iterator value="listRoad" status="status">
+                                <s:iterator value="listRoad.get(#status.index)" >
+                                    <s:date name="thoiGian" id="createdDateId" format="HH:mm:ss dd-MM-yyyy "/>
                 
-                                    <li onmouseover="onGetLocation(this, <s:property value="coordinateX"/> , <s:property value="coordinateY"/>);" onmouseout="out();">
+                                <li onmouseover="onGetLocation(this, <s:property value="viDo"/> , <s:property value="kinhDo"/>);" onmouseout="out();">
                                     <img class="bgr" src="/DMS/js/maps/map.jpg" >
                                     <!--                                    <h2><span></span></h2>--><br>
 <!--                                    <span class="name"></span>-->
-                                    <p id="name"><s:property value="doiTuong"/></p>
+                                    <p id="name"><s:property value="maNhanVien"/> : <s:property value="%{createdDateId}"/></p>
                                 </li>
                                 
                                 </s:iterator>
-                                    
-                            </s:subset>
+                            </s:iterator>
                         
                         
                     </ul>

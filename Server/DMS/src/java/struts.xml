@@ -1239,6 +1239,19 @@
             <result name="login" >index.jsp</result>
         </action>
         
+        
+        <!-- Report IMAGES -->
+        <action name="filter-result-image" method="filterResult" class="com.hp.action.ReportImageAction">
+            <result name="success">report-images.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="report-images" method="refresh" class="com.hp.action.ReportImageAction">
+            <result name="success">report-images.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
     </package>
     
     <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">

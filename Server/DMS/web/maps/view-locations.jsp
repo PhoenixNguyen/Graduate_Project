@@ -201,20 +201,28 @@
             <div id="info">
                 <div id="page">
                     <ul class="frag">
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li><a href="">6</a></li>
-                        <li><a href="">7</a></li>
-                        <li><a href="">8</a></li>
-                        <li><a href="">9</a></li>
-                        <li><a href="">10</a></li>
-                        <li><a href="">11</a></li>
-                        <li><a href="">12</a></li>
-                        <li><a href="">13</a></li>
-
+                        <%
+                            int min = 0;
+                            
+                            int currPage = Integer.parseInt(request.getParameter("page"));
+                            session.setAttribute("currPage", currPage);
+                        %>
+                        <li><a href="?page=<%=Integer.parseInt(request.getParameter("page")) - 1%>">&lt;</a></li>
+                        <s:iterator  value="listCustomer" status="status" >
+                            <s:if test="#status.index < (listCustomer.size() -1)/20+1">
+                            <li ><a href="?page=<s:property value="#status.index"/>">
+                                    
+                                    <s:if test="#attr.currPage == #status.index">
+                                    [<s:property value="#status.index"/>]
+                                    </s:if>
+                                    <s:else>
+                                        <s:property value="#status.index"/>
+                                    </s:else>
+                                    
+                                </a></li>
+                            </s:if>
+                        </s:iterator>    
+                        <li ><a href="?page=<%=Integer.parseInt(request.getParameter("page")) + 1%>">&gt;</a></li>    
                        
                     </ul>
                 </div>

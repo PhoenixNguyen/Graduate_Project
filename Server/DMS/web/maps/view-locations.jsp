@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,75 +25,90 @@
         <script type="text/javascript"
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGEhKh7kMB8aYZpl2nY6jAFo9td-iVA7k&sensor=true">
         </script>
+        
         <script type="text/javascript">
-            var flightPath;
+            var arr = new Array();
             var map;
-            var x0 = 20.978401;
-            var y0 = 105.842896;
-            
-            var x1 = 20.988401;
-            var y1 = 105.848896;
-            
-            var x2 = 20.988401;
-            var y2 = 105.853896;
-            
-            var x3 = 20.989401;
-            var y3 = 105.842896;
-            
-            var x4 = 20.978401;
-            var y4 = 105.844896;
-            
-            
-            var flightPlanCoordinates;
-            var marker;
-            var parliament = new google.maps.LatLng(x0, y0);
-
-            var image = document.getElementById("cl1");
-
-            var start = new google.maps.LatLng(20.976401, 105.842896);
-
-            var jg = new jsGraphics("canvas");
-            var img1 = document.getElementById("cl1");
-
             function initialize() {
-                var mapOptions = {
-                    center: new google.maps.LatLng(x0, y0),
-                    zoom: 15
+                var i;
+                var Customers = [
+            <s:iterator value="listCustomer" status="status">
+                    {
+                        mXCoordinates: <s:property value="coordinateX"/>,
+                                mYCoordinates: <s:property value="coordinateY"/>,
+                        mMaDoiTuong: '<s:property value="maDoiTuong:"/>'
+
+                    },
+            </s:iterator>
+                ];
+                console.log("__ "+Customers[0].mXCoordinates + Customers[0].mYCoordinates);
+                var x = 21.030336;
+                var y = 105.85814 ;
+                if(Customers[0].mXCoordinates > 0){
+                    x = Customers[0].mXCoordinates;
+                    y = Customers[0].mYCoordinates;
+                }
+                var myOptions = {
+                    zoom: 14,
+                    center: new google.maps.LatLng(x, y),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
-                map = new google.maps.Map(document.getElementById("map-canvas"),
-                        mapOptions);
 
-                //mouse
-                google.maps.event.addListener(map, 'mousemove', function(event) {
+                map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
 
-                    x0 = event.latLng.lat();
-                    y0 = event.latLng.lng();
-
+                var infowindow = new google.maps.InfoWindow({
+                    content: ''
                 });
-                //
-                flightPlanCoordinates = [
-                    new google.maps.LatLng(x0, y0),
-                    new google.maps.LatLng(20.978401, 105.942896)
 
+                var contentString = [
+            <s:iterator value="listCustomer" status="status">
+                    '<div id="boxShow"> <a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>">\n\
+                                        <img class= "ImageWrap" border="0" src="../customer/<s:property value="maDoiTuong"/>/1.jpg"  ></a>' +
+                            '<p class= "TextWrap">\n\
+                                <b><a href="customerDetail.action?page=0&customer_id=<s:property value="maDoiTuong"/>">Khách hàng: <s:property value="doiTuong"/></a></b>' + '<br/><br/>' +
+                            'Mã khách hàng: <s:property value="maDoiTuong"/>' + '<br/>' +
+                            'Tỉnh thành: <s:property value="tinhThanh"/>' + '<br/>' +
+                            'Địa chỉ: <s:property value="diaChi"/>' + '<br/>' +
+                            'Điện thoại: <s:property value="dienThoai"/>' + '<br/>' +
+                            'Fax: <s:property value="fax"/>' + '<br/>\n\
+                             Tọa độ X: <s:property value="coordinateX"/> <br/> \n\
+                             Tọa độ Y: <s:property value="coordinateY"/> <br/>   </p></div>',
+            </s:iterator>
                 ];
 
-                flightPath = new google.maps.Polyline({
-                    path: flightPlanCoordinates,
-                    strokeColor: '#FF0000',
-                    strokeOpacity: 1.0,
-                    strokeWeight: 2
-                });
+                for (i = 0; i < Customers.length; i++) {
+                    size = 15;
+                    var img = new google.maps.MarkerImage('../images/marker.jpg',
+                            new google.maps.Size(size, 2 * size),
+                            new google.maps.Point(0, 0),
+                            new google.maps.Point(size / 2, size / 2)
+                            );
 
-                //Marker
-                marker = new google.maps.Marker({
-                    map: map,
-                    draggable: true,
-                    animation: google.maps.Animation.DROP,
-                    position: parliament
-                });
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        title: Customers[i].title,
+                        position: new google.maps.LatLng(Customers[i].mXCoordinates, Customers[i].mYCoordinates)
+                        //icon: img
+                    });
+
+                    bindInfoWindow(marker, map, infowindow, contentString[i], Customers[i].mMaDoiTuong);
+
+                }
 
             }
 
+            function bindInfoWindow(marker, map, infowindow, html, Ltitle) {
+                google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(html);
+                    infowindow.open(map, marker);
+
+                });
+                google.maps.event.addListener(marker, 'mouseout', function() {
+                    //infowindow.close();
+
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
             
             function toPixel(x , y){
                 var end = new google.maps.LatLng(x, y);
@@ -102,10 +119,8 @@
                 return point;
             }
             
-            google.maps.event.addDomListener(window, 'load', initialize);
         </script>
-
-
+        
         <script>
             //Draw line
 //            $(document).ready(function() {
@@ -120,13 +135,56 @@
 
             function onGetLocation(x , l1, l2){
                 console.log("l1: " + l1);
-                
-                drawLine(x.clientX, x.clientY, toPixel(l1, l2));
+                //drawLine(x.clientX, x.clientY, toPixel(l1, l2));
+                //drawLine(x.offsetLeft + 100, x.offsetTop, toPixel(l1, l2));
+                drawLine(f (x).x + 100, f (x).y, toPixel(l1, l2));
             }
             
             function out(){
                 clearLine();
             }
+            
+            function f (el) {
+                var offset = (function(el) {
+                  if(el && el.parentNode) {
+                    var x = 0;
+                    var y = 0;
+
+                    while(el) {
+                      x += el.offsetLeft;
+                      y += el.offsetTop;
+                      el = el.offsetParent;
+                    }
+
+                    return {x: x, y: y};
+                  }
+
+                  return null;
+                })(el);
+
+                var scroll = (function(el) {
+                  if(el && el.parentNode) {
+                    var x = 0;
+                    var y = 0;
+
+                    while(el) {
+                      if(el && el.parentNode) {
+                        x -= el.scrollLeft;
+                        y -= el.scrollTop;
+                        el = el.parentNode;
+                      } else {
+                        el = null;
+                      }
+                    }
+
+                    return {x: x, y: y};
+                  }
+
+                  return null;
+                })(el);
+
+                return { x: offset.x + scroll.x, y: offset.y + scroll.y }
+              }
         </script>
 
 
@@ -157,42 +215,30 @@
                         <li><a href="">12</a></li>
                         <li><a href="">13</a></li>
 
-                        <!--          <li><a href="">14</a></li>
-                                  <li><a href="">15</a></li>
-                                  <li><a href="">16</a></li>
-                                  <li><a href="">17</a></li>
-                                  <li><a href="">18</a></li>
-                                  <li><a href="">19</a></li>
-                                  <li><a href="">20</a></li>
-                                  <li><a href="">21</a></li>
-                                  <li><a href="">22</a></li>
-                                  <li><a href="">23</a></li>
-                                  <li><a href="">24</a></li>
-                                  <li><a href="">25</a></li>
-                                  <li><a href="">26</a></li>-->
+                       
                     </ul>
                 </div>
 
                 <div id="detail">
                     <ul class="gallery">
-
+                            <%
+                                int page2 = Integer.parseInt(request.getParameter("page")) * 20;
+                                pageContext.setAttribute("first", page2);
+                            %>
+                            <s:subset source="listCustomer" start="%{#attr.first}"  count="20">
+                                
+                                <s:iterator  status="status" >
                 
-                        <li onmouseover="onGetLocation(event, 20.978401 , 105.842896);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event, 20.958401 , 105.848896);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event, 20.998401 , 105.873896);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event, 20.989401 , 105.862896);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event, 20.978401 , 105.854896);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
-                        <li onmouseover="onGetLocation(event);" onmouseout="out();"><img  src="/DMS/js/maps/map.jpg"></li>
+                                    <li onmouseover="onGetLocation(this, <s:property value="coordinateX"/> , <s:property value="coordinateY"/>);" onmouseout="out();">
+                                    <img class="bgr" src="/DMS/js/maps/map.jpg" >
+                                    <!--                                    <h2><span></span></h2>--><br>
+<!--                                    <span class="name"></span>-->
+                                    <p id="name"><s:property value="doiTuong"/></p>
+                                </li>
+                                
+                                </s:iterator>
+                                    
+                            </s:subset>
                         
                         
                     </ul>
@@ -210,8 +256,9 @@
                 jg = new jsGraphics("canvas");
                 
                 var point = p;//toPixel();
-                jg.setColor("#0000FF");
+                jg.setColor("#000000");
                 jg.setStroke(2);
+                jg.setPrintable(true);
                 jg.drawLine(x, y, point.x, point.y);
                 //point.x, point.y
                 //img1.offsetLeft + 20 , img1.offsetTop + 20

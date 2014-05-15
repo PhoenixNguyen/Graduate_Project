@@ -11,7 +11,7 @@ function editCustomer(id){
             
             //find edit form
             var options = $("#editForm");
-            z
+            
 //            var $input = $("<s:textfield name='myField' type='text'/>");
 //            var $input2 = $("<s:a href=\"123\" >2222hkkk</s:a>");
 //            var $form = $("<s:form action=\"update-data\" method=\"get\" id=\"form\"> " 

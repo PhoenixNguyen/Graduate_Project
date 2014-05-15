@@ -41,6 +41,17 @@ public class CustomerImage {
     @Column(name="hinhanh_time")
     private Timestamp time;
 
+    @Column(name="hinhanh_trang_thai")
+    private boolean status;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
     public Timestamp getTime() {
         return time;
     }

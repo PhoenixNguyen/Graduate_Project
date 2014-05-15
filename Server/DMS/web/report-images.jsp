@@ -45,7 +45,7 @@
                                     <tr>
                                         <td style="padding: 10px; text-align: left;" width="70%">
                                             <span class="moduleName">
-                                                Hình ảnh
+                                                Hình ảnh <i><span id="update"><span></span></span></i>
                                             </span>&nbsp;&nbsp;
                                             <!--                                            <input type="button" name="custReport" value="Sửa Báo cáo" class="crmButton small edit" onClick="editReport('20');">-->
                                             <br>
@@ -67,7 +67,7 @@
                         <table class="small reportGenerateTable" align="center" cellpadding="5" cellspacing="0" width="95%" border=0>
                             <tr>
                                 <td align=center class=small>
-                                    <form id="sub_form" method="POST" action="filter-result-schedule">
+                                    <form id="sub_form" method="POST" action="filter-result-image">
                                     <table border=0 cellspacing=0 cellpadding=0 width=80%>
                                         <tr>
                                             <s:if test="user.getPermission() == 1">
@@ -199,7 +199,7 @@
                                                             </span><br>
                                                         </td>
                                                         <td align="right" width="25%">
-                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'><s:property value="listSchedules.size()"/></span>  Bản ghi</span>
+                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'><s:property value="listCustomerImage.size()"/></span>  Bản ghi</span>
                                                         </td>
                                                     </tr>
                                                     <tr><td id="report_info" align="left" colspan="2">&nbsp;</td></tr>
@@ -208,22 +208,25 @@
                                                         <td colspan="2">
                                                             <div id="image">
                                                                 <div id="title">
-                                                                    <img src="db_images/demo1.jpg" width="900" height="300" />
+                                                                    <s:iterator value="listCustomerImage" status="">
+                                                                        <s:if test="status == true">
+                                                                            <img src="db_customers/<s:property value="customerID"/>/<s:property value="name"/>" width="900" height="300" title="<s:property value="name"/>"/>
+                                                                            
+                                                                        </s:if>
+                                                                    </s:iterator>
                                                                 </div>
                                                                 <div id="content">
                                                                     <ul class="detail">
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
-                                                                        <li><img src="db_images/demo2.jpg" width="250" height="200" /></li>
+                                                                        <s:iterator value="listCustomerImage" status="">
+                                                                        <s:if test="status != true">
+                                                                            <li>
+                                                                                <img src="db_customers/<s:property value="customerID"/>/<s:property value="name"/>" width="250" height="200" title="<s:property value="name"/>"/>
+                                                                                <img onclick="javascript:changeImage(<s:property value="stt"/>, '<s:property value="customerID"/>')" class="setup" src="db_images/setup.png" width="25" height="20" title="Cài đặt làm ảnh đại diện"/>
+                                                                            </li>
+                                                                            
+                                                                        </s:if>
+                                                                        </s:iterator>
+                                                                        
                                                                         
                                                                         
                                                                         

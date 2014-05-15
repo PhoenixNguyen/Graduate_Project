@@ -7,6 +7,7 @@
 package com.hp.dao;
 
 import com.hp.domain.CustomerImage;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,9 @@ import com.hp.domain.CustomerImage;
  */
 public interface CustomerImageDAO {
     public boolean saveOrUpdate(CustomerImage pCustomerImage);
+    public CustomerImage getCustomerImage(int stt);
+    public int updateStatus(String pCustomer);
+    
+    
+    public List<CustomerImage> getCustomerImageList(String pCustomer, String pDate, String pToDate);
 }

@@ -118,3 +118,39 @@ function onClickEndDate(x){
     }
     );
 }
+
+
+function changeImage(imageID, customerID){
+    
+//    console.log("Date: " + customerID); // ,'imageID': imageID
+//    $.getJSON('update-image-profile.action', {'customerID': customerID},
+//    function(data) {
+//        console.log("OK ");
+//        var status = (data.statusUpdate);
+//        console.log(status);
+//      
+//    }
+//    );
+    
+    console.log("Ma nhan vien: " + customerID);
+    $.getJSON('update-image-profile.action', {'khachhangId': customerID,'imageID': imageID},
+    function(data) {
+
+        var status = false;
+        status = (data.statusUpdate);
+        console.log(status);
+        var options = $("#update");
+        options.find('span').remove();
+        var text;
+        
+        if(String(status) === "true")
+            text ="[Cập nhật thành công]";
+        else
+            text = "[Cập nhật thất bại]";
+        
+        
+        options.append($("<span/>").append(text));
+        alert(text);
+    }
+    );
+}

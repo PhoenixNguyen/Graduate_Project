@@ -243,7 +243,7 @@
         <div class="drop_mnu" id="Settings_sub" onmouseout="fnHideDrop('Settings_sub')" onmouseover="fnShowDrop('Settings_sub')" style="left: 647px; top: 75px; display: none;">
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tbody><tr>
-                        <td><a href="" class="drop_down">Thiết lập</a></td>
+                        <td><a href="system-manager" class="drop_down">Thiết lập</a></td>
                     </tr>
                     <tr>
         <!--                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>-->

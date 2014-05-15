@@ -85,6 +85,27 @@ public class UserDAOImpl implements UserDAO{
         return user;
     }
     
-    
+    public List<User> getUserList(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        List<User> userList = null;
+        try{
+            String sql = "from User where permission = 1 ";
+            Query query = session.createQuery(sql);
+            
+            userList = query.list();
+                      
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return userList;
+    }
     
 }

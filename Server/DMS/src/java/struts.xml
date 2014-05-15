@@ -1259,6 +1259,14 @@
               <param name="contentType">application/json</param>
           </result>
         </action>
+        
+        <!-- SYSTEM MANAGER -->
+        <action name="system-manager" method="refresh" class="com.hp.action.SystemManagerAction">
+            <result name="success">system-manager.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
     </package>
     
     <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">

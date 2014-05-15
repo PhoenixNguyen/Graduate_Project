@@ -24,4 +24,8 @@ public interface UserDAO {
     
     //Get user
     public User getUser(String username);
+    
+    //Get List user
+    public List<User> getUserList();
+    
 }

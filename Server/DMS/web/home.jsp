@@ -71,65 +71,7 @@
                     <td style="padding-left:10px;padding-right:50px" class="moduleName" nowrap="">Trang chủ<a class="hdrLink" href=""></a></td>
                     <td width="100%" nowrap="">
 
-                        <!--                <table border="0" cellspacing="0" cellpadding="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="sep1" style="width:1px;"></td>
-                                                    <td class="small">
-                                                         Add and Search 
-                                                        <table border="0" cellspacing="0" cellpadding="0">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <table border="0" cellspacing="0" cellpadding="5">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Khách hàng..." title="Tạo Khách hàng..." border="0"></a></td>
-                        
-                                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>
-                        
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                    <td style="width:20px;">&nbsp;</td>
-                                                    <td class="small">
-                        
-                                                    </td>
-                                                    <td style="width:20px;">&nbsp;</td>
-                                                    <td class="small">
-                                                         Import / Export 
-                                                        <table border="0" cellspacing="0" cellpadding="5">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td style="padding-right:0px;padding-left:10px;"><a href=""><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
-                                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Khách hàng" title="Xuất dữ liệu Khách hàng" border="0"></a></td>
-                        
-                        
-                                                                    <td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> 
-                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>
-                                                                </tr>
-                                                            </tbody></table>  
-                                                    </td>
-                                                    <td style="width:20px;">&nbsp;</td>
-                                                    <td class="small">
-                                                         All Menu 
-                                                        <table border="0" cellspacing="0" cellpadding="5">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                                                    <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>-->
+
                     </td>
                 </tr>
                 <tr><td style="height:2px"></td></tr>
@@ -150,6 +92,121 @@
 
         </div>
 
+        <table border="0" cellspacing="0" cellpadding="0" width="98%" align="center">
+            <tbody>
+                <tr>
+                    <td valign="top"><img src="themes/softed/images/showPanelTopLeft.gif"></td>
+
+                    <td class="showPanelBg" valign="top" width="100%" style="padding:10px;">
+                        <!-- SIMPLE SEARCH -->
+                                       
+
+                        <!-- PUBLIC CONTENTS STARTS-->
+                        <div id="ListViewContents" class="small" style="width:100%;">
+                            <script language="JavaScript" type="text/javascript" src="include/js/ListView.js"></script>
+                            <form name="massdelete" method="POST" id="massdelete" onsubmit="VtigerJS_DialogBox.block();">
+                                <input name="search_url" id="search_url" type="hidden" value="">
+
+                                <!-- List View Master Holder starts -->
+                                <table border="0" cellspacing="1" cellpadding="0" width="100%" class="lvtBg" style="font-size: 15px;">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <!-- List View's Buttons and Filters starts -->
+                                                <table border="0" cellspacing="0" cellpadding="2" width="100%" class="small">
+                                                    <!--                                            
+                                                                                            </table>
+                                                    <!-- List View's Buttons and Filters ends -->
+
+                                                    <div>
+                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                            <!-- Table Headers -->
+                                                            <tbody>
+                                                                <tr>
+                                                                    Hệ thống quản lý phân phối - Hướng dẫn sử dụng:
+                                                                </tr>
+                                                                
+                                                                <!-- Table Contents -->
+                                                                
+
+
+                                                            </tbody>
+                                                        </table>
+                                                        <br>
+                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                            <!-- Table Headers -->
+                                                            <tbody>
+                                                                <tr>
+                                                            <b>1.</b> Chọn menu nhân viên để quản lý nhân viên, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
+                                                                       1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
+                                                                       1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
+                                                                       1.4. Xem hình ảnh của nhân viên chụp tại cửa hàng của khách hàng<br>
+                                                                    </p>
+                                                                </tr>
+                                                                
+                                                                <!-- Table Contents -->
+                                                                
+
+
+                                                            </tbody>
+                                                        </table>
+                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                            <!-- Table Headers -->
+                                                            <tbody>
+                                                                <tr>
+                                                            <b>1.</b> Chọn menu nhân viên để quản lý nhân viên, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
+                                                                       1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
+                                                                       1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
+                                                                       1.4. Xem hình ảnh của nhân viên chụp tại cửa hàng của khách hàng<br>
+                                                                    </p>
+                                                                </tr>
+                                                                
+                                                                <!-- Table Contents -->
+                                                                
+
+
+                                                            </tbody>
+                                                        </table>
+                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                            <!-- Table Headers -->
+                                                            <tbody>
+                                                                <tr>
+                                                            <b>1.</b> Chọn menu nhân viên để quản lý nhân viên, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
+                                                                       1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
+                                                                       1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
+                                                                       1.4. Xem hình ảnh của nhân viên chụp tại cửa hàng của khách hàng<br>
+                                                                    </p>
+                                                                </tr>
+                                                                
+                                                                <!-- Table Contents -->
+                                                                
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <table border="0" cellspacing="0" cellpadding="2" width="100%">
+
+                                                    </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
+                            </form>  
+
+                        </div>
+
+                    </td>
+                    <td valign="top"><img src="themes/softed/images/showPanelTopRight.gif"></td>
+                </tr>
+            </tbody>
+        </table>
         <!--    Footer-->
         <s:include value="footer.jsp"></s:include>
 

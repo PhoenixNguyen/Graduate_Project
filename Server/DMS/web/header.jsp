@@ -4,6 +4,7 @@
     Author     : HP
 --%>
 
+<%@page import="com.hp.domain.Announcement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix="s" uri="/struts-tags" %>
 
@@ -56,7 +57,17 @@
                 <tr>
                     <td valign="top"><img src="themes/softed/images/vtiger-crm.gif" alt="HOSCO-MANAGEMENT" title="HOSCO-MANAGEMENT" border="0"></td>
                     <td width="100%" align="center">
-                        <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" onmouseout="javascript:start();">&nbsp;admin :  Thông báo: </marquee>
+                        <%
+                            Announcement announcement = (Announcement)session.getAttribute("announcement");
+                            if(announcement != null){
+                                session.setAttribute("creater", announcement.getCreater());
+                                session.setAttribute("time", announcement.getDate());
+                                session.setAttribute("content", announcement.getContent());
+                            }
+                            
+                        %>
+                        <marquee id="rss" direction="left" scrolldelay="10" scrollamount="3" behavior="scroll" class="marStyle" onmouseover="javascript:stop();" 
+                                 onmouseout="javascript:start();">&nbsp;<s:property value="%{#attr.creater}"/> : [<s:property value="%{#attr.time}"/>]  <b>Thông báo:</b> <s:property value="%{#attr.content}"/></marquee>
 
                     </td>
                     <td class="small" nowrap="">
@@ -108,8 +119,8 @@
                                     <td <s:if test="#page == 'customer'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Marketing_sub');" onmouseout="fnHideDrop('Marketing_sub');" align="center" nowrap="customer-list"><a href="">Khách hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                                     <td <s:if test="#page == 'sale'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Sales_sub');" onmouseout="fnHideDrop('Sales_sub');" align="center" nowrap=""><a href="">Bán hàng</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
-                                    <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-                                    <td <s:if test="#page == 'help'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Support_sub');" onmouseout="fnHideDrop('Support_sub');" align="center" nowrap=""><a href="">Hỗ trợ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+<!--                                    <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
+                                    <td <s:if test="#page == 'help'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Support_sub');" onmouseout="fnHideDrop('Support_sub');" align="center" nowrap=""><a href="">Hỗ trợ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>-->
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                                     <td <s:if test="#page == 'report'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Analytics_sub');" onmouseout="fnHideDrop('Analytics_sub');" align="center" nowrap=""><a href="">Phân tích</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -211,7 +222,7 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr><td><a href="report" class="drop_down">Báo cáo</a></td></tr>
-                    <tr><td><a href="" class="drop_down">Biểu đồ</a></td></tr>
+<!--                    <tr><td><a href="" class="drop_down">Biểu đồ</a></td></tr>-->
                 </tbody>
             </table>
         </div>

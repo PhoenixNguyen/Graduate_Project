@@ -75,42 +75,29 @@
                                                                     Quản lý người sử dụng
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="settingsTabList" nowrap>
-                                                                    <a href="index.php?module=Administration&amp;action=index&amp;parenttab=Settings">
-                                                                        Kinh doanh
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="settingsTabList" nowrap>
-                                                                    <a href="index.php?module=Settings&amp;action=listroles&amp;parenttab=Settings">
-                                                                        Vai trò
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
+                                                                                                                        
                                                             <tr>
                                                                 <td class="settingsTabSelected" nowrap>
-                                                                    <a href="index.php?module=Settings&amp;action=ListProfiles&amp;parenttab=Settings">
-                                                                        Quản trị
+                                                                    <a href="system-manager">
+                                                                        Quản trị viên
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                             
-                                                            
                                                             <tr>
-                                                                <td class="settingsTabHeader" nowrap>
-                                                                    Truy cập
+                                                                <td class="settingsTabList" nowrap>
+                                                                    <a href="user-history">
+                                                                        Lịch sử đăng nhập 
+                                                                    </a>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="settingsTabList" nowrap>
-                                                                    <a href="index.php?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings">
-                                                                        Lịch sử đăng nhập của người sử dụng
+                                                                    <a href="user-notify">
+                                                                        Thông báo
                                                                     </a>
                                                                 </td>
                                                             </tr>
-                                                            
                                                             
                                                         </table>
                                                 <!-- Left side navigation table ends -->
@@ -216,7 +203,15 @@
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!-- Password Field-->
-                                                                                                <td width=25% class="dvtCellInfo" align="left"><input title='Thay đổi mật khẩu [Alt+P]' accessKey='P' class='crmButton password small' LANGUAGE=javascript onclick='return window.open("admin-change-password");' type='button' name='password' value='Thay đổi mật khẩu'></td>	
+                                                                                                <%
+                                                                                                    String username = (String)session.getAttribute("user_name");
+                                                                                                    session.setAttribute("logined_user", username);
+                                                                                                %>
+                                                                                                <td width=25% class="dvtCellInfo" align="left">
+                                                                                                    <s:if test="#attr.logined_user == user.id">
+                                                                                                    <input title='Thay đổi mật khẩu [Alt+P]' accessKey='P' class='crmButton password small' LANGUAGE=javascript onclick='return window.open("admin-change-password");' type='button' name='password' value='Thay đổi mật khẩu'>
+                                                                                                    </s:if>
+                                                                                                </td>	
 
 
                                                                                                 <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Email</td>

@@ -1297,7 +1297,30 @@
             <result name="login" >index.jsp</result>
         </action>
         
+        <action name="add-user" method="refresh" class="com.hp.action.SystemManagerAction">
+            <result name="success" >system-manager-admin-new.jsp</result>
+            <result name="input" >system-manager-admin-new.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
         
+        <action name="save-user" method="saveUser" class="com.hp.action.SystemManagerAction">
+            <result name="success" >system-manager-admin-detail.jsp?id_admin=${user.stt}</result>
+            <result name="input" >system-manager-admin-new.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        
+        <action name="user-notify" method="refresh" class="com.hp.action.SystemManagerAction">
+            <result name="success" >system-manager-admin-notify.jsp</result>
+            <result name="input" >system-manager-admin-notify.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="user-notify-update" method="updateNotify" class="com.hp.action.SystemManagerAction">
+            <result name="success" >system-manager-admin-notify.jsp</result>
+            <result name="input" >system-manager-admin-notify.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
     </package>
     
     <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">

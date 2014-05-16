@@ -114,7 +114,7 @@ public class UserDAOImpl implements UserDAO{
         boolean status = false;
         List<User> userList = null;
         try{
-            String sql = "from User where permission = 1 ";
+            String sql = "from User ";
             Query query = session.createQuery(sql);
             
             userList = query.list();
@@ -162,6 +162,29 @@ public class UserDAOImpl implements UserDAO{
             
             
             session.delete(user);
+            session.getTransaction().commit();          
+            
+        }catch(Exception e){
+            transaction.rollback();
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
+    
+    public boolean saveUser(User user){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        try{
+            
+            
+            session.save(user);
             session.getTransaction().commit();          
             
         }catch(Exception e){

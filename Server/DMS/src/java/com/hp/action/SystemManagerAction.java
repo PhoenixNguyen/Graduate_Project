@@ -7,8 +7,11 @@
 package com.hp.action;
 
 import com.hp.common.ValidateHandle;
+import com.hp.dao.AnnouncementDAO;
+import com.hp.dao.AnnouncementDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
+import com.hp.domain.Announcement;
 import com.hp.domain.User;
 import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.LOGIN;
@@ -16,7 +19,11 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,7 +40,8 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
     
    
     private UserDAO userDAO = new UserDAOImpl();
-
+    private AnnouncementDAO announcementDAO = new AnnouncementDAOImpl();
+            
     User user = new User();
 
     private List<User> userList = new ArrayList<User>();
@@ -43,6 +51,28 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
     private boolean deleteStatus;
     private boolean selected;
 
+    private String notify;
+
+    private Announcement announcement = new Announcement();
+
+    public String getNotify() {
+        return notify;
+    }
+
+    public void setNotify(String notify) {
+        this.notify = notify;
+    }
+
+    public Announcement getAnnouncement() {
+        return announcement;
+    }
+
+    public void setAnnouncement(Announcement announcement) {
+        this.announcement = announcement;
+    }
+    
+    
+    
     public boolean isSelected() {
         return selected;
     }
@@ -98,7 +128,7 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
             return LOGIN;
         }
         
@@ -114,7 +144,7 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return LOGIN;
         }
         
@@ -137,7 +167,7 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
             return LOGIN;
         }
         
@@ -165,7 +195,7 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
         
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || (User)session.getAttribute("USER") == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
             return LOGIN;
         }
         
@@ -179,13 +209,31 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
             return INPUT;
     }
 
+    public String saveUser(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
+            return LOGIN;
+        }
+        
+        
+        if(userDAO.saveUser(user)){
+            user = userDAO.getUser(user.getStt());
+            return SUCCESS;
+        }
+        else
+            return INPUT;
+    }
     public String deleteAdmin(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
         
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || (User)session.getAttribute("USER") == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
             return LOGIN;
         }
         
@@ -201,7 +249,12 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
             //Do not delete supermanager
             if(user.getPermission() != 1){
                 deleteStatus = userDAO.deleteUser(user);
-                return SUCCESS;
+                if(deleteStatus){
+                    userList = userDAO.getUserList();
+                    return SUCCESS;
+                }
+                else
+                    return INPUT;
             }
             else
                 return INPUT;
@@ -210,6 +263,37 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
             return INPUT;
         
         
+    }
+    
+    public String updateNotify(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
+            return LOGIN;
+        }
+        
+        user = userDAO.getUser((String)session.getAttribute("user_name"));
+        
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        
+        announcement.setCreater(user.getId());
+        announcement.setContent(notify);
+        announcement.setDate(Timestamp.valueOf(sdf2.format(cal.getTime())));
+        announcement.setStatus(true);
+        
+        announcementDAO.updateStatus();
+        if(announcementDAO.saveOrUpdate(announcement)){
+            
+            session.setAttribute("announcement", announcement);
+            return SUCCESS;
+        }
+        else
+            return INPUT;
     }
 }
 

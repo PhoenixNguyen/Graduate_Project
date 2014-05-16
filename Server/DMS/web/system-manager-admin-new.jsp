@@ -104,11 +104,10 @@
                                                         }
 
                                                     </script>	
-                                                    <form name="EditView" method="GET" action="admin-update" id="sub_form"   ">
-                                                        <s:push value="user" >
-                                                        <input type="hidden" name="user.stt" value="<s:property value="user.stt"/>">
-                                                        <input type="hidden" name="user.id" value="<s:property value="user.id"/>">
-                                                        <input type="hidden" name="user.pw" value="<s:property value="user.pw"/>">
+                                                    <form name="EditView" method="GET" action="save-user" id="sub_form"   ">
+                                                        
+                                                        <input type="hidden" name="user.stt" value="">
+                                                       
                                                         <input type="hidden" name="user.ngayThamGia" value="<s:property value="user.ngayThamGia"/>">
 
                                                         <table width="100%"  border="0" cellspacing="0" cellpadding="0" class="settingsSelUITopLine">
@@ -120,7 +119,7 @@
                                                                                 <span class="lvtHeaderText">
 
                                                                                     <b><a href="">Quản trị viên </a> &gt;
-                                                                                        Sửa Quản trị viên "<s:property value="user.id"/> " 
+                                                                                        Thêm Quản trị viên  
                                                                                         
                                                                                     </b></span>
                                                                             </td>
@@ -128,7 +127,7 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td><b class="small">Sửa thông tin quản trị viên</b>
+                                                                            <td><b class="small">Thêm quản trị viên thông tin</b>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -167,17 +166,34 @@
                                                                                                             <tr style="height:25px">
 
                                                                                                                 <td width=20% class="dvtCellLabel" align=right>
+                                                                                                                    <font color="red">*</font>Mã tài khoản		
+                                                                                                                </td>
+                                                                                                                <td width=30% align=left class="dvtCellInfo">
+                                                                                                                    <input type="text"  name="user.id" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                </td>
+
+                                                                                                                <td width="20%" class="dvtCellLabel" align=right>
+                                                                                                                    <font color="red"></font>Mật khẩu		
+                                                                                                                </td>
+                                                                                                                <td width="30%" align=left class="dvtCellInfo">
+                                                                                                                    <input type="password"  name="user.pw" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr style="height:25px">
+
+                                                                                                                <td width=20% class="dvtCellLabel" align=right>
                                                                                                                     <font color="red"></font>Họ tên			
                                                                                                                 </td>
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
-                                                                                                                    <input type="text"  name="user.hoTen" value="<s:property value="user.hoTen"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="text"  name="user.hoTen" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                                                                 </td>
 
                                                                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                                                                     <font color="red"></font>Chức danh			
                                                                                                                 </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <input type="text"  name="user.chucDanh" value="<s:property value="user.chucDanh"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="text"  name="user.chucDanh" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
 
                                                                                                                 </td>
                                                                                                             </tr>
@@ -188,7 +204,7 @@
                                                                                                                     <font color="red"></font>Email 			 
                                                                                                                 </td>
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
-                                                                                                                    <input type="text" name="user.email" id ="email1" value="<s:property value="user.email"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="text" name="user.email" id ="email1" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                                                                 </td>
 
                                                                                                                 <!-- for Status field Disabled for nonadmin -->
@@ -196,7 +212,7 @@
                                                                                                                     <font color="red"></font>Số điện thoại			
                                                                                                                 </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <input type="text" name="user.sdt" id ="email1" value="<s:property value="user.sdt"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="text" name="user.sdt" id ="email1" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
 <!--                                                                                                                    <select id="user_status" name="status" tabindex="" class="small">
 
                                                                                                                         <option value="Active" selected >
@@ -220,14 +236,10 @@
                                                                                                                 </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
                                                                                                                     <select name="user.permission" tabindex="" class="small">
-                                                                                                                        <s:if test="user.permission == 1">
-                                                                                                                            <option value="1" selected>Quản lý cao cấp</option>
-                                                                                                                            <option value="2" >Quản lý bán hàng</option>
-                                                                                                                        </s:if>
-                                                                                                                        <s:else>
+                                                                                                                        
                                                                                                                             <option value="1" >Quản lý cao cấp</option>
                                                                                                                             <option value="2" selected>Quản lý bán hàng</option>
-                                                                                                                        </s:else>
+                                                                                                                        
                                                                                                                         <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                         <!--code ends -->
                                                                                                                     </select>
@@ -242,14 +254,10 @@
                                                                                                                 </td>
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
                                                                                                                     <select name="user.status" tabindex="" class="small">
-                                                                                                                        <s:if test="user.status == true">
-                                                                                                                            <option value="true" selected>Hoạt động</option>
-                                                                                                                            <option value="false" >Dừng hoạt động</option>
-                                                                                                                        </s:if>
-                                                                                                                        <s:else>
+                                                                                                                        
                                                                                                                             <option value="true" >Hoạt động</option>
-                                                                                                                            <option value="false" selected>Dừng hoạt động</option>
-                                                                                                                        </s:else>
+                                                                                                                            <option value="false" selected>Không hoạt động</option>
+                                                                                                                        
                                                                                                                         <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                         <!--code ends -->
                                                                                                                     </select>
@@ -261,7 +269,7 @@
                                                                                                                     Ghi chú			
                                                                                                                 </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <input type="text" name="user.ghiChu" id ="email1" value="<s:property value="user.ghiChu"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="text" name="user.ghiChu" id ="email1" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             
@@ -288,7 +296,7 @@
                                                         </table>
                                                     </form>
                                                                                                                 
-                                                        </s:push>
+                                                      
                                                 </td>
                                             </tr>
                                         </table>

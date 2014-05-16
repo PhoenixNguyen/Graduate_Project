@@ -48,5 +48,6 @@
         
         <mapping class="com.hp.domain.ReportSaleWithProduct" />
                 
+        <mapping class="com.hp.domain.Announcement" />
   </session-factory>
 </hibernate-configuration>

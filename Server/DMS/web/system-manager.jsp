@@ -70,42 +70,30 @@
                                                                     Quản lý người sử dụng
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="settingsTabList" nowrap>
-                                                                    <a href="index.php?module=Administration&amp;action=index&amp;parenttab=Settings">
-                                                                        Kinh doanh
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="settingsTabList" nowrap>
-                                                                    <a href="index.php?module=Settings&amp;action=listroles&amp;parenttab=Settings">
-                                                                        Vai trò
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
+                                                                                                                        
                                                             <tr>
                                                                 <td class="settingsTabSelected" nowrap>
-                                                                    <a href="index.php?module=Settings&amp;action=ListProfiles&amp;parenttab=Settings">
-                                                                        Quản trị
+                                                                    <a href="system-manager">
+                                                                        Quản trị viên
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                             
-                                                            
-                                                            <tr>
-                                                                <td class="settingsTabHeader" nowrap>
-                                                                    Truy cập
-                                                                </td>
-                                                            </tr>
                                                             <tr>
                                                                 <td class="settingsTabList" nowrap>
-                                                                    <a href="index.php?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings">
-                                                                        Lịch sử đăng nhập của người sử dụng
+                                                                    <a href="user-history">
+                                                                        Lịch sử đăng nhập 
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                             
+                                                            <tr>
+                                                                <td class="settingsTabList" nowrap>
+                                                                    <a href="user-notify">
+                                                                        Thông báo
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
                                                             
                                                         </table>
                                                         <!-- Left side navigation table ends -->
@@ -138,7 +126,7 @@
                                                                 <td class=heading2 valign=bottom><b><a href="">Danh sách quản trị</a>   </b></td>
                                                             </tr>
                                                             <tr>
-                                                                <td valign=top class="small">Danh sách quản trị cấp cao nhất của hệ thống</td>
+                                                                <td valign=top class="small">Danh sách quản trị viên của hệ thống</td>
                                                             </tr>
                                                         </table>
 
@@ -158,7 +146,7 @@
 
                                                                     <table border=0 cellspacing=0 cellpadding=5 width=100% class="listTableTopButtons">
                                                                         <tr>
-                                                                            <td class=small align=right><input type="submit" value="Tạo mới" title="Tạo mới" class="crmButton create small"></td>
+                                                                            <td class=small align=right><input type="button" value="Tạo mới" title="Tạo mới" class="crmButton create small" onclick="window.location.href='add-user'"></td>
                                                                         </tr>
                                                                     </table>
 

@@ -35,4 +35,7 @@ public interface UserDAO {
     //delete
     public boolean deleteUser(User user);
     
+    //new
+    public boolean saveUser(User user);
+    
 }

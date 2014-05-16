@@ -49,55 +49,36 @@
                                                 <td valign=top id="settingsSideMenu" width="10%" >
                                                     <!--Left Side Navigation Table-->
                                                     <table border=0 cellspacing=0 cellpadding=0 width="100%">
-                                                        <tr>
-                                                            <td class="settingsTabHeader" nowrap>
-                                                                Quản lý người sử dụng
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Administration&amp;action=index&amp;parenttab=Settings">
-                                                                    Kinh doanh
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=listroles&amp;parenttab=Settings">
-                                                                    Vai trò
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabSelected" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ListProfiles&amp;parenttab=Settings">
-                                                                    Quản trị
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-
-                                                        <tr>
-                                                            <td class="settingsTabHeader" nowrap>
-                                                                Truy cập
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings">
-                                                                    Lịch sử đăng nhập của người sử dụng
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings">
-                                                                    Thông báo
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-                                                    </table>
+                                                            <tr>
+                                                                <td class="settingsTabHeader" nowrap>
+                                                                    Quản lý người sử dụng
+                                                                </td>
+                                                            </tr>
+                                                                                                                        
+                                                            <tr>
+                                                                <td class="settingsTabList" nowrap>
+                                                                    <a href="system-manager">
+                                                                        Quản trị viên
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td class="settingsTabList" nowrap>
+                                                                    <a href="user-history">
+                                                                        Lịch sử đăng nhập 
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="settingsTabSelected" nowrap>
+                                                                    <a href="user-notify">
+                                                                        Thông báo
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                        </table>
                                                     <!-- Left side navigation table ends -->
 
                                                 </td>
@@ -124,7 +105,7 @@
                                                     <table border=0 cellspacing=0 cellpadding=5 width=100% class="settingsSelUITopLine">
                                                         <tr>
                                                             <td width=50 rowspan=2 valign=top><img src="themes/images/announ.gif" width="48" height="48" border=0></td>
-                                                            <td class=heading2 valign=bottom><b><a href="index.php?module=Settings&action=index&parenttab=Settings">Thiết lập</a> > Thông báo </b><div id="an_busy" style="display:none;float:left;position:relative;"><img src="themes/images/vtbusy.gif" align="right"></div></td>
+                                                            <td class=heading2 valign=bottom><b><a href="">Thiết lập</a> > Thông báo </b><div id="an_busy" style="display:none;float:left;position:relative;"><img src="themes/images/vtbusy.gif" align="right"></div></td>
                                                         </tr>
                                                         <tr>
                                                             <td valign=top class="small">Thay đổi nội dung trong thông báo ở đầu mỗi trang </td>
@@ -132,6 +113,7 @@
                                                     </table>
 
                                                     <br>
+                                                    <form action="user-notify-update" method="GET">
                                                     <table border=0 cellspacing=0 cellpadding=10 width=100% >
                                                         <tr>
                                                             <td>
@@ -139,7 +121,7 @@
                                                                 <table border=0 cellspacing=0 cellpadding=5 width=100% class="tableHeading">
                                                                     <tr>
                                                                         <td class="big"><strong>Nội dung thông báo</strong></td>
-                                                                        <td class="small" align=right><input type="button" class="crmButton small save" value="Cập nhật" onclick="javascript:Announcement();"></td>
+                                                                        <td class="small" align=right><input type="submit" class="crmButton small save" value="Cập nhật"></td>
                                                                     </tr>
                                                                 </table>
 
@@ -148,7 +130,7 @@
                                                                         <td class="colHeader small" valign=top>Nhập thông báo vào ô bên dưới, và ấn nút Cập nhật</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td class="listTableRow small" valign=top><textarea class=small width=90% height=100px id="announcement" name="announcement">Th&ocirc;ng b&aacute;o: Ng&agrave;y 27/10. Bắt đầu l&agrave;m đặc tả phần mềm cho MEDICC</textarea></td>
+                                                                        <td class="listTableRow small" valign=top><textarea class=small width=90% height=100px id="announcement" name="notify"><s:property value="notify"/></textarea></td>
                                                                     </tr>
                                                                 </table>
                                                                 <!--table border=0 cellspacing=0 cellpadding=5 width=100% >
@@ -157,6 +139,7 @@
                                                             </td>
                                                         </tr>
                                                     </table>
+                                                    </form>
 
 
 

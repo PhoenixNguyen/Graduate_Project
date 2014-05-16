@@ -204,7 +204,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return LOGIN;
         }
         
@@ -223,7 +223,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
             return LOGIN;
         }
         
@@ -277,7 +277,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
             return LOGIN;
         }
         
@@ -318,7 +318,7 @@ public class ReportTakeOrderAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
             return LOGIN;
         }
         

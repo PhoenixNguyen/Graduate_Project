@@ -1321,6 +1321,19 @@
             <result name="input" >system-manager-admin-notify.jsp</result>
             <result name="login" >index.jsp</result>
         </action>
+        
+        <action name="user-history" method="refresh" class="com.hp.action.SystemManagerAction">
+            <result name="success" >system-manager-admin-history.jsp</result>
+            <result name="input" >system-manager-admin-history.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="display-user-history" method="displayHistory" class="com.hp.action.SystemManagerAction">
+            <result name="success" >system-manager-admin-history.jsp</result>
+            <result name="input" >system-manager-admin-history.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
     </package>
     
     <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">

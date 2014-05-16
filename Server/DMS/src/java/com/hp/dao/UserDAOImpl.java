@@ -37,6 +37,24 @@ public class UserDAOImpl implements UserDAO{
         return courses;
     }
     
+    public List<String> getListUser(){
+        List<String> courses = null;
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        try{
+            courses = session.createQuery("select id from User  " ).list();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
     public boolean authorize(String username, String password){
         Session session = getSessionFactory().openSession();
         Transaction transaction;

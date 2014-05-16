@@ -9,9 +9,12 @@ package com.hp.action;
 import com.hp.common.ValidateHandle;
 import com.hp.dao.AnnouncementDAO;
 import com.hp.dao.AnnouncementDAOImpl;
+import com.hp.dao.HistoryDAO;
+import com.hp.dao.HistoryDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Announcement;
+import com.hp.domain.History;
 import com.hp.domain.User;
 import static com.opensymphony.xwork2.Action.INPUT;
 import static com.opensymphony.xwork2.Action.LOGIN;
@@ -41,7 +44,8 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
    
     private UserDAO userDAO = new UserDAOImpl();
     private AnnouncementDAO announcementDAO = new AnnouncementDAOImpl();
-            
+    private HistoryDAO historyDAO = new HistoryDAOImpl();
+    
     User user = new User();
 
     private List<User> userList = new ArrayList<User>();
@@ -55,6 +59,45 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
 
     private Announcement announcement = new Announcement();
 
+    private List<String> userStringList = new ArrayList<String>();
+
+    private String userID;
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+    
+    private List<History> historyList = new ArrayList<History>();
+    private History history = new History();
+
+    public List<History> getHistoryList() {
+        return historyList;
+    }
+
+    public void setHistoryList(List<History> historyList) {
+        this.historyList = historyList;
+    }
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
+    
+    public List<String> getUserStringList() {
+        return userStringList;
+    }
+
+    public void setUserStringList(List<String> userStringList) {
+        this.userStringList = userStringList;
+    }
+    
     public String getNotify() {
         return notify;
     }
@@ -132,6 +175,7 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
             return LOGIN;
         }
         
+        userStringList = userDAO.getListUser();
         
         userList = userDAO.getUserList();
         return SUCCESS;
@@ -294,6 +338,22 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
         }
         else
             return INPUT;
+    }
+    
+    public String displayHistory(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) ){
+            return LOGIN;
+        }
+        
+        historyList = historyDAO.getHistoryList(userID);
+        userStringList = userDAO.getListUser();
+        
+        return SUCCESS;
     }
 }
 

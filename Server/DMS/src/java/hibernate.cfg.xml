@@ -49,5 +49,6 @@
         <mapping class="com.hp.domain.ReportSaleWithProduct" />
                 
         <mapping class="com.hp.domain.Announcement" />
+        <mapping class="com.hp.domain.History" />
   </session-factory>
 </hibernate-configuration>

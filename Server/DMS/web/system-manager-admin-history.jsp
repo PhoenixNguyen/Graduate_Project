@@ -45,14 +45,7 @@
             <tbody><tr>
                     <td valign="top"><img src="themes/softed/images/showPanelTopLeft.gif"></td>
                     <td class="showPanelBg" style="padding: 10px;" valign="top" width="100%">
-                        <form action="index.php" method="post" name="ListLoginHistory" id="form" onsubmit="VtigerJS_DialogBox.block();">
-                            <input type='hidden' name='module' value='Users'>
-                            <input type='hidden' name='action' value='ListLoginHistory'>
-                            <input type='hidden' name='record' id='record' value="">
-                            <input type='hidden' name='parenttab' value='Settings'>
-
-                            <br>
-
+                        
                             <div align=center>
 
                                 <table border=0 cellspacing=0 cellpadding=20 width="99%" class="settingsUI">
@@ -63,55 +56,36 @@
                                                     <td valign=top id="settingsSideMenu" width="10%" >
                                                         <!--Left Side Navigation Table-->
                                                         <table border=0 cellspacing=0 cellpadding=0 width="100%">
-                                                        <tr>
-                                                            <td class="settingsTabHeader" nowrap>
-                                                                Quản lý người sử dụng
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Administration&amp;action=index&amp;parenttab=Settings">
-                                                                    Kinh doanh
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=listroles&amp;parenttab=Settings">
-                                                                    Vai trò
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabSelected" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ListProfiles&amp;parenttab=Settings">
-                                                                    Quản trị
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td class="settingsTabHeader" nowrap>
+                                                                    Quản lý người sử dụng
+                                                                </td>
+                                                            </tr>
 
+                                                            <tr>
+                                                                <td class="settingsTabList" nowrap>
+                                                                    <a href="system-manager">
+                                                                        Quản trị viên
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
 
-                                                        <tr>
-                                                            <td class="settingsTabHeader" nowrap>
-                                                                Truy cập
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings">
-                                                                    Lịch sử đăng nhập của người sử dụng
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings">
-                                                                    Thông báo
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td class="settingsTabSelected" nowrap>
+                                                                    <a href="user-history">
+                                                                        Lịch sử đăng nhập 
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="settingsTabList" nowrap>
+                                                                    <a href="user-notify">
+                                                                        Thông báo
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
 
-                                                    </table>
+                                                        </table>
                                                         <!-- Left side navigation table ends -->
 
                                                     </td>
@@ -138,7 +112,7 @@
                                                         <table border=0 cellspacing=0 cellpadding=5 width=100% class="settingsSelUITopLine">
                                                             <tr>
                                                                 <td width=50 rowspan=2 valign=top><img src="themes/images/set-IcoLoginHistory.gif" alt="Theo dõi tài khoản" width="48" height="48" border=0 title="Lịch sử đăng nhập của người sử dụng"></td>
-                                                                <td class=heading2 valign=bottom><b><a href="index.php?module=Settings&action=index&parenttab=Settings">Thiết lập</a> > Lịch sử đăng nhập của người sử dụng</b></td>
+                                                                <td class=heading2 valign=bottom><b><a href="">Lịch sử đăng nhập của người sử dụng</a>  </b></td>
                                                             </tr>
                                                             <tr>
                                                                 <td valign=top class="small">Hiện lịch sử đăng nhập của người dùng</td>
@@ -159,20 +133,34 @@
 
                                                                     <table border=0 cellspacing=0 cellpadding=0 width=100% class="listRow">
                                                                         <tr>
-                                                                            <td class="small" valign=top ><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+                                                                            <td class="small" valign=top >
+                                                                                <form action="display-user-history" method="get">
+                                                                                    <table width="100%"  border="0" cellspacing="0" cellpadding="5">
 
-                                                                                    <tr valign="top">
-                                                                                        <td nowrap width="18%" class="small cellLabel"><strong>Chọn người sử dụng</strong></td>
-                                                                                        <td class="small cellText">
-                                                                                            <select name="user_list" id="user_list" onchange="fetchlogin_js();">
-                                                                                                <option value="none" selected="true">--Chưa chọn--</option>
-                                                                                                <option value=1>admin</option><option value=2730>binhnt</option><option value=6>cancv</option><option value=10>cuongtq</option><option value=2729>ducpl</option><option value=18>hungnv</option><option value=20>huylm</option><option value=2731>karofi</option><option value=26>quandm</option><option value=25>quyennt</option><option value=21>sangch</option><option value=24>thamnh</option><option value=2725>ThaoDT</option><option value=2726>ThaoNTT</option><option value=5>thoant</option><option value=2727>thomlt</option><option value=2721>trangnt</option><option value=28>trattp</option><option value=2728>TuyetVT</option><option value=15>vuidt</option><option value=27>yennt</option>
-                                                                                            </select>	
-                                                                                        </td>
+                                                                                        <tr valign="top">
+                                                                                            <td nowrap width="18%" class="small cellLabel"><strong>Chọn người sử dụng</strong></td>
+                                                                                            <td class="small cellText">
+                                                                                                <select name="userID" id="user_list" onchange="fetchlogin_js();">
 
-                                                                                    </tr>
+                                                                                                    <option value="none" selected="true">--Chưa chọn--</option>
+                                                                                                    <s:iterator value="userStringList" status="index">
+                                                                                                        <s:if test="userStringList.get(#index.index) == userID">
+                                                                                                            <option value="<s:property />" selected=""><s:property /></option>
+                                                                                                        </s:if>
+                                                                                                        <s:else>
+                                                                                                            <option value="<s:property />" ><s:property /></option>
+                                                                                                        </s:else>
+                                                                                                    </s:iterator>
 
-                                                                                </table>
+                                                                                                </select>	
+                                                                                            </td>
+                                                                                            <td nowrap width="50%" class="small cellLabel">
+                                                                                                <input value="Chấp nhận" type="submit" >
+                                                                                            </td>
+                                                                                        </tr>
+
+                                                                                    </table>
+                                                                                </form>
                                                                             </td>
                                                                         </tr>
                                                                         <table class="tableHeading" border="0" cellpadding="5" cellspacing="0" width="100%">
@@ -186,192 +174,42 @@
                                                                             <tbody><tr><td align="left"><div id="login_history_cont">
                                                                                             <table width="100%" border="0">
                                                                                                 <tbody><tr>
-                                                                                                        <td align="left">
-                                                                                                            Hiển thị 1 - 10 trên 2093
+                                                                                                        <td align="right">
+                                                                                                            Tổng truy cập <s:property value="historyList.size()"/> lần
                                                                                                         </td>
-                                                                                                        <td align="right" style="padding: 5px;"><img src="themes/images/start_disabled.gif" border="0" align="absmiddle">&nbsp;<img src="themes/images/previous_disabled.gif" border="0" align="absmiddle">&nbsp;<input class="small" name="pagenum" type="text" value="1" style="width: 3em;margin-right: 0.7em;" onchange="getListViewEntries_js('Users', 'parenttab=&amp;start=' + this.value + '');" onkeypress="return VT_disableFormSubmit(event);"><span name="Users_listViewCountContainerName" class="small" style="white-space: nowrap;">trên 210</span><a href="javascript:;" onclick="getListViewEntries_js('Users', 'parenttab=&amp;start=2');" alt="Tiếp" title="Tiếp"><img src="themes/images/next.gif" border="0" align="absmiddle"></a>&nbsp;<a href="javascript:;" onclick="getListViewEntries_js('Users', 'parenttab=&amp;start=210');" alt="Cuối cùng" title="Cuối cùng"><img src="themes/images/end.gif" border="0" align="absmiddle"></a>&nbsp;</td>
+                                                                                                        <!--                                                                                                        <td align="right" style="padding: 5px;"><img src="themes/images/start_disabled.gif" border="0" align="absmiddle">&nbsp;<img src="themes/images/previous_disabled.gif" border="0" align="absmiddle">&nbsp;<input class="small" name="pagenum" type="text" value="1" style="width: 3em;margin-right: 0.7em;" onchange="getListViewEntries_js('Users', 'parenttab=&amp;start=' + this.value + '');" onkeypress="return VT_disableFormSubmit(event);">
+                                                                                                                                                                                                        <span name="Users_listViewCountContainerName" class="small" style="white-space: nowrap;">trên 210</span><a href="javascript:;" onclick="getListViewEntries_js('Users', 'parenttab=&amp;start=2');" alt="Tiếp" title="Tiếp"><img src="themes/images/next.gif" border="0" align="absmiddle"></a>&nbsp;<a href="javascript:;" onclick="getListViewEntries_js('Users', 'parenttab=&amp;start=210');" alt="Cuối cùng" title="Cuối cùng"><img src="themes/images/end.gif" border="0" align="absmiddle"></a>&nbsp;
+                                                                                                                                                                                                        </td>-->
                                                                                                     </tr>
                                                                                                 </tbody></table>
                                                                                             <table border="0" cellspacing="1" cellpadding="3" width="100%" style="background-color:#cccccc;" class="small">
 
-                                                                                                <tbody><tr style="background-color:#efefef">
+                                                                                                <tbody>
+                                                                                                    <tr style="background-color:#efefef">
                                                                                                         <td class="lvtCol">Tên người dùng</td>
                                                                                                         <td class="lvtCol">IP của người dùng</td>
                                                                                                         <td class="lvtCol">Thời điểm đăng nhập</td>
                                                                                                         <td class="lvtCol">Thời điểm thoát</td>
-                                                                                                        <td class="lvtCol">Trạng thái</td>
+                                                                                                        <td class="lvtCol">Ghi chú</td>
                                                                                                     </tr>
+                                                                                                    <s:iterator value="historyList" status="index">
                                                                                                     <tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.8.13</td>
-
-
-                                                                                                        <td>2014-05-15 20:09:58</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.8.13</td>
-
-
-                                                                                                        <td>2014-05-15 16:30:08</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.8.13</td>
-
-
-                                                                                                        <td>2014-05-13 10:19:16</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColDataHover">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.8.13</td>
-
-
-                                                                                                        <td>2014-05-12 18:51:10</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.8.13</td>
-
-
-                                                                                                        <td>2014-05-10 15:49:15</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.8.13</td>
-
-
-                                                                                                        <td>2014-05-10 06:10:29</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.8.40</td>
-
-
-                                                                                                        <td>2014-05-07 15:41:06</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>113.190.240.134</td>
-
-
-                                                                                                        <td>2014-05-07 03:24:38</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'" class="lvtColData">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>118.71.9.129</td>
-
-
-                                                                                                        <td>2014-04-28 18:30:03</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr><tr bgcolor="white" onmouseover="this.className = 'lvtColDataHover'" onmouseout="this.className = 'lvtColData'">
-
-                                                                                                        <td>admin</td>
-
-
-                                                                                                        <td>113.190.240.134</td>
-
-
-                                                                                                        <td>2014-04-26 02:29:36</td>
-
-
-                                                                                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---</td>
-
-
-                                                                                                        <td>Signed in</td>
-
-
-                                                                                                    </tr></tbody></table></div></td><td></td></tr>	
+                                                                                                        <td><s:property value="user"/></td>
+                                                                                                        <td><s:property value="ip"/></td>
+                                                                                                        <td><s:property value="login"/></td>
+                                                                                                        <td><s:property value="logout"/></td>
+                                                                                                        <td><s:property value="note"/></td>
+                                                                                                    </tr>
+                                                                                                    </s:iterator>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                    <td>
+
+                                                                                    </td>
+                                                                                </tr>	
                                                                             </tbody>
                                                                         </table>	
                                                                         <br>	
@@ -404,10 +242,10 @@
         </form>
     </table>
 
-<br><br><br>
+    <br><br><br>
 
-        <!--    Footer-->
-        <s:include value="footer.jsp"></s:include>
+    <!--    Footer-->
+    <s:include value="footer.jsp"></s:include>
 </body>
 </html>
 

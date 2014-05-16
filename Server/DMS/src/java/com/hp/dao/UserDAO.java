@@ -18,7 +18,7 @@ public interface UserDAO {
     //pPermission = 1: Tong giam doc
     //pPermission = 2: Giam doc
     public List<String> getListUser(int pPermission);
-    
+    public List<String> getListUser();
     //Authorize
     public boolean authorize(String username, String password);
     

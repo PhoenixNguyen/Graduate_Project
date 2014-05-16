@@ -8,11 +8,19 @@ package com.hp.action;
 
 import com.hp.dao.AnnouncementDAO;
 import com.hp.dao.AnnouncementDAOImpl;
+import com.hp.dao.HistoryDAO;
+import com.hp.dao.HistoryDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Announcement;
+import com.hp.domain.History;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
@@ -24,10 +32,22 @@ import org.apache.struts2.ServletActionContext;
 public class UserAction extends ActionSupport{
     
     private UserDAO userDAO = new UserDAOImpl();
+    private HistoryDAO historyDAO = new HistoryDAOImpl();
+    
     private AnnouncementDAO announcementDAO = new AnnouncementDAOImpl();
     
     private Announcement announcement = new Announcement();
 
+    private History history = new History();
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
+    
     public Announcement getAnnouncement() {
         return announcement;
     }
@@ -50,11 +70,39 @@ public class UserAction extends ActionSupport{
         System.out.println("user: " + username + " pass: " + password);
         
         if(userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            //save history
+            SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+            Calendar cal = Calendar.getInstance();
+            
+            //get ip
+            InetAddress ip = null;
+            try {
+
+                  ip = InetAddress.getLocalHost();
+                  System.out.println("Current IP address : " + ip.getHostAddress());
+
+            } catch (UnknownHostException e) {
+
+                  e.printStackTrace();
+
+            }
+            
+            String time = sdf2.format(cal.getTime());
+            history.setUser(username);
+            history.setIp(ip.getHostAddress().toString());
+            history.setLogin(Timestamp.valueOf(time));
+            
+            historyDAO.saveOrUpdate(history);
+            
+            int id = historyDAO.getHistory(time).getStt();
+            //////////////////////////////////////////////////////////////////////////
             announcement = announcementDAO.getAnnouncement();
             
             session.setAttribute("announcement", announcement);
             session.setAttribute("authorized", true);
             session.setAttribute("USER", userDAO.getUser(username));
+            
+            session.setAttribute("history", id);
             return SUCCESS;
         }
         else
@@ -75,6 +123,20 @@ public class UserAction extends ActionSupport{
     public String logout(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
+        int id = 0;
+        if(session.getAttribute("history") != null)
+            id = (Integer)session.getAttribute("history");
+        
+        history = historyDAO.getHistory(id);
+        if(history != null){
+            history.setLogout(Timestamp.valueOf(time));
+            historyDAO.saveOrUpdate(history);
+        }
         
         session.setAttribute("user_name", null);
         session.setAttribute("user_password", null);

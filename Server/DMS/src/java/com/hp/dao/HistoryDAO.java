@@ -17,4 +17,7 @@ public interface HistoryDAO {
     public boolean saveOrUpdate(History pHistory);
     public boolean updateHistory(History pHistory);
     public List<History> getHistoryList(String pUser);
+    
+    public History getHistory(String time);
+    public History getHistory(int id);
 }

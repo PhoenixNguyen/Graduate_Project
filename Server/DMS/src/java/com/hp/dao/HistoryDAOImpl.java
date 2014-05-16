@@ -83,5 +83,49 @@ public class HistoryDAOImpl implements HistoryDAO{
         
         return historyList;
     }
+ 
+    public History getHistory(String time){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        History history = null;
+        try{
+            String sql = "from History where login='"+time+"'";
+            Query query = session.createQuery(sql);
+            
+            history = (History)query.uniqueResult();
+                      
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return history;
+    }
     
+    public History getHistory(int id){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        History history = null;
+        try{
+           
+            
+            history = (History)session.get(History.class, id);
+                      
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return history;
+    }
 }

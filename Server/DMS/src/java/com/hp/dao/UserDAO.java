@@ -24,8 +24,13 @@ public interface UserDAO {
     
     //Get user
     public User getUser(String username);
+    public User getUser(int stt);
     
     //Get List user
     public List<User> getUserList();
+    
+    //update
+    public boolean updateUser(User user);
+    
     
 }

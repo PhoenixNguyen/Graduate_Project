@@ -1267,6 +1267,19 @@
             <result name="login" >index.jsp</result>
         </action>
         
+        <action name="admin-detail" method="adminDetail" class="com.hp.action.SystemManagerAction">
+            <result name="success">system-manager-admin-detail.jsp</result>
+            <result name="input" >home.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="admin-change-password" method="changePassword" class="com.hp.action.SystemManagerAction">
+            <result name="success">system-manager-admin-change-password.jsp</result>
+            <result name="input" >system-manager-admin-change-password.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        
     </package>
     
     <package name="maps"  extends="json-default,hibernate-default" namespace="/maps">

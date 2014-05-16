@@ -168,7 +168,7 @@
                                                                                 <a href=""><img src="themes/images/editfield.gif" alt="Sửa" title="Sửa" border="0" align="absmiddle"></a>
 
                                                                             </td>
-                                                                            <td class="listTableRow small" valign=top><a href=""><b><s:property value="id"/></b></a></td>
+                                                                            <td class="listTableRow small" valign=top><a href="admin-detail?id_admin=<s:property value="stt"/>"><b><s:property value="id"/></b></a></td>
                                                                             <td class="listTableRow small" valign=top><s:property value="hoTen"/></td>
                                                                             <td class="listTableRow small" valign=top>
                                                                                 <s:if test="permission == 1">

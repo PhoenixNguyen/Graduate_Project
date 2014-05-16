@@ -85,6 +85,28 @@ public class UserDAOImpl implements UserDAO{
         return user;
     }
     
+    public User getUser(int stt){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        User user = null;
+        try{
+            
+            
+            user = (User)session.get(User.class, stt);
+                      
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return user;
+    }
+    
     public List<User> getUserList(){
         Session session = getSessionFactory().openSession();
         Transaction transaction;
@@ -108,4 +130,26 @@ public class UserDAOImpl implements UserDAO{
         return userList;
     }
     
+    public boolean updateUser(User user){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        try{
+            
+            
+            session.update(user);
+            session.getTransaction().commit();          
+            
+        }catch(Exception e){
+            transaction.rollback();
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
 }

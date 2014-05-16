@@ -132,13 +132,13 @@
                                                                                     <td width=50 rowspan="2"><img src="themes/images/ico-users.gif" align="absmiddle"></td>	
                                                                                     <td>
                                                                                         <span class="heading2">
-                                                                                            <b><a href="index.php?module=Settings&action=index&parenttab=Settings">Thiết lập </a> &gt; <a href="index.php?module=Administration&action=index&parenttab=Settings"> Người sử dụng </a>&gt;"Nguyễn Thị Thoa " </b></span>
+                                                                                            <b><a href="">Quản trị viên </a> &gt; <s:property value="user.id"/> - <s:property value="user.name"/> </b></span>
                                                                                         <span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>					
                                                                                     </td>
 
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td>Xem thông tin về người sử dụng "Nguyễn Thị Thoa "</td>
+                                                                                    <td>Xem thông tin về quản trị viên <b><s:property value="user.id"/></b></td>
                                                                                 </tr>
                                                                             </table>
                                                                         </td>
@@ -169,19 +169,19 @@
                                                                                         <table border="0" cellpadding="5" cellspacing="0" width="100%">
                                                                                             <tr >
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Tên Khách hàng</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Họ tên</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                                <td class="dvtCellInfo" align="left" width=25%">&nbsp;thoant</td>
+                                                                                                <td class="dvtCellInfo" align="left" width=25%">&nbsp;<s:property value="user.hoTen"/></td>
 
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Người quản trị</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Chức danh</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--CheckBox for is admin-->
 
-                                                                                                <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Người quản trị" onMouseOver="hndMouseOver(156, 'Người quản trị');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Người quản trị">off&nbsp;</span>
+                                                                                                <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Người quản trị" onMouseOver="hndMouseOver(156, 'Người quản trị');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Người quản trị"><s:property value="user.chucDanh"/>&nbsp;</span>
                                                                                                     <div id="editarea_Người quản trị" style="display:none;">
                                                                                                         <input id="txtbox_Người quản trị" type="checkbox" name="is_admin" style="border:1px solid #bababa;" value="0">
                                                                                                         <br><input name="button_Người quản trị" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Người quản trị', 'Users', 156, 'vtiger_users', 'is_admin', '5');"/> hoặc
@@ -197,7 +197,7 @@
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!-- Password Field-->
-                                                                                                <td width=25% class="dvtCellInfo" align="left"><input title='Thay đổi mật khẩu [Alt+P]' accessKey='P' class='crmButton password small' LANGUAGE=javascript onclick='return window.open("system-manager-admin-change-password.jsp");' type='button' name='password' value='Thay đổi mật khẩu'></td>	
+                                                                                                <td width=25% class="dvtCellInfo" align="left"><input title='Thay đổi mật khẩu [Alt+P]' accessKey='P' class='crmButton password small' LANGUAGE=javascript onclick='return window.open("admin-change-password");' type='button' name='password' value='Thay đổi mật khẩu'></td>	
 
 
                                                                                                 <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Email</td>
@@ -205,7 +205,7 @@
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--Email-->
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Email" onmouseover="hndMouseOver(104, 'Email');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Email">
-                                                                                                        <a href="javascript:InternalMailer(5,463,'email1','Users','record_id');">sales@hosgroup.com.vn</a>
+                                                                                                        <a href="javascript:InternalMailer(5,463,'email1','Users','record_id');"><s:property value="user.email"/></a>
                                                                                                     </span>
                                                                                                     <div id="editarea_Email" style="display:none;">
                                                                                                         <input class="detailedViewTextBox" onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" type="text" id="txtbox_Email" name="email1" maxlength='100' value="sales@hosgroup.com.vn"></input>
@@ -219,20 +219,20 @@
                                                                                             </tr>
                                                                                             <tr >
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Trạng thái</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Số điện thoại</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--ComboBox Status edit only for admin Users-->
-                                                                                                <td width=25% class="dvtCellInfo" align="left">Hoạt động</td>
+                                                                                                <td width=25% class="dvtCellInfo" align="left"><s:property value="user.sdt"/></td>
 
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Họ</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Địa chỉ</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--TextBox-->
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Họ" onmouseover="hndMouseOver(1, 'Họ');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Họ"></span>
+                                                                                                    &nbsp;&nbsp;<span id="dtlview_Họ"><s:property value="user.diaChi"/></span>
                                                                                                     <div id="editarea_Họ" style="display:none;">
                                                                                                         <input class="detailedViewTextBox" onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" type="text" id="txtbox_Họ" name="first_name" maxlength='100' value=""></input>
                                                                                                         <br><input name="button_Họ" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Họ', 'Users', 1, 'vtiger_users', 'first_name', '5');
@@ -244,11 +244,11 @@
                                                                                             </tr>
                                                                                             <tr >
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Tiền tệ</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Ngày tham gia</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--ComboBox currency id edit only for admin Users-->
-                                                                                                <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Tiền tệ" onmouseover="hndMouseOver(117, 'Tiền tệ');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Tiền tệ">Vietnam, Dong : ₫</span>
+                                                                                                <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Tiền tệ" onmouseover="hndMouseOver(117, 'Tiền tệ');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Tiền tệ"><s:property value="user.ngayThamGia"/></span>
                                                                                                     <div id="editarea_Tiền tệ" style="display:none;">
                                                                                                         <select id="txtbox_Tiền tệ" name="currency_id" class="small">
                                                                                                             <option value="1" selected>Vietnam, Dong</option>	
@@ -263,97 +263,48 @@
                                                                                                 </td>
 
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Tên</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Quyền</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--TextBox-->
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Tên" onmouseover="hndMouseOver(2, 'Tên');" onmouseout="fnhide('crmspanid');" valign="top">
 
-                                                                                                    &nbsp;&nbsp;<span id="dtlview_Tên">Nguyễn Thị Thoa</span>
-                                                                                                    <div id="editarea_Tên" style="display:none;">
-                                                                                                        <input class="detailedViewTextBox" onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" type="text" id="txtbox_Tên" name="last_name" maxlength='100' value="Nguyễn Thị Thoa"></input>
-                                                                                                        <br><input name="button_Tên" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Tên', 'Users', 2, 'vtiger_users', 'last_name', '5');
-                                                                                                                fnhide('crmspanid');"/> hoặc
-                                                                                                        <a href="javascript:;" onclick="hndCancel('dtlview_Tên', 'editarea_Tên', 'Tên')" class="link">Hủy bỏ</a>
-                                                                                                    </div>
+                                                                                                    &nbsp;&nbsp;
+                                                                                                    <span id="dtlview_Tên">
+                                                                                                        <s:if test="user.permission == 1">Quản lý cao cấp</s:if>
+                                                                                                        <s:if test="user.permission == 2">Quản lý bán hàng</s:if>
+                                                                                                    </span>
+                                                                                                    
                                                                                                 </td>
 
                                                                                             </tr>
                                                                                             <tr >
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Xem Đầu mối mặc định</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Trạng thái</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--ComboBox-->
 
-                                                                                                <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Xem Đầu mối mặc định" onmouseover="hndMouseOver(16, 'Xem Đầu mối mặc định');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Xem Đầu mối mặc định"><font color="">Ngày hôm nay</font></span>
-                                                                                                    <div id="editarea_Xem Đầu mối mặc định" style="display:none;">
-                                                                                                        <select id="txtbox_Xem Đầu mối mặc định" name="lead_view" class="small">
-                                                                                                            <option value="Today" selected>
-                                                                                                                Ngày hôm nay
-                                                                                                            </option>
-
-                                                                                                            <option value="Last 2 Days" >
-                                                                                                                2 ngày trước
-                                                                                                            </option>
-
-                                                                                                            <option value="Last Week" >
-                                                                                                                Tuần trước
-                                                                                                            </option>
-
-                                                                                                        </select>
-                                                                                                        <br><input name="button_Xem Đầu mối mặc định" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Xem Đầu mối mặc định', 'Users', 16, 'vtiger_users', 'lead_view', '5');
-                                                                                                                fnhide('crmspanid');"/> hoặc
-                                                                                                        <a href="javascript:;" onclick="hndCancel('dtlview_Xem Đầu mối mặc định', 'editarea_Xem Đầu mối mặc định', 'Xem Đầu mối mặc định')" class="link">Hủy bỏ</a>
-                                                                                                    </div>
+                                                                                                <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Xem Đầu mối mặc định" onmouseover="hndMouseOver(16, 'Xem Đầu mối mặc định');" onmouseout="fnhide('crmspanid');">
+                                                                                                    <span id="dtlview_Xem Đầu mối mặc định">
+                                                                                                        <font color="">
+                                                                                                        <s:if test="user.status == 1">Đang hoạt động</s:if>
+                                                                                                        <s:if test="user.status == 0">Dừng hoạt động</s:if>
+                                                                                                        
+                                                                                                        </font>
+                                                                                                </span>
+                                                                                                    
                                                                                                 </td>
 
 
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Vai trò</td>
+                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Ghi chú</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
 
-                                                                                                <td class="dvtCellInfo" align="left" width=25%">&nbsp;<a href="index.php?module=Settings&action=RoleDetailView&roleid=H10">Software Man</a></td>
+                                                                                                <td class="dvtCellInfo" align="left" width=25%">&nbsp;<a href=""><s:property value="user.ghiChu"/></a></td>
 
                                                                                             </tr>
-                                                                                            <tr >
-
-                                                                                                <td class="dvtCellLabel" align=right width=25%><input type="hidden" id="hdtxt_IsAdmin" value=1></input>Xem lịch mặc định</td>
-
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--ComboBox-->
-
-                                                                                                <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Xem lịch mặc định" onmouseover="hndMouseOver(16, 'Xem lịch mặc định');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Xem lịch mặc định"><font color="">Ngày hôm nay</font></span>
-                                                                                                    <div id="editarea_Xem lịch mặc định" style="display:none;">
-                                                                                                        <select id="txtbox_Xem lịch mặc định" name="activity_view" class="small">
-                                                                                                            <option value="Today" selected>
-                                                                                                                Ngày hôm nay
-                                                                                                            </option>
-
-                                                                                                            <option value="This Week" >
-                                                                                                                Tuần này
-                                                                                                            </option>
-
-                                                                                                            <option value="This Month" >
-                                                                                                                Tháng này
-                                                                                                            </option>
-
-                                                                                                            <option value="This Year" >
-                                                                                                                Năm nay
-                                                                                                            </option>
-
-                                                                                                        </select>
-                                                                                                        <br><input name="button_Xem lịch mặc định" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Xem lịch mặc định', 'Users', 16, 'vtiger_users', 'activity_view', '5');
-                                                                                                                fnhide('crmspanid');"/> hoặc
-                                                                                                        <a href="javascript:;" onclick="hndCancel('dtlview_Xem lịch mặc định', 'editarea_Xem lịch mặc định', 'Xem lịch mặc định')" class="link">Hủy bỏ</a>
-                                                                                                    </div>
-                                                                                                </td>
-
-
-                                                                                                <td class="dvtCellLabel" align=right>&nbsp;</td>
-                                                                                                <td class="dvtCellInfo" align=left >&nbsp;</td>
-
-                                                                                            </tr>
+                                                                                            
                                                                                         </table>
 
                                                                                     </td>
@@ -364,7 +315,7 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td colspan=2 class="small"><div align="right"><a href="#top">[Quay về đầu trang]</a></div></td>
+                                                                        <td colspan=2 class="small"><div align="right"><a href="#top"></a></div></td>
                                                                     </tr>
                                                                 </table>
 

@@ -1279,6 +1279,18 @@
             <result name="login" >index.jsp</result>
         </action>
         
+        <action name="admin-edit" method="adminDetail" class="com.hp.action.SystemManagerAction">
+            <result name="success">system-manager-admin-edit.jsp</result>
+            <result name="input" >system-manager-admin-edit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="admin-update" method="updateAdmin" class="com.hp.action.SystemManagerAction">
+            <result name="success" type="redirect">admin-detail?id_admin=${user.stt}</result>
+            <result name="input" >system-manager-admin-edit.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
         
     </package>
     

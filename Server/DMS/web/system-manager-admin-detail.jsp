@@ -22,6 +22,14 @@
         <![endif]-->
 
         <!-- End -->
+        <script type='text/javascript' language='JavaScript'>
+            var status = <s:property value="changePWStatus"/>
+            if(status == "true"){
+                alert('Đã cập nhật');
+                
+            }
+            
+        </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
 
@@ -119,7 +127,7 @@
                                                 <table width="100%"  border="0" cellspacing="0" cellpadding="0">
                                                     <tr>
                                                         <td class="padTab" align="left">
-                                                            <form name="DetailView" method="POST" action="index.php" ENCTYPE="multipart/form-data" id="form" style="margin:0px" onsubmit="VtigerJS_DialogBox.block();">
+                                                            <form name="DetailView" method="POST" action="" ENCTYPE="multipart/form-data" id="form" style="margin:0px" onsubmit="VtigerJS_DialogBox.block();">
                                                                 <input type="hidden" name="module" value="Users" style="margin:0px">
                                                                 
 
@@ -148,8 +156,8 @@
                                                                         <td colspan="2" nowrap align="right">
                                                                             
                                                                             <input title='Sửa [Alt+E]' accessKey='E' class='crmButton small edit' onclick="
-                                                                                
-                                                                                   " type='submit' name='Edit' value='  Sửa  '>
+                                                                                window.location.href = 'admin-edit?id_admin=<s:property value="user.stt"/>'
+                                                                                   " type='button' name='Edit' value='  Sửa  '>
                                                                             <input type="button" onclick="deleteUser(5);" class="crmButton small cancel" value="Xóa"></input>
                                                                         </td>
                                                                     </tr>
@@ -288,8 +296,8 @@
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Xem Đầu mối mặc định" onmouseover="hndMouseOver(16, 'Xem Đầu mối mặc định');" onmouseout="fnhide('crmspanid');">
                                                                                                     <span id="dtlview_Xem Đầu mối mặc định">
                                                                                                         <font color="">
-                                                                                                        <s:if test="user.status == 1">Đang hoạt động</s:if>
-                                                                                                        <s:if test="user.status == 0">Dừng hoạt động</s:if>
+                                                                                                        <s:if test="user.status == true">Đang hoạt động</s:if>
+                                                                                                        <s:if test="user.status == false">Dừng hoạt động</s:if>
                                                                                                         
                                                                                                         </font>
                                                                                                 </span>

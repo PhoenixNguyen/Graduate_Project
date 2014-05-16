@@ -58,21 +58,21 @@
                                                         </tr>
                                                         <tr>
                                                             <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Administration&amp;action=index&amp;parenttab=Settings">
+                                                                <a href="">
                                                                     Kinh doanh
                                                                 </a>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=listroles&amp;parenttab=Settings">
+                                                                <a href="">
                                                                     Vai trò
                                                                 </a>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="settingsTabSelected" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ListProfiles&amp;parenttab=Settings">
+                                                                <a href="">
                                                                     Quản trị
                                                                 </a>
                                                             </td>
@@ -86,7 +86,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td class="settingsTabList" nowrap>
-                                                                <a href="index.php?module=Settings&amp;action=ModuleManager&amp;parenttab=Settings">
+                                                                <a href="">
                                                                     Lịch sử đăng nhập của người sử dụng
                                                                 </a>
                                                             </td>
@@ -117,9 +117,12 @@
                                                         }
 
                                                     </script>	
-                                                    <form name="EditView" method="POST" action="index.php" ENCTYPE="multipart/form-data" onsubmit="VtigerJS_DialogBox.block();">
-
-                                                        <input type="hidden" name="form_token" value="3600">
+                                                    <form name="EditView" method="GET" action="admin-update" id="sub_form"   ">
+                                                        <s:push value="user" >
+                                                        <input type="hidden" name="user.stt" value="<s:property value="user.stt"/>">
+                                                        <input type="hidden" name="user.id" value="<s:property value="user.id"/>">
+                                                        <input type="hidden" name="user.pw" value="<s:property value="user.pw"/>">
+                                                        <input type="hidden" name="user.ngayThamGia" value="<s:property value="user.ngayThamGia"/>">
 
                                                         <table width="100%"  border="0" cellspacing="0" cellpadding="0" class="settingsSelUITopLine">
                                                             <tr><td align="left">
@@ -129,15 +132,16 @@
                                                                             <td>	
                                                                                 <span class="lvtHeaderText">
 
-                                                                                    <b><a href="index.php?module=Settings&action=index&parenttab=Settings">Thiết lập </a> &gt; <a href="index.php?module=Administration&action=index&parenttab=Settings">Người sử dụng</a> &gt; 
-                                                                                        Sửa người sử dụng "Nguyễn Thị Thoa " 
+                                                                                    <b><a href="">Quản trị viên </a> &gt;
+                                                                                        Sửa Quản trị viên "<s:property value="user.id"/> " 
+                                                                                        <s:property value="user.id"/>
                                                                                     </b></span>
                                                                             </td>
                                                                             <td rowspan="2" nowrap>&nbsp;
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td><b class="small">Sửa thông tin người sử dụng "Nguyễn Thị Thoa "</b>
+                                                                            <td><b class="small">Sửa thông tin quản trị viên"</b>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -146,8 +150,9 @@
                                                             <tr><td>&nbsp;</td></tr>
                                                             <tr>
                                                                 <td nowrap align="right">
-                                                                    <input title="Lưu [Alt+S]" accesskey="S" class="small crmbutton save"  name="button" value="  Lưu  "  onclick="this.form.action.value = 'Save';
-                                                                            return verify_data(EditView)" style="width: 70px;" type="button" />
+                                                                    <input title="Lưu [Alt+S]" accesskey="S" class="small crmbutton save"  name="button" value="  Lưu  "  onclick="
+                                                                        document.getElementById('sub_form').submit();
+                                                                        " style="width: 70px;" type="button" />
                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="small crmbutton cancel" name="button" value="  Hủy bỏ  " onclick="window.history.back()" style="width: 70px;" type="button" />
 
                                                                 </td>
@@ -164,7 +169,7 @@
                                                                                                         <br>
                                                                                                         <table class="tableHeading" border="0" cellpadding="5" cellspacing="0" width="100%">
                                                                                                             <tr>
-                                                                                                                <td class="big"><strong>1. Vai trò và Tình trạng Đăng nhập của người sử dụng</strong></td><td class="small" align="right">&nbsp;</td>
+                                                                                                                <td class="big"><strong>Thông tin quản trị viên</strong></td><td class="small" align="right">&nbsp;</td>
                                                                                                             </tr>
                                                                                                         </table>
                                                                                                         <table border="0" cellpadding="5" cellspacing="0" width="100%">
@@ -174,43 +179,38 @@
                                                                                                             <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                                                                             <tr style="height:25px">
 
-
-
-
                                                                                                                 <td width=20% class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red">*</font>Tên Khách hàng 			</td>
+                                                                                                                    <font color="red"></font>Họ tên			
+                                                                                                                </td>
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
-                                                                                                                    <input type="text" readonly name="user_name" value="thoant" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="text"  name="user.hoTen" value="<s:property value="user.hoTen"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                                                                 </td>
 
-
-
-
                                                                                                                 <td width="20%" class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red"></font>Người quản trị 			</td>
+                                                                                                                    <font color="red"></font>Chức danh			
+                                                                                                                </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <input name="is_admin" tabindex="" type="checkbox">
+                                                                                                                    <input type="text"  name="user.chucDanh" value="<s:property value="user.chucDanh"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
 
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr style="height:25px">
 
-
-
-
                                                                                                                 <!-- Mandatory Email Fields -->			
                                                                                                                 <td width=20% class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red">*</font>Email 			 </td>
-                                                                                                                <td width=30% align=left class="dvtCellInfo"><input type="text" name="email1" id ="email1" value="sales@hosgroup.com.vn" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-
-
+                                                                                                                    <font color="red"></font>Email 			 
+                                                                                                                </td>
+                                                                                                                <td width=30% align=left class="dvtCellInfo">
+                                                                                                                    <input type="text" name="user.email" id ="email1" value="<s:property value="user.email"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                </td>
 
                                                                                                                 <!-- for Status field Disabled for nonadmin -->
                                                                                                                 <td width="20%" class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red"></font>Trạng thái 			</td>
+                                                                                                                    <font color="red"></font>Số điện thoại			
+                                                                                                                </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <select id="user_status" name="status" tabindex="" class="small">
+                                                                                                                    <input type="text" name="user.sdt" id ="email1" value="<s:property value="user.sdt"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+<!--                                                                                                                    <select id="user_status" name="status" tabindex="" class="small">
 
                                                                                                                         <option value="Active" selected >
                                                                                                                             Hoạt động
@@ -218,29 +218,29 @@
                                                                                                                         <option value="Inactive"  >
                                                                                                                             Ngừng hoạt động
                                                                                                                         </option>
-                                                                                                                    </select>
+                                                                                                                    </select>-->
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr style="height:25px">
 
+                                                                                                                <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Địa chỉ</td>
 
-
-
-                                                                                                                <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Họ </td>
-
-                                                                                                                <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="first_name" id ="first_name" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-
-
-
+                                                                                                                <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="user.diaChi" id ="first_name" value="<s:property value="user.diaChi"/>" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
 
                                                                                                                 <!-- for currency in users details-->	
                                                                                                                 <td width="20%" class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red"></font>Tiền tệ 			</td>
+                                                                                                                    <font color="red">*</font>Quyền			
+                                                                                                                </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <select name="currency_id" tabindex="" class="small">
-
-
-                                                                                                                        <option value="1" selected>Vietnam, Dong</option>
+                                                                                                                    <select name="user.permission" tabindex="" class="small">
+                                                                                                                        <s:if test="user.permission == 1">
+                                                                                                                            <option value="1" selected>Quản lý cao cấp</option>
+                                                                                                                            <option value="2" >Quản lý bán hàng</option>
+                                                                                                                        </s:if>
+                                                                                                                        <s:else>
+                                                                                                                            <option value="1" >Quản lý cao cấp</option>
+                                                                                                                            <option value="2" selected>Quản lý bán hàng</option>
+                                                                                                                        </s:else>
                                                                                                                         <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                         <!--code ends -->
                                                                                                                     </select>
@@ -250,83 +250,43 @@
                                                                                                             </tr>
                                                                                                             <tr style="height:25px">
 
-
-
-
                                                                                                                 <td width=20% class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red">*</font>Tên 			</td>
+                                                                                                                    <font color="red">*</font>Trạng thái			
+                                                                                                                </td>
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
-                                                                                                                    <input type="text" name="last_name" tabindex="" value="Nguyễn Thị Thoa" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <select name="user.status" tabindex="" class="small">
+                                                                                                                        <s:if test="user.status == true">
+                                                                                                                            <option value="true" selected>Hoạt động</option>
+                                                                                                                            <option value="false" >Dừng hoạt động</option>
+                                                                                                                        </s:if>
+                                                                                                                        <s:else>
+                                                                                                                            <option value="true" >Hoạt động</option>
+                                                                                                                            <option value="false" selected>Dừng hoạt động</option>
+                                                                                                                        </s:else>
+                                                                                                                        <!-- code added to pass Currency field value, if Disabled for nonadmin -->
+                                                                                                                        <!--code ends -->
+                                                                                                                    </select>
                                                                                                                 </td>
-
-
-
 
                                                                                                                 <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
                                                                                                                 <td width="20%" class="dvtCellLabel" align=right>
                                                                                                                     <font color="red"></font>
-                                                                                                                    Xem Đầu mối mặc định 			</td>
+                                                                                                                    Ghi chú			
+                                                                                                                </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <select name="lead_view" tabindex="" class="small">
-                                                                                                                        <option value="Today" selected>
-                                                                                                                            Ngày hôm nay
-                                                                                                                        </option>
-                                                                                                                        <option value="Last 2 Days" >
-                                                                                                                            2 ngày trước
-                                                                                                                        </option>
-                                                                                                                        <option value="Last Week" >
-                                                                                                                            Tuần trước
-                                                                                                                        </option>
-                                                                                                                    </select>
+                                                                                                                    <input type="text" name="user.ghiChu" id ="email1" value="<s:property value="user.ghiChu"/>" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                                                                 </td>
                                                                                                             </tr>
-                                                                                                            <tr style="height:25px">
-
-
-
-
-                                                                                                                <!-- Role Selection Popup -->		
-                                                                                                                <td width="20%" class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red">*</font>Vai trò 			</td>
-                                                                                                                <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <input name="role_name" id="role_name" readonly class="txtBox" tabindex="" value="Software Man" type="text">&nbsp;
-                                                                                                                    <a href="javascript:openPopup();"><img src="themes/softed/images/select.gif" align="absmiddle" border="0"></a>
-
-                                                                                                                    <input name="user_role" id="user_role" value="H10" type="hidden">
-                                                                                                                </td>
-
-
-
-
-                                                                                                                <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
-                                                                                                                <td width="20%" class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red"></font>
-                                                                                                                    Xem lịch mặc định 			</td>
-                                                                                                                <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <select name="activity_view" tabindex="" class="small">
-                                                                                                                        <option value="Today" selected>
-                                                                                                                            Ngày hôm nay
-                                                                                                                        </option>
-                                                                                                                        <option value="This Week" >
-                                                                                                                            Tuần này
-                                                                                                                        </option>
-                                                                                                                        <option value="This Month" >
-                                                                                                                            Tháng này
-                                                                                                                        </option>
-                                                                                                                        <option value="This Year" >
-                                                                                                                            Năm nay
-                                                                                                                        </option>
-                                                                                                                    </select>
-                                                                                                                </td>
-                                                                                                            </tr>
+                                                                                                            
                                                                                                         </table>
                                                                                                         <br>
 
 
                                                                                                 <tr>
                                                                                                     <td colspan=4 align="right">
-                                                                                                        <input title="Lưu [Alt+S]" accesskey="S" class="small crmbutton save"  name="button" value="  Lưu  "  onclick="this.form.action.value = 'Save';
-                                                                                                                return verify_data(EditView)" style="width: 70px;" type="button" />
+                                                                                                        <input title="Lưu [Alt+S]" accesskey="S" class="small crmbutton save"  name="button" value="  Lưu  "  onclick="
+                                                                                                            document.getElementById('sub_form').submit();
+                                                                                                               " style="width: 70px;" type="button" />
                                                                                                         <input title="Hủy bỏ [Alt+X]" accesskey="X" class="small crmbutton cancel" name="button" value="  Hủy bỏ  " onclick="window.history.back()" style="width: 70px;" type="button" />
                                                                                                     </td>
                                                                                                 </tr>
@@ -337,8 +297,11 @@
                                                                     </table>
                                                                     <br>
                                                                 </td></tr>
-                                                            <tr><td class="small"><div align="right"><a href="#top">[Quay về đầu trang]</a></div></td></tr>
+                                                            <tr><td class="small"><div align="right"><a href="#top"></a></div></td></tr>
                                                         </table>
+                                                    </form>
+                                                                                                                
+                                                        </s:push>
                                                 </td>
                                             </tr>
                                         </table>
@@ -346,7 +309,8 @@
                                     </td>
                                 </tr>
                             </table>
-                    </td></tr></table>
+                    </td></tr>
+        </table>
         <br>
         <br><br><br>
 

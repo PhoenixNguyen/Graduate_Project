@@ -15,6 +15,7 @@ import static com.opensymphony.xwork2.Action.LOGIN;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,12 @@ import org.apache.struts2.ServletActionContext;
  *
  * @author HP
  */
-public class SystemManagerAction extends ActionSupport {
+public class SystemManagerAction extends ActionSupport implements ModelDriven{
+    public Object getModel(){
+        return user;
+    }
+    
+   
     private UserDAO userDAO = new UserDAOImpl();
 
     User user = new User();
@@ -135,7 +141,26 @@ public class SystemManagerAction extends ActionSupport {
             return INPUT;
     }
     
-    
+    public String updateAdmin(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || (User)session.getAttribute("USER") == null){
+            return LOGIN;
+        }
+        
+        
+        changePWStatus = userDAO.updateUser(user);
+        if(changePWStatus){
+            user = userDAO.getUser(user.getStt());
+            return SUCCESS;
+        }
+        else
+            return INPUT;
+    }
+
 }
 
 

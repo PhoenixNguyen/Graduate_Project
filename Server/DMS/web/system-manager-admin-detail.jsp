@@ -23,12 +23,24 @@
 
         <!-- End -->
         <script type='text/javascript' language='JavaScript'>
+            
+            
+            var selected = <s:property value="selected"/>;
+            console.log("deleteStatus: " + selected);
+            
             var status = <s:property value="changePWStatus"/>
             if(status == "true"){
                 alert('Đã cập nhật');
                 
             }
-            
+            if(selected){
+                var deleteStatus = <s:property value="deleteStatus"/>
+                console.log("deleteStatus: " + deleteStatus);
+                if(!deleteStatus){
+                    alert('không thể xóa tài khoản này');
+
+                }
+            }
         </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
@@ -140,7 +152,7 @@
                                                                                     <td width=50 rowspan="2"><img src="themes/images/ico-users.gif" align="absmiddle"></td>	
                                                                                     <td>
                                                                                         <span class="heading2">
-                                                                                            <b><a href="">Quản trị viên </a> &gt; <s:property value="user.id"/> - <s:property value="user.name"/> </b></span>
+                                                                                            <b><a href="">Quản trị viên </a> &gt; <s:property value="user.id"/> - <s:property value="user.hoTen"/> </b></span>
                                                                                         <span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>					
                                                                                     </td>
 
@@ -154,11 +166,14 @@
                                                                     <tr><td colspan="2">&nbsp;</td></tr>
                                                                     <tr>
                                                                         <td colspan="2" nowrap align="right">
+                                                                            <script>
+                                                                                var str = "delete-admin?id_admin=<s:property value="user.stt"/>";
+                                                                            </script>
                                                                             
                                                                             <input title='Sửa [Alt+E]' accessKey='E' class='crmButton small edit' onclick="
                                                                                 window.location.href = 'admin-edit?id_admin=<s:property value="user.stt"/>'
                                                                                    " type='button' name='Edit' value='  Sửa  '>
-                                                                            <input type="button" onclick="deleteUser(5);" class="crmButton small cancel" value="Xóa"></input>
+                                                                            <input type="button" onclick="confirmdelete('' + str);" class="crmButton small cancel" value="Xóa"></input>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -190,11 +205,7 @@
                                                                                                 <!--CheckBox for is admin-->
 
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Người quản trị" onMouseOver="hndMouseOver(156, 'Người quản trị');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Người quản trị"><s:property value="user.chucDanh"/>&nbsp;</span>
-                                                                                                    <div id="editarea_Người quản trị" style="display:none;">
-                                                                                                        <input id="txtbox_Người quản trị" type="checkbox" name="is_admin" style="border:1px solid #bababa;" value="0">
-                                                                                                        <br><input name="button_Người quản trị" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Người quản trị', 'Users', 156, 'vtiger_users', 'is_admin', '5');"/> hoặc
-                                                                                                        <a href="javascript:;" onclick="hndCancel('dtlview_Người quản trị', 'editarea_Người quản trị', 'Người quản trị')" class="link">Hủy bỏ</a>
-                                                                                                    </div>
+                                                                                                    
                                                                                                 </td>    
 
 
@@ -215,13 +226,7 @@
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Email" onmouseover="hndMouseOver(104, 'Email');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Email">
                                                                                                         <a href="javascript:InternalMailer(5,463,'email1','Users','record_id');"><s:property value="user.email"/></a>
                                                                                                     </span>
-                                                                                                    <div id="editarea_Email" style="display:none;">
-                                                                                                        <input class="detailedViewTextBox" onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" type="text" id="txtbox_Email" name="email1" maxlength='100' value="sales@hosgroup.com.vn"></input>
-                                                                                                        <br><input name="button_Email" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Email', 'Users', 104, 'vtiger_users', 'email1', '5');
-                                                                                                                fnhide('crmspanid');"/> hoặc
-                                                                                                        <a href="javascript:;" onclick="hndCancel('dtlview_Email', 'editarea_Email', 'Email')" class="link">Hủy bỏ</a>
-                                                                                                    </div>
-                                                                                                    <div id="internal_mailer_email1" style="display: none;">463####1</div>
+                                                                                                    
                                                                                                 </td>
 
                                                                                             </tr>
@@ -241,12 +246,7 @@
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Họ" onmouseover="hndMouseOver(1, 'Họ');" onmouseout="fnhide('crmspanid');" valign="top">
 
                                                                                                     &nbsp;&nbsp;<span id="dtlview_Họ"><s:property value="user.diaChi"/></span>
-                                                                                                    <div id="editarea_Họ" style="display:none;">
-                                                                                                        <input class="detailedViewTextBox" onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" type="text" id="txtbox_Họ" name="first_name" maxlength='100' value=""></input>
-                                                                                                        <br><input name="button_Họ" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Họ', 'Users', 1, 'vtiger_users', 'first_name', '5');
-                                                                                                                fnhide('crmspanid');"/> hoặc
-                                                                                                        <a href="javascript:;" onclick="hndCancel('dtlview_Họ', 'editarea_Họ', 'Họ')" class="link">Hủy bỏ</a>
-                                                                                                    </div>
+                                                                                                    
                                                                                                 </td>
 
                                                                                             </tr>
@@ -257,17 +257,7 @@
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!--ComboBox currency id edit only for admin Users-->
                                                                                                 <td width=25% class="dvtCellInfo" align="left" id="mouseArea_Tiền tệ" onmouseover="hndMouseOver(117, 'Tiền tệ');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Tiền tệ"><s:property value="user.ngayThamGia"/></span>
-                                                                                                    <div id="editarea_Tiền tệ" style="display:none;">
-                                                                                                        <select id="txtbox_Tiền tệ" name="currency_id" class="small">
-                                                                                                            <option value="1" selected>Vietnam, Dong</option>	
-                                                                                                        </select>
-                                                                                                        <br><input name="button_Tiền tệ" type="button" class="crmbutton small save" value="Lưu" onclick="dtlViewAjaxSave('Tiền tệ', 'Users', 117, 'vtiger_users', 'currency_id', '5');
-                                                                                                                fnhide('crmspanid');"/> hoặc
-                                                                                                        <a href="javascript:;" onclick="hndCancel('dtlview_Tiền tệ', 'editarea_Tiền tệ', 'Tiền tệ')" class="link">Hủy bỏ</a>
-                                                                                                    </div>
-
-
-
+                                                                                                    
                                                                                                 </td>
 
 

@@ -32,5 +32,7 @@ public interface UserDAO {
     //update
     public boolean updateUser(User user);
     
+    //delete
+    public boolean deleteUser(User user);
     
 }

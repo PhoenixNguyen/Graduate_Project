@@ -134,14 +134,14 @@
 
                                                                                     <b><a href="">Quản trị viên </a> &gt;
                                                                                         Sửa Quản trị viên "<s:property value="user.id"/> " 
-                                                                                        <s:property value="user.id"/>
+                                                                                        
                                                                                     </b></span>
                                                                             </td>
                                                                             <td rowspan="2" nowrap>&nbsp;
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td><b class="small">Sửa thông tin quản trị viên"</b>
+                                                                            <td><b class="small">Sửa thông tin quản trị viên</b>
                                                                             </td>
                                                                         </tr>
                                                                     </table>

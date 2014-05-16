@@ -1291,6 +1291,12 @@
             <result name="login" >index.jsp</result>
         </action>
         
+        <action name="delete-admin" method="deleteAdmin" class="com.hp.action.SystemManagerAction">
+            <result name="success" >system-manager.jsp</result>
+            <result name="input" >system-manager-admin-detail.jsp?id_admin=${user.stt}</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
         
     </package>
     

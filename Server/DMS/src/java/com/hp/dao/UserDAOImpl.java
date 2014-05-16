@@ -152,4 +152,27 @@ public class UserDAOImpl implements UserDAO{
         
         return true;
     }
+    
+    public boolean deleteUser(User user){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        boolean status = false;
+        try{
+            
+            
+            session.delete(user);
+            session.getTransaction().commit();          
+            
+        }catch(Exception e){
+            transaction.rollback();
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            session.close();
+        }
+        
+        return true;
+    }
 }

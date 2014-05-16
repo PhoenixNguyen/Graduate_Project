@@ -40,7 +40,25 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
 
     private String new_password;
     private boolean changePWStatus;
+    private boolean deleteStatus;
+    private boolean selected;
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    
+    public boolean isDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+    
     public boolean isChangePWStatus() {
         return changePWStatus;
     }
@@ -161,6 +179,38 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
             return INPUT;
     }
 
+    public String deleteAdmin(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        
+        //Authorize
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || (User)session.getAttribute("USER") == null){
+            return LOGIN;
+        }
+        
+        selected = true;
+        deleteStatus = false;
+        
+        String para =  request.getParameter("id_admin");
+        
+        int id_cus = ValidateHandle.getInteger(para);
+        if(id_cus > -1){
+            user = userDAO.getUser(id_cus);
+            
+            //Do not delete supermanager
+            if(user.getPermission() != 1){
+                deleteStatus = userDAO.deleteUser(user);
+                return SUCCESS;
+            }
+            else
+                return INPUT;
+        }
+        else
+            return INPUT;
+        
+        
+    }
 }
 
 

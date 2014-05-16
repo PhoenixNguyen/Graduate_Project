@@ -22,6 +22,17 @@
         <![endif]-->
 
         <!-- End -->
+        <script type='text/javascript' language='JavaScript'>
+            var selected = <s:property value="selected"/>;
+                        
+            if(selected == "true"){
+                var deleteStatus = <s:property value="deleteStatus"/>
+                if(status == "true"){
+                    alert('Đã xóa tài khoản');
+
+                }
+            }
+        </script>
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
 

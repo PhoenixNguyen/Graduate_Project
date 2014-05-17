@@ -169,49 +169,49 @@ public class SaleOrderDetailDAOImpl implements SaleOrderDetailDAO{
             
             if(pCustomer != null){
                 if(datefinal.compareTo("") == 0){
-                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdondathang_ma_hang) as serial, \n" +
-                            "            chitiet.chitietdondathang_ma_hang as id, \n" +
-                            "		 chitiet.chitietdondathang_ten_san_pham as name, \n" +
-                            "            chitiet.chitietdondathang_don_vi_tinh as unit,\n" +
-                            "            chitiet.chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                            "            chitiet.chitietdondathang_thue as tax,\n" +
-                            "            chitiet.chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                            "            sum(chitiet.chitietdondathang_so_luong) as quantity,\n" +
-                            "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_so_luong) as amount,\n" +
-                            "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_giam_gia * chitiet.chitietdondathang_so_luong/100) as discount,\n" +
-                            "            sum(chitiet.chitietdondathang_thanh_tien) as revenue \n" +
-                            "        from tb_chitietdondathang as chitiet, tb_hoadondathang as dathang\n" +
-                            "	     where dathang.hoadondathang_ma_hoa_don = chitiet.chitietdondathang_ma_hoa_don\n" +
-                            "			and dathang.hoadondathang_ma_khach_hang = '"+pCustomer+"'\n" +
-                            "        group by chitiet.chitietdondathang_ma_hang, chitiet.chitietdondathang_ten_san_pham, \n" +
-                            "            chitiet.chitietdondathang_don_vi_tinh,chitiet.chitietdondathang_don_gia_sau_thue,\n" +
-                            "            chitiet.chitietdondathang_don_gia_truoc_thue,\n" +
-                            "            chitiet.chitietdondathang_thue\n" +
+                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdonbanhang_ma_hang) as serial, \n" +
+                            "            chitiet.chitietdonbanhang_ma_hang as id, \n" +
+                            "		 chitiet.chitietdonbanhang_ten_san_pham as name, \n" +
+                            "            chitiet.chitietdonbanhang_don_vi_tinh as unit,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                            "            chitiet.chitietdonbanhang_thue as tax,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                            "            sum(chitiet.chitietdonbanhang_so_luong) as quantity,\n" +
+                            "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_so_luong) as amount,\n" +
+                            "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_giam_gia * chitiet.chitietdonbanhang_so_luong/100) as discount,\n" +
+                            "            sum(chitiet.chitietdonbanhang_thanh_tien) as revenue \n" +
+                            "        from tb_chitietdonbanhang as chitiet, tb_hoadonbanhang as banhang\n" +
+                            "	     where banhang.hoadonbanhang_ma_hoa_don = chitiet.chitietdonbanhang_ma_hoa_don\n" +
+                            "			and banhang.hoadonbanhang_ma_khach_hang = '"+pCustomer+"'\n" +
+                            "        group by chitiet.chitietdonbanhang_ma_hang, chitiet.chitietdonbanhang_ten_san_pham, \n" +
+                            "            chitiet.chitietdonbanhang_don_vi_tinh,chitiet.chitietdonbanhang_don_gia_sau_thue,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_truoc_thue,\n" +
+                            "            chitiet.chitietdonbanhang_thue\n" +
                             "                \n" +
-                            "        order by chitiet.chitietdondathang_ma_hang";
+                            "        order by chitiet.chitietdonbanhang_ma_hang";
                 }
                 else{
-                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdondathang_ma_hang) as serial, \n" +
-                            "		 chitiet.chitietdondathang_ma_hang as id, \n" +
-                            "		 chitiet.chitietdondathang_ten_san_pham as name, \n" +
-                            "            chitiet.chitietdondathang_don_vi_tinh as unit,\n" +
-                            "            chitiet.chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                            "            chitiet.chitietdondathang_thue as tax,\n" +
-                            "            chitiet.chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                            "            sum(chitiet.chitietdondathang_so_luong) as quantity,\n" +
-                            "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_so_luong) as amount,\n" +
-                            "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_giam_gia * chitiet.chitietdondathang_so_luong/100) as discount,\n" +
-                            "            sum(chitiet.chitietdondathang_thanh_tien) as revenue \n" +
-                            "        from tb_chitietdondathang as chitiet, tb_hoadondathang as dathang\n" +
-                            "	     where dathang.hoadondathang_ma_hoa_don = chitiet.chitietdondathang_ma_hoa_don\n" +
-                            "			and dathang.hoadondathang_ma_khach_hang = '"+pCustomer+"'\n" +
-                            "			and cast(dathang.hoadondathang_ngay_dat_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
-                            "        group by chitiet.chitietdondathang_ma_hang, chitiet.chitietdondathang_ten_san_pham, \n" +
-                            "            chitiet.chitietdondathang_don_vi_tinh,chitiet.chitietdondathang_don_gia_sau_thue,\n" +
-                            "            chitiet.chitietdondathang_don_gia_truoc_thue,\n" +
-                            "            chitiet.chitietdondathang_thue\n" +
+                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdonbanhang_ma_hang) as serial, \n" +
+                            "		 chitiet.chitietdonbanhang_ma_hang as id, \n" +
+                            "		 chitiet.chitietdonbanhang_ten_san_pham as name, \n" +
+                            "            chitiet.chitietdonbanhang_don_vi_tinh as unit,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                            "            chitiet.chitietdonbanhang_thue as tax,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                            "            sum(chitiet.chitietdonbanhang_so_luong) as quantity,\n" +
+                            "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_so_luong) as amount,\n" +
+                            "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_giam_gia * chitiet.chitietdonbanhang_so_luong/100) as discount,\n" +
+                            "            sum(chitiet.chitietdonbanhang_thanh_tien) as revenue \n" +
+                            "        from tb_chitietdonbanhang as chitiet, tb_hoadonbanhang as banhang\n" +
+                            "	     where banhang.hoadonbanhang_ma_hoa_don = chitiet.chitietdonbanhang_ma_hoa_don\n" +
+                            "			and banhang.hoadonbanhang_ma_khach_hang = '"+pCustomer+"'\n" +
+                            "			and cast(banhang.hoadonbanhang_ngay_ban_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
+                            "        group by chitiet.chitietdonbanhang_ma_hang, chitiet.chitietdonbanhang_ten_san_pham, \n" +
+                            "            chitiet.chitietdonbanhang_don_vi_tinh,chitiet.chitietdonbanhang_don_gia_sau_thue,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_truoc_thue,\n" +
+                            "            chitiet.chitietdonbanhang_thue\n" +
                             "                \n" +
-                            "        order by chitiet.chitietdondathang_ma_hang";
+                            "        order by chitiet.chitietdonbanhang_ma_hang";
                 }
             }
             else
@@ -219,143 +219,143 @@ public class SaleOrderDetailDAOImpl implements SaleOrderDetailDAO{
             if(pStaff != null)
             {
                 if(datefinal.compareTo("") == 0){
-                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdondathang_ma_hang) as serial, \n" +
-                            "            chitiet.chitietdondathang_ma_hang as id, \n" +
-                            "		 chitiet.chitietdondathang_ten_san_pham as name, \n" +
-                            "            chitiet.chitietdondathang_don_vi_tinh as unit,\n" +
-                            "            chitiet.chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                            "            chitiet.chitietdondathang_thue as tax,\n" +
-                            "            chitiet.chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                            "            sum(chitiet.chitietdondathang_so_luong) as quantity,\n" +
-                            "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_so_luong) as amount,\n" +
-                            "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_giam_gia * chitiet.chitietdondathang_so_luong/100) as discount,\n" +
-                            "            sum(chitiet.chitietdondathang_thanh_tien) as revenue \n" +
-                            "        from tb_chitietdondathang as chitiet, tb_hoadondathang as dathang\n" +
-                            "	     where dathang.hoadondathang_ma_hoa_don = chitiet.chitietdondathang_ma_hoa_don\n" +
-                            "			and dathang.hoadondathang_nguoi_tao = '"+pStaff+"'\n" +
-                            "        group by chitiet.chitietdondathang_ma_hang, chitiet.chitietdondathang_ten_san_pham, \n" +
-                            "            chitiet.chitietdondathang_don_vi_tinh,chitiet.chitietdondathang_don_gia_sau_thue,\n" +
-                            "            chitiet.chitietdondathang_don_gia_truoc_thue,\n" +
-                            "            chitiet.chitietdondathang_thue\n" +
+                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdonbanhang_ma_hang) as serial, \n" +
+                            "            chitiet.chitietdonbanhang_ma_hang as id, \n" +
+                            "		 chitiet.chitietdonbanhang_ten_san_pham as name, \n" +
+                            "            chitiet.chitietdonbanhang_don_vi_tinh as unit,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                            "            chitiet.chitietdonbanhang_thue as tax,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                            "            sum(chitiet.chitietdonbanhang_so_luong) as quantity,\n" +
+                            "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_so_luong) as amount,\n" +
+                            "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_giam_gia * chitiet.chitietdonbanhang_so_luong/100) as discount,\n" +
+                            "            sum(chitiet.chitietdonbanhang_thanh_tien) as revenue \n" +
+                            "        from tb_chitietdonbanhang as chitiet, tb_hoadonbanhang as banhang\n" +
+                            "	     where banhang.hoadonbanhang_ma_hoa_don = chitiet.chitietdonbanhang_ma_hoa_don\n" +
+                            "			and banhang.hoadonbanhang_nguoi_tao = '"+pStaff+"'\n" +
+                            "        group by chitiet.chitietdonbanhang_ma_hang, chitiet.chitietdonbanhang_ten_san_pham, \n" +
+                            "            chitiet.chitietdonbanhang_don_vi_tinh,chitiet.chitietdonbanhang_don_gia_sau_thue,\n" +
+                            "            chitiet.chitietdonbanhang_don_gia_truoc_thue,\n" +
+                            "            chitiet.chitietdonbanhang_thue\n" +
                             "                \n" +
-                            "        order by chitiet.chitietdondathang_ma_hang";
+                            "        order by chitiet.chitietdonbanhang_ma_hang";
                 }
                 else{
-                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdondathang_ma_hang) as serial, \n" +
-                        "	     chitiet.chitietdondathang_ma_hang as id, \n" +
-                        "	     chitiet.chitietdondathang_ten_san_pham as name, \n" +
-                        "            chitiet.chitietdondathang_don_vi_tinh as unit,\n" +
-                        "            chitiet.chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                        "            chitiet.chitietdondathang_thue as tax,\n" +
-                        "            chitiet.chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                        "            sum(chitiet.chitietdondathang_so_luong) as quantity,\n" +
-                        "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_so_luong) as amount,\n" +
-                        "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_giam_gia * chitiet.chitietdondathang_so_luong/100) as discount,\n" +
-                        "            sum(chitiet.chitietdondathang_thanh_tien) as revenue \n" +
-                        "        from tb_chitietdondathang as chitiet, tb_hoadondathang as dathang\n" +
-                        "	 where dathang.hoadondathang_ma_hoa_don = chitiet.chitietdondathang_ma_hoa_don\n" +
-                        "			and dathang.hoadondathang_nguoi_tao = '"+pStaff+"'\n" +
-                        "			and cast(dathang.hoadondathang_ngay_dat_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
-                        "        group by chitiet.chitietdondathang_ma_hang, chitiet.chitietdondathang_ten_san_pham, \n" +
-                        "            chitiet.chitietdondathang_don_vi_tinh,chitiet.chitietdondathang_don_gia_sau_thue,\n" +
-                        "            chitiet.chitietdondathang_don_gia_truoc_thue,\n" +
-                        "            chitiet.chitietdondathang_thue\n" +
+                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdonbanhang_ma_hang) as serial, \n" +
+                        "	     chitiet.chitietdonbanhang_ma_hang as id, \n" +
+                        "	     chitiet.chitietdonbanhang_ten_san_pham as name, \n" +
+                        "            chitiet.chitietdonbanhang_don_vi_tinh as unit,\n" +
+                        "            chitiet.chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                        "            chitiet.chitietdonbanhang_thue as tax,\n" +
+                        "            chitiet.chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                        "            sum(chitiet.chitietdonbanhang_so_luong) as quantity,\n" +
+                        "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_so_luong) as amount,\n" +
+                        "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_giam_gia * chitiet.chitietdonbanhang_so_luong/100) as discount,\n" +
+                        "            sum(chitiet.chitietdonbanhang_thanh_tien) as revenue \n" +
+                        "        from tb_chitietdonbanhang as chitiet, tb_hoadonbanhang as banhang\n" +
+                        "	 where banhang.hoadonbanhang_ma_hoa_don = chitiet.chitietdonbanhang_ma_hoa_don\n" +
+                        "			and banhang.hoadonbanhang_nguoi_tao = '"+pStaff+"'\n" +
+                        "			and cast(banhang.hoadonbanhang_ngay_ban_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
+                        "        group by chitiet.chitietdonbanhang_ma_hang, chitiet.chitietdonbanhang_ten_san_pham, \n" +
+                        "            chitiet.chitietdonbanhang_don_vi_tinh,chitiet.chitietdonbanhang_don_gia_sau_thue,\n" +
+                        "            chitiet.chitietdonbanhang_don_gia_truoc_thue,\n" +
+                        "            chitiet.chitietdonbanhang_thue\n" +
                         "                \n" +
-                        "        order by chitiet.chitietdondathang_ma_hang";
+                        "        order by chitiet.chitietdonbanhang_ma_hang";
                 }
             }
             else 
             if(pManagerID != null){
                 if(datefinal.compareTo("") == 0){
-                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdondathang_ma_hang) as serial, \n" +
-                    "		 chitiet.chitietdondathang_ma_hang as id, \n" +
-                    "		 chitiet.chitietdondathang_ten_san_pham as name, \n" +
-                    "            chitiet.chitietdondathang_don_vi_tinh as unit,\n" +
-                    "            chitiet.chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                    "            chitiet.chitietdondathang_thue as tax,\n" +
-                    "            chitiet.chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                    "            sum(chitiet.chitietdondathang_so_luong) as quantity,\n" +
-                    "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_so_luong) as amount,\n" +
-                    "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_giam_gia * chitiet.chitietdondathang_so_luong/100) as discount,\n" +
-                    "            sum(chitiet.chitietdondathang_thanh_tien) as revenue \n" +
-                    "        from tb_chitietdondathang as chitiet, tb_hoadondathang as dathang, tb_nhanvien as nv\n" +
-                    "	     where dathang.hoadondathang_ma_hoa_don = chitiet.chitietdondathang_ma_hoa_don\n" +
-                    "			and nv.nhanvien_ma_nhan_vien = dathang.hoadondathang_nguoi_tao\n" +
+                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdonbanhang_ma_hang) as serial, \n" +
+                    "		 chitiet.chitietdonbanhang_ma_hang as id, \n" +
+                    "		 chitiet.chitietdonbanhang_ten_san_pham as name, \n" +
+                    "            chitiet.chitietdonbanhang_don_vi_tinh as unit,\n" +
+                    "            chitiet.chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                    "            chitiet.chitietdonbanhang_thue as tax,\n" +
+                    "            chitiet.chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                    "            sum(chitiet.chitietdonbanhang_so_luong) as quantity,\n" +
+                    "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_so_luong) as amount,\n" +
+                    "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_giam_gia * chitiet.chitietdonbanhang_so_luong/100) as discount,\n" +
+                    "            sum(chitiet.chitietdonbanhang_thanh_tien) as revenue \n" +
+                    "        from tb_chitietdonbanhang as chitiet, tb_hoadonbanhang as banhang, tb_nhanvien as nv\n" +
+                    "	     where banhang.hoadonbanhang_ma_hoa_don = chitiet.chitietdonbanhang_ma_hoa_don\n" +
+                    "			and nv.nhanvien_ma_nhan_vien = banhang.hoadonbanhang_nguoi_tao\n" +
                     "			and nv.nhanvien_nguoi_quan_ly = '" +pManagerID +"'\n" +
-                    "        group by chitiet.chitietdondathang_ma_hang, chitiet.chitietdondathang_ten_san_pham, \n" +
-                    "            chitiet.chitietdondathang_don_vi_tinh,chitiet.chitietdondathang_don_gia_sau_thue,\n" +
-                    "            chitiet.chitietdondathang_don_gia_truoc_thue,\n" +
-                    "            chitiet.chitietdondathang_thue\n" +
+                    "        group by chitiet.chitietdonbanhang_ma_hang, chitiet.chitietdonbanhang_ten_san_pham, \n" +
+                    "            chitiet.chitietdonbanhang_don_vi_tinh,chitiet.chitietdonbanhang_don_gia_sau_thue,\n" +
+                    "            chitiet.chitietdonbanhang_don_gia_truoc_thue,\n" +
+                    "            chitiet.chitietdonbanhang_thue\n" +
                     "                \n" +
-                    "        order by chitiet.chitietdondathang_ma_hang";
+                    "        order by chitiet.chitietdonbanhang_ma_hang";
                 }
                 else{
-                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdondathang_ma_hang) as serial, \n" +
-                    "		 chitiet.chitietdondathang_ma_hang as id, \n" +
-                    "		 chitiet.chitietdondathang_ten_san_pham as name, \n" +
-                    "            chitiet.chitietdondathang_don_vi_tinh as unit,\n" +
-                    "            chitiet.chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                    "            chitiet.chitietdondathang_thue as tax,\n" +
-                    "            chitiet.chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                    "            sum(chitiet.chitietdondathang_so_luong) as quantity,\n" +
-                    "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_so_luong) as amount,\n" +
-                    "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_giam_gia * chitiet.chitietdondathang_so_luong/100) as discount,\n" +
-                    "            sum(chitiet.chitietdondathang_thanh_tien) as revenue \n" +
-                    "        from tb_chitietdondathang as chitiet, tb_hoadondathang as dathang, tb_nhanvien as nv\n" +
-                    "	     where dathang.hoadondathang_ma_hoa_don = chitiet.chitietdondathang_ma_hoa_don\n" +
-                    "			and nv.nhanvien_ma_nhan_vien = dathang.hoadondathang_nguoi_tao\n" +
+                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdonbanhang_ma_hang) as serial, \n" +
+                    "		 chitiet.chitietdonbanhang_ma_hang as id, \n" +
+                    "		 chitiet.chitietdonbanhang_ten_san_pham as name, \n" +
+                    "            chitiet.chitietdonbanhang_don_vi_tinh as unit,\n" +
+                    "            chitiet.chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                    "            chitiet.chitietdonbanhang_thue as tax,\n" +
+                    "            chitiet.chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                    "            sum(chitiet.chitietdonbanhang_so_luong) as quantity,\n" +
+                    "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_so_luong) as amount,\n" +
+                    "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_giam_gia * chitiet.chitietdonbanhang_so_luong/100) as discount,\n" +
+                    "            sum(chitiet.chitietdonbanhang_thanh_tien) as revenue \n" +
+                    "        from tb_chitietdonbanhang as chitiet, tb_hoadonbanhang as banhang, tb_nhanvien as nv\n" +
+                    "	     where banhang.hoadonbanhang_ma_hoa_don = chitiet.chitietdonbanhang_ma_hoa_don\n" +
+                    "			and nv.nhanvien_ma_nhan_vien = banhang.hoadonbanhang_nguoi_tao\n" +
                     "			and nv.nhanvien_nguoi_quan_ly = '" +pManagerID +"'\n" +
-                    "			and cast(dathang.hoadondathang_ngay_dat_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
-                    "        group by chitiet.chitietdondathang_ma_hang, chitiet.chitietdondathang_ten_san_pham, \n" +
-                    "            chitiet.chitietdondathang_don_vi_tinh,chitiet.chitietdondathang_don_gia_sau_thue,\n" +
-                    "            chitiet.chitietdondathang_don_gia_truoc_thue,\n" +
-                    "            chitiet.chitietdondathang_thue\n" +
+                    "			and cast(banhang.hoadonbanhang_ngay_ban_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
+                    "        group by chitiet.chitietdonbanhang_ma_hang, chitiet.chitietdonbanhang_ten_san_pham, \n" +
+                    "            chitiet.chitietdonbanhang_don_vi_tinh,chitiet.chitietdonbanhang_don_gia_sau_thue,\n" +
+                    "            chitiet.chitietdonbanhang_don_gia_truoc_thue,\n" +
+                    "            chitiet.chitietdonbanhang_thue\n" +
                     "                \n" +
-                    "        order by chitiet.chitietdondathang_ma_hang";
+                    "        order by chitiet.chitietdonbanhang_ma_hang";
                 }
             }
             else{
                 if(datefinal.compareTo("") == 0){
-                    sql = "select  ROW_NUMBER() OVER (ORDER BY chitietdondathang_ma_hang) as serial,"+ 
-                        "       chitietdondathang_ma_hang as id, chitietdondathang_ten_san_pham as name, \n" +
-                        "	chitietdondathang_don_vi_tinh as unit,\n" +
-                        "	chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                        "	chitietdondathang_thue as tax,\n" +
-                        "	chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                        "	sum(chitietdondathang_so_luong) as quantity,\n" +
-                        "	sum(chitietdondathang_don_gia_sau_thue * chitietdondathang_so_luong) as amount,\n" +
-                        "	sum(chitietdondathang_don_gia_sau_thue * chitietdondathang_giam_gia * chitietdondathang_so_luong/100) as discount,\n" +
-                        "	sum(chitietdondathang_thanh_tien) as revenue \n" +
-                        "from tb_chitietdondathang \n" +
-                        "group by chitietdondathang_ma_hang, chitietdondathang_ten_san_pham, \n" +
-                        "	chitietdondathang_don_vi_tinh,chitietdondathang_don_gia_sau_thue,\n" +
-                        "	chitietdondathang_don_gia_truoc_thue,\n" +
-                        "	chitietdondathang_thue\n" +
+                    sql = "select  ROW_NUMBER() OVER (ORDER BY chitietdonbanhang_ma_hang) as serial,"+ 
+                        "       chitietdonbanhang_ma_hang as id, chitietdonbanhang_ten_san_pham as name, \n" +
+                        "	chitietdonbanhang_don_vi_tinh as unit,\n" +
+                        "	chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                        "	chitietdonbanhang_thue as tax,\n" +
+                        "	chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                        "	sum(chitietdonbanhang_so_luong) as quantity,\n" +
+                        "	sum(chitietdonbanhang_don_gia_sau_thue * chitietdonbanhang_so_luong) as amount,\n" +
+                        "	sum(chitietdonbanhang_don_gia_sau_thue * chitietdonbanhang_giam_gia * chitietdonbanhang_so_luong/100) as discount,\n" +
+                        "	sum(chitietdonbanhang_thanh_tien) as revenue \n" +
+                        "from tb_chitietdonbanhang \n" +
+                        "group by chitietdonbanhang_ma_hang, chitietdonbanhang_ten_san_pham, \n" +
+                        "	chitietdonbanhang_don_vi_tinh,chitietdonbanhang_don_gia_sau_thue,\n" +
+                        "	chitietdonbanhang_don_gia_truoc_thue,\n" +
+                        "	chitietdonbanhang_thue\n" +
                         " \n" +
-                        "order by chitietdondathang_ma_hang";
+                        "order by chitietdonbanhang_ma_hang";
                 }
                 else
-                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdondathang_ma_hang) as serial, \n" +
-                        "	     chitiet.chitietdondathang_ma_hang as id, \n" +
-                        "	     chitiet.chitietdondathang_ten_san_pham as name, \n" +
-                        "            chitiet.chitietdondathang_don_vi_tinh as unit,\n" +
-                        "            chitiet.chitietdondathang_don_gia_truoc_thue as preTax,\n" +
-                        "            chitiet.chitietdondathang_thue as tax,\n" +
-                        "            chitiet.chitietdondathang_don_gia_sau_thue as afterTax,\n" +
-                        "            sum(chitiet.chitietdondathang_so_luong) as quantity,\n" +
-                        "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_so_luong) as amount,\n" +
-                        "            sum(chitiet.chitietdondathang_don_gia_sau_thue * chitiet.chitietdondathang_giam_gia * chitiet.chitietdondathang_so_luong/100) as discount,\n" +
-                        "            sum(chitiet.chitietdondathang_thanh_tien) as revenue \n" +
-                        "        from tb_chitietdondathang as chitiet, tb_hoadondathang as dathang\n" +
-                        "        where dathang.hoadondathang_ma_hoa_don = chitiet.chitietdondathang_ma_hoa_don\n" +
+                    sql = "select ROW_NUMBER() OVER (ORDER BY chitiet.chitietdonbanhang_ma_hang) as serial, \n" +
+                        "	     chitiet.chitietdonbanhang_ma_hang as id, \n" +
+                        "	     chitiet.chitietdonbanhang_ten_san_pham as name, \n" +
+                        "            chitiet.chitietdonbanhang_don_vi_tinh as unit,\n" +
+                        "            chitiet.chitietdonbanhang_don_gia_truoc_thue as preTax,\n" +
+                        "            chitiet.chitietdonbanhang_thue as tax,\n" +
+                        "            chitiet.chitietdonbanhang_don_gia_sau_thue as afterTax,\n" +
+                        "            sum(chitiet.chitietdonbanhang_so_luong) as quantity,\n" +
+                        "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_so_luong) as amount,\n" +
+                        "            sum(chitiet.chitietdonbanhang_don_gia_sau_thue * chitiet.chitietdonbanhang_giam_gia * chitiet.chitietdonbanhang_so_luong/100) as discount,\n" +
+                        "            sum(chitiet.chitietdonbanhang_thanh_tien) as revenue \n" +
+                        "        from tb_chitietdonbanhang as chitiet, tb_hoadonbanhang as banhang\n" +
+                        "        where banhang.hoadonbanhang_ma_hoa_don = chitiet.chitietdonbanhang_ma_hoa_don\n" +
                         "			\n" +
-                        "			and cast(dathang.hoadondathang_ngay_dat_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
-                        "        group by chitiet.chitietdondathang_ma_hang, chitiet.chitietdondathang_ten_san_pham, \n" +
-                        "            chitiet.chitietdondathang_don_vi_tinh,chitiet.chitietdondathang_don_gia_sau_thue,\n" +
-                        "            chitiet.chitietdondathang_don_gia_truoc_thue,\n" +
-                        "            chitiet.chitietdondathang_thue\n" +
+                        "			and cast(banhang.hoadonbanhang_ngay_ban_hang as date) BETWEEN '"+datefinal+"' and '"+toDateFinal+"'\n" +
+                        "        group by chitiet.chitietdonbanhang_ma_hang, chitiet.chitietdonbanhang_ten_san_pham, \n" +
+                        "            chitiet.chitietdonbanhang_don_vi_tinh,chitiet.chitietdonbanhang_don_gia_sau_thue,\n" +
+                        "            chitiet.chitietdonbanhang_don_gia_truoc_thue,\n" +
+                        "            chitiet.chitietdonbanhang_thue\n" +
                         "                \n" +
-                        "        order by chitiet.chitietdondathang_ma_hang";
+                        "        order by chitiet.chitietdonbanhang_ma_hang";
             }
             
             courses = session.createSQLQuery(sql).addEntity(ReportSaleWithProduct.class).list();

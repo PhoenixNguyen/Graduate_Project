@@ -137,7 +137,7 @@
                                                             <!-- Table Headers -->
                                                             <tbody>
                                                                 <tr>
-                                                            <b>1.</b> Chọn menu nhân viên để quản lý nhân viên, các chức năng chính: <br>
+                                                            <b>1.</b> Chọn menu <b>Nhân viên</b> để quản lý nhân viên, các chức năng chính: <br>
                                                                     <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
                                                                        1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
                                                                        1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
@@ -155,11 +155,10 @@
                                                             <!-- Table Headers -->
                                                             <tbody>
                                                                 <tr>
-                                                            <b>1.</b> Chọn menu nhân viên để quản lý nhân viên, các chức năng chính: <br>
-                                                                    <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
-                                                                       1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
-                                                                       1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
-                                                                       1.4. Xem hình ảnh của nhân viên chụp tại cửa hàng của khách hàng<br>
+                                                            <b>2.</b> Chọn menu <b>khách hàng</b> để quản lý khách hàng, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">2.1. Thêm, sửa xóa khách hàng, thêm khách hàng bằng file excel (số lượng lớn)<br>
+                                                                       2.2. Xem vị trí của khách hàng trên bản đồ số<br>
+                                                                       
                                                                     </p>
                                                                 </tr>
                                                                 
@@ -173,11 +172,63 @@
                                                             <!-- Table Headers -->
                                                             <tbody>
                                                                 <tr>
-                                                            <b>1.</b> Chọn menu nhân viên để quản lý nhân viên, các chức năng chính: <br>
-                                                                    <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
-                                                                       1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
-                                                                       1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
-                                                                       1.4. Xem hình ảnh của nhân viên chụp tại cửa hàng của khách hàng<br>
+                                                            <b>3.</b> Chọn menu <b>Tồn kho</b> để quản lý thông tin sản phẩm, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">3.1. Thêm, sửa xóa sản phẩm, nhà cung cấp, thêm bằng file excel (số lượng lớn)<br>
+                                                                       3.2. Xem tồn kho tại thời điểm kiêm kê của khách hàng<br>
+                                                                       
+                                                                    </p>
+                                                                </tr>
+                                                                
+                                                                <!-- Table Contents -->
+                                                                
+
+
+                                                            </tbody>
+                                                        </table>
+                                                        
+                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                            <!-- Table Headers -->
+                                                            <tbody>
+                                                                <tr>
+                                                            <b>4.</b> Chọn menu <b>Bán hàng</b> để quản lý thông tin Bán hàng, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">4.1. Xem chi tiết đơn đặt hàng và bán hàng của nhân viên<br>
+                                                                       4.2. Sửa xóa đơn đặt hàng và bán hàng<br>
+                                                                       
+                                                                    </p>
+                                                                </tr>
+                                                                
+                                                                <!-- Table Contents -->
+                                                                
+
+
+                                                            </tbody>
+                                                        </table>
+                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                            <!-- Table Headers -->
+                                                            <tbody>
+                                                                <tr>
+                                                            <b>5.</b> Chọn menu <b>Phân tích</b> để tạo báo cáo bán hàng, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">5.1. Báo cáo chi tiết đơn đặt hàng<br>
+                                                                       5.2. Báo cáo bán hàng theo hóa đơn<br>
+                                                                       5.3. Báo cáo bán hàng theo sản phẩm<br>
+                                                                    </p>
+                                                                </tr>
+                                                                
+                                                                <!-- Table Contents -->
+                                                                
+
+
+                                                            </tbody>
+                                                        </table>
+                                                        
+                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                            <!-- Table Headers -->
+                                                            <tbody>
+                                                                <tr>
+                                                            <b>6.</b> Chọn menu <b>Thiết lập</b> để quản lý thông tin quản trị viên, các chức năng chính: <br>
+                                                                    <p style="margin-left: 20px;">6.1. Thêm sửa xóa thông tin quản trị viên, người quản lý bán hàng<br>
+                                                                       6.2. Theo dõi vết đăng nhập đăng xuất của người quản trị trên hệ thống<br>
+                                                                       6.3. Tạo thông báo cho các người dùng khác trên đầu trang web<br>
                                                                     </p>
                                                                 </tr>
                                                                 

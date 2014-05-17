@@ -20,4 +20,5 @@ public interface CustomerImageDAO {
     
     
     public List<CustomerImage> getCustomerImageList(String pCustomer, String pDate, String pToDate);
+    public List<CustomerImage> getCustomerImageList();
 }

@@ -229,7 +229,7 @@
                                                                     <td class='rptCellLabel'>Chiết khấu mặt hàng</td>
                                                                     <td class='rptCellLabel'>Doanh thu</td>
                                                                     
-                                                                    <td class='rptCellLabel'>Hành động</td>
+<!--                                                                    <td class='rptCellLabel'>Hành động</td>-->
                                                                 </tr>
                                                                 <s:set id="sum_amount" value="0"/>
                                                                 <s:set id="sum_discount" value="0"/>
@@ -250,7 +250,7 @@
                                                                     
                                                                     <td class='rptData'><s:property value="getText('{0,number,#,##0.00}',{amount-discount})"/></td>
                                                                     
-                                                                    <td class='rptData'><a href='take-order-detail?id_tod=<s:property value="id"/>' target='_blank'>Xem chi tiết</a></td>
+<!--                                                                    <td class='rptData'><a href='take-order-detail?id_tod=<s:property value="id"/>' target='_blank'>Xem chi tiết</a></td>-->
                                                                 </tr>
                                                                 <s:set id="sum_amount" value="%{#sum_amount + amount}"/>
                                                                 <s:set id="sum_discount" value="%{#sum_discount + discount}"/>

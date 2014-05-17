@@ -147,17 +147,17 @@ public class ViewJourneysAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return LOGIN;
         }
         
         
         
-        if(user.getPermission() == 1)
+//        if(user.getPermission() == 1)
             userListGiamDoc = userDAO.getListUser(2);
-        if(user.getPermission() == 2)
-            userListStaff = staffDAO.getListUser(user.getId());
-        
+//        if(user.getPermission() == 2)
+//            userListStaff = staffDAO.getListUser(user.getId());
+//        
         return SUCCESS;
     }
     
@@ -168,7 +168,7 @@ public class ViewJourneysAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return LOGIN;
         }
         

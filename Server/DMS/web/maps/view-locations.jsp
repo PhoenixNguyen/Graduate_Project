@@ -349,7 +349,22 @@
                                 <s:iterator  status="status" >
                 
                                     <li onmouseover="onGetLocation(this, <s:property value="coordinateX"/> , <s:property value="coordinateY"/>);" onmouseout="out();">
-                                    <img class="bgr" src="/DMS/js/maps/map.jpg" >
+                                        <s:set var = "breakLoop" value = "false" />
+                                        <s:iterator value="listCustomerImage" status="status2" >
+<!--                                            Neu co se break-->
+                                            <s:if test="#breakLoop == false">
+                                                <s:if test="maDoiTuong == customerID " >
+                                                    <img src="/DMS/db_customers/<s:property value="customerID"/>/<s:property value="name"/>"  title="<s:property value="name"/>"/>
+                                                    <s:set var = "breakLoop" value = "true" />
+                                                </s:if>
+                                                
+                                            </s:if>    
+                                        </s:iterator>
+<!--                                        Neu ko co se gan mac dinh-->
+                                        <s:if test="#breakLoop == false">
+                                            <img class="bgr" src="/DMS/js/maps/map.jpg" title="ảnh mặc định">
+                                            
+                                        </s:if>
                                     <!--                                    <h2><span></span></h2>--><br>
 <!--                                    <span class="name"></span>-->
                                     <p id="name"><s:property value="doiTuong"/></p>

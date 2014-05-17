@@ -8,11 +8,14 @@ package com.hp.action;
 
 import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
+import com.hp.dao.CustomerImageDAO;
+import com.hp.dao.CustomerImageDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Customer;
+import com.hp.domain.CustomerImage;
 import com.hp.domain.PushInfo;
 import com.hp.domain.User;
 import com.opensymphony.xwork2.ActionContext;
@@ -36,11 +39,22 @@ public class ViewLocationsAction extends ActionSupport implements ModelDriven{
     private UserDAO userDAO = new UserDAOImpl();
     private CustomerDAO customerDAO = new CustomerDAOImpl();
     private StaffDAO staffDAO = new StaffDAOImpl();
+    private CustomerImageDAO customerImageDAO = new CustomerImageDAOImpl();
     
     public PushInfo pushInfo = new PushInfo();
     User user = new User();
     private List<Customer> listCustomer = new ArrayList();
 
+    private List<CustomerImage> listCustomerImage = new ArrayList<CustomerImage>();
+
+    public List<CustomerImage> getListCustomerImage() {
+        return listCustomerImage;
+    }
+
+    public void setListCustomerImage(List<CustomerImage> listCustomerImage) {
+        this.listCustomerImage = listCustomerImage;
+    }
+    
     public List<String> getUserListGiamDoc() {
         return userListGiamDoc;
     }
@@ -100,17 +114,17 @@ public class ViewLocationsAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return LOGIN;
         }
         
         
         
-        if(user.getPermission() == 1)
+//        if(user.getPermission() == 1)
             userListGiamDoc = userDAO.getListUser(2);
-        if(user.getPermission() == 2)
-            userListStaff = staffDAO.getListUser(user.getId());
-        
+//        if(user.getPermission() == 2)
+//            userListStaff = staffDAO.getListUser(user.getId());
+//        
         return SUCCESS;
     }
     
@@ -121,7 +135,7 @@ public class ViewLocationsAction extends ActionSupport implements ModelDriven{
         user = (User)session.getAttribute("USER");
         
         //Authorize
-        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password")) || user == null){
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return LOGIN;
         }
         
@@ -133,6 +147,8 @@ public class ViewLocationsAction extends ActionSupport implements ModelDriven{
         userListStaff = staffDAO.getListUser(pushInfo.getManagerID());
         userListCustomer = customerDAO.getListCustomer(pushInfo.getStaffID());
         
+        listCustomerImage = customerImageDAO.getCustomerImageList();
+                
         listCustomer = customerDAO.loadCustomersWithLocations(pushInfo.getManagerID(), pushInfo.getStaffID(), 
                 pushInfo.getCustomerID());
         return SUCCESS;

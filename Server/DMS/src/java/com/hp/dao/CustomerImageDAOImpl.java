@@ -83,6 +83,27 @@ public class CustomerImageDAOImpl implements CustomerImageDAO{
         return courses;
     }
     
+    public List<CustomerImage> getCustomerImageList(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<CustomerImage> courses = null;
+        try{
+           
+           
+            courses = session.createQuery("from CustomerImage where status = true  order by id  ").list(); 
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+    }
+    
     public CustomerImage getCustomerImage(String pStaff){
         Session session = getSessionFactory().openSession();
         Transaction transaction;

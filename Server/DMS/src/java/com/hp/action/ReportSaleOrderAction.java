@@ -208,10 +208,10 @@ public class ReportSaleOrderAction extends ActionSupport implements ModelDriven{
             return LOGIN;
         }
         
-        if(user.getPermission() == 1)
+//        if(user.getPermission() == 1)
             userListGiamDoc = userDAO.getListUser(2);
-        if(user.getPermission() == 2)
-            userListStaff = staffDAO.getListUser(user.getId());
+//        if(user.getPermission() == 2)
+//            userListStaff = staffDAO.getListUser(user.getId());
         
         return SUCCESS;
     }

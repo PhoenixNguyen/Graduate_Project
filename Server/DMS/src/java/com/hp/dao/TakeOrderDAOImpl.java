@@ -139,13 +139,17 @@ public class TakeOrderDAOImpl implements TakeOrderDAO{
         TakeOrder courses = null;
         try{
             //Query q = session.createQuery("from TakeOrder where mID='"+pID+"'");
-            Query q = session.createSQLQuery("select * from tb_hoadondathang where hoadondathang_ma_hoa_don='"+pID+"'")
-                    .addEntity(TakeOrder.class);
+//            Query q = session.createSQLQuery("select * from tb_hoadondathang where hoadondathang_ma_hoa_don='"+pID+"'")
+//                    .addEntity(TakeOrder.class);
+//            
+//            if(q.list() == null)
+//                return null;
+//            
+//             courses = (TakeOrder)q.list().get(0);
             
-            if(q.list() == null)
-                return null;
-            
-             courses = (TakeOrder)q.list().get(0);
+            Query q = session.createQuery("from TakeOrder where id='"+pID+"'")
+                    ;
+            courses = (TakeOrder)q.uniqueResult();
             //courses = (TakeOrder)session.get(TakeOrder.class, pID);
         }catch(Exception e){
             e.printStackTrace();

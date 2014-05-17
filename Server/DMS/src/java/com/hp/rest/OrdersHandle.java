@@ -45,7 +45,10 @@ import com.hp.domain.Stock;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -122,9 +125,16 @@ public class OrdersHandle {
     @Path("/putSaleOrder")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response putSaleOrder( String pTakeOrder ) {
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
         
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         SaleOrder saleOrder = new SaleOrder(takeOrderDAO.getTakeOrder(pTakeOrder));
+        
+        saleOrder.setTakeOrderDate(Timestamp.valueOf(time));
+        saleOrder.setOrderEstablishDate(Timestamp.valueOf(time));
+        saleOrder.setDeliveryDate(Timestamp.valueOf(time));
         
         SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
         boolean status1 = saleOrderDAO.saveOrUpdate(saleOrder);

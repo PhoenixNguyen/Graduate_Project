@@ -79,10 +79,10 @@ public class SaleManagerActivity extends TakeOrdersManagerActivity{
 		
 	}
 	
-	String selectedValue = null;
+	String[] selectedValue ;
 	public Dialog dialogLoad;
 	public void loadTakeOrderDialog(String pDate){
-		
+		selectedValue = new String[]{""};
 		
 		dialogLoad = new Dialog(context);
 		LayoutInflater li = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -103,7 +103,7 @@ public class SaleManagerActivity extends TakeOrdersManagerActivity{
 		dialogButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				System.out.println("__22 " + selectedValue[0]);
 				PutTakeOrderTask putData = new PutTakeOrderTask(context, "putSaleOrder", adapter,
 						ordersListView, selectedValue, SaleManagerActivity.this);
 				putData.execute();

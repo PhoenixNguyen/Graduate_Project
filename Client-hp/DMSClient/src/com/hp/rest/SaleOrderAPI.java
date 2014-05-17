@@ -41,11 +41,11 @@ public class SaleOrderAPI {
 	String staff;
 	
 	ListView listViewCus;
-	String selectedValue;
+	String[] selectedValue;
 	SaleManagerActivity activity;
 	
 	public GetTakeOrderListTask(Context context, String method, String staff, ListView listViewCus,
-			String selectedValue, SaleManagerActivity activity) {
+			String[] selectedValue, SaleManagerActivity activity) {
 		this.context = context;
 		this.method = method;
 		this.staff = staff;
@@ -117,7 +117,8 @@ public class SaleOrderAPI {
 			     @Override
 			     public void onItemClick(AdapterView<?> a, View v,int position, long id) 
 			     {
-			    	 selectedValue = (String) listViewCus.getAdapter().getItem(position);
+			    	 selectedValue[0] = (String) listViewCus.getAdapter().getItem(position);
+			    	 System.out.println("__ " + selectedValue[0]);
 //			    	 
 //			          //Toast.makeText(getBaseContext(), "Click", Toast.LENGTH_LONG).show();
 //			    	// custom dialog
@@ -184,11 +185,11 @@ public class SaleOrderAPI {
 		OrdersManagerArrayAdapter adapter;
 		
 		ListView listViewCus;
-		String selectedValue;
+		String[] selectedValue;
 		SaleManagerActivity activity;
 		
 		public PutTakeOrderTask(Context context, String method, OrdersManagerArrayAdapter adapter, ListView listViewCus,
-				String selectedValue, SaleManagerActivity activity) {
+				String[] selectedValue, SaleManagerActivity activity) {
 			this.context = context;
 			this.method = method;
 			this.adapter = adapter;
@@ -220,7 +221,7 @@ public class SaleOrderAPI {
 			// Getting
 			ClientResponse response = Rest.mService.path("webresources")
 					.path(method).accept("application/json")
-					.type("application/json").post(ClientResponse.class, selectedValue);
+					.type("application/json").post(ClientResponse.class, selectedValue[0]);
 			System.out.println("________________ " + response.toString());
 		
 			if (response.getStatus() != 200) {

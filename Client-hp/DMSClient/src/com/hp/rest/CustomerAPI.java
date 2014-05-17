@@ -359,6 +359,7 @@ public class CustomerAPI {
 	///////////////////////////////////////////////////////////////////////////////
 	public static class UploadCustomerImageTask extends
 			AsyncTask<Void, Void, String> {
+		
 		Context context;
 		String method;
 		String path;
@@ -371,7 +372,7 @@ public class CustomerAPI {
 			
 		}
 
-		ProgressDialog dialog;
+		public  ProgressDialog dialog;
 
 		protected void onPreExecute() {
 			dialog = ProgressDialog.show(context, "", "Đang xử lý ... ", true);
@@ -438,8 +439,8 @@ public class CustomerAPI {
 				Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
 
 			}
-			
 			dialog.dismiss();
+			
 		}
 
 		public String ConvertObjectToString(DataInfo data) {

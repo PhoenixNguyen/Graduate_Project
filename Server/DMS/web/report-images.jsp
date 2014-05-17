@@ -210,7 +210,7 @@
                                                                 <div id="title">
                                                                     <s:iterator value="listCustomerImage" status="">
                                                                         <s:if test="status == true">
-                                                                            <img src="db_customers/<s:property value="customerID"/>/<s:property value="name"/>" width="900" height="300" title="<s:property value="name"/>"/>
+                                                                            <img src="db_customers/<s:property value="customerID"/>/<s:property value="name"/>" width="900" height="500" title="<s:property value="name"/>"/>
                                                                             
                                                                         </s:if>
                                                                     </s:iterator>

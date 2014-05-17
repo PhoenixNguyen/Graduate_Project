@@ -613,7 +613,7 @@ public class GenericResource {
         customerImage.setCustomerID(data.getKhachHang());
         customerImage.setStaffID(data.getNhanVien());
         customerImage.setTime(Timestamp.valueOf(df2.format(today)));
-        
+        customerImage.setStatus(false);
         
         boolean status = customerImageDAO.saveOrUpdate(customerImage);
         

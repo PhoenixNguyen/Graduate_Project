@@ -72,6 +72,7 @@ import android.widget.Toast;
 public class TakeImagesActivity extends MainMenuActivity {
 
 	protected Button _button;
+	protected Button _send;
 	protected ImageView _image;
 	protected TextView _field;
 	protected String _path;
@@ -95,6 +96,7 @@ public class TakeImagesActivity extends MainMenuActivity {
 
 		_image = (ImageView) findViewById(R.id.image);
 		_field = (TextView) findViewById(R.id.field);
+		_send = (Button) findViewById(R.id.send);
 		_button = (Button) findViewById(R.id.button);
 		_button.setOnClickListener(new ButtonClickHandler());
 
@@ -143,8 +145,7 @@ public class TakeImagesActivity extends MainMenuActivity {
 			//RESIZE and SAVE
 			savePhoto(bitmap);
 
-			// UPLOAD FILE
-			upload();
+			_send.setVisibility(View.VISIBLE);
 			break;
 		}
 	}
@@ -179,7 +180,15 @@ public class TakeImagesActivity extends MainMenuActivity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		System.out.println("_____  save");
+		
+		
+		
+		//Put image
 		outState.putBoolean(TakeImagesActivity.PHOTO_TAKEN, _taken);
+		
+		//Turn off dialog
+//		if(UploadCustomerImageTask.dialog != null)
+//			UploadCustomerImageTask.dialog.dismiss();
 	}
 
 	private String pathSave;
@@ -213,6 +222,7 @@ public class TakeImagesActivity extends MainMenuActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public String fromInt(int val) {
@@ -237,9 +247,12 @@ public class TakeImagesActivity extends MainMenuActivity {
 		msConn.connect();
 	}
 
-	public void upload() {
+	public void upload(View view) {
 		// PUT infomations
-		
+		if((pathSave == null)  || (pathSave.compareTo("") == 0)){
+			Toast.makeText(context, "Hãy chụp một bức ảnh", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		UploadCustomerImageTask uploadData = new UploadCustomerImageTask(context, "putImage", pathSave);
 		uploadData.execute();
 //		

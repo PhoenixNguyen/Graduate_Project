@@ -22,7 +22,10 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -91,6 +94,10 @@ public class InventoryManagerDetailAction extends ActionSupport implements Model
             return LOGIN;
         }
         
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         System.out.println("OKto " + inventoryManagerDetail.getProductID());
         //takeOrder.setmEditer("0"); 
         
@@ -112,6 +119,9 @@ public class InventoryManagerDetailAction extends ActionSupport implements Model
         inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getTakeOrderID());
         inventoryManager.setBeforePrice(priceTotal);
         inventoryManager.setAfterPrivate(priceTotal);
+        
+        inventoryManager.setOrderEditDate(Timestamp.valueOf(time));        
+        
         boolean st2 = inventoryManagerDAO.update(inventoryManager);
         
         if(status){

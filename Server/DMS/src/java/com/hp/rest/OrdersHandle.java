@@ -492,6 +492,10 @@ public class OrdersHandle {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateDetailInventoryManager( String pInventoryManager ) {
 
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
         InventoryManagerDetail inventoryManagerDetail = new InventoryManagerDetail();
@@ -527,6 +531,9 @@ public class OrdersHandle {
         
         inventoryManager = inventoryManagerDAO.getInventoryManager(inventoryManagerDetail.getTakeOrderID());
         inventoryManager.setAfterPrivate(priceTotal - priceTotal*inventoryManager.getDiscount()/100);
+        
+        inventoryManager.setOrderEditDate(Timestamp.valueOf(time));
+        
         boolean st2 = inventoryManagerDAO.update(inventoryManager);
 //            String output = pTrack.toString();
         System.out.println("____ " + pInventoryManager + "___ " + st);
@@ -641,6 +648,11 @@ public class OrdersHandle {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateAddingTakeOrder( String pOrder ) {
         // pair to object
+        
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         ObjectMapper mapper = new ObjectMapper();
         TakeOrder takeOrder = new TakeOrder();
         try {
@@ -655,6 +667,8 @@ public class OrdersHandle {
                 e.printStackTrace();
         }
         
+        takeOrder.setOrderEditDate(Timestamp.valueOf(time));
+        
         TakeOrderDAO takeOrderDAO = new TakeOrderDAOImpl();
         boolean b = takeOrderDAO.update(takeOrder);
         
@@ -665,6 +679,11 @@ public class OrdersHandle {
     @Path("/updateAddingInventory")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateAddingInventory( String pOrder ) {
+        
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
         InventoryManager inventoryManager = new InventoryManager();
@@ -679,6 +698,8 @@ public class OrdersHandle {
         } catch (IOException e) {
                 e.printStackTrace();
         }
+        
+        inventoryManager.setOrderEditDate(Timestamp.valueOf(time));
         
         InventoryManagerDAO inventoryManagerDAO = new InventoryManagerDAOImpl();
         boolean b = inventoryManagerDAO.update(inventoryManager);
@@ -746,6 +767,11 @@ public class OrdersHandle {
     @Path("/updateAddingSaleOrder")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateAddingSaleOrder( String pOrder ) {
+        
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
         SaleOrder saleOrder = new SaleOrder();
@@ -760,6 +786,8 @@ public class OrdersHandle {
         } catch (IOException e) {
                 e.printStackTrace();
         }
+        
+        saleOrder.setOrderEditDate(Timestamp.valueOf(time));
         
         SaleOrderDAO saleOrderDAO = new SaleOrderDAOImpl();
         boolean b = saleOrderDAO.update(saleOrder);
@@ -890,6 +918,10 @@ public class OrdersHandle {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateDetailSaleOrder( String pSaleOrder ) {
 
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
         SaleOrderDetail saleOrderDetail = new SaleOrderDetail();
@@ -925,6 +957,9 @@ public class OrdersHandle {
         
         saleOrder = saleOrderDAO.getSaleOrder(saleOrderDetail.getTakeOrderID());
         saleOrder.setAfterPrivate(priceTotal - priceTotal*saleOrder.getDiscount()/100);
+        
+        saleOrder.setOrderEditDate(Timestamp.valueOf(time));
+        
         boolean st2 = saleOrderDAO.update(saleOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pSaleOrder + "___ " + st);

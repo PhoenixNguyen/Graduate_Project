@@ -22,7 +22,10 @@ import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -104,6 +107,10 @@ public class SaleOrderDetailAction extends ActionSupport implements ModelDriven{
             return LOGIN;
         }
         
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         System.out.println("OKto " + saleOrderDetail.getProductID());
         //takeOrder.setmEditer("0");
         
@@ -125,6 +132,9 @@ public class SaleOrderDetailAction extends ActionSupport implements ModelDriven{
         saleOrder = saleOrderDAO.getSaleOrder(saleOrderDetail.getTakeOrderID());
         saleOrder.setBeforePrice(priceTotal);
         saleOrder.setAfterPrivate(priceTotal - priceTotal*saleOrder.getDiscount()/100);
+        
+        saleOrder.setOrderEditDate(Timestamp.valueOf(time));
+        
         boolean st2 = saleOrderDAO.update(saleOrder);
         
         if(status){

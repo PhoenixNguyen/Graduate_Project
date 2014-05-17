@@ -36,7 +36,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -232,6 +234,10 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF8");
         
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         //Authorize
         if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             return LOGIN;
@@ -246,6 +252,8 @@ public class TakeOrderAction extends ActionSupport implements ModelDriven{
 //        t.setMCreater(null);
 //        t.setMEditer(null);
         takeOrder.setAfterPrivate(takeOrder.getBeforePrice() - takeOrder.getBeforePrice() * takeOrder.getDiscount()/100);
+        takeOrder.setOrderEditDate(Timestamp.valueOf(time));
+        
         boolean status = takeOrderDAO.update(takeOrder);// update(takeOrder);
         System.out.println(status+" ________________________");
         if(status){

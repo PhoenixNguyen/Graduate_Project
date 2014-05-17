@@ -274,6 +274,7 @@ public class TakeOrdersDetailManagerActivity extends Activity{
 				selectedValue.setNote(note.getText().toString());
 				selectedValue.setPromotionalProductMount(promotionalAmount);
 				
+			
 				//Sys
 				ModifyTakeOrderDetailTask update = new ModifyTakeOrderDetailTask(context, updateData, 
 						selectedValue, adapter, ordersListView, TakeOrdersDetailManagerActivity.this, dialog);

@@ -646,6 +646,10 @@ public class GenericResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateDetailOrder( String pTakeOrder ) {
 
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
+        
         // pair to object
         ObjectMapper mapper = new ObjectMapper();
         TakeOrderDetail takeOrderDetail = new TakeOrderDetail();
@@ -681,6 +685,9 @@ public class GenericResource {
         
         takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
         takeOrder.setAfterPrivate(priceTotal - priceTotal*takeOrder.getDiscount()/100);
+        
+        takeOrder.setOrderEditDate(Timestamp.valueOf(time));
+        
         boolean st2 = takeOrderDAO.update(takeOrder);
 //            String output = pTrack.toString();
         System.out.println("____ " + pTakeOrder + "___ " + st);

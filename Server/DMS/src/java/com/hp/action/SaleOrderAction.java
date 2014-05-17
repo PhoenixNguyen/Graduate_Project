@@ -21,7 +21,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -125,6 +128,9 @@ public class SaleOrderAction extends ActionSupport implements ModelDriven{
             return LOGIN;
         }
         
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
         
         System.out.println("OKto " + saleOrder.getId() +" : " +saleOrder.getCustomerAddress() );//doc.getFileFileName()
               
@@ -137,6 +143,8 @@ public class SaleOrderAction extends ActionSupport implements ModelDriven{
             saleOrder.setDiscount(0f);
         
         saleOrder.setAfterPrivate(saleOrder.getBeforePrice() - saleOrder.getBeforePrice() * saleOrder.getDiscount()/100);
+        saleOrder.setOrderEditDate(Timestamp.valueOf(time));
+        
         boolean status = saleOrderDAO.update(saleOrder);// update(takeOrder);
         System.out.println(status+" ________________________");
         if(status){

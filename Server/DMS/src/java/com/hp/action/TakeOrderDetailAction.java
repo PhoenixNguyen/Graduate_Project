@@ -18,7 +18,10 @@ import com.hp.domain.TakeOrderDetail;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -141,6 +144,9 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
     public String updateTakeOrderDetail(){
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
         HttpSession session = request.getSession();
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        Calendar cal = Calendar.getInstance();
+        String time = sdf2.format(cal.getTime());
         
         //Authorize
         if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
@@ -168,6 +174,8 @@ public class TakeOrderDetailAction extends ActionSupport implements ModelDriven{
         takeOrder = takeOrderDAO.getTakeOrder(takeOrderDetail.getTakeOrderID());
         takeOrder.setBeforePrice(priceTotal);
         takeOrder.setAfterPrivate(priceTotal - priceTotal*takeOrder.getDiscount()/100);
+        takeOrder.setOrderEditDate(Timestamp.valueOf(time));
+        
         boolean st2 = takeOrderDAO.update(takeOrder);
         
         if(status){

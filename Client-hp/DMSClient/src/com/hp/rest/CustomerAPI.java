@@ -184,6 +184,7 @@ public class CustomerAPI {
 					     {
 					    	customer = (Customer) listView.getAdapter().getItem(position);
 					    	
+					    	customerActivity.customer = customer;
 					    	//open dialog
 					    	customerActivity.choiceDialog(customer);
 					      }

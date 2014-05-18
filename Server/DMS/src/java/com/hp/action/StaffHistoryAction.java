@@ -14,6 +14,7 @@ import com.hp.dao.StaffHistoryDAO;
 import com.hp.dao.StaffHistoryDAOImpl;
 import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
+import com.hp.domain.Customer;
 import com.hp.domain.PushInfo;
 import com.hp.domain.StaffHistory;
 import com.hp.domain.User;
@@ -52,8 +53,19 @@ public class StaffHistoryAction extends ActionSupport implements ModelDriven{
     private List<StaffHistory> listStaffHistory = new ArrayList<StaffHistory>();
 
     
+    
     private String startDate;
     private String endDate;
+    
+    private List<Customer> customerList = new ArrayList<Customer>();
+
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
     
     public String getStartDate() {
         return startDate;
@@ -158,6 +170,8 @@ public class StaffHistoryAction extends ActionSupport implements ModelDriven{
         userListStaff = staffDAO.getListUser(pushInfo.getManagerID());
         userListCustomer = customerDAO.getListCustomer(pushInfo.getStaffID());
         
+        customerList = customerDAO.getListCustomer();
+                
         listStaffHistory = staffHistoryDAO.getStaffHistoryList(pushInfo.getManagerID(), pushInfo.getStaffID(), pushInfo.getCustomerID(), startDate, endDate);
 //        listSchedules = scheduleDAO.getSchedulesListForSchedules(pushInfo.getManagerID(), pushInfo.getStaffID(), 
 //                pushInfo.getCustomerID(), startDate, endDate);

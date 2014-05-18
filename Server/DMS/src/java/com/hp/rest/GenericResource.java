@@ -44,6 +44,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -619,11 +620,14 @@ public class GenericResource {
         staffHistory = staffHistoryDAO.getStaffHistory(data.getKhachHang(), df.format(today));
         
         if(staffHistory == null){
-            System.out.println(data.getTenKhachHang());
+            byte[] b = data.getTenKhachHang().getBytes(Charset.forName("UTF-8"));
+            String str = new String(b);
+            
+            System.out.println(data.getTenKhachHang() + "\n"+ str);
             staffHistory = new StaffHistory();
             staffHistory.setStaff(data.getNhanVien());
             staffHistory.setCustomer(data.getKhachHang());
-            staffHistory.setCustomerName(data.getTenKhachHang());
+            staffHistory.setCustomerName(str);
             staffHistory.setStartTime(Timestamp.valueOf(df2.format(today)));
             //staffHistory.setNote();
             

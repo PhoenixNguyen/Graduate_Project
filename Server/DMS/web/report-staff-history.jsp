@@ -229,7 +229,12 @@
                                                                 <tr>
                                                                     <td class='rptData'><s:property value="staff"/></td>
                                                                     <td class='rptData'><s:property value="customer"/></td>
-                                                                    <td class='rptData'><s:property value="customerName"/></td>
+                                                                    
+                                                                    <s:iterator value="customerList" status="index">
+                                                                        <s:if test="maDoiTuong == customer" >
+                                                                        <td class='rptData'><s:property value="doiTuong"/></td>
+                                                                        </s:if>
+                                                                    </s:iterator>
                                                                     <td class='rptData'><s:property value="%{dateconverted}"/></td>
                                                                     <td class='rptData'><s:property value="note"/></td>
                                                                     

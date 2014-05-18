@@ -50,5 +50,7 @@
                 
         <mapping class="com.hp.domain.Announcement" />
         <mapping class="com.hp.domain.History" />
+        <mapping class="com.hp.domain.StaffHistory" />
+        
   </session-factory>
 </hibernate-configuration>

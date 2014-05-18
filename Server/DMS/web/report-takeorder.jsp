@@ -79,9 +79,7 @@
                                     <form id="sub_form" method="POST" action="filter-result">
                                     <table border=0 cellspacing=0 cellpadding=0 width=80%>
                                         <tr>
-                                            <s:if test="user.getPermission() == 1">
                                             <td align=left class=small><b>Chọn Giám đốc</b></td><td class=small>&nbsp;</td>
-                                            </s:if>
                                             <td align=left class=small><b>Chọn Nhân viên </b></td><td class=small>&nbsp;</td>
                                             <td align=left class=small><b>Chọn Khách hàng </b></td><td class=small>&nbsp;</td>
                                             <td align=left class=small><b>Ngày bắt đầu </b></td><td class=small>&nbsp;</td>
@@ -89,7 +87,6 @@
                                         </tr>
                                         <tr>
                                             <s:push value="pushInfo">
-                                            <s:if test="user.getPermission() == 1">
                                             <td align="left" width="20%">
                                                 <select name="pushInfo.managerID"  class="small" style="width:98%" onchange="onClickManager(options[selectedIndex].text , 'take');">
                                                     <option value="--select--">--select--</option>
@@ -104,7 +101,6 @@
                                                 </select>
                                             </td>
                                             <td class=small>&nbsp;</td>
-                                            </s:if>
                                             
                                             <td align="left" width="20%">
                                                 <select name="pushInfo.staffID" class="small" style="width:98%" onchange="onClickStaff(options[selectedIndex].text , 'take');" id="staff">

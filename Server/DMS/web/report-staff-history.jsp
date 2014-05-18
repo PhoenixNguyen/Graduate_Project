@@ -10,7 +10,7 @@
 
 <html>
     <head>
-        <title>admin - Nhân viên - Kế hoạch - Phần mềm quản lý HOSCO-MANAGEMENT</title>
+        <title>admin - Phân tích - Báo cáo - Phần mềm quản lý HOSCO-MANAGEMENT</title>
         <link REL="SHORTCUT ICON" HREF="themes/images/vtigercrm_icon.ico">	
         <style type="text/css">@import url("themes/softed/style.css");</style>
         <link rel="stylesheet" type="text/css" media="all" href="jscalendar/calendar-win2k-cold-1.css">
@@ -27,7 +27,7 @@
 
         <!--    Header & menu-->
         <s:include value="header.jsp" >
-            <s:param name="page_param" value="'staff'" />
+            <s:param name="page_param" value="'report'" />
         </s:include>
 
 
@@ -38,17 +38,27 @@
 
 
                         <table class="small reportGenHdr mailClient mailClientBg" align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
-
+<!--                            <form name="NewReport" action="filter-result" method="POST"  id="sub_form">
+                                <input type="hidden" name="booleanoperator" value="5"/>
+                                <input type="hidden" name="record" value="20"/>
+                                <input type="hidden" name="reload" value=""/>    
+                                <input type="hidden" name="module" value="Reports"/>
+                                <input type="hidden" name="action" value="SaveAndRun"/>
+                                <input type="hidden" name="dlgType" value="saveAs"/>
+                                <input type="hidden" name="reportName"/>
+                                <input type="hidden" name="folderid" value="10"/>
+                                <input type="hidden" name="reportDesc"/>
+                                <input type="hidden" name="folder"/>-->
 
                                 <tbody>
                                     <tr>
                                         <td style="padding: 10px; text-align: left;" width="70%">
                                             <span class="moduleName">
-                                                Kế hoạch
+                                                Báo cáo Chăm sóc khách hàng
                                             </span>&nbsp;&nbsp;
                                             <!--                                            <input type="button" name="custReport" value="Sửa Báo cáo" class="crmButton small edit" onClick="editReport('20');">-->
                                             <br>
-<!--                                            <a href="report" class="reportMnu" style="border-bottom: 0px solid rgb(0, 0, 0);">&lt; Quay lại Nhân viên</a>-->
+<!--                                            <a href="report" class="reportMnu" style="border-bottom: 0px solid rgb(0, 0, 0);">&lt; Quay lại Báo cáo</a>-->
                                         </td>
                                         <!--                                        <td style="border-left: 2px dotted rgb(109, 109, 109); padding: 10px;" width="30%">
                                                                                     <b>Chọn báo cáo khác : </b><br>
@@ -66,7 +76,7 @@
                         <table class="small reportGenerateTable" align="center" cellpadding="5" cellspacing="0" width="95%" border=0>
                             <tr>
                                 <td align=center class=small>
-                                    <form id="sub_form" method="POST" action="filter-result-schedule">
+                                    <form id="sub_form" method="POST" action="filter-result-staff-history">
                                     <table border=0 cellspacing=0 cellpadding=0 width=80%>
                                         <tr>
                                             <td align=left class=small><b>Chọn Giám đốc</b></td><td class=small>&nbsp;</td>
@@ -160,7 +170,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td align="center" colspan="8" style="padding:5px"><input name="generatenw" value=" Xem kế hoạch " class="crmbutton small create" type="submit" ></td>
+                                            <td align="center" colspan="8" style="padding:5px"><input name="generatenw" value=" Tạo báo cáo " class="crmbutton small create" type="submit" ></td>
                                         </tr>
                                     </table>
                                     </form>
@@ -174,7 +184,8 @@
 
                             <br>
                             <table align="center" border="0" cellpadding="5" cellspacing="0" width="100%" class="mailSubHeader">
-                                <tbody><tr>
+                                <tbody>
+                                    <tr>
 <!--                                        <td align="left" nowrap ><input class="crmbutton small create" id="btnExport" name="btnExport" value="Xuất dữ liệu Excel" type="button" onClick="window.location.href='export-takeorder-xls'" title="Xuất dữ liệu Excel" ></td>-->
                                     </tr>
                                 </tbody>
@@ -190,11 +201,11 @@
                                                     <tr>
                                                         <td align="left" width="75%">
                                                             <span class="genHeaderGray">
-                                                                Kế hoạch nhân viên
+                                                                Báo cáo chăm sóc khách hàng
                                                             </span><br>
                                                         </td>
                                                         <td align="right" width="25%">
-                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'><s:property value="listSchedules.size()"/></span>  Bản ghi</span>
+                                                            <span class="genHeaderGray">Tổng số : <span id='_reportrun_total'><s:property value="listStaffHistory.size()"/></span>  Bản ghi</span>
                                                         </td>
                                                     </tr>
                                                     <tr><td id="report_info" align="left" colspan="2">&nbsp;</td></tr>
@@ -204,25 +215,23 @@
 
                                                             <table cellpadding="5" cellspacing="0" align="center" class="rptTable">
                                                                 <tr>
-                                                                    <td class='rptCellLabel'>Stt</td>
-                                                                    <td class='rptCellLabel'>Ngày</td>
-                                                                    <td class='rptCellLabel'>Mã khách hàng</td>
+                                                                    <td class='rptCellLabel'>Nhân viên</td>
+                                                                    <td class='rptCellLabel'>Mã Khách hàng</td>
                                                                     <td class='rptCellLabel'>Tên khách hàng</td>
-                                                                    <td class='rptCellLabel'>Mã nhân viên</td>
-                                                                    <td class='rptCellLabel'>Tên nhân viên</td>
+                                                                    <td class='rptCellLabel'>Thời gian</td>
+                                                                    <td class='rptCellLabel'>Ghi chú</td>
                                                                     
                                                                 </tr>
                                                                 
                                                                 
-                                                                <s:iterator value="listSchedules" status="index">
-                                                                <s:date id="dateconverted" name="time" format="HH:mm:ss dd-MM-yyyy"/>
+                                                                <s:iterator value="listStaffHistory" status="index">
+                                                                <s:date id="dateconverted" name="startTime" format="HH:mm:ss dd-MM-yyyy"/>
                                                                 <tr>
-                                                                    <td class='rptData'><s:property value="%{#index.index + 1}"/></td>
+                                                                    <td class='rptData'><s:property value="staff"/></td>
+                                                                    <td class='rptData'><s:property value="customer"/></td>
+                                                                    <td class='rptData'><s:property value="customerName"/></td>
                                                                     <td class='rptData'><s:property value="%{dateconverted}"/></td>
-                                                                    <td class='rptData'><s:property value="maKH"/></td>
-                                                                    <td class='rptData'><s:property value="tenKhachHang"/></td>
-                                                                    <td class='rptData'><s:property value="maNV"/></td>
-                                                                    <td class='rptData'><s:property value="tenNhanVien"/></td>
+                                                                    <td class='rptData'><s:property value="note"/></td>
                                                                     
                                                                 </tr>
                                                                 

@@ -247,6 +247,7 @@
                     <tr><td><a href="report-schedules" class="drop_down">Kế hoạch dự kiến</a></td></tr>
                     <tr><td><a href="maps/view-journeys" class="drop_down">Quản lý hành trình</a></td></tr>
                     <tr><td><a href="report-images" class="drop_down">Quản lý hình ảnh</a></td></tr>
+                    <tr><td><a href="report-staff-history" class="drop_down">Quản lý chăm sóc khách hàng</a></td></tr>
 
                 </tbody>
             </table>

@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="history")
+@Table(name="tb_userhistory")
 public class History {
     @Id
     @GeneratedValue

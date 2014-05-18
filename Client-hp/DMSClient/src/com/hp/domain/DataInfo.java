@@ -5,18 +5,21 @@ public class DataInfo {
 	private String khachHang;
 	private String noiDung;
 	private String ghiChu;
+	private String tenKhachHang;
 	
 	public DataInfo(){
 		
 	}
 	
-	public DataInfo(String nhanVien, String khachHang, String noiDung,
+	public DataInfo(String nhanVien, String khachHang, String tenKhachHang, String noiDung,
 			String ghiChu) {
 		super();
 		this.nhanVien = nhanVien;
 		this.khachHang = khachHang;
 		this.noiDung = noiDung;
 		this.ghiChu = ghiChu;
+		this.tenKhachHang = tenKhachHang;
+		
 	}
 	
 	public String getNhanVien() {
@@ -44,5 +47,11 @@ public class DataInfo {
 		this.ghiChu = ghiChu;
 	}
 	
-	
+	public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
 }

@@ -71,20 +71,20 @@ public class StaffHistoryDAOImpl implements StaffHistoryDAO{
         boolean status = false;
         StaffHistory staffHistory = null;
         try{
-            String datefinal="";
-            System.out.println(" DATE: " + time); 
-            if(time != null && time.compareTo("")!= 0 ){
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-                
-                Date date = sdf.parse(time);
-                datefinal = sdf2.format(date);
-                
-                
-                System.out.println(" DATECONVERT: " + datefinal );
-            }
+//            String datefinal="";
+//            System.out.println(" DATE: " + time); 
+//            if(time != null && time.compareTo("")!= 0 ){
+//                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+//                
+//                Date date = sdf.parse(time);
+//                datefinal = sdf2.format(date);
+//                
+//                
+//                System.out.println(" DATECONVERT: " + datefinal );
+//            }
             
-            Query query = session.createQuery("from StaffHistory where customer ='"+pCustomer+"' and cast(startTime as date) = '"+ datefinal +"'");
+            Query query = session.createQuery("from StaffHistory where customer ='"+pCustomer+"' and cast(startTime as date) = '"+ time +"'");
             staffHistory = (StaffHistory)query.uniqueResult();
                       
             

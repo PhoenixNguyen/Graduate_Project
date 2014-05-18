@@ -5,6 +5,9 @@ public class DataInfo {
 	private String khachHang;
 	private String noiDung;
 	private String ghiChu;
+        private String tenKhachHang;
+
+    
 	
 	public DataInfo(){
 		
@@ -44,5 +47,11 @@ public class DataInfo {
 		this.ghiChu = ghiChu;
 	}
 	
-	
+	public String getTenKhachHang() {
+            return tenKhachHang;
+        }
+
+        public void setTenKhachHang(String tenKhachHang) {
+            this.tenKhachHang = tenKhachHang;
+        }
 }

@@ -191,7 +191,7 @@ public class TakeImagesActivity extends MainMenuActivity {
 //			UploadCustomerImageTask.dialog.dismiss();
 	}
 
-	private String pathSave;
+	public static String pathSave;
 	public void savePhoto(Bitmap bmp) {
 		File imageFileFolder = new File(
 				Environment.getExternalStorageDirectory(), "DMS");
@@ -231,6 +231,13 @@ public class TakeImagesActivity extends MainMenuActivity {
 
 	private MediaScannerConnection msConn = null;
 	public void scanPhoto(final String imageFileName) {
+		
+		File file = new File(imageFileName);
+		Uri contentUri = Uri.fromFile(file);
+		Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); 
+		mediaScanIntent.setData(contentUri);
+		sendBroadcast(mediaScanIntent);
+		
 		msConn = new MediaScannerConnection(TakeImagesActivity.this,
 				new MediaScannerConnectionClient() {
 					public void onMediaScannerConnected() {

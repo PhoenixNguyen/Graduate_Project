@@ -26,6 +26,7 @@ import com.hp.domain.DataInfo;
 import com.hp.map.CustomerListActivity;
 import com.hp.map.CustomerMapActivity;
 import com.hp.map.R;
+import com.hp.map.TakeImagesActivity;
 import com.sun.jersey.api.client.ClientResponse;
 
 public class CustomerAPI {
@@ -393,8 +394,10 @@ public class CustomerAPI {
 
 			DataInfo data = new DataInfo(Rest.mStaff.getId(),
 					CustomerMapActivity.mSelectedCustomer.getMaDoiTuong(),
+					CustomerMapActivity.mSelectedCustomer.getDoiTuong(),
 					DataConvert.encodeImageToString(path), "");
 			
+			System.out.println(data.getTenKhachHang());
 			// uploading
 			ClientResponse response = Rest.mService
 					.path("webresources")
@@ -423,7 +426,7 @@ public class CustomerAPI {
 				
 				Toast.makeText(context, "Đã gửi thành công", Toast.LENGTH_SHORT)
 						.show();
-				
+				TakeImagesActivity.pathSave = "";
 				
 			} else if (result.equals("nointernet")) {
 				Toast.makeText(context,

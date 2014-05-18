@@ -20,6 +20,8 @@ import com.hp.dao.ScheduleDAO;
 import com.hp.dao.ScheduleDAOImpl;
 import com.hp.dao.StaffDAO;
 import com.hp.dao.StaffDAOImpl;
+import com.hp.dao.StaffHistoryDAO;
+import com.hp.dao.StaffHistoryDAOImpl;
 import com.hp.dao.TakeOrderDAO;
 import com.hp.dao.TakeOrderDAOImpl;
 import com.hp.dao.TakeOrderDetailDAO;
@@ -33,14 +35,13 @@ import com.hp.domain.Provider;
 import com.hp.domain.RoadManagement;
 import com.hp.domain.Schedule;
 import com.hp.domain.Staff;
+import com.hp.domain.StaffHistory;
 import com.hp.domain.TakeOrder;
 import com.hp.domain.TakeOrderDetail;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-
 import java.io.IOException;
-
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
@@ -51,24 +52,23 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import static javax.ws.rs.HttpMethod.POST;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.UriInfo;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -80,10 +80,6 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
-
-//import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-//import org.glassfish.jersey.media.multipart.FormDataParam;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -617,9 +613,26 @@ public class GenericResource {
         
         boolean status = customerImageDAO.saveOrUpdate(customerImage);
         
+        //save track staff 
+        StaffHistoryDAO staffHistoryDAO = new StaffHistoryDAOImpl();
+        StaffHistory staffHistory = new StaffHistory();
+        staffHistory = staffHistoryDAO.getStaffHistory(data.getKhachHang(), df.format(today));
+        
+        if(staffHistory == null){
+            System.out.println(data.getTenKhachHang());
+            staffHistory = new StaffHistory();
+            staffHistory.setStaff(data.getNhanVien());
+            staffHistory.setCustomer(data.getKhachHang());
+            staffHistory.setCustomerName(data.getTenKhachHang());
+            staffHistory.setStartTime(Timestamp.valueOf(df2.format(today)));
+            //staffHistory.setNote();
+            
+            staffHistoryDAO.saveOrUpdate(staffHistory);
+        }
+        
 //            String output = pTrack.toString();
-            System.out.println( status + " ____ " + data.getNhanVien()+ "___ " + data.getKhachHang());
-            return Response.status(200).entity("______ Success").build();
+        System.out.println( status + " ____ " + data.getNhanVien()+ "___ " + data.getKhachHang());
+        return Response.status(200).entity("______ Success").build();
     }
     
     public void saveImage(String input, String output) {

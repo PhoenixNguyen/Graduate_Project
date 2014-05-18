@@ -10,8 +10,11 @@ import com.hp.dao.CustomerDAO;
 import com.hp.dao.CustomerDAOImpl;
 import com.hp.dao.ProductDAO;
 import com.hp.dao.ProductDAOImpl;
+import com.hp.dao.StaffDAO;
+import com.hp.dao.StaffDAOImpl;
 import com.hp.domain.Customer;
 import com.hp.domain.Product;
+import com.hp.domain.Staff;
 import java.io.IOException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -212,6 +215,36 @@ public class InputResource {
         
         ProductDAO productDAO = new ProductDAOImpl();
         boolean st = productDAO.delete(product);
+        System.out.println("____ " + st + "___ " );       
+        return Response.status(200).entity(st+"").build();
+        
+    }
+    
+    
+    
+    @POST
+    @Path("/updateStaff")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateStaff(String pData) { //String customerID
+        
+       // pair to object
+        ObjectMapper mapper = new ObjectMapper();
+        Staff staff = new Staff();
+        try {
+//			File jsonFile = new File(jsonFilePath);
+                staff = mapper.readValue(pData, Staff.class);
+                //System.out.println(track.getmMaKhachHang());
+        } catch (JsonGenerationException e) {
+                e.printStackTrace();
+        } catch (JsonMappingException e) {
+                e.printStackTrace();
+                
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        
+        StaffDAO staffDAO = new StaffDAOImpl();
+        boolean st = staffDAO.update(staff);
         System.out.println("____ " + st + "___ " );       
         return Response.status(200).entity(st+"").build();
         

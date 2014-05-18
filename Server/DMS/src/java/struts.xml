@@ -239,6 +239,10 @@
             <result name="success">input/deleteProduct</result>
         </action>
         
+        
+        <action name="updateStaff" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">input/updateStaff</result>
+        </action>
     </package>
     <package name="map"  extends="json-default,hibernate-default" namespace="/map">
         <!--FOR CUSTOMERS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

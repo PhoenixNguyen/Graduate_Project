@@ -1,6 +1,9 @@
 package com.hp.map;
 
+import com.hp.domain.Staff;
 import com.hp.rest.Rest;
+import com.hp.rest.CustomerAPI.GetCustomerListTask;
+import com.hp.rest.UserAPI.EditUserTask;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +28,7 @@ public class ProfileEditActivity extends MainMenuActivity{
 	
 	private Button password;
 	
+	private Staff staff;
 	
 	public void onCreate(Bundle bundle){
 		super.onCreate(bundle);
@@ -60,6 +64,8 @@ public class ProfileEditActivity extends MainMenuActivity{
 		if(Rest.mStaff.getPermission() == 3)
 			permission.setText("Nhân viên lấy vị trí");
 		
+		staff = new Staff();
+		
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu){
@@ -81,7 +87,7 @@ public class ProfileEditActivity extends MainMenuActivity{
 	        break;
 	        
 	    case R.id.action_done:
-        	
+        	updateData();
             return true;
 	    
 	    default:
@@ -92,5 +98,26 @@ public class ProfileEditActivity extends MainMenuActivity{
 	    return true;
 	}
 	
+	public void updateData(){
+		staff.setId(Rest.mStaff.getId());
+		staff.setManager(Rest.mStaff.getManager());
+		staff.setPermission(Rest.mStaff.getPermission());
+		staff.setPw(Rest.mStaff.getPw());
+		staff.setStt(Rest.mStaff.getStt());
+		staff.setStatus(true);
+		staff.setDate(Rest.mStaff.getDate());
+		
+		staff.setAdress(address.getText().toString());
+		
+		staff.setJob(job.getText().toString());
+		staff.setName(name.getText().toString());
+		staff.setPhone(phone.getText().toString());
+		
+		
+		
+		EditUserTask update = new EditUserTask(context, "updateStaff", staff
+			   );
+		update.execute();
+	}
 	
 }

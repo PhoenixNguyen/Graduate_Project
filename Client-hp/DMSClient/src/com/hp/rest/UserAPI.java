@@ -147,4 +147,120 @@ public class UserAPI {
             	return false;
         }
     } 
+	
+	
+	//EDIT STAFF
+	public static class EditUserTask extends AsyncTask<Void,Void,String>
+    {
+		Context context;
+		String method;
+		
+		Staff staff;
+		
+		
+		
+    	ProgressDialog dialog;
+    	
+    	public EditUserTask(Context context, String method, Staff staff){
+    		
+    		this.context = context;
+    		this.method = method;
+    		
+    		this.staff = staff;
+    	}
+    	
+    	
+    	protected void onPreExecute() {
+    		dialog = ProgressDialog.show(context, "",
+  				  "Đang xử lý", true);
+		}
+        protected String doInBackground(Void... params)
+        {
+            //do something  
+			if(CheckingInternet.isOnline()){
+				System.out.println("Internet access!!____________________");
+			}
+			else{
+												
+				System.out.println("NO Internet access!!____________________");
+								
+				return "nointernet";
+				
+			}
+							
+	
+			
+			
+			// Getting
+			ClientResponse response = Rest.mService.path("webresources")
+					.path(method).accept("application/json")
+					.type("application/json").post(ClientResponse.class, convertObjectToString(staff));
+			System.out.println("________________ " + response.toString());
+
+			if (response.getStatus() != 200) {
+
+				return "nodata";
+			} else {
+
+				String re = response.getEntity(String.class);
+				System.out.println("________________ " + re);
+
+				// Convert
+				if (re.compareTo("true") == 0)
+					return "success";
+				else
+					return "fail";
+			}
+			
+			// =====================================================================================
+	    
+        }
+
+        protected void onPostExecute(String result)
+        {
+            if (result.equals("success")){
+                //do something
+            	Rest.mStaff = staff;
+            	Toast.makeText(context, "Đã cập nhật thông tin", Toast.LENGTH_SHORT).show();
+	        	
+            }
+            else
+				if (result.equals("nointernet")){
+					Toast.makeText(context, "Không có kết nối mạng, mở 3G hoặc Wifi để tiếp tục!", Toast.LENGTH_SHORT).show();
+				}
+			else
+				if (result.equals("fail")){
+					
+					Toast.makeText(context, "Không thể lưu dữ liệu. hãy thử lại sau", Toast.LENGTH_SHORT).show();
+				}
+			else
+			{       
+			 				
+			 Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+				
+			}
+            
+            dialog.dismiss();
+        }   
+        
+        public String convertObjectToString(Staff staff){
+        	ObjectMapper mapper = new ObjectMapper();
+        	String str = new String();
+            try {
+            	str = mapper.writeValueAsString(staff);
+    			
+    		} catch (JsonGenerationException e) {
+    			e.printStackTrace();
+    			return "";
+    		} catch (JsonMappingException e) {
+    			e.printStackTrace();
+    			return "";
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    			return "";
+    		}
+            
+            return str;
+        }
+    } 
 }

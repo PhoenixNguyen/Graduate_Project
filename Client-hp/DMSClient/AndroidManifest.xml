@@ -177,6 +177,10 @@
 		<activity
             android:name="com.hp.map.SaleManagerDetail_Main_Activity"
             android:label="Bán hàng" />
+            
+         <activity
+            android:name="com.hp.map.ProfileEditActivity"
+            android:label="Sửa thông tin cá nhân" />
     </application>
 
 </manifest>

@@ -448,6 +448,8 @@ containing a value of this type.
         public static final int ResetDateTime=0x7f060068;
         public static final int SetDateTime=0x7f060067;
         public static final int action_add=0x7f0600ac;
+        public static final int action_done=0x7f0600ad;
+        public static final int action_edit=0x7f0600ae;
         public static final int action_over_flow=0x7f0600a5;
         public static final int action_refresh=0x7f0600ab;
         public static final int action_save=0x7f0600a4;
@@ -672,6 +674,8 @@ containing a value of this type.
         public static final int customer_menu=0x7f0c0001;
         public static final int main=0x7f0c0002;
         public static final int order_menu=0x7f0c0003;
+        public static final int staff_edit=0x7f0c0004;
+        public static final int staff_infomation=0x7f0c0005;
     }
     public static final class string {
         public static final int action_check_updates=0x7f07006c;

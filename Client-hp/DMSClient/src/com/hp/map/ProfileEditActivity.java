@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ProfileActivity extends MainMenuActivity{
+public class ProfileEditActivity extends MainMenuActivity{
 	private TextView my_info;
 	
 	private EditText name;
@@ -42,13 +42,10 @@ public class ProfileActivity extends MainMenuActivity{
 		
 		password = (Button)findViewById(R.id.password);
 		
-		name.setFocusable(false);
-		address.setFocusable(false);
-		job.setFocusable(false);
-		phone.setFocusable(false);
 		
 		
-		my_info.setText("Xin chào " + Rest.mStaff.getId() + " - " + Rest.mStaff.getName());
+		
+		my_info.setText("Sửa thông tin ");
 		
 		name.setText(Rest.mStaff.getName());
 		address.setText(Rest.mStaff.getAdress());
@@ -67,7 +64,7 @@ public class ProfileActivity extends MainMenuActivity{
 	
 	public boolean onCreateOptionsMenu(Menu menu){
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.staff_infomation, menu);
+		inflater.inflate(R.menu.staff_edit, menu);
 		
 		return true;
 	}
@@ -83,8 +80,8 @@ public class ProfileActivity extends MainMenuActivity{
 	        // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
 	        break;
 	        
-	    case R.id.action_edit:
-        	startActivity(new Intent(this, ProfileEditActivity.class));
+	    case R.id.action_done:
+        	
             return true;
 	    
 	    default:
@@ -95,8 +92,5 @@ public class ProfileActivity extends MainMenuActivity{
 	    return true;
 	}
 	
-	@Override
-	public void onBackPressed() {
-		moveTaskToBack(true);
-	}
+	
 }

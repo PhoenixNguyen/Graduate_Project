@@ -181,6 +181,10 @@
          <activity
             android:name="com.hp.map.ProfileEditActivity"
             android:label="Sửa thông tin cá nhân" />
+            
+         <activity
+            android:name="com.hp.map.ProfileChangePWActivity"
+            android:label="Thay đổi mật khẩu" />
     </application>
 
 </manifest>

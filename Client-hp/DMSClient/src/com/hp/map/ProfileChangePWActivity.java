@@ -11,59 +11,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ProfileEditActivity extends MainMenuActivity{
+public class ProfileChangePWActivity extends MainMenuActivity{
 	private TextView my_info;
 	
-	private EditText name;
-	private EditText address;
-	private EditText job;
-	private EditText phone;
-	private EditText date;
-	private EditText permission;
-	private EditText manager;
+	private EditText pw;
+	private EditText pw1;
+	private EditText pw2;
 	
-	private Button password;
 	
 	private Staff staff;
 	
 	public void onCreate(Bundle bundle){
 		super.onCreate(bundle);
-		setContentView(R.layout.staff_profile);
+		setContentView(R.layout.staff_pw);
 		
 		my_info = (TextView)findViewById(R.id.my_info);
 		
-		name = (EditText)findViewById(R.id.name);
-		address = (EditText)findViewById(R.id.address);
-		job = (EditText)findViewById(R.id.job);
-		phone = (EditText)findViewById(R.id.phone);
-		date = (EditText)findViewById(R.id.date);
-		permission = (EditText)findViewById(R.id.permission);
-		manager = (EditText)findViewById(R.id.manager);
-		
-		password = (Button)findViewById(R.id.password);
+		pw = (EditText)findViewById(R.id.pw);
+		pw1 = (EditText)findViewById(R.id.pw1);
+		pw2 = (EditText)findViewById(R.id.pw2);
 		
 		
 		
+		my_info.setText("Thay đổi mật khẩu ");
 		
-		my_info.setText("Sửa thông tin ");
-		
-		name.setText(Rest.mStaff.getName());
-		address.setText(Rest.mStaff.getAdress());
-		job.setText(Rest.mStaff.getJob());
-		phone.setText(Rest.mStaff.getPhone());
-		
-		manager.setText(Rest.mStaff.getManager());
-		if(Rest.mStaff.getPermission() == 1)
-			permission.setText("Quản lý");
-		if(Rest.mStaff.getPermission() == 2)
-			permission.setText("Nhân viên bán hàng");
-		if(Rest.mStaff.getPermission() == 3)
-			permission.setText("Nhân viên lấy vị trí");
 		
 		staff = new Staff();
 		
@@ -100,30 +76,36 @@ public class ProfileEditActivity extends MainMenuActivity{
 	}
 	
 	public void updateData(){
+		if(pw.getText().toString().compareTo(Rest.mStaff.getPw()) != 0){
+			Toast.makeText(context, "Mật khẩu cũ không đúng, hãy thử lại ", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		if(pw1.getText().toString().compareTo(pw2.getText().toString()) != 0){
+			Toast.makeText(context, "Xác nhận mật khẩu không khớp, hãy thử lại ", Toast.LENGTH_SHORT).show();
+			return;
+		}
+			
+			
 		staff.setId(Rest.mStaff.getId());
 		staff.setManager(Rest.mStaff.getManager());
 		staff.setPermission(Rest.mStaff.getPermission());
-		staff.setPw(Rest.mStaff.getPw());
+		
 		staff.setStt(Rest.mStaff.getStt());
 		staff.setStatus(true);
 		staff.setDate(Rest.mStaff.getDate());
 		
-		staff.setAdress(address.getText().toString());
+		staff.setAdress(Rest.mStaff.getAdress());
 		
-		staff.setJob(job.getText().toString());
-		staff.setName(name.getText().toString());
-		staff.setPhone(phone.getText().toString());
+		staff.setJob(Rest.mStaff.getJob());
+		staff.setName(Rest.mStaff.getName());
+		staff.setPhone(Rest.mStaff.getPhone());
 		
-		
+		staff.setPw(pw1.getText().toString());
 		
 		EditUserTask update = new EditUserTask(context, "updateStaff", staff
 			   );
 		update.execute();
 	}
-	
-	public void changePW(View view){
-		startActivity(new Intent(this, ProfileChangePWActivity.class));
-	}
-	
 	
 }

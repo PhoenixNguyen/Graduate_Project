@@ -142,6 +142,7 @@
                                                                        1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
                                                                        1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
                                                                        1.4. Xem hình ảnh của nhân viên chụp tại cửa hàng của khách hàng<br>
+                                                                       1.5. Xem lịch sử của nhân viên chăm sóc khách hàng<br>
                                                                     </p>
                                                                 </tr>
                                                                 

@@ -14,6 +14,7 @@ import com.hp.dao.UserDAO;
 import com.hp.dao.UserDAOImpl;
 import com.hp.domain.Announcement;
 import com.hp.domain.History;
+import com.hp.domain.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.net.InetAddress;
@@ -39,7 +40,8 @@ public class UserAction extends ActionSupport{
     private Announcement announcement = new Announcement();
 
     private History history = new History();
-
+    private User user = new User();
+    
     public History getHistory() {
         return history;
     }

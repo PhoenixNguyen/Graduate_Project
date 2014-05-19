@@ -59,6 +59,8 @@ public class StaffHistoryAction extends ActionSupport implements ModelDriven{
     
     private List<Customer> customerList = new ArrayList<Customer>();
 
+    private StaffHistory staffHistory = new StaffHistory();
+    
     public List<Customer> getCustomerList() {
         return customerList;
     }

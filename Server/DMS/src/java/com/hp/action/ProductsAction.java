@@ -102,6 +102,15 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
     private boolean deleteStatus;
     private boolean selected;
 
+    private boolean changeIMStatus;
+
+    public boolean isChangeIMStatus() {
+        return changeIMStatus;
+    }
+
+    public void setChangeIMStatus(boolean changeIMStatus) {
+        this.changeIMStatus = changeIMStatus;
+    }
     public boolean isSelected() {
         return selected;
     }
@@ -499,20 +508,21 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         String saveName = df.format(date)+"-"+document2.getFileFileName() ;
         
         try {
+            //update the name
+            System.out.println("OK" + product.getProductID());
+            product = productDAO.loadProduct(st);
             
             System.out.println(document2.getFileContentType());
-            String filePath = ServletActionContext.getServletContext().getRealPath("/product/"+ st+"/");
+            String filePath = ServletActionContext.getServletContext().getRealPath("/db_products/"+ product.getProductID()+"/");
             System.out.println("Server path:" + filePath + "\\"+saveName);
             
             File fileToCreate = new File(filePath, saveName);
             FileUtils.copyFile(document2.getFile(), fileToCreate);
             
-            //update the name
-            System.out.println("OK" + product.getProductID());
-            product = productDAO.loadProduct(st);
+            
             product.setProductImage(saveName);
             boolean status = productDAO.update(product);
-            productsList = productDAO.getProductList();
+            //productsList = productDAO.getProductList();
             
             id_product = st;
             
@@ -520,6 +530,8 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
             Logger.getLogger(ProductsAction.class.getName()).log(Level.SEVERE, null, ex);
             return INPUT;
         }
+        
+        changeIMStatus = true;
         return SUCCESS;
     }
     

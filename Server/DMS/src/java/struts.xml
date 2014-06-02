@@ -724,6 +724,28 @@
             
         </action>
         
+        <action name="change-image-product" method="redirect" class="com.hp.action.ProductsAction">
+            <result name="success">product-detail-image.jsp</result>
+            <result name="input" >product-detail-image.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
+        <action name="upload-product-image" method="uploadAnImage" class="com.hp.action.ProductsAction">
+            
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">
+                    image/png,image/gif,image/jpeg,image/pjpeg,application/rar,image/jpg
+                    ,application/octet-stream,text/plain
+                    ,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                </param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+ 
+            <result name="success" >product-detail-image.jsp</result>
+            <result name="input" >product-detail-image.jsp</result>
+            <result name="login" >index.jsp</result>
+        </action>
+        
         <!--TAKE ORDER-->
         <action name="search-takeorder" method="searchTakeOrder" class="com.hp.action.TakeOrderAction">
             <result name="success">take-order.jsp</result>

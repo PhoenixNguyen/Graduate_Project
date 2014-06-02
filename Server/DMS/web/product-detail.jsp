@@ -424,16 +424,23 @@
                                                                                 <div style="width:auto;display:block;" id="tblThôngtinhìnhảnhsảnphẩm">
                                                                                     <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
 
-                                                                                        <tbody><tr style="height:25px">
+                                                                                        <tbody>
+                                                                                            <tr style="height:25px">
 
                                                                                                 <!-- Avoid to display the label Tax Class -->
                                                                                                 <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Hình ảnh sản phẩm</td>
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!-- for Image Reflection -->
-                                                                                                <td align="left" width="25%&quot;">&nbsp;</td>
+                                                                                                <td align="left" width="25%"><img src="db_products/<s:property value="product.productID"/>/<s:property value="product.productImage"/>" width="100%" height="100"/></td>
+                                                                                                
+                                                                                                <td class="dvtCellLabel" align="right" width="25%">
+                                                                                                <input title='Thay đổi ảnh' accessKey='P' class='crmButton password small' LANGUAGE=javascript onclick='return window.open("change-image-product?id_pdct=<s:property value="product.serial"/>");' type='button' name='password' value='Thay đổi ảnh'>
+                                                                                                </td>
+                                                                                                <td class="dvtCellLabel" align="left" width="25%"></td>
                                                                                             </tr>	
-                                                                                        </tbody></table>
+                                                                                        </tbody>
+                                                                                    </table>
                                                                                 </div> <!-- Line added by SAKTI on 10th Apr, 2008 -->
                                                                                 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                                     <tbody><tr>

@@ -3,7 +3,7 @@
 <hibernate-configuration>
   <session-factory >
         <!--FOR online Server -->
-        <property name="hibernate.connection.datasource">jdbc/DMSProject</property>
+        <!--property name="hibernate.connection.datasource">jdbc/DMSProject</property-->
         
         <!-- FOR TEST WITH SERVER-->
         <!--property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
@@ -16,11 +16,11 @@
         <!--com.hp.filter.CustomMysqlDialect - org.hibernate.dialect.SQLServerDialect -->
         
         <!-- FOR LOCALHOST -->
-        <!--property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=DMS8080</property>
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password">root</property>
-        <property name="show_sql">true</property-->
+        <property name="show_sql">true</property>
         
     
         <property name="hbm2ddl.auto">create</property>

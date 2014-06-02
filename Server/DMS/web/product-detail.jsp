@@ -432,7 +432,12 @@
 
                                                                                                 <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                                 <!-- for Image Reflection -->
-                                                                                                <td align="left" width="25%"><img src="db_products/<s:property value="product.productID"/>/<s:property value="product.productImage"/>" width="100%" height="100"/></td>
+                                                                                                <s:if test="product.productImage != null">
+                                                                                                    <td align="left" width="25%"><img src="db_products/<s:property value="product.productID"/>/<s:property value="product.productImage"/>" title="<s:property value="product.productImage"/>" width="100%" height="100"/></td>
+                                                                                                </s:if>
+                                                                                                <s:else>
+                                                                                                <td align="left" width="25%"><img src="db_images/default.jpg" title="Ảnh mặc định" width="100%" height="100"/></td>
+                                                                                                </s:else>
                                                                                                 
                                                                                                 <td class="dvtCellLabel" align="right" width="25%">
                                                                                                 <input title='Thay đổi ảnh' accessKey='P' class='crmButton password small' LANGUAGE=javascript onclick='return window.open("change-image-product?id_pdct=<s:property value="product.serial"/>");' type='button' name='password' value='Thay đổi ảnh'>

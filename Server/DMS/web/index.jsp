@@ -13,28 +13,22 @@
         <link REL="SHORTCUT ICON" HREF="themes/images/vtigercrm_icon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>HOSCO-MANAGEMENT</title>
-        
+
         <style type="text/css">@import url("include/style.css");</style>
         <style type="text/css">@import url("themes/softed/style.css");</style>
-        
+
+        <script language="JavaScript" type="text/javascript" src="js/jquery.min.js"></script>
+
         <%
-            if(session.getAttribute("authorized") != null && (Boolean)session.getAttribute("authorized")){
-               
-            
+            if (session.getAttribute("authorized") != null && (Boolean) session.getAttribute("authorized")) {
+
+
         %>
         <jsp:forward page="home.jsp"></jsp:forward>
-        <% 
-            }
-            
+        <%            }
+
         %>
-        <script>
-            console.log("status ");
-            
-            var user = <s:property value="%{#attr.user_name}"/>;
-            console.log(user + " user ");
-            if(user !== "null")
-                
-        </script>
+
     </head>
     <body onload=set_focus() style="padding:0; margin:0;"><!-- startscrmprint --><!--Added to display the footer in the login page by Dina-->
         <script type="text/javascript" language="JavaScript">
@@ -89,98 +83,91 @@
                                         <!-- form elements -->
                                         <br>
                                         <table border="0" cellpadding="5" cellspacing="0" width="100%">
-                                            <tr>
+                                            <tr bgcolor="#f5f5f5">
                                                 <td class="small" align="right" width="30%">Tên đăng nhập<!--Người dùng--></td>
                                                 <td class="small" align="left" width="70%"><input class="small" type="text" name="user_name"  tabindex="1"></td>
                                             </tr>
-                                            <tr>
+                                            <tr bgcolor="#f5f5f5">
                                                 <td class="small" align="right" width="30%">Mật khẩu<!--Mật khẩu--></td>
                                                 <td class="small" align="left" width="70%"><input class="small" type="password" size='20' name="user_password"  tabindex="2"></td>
                                             </tr>
-                                            <tr bgcolor="#f5f5f5">
-                                                <td class="small" align="right" width="30%">Hiển thị<!--Màu nền--></td>
-                                                <td class="small" align="left" width="70%"><select class="small" name='login_theme' style="width:70%" tabindex="3">
-                                                        <!-- 
-                                                        <OPTION value='alphagrey'>alphagrey</OPTION>
-                                                        <OPTION value='bluelagoon'>bluelagoon</OPTION>
-                                                        <OPTION selected value='softed'>softed</OPTION>
-                                                        <OPTION value='woodspice'>woodspice</OPTION> -->
-                                                        <option selected="" value="softed">HOSCO-THEME</option>
-                                                    </select></td>
-                                            </tr>
-                                            <tr bgcolor="#f5f5f5">
-                                                <td class="small" align="right" width="30%">Ngôn ngữ<!--Ngôn ngữ--></td>
-                                                <td class="small" align="left" width="70%"><select class="small" name='login_language' style="width:70%" tabindex="4">
-                                                        <!-- vtlib Customization -->
-                                                        <!-- 
-                                                            <OPTION value='en_us'>US English</OPTION>
-                                                            <OPTION selected value='vn'>Vietnamese</OPTION> -->
-                                                        <option value="vn">Tiếng Việt</option>
-                                                    </select></td>		
-                                            </tr>
-                                            <tr>
-                                                <td class="small">&nbsp;</td>
-                                                <td class="small">
-                                                    <input title="Đăng nhập [Alt+L]" alt="Đăng nhập [Alt+L]" accesskey="Đăng nhập [Alt+L]" src="themes/images/btnSignInNEW.gif" type="image" name="Login" value="  Đăng nhập  "  tabindex="5">
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <br><br>
+                                            <!--                                            <tr bgcolor="#f5f5f5">
+                                                                                            <td class="small" align="right" width="30%">Hiển thịMàu nền</td>
+                                                                                            <td class="small" align="left" width="70%"><select class="small" name='login_theme' style="width:70%" tabindex="3">
+                                                                                                     
+                                                                                                    <OPTION value='alphagrey'>alphagrey</OPTION>
+                                                                                                    <OPTION value='bluelagoon'>bluelagoon</OPTION>
+                                                                                                    <OPTION selected value='softed'>softed</OPTION>
+                                                                                                    <OPTION value='woodspice'>woodspice</OPTION> 
+                                                                                                    <option selected="" value="softed">HOSCO-THEME</option>
+                                                                                                </select></td>
+                                                                                        </tr>
+                                                                                        <tr bgcolor="#f5f5f5">
+                                                                                            <td class="small" align="right" width="30%">Ngôn ngữNgôn ngữ</td>
+                                                                                            <td class="small" align="left" width="70%"><select class="small" name='login_language' style="width:70%" tabindex="4">
+                                                                                                     vtlib Customization 
+                                                                                                     
+                                                                                                        <OPTION value='en_us'>US English</OPTION>
+                                                                                                        <OPTION selected value='vn'>Vietnamese</OPTION> 
+                                                                                                    <option value="vn">Tiếng Việt</option>
+                                                                                                </select></td>		
+                                                                                        </tr>-->
+
+                                            <tr  >
+                                            <div id="status" style="display : none;"><font color="red"> Tên đăng nhập hoặc mật khẩu không hợp lệ</font>
+                                            </div>
+                                            <!--                                                <td class="small" align="left" width="70%"><select class="small" name='login_language' style="width:70%" tabindex="4">
+                                                                                                     vtlib Customization 
+                                                                                                     
+                                                                                                        <OPTION value='en_us'>US English</OPTION>
+                                                                                                        <OPTION selected value='vn'>Vietnamese</OPTION> 
+                                                                                                    <option value="vn">Tiếng Việt</option>
+                                                                                                </select></td>		-->
+                                </tr>
+                                <tr>
+                                    <td class="small">&nbsp;</td>
+                                    <td class="small">
+                                        <input title="Đăng nhập [Alt+L]" alt="Đăng nhập [Alt+L]" accesskey="Đăng nhập [Alt+L]" src="themes/images/btnSignInNEW.gif" type="image" name="Login" value="  Đăng nhập  "  tabindex="5">
                                     </td>
                                 </tr>
+                            </table>
+                            <br><br>
+                            </td>
+                            </tr>
                             </table>
                         </form>
                     </td>
                 </tr>
             </table>
         </div>
-        <!-- stopscrmprint --><style>
-            .bggray
-            {
-                background-color: #dfdfdf;
-            }
-            .bgwhite
-            {
-                background-color: #FFFFFF;
-            }
-            .copy
-            {
-                font-size:9px;
-                font-family: Verdana, Arial, Helvetica, Sans-serif;
-            }
-        </style>
-        <script language=javascript>
-            function LogOut(e)
-            {
-                var nav4 = window.Event ? true : false;
-                var iX, iY;
-                if (nav4)
-                {
-                    iX = e.pageX;
-                    iY = e.pageY;
-                }
-                else
-                {
-                    iX = event.clientX + document.body.scrollLeft;
-                    iY = event.clientY + document.body.scrollTop;
+
+
+        <script>
+            console.log("status ");
+
+            //var user = <s:property value="%{#attr.user_name}"/>;
+
+            var status = false;
+            var click = false;
+            status = <s:property value="%{#attr.authorized}"/>;
+
+            click = <s:property value="%{#attr.click}"/>;
+            console.log(" status " + status + click);
+
+            if (click) {
+                console.log(" passed1 ");
+                if (status === "false") {
+                    console.log(" passed2 ");
+                    document.getElementById("status").style.display = "block";
 
                 }
-                if (iX <= 30 && iY < 0)
-                {
-                    w = window.open("index.php?action=Logout&module=Users");
-                    w.close();
-                }
             }
-//window.onunload=LogOut
+
         </script>
-        <script language = 'JavaScript' type='text/javascript' src = 'include/js/popup.js'></script><br><br><br><table border=0 cellspacing=0 cellpadding=5 width=100% class=settingsSelectedUI ><tr><td class=small align=left><span style='color: rgb(153, 153, 153);'>HOSCO-CRM</span></td><td class=small align=right><span style='color: rgb(153, 153, 153);'>&copy; 2014 <a href='http://www.hosgroup.com.vn' target='_blank'>hosgroup.com.vn</a></span> <img src='http://stats.hosgroup.com.vn/stats.php?uid=777ddc572adcbcebafc476bcc1f627c6&v=5.2.1&type=U'
-                    alt='|' title='' border=0 width='1px' height='1px'></td></tr></table>		<script>
-            var userDateFormat = "";
-            var default_charset = "UTF-8";
-        </script>
-        <!--end body panes-->
-    </td></tr>
-<tr><td colspan="2" align="center">
-    </td></tr></table>
-</body>
+
+
+        <!--    Footer-->
+        <s:include value="footer.jsp"></s:include>
+
+    </body>
 </html>

@@ -71,6 +71,9 @@ public class UserAction extends ActionSupport{
         
         System.out.println("user: " + username + " pass: " + password);
         
+        session.setAttribute("click", true);
+        session.setAttribute("authorized", false);
+        
         if(userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
             //save history
             SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        

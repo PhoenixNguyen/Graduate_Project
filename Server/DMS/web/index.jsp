@@ -166,6 +166,7 @@
         </script>
 
 
+        <br><br><br>
         <!--    Footer-->
         <s:include value="footer.jsp"></s:include>
 

@@ -67,6 +67,8 @@
                                 <td valign=top>
                                     <table border=0 cellspacing=0 cellpadding=0 width=100%>
                                         <tr>
+                                            
+                                            <s:if test="#attr.PERMISSION == 0">
                                             <td valign=top id="settingsSideMenu" width="10%" >
                                                 <!--Left Side Navigation Table-->
                                                 <table border=0 cellspacing=0 cellpadding=0 width="100%">
@@ -109,6 +111,7 @@
                                                 <img src="themes/images/panel-right.png" title="Show Menu" id="showImage" style="display:none;cursor:pointer;" onclick="toggleShowHide_panel('settingsSideMenu', 'showImage');
                                                         toggleShowHide_panel('hideImage', 'showImage');"/>
                                             </td>
+                                            </s:if>
                                             <td class="small settingsSelectedUI" valign=top align=left>
                                                 <script type="text/javascript">
 
@@ -139,13 +142,13 @@
                                                                                     <td width=50 rowspan="2"><img src="themes/images/ico-users.gif" align="absmiddle"></td>	
                                                                                     <td>
                                                                                         <span class="heading2">
-                                                                                            <b><a href="">Quản trị viên </a> &gt; <s:property value="user.id"/> - <s:property value="user.hoTen"/> </b></span>
+                                                                                            <b><a href="">Thiết lập </a> &gt; <s:property value="user.id"/> - <s:property value="user.hoTen"/> </b></span>
                                                                                         <span id="vtbusy_info" style="display:none;" valign="bottom"><img src="themes/images/vtbusy.gif" border="0"></span>					
                                                                                     </td>
 
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td>Xem thông tin về quản trị viên <b><s:property value="user.id"/></b></td>
+                                                                                    <td>Thông tin chi tiết tài khoản <b><s:property value="user.id"/></b></td>
                                                                                 </tr>
                                                                             </table>
                                                                         </td>
@@ -160,7 +163,9 @@
                                                                             <input title='Sửa [Alt+E]' accessKey='E' class='crmButton small edit' onclick="
                                                                                 window.location.href = 'admin-edit?id_admin=<s:property value="user.stt"/>'
                                                                                    " type='button' name='Edit' value='  Sửa  '>
+                                                                            <s:if test="#attr.PERMISSION == 0">
                                                                             <input type="button" onclick="confirmdelete('' + str);" class="crmButton small cancel" value="Xóa"></input>
+                                                                            </s:if>
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -205,10 +210,10 @@
                                                                                                 <!-- Password Field-->
                                                                                                 <%
                                                                                                     String username = (String)session.getAttribute("user_name");
-                                                                                                    session.setAttribute("logined_user", username);
+                                                                                                    session.setAttribute("logined_user", username.toLowerCase());
                                                                                                 %>
                                                                                                 <td width=25% class="dvtCellInfo" align="left">
-                                                                                                    <s:if test="#attr.logined_user == user.id">
+                                                                                                    <s:if test="#attr.logined_user == user.id.toLowerCase()">
                                                                                                     <input title='Thay đổi mật khẩu [Alt+P]' accessKey='P' class='crmButton password small' LANGUAGE=javascript onclick='return window.open("admin-change-password");' type='button' name='password' value='Thay đổi mật khẩu'>
                                                                                                     </s:if>
                                                                                                 </td>	
@@ -264,8 +269,9 @@
 
                                                                                                     &nbsp;&nbsp;
                                                                                                     <span id="dtlview_Tên">
-                                                                                                        <s:if test="user.permission == 1">Quản lý cao cấp</s:if>
-                                                                                                        <s:if test="user.permission == 2">Quản lý bán hàng</s:if>
+                                                                                                        <s:if test="user.permission == 1">Người dùng</s:if>
+                                                                                                        <s:if test="user.permission == 2">Nhóm kinh doanh</s:if>
+                                                                                                        <s:if test="user.permission == 0">Quản trị hệ thống</s:if>
                                                                                                     </span>
                                                                                                     
                                                                                                 </td>

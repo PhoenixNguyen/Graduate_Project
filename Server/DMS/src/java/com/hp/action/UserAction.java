@@ -103,9 +103,13 @@ public class UserAction extends ActionSupport{
             //////////////////////////////////////////////////////////////////////////
             announcement = announcementDAO.getAnnouncement();
             
+            user = userDAO.getUser(username);
+                    
             session.setAttribute("announcement", announcement);
             session.setAttribute("authorized", true);
-            session.setAttribute("USER", userDAO.getUser(username));
+            session.setAttribute("USER", user);
+            session.setAttribute("PERMISSION", user.getPermission());
+            session.setAttribute("STT", user.getStt());
             
             session.setAttribute("history", id);
             return SUCCESS;

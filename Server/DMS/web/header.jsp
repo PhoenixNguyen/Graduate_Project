@@ -111,6 +111,8 @@
                                     <s:set  name="page"  >
                                         ${param.page_param}
                                     </s:set>
+                                    
+                                    <s:if test="#attr.PERMISSION != 0">
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
                                     <td <s:if test="#page == 'home'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -126,10 +128,19 @@
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                                     <td <s:if test="#page == 'inventory'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Inventory_sub');" onmouseout="fnHideDrop('Inventory_sub');" align="center" nowrap=""><a href="">Tồn kho</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
 
+                                    
+                                    <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
+                                    <td <s:if test="#page == 'setup'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Settings_sub_user');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                                    <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
+                                    
+                                    </s:if>
+                                    <s:else>
+                                    <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
+                                    <td <s:if test="#page == 'home'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                                     <td <s:if test="#page == 'setup'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Settings_sub');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
-
+                                    </s:else>
                                 </tr>
 
                             </tbody>
@@ -263,7 +274,17 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="drop_mnu" id="Settings_sub_user" onmouseout="fnHideDrop('Settings_sub_user')" onmouseover="fnShowDrop('Settings_sub_user')" style="left: 647px; top: 75px; display: none;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                        <td><a href="admin-detail?id_admin=<s:property value="%{#attr.STT}"/>" class="drop_down">Thiết lập</a></td>
+                    </tr>
+                    <tr>
+        <!--                <td><a href="" class="drop_down">Quản lý phân hệ</a></td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <!-- END Drop Down Menu in the Main Tab -->
 
         <div id="status" style="position:absolute;display:none;left:850px;top:95px;height:27px;white-space:nowrap;"><img src="themes/softed/images/status.gif"></div>

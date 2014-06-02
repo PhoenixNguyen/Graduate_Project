@@ -48,6 +48,7 @@
                                     <td valign=top>
                                         <table border=0 cellspacing=0 cellpadding=0 width=100%>
                                             <tr>
+                                                <s:if test="#attr.PERMISSION == 0">
                                                 <td valign=top id="settingsSideMenu" width="10%" >
                                                     <!--Left Side Navigation Table-->
                                                     <table border=0 cellspacing=0 cellpadding=0 width="100%">
@@ -90,6 +91,7 @@
                                                     <img src="themes/images/panel-right.png" title="Show Menu" id="showImage" style="display:none;cursor:pointer;" onclick="toggleShowHide_panel('settingsSideMenu', 'showImage');
                                                             toggleShowHide_panel('hideImage', 'showImage');"/>
                                                 </td>
+                                                </s:if>
                                                 <td class="small settingsSelectedUI" valign=top align=left>
                                                     <script type="text/javascript">
 
@@ -119,8 +121,8 @@
                                                                             <td>	
                                                                                 <span class="lvtHeaderText">
 
-                                                                                    <b><a href="">Quản trị viên </a> &gt;
-                                                                                        Sửa Quản trị viên "<s:property value="user.id"/> " 
+                                                                                    <b><a href="">Thiết lập </a> &gt;
+                                                                                        Sửa thông tin chi tiết "<s:property value="user.id"/> " 
                                                                                         
                                                                                     </b></span>
                                                                             </td>
@@ -128,7 +130,7 @@
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td><b class="small">Sửa thông tin quản trị viên</b>
+                                                                            <td><b class="small">Sửa thông tin </b>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -156,7 +158,7 @@
                                                                                                         <br>
                                                                                                         <table class="tableHeading" border="0" cellpadding="5" cellspacing="0" width="100%">
                                                                                                             <tr>
-                                                                                                                <td class="big"><strong>Thông tin quản trị viên</strong></td><td class="small" align="right">&nbsp;</td>
+                                                                                                                <td class="big"><strong>Thông tin chi tiết</strong></td><td class="small" align="right">&nbsp;</td>
                                                                                                             </tr>
                                                                                                         </table>
                                                                                                         <table border="0" cellpadding="5" cellspacing="0" width="100%">
@@ -219,18 +221,36 @@
                                                                                                                     <font color="red">*</font>Quyền			
                                                                                                                 </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
+                                                                                                                    <s:if test="#attr.PERMISSION == 0">
                                                                                                                     <select name="user.permission" tabindex="" class="small">
                                                                                                                         <s:if test="user.permission == 1">
-                                                                                                                            <option value="1" selected>Quản lý cao cấp</option>
-                                                                                                                            <option value="2" >Quản lý bán hàng</option>
+                                                                                                                            <option value="1" selected>Người dùng</option>
+                                                                                                                            <option value="0" >Quản trị hệ thống</option>
+                                                                                                                            <option value="2" >Nhóm kinh doanh</option>
                                                                                                                         </s:if>
-                                                                                                                        <s:else>
-                                                                                                                            <option value="1" >Quản lý cao cấp</option>
-                                                                                                                            <option value="2" selected>Quản lý bán hàng</option>
-                                                                                                                        </s:else>
+                                                                                                                        <s:if test="user.permission == 0">
+                                                                                                                            <option value="1" >Người dùng</option>
+                                                                                                                            <option value="0" selected >Quản trị hệ thống</option>
+                                                                                                                            <option value="2" >Nhóm kinh doanh</option>
+                                                                                                                        </s:if>
+                                                                                                                        <s:if test="user.permission == 2">
+                                                                                                                            <option value="1" selected>Người dùng</option>
+                                                                                                                            <option value="0" >Quản trị hệ thống</option>
+                                                                                                                            <option value="2" selected>Nhóm kinh doanh</option>
+                                                                                                                        </s:if>
                                                                                                                         <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                         <!--code ends -->
                                                                                                                     </select>
+                                                                                                                    </s:if>
+                                                                                                                    <s:else>
+                                                                                                                        <s:if test="user.permission == 1">
+                                                                                                                            Quản lý cao cấp
+                                                                                                                            
+                                                                                                                        </s:if>
+                                                                                                                        <s:else>
+                                                                                                                            Quản lý bán hàng
+                                                                                                                        </s:else>
+                                                                                                                    </s:else>
                                                                                                                     <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                     <!--code ends -->
                                                                                                                 </td>
@@ -241,6 +261,7 @@
                                                                                                                     <font color="red">*</font>Trạng thái			
                                                                                                                 </td>
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
+                                                                                                                    <s:if test="#attr.PERMISSION == 0">
                                                                                                                     <select name="user.status" tabindex="" class="small">
                                                                                                                         <s:if test="user.status == true">
                                                                                                                             <option value="true" selected>Hoạt động</option>
@@ -253,6 +274,15 @@
                                                                                                                         <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                         <!--code ends -->
                                                                                                                     </select>
+                                                                                                                    </s:if>
+                                                                                                                    <s:else>
+                                                                                                                        <s:if test="user.status == true">
+                                                                                                                            Hoạt động
+                                                                                                                        </s:if>
+                                                                                                                        <s:else>
+                                                                                                                            Dừng hoạt động
+                                                                                                                        </s:else>
+                                                                                                                    </s:else>
                                                                                                                 </td>
 
                                                                                                                 <!-- uitype 111 added for noneditable existing picklist values - ahmed -->

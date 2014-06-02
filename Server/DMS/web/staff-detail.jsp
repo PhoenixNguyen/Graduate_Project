@@ -87,8 +87,8 @@
                                                         <table border="0" cellspacing="0" cellpadding="5">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="new-staff"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Nhân viên..." title="Tạo mớii Nhân viên..." border="0"></a></td>
-
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="new-staff"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Nhân viên..." title="Tạo mới Nhân viên..." border="0"></a></td>
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-staff"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhân viên" title="Nhập dữ liệu Nhân viên" border="0"></a></td>  
 <!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                                                                             searchshowhide('searchAcc', 'advSearch');
                                                                             mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>-->
@@ -111,7 +111,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-staff"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhân viên" title="Nhập dữ liệu Nhân viên" border="0"></a></td>  
+                                                    
 <!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" onclick="return selectedRecords('Accounts', 'Marketing')"<img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhân viên" title="Xuất dữ liệu Nhân viên" border="0"></a></td>-->
 
 
@@ -260,7 +260,7 @@
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <!--WebSite-->
                                                                                             <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Website" onmouseover="hndMouseOver(17, 'Website');" onmouseout="fnhide('crmspanid');">&nbsp;
-                                                                                                <span id="dtlview_Website"><a href="" target="_blank"></a><s:property value="staff.pw"/></span>
+                                                                                                <span id="dtlview_Website"><a href="" target="_blank"></a>******</span>
                                                                                             </td>
                                                                                             <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Quyền hạn</td>
 

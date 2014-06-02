@@ -159,10 +159,14 @@
                                                                             <td  colspan=4 style="padding:5px">
                                                                                 <div align="center">
                                                                                     <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                        if(validate(this.form)){
+                                                                                            //alert('hello');
                                                                                             document.getElementById('sub_form').submit();
-//                                                                                this.form.action.value = 'Save';
-//                                                                                    if (formValidate())
-//                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
+                                                                                        }
+                                                                                        else {
+                                                                                            //alert('hello2');
+                                                                                            return false;
+                                                                                        }
                                                                                            " type="button" name="button" value="  Lưu  " style="width:70px" >
                                                                                     <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                 </div>
@@ -188,9 +192,9 @@
                                                                             </td>
                                                                             <!-- Non Editable field, only configured value will be loaded -->
 
-                                                                            <td width=20% class="dvtCellLabel" align=right><font color="red">*</font>Mã số Nhân viên </td>
+                                                                            <td width=20% class="dvtCellLabel" align=right><font color="red">*</font>Mã Nhân viên </td>
                                                                             <td width=30% align=left class="dvtCellInfo">
-                                                                                <input type="text" name="staff.id" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                <input type="text" name="id" tabindex="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="height:25px">
@@ -200,7 +204,7 @@
                                                                             </td>
                                                                             <td width="30%" align=left class="dvtCellInfo">
                                                                                 &nbsp;&nbsp;
-                                                                                <input  style="width:74%;" class = 'detailedViewTextBox' type="text" tabindex="" name="staff.pw" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="">
+                                                                                <input   style="width:74%;" class = 'detailedViewTextBox' type="password" tabindex="" name="pw" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" >
                                                                             </td>
 
                                                                             <td width="20%" class="dvtCellLabel" align=right>
@@ -406,10 +410,14 @@
                                                                             <td  colspan=4 style="padding:5px">
                                                                                 <div align="center">
                                                                                     <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                        if(validate(this.form)){
+                                                                                            //alert('hello');
                                                                                             document.getElementById('sub_form').submit();
-//                                                                                this.form.action.value = 'Save';
-//                                                                                    if (formValidate())
-//                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
+                                                                                        }
+                                                                                        else {
+                                                                                            //alert('hello2');
+                                                                                            return false;
+                                                                                        }
                                                                                            " type="button" name="button" value="  Lưu  " style="width:70px" >
                                                                                     <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                 </div>
@@ -621,6 +629,72 @@
                                 </tr>
                             </table>-->
             </form>
+                        
+            <script type='text/javascript' language='JavaScript'>
+
+                function validate(form) {
+                   //1. pw
+                    var pw_length = form.pw.value.length;
+                    var pw_value = form.pw.value;
+                    
+                    //alert(form.pw.value.length);
+                    if(pw_length < 3 || pw_length > 20){
+                        alert("Mật khẩu phải từ 2-20 ký tự.");
+                        return false;
+                    }
+
+//                    for(int i = 0; i < pw_length; i++ ){
+//                        if(pw_value.charAt(i) != )
+//                    }
+
+                    if (trim(pw_value) == "") {
+                        alert("Hãy nhập mật khẩu mới của cho nhân viên.");
+                        return false;
+                    }
+
+                    //2. ID
+                    var id_length = form.id.value.length;
+                    var id_value = form.id.value;
+                    
+                    if(id_length < 3 || id_length > 20){
+                        alert("Tài khoản phải từ 2-20 ký tự.");
+                        return false;
+                    }
+
+//                    for(int i = 0; i < pw_length; i++ ){
+//                        if(pw_value.charAt(i) != )
+//                    }
+
+                    if (trim(id_value) == "") {
+                        alert("Hãy nhập Mã tài khoản cho nhân viên.");
+                        return false;
+                    }
+                    
+                    var regex = new RegExp("^[a-zA-Z0-9.]*$");
+                    if(regex.test(id_value)){
+                        alert("Hãy nhập Mã tài khoản cho nhân viên.");
+                            return false;
+                    }
+                    
+//                    for(int i = 0; i < id_length; i++ ){
+//                        
+//                        if((id_value.charAt(i) >= 0 && id_value.charAt(i) <= 9)|| 
+//                            (id_value.charAt(i) >= 'a' && id_value.charAt(i) <= 'z')|| 
+//                            (id_value.charAt(i) >= 'A' && id_value.charAt(i) <= 'Z')//|| 
+//                            //id_value.charAt(i) != [_]
+//                        ){
+//                    
+//                            
+//                        }
+//                        else{
+//                            alert("Hãy nhập Mã tài khoản cho nhân viên.");
+//                            return false;
+//                        }
+//                    }
+                    return true;
+                }
+            </script>  
+            <br><br><br>            
             <!--    Footer-->
             <s:include value="footer.jsp"></s:include>
 

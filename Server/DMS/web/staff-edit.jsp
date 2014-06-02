@@ -21,6 +21,7 @@
         <![endif]-->
 
         <!-- End -->
+        
     </head>
     <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="small">
         <!--    Header & menu-->
@@ -53,10 +54,6 @@
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-staff"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mói Nhân viên..." title="Tạo mói Nhân viên..." border="0"></a></td>
 
-<!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
-                                                                            searchshowhide('searchAcc', 'advSearch');
-                                                                            mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>-->
-
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -76,11 +73,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="padding-right:0px;padding-left:10px;"><a href="import-staff"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhân viên" title="Nhập dữ liệu Nhân viên" border="0"></a></td>  
-<!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" onclick="return selectedRecords('Accounts', 'Marketing')"<img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhân viên" title="Xuất dữ liệu Nhân viên" border="0"></a></td>-->
 
-
-                                                    <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                                    <!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                                 </tr>
                                             </tbody></table>  
                                     </td>
@@ -160,10 +153,15 @@
                                                                             <td  colspan=4 style="padding:5px">
                                                                                 <div align="center">
                                                                                     <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                        if(validate(this.form)){
+                                                                                            //alert('hello');
                                                                                             document.getElementById('sub_form').submit();
-//                                                                                this.form.action.value = 'Save';
-//                                                                                    if (formValidate())
-//                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
+                                                                                        }
+                                                                                        else {
+                                                                                            //alert('hello2');
+                                                                                            return false;
+                                                                                        }
+                                                                                           
                                                                                            " type="button" name="button" value="  Lưu  " style="width:70px" >
                                                                                     <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                 </div>
@@ -201,7 +199,7 @@
                                                                             </td>
                                                                             <td width="30%" align=left class="dvtCellInfo">
                                                                                 &nbsp;&nbsp;
-                                                                                <input  style="width:74%;" class = 'detailedViewTextBox' type="text" tabindex="" name="staff.pw" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="<s:property value="staff.pw"/>">
+                                                                                <input  style="width:74%;" class = 'detailedViewTextBox' id="pword" type="password" tabindex="" name="pw" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="<s:property value="staff.pw"/>">
                                                                             </td>
                                                                             <td width="20%" class="dvtCellLabel" align=right>
                                                                                 <font color="red">*</font>Quyền hạn	
@@ -221,11 +219,11 @@
                                                                                             <option value="2" selected>Nhân viên bán hàng</option>
                                                                                             <option value="3" >Nhân viên cập nhật vị trí</option>
                                                                                         </s:if>
-                                                                                        <s:else>
+                                                                                        <s:if test="staff.permission == 3">
                                                                                             <option value="1"  >Quản lý</option>
                                                                                             <option value="2" >Nhân viên bán hàng</option>
                                                                                             <option value="3" selected>Nhân viên cập nhật vị trí</option>
-                                                                                        </s:else>
+                                                                                        </s:if>
 
 
                                                                                     </select>
@@ -289,14 +287,7 @@
                                                                                 <s:else>
                                                                                     <input type="checkbox" tabindex="" name="staff.status"  value="true" >
                                                                                 </s:else>
-                                                                                <!--                                                                        <input name="cf_607" tabindex="" id="jscal_field_cf_607" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
-                                                                                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_cf_607">
-                                                                                                                                                        <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
-                                                                                                                                                        <script type="text/javascript" id='massedit_calendar_cf_607'>
-                                                                                                                                                            Calendar.setup({
-                                                                                                                                                                inputField: "jscal_field_cf_607", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_cf_607", singleClick: true, step: 1
-                                                                                                                                                            })
-                                                                                                                                                        </script>-->
+                                                                                
 
                                                                             </td>
 
@@ -325,12 +316,7 @@
                                                                         <tr>
                                                                             <td colspan="4" class="detailedViewHeader">
                                                                                 <b>Thông tin địa chỉ</b></td>
-                                                                            <!--                                                                    <td class="detailedViewHeader">
-                                                                                                                                                    <input name="cpy" onclick="return copyAddressLeft(EditView)" type="radio"><b>Sao chép địa chỉ vận chuyển</b></td>
-                                                                                                                                                <td class="detailedViewHeader">
-                                                                                                                                                    <input name="cpy" onclick="return copyAddressRight(EditView)" type="radio"><b>Sao chép địa chỉ thanh toán</b></td>
                                                                             
-                                                                                                                                                </td>-->
                                                                         </tr>
                                                                         <!-- Here we should include the uitype handlings-->
 
@@ -346,31 +332,22 @@
                                                                             </td>
                                                                         </tr>
 
-<!--                                                                        <tr style="height:25px"><td>&nbsp;</td></tr>
-                                                                        <tr>
-                                                                            <td colspan=4 class="detailedViewHeader">
-                                                                                <b>Thông tin mô tả</b>
-                                                                            </td>
-                                                                        </tr>
-                                                                         Here we should include the uitype handlings
-                                                                         Added this file to display the fields in Create Entity page based on ui types  
-                                                                        <tr style="height:25px">
-                                                                             In Add Comment are we should not display anything 
-                                                                            <td width=20% class="dvtCellLabel" align=right>
-                                                                                <font color="red"></font> 
-                                                                                Mô tả 			
-                                                                            </td>
-                                                                            <td colspan=3>
-                                                                                <textarea class="detailedViewTextBox" tabindex="" onFocus="this.className = 'detailedViewTextBoxOn'" name="staff.note"  onBlur="this.className = 'detailedViewTextBox'" cols="90" rows="8"><s:property value="staff.note"/></textarea>
-                                                                            </td>
-                                                                        </tr>-->
+
                                                                         <tr style="height:25px"><td>&nbsp;</td></tr>
 
                                                                         <tr>
                                                                             <td  colspan=4 style="padding:5px">
                                                                                 <div align="center">
-                                                                                    <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
+                                                                                    <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" LANGUAGE=javascript onclick="
+                                                                                        //alert('hello');
+                                                                                        if(validate(this.form)){
+                                                                                            //alert('hello');
                                                                                             document.getElementById('sub_form').submit();
+                                                                                        }
+                                                                                        else {
+                                                                                            //alert('hello2');
+                                                                                            return false;
+                                                                                        }
 //                                                                                this.form.action.value = 'Save';
 //                                                                                    if (formValidate())
 //                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
@@ -393,13 +370,35 @@
                                     </td>
                                 </tr>
                             </table>
-                            <!--            </div>
-                                    </td>
-                                    <td align=right valign=top><img src="themes/softed/images/showPanelTopRight.gif"></td>
-                                </tr>
-                            </table>-->
+                            
             </form>
 
+             <script type='text/javascript' language='JavaScript'>
+
+                function validate(form) {
+                   
+                    var pw_length = form.pw.value.length;
+                    var pw_value = form.pw.value;
+                    
+                    //alert(form.pw.value.length);
+                    if(pw_length < 3 || pw_length > 20){
+                        alert("Mật khẩu phải từ 2-20 ký tự.");
+                        return false;
+                    }
+
+//                    for(int i = 0; i < pw_length; i++ ){
+//                        if(pw_value.charAt(i) != )
+//                    }
+
+                    if (trim(pw_value) == "") {
+                        alert("Hãy nhập mật khẩu mới của cho nhân viên.");
+                        return false;
+                    }
+
+                    return true;
+                }
+            </script>                                                               
+            
             <br><br><br>
 
             <!--    Footer-->

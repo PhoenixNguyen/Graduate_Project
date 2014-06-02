@@ -85,9 +85,10 @@
             <table width='100%' cellspacing='0' cellpadding='1' border='0'>
                 <tr>
                     <td align='right'><input title='Lưu [Alt+S]' accessKey='S' class='crmbutton small save' LANGUAGE=javascript onclick='if (set_password(this.form))
-                    window.close();
-                else
-                    return false;' type='submit' name='button' value='  Lưu  '></td>
+                        window.close();
+                        else
+                            return false;' type='submit' name='button' value='  Lưu  '>
+                    </td>
                     <td align='left'><input title='Hủy bỏ [Alt+X]' accessyKey='X' class='crmbutton small cancel' LANGUAGE=javascript onclick='window.close()' type='submit' name='button' value='  Hủy bỏ  '></td>
                 </tr>
 

@@ -58,6 +58,7 @@ public class CustomerAPI {
 		//GET LIST
 		boolean get;
 
+		//CustomerListActivity customerActivity;
 		public GetCustomerListTask(Context context, String method, String staff) {
 			this.context = context;
 			this.method = method;
@@ -66,7 +67,7 @@ public class CustomerAPI {
 
 		public GetCustomerListTask(Context context, String method,
 				String staff, boolean delete,
-				CustomerArrayAdapter customerAdapter, ListView listView) {
+				CustomerArrayAdapter customerAdapter, ListView listView, CustomerListActivity activity) {
 			this.context = context;
 			this.method = method;
 			this.staff = staff;
@@ -74,6 +75,8 @@ public class CustomerAPI {
 			this.delete = delete;
 			this.customerAdapter = customerAdapter;
 			this.listView = listView;
+			
+			this.customerActivity = activity;
 		}
 
 		public GetCustomerListTask(Context context, String method,
@@ -160,6 +163,8 @@ public class CustomerAPI {
 					customerAdapter = new CustomerArrayAdapter(context,
 							CustomerAPI.customerList);
 					listView.setAdapter(customerAdapter);
+					
+					customerActivity.customerAdapter = customerAdapter;
 				}
 				if (insert) {
 					// Switch
@@ -177,7 +182,8 @@ public class CustomerAPI {
 					listView = (ListView)customerActivity.findViewById(R.id.list);
 					customerAdapter = new CustomerArrayAdapter(context, CustomerAPI.customerList);
 					listView.setAdapter(customerAdapter);
-						
+					customerActivity.customerAdapter = customerAdapter;
+					
 					listView.setOnItemClickListener(new OnItemClickListener()
 					{
 					     @Override

@@ -447,11 +447,10 @@ containing a value of this type.
         public static final int DateTimePicker=0x7f060050;
         public static final int ResetDateTime=0x7f060068;
         public static final int SetDateTime=0x7f060067;
-        public static final int action_add=0x7f0600af;
-        public static final int action_done=0x7f0600b0;
-        public static final int action_edit=0x7f0600b1;
+        public static final int action_add=0x7f0600ae;
+        public static final int action_done=0x7f0600af;
+        public static final int action_edit=0x7f0600b0;
         public static final int action_over_flow=0x7f0600a8;
-        public static final int action_refresh=0x7f0600ae;
         public static final int action_save=0x7f0600a7;
         public static final int action_websearch=0x7f0600ad;
         public static final int address=0x7f060090;

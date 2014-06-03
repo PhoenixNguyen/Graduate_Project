@@ -54,7 +54,7 @@ public class CustomerListActivity extends MainMenuActivity{
 	
 	private EditText input_text;
 	
-	private CustomerArrayAdapter customerAdapter;
+	public CustomerArrayAdapter customerAdapter;
 	
 	public static Customer customer;
 	
@@ -118,9 +118,9 @@ public class CustomerListActivity extends MainMenuActivity{
         case R.id.action_add:
         	insertCustomer();
             return true;
-        case R.id.action_refresh:
-        	refreshCustomers();
-            return true;        
+//        case R.id.action_refresh:
+//        	refreshCustomers();
+//            return true;        
         default:
             return super.onOptionsItemSelected(item);
         }
@@ -140,9 +140,9 @@ public class CustomerListActivity extends MainMenuActivity{
 	    case R.id.action_add:
         	insertCustomer();
             return true;
-	    case R.id.action_refresh:
-        	refreshCustomers();
-            return true;   
+//	    case R.id.action_refresh:
+//        	refreshCustomers();
+//            return true;   
 	    default:
             return super.onOptionsItemSelected(item);
 
@@ -153,7 +153,7 @@ public class CustomerListActivity extends MainMenuActivity{
 	
 	public void refreshCustomers(){
 		GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId(),
-			    true, customerAdapter, listView);
+			    true, customerAdapter, listView, this);
         getData.execute();
 	}
 	public void addListView(){
@@ -274,7 +274,7 @@ public class CustomerListActivity extends MainMenuActivity{
 		deleteData.execute();
     	
         GetCustomerListTask getData = new GetCustomerListTask(context, "getCustomersListStart", Rest.mStaff.getId(),
-		    true, customerAdapter, listView);
+		    true, customerAdapter, listView, this);
         getData.execute();
 		
 

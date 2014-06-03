@@ -164,9 +164,14 @@
                                                                                             <td colspan="4" style="padding:5px">
                                                                                                 <div align="center">
                                                                                                     <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
+                                                                                                        if(validate(this.form)){
+                                                                                                            //alert('hello');
                                                                                                             document.getElementById('sub_form').submit();
-//                                                                                                this.form.action.value = 'Save'; displaydeleted(); 
-//                                                                                                return validateInventory('SalesOrder')
+                                                                                                        }
+                                                                                                        else {
+                                                                                                            //alert('hello2');
+                                                                                                            return false;
+                                                                                                        }
                                                                                                            " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="Hủy bỏ  " style="width:70px">
                                                                                                 </div>
@@ -293,7 +298,7 @@
                                                                                             <td width="20%" class="dvtCellLabel" align="right"><font color="blue"> + </font>Chiết khấu (%)</td>
 
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                <input type="text" tabindex="" name="takeOrderDetail.discount" id="salescommission" value="<s:property value="takeOrderDetail.discount"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                                <input type="text" tabindex="" name="discount" id="salescommission" value="<s:property value="takeOrderDetail.discount"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr style="height:25px">
@@ -323,7 +328,7 @@
 
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                <input type="text"  tabindex="" name="takeOrderDetail.number" id="salescommission" value="<s:property value="takeOrderDetail.number"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                                <input type="text"  tabindex="" name="number" id="salescommission" value="<s:property value="takeOrderDetail.number"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                             </td>
             <!--                                                                                <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.getCreater()"/></td>-->
 
@@ -354,19 +359,10 @@
 
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                <input type="text"  tabindex="" name="takeOrderDetail.promotionalProductMount" id="salescommission" value="<s:property value="takeOrderDetail.promotionalProductMount"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                                <input type="text"  tabindex="" name="promotionalProductMount" id="salescommission" value="<s:property value="takeOrderDetail.promotionalProductMount"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                             </td>
 
-                                                                                            <!--                                                                                 Avoid to display the label Tax Class 
-                                                                                                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ngày sửa</td>
                                                                                             
-                                                                                            
-                                                                                                                                                                             This file is used to display the fields based on the ui type in detailview 
-                                                                                                                                                                            <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                                                                                                    <input readonly="" type="text" tabindex="" name="takeOrder.mOrderEditDate" id="exciseduty" value="<s:property value="takeOrder.getMOrderEditDate()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
-                                                                                                                                                                                    <input name="account_id" type="hidden" value="139">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="return window.open( & quot; index.php?module = Accounts & amp; action = Popup & amp; popuptype = specific_account_address & amp; form = TasksEditView & amp; form_submit = false & amp; fromlink = & quot; , & quot; test & quot; , & quot; width = 640, height = 602, resizable = 0, scrollbars = 0 & quot; );" align="absmiddle" style="cursor:hand;cursor:pointer">
-                                                                                                                                                                                    <input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.account_id.value = ''; this.form.account_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">
-                                                                                                                                                                            </td>-->
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td colspan="4" class="detailedViewHeader">
@@ -399,8 +395,14 @@
                                                                                             <td colspan="4" style="padding:5px">
                                                                                                 <div align="center">
                                                                                                     <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
+                                                                                                        if(validate(this.form)){
+                                                                                                            //alert('hello');
                                                                                                             document.getElementById('sub_form').submit();
-
+                                                                                                        }
+                                                                                                        else {
+                                                                                                            //alert('hello2');
+                                                                                                            return false;
+                                                                                                        }
                                                                                                            " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                                 </div>
@@ -429,7 +431,52 @@
         <!-- This div is added to get the left and top values to show the tax details-->
         <div id="tax_container" style="display:none; position:absolute; z-index:1px;"></div>
 
+        <script type='text/javascript' language='JavaScript'>
 
+                function validate(form) {
+                   //1. discount
+                    var discount_length = form.discount.value.length;
+                    var discount_value = form.discount.value;
+                    
+                    if (trim(discount_value) == "") {
+                        alert("Hãy nhập chiết khấu.");
+                        return false;
+                    }
+                    if ( isNaN(discount_value)) {
+                        alert("Chiết khấu phải là kiểu số");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+
+                    //2. number
+                    var number_length = form.number.value.length;
+                    var number_value = form.number.value;
+                    
+                    if (trim(number_value) == "") {
+                        alert("Hãy nhập Số lượng.");
+                        return false;
+                    }
+                    
+                    if ( /[^\d]/.test(number_value)) {
+                        alert("Số lượng phải là kiểu số");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+                    //3. promotionalProductMount
+                    var promotionalProductMount_length = form.promotionalProductMount.value.length;
+                    var promotionalProductMount_value = form.promotionalProductMount.value;
+                    if (trim(promotionalProductMount_value) == "") {
+                        alert("Hãy nhập Số lượng khuyến mãi.");
+                        return false;
+                    }
+                    if ( /[^\d]/.test(promotionalProductMount_value)) {
+                        alert("Số lượng khuyến mãi phải là kiểu số");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+                    return true;
+                }
+            </script>
         <br><br><br>
 
         <!--    Footer-->

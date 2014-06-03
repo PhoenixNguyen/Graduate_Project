@@ -639,7 +639,7 @@
                     
                     //alert(form.pw.value.length);
                     if(pw_length < 3 || pw_length > 20){
-                        alert("Mật khẩu phải từ 2-20 ký tự.");
+                        alert("Mật khẩu phải từ 3-20 ký tự.");
                         return false;
                     }
 
@@ -657,7 +657,7 @@
                     var id_value = form.id.value;
                     
                     if(id_length < 3 || id_length > 20){
-                        alert("Tài khoản phải từ 2-20 ký tự.");
+                        alert("Tài khoản phải từ 3-20 ký tự.");
                         return false;
                     }
 
@@ -669,28 +669,13 @@
                         alert("Hãy nhập Mã tài khoản cho nhân viên.");
                         return false;
                     }
-                    
-                    var regex = new RegExp("^[a-zA-Z0-9.]*$");
-                    if(regex.test(id_value)){
-                        alert("Hãy nhập Mã tài khoản cho nhân viên.");
-                            return false;
+               
+                    if ( /[^A-Za-z\d\_]/.test(id_value)) {
+                        alert("Mã tài khoản không được chứa ký tự đặc biệt");
+                        //document.formname.txt.focus();
+                        return (false);
                     }
-                    
-//                    for(int i = 0; i < id_length; i++ ){
-//                        
-//                        if((id_value.charAt(i) >= 0 && id_value.charAt(i) <= 9)|| 
-//                            (id_value.charAt(i) >= 'a' && id_value.charAt(i) <= 'z')|| 
-//                            (id_value.charAt(i) >= 'A' && id_value.charAt(i) <= 'Z')//|| 
-//                            //id_value.charAt(i) != [_]
-//                        ){
-//                    
-//                            
-//                        }
-//                        else{
-//                            alert("Hãy nhập Mã tài khoản cho nhân viên.");
-//                            return false;
-//                        }
-//                    }
+
                     return true;
                 }
             </script>  

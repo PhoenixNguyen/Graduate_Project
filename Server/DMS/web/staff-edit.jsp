@@ -53,7 +53,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-staff"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mói Nhân viên..." title="Tạo mói Nhân viên..." border="0"></a></td>
-
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-staff"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhân viên" title="Nhập dữ liệu Nhân viên" border="0"></a></td>  
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -72,7 +72,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-staff"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhân viên" title="Nhập dữ liệu Nhân viên" border="0"></a></td>  
+                                                    
 
                                                 </tr>
                                             </tbody></table>  
@@ -382,7 +382,7 @@
                     
                     //alert(form.pw.value.length);
                     if(pw_length < 3 || pw_length > 20){
-                        alert("Mật khẩu phải từ 2-20 ký tự.");
+                        alert("Mật khẩu phải từ 3-20 ký tự.");
                         return false;
                     }
 

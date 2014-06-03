@@ -52,7 +52,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-customer"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Khách hàng..." title="Tạo mới Khách hàng..." border="0"></a></td>
-
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-customer"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
 <!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc'); searchshowhide('searchAcc', 'advSearch'); mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>-->
 
                                                                 </tr>
@@ -73,7 +73,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-customer"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
+                                                    
 <!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" onclick="return selectedRecords('Accounts', 'Marketing')"<img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhân viên" title="Xuất dữ liệu Nhân viên" border="0"></a></td>-->
 
 
@@ -159,10 +159,16 @@
                                                                             <td  colspan=4 style="padding:5px">
                                                                                 <div align="center">
                                                                                     <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
-                                                                                        document.getElementById('sub_form').submit();
-        //                                                                                this.form.action.value = 'Save';
-        //                                                                                    if (formValidate())
-        //                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
+                                                                                        if(validate(this.form)){
+                                                                                            //alert('hello');
+                                                                                            document.getElementById('sub_form').submit();
+                                                                                        }
+                                                                                        else {
+                                                                                            //alert('hello2');
+                                                                                            return false;
+                                                                                        }
+                                                                                        
+                                                                                        
                                                                                          " type="button" name="button" value="  Lưu  " style="width:70px" >
                                                                                     <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                 </div>
@@ -181,58 +187,35 @@
                                                                         <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                                         <tr style="height:25px">
                                                                             <td width=20% class="dvtCellLabel" align=right>
-                                                                                <font color="red">*</font>Tên Khách hàng 			
+                                                                                <font color="red"></font>Tên Khách hàng 			
                                                                             </td>
                                                                             <td width=30% align=left class="dvtCellInfo">
                                                                                 <input type="text" name="customer.doiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                             </td>
                                                                             <!-- Non Editable field, only configured value will be loaded -->
-                                                                            <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã số Khách hàng </td>
+                                                                            <td width=20% class="dvtCellLabel" align=right><font color="red">*</font>Mã Khách hàng </td>
                                                                             <td width=30% align=left class="dvtCellInfo">
-                                                                                <input type="text" name="customer.maDoiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                <input type="text" name="maDoiTuong" tabindex="" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                             </td>
                                                                         </tr>
                                                                         <tr style="height:25px">
 
-                                                                            <td width="20%" class="dvtCellLabel" align=right>
+<!--                                                                            <td width="20%" class="dvtCellLabel" align=right>
                                                                                 <font color="red"></font>Website 			
                                                                             </td>
                                                                             <td width="30%" align=left class="dvtCellInfo">
                                                                                 &nbsp;&nbsp;http://
                                                                                 <input style="width:74%;" class = 'detailedViewTextBox' type="text" tabindex="" name="website" style="border:1px solid #bababa;" size="27" onFocus="this.className = 'detailedViewTextBoxOn'"onBlur="this.className = 'detailedViewTextBox'" onkeyup="validateUrl('website');" value="">
-                                                                            </td>
+                                                                            </td>-->
                                                                             <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Điện thoại </td>
 
                                                                             <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="customer.dienThoai" id ="phone" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                        </tr>
-                                                                        <tr style="height:25px">
-                                                                            <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Mã chứng khoán </td>
-                                                                            <td width=30% align=left class="dvtCellInfo">
-                                                                                <input type="text" name="tickersymbol" tabindex="" id ="tickersymbol" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn';" onBlur="this.className = 'detailedViewTextBox';
-                                                                                        sensex_info()">
-                                                                                <span id="vtbusy_info" style="display:none;">
-                                                                                    <img src="themes/images/vtbusy.gif" border="0"></span>
-                                                                            </td>
                                                                             <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Fax </td>
                                                                             <td width=30% align=left class="dvtCellInfo">
                                                                                 <input type="text" tabindex="" name="customer.fax" id ="fax" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                             </td>
                                                                         </tr>
-        <!--                                                                <tr style="height:25px">
-                                                                            <td width="20%" class="dvtCellLabel" align=right>
-                                                                                <font color="red"></font>Thành viên của 			
-                                                                            </td>
-                                                                            <td width="30%" align=left class="dvtCellInfo">
-                                                                                <input readonly name="account_name" style="border:1px solid #bababa;" type="text" value="">
-                                                                                <input name="account_id" type="hidden" value="">&nbsp;
-                                                                                <img tabindex="" src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" LANGUAGE=javascript onclick='' align="absmiddle" style='cursor:hand;cursor:pointer'>&nbsp;
-                                                                                <input type="image" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" LANGUAGE=javascript onClick="this.form.account_id.value = '';
-                                                                                        this.form.account_name.value = '';
-                                                                                        return false;" align="absmiddle" style='cursor:hand;cursor:pointer'>
-                                                                            </td>
-                                                                            <td width=20% class="dvtCellLabel" align=right><font color="red"></font>Email </td>
-                                                                            <td width=30% align=left class="dvtCellInfo"><input type="text" tabindex="" name="email1" id ="email1" value="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'"></td>
-                                                                        </tr>-->
+
                                                                         <tr style="height:25px">
                                                                             <td width="20%" class="dvtCellLabel" align=right>
                                                                                 <font color="red">*</font>Nhân viên		
@@ -259,79 +242,13 @@
                                                                                 </span>
                                                                             </td>
 
-        <!--                                                                    <td width="20%" class="dvtCellLabel" align=right>
-                                                                                <font color="red"></font>Ngày sinh 			
-                                                                            </td>
-                                                                            <td width="30%" align=left class="dvtCellInfo">
-
-                                                                                <input name="cf_607" tabindex="" id="jscal_field_cf_607" type="text" style="border:1px solid #bababa;" size="11" maxlength="10" value="">
-                                                                                <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_cf_607">
-                                                                                <br><font size=1><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
-                                                                                <script type="text/javascript" id='massedit_calendar_cf_607'>
-                                                                                    Calendar.setup({
-                                                                                        inputField: "jscal_field_cf_607", ifFormat: "%d-%m-%Y", showsTime: false, button: "jscal_trigger_cf_607", singleClick: true, step: 1
-                                                                                    })
-                                                                                </script>
-
-                                                                            </td>-->
-
                                                                         </tr>
-        <!--                                                                <tr style="height:25px">
-
-                                                                             uitype 111 added for noneditable existing picklist values - ahmed 
-                                                                            <td width="20%" class="dvtCellLabel" align=right>
-                                                                                <font color="red"></font>
-                                                                                Loại Sản Phẩm 			
-                                                                            </td>
-                                                                            <td width="30%" align=left class="dvtCellInfo">
-                                                                                <select name="cf_638" tabindex="" class="small">
-                                                                                    <option value="CRM" >
-                                                                                        CRM
-                                                                                    </option>
-                                                                                    <option value="BMS" >
-                                                                                        BMS
-                                                                                    </option>
-                                                                                    <option value="eDOC" >
-                                                                                        eDOC
-                                                                                    </option>
-                                                                                    <option value="HRM" >
-                                                                                        HRM
-                                                                                    </option>
-                                                                                    <option value="SLL" >
-                                                                                        SLL
-                                                                                    </option>
-                                                                                </select>
-                                                                            </td>
-
-                                                                            <td width="20%" class="dvtCellLabel" align=right>
-                                                                                <font color="red"></font>Nhu cầu gửi đĩa 			
-                                                                            </td>
-
-                                                                            <td width="30%" align=left class="dvtCellInfo">
-                                                                                <input name="cf_639" tabindex="" type="checkbox" >
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr style="height:25px">
-                                                                            <td width="20%" class="dvtCellLabel" align=right>
-                                                                                <font color="red"></font>Nhu cầu đại lý 			
-                                                                            </td>
-
-                                                                            <td width="30%" align=left class="dvtCellInfo">
-                                                                                <input name="cf_640" tabindex="" type="checkbox" >
-                                                                            </td>
-
-                                                                        </tr>-->
-
+        
                                                                         <tr style="height:25px"><td>&nbsp;</td></tr>
                                                                         <tr>
                                                                             <td colspan=2 class="detailedViewHeader">
                                                                                 <b>Thông tin địa chỉ</b></td>
-        <!--                                                                    <td class="detailedViewHeader">
-                                                                                <input name="cpy" onclick="return copyAddressLeft(EditView)" type="radio"><b>Sao chép địa chỉ vận chuyển</b></td>
-                                                                            <td class="detailedViewHeader">
-                                                                                <input name="cpy" onclick="return copyAddressRight(EditView)" type="radio"><b>Sao chép địa chỉ thanh toán</b></td>
-
-                                                                            </td>-->
+        
                                                                         </tr>
                                                                         <!-- Here we should include the uitype handlings-->
 
@@ -340,16 +257,18 @@
 
                                                                             <td width=20% class="dvtCellLabel" align=right>
                                                                                 <font color="red"></font>
-                                                                                Địa chỉ thanh toán 			</td>
+                                                                                Địa chỉ 			
+                                                                            </td>
                                                                             <td width=30% align=left class="dvtCellInfo">
                                                                                 <textarea value="" name="customer.diaChi" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
                                                                             </td>
 
                                                                             <td width=20% class="dvtCellLabel" align=right>
                                                                                 <font color="red"></font>
-                                                                                Địa chỉ vận chuyển 			</td>
+                                                                                Tỉnh thành			
+                                                                            </td>
                                                                             <td width=30% align=left class="dvtCellInfo">
-                                                                                <textarea value="" name="ship_street" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
+                                                                                <textarea value="" name="customer.tinhThanh" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'" rows=2></textarea>
                                                                             </td>
                                                                         </tr>
 
@@ -376,10 +295,14 @@
                                                                             <td  colspan=4 style="padding:5px">
                                                                                 <div align="center">
                                                                                     <input title="Lưu [Alt+S]" accessKey="S" class="crmbutton small save" onclick="
-                                                                                        document.getElementById('sub_form').submit();
-        //                                                                                this.form.action.value = 'Save';
-        //                                                                                    if (formValidate())
-        //                                                                                        AjaxDuplicateValidate('Accounts', 'accountname', this.form);
+                                                                                        if(validate(this.form)){
+                                                                                            //alert('hello');
+                                                                                            document.getElementById('sub_form').submit();
+                                                                                        }
+                                                                                        else {
+                                                                                            //alert('hello2');
+                                                                                            return false;
+                                                                                        }
                                                                                         " type="button" name="button" value="  Lưu  " style="width:70px" >
                                                                                     <input title="Hủy bỏ [Alt+X]" accessKey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                 </div>
@@ -592,6 +515,37 @@
                             </table>-->
                         </form>
 
+            <script type='text/javascript' language='JavaScript'>
+
+                function validate(form) {
+                   
+                    //2. ID
+                    var id_length = form.maDoiTuong.value.length;
+                    var id_value = form.maDoiTuong.value;
+                    
+                    if(id_length < 3 || id_length > 20){
+                        alert("Mã khách hàng phải từ 3-20 ký tự.");
+                        return false;
+                    }
+
+//                    for(int i = 0; i < pw_length; i++ ){
+//                        if(pw_value.charAt(i) != )
+//                    }
+
+                    if (trim(id_value) == "") {
+                        alert("Hãy nhập Mã tài khoản cho nhân viên.");
+                        return false;
+                    }
+               
+                    if ( /[^A-Za-z\d\_]/.test(id_value)) {
+                        alert("Mã khách hàng không được chứa ký tự đặc biệt");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+
+                    return true;
+                }
+            </script>  
                         <br><br><br>
                         <!--    Footer-->
                         <s:include value="footer.jsp"></s:include>

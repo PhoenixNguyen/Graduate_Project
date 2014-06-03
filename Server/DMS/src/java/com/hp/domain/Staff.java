@@ -32,16 +32,16 @@ public class Staff {
     @Column(name="nhanvien_stt")
     private Integer stt;
 
-//    @NotEmpty(message = "Mã Nhân viên không được trống")
-//    @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã Nhân viên chỉ chứa a-z, A-Z, 0-9, .")
-//    @Length(min = 3 , max = 255 ,message= "Mã Nhân viên phải có độ dài 3-255 ký tự")
+    @NotEmpty(message = "Mã Nhân viên không được trống")
+    @Pattern(regex="[A-Za-z0-9\\._]+",message="Mã Nhân viên chỉ chứa a-z, A-Z, 0-9, .")
+    @Length(min = 3 , max = 255 ,message= "Mã Nhân viên phải có độ dài 3-255 ký tự")
     @Column(name="nhanvien_ma_nhan_vien")
     @Valid
     private String id;
     
-    //@NotEmpty(message = "Mật khẩu không được trống")
+    @NotEmpty(message = "Mật khẩu không được trống")
     //@Pattern(regex="[A-Za-z0-9\\._]+",message="Mật khẩu chỉ chứa a-z, A-Z, 0-9, .")
-    //@Length(min = 3 , max = 255 ,message= "Mật khẩu phải có độ dài 3-255 ký tự")
+    @Length(min = 3 , max = 255 ,message= "Mật khẩu phải có độ dài 3-255 ký tự")
     @Valid
     @Column(name="nhanvien_mat_khau")
     private String pw;

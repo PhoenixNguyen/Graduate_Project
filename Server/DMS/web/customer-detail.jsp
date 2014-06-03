@@ -88,7 +88,8 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-customer"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Khách hàng..." title="Tạo mới Khách hàng..." border="0"></a></td>
-
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-customer"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
+                                                                    
 <!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                 searchshowhide('searchAcc', 'advSearch');
                 mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>-->
@@ -111,7 +112,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-customer"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Khách hàng" title="Nhập dữ liệu Khách hàng" border="0"></a></td>  
+                                                    
 <!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" onclick="return selectedRecords('Accounts', 'Marketing')"<img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhân viên" title="Xuất dữ liệu Nhân viên" border="0"></a></td>-->
 
 
@@ -248,7 +249,7 @@
                                                                                             </td>
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <!--TextBox-->
-                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Khách hàng" onmouseover="hndMouseOver(2, 'Tên Khách hàng');" onmouseout="fnhide('crmspanid');" valign="top">
+                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Tên Khách hàng" onmouseover="hndMouseOver(2, 'Tên Khách hàng');" onmouseout="fnhide('crmspanid');" >
                                                                                                 &nbsp;&nbsp;<span id="dtlview_Tên Khách hàng"><s:property value="customer.doiTuong"/></span>
                                                                                             </td>
                                                                                             <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã số Khách hàng</td>
@@ -256,35 +257,36 @@
                                                                                             <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="customer.maDoiTuong"/></td>
                                                                                         </tr>	
                                                                                         <tr style="height:25px">
-                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Website</td>
-                                                                                            <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                            <!--WebSite-->
+<!--                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Website</td>
+                                                                                             This file is used to display the fields based on the ui type in detailview 
+                                                                                            WebSite
                                                                                             <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Website" onmouseover="hndMouseOver(17, 'Website');" onmouseout="fnhide('crmspanid');">&nbsp;
                                                                                                 <span id="dtlview_Website"><a href="" target="_blank"></a></span>
-                                                                                            </td>
+                                                                                            </td>-->
                                                                                             <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Điện thoại</td>
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <!--TextBox-->
-                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Điện thoại" onmouseover="hndMouseOver(11, 'Điện thoại');" onmouseout="fnhide('crmspanid');" valign="top">
+                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Điện thoại" onmouseover="hndMouseOver(11, 'Điện thoại');" onmouseout="fnhide('crmspanid');" >
                                                                                                 &nbsp;&nbsp;<span id="dtlview_Điện thoại"><s:property value="customer.dienThoai"/></span>
-                                                                                            </td>
-                                                                                        </tr>	
-                                                                                        <tr style="height:25px">
-                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã chứng khoán</td>
-
-                                                                                            <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                            <!--TextBox-->
-                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Mã chứng khoán" onmouseover="hndMouseOver(1, 'Mã chứng khoán');" onmouseout="fnhide('crmspanid');" valign="top">
-                                                                                                &nbsp;&nbsp;<span id="dtlview_Mã chứng khoán"></span>
                                                                                             </td>
                                                                                             <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Fax</td>
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <!--TextBox-->
-                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Fax" onmouseover="hndMouseOver(11, 'Fax');" onmouseout="fnhide('crmspanid');" valign="top">
+                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Fax" onmouseover="hndMouseOver(11, 'Fax');" onmouseout="fnhide('crmspanid');" >
                                                                                                 &nbsp;&nbsp;<span id="dtlview_Fax"><s:property value="customer.fax"/></span>
 
                                                                                             </td>
                                                                                         </tr>	
+<!--                                                                                        <tr style="height:25px">
+                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Mã chứng khoán</td>
+
+                                                                                             This file is used to display the fields based on the ui type in detailview 
+                                                                                            TextBox
+                                                                                            <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Mã chứng khoán" onmouseover="hndMouseOver(1, 'Mã chứng khoán');" onmouseout="fnhide('crmspanid');" valign="top">
+                                                                                                &nbsp;&nbsp;<span id="dtlview_Mã chứng khoán"></span>
+                                                                                            </td>
+                                                                                            
+                                                                                        </tr>	-->
 
                                                                                         <tr style="height:25px">
                                                                                             <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Nhân viên</td>
@@ -296,13 +298,7 @@
                                                                                                     &nbsp;</span>
 
                                                                                             </td>
-                                                                                            <!--                                                                                    <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Thông báo khi dữ liệu này thay đổi</td>
-                                                                                    
-                                                                                                                                                                                 This file is used to display the fields based on the ui type in detailview 
-                                                                                                                                                                                CheckBox 
-                                                                                                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Thông báo khi dữ liệu này thay đổi" onmouseover="hndMouseOver(56, 'Thông báo khi dữ liệu này thay đổi');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Thông báo khi dữ liệu này thay đổi">có&nbsp;</span>
-                                                                                    
-                                                                                                                                                                                </td>    -->
+                                                                                            
                                                                                         </tr>	
 
 
@@ -339,7 +335,7 @@
                                                                                 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                                     <tbody>
                                                                                         <tr style="height:25px">
-                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Địa chỉ thanh toán</td>
+                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Địa chỉ</td>
 
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <!--TextArea/Street-->
@@ -347,12 +343,12 @@
                                                                                                 <span id="dtlview_Địa chỉ thanh toán"><s:property value="customer.diaChi"/></span>
 
                                                                                             </td>
-                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Địa chỉ vận chuyển</td>
+                                                                                            <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Tỉnh thành</td>
 
                                                                                             <!--                                                                                     This file is used to display the fields based on the ui type in detailview 
                                                                                                                                                                                 TextArea/Street-->
                                                                                             <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Địa chỉ vận chuyển" onmouseover="hndMouseOver(21, 'Địa chỉ vận chuyển');" onmouseout="fnhide('crmspanid');">&nbsp;
-                                                                                                <span id="dtlview_Địa chỉ vận chuyển"><s:property value="customer.diaChi"/></span>
+                                                                                                <span id="dtlview_Địa chỉ vận chuyển"><s:property value="customer.tinhThanh"/></span>
 
                                                                                             </td>
                                                                                         </tr>	

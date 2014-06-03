@@ -142,13 +142,17 @@ public class ProviderAction extends ActionSupport implements ModelDriven{
         String para =  request.getParameter("id_pvd");
         
         int id_pdct = ValidateHandle.getInteger(para);
-        if(id_pdct > -1){
+        //if(id_pdct > -1){
             provider = providerDAO.loadProvider(id_pdct);
-            
-            return SUCCESS;
-        }
-        else
-            return INPUT;
+            if(provider != null){
+                
+                return SUCCESS;
+            }
+            else
+                return ERROR;
+//        }
+//        else
+//            return INPUT;
     }
    
     public String updateProvider() throws UnsupportedEncodingException{

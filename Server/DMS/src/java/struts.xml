@@ -560,6 +560,7 @@
             <result name="success">customer-detail.jsp?id_cus=${customer.stt}</result>
             <result name="input" type="redirect">customer-list</result>
             <result name="login" >index.jsp</result>
+            <result name="error" >error.jsp</result>
         </action>
         
         <action name="new-customer" method="redirect" class="com.hp.action.CustomerAction">
@@ -648,6 +649,7 @@
             <result name="success">product-detail.jsp</result>
             <result name="input" >home.jsp</result>
             <result name="login" >index.jsp</result>
+            <result name="error" >error.jsp</result>
         </action>
         
         <action name="edit-product" method="displayProduct" class="com.hp.action.ProductsAction">
@@ -821,6 +823,7 @@
             <result name="success">staff-detail.jsp</result>
             <result name="input" >home.jsp</result>
             <result name="login" >index.jsp</result>
+            <result name="error" >error.jsp</result>
         </action>
         
         <action name="delete-staff" method="deleteStaff" class="com.hp.action.StaffsAction">
@@ -903,12 +906,14 @@
             <result name="success">provider.jsp</result>
             <result name="input" >home.jsp</result>
             <result name="login" >index.jsp</result>
+            <result name="error" >error.jsp</result>
         </action>
         
         <action name="provider-detail" method="displayProvider" class="com.hp.action.ProviderAction">
             <result name="success">provider-detail.jsp</result>
             <result name="input" >provider.jsp</result>
             <result name="login" >index.jsp</result>
+            <result name="error" >error.jsp</result>
         </action>
         
         <action name="edit-provider" method="displayProvider" class="com.hp.action.ProviderAction">

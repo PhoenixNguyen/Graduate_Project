@@ -452,12 +452,17 @@ public class CustomerAction extends ActionSupport implements ModelDriven{
         String para =  request.getParameter("id_cus");
         
         int id_cus = ValidateHandle.getInteger(para);
-        if(id_cus > -1){
+        //if(id_cus > -1){
             customer = customerDAO.loadCustomer(id_cus);
-            return SUCCESS;
-        }
-        else
-            return INPUT;
+            if(customer != null){
+                
+                return SUCCESS;
+            }
+            else
+                return ERROR;
+//        }
+//        else
+//            return INPUT;
     }
     
     public String deleteCustomer(){

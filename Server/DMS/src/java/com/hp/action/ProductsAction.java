@@ -547,13 +547,18 @@ public class ProductsAction extends ActionSupport implements ModelDriven{
         String para =  request.getParameter("id_pdct");
         
         int id_pdct = ValidateHandle.getInteger(para);
-        if(id_pdct > -1){
+        //if(id_pdct > -1){
             product = productDAO.loadProduct(id_pdct);
             providerIDList = providerDAO.getProvidersIDList();
-            return SUCCESS;
-        }
-        else
-            return INPUT;
+            if(product != null){
+                
+                return SUCCESS;
+            }
+            else
+                return ERROR;
+//        }
+//        else
+//            return INPUT;
     }
     
     public String redirect(){

@@ -433,12 +433,17 @@ public class StaffsAction extends ActionSupport implements ModelDriven{
         String para =  request.getParameter("id_st");
         
         int id_st = ValidateHandle.getInteger(para);
-        if(id_st > -1){
+        //if(id_st > -1){
             staff = staffDAO.loadStaff(id_st);
-            return SUCCESS;
-        }
-        else
-            return INPUT;
+            if(staff != null){
+                
+                return SUCCESS;
+            }
+            else
+                return ERROR;
+        //}
+//        else
+//            return INPUT;
     }
     
     public String deleteStaff(){

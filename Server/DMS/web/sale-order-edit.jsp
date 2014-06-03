@@ -163,9 +163,15 @@
                                                                                             <td colspan="4" style="padding:5px">
                                                                                                 <div align="center">
                                                                                                     <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
+                                                                                                        if(validate(this.form)){
+                                                                                                            //alert('hello');
                                                                                                             document.getElementById('sub_form').submit();
-//                                                                                                this.form.action.value = 'Save'; displaydeleted(); 
-//                                                                                                return validateInventory('SalesOrder')
+                                                                                                        }
+                                                                                                        else {
+                                                                                                            //alert('hello2');
+                                                                                                            return false;
+                                                                                                        }
+                                                                                                           
                                                                                                            " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="Hủy bỏ  " style="width:70px">
                                                                                                 </div>
@@ -243,39 +249,13 @@
                                                                                                 <font color="red"></font>Số điện thoại			
                                                                                             </td>
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                <input type="text" tabindex="" name="saleOrder.phoneNumber" id="exciseduty" value="<s:property value="saleOrder.getPhoneNumber()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
-                                                                                                <!--                                                                                        <img src="themes/softed/images/btnL3Calendar.gif" id="jscal_trigger_duedate">-->
-
-                                                                                                <!--                                                                                        <br><font size="1"><em old="(yyyy-mm-dd)">(dd-mm-yyyy)</em></font>
+                                                                                                <input type="text"  readonly="" tabindex="" name="saleOrder.phoneNumber" id="exciseduty" value="<s:property value="saleOrder.getPhoneNumber()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                                 
-                                                                                                                                                                                        <script type="text/javascript" id="massedit_calendar_duedate">
-                                                                                                                                                                                            Calendar.setup ({
-                                                                                                                                                                                            inputField : "jscal_field_duedate", ifFormat : "%d-%m-%Y", showsTime : false, button : "jscal_trigger_duedate", singleClick : true, step : 1
-                                                                                                                                                                                            })
-                                                                                                                                                                                        </script>-->
 
                                                                                             </td>
 
                                                                                         </tr>
-                                                                                        <!--                                                                                <tr style="height:25px">
                                                                                         
-                                                                                                                                                                             uitype 111 added for noneditable existing picklist values - ahmed 
-                                                                                                                                                                            <td width="20%" class="dvtCellLabel" align="right">
-                                                                                                                                                                                <font color="red"></font>
-                                                                                                                                                                                Địa chỉ giao hàng			
-                                                                                                                                                                            </td>
-                                                                                                                                                                            <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                                                                                                <input type="text"  tabindex="" name="takeOrder.mDeliveryAddress" id="exciseduty" value="<s:property value="takeOrder.getMDeliveryAddress()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
-                                                                                                                                                                                <input name="contact_id" type="hidden" value="0">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="selectContact( & quot; false & quot; , & quot; general & quot; , document.EditView)" align="absmiddle" style="cursor:hand;cursor:pointer">&nbsp;
-                                                                                                                                                                                <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.contact_id.value = ''; this.form.contact_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">
-                                                                                                                                                                            </td>
-                                                                                        
-                                                                                                                                                                            <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Hình thức vận chuyển </td>
-                                                                                        
-                                                                                                                                                                            <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                                                                                                <input type="text" tabindex="" name="takeOrder.mShippingVehicle" id="pending" value="<s:property value="takeOrder.getMShippingVehicle()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
-                                                                                                                                                                            </td>
-                                                                                                                                                                        </tr>-->
                                                                                         <tr style="height:25px">
 
                                                                                             <!-- uitype 111 added for noneditable existing picklist values - ahmed -->
@@ -284,16 +264,12 @@
                                                                                                 Chiết khấu (%)			
                                                                                             </td>
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                <input name="saleOrder.discount"  type="text" style="border:1px solid #bababa;" value="<s:property value="saleOrder.getDiscount()"/>">
+                                                                                                <input name="discount"  class="detailedViewTextBox" type="text" style="border:1px solid #bababa;" value="<s:property value="saleOrder.getDiscount()"/>">
                                                                                                 <!--                                                                                        <input name="contact_id" type="hidden" value="0">&nbsp;<img src="themes/softed/images/select.gif" alt="Chọn" title="Chọn" language="javascript" onclick="selectContact( & quot; false & quot; , & quot; general & quot; , document.EditView)" align="absmiddle" style="cursor:hand;cursor:pointer">&nbsp;
                                                                                                                                                                                         <input type="image" tabindex="" src="themes/images/clear_field.gif" alt="Làm sạch" title="Làm sạch" language="javascript" onclick="this.form.contact_id.value = ''; this.form.contact_name.value = ''; return false;" align="absmiddle" style="cursor:hand;cursor:pointer">-->
                                                                                             </td>
 
-                                                                                            <!--                                                                                    <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Giảm giá (%)</td>
                                                                                             
-                                                                                                                                                                                <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                                                                                                    <input type="text" tabindex="" name="takeOrder.mDiscount" id="salescommission" value="<s:property value="takeOrder.getMDiscount()"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
-                                                                                                                                                                                </td>-->
                                                                                         </tr>
                                                                                         <tr style="height:25px">
 
@@ -438,34 +414,6 @@
                                                                                             </td>
                                                                                         </tr>
 
-
-
-                                                                                        <!--                                                                                <tr>
-                                                                                                                                                                            <td colspan="4" class="detailedViewHeader">
-                                                                                                                                                                                <b>Quyền hạn và trách nhiệm</b>
-                                                                                                                                                                            </td>
-                                                                                                                                                                        </tr>
-                                                                                        
-                                                                                                                                                                         Handle the ui types display 
-                                                                                        
-                                                                                        
-                                                                                                                                                                         Added this file to display the fields in Create Entity page based on ui types  
-                                                                                                                                                                        <tr style="height:25px">
-                                                                                        
-                                                                                        
-                                                                                        
-                                                                                        
-                                                                                                                                                                             In Add Comment are we should not display anything 
-                                                                                                                                                                            <td width="20%" class="dvtCellLabel" align="right">
-                                                                                                                                                                                <font color="red"></font> 
-                                                                                                                                                                                Điều khoản 			</td>
-                                                                                                                                                                            <td colspan="3">
-                                                                                                                                                                                <textarea class="detailedViewTextBox" tabindex="" onfocus="this.className = 'detailedViewTextBoxOn'" name="" onblur="this.className = 'detailedViewTextBox'" cols="90" rows="8">
-                                                                                        
-                                                                                                                                                                                </textarea>
-                                                                                                                                                                            </td>
-                                                                                                                                                                        </tr>-->
-
                                                                                         <tr style="height:25px"><td>&nbsp;</td></tr>
 
                                                                                         <tr>
@@ -479,9 +427,6 @@
 
                                                                                         <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                                                         <tr style="height:25px">
-
-
-
 
                                                                                             <!-- In Add Comment are we should not display anything -->
                                                                                             <td width="20%" class="dvtCellLabel" align="right">
@@ -511,9 +456,14 @@
                                                                                         <td colspan="4" style="padding:5px">
                                                                                             <div align="center">
                                                                                                 <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
+                                                                                                    if(validate(this.form)){
+                                                                                                        //alert('hello');
                                                                                                         document.getElementById('sub_form').submit();
-//                                                                                            this.form.action.value = 'Save'; displaydeleted(); 
-//                                                                                            return validateInventory('SalesOrder')
+                                                                                                    }
+                                                                                                    else {
+                                                                                                        //alert('hello2');
+                                                                                                        return false;
+                                                                                                    }
                                                                                                        " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                 <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                             </div>
@@ -542,7 +492,26 @@
 
         <!-- This div is added to get the left and top values to show the tax details-->
         <div id="tax_container" style="display:none; position:absolute; z-index:1px;"></div>
+        <script type='text/javascript' language='JavaScript'>
 
+                function validate(form) {
+                   //1. discount
+                    var discount_length = form.discount.value.length;
+                    var discount_value = form.discount.value;
+                    
+                    if (trim(discount_value) == "") {
+                        alert("Hãy nhập chiết khấu.");
+                        return false;
+                    }
+                    if ( isNaN(discount_value)) {
+                        alert("Chiết khấu phải là kiểu số");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+
+                    return true;
+                }
+            </script>  
         <br><br><br>
 
         <!--    Footer-->

@@ -164,9 +164,14 @@
                                                                                             <td colspan="4" style="padding:5px">
                                                                                                 <div align="center">
                                                                                                     <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
+                                                                                                        if(validate(this.form)){
+                                                                                                            //alert('hello');
                                                                                                             document.getElementById('sub_form').submit();
-//                                                                                                this.form.action.value = 'Save'; displaydeleted(); 
-//                                                                                                return validateInventory('SalesOrder')
+                                                                                                        }
+                                                                                                        else {
+                                                                                                            //alert('hello2');
+                                                                                                            return false;
+                                                                                                        }
                                                                                                            " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="Hủy bỏ  " style="width:70px">
                                                                                                 </div>
@@ -259,7 +264,7 @@
 
                                                                                             <!-- This file is used to display the fields based on the ui type in detailview -->
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                <input type="text"  tabindex="" name="inventoryManagerDetail.number" id="salescommission" value="<s:property value="inventoryManagerDetail.number"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
+                                                                                                <input type="text"  tabindex="" name="number" id="salescommission" value="<s:property value="inventoryManagerDetail.number"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                             </td>
             <!--                                                                                <td class="dvtCellInfo" align="left" width="25%&quot;">&nbsp;<s:property value="takeOrder.getCreater()"/></td>-->
 
@@ -310,7 +315,14 @@
                                                                                             <td colspan="4" style="padding:5px">
                                                                                                 <div align="center">
                                                                                                     <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
+                                                                                                        if(validate(this.form)){
+                                                                                                            //alert('hello');
                                                                                                             document.getElementById('sub_form').submit();
+                                                                                                        }
+                                                                                                        else {
+                                                                                                            //alert('hello2');
+                                                                                                            return false;
+                                                                                                        }
 
                                                                                                            " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
@@ -339,7 +351,28 @@
 
         <!-- This div is added to get the left and top values to show the tax details-->
         <div id="tax_container" style="display:none; position:absolute; z-index:1px;"></div>
+        <script type='text/javascript' language='JavaScript'>
 
+                function validate(form) {
+                   
+                    //2. number
+                    var number_length = form.number.value.length;
+                    var number_value = form.number.value;
+                    
+                    if (trim(number_value) == "") {
+                        alert("Hãy nhập Số lượng.");
+                        return false;
+                    }
+                    
+                    if ( /[^\d]/.test(number_value)) {
+                        alert("Số lượng phải là kiểu số");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+                    
+                    return true;
+                }
+            </script>
 
         <br><br><br>
 

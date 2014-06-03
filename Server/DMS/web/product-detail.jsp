@@ -113,13 +113,6 @@
                                             <tbody>
                                                 <tr>
                                                     
-<!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" onclick="return selectedRecords('Accounts', 'Marketing')"<img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Sản phẩm" title="Xuất dữ liệu Sản phẩm" border="0"></a></td>-->
-
-
-                                                    <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                                    <!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
-                                                                                                        mergeshowhide('mergeDup');
-                                                                                                        searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                                 </tr>
                                             </tbody></table>  
                                     </td>
@@ -129,8 +122,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                                                                                <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
+                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -218,12 +210,6 @@
                                                                         <tr>
                                                                             <td style="padding:10px;border-right:1px dashed #CCCCCC;" width="80%">
 
-
-
-                                                                                <!-- The following table is used to display the buttons -->
-                                                                                <!-- Button displayed - finished-->
-
-
                                                                                 <!-- Entity information(blocks) display - start -->
                                                                                 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
                                                                                     <tbody><tr>
@@ -298,11 +284,11 @@
                                                                                             </tr>	
                                                                                             <tr style="height:25px">
                                                                                                 <!-- Avoid to display the label Tax Class -->
-                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Loại sản phẩm</td>
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--ComboBox-->
+<!--                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Loại sản phẩm</td>
+                                                                                                 This file is used to display the fields based on the ui type in detailview 
+                                                                                                ComboBox
 
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Loại sản phẩm" onmouseover="hndMouseOver(15, 'Loại sản phẩm');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Loại sản phẩm"><font color=""></font></span>
+                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Loại sản phẩm" onmouseover="hndMouseOver(15, 'Loại sản phẩm');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Loại sản phẩm"><font color=""></font></span>-->
 
                                                                                                 </td>
                                                                                                 <!-- Avoid to display the label Tax Class -->

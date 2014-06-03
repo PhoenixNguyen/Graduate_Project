@@ -116,10 +116,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-provider"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Nhà cung câp ..." title="Tạo mới Nhà cung cấp ..." border="0"></a></td>
-
-<!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
-                                                                            searchshowhide('searchAcc', 'advSearch');
-                                                                            mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>-->
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
 
                                                                 </tr>
                                                             </tbody>
@@ -139,12 +136,8 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
-<!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" onclick="return selectedRecords('Accounts', 'Marketing')"<img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhà cung cấp" title="Xuất dữ liệu Nhà cung cấp" border="0"></a></td>-->
+                                                    
 
-
-                                                    <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                                    <!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup'); mergeshowhide('mergeDup'); searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                                 </tr>
                                             </tbody>
                                         </table>  
@@ -155,8 +148,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                                                                                <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
+                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -252,67 +244,7 @@
                 </tr>
             </tbody>
         </table>
-        <script language="javascript" type="text/javascript">
-            function validate_import_map()
-            {
-                var tagName;
-                var count = 0;
-                var field_count = "1";
-                var required_fields = new Array();
-                var required_fields_name = new Array();
-                var seq_string = '';
-                required_fields[count] = "productname";
-                required_fields_name[count] = "Tên sản phẩm";
-                count = count + 1;
-                required_fields[count] = "cf_628";
-                required_fields_name[count] = "Tên kho";
-                count = count + 1;
-
-                for (loop_count = 0; loop_count < field_count; loop_count++)
-                {
-                    tagName = document.getElementById('colnum' + loop_count);
-                    optionData = tagName.options[tagName.selectedIndex].value;
-
-                    if (optionData != -1)
-                    {
-                        tmp = seq_string.indexOf("\"" + optionData + "\"");
-                        if (tmp == -1)
-                        {
-                            seq_string = seq_string + "\"" + optionData + "\"";
-                        }
-                        else
-                        {
-                            //if a vtiger_field mapped more than once, alert the user and return
-                            alert("'" + tagName.options[tagName.selectedIndex].text + " 'là ánh xạ nhiều hơn một lần. Xin vui lòng kiểm tra việc ánh xạ của bạn.");
-                            return false;
-                        }
-                    }
-
-                }
-
-                //check whether the mandatory vtiger_fields have been mapped.
-                for (inner_loop = 0; inner_loop < required_fields.length; inner_loop++)
-                {
-                    if (seq_string.indexOf(required_fields[inner_loop]) == -1)
-                    {
-                        alert('Xin vui lòng ánh xạ các trường bắt buộc "' + required_fields_name[inner_loop] + '"');
-                        return false;
-                    }
-                }
-
-                //This is to check whether the save map name has been given or not when save map check box is checked
-                if (document.getElementById("save_map").checked == true)
-                {
-                    if (trim(document.getElementById("save_map_as").value) == '')
-                    {
-                        alert("Xin vui lòng nhập vào tên của việc ánh xạ");
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-        </script>
+        
 
         <!--    Footer-->
         <s:include value="footer.jsp"></s:include>

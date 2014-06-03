@@ -89,10 +89,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-provider"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo mới Nhà cung cấp..." title="Tạo mới Nhà cung cấp..." border="0"></a></td>
-
-<!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
-                                                                            searchshowhide('searchAcc', 'advSearch');
-                                                                            mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Nhà cung cấp..." title="Tìm kiếm trong Nhà cung cấp..." border="0"></a></td>-->
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
 
                                                                 </tr>
                                                             </tbody>
@@ -112,14 +109,8 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
-<!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:alert('Chức năng chưa được xây dựng!')" onclick="return selectedRecords('Accounts', 'Marketing')"<img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhà cung cấp" title="Xuất dữ liệu Nhà cung cấp" border="0"></a></td>-->
+                                                    
 
-
-                                                    <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                                    <!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
-                                                                                                        mergeshowhide('mergeDup');
-                                                                                                        searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                                 </tr>
                                             </tbody></table>  
                                     </td>
@@ -129,8 +120,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <!--                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                                                                                <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>-->
+                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -193,7 +183,6 @@
 
                                                                    " type="button" name="Delete" value="Xóa">&nbsp;
 
-
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -210,19 +199,11 @@
                                                             <form action="index.php" method="post" name="DetailView" id="form" onsubmit="VtigerJS_DialogBox.block();">
                                                                 <input type="hidden" name="parenttab" value="Inventory">
 
-
-
                                                                 <!-- Entity informations display - starts -->	
                                                                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td style="padding:10px;border-right:1px dashed #CCCCCC;" width="80%">
-
-
-
-                                                                                <!-- The following table is used to display the buttons -->
-                                                                                <!-- Button displayed - finished-->
-
 
                                                                                 <!-- Entity information(blocks) display - start -->
                                                                                 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="small">
@@ -287,19 +268,9 @@
 
                                                                                                 </td>
                                                                                                 <!-- Avoid to display the label Tax Class -->
-<!--                                                                                                <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Nhà cung cấp</td>
 
-                                                                                                 This file is used to display the fields based on the ui type in detailview 
-                                                                                                ComboBox
-
-                                                                                                <td width="25%" class="dvtCellInfo" align="left" id="mouseArea_Nhà sản xuất" onmouseover="hndMouseOver(15, 'Nhà sản xuất');" onmouseout="fnhide('crmspanid');"><span id="dtlview_Nhà sản xuất"><font color=""><s:property value="product.provider"/></font></span>
-
-                                                                                                </td>-->
                                                                                             </tr>	
                                                                                             	
-                                                                                            	
-
-
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </div> <!-- Line added by SAKTI on 10th Apr, 2008 -->
@@ -325,11 +296,6 @@
                                                                                                 <!-- Avoid to display the label Tax Class -->
                                                                                                 <td class="dvtCellLabel" align="right" width="25%"><input type="hidden" id="hdtxt_IsAdmin" value="1">Ghi chú</td>
 
-                                                                                                <!-- This file is used to display the fields based on the ui type in detailview -->
-                                                                                                <!--TextArea/Description-->
-                                                                                                <!-- we will empty the value of ticket and faq comment -->
-                                                                                                <!--  -->
-                                                                                                <!-- -->
                                                                                                 <td width="100%" colspan="3" class="dvtCellInfo" align="left" id="mouseArea_Mô tả" onmouseover="hndMouseOver(19, 'Mô tả');" onmouseout="fnhide('crmspanid');">&nbsp;<span id="dtlview_Mô tả">
                                                                                                         <s:property value="provider.note"/>
                                                                                                     </span>
@@ -372,43 +338,11 @@
                                                                         <!--                                                <td align="left" class="genHeaderSmall">Hoạt động</td>-->
                                                                     </tr>
 
-
-
-                                                                    <!-- Module based actions starts -->
-                                                                    <!-- Product/Services Actions starts -->
-                                                                    <!--                                            <tr>
-                                                                                                                    <td align="left" style="padding-left:5px;">
-                                                                                                                        <a href="" class="webMnu"><img src="themes/images/actionGenerateQuote.gif" hspace="2" align="absmiddle" border="0"></a>
-                                                                                                                        <a href="" class="webMnu">Tạo Báo giá</a> 
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                    <td align="left" style="padding-left:5px;">
-                                                                                                                        <a href="" class="webMnu"><img src="themes/images/actionGenerateInvoice.gif" hspace="2" align="absmiddle" border="0"></a>
-                                                                                                                        <a href="" class="webMnu">Tạo Hóa đơn</a> 
-                                                                                                                    </td>
-                                                                                                                </tr>-->
-                                                                    <!--                                            <tr>
-                                                                                                                    <td align="left" style="padding-left:5px;">
-                                                                                                                        <a href="" class="webMnu"><img src="themes/images/actionGenerateSalesOrder.gif" hspace="2" align="absmiddle" border="0"></a>
-                                                                                                                        <a href="" class="webMnu">Tạo Đặt hàng</a> 
-                                                                                                                    </td>
-                                                                                                                </tr>-->
-                                                                    <!--                                            <tr>
-                                                                                                                    <td align="left" style="padding-left:5px;">
-                                                                                                                        <a href="" class="webMnu"><img src="themes/images/actionGenPurchaseOrder.gif" hspace="2" align="absmiddle" border="0"></a>
-                                                                                                                        <a href="" class="webMnu">Tạo Nhập hàng</a> 
-                                                                                                                    </td>
-                                                                                                                </tr>-->
-                                                                    <!-- Module based actions ends -->
                                                                     <tr>
                                                                         <td>
                                                                         </td>
                                                                     </tr>
-                                                                    <!-- Action links END -->
-                                                                    <!-- Following condition is added to avoid the Tools section in Products and Vendors because we are not providing the Print and Email Now links throughout all the modules. when we provide these links we will remove this if condition -->
-                                                                    <!-- Above if condition is added to avoid the Tools section in Products and Vendors because we are not providing the Print and Email Now links throughout all the modules. when we provide these links we will remove this if condition -->
-
+                                                                    
                                                                 </tbody>
                                                             </table>
 

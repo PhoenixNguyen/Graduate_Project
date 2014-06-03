@@ -51,10 +51,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-provider"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Nhà cung cấp..." title="Tạo Nhà cung cấp..." border="0"></a></td>
-
-<!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
-                                                                    searchshowhide('searchAcc', 'advSearch');
-                                                                    mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Nhà cung cấp..." title="Tìm kiếm trong Nhà cung cấp..." border="0"></a></td>-->
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
 
                                                                 </tr>
                                                             </tbody>
@@ -74,10 +71,7 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
-<!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhà cung cấp" title="Xuất dữ liệu Nhà cung cấp" border="0"></a></td>-->
-
-
+                                                    
                                                 </tr>
                                             </tbody></table>  
                                     </td>
@@ -86,10 +80,7 @@
                                         <!-- All Menu -->
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
-                                                <!--                                        <tr>
-                                                                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                                                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
-                                                                                        </tr>-->
+                                                
                                             </tbody>
                                         </table>
                                     </td>
@@ -164,13 +155,20 @@
                                                                                                 <td colspan="4" style="padding:5px">
                                                                                                     <div align="center">
                                                                                                         <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
-                                                                                                        document.getElementById('sub_form').submit();
+                                                                                                            if(validate(this.form)){
+                                                                                                                //alert('hello');
+                                                                                                                document.getElementById('sub_form').submit();
+                                                                                                            }
+                                                                                                            else {
+                                                                                                                //alert('hello2');
+                                                                                                                return false;
+                                                                                                            }
+                                                                                                        
                                                                                                                " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                         <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
                                                                                                     </div>
                                                                                                 </td>
                                                                                             </tr>
-
                                                                                             <tr>
                                                                                                 <td colspan="4" class="detailedViewHeader">
                                                                                                     <b>Thông tin Nhà cung cấp</b>
@@ -179,12 +177,8 @@
 
                                                                                             <!-- Here we should include the uitype handlings-->
 
-
                                                                                             <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                                                             <tr style="height:25px">
-
-
-
 
                                                                                                 <td width="20%" class="dvtCellLabel" align="right">
                                                                                                     <font color="red"></font>Tên Nhà cung cấp 			
@@ -196,7 +190,7 @@
                                                                                                 <!-- Non Editable field, only configured value will be loaded -->
                                                                                                 <td width="20%" class="dvtCellLabel" align="right"><font color="red">*</font>Mã Nhà cung cấp </td>
                                                                                                 <td width="30%" align="left" class="dvtCellInfo">
-                                                                                                    <input  type="text" tabindex="" name="provider.id" id="vendor_no" value="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
+                                                                                                    <input  type="text" tabindex="" name="id" id="vendor_no" value="" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                                                             </tr>
                                                                                             <tr style="height:25px">
 
@@ -241,7 +235,15 @@
                                                                                                 <td colspan="4" style="padding:5px">
                                                                                                     <div align="center">
                                                                                                         <input title="Lưu [Alt+S]" accesskey="S" class="crmbutton small save" onclick="
-                                                                                                        document.getElementById('sub_form').submit();
+                                                                                                            if(validate(this.form)){
+                                                                                                                //alert('hello');
+                                                                                                                document.getElementById('sub_form').submit();
+                                                                                                            }
+                                                                                                            else {
+                                                                                                                //alert('hello2');
+                                                                                                                return false;
+                                                                                                            }
+                                                                                                        
                                                                                                                " type="submit" name="button" value="  Lưu  " style="width:70px">
                                                                                                         <input title="Hủy bỏ [Alt+X]" accesskey="X" class="crmbutton small cancel" onclick="window.history.back()" type="button" name="button" value="  Hủy bỏ  " style="width:70px">
 
@@ -273,6 +275,38 @@
         <!-- This div is added to get the left and top values to show the tax details-->
         <div id="tax_container" style="display:none; position:absolute; z-index:1px;"></div>
 
+        <script type='text/javascript' language='JavaScript'>
+
+                function validate(form) {
+                   
+                    //2. ID
+                    var id_length = form.id.value.length;
+                    var id_value = form.id.value;
+                    
+                    if(id_length < 3 || id_length > 20){
+                        alert("Mã nhà cung cấp phải từ 3-20 ký tự.");
+                        return false;
+                    }
+
+//                    for(int i = 0; i < pw_length; i++ ){
+//                        if(pw_value.charAt(i) != )
+//                    }
+
+                    if (trim(id_value) == "") {
+                        alert("Hãy nhập Mã nhà cung cấp.");
+                        return false;
+                    }
+               
+                    if ( /[^A-Za-z\d\_]/.test(id_value)) {
+                        alert("Mã nhà cung cấp không được chứa ký tự đặc biệt");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+
+                    return true;
+                }
+            </script>  
+            
         <!--    Footer-->
         <s:include value="footer.jsp"></s:include>
     </body>

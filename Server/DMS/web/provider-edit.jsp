@@ -51,7 +51,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td style="padding-right:0px;padding-left:10px;"><a href="new-provider"><img src="themes/softed/images/btnL3Add.gif" alt="Tạo Nhà cung cấp..." title="Tạo Nhà cung cấp..." border="0"></a></td>
-
+                                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
 <!--                                                                    <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('searchAcc');
                                                                     searchshowhide('searchAcc', 'advSearch');
                                                                     mergehide('mergeDup')"><img src="themes/softed/images/btnL3Search.gif" alt="Tìm kiếm trong Khách hàng..." title="Tìm kiếm trong Khách hàng..." border="0"></a></td>-->
@@ -74,14 +74,8 @@
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
                                                 <tr>
-                                                    <td style="padding-right:0px;padding-left:10px;"><a href="import-provider"><img src="themes/softed/images/tbarImport.gif" alt="Nhập dữ liệu Nhà cung cấp" title="Nhập dữ liệu Nhà cung cấp" border="0"></a></td>  
-<!--                                                    <td style="padding-right:10px"><a name="export_link" href="javascript:void(0)" onclick="return selectedRecords('Accounts', 'Marketing')"><img src="themes/softed/images/tbarExport.gif" alt="Xuất dữ liệu Nhà cung cấp" title="Xuất dữ liệu Nhà cung cấp" border="0"></a></td>-->
+                                                    
 
-
-                                                    <!--<td style="padding-right:10px"><a href="home.jsp?module=Accounts&action=FindDuplicateRecords&button_view=true&list_view=true&parenttab=Marketing"><img src="themes/softed/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td> -->
-                                                    <!--                                            <td style="padding-right:10px"><a href="javascript:;" onclick="moveMe('mergeDup');
-                                                                                                        mergeshowhide('mergeDup');
-                                                                                                        searchhide('searchAcc', 'advSearch');"><img src="themes/images/findduplicates.gif" alt="" title="Tìm kiếm trùng" border="0"></a></td>-->
                                                 </tr>
                                             </tbody>
                                         </table>  
@@ -91,10 +85,7 @@
                                         <!-- All Menu -->
                                         <table border="0" cellspacing="0" cellpadding="5">
                                             <tbody>
-                                                <!--                                        <tr>
-                                                                                            <td style="padding-left:10px;"><a href="javascript:;" onmouseout="fninvsh('allMenu');" onclick="fnvshobj(this, 'allMenu')"><img src="themes/softed/images/btnL3AllMenu.gif" alt="Mở tất cả Menu..." title="Mở tất cả Menu..." border="0"></a></td>
-                                                                                            <td style="padding-left:10px;"><a href=""><img src="themes/softed/images/settingsBox.png" alt="Khách hàng Thiết lập" title="Khách hàng Thiết lập" border="0"></a></td>
-                                                                                        </tr>-->
+                                                
                                             </tbody>
                                         </table>
                                     </td>
@@ -117,17 +108,12 @@
                     <td class="showPanelBg" valign="top" width="100%">
                         <div class="small" style="padding:20px">
 
-
-
                             <span class="lvtHeaderText"><font color="purple">[ <s:property value="provider.id"/> ] </font><s:property value="provider.name"/> - Sửa Nhà cung cấp</span> <br>
-
 
                             <hr noshade="" size="1">
                             <br> 
 
-
                             <form name="EditView" method="POST" action="update-provider" id="sub_form">
-
 
                                 <input type="hidden" name="provider.serial" value="<s:property value="provider.serial"/>">
 
@@ -184,21 +170,15 @@
                                                                                         <!-- Added this file to display the fields in Create Entity page based on ui types  -->
                                                                                         <tr style="height:25px">
 
-
-
-
                                                                                             <td width="20%" class="dvtCellLabel" align="right">
-                                                                                                <font color="red">*</font>Tên Nhà cung cấp 			
+                                                                                                <font color="red"></font>Tên Nhà cung cấp 			
                                                                                             </td>
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
                                                                                                 <input type="text" name="provider.name" tabindex="" value="<s:property value="provider.name"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'">
                                                                                             </td>
 
-
-
-
                                                                                             <!-- Non Editable field, only configured value will be loaded -->
-                                                                                            <td width="20%" class="dvtCellLabel" align="right"><font color="red"></font>Mã Nhà cung cấp </td>
+                                                                                            <td width="20%" class="dvtCellLabel" align="right"><font color="red">*</font>Mã Nhà cung cấp </td>
                                                                                             <td width="30%" align="left" class="dvtCellInfo">
                                                                                                 <input readonly="" type="text" tabindex="" name="provider.id" id="vendor_no" value="<s:property value="provider.id"/>" class="detailedViewTextBox" onfocus="this.className = 'detailedViewTextBoxOn'" onblur="this.className = 'detailedViewTextBox'"></td>
                                                                                         </tr>

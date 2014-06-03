@@ -137,7 +137,15 @@
                                                             <tr>
                                                                 <td nowrap align="right">
                                                                     <input title="Lưu [Alt+S]" accesskey="S" class="small crmbutton save"  name="button" value="  Lưu  "  onclick="
-                                                                        document.getElementById('sub_form').submit();
+                                                                        if(validate(this.form)){
+                                                                            //alert('hello');
+                                                                            document.getElementById('sub_form').submit();
+                                                                        }
+                                                                        else {
+                                                                            //alert('hello2');
+                                                                            return false;
+                                                                        }
+                                                                        
                                                                         " style="width: 70px;" type="button" />
                                                                     <input title="Hủy bỏ [Alt+X]" accesskey="X" class="small crmbutton cancel" name="button" value="  Hủy bỏ  " onclick="window.history.back()" style="width: 70px;" type="button" />
 
@@ -169,14 +177,14 @@
                                                                                                                     <font color="red">*</font>Mã tài khoản		
                                                                                                                 </td>
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
-                                                                                                                    <input type="text"  name="user.id" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="text"  name="id" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
                                                                                                                 </td>
 
                                                                                                                 <td width="20%" class="dvtCellLabel" align=right>
-                                                                                                                    <font color="red"></font>Mật khẩu		
+                                                                                                                    <font color="red">*</font>Mật khẩu		
                                                                                                                 </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
-                                                                                                                    <input type="password"  name="user.pw" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
+                                                                                                                    <input type="password"  name="pw" value="" tabindex="" class=detailedViewTextBox onFocus="this.className = 'detailedViewTextBoxOn'" onBlur="this.className = 'detailedViewTextBox'">
 
                                                                                                                 </td>
                                                                                                             </tr>
@@ -236,9 +244,9 @@
                                                                                                                 </td>
                                                                                                                 <td width="30%" align=left class="dvtCellInfo">
                                                                                                                     <select name="user.permission" tabindex="" class="small">
-                                                                                                                        
-                                                                                                                            <option value="1" >Quản lý cao cấp</option>
-                                                                                                                            <option value="2" selected>Quản lý bán hàng</option>
+                                                                                                                            <option value="0" selected>Quản trị hệ thống</option>
+                                                                                                                            <option value="1" >Người dùng</option>
+                                                                                                                            <option value="3" >Nhóm kinh doanh</option>
                                                                                                                         
                                                                                                                         <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                         <!--code ends -->
@@ -255,8 +263,8 @@
                                                                                                                 <td width=30% align=left class="dvtCellInfo">
                                                                                                                     <select name="user.status" tabindex="" class="small">
                                                                                                                         
-                                                                                                                            <option value="true" >Hoạt động</option>
-                                                                                                                            <option value="false" selected>Không hoạt động</option>
+                                                                                                                            <option value="true" selected>Hoạt động</option>
+                                                                                                                            <option value="false" >Không hoạt động</option>
                                                                                                                         
                                                                                                                         <!-- code added to pass Currency field value, if Disabled for nonadmin -->
                                                                                                                         <!--code ends -->
@@ -280,7 +288,15 @@
                                                                                                 <tr>
                                                                                                     <td colspan=4 align="right">
                                                                                                         <input title="Lưu [Alt+S]" accesskey="S" class="small crmbutton save"  name="button" value="  Lưu  "  onclick="
-                                                                                                            document.getElementById('sub_form').submit();
+                                                                                                            if(validate(this.form)){
+                                                                                                                //alert('hello');
+                                                                                                                document.getElementById('sub_form').submit();
+                                                                                                            }
+                                                                                                            else {
+                                                                                                                //alert('hello2');
+                                                                                                                return false;
+                                                                                                            }
+                                                                                                            
                                                                                                                " style="width: 70px;" type="button" />
                                                                                                         <input title="Hủy bỏ [Alt+X]" accesskey="X" class="small crmbutton cancel" name="button" value="  Hủy bỏ  " onclick="window.history.back()" style="width: 70px;" type="button" />
                                                                                                     </td>
@@ -307,6 +323,57 @@
                     </td></tr>
         </table>
         <br>
+        
+        <script type='text/javascript' language='JavaScript'>
+
+                function validate(form) {
+                   //1. pw
+                    var pw_length = form.pw.value.length;
+                    var pw_value = form.pw.value;
+                    
+                    //alert(form.pw.value.length);
+                    if(pw_length < 3 || pw_length > 20){
+                        alert("Mật khẩu phải từ 3-20 ký tự.");
+                        return false;
+                    }
+
+//                    for(int i = 0; i < pw_length; i++ ){
+//                        if(pw_value.charAt(i) != )
+//                    }
+
+                    if (trim(pw_value) == "") {
+                        alert("Hãy nhập mật khẩu mới cho người dùng.");
+                        return false;
+                    }
+
+                    //2. ID
+                    var id_length = form.id.value.length;
+                    var id_value = form.id.value;
+                    
+                    if(id_length < 3 || id_length > 20){
+                        alert("Tài khoản phải từ 3-20 ký tự.");
+                        return false;
+                    }
+
+//                    for(int i = 0; i < pw_length; i++ ){
+//                        if(pw_value.charAt(i) != )
+//                    }
+
+                    if (trim(id_value) == "") {
+                        alert("Hãy nhập Mã tài khoản cho người dùng.");
+                        return false;
+                    }
+               
+                    if ( /[^A-Za-z\d\_]/.test(id_value)) {
+                        alert("Mã tài khoản không được chứa ký tự đặc biệt");
+                        //document.formname.txt.focus();
+                        return (false);
+                    }
+
+                    return true;
+                }
+            </script>  
+            
         <br><br><br>
 
         <!--    Footer-->

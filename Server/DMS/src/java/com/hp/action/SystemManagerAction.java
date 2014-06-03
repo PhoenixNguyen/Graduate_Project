@@ -263,7 +263,7 @@ public class SystemManagerAction extends ActionSupport implements ModelDriven{
             return LOGIN;
         }
         
-        
+        user.setNgayThamGia(new Date());
         if(userDAO.saveUser(user)){
             user = userDAO.getUser(user.getStt());
             return SUCCESS;

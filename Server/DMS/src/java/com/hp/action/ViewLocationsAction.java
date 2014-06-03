@@ -139,9 +139,15 @@ public class ViewLocationsAction extends ActionSupport implements ModelDriven{
             return LOGIN;
         }
         
+        
         pushInfo.setManagerID((String)session.getAttribute("giamdocId"));
         pushInfo.setStaffID((String)session.getAttribute("staffId"));
         pushInfo.setCustomerID((String)session.getAttribute("khachhangId"));
+        
+        String cus_id = request.getParameter("customer_id");
+        if(cus_id != null && cus_id.compareTo("") != 0){
+            pushInfo.setCustomerID(cus_id);
+        }
         
         userListGiamDoc = userDAO.getListUser(2);
         userListStaff = staffDAO.getListUser(pushInfo.getManagerID());

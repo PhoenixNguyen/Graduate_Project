@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/customer-add.jsp</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/domain/Customer.java</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/customer-detail.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/struts.xml</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/take-order-edit.jsp</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/staff-add.jsp</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/customer.jsp</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/customer-edit.jsp</file>
-            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/staff-edit.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/system-manager-admin-new.jsp</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/src/java/com/hp/action/SystemManagerAction.java</file>
+            <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/product-add.jsp</file>
             <file>file:/D:/TEMP/20132-Project/Graduate_Project/Server/DMS/web/staff-detail.jsp</file>
         </group>
     </open-files>

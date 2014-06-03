@@ -319,7 +319,7 @@
                                                                                         <td>&nbsp;</td>
                                                                                         <td>&nbsp;</td>
                                                                                         <td align="right">
-                                                                                            <input name="mapbutton" value="Bản đồ định vị" class="crmbutton small create" type="button" onclick="window.location.href = 'map/customerDetail.action?page=0&customer_id=<s:property value="customer.maDoiTuong"/>'" onmouseout="fninvsh('locateMap');" title="Bản đồ định vị">
+                                                                                            <input name="mapbutton" value="Bản đồ định vị" class="crmbutton small create" type="button" onclick="window.location.href = 'maps/filter-result?page=0&customer_id=<s:property value="customer.maDoiTuong"/>'" onmouseout="fninvsh('locateMap');" title="Bản đồ định vị">
                                                                                         </td>
                                                                                     </tr>
 

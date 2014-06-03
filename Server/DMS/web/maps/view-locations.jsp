@@ -367,7 +367,7 @@
                                         </s:if>
                                     <!--                                    <h2><span></span></h2>--><br>
 <!--                                    <span class="name"></span>-->
-                                    <p id="name"><s:property value="doiTuong"/></p>
+                                    <p id="name"><a style="color: white" href="filter-result?page=0&customer_id=<s:property value="maDoiTuong"/>"><s:property value="doiTuong"/></a></p>
                                 </li>
                                 
                                 </s:iterator>

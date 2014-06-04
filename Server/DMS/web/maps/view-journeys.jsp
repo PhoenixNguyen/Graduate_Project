@@ -22,6 +22,8 @@
         <script type="text/javascript" src="/DMS/jscalendar/calendar-setup.js"></script>
         <script type="text/javascript" src="/DMS/jscalendar/lang/calendar-vn.js"></script>
         
+        <script language="JavaScript" type="text/javascript" src="/DMS/include/js/general.js"></script>
+        
         <script language="JavaScript" type="text/javascript" src="/DMS/js/jquery.min.js"></script>
         <script language="JavaScript" type="text/javascript" src="/DMS/js/wz_jsgraphics.js"></script>
 
@@ -414,7 +416,19 @@
                     </tr>-->
                 
                 <tr>
-                    <td  ><input name="generatenw" value=" Lọc kết quả " class="crmbutton small create" type="submit" ></td>
+                    <td>
+                        <input name="generatenw" value=" Lọc kết quả " class="crmbutton small create" type="button" 
+                                 onclick="
+                                            if(validate(this.form)){
+                                                //alert('hello');
+                                                document.getElementById('sub_form').submit();
+                                            }
+                                            else {
+                                                //alert('hello2');
+                                                return false;
+                                            }
+                                            " name="button" >
+                    </td>
                     <td  ><input name="generatenw" value=" Quay lại " class="crmbutton small create" type="button" onclick="window.location.href='/DMS/customer-list'"></td>
                 </tr>
                 </table>
@@ -471,5 +485,24 @@
                 jg.clear();
             }
         </script>
+        
+        <script type='text/javascript' language='JavaScript'>
+
+                function validate(form) {
+                   
+                    //2. ID
+                    var date_length = form.date.value.length;
+                    var date_value = form.date.value;
+                    
+                   
+                    if (trim(date_value) == "") {
+                        alert("Hãy chọn ngày để xem.");
+                        return false;
+                    }
+               
+                   
+                    return true;
+                }
+            </script>
     </body>
 </html>

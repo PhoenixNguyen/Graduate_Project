@@ -23,6 +23,7 @@
 <!--        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>-->
         <script language="JavaScript" type="text/javascript" src="js/jquery.min.js"></script>
         <script language="JavaScript" type="text/javascript" src="js/ajax_option.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/md5.js"></script>
         
         <script language="JavaScript" type="text/javascript" src="include/js/json.js"></script>
         <script language="JavaScript" type="text/javascript" src="include/js/general.js"></script>

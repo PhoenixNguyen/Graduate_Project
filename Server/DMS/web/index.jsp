@@ -18,7 +18,8 @@
         <style type="text/css">@import url("themes/softed/style.css");</style>
 
         <script language="JavaScript" type="text/javascript" src="js/jquery.min.js"></script>
-
+        <script language="JavaScript" type="text/javascript" src="js/md5.js"></script>
+        
         <%
             if (session.getAttribute("authorized") != null && (Boolean) session.getAttribute("authorized")) {
 
@@ -89,7 +90,9 @@
                                             </tr>
                                             <tr bgcolor="#f5f5f5">
                                                 <td class="small" align="right" width="30%">Mật khẩu<!--Mật khẩu--></td>
-                                                <td class="small" align="left" width="70%"><input class="small" type="password" size='20' name="user_password"  tabindex="2"></td>
+                                                <td class="small" align="left" width="70%">
+                                                    <input class="small" type="password" size='20' name="user_password"  tabindex="2">
+                                                </td>
                                             </tr>
                                             <!--                                            <tr bgcolor="#f5f5f5">
                                                                                             <td class="small" align="right" width="30%">Hiển thịMàu nền</td>
@@ -127,7 +130,18 @@
                                 <tr>
                                     <td class="small">&nbsp;</td>
                                     <td class="small">
-                                        <input title="Đăng nhập [Alt+L]" alt="Đăng nhập [Alt+L]" accesskey="Đăng nhập [Alt+L]" src="themes/images/btnSignInNEW.gif" type="image" name="Login" value="  Đăng nhập  "  tabindex="5">
+                                        <input title="Đăng nhập [Alt+L]" alt="Đăng nhập [Alt+L]" accesskey="Đăng nhập [Alt+L]" src="themes/images/btnSignInNEW.gif" type="image" name="Login" value="  Đăng nhập  "  tabindex="5"
+                                               onclick="
+                                                    if(encode(this.form)){
+                                                        //alert('hello');
+                                                        document.getElementById('form').submit();
+                                                    }
+                                                    else {
+                                                        //alert('hello2');
+                                                        return false;
+                                                    }
+                                                    "
+                                               >
                                     </td>
                                 </tr>
                             </table>
@@ -165,7 +179,20 @@
 
         </script>
 
+        <script type='text/javascript' language='JavaScript'>
 
+            function encode(form) {
+
+//                    var user_password_length = form.user_password.value.length;
+                var user_password_value = form.user_password.value;
+
+                var passhash = CryptoJS.MD5(user_password_value).toString(); 
+                form.user_password.value = passhash;
+                //console.log(passhash);
+
+                return true;
+            }
+        </script>  
         <br><br><br>
         <!--    Footer-->
         <s:include value="footer.jsp"></s:include>

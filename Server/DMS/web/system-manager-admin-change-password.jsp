@@ -13,6 +13,7 @@
     <HEAD>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Phần mềm quản lý HOSCO-MANAGEMENT</title><style type="text/css">@import url("themes/softed/style.css"); </style>
+        
         <script type='text/javascript' language='JavaScript'>
             var status = <s:property value="changePWStatus"/>
             if(status == "true"){
@@ -26,6 +27,8 @@
     </HEAD>
     <BODY leftMargin="5" topMargin="5" MARGINHEIGHT="0" MARGINWIDTH="0">
         <script type='text/javascript' src="include/js/general.js"></script>
+        <script language="JavaScript" type="text/javascript" src="js/md5.js"></script>
+        
         <script type='text/javascript' language='JavaScript'>
 
             function set_password(form) {
@@ -45,13 +48,15 @@
                 if (trim(form.new_password.value) == trim(form.confirm_new_password.value)) {
                     if (form.is_admin.value == 1)
                         window.opener.document.DetailView.old_password.value = form.old_password.value;
-                    window.opener.document.DetailView.new_password.value = form.new_password.value;
-                    window.opener.document.DetailView.return_module.value = 'Users';
-                    window.opener.document.DetailView.return_action.value = 'DetailView';
+                    
+                    //Encode
+                    var new_password_value = form.new_password.value;
+
+                    var passhash = CryptoJS.MD5(new_password_value).toString(); 
+                    form.new_password.value = passhash;
+                    //console.log(passhash);
+                    
                     window.opener.document.DetailView.changepassword.value = 'true';
-                    window.opener.document.DetailView.return_id.value = window.opener.document.DetailView.record.value;
-                    window.opener.document.DetailView.action.value = 'Save';
-                    window.opener.document.DetailView.submit();
                     return true;
                 }
                 else {

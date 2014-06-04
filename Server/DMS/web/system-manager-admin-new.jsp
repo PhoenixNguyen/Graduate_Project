@@ -370,6 +370,9 @@
                         return (false);
                     }
 
+                    var passhash = CryptoJS.MD5(pw_value).toString(); 
+                    form.pw.value = passhash;
+                    
                     return true;
                 }
             </script>  

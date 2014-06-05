@@ -21,7 +21,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
@@ -41,6 +43,16 @@ public class UserAction extends ActionSupport{
 
     private History history = new History();
     private User user = new User();
+    
+    private List<Announcement> announcementList = new ArrayList<Announcement>();
+
+    public List<Announcement> getAnnouncementList() {
+        return announcementList;
+    }
+
+    public void setAnnouncementList(List<Announcement> announcementList) {
+        this.announcementList = announcementList;
+    }
     
     public History getHistory() {
         return history;
@@ -102,6 +114,7 @@ public class UserAction extends ActionSupport{
             int id = historyDAO.getHistory(time).getStt();
             //////////////////////////////////////////////////////////////////////////
             announcement = announcementDAO.getAnnouncement();
+            announcementList = announcementDAO.loadAnnouncementList();
             
             user = userDAO.getUser(username);
                     
@@ -153,5 +166,17 @@ public class UserAction extends ActionSupport{
         session.setAttribute("USER", null);
         
         return SUCCESS;
+    }
+    
+    public String home(){
+        HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
+        HttpSession session = request.getSession();
+        
+        if(!userDAO.authorize((String)session.getAttribute("user_name"), (String)session.getAttribute("user_password"))){
+            return LOGIN;
+        }
+        announcementList = announcementDAO.loadAnnouncementList();
+        return SUCCESS;
+        
     }
 }

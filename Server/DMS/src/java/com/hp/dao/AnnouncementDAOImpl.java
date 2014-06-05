@@ -9,6 +9,7 @@ package com.hp.dao;
 import static com.googlecode.s2hibernate.struts2.plugin.util.HibernateSessionFactory.getSessionFactory;
 import com.hp.domain.Announcement;
 import com.hp.domain.Customer;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -83,6 +84,32 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
         }
         
         return announcement;
+    }
+    
+    @Override
+    public List<Announcement> loadAnnouncementList(){
+        Session session = getSessionFactory().openSession();
+        Transaction transaction;
+        transaction = session.beginTransaction();
+        
+        List<Announcement> courses = null;
+        try{
+            //String q = "from Customer ";
+            Query query = session.createQuery("from Announcement order by date desc");
+                        
+            courses = query.list();
+            //courses = session.createQuery("from Customer where mXCoordinates = 0").list(); //where mXCoordinates is NOT NULL and  mYCoordinates is NOT NULL
+            
+            // order by  mXCoordinates desc
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        
+        return courses;
+        
     }
     
 }

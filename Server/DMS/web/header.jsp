@@ -115,7 +115,7 @@
                                     
                                     <s:if test="#attr.PERMISSION != 0">
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
-                                    <td <s:if test="#page == 'home'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                                    <td <s:if test="#page == 'home'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="home">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                                     <td <s:if test="#page == 'staff'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Tools_sub');" onmouseout="fnHideDrop('Tools_sub');" align="center" nowrap=""><a href="">Nhân viên</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -137,7 +137,7 @@
                                     </s:if>
                                     <s:else>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif" width="2px" height="28px"></td>    
-                                    <td <s:if test="#page == 'home'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="/DMS">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
+                                    <td <s:if test="#page == 'home'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'My Home Page_sub');" onmouseout="fnHideDrop('My Home Page_sub');" align="center" nowrap=""><a href="home">Trang chủ</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
                                     <td <s:if test="#page == 'setup'"> class="tabSelected" </s:if> <s:else>class="tabUnSelected"</s:else> onmouseover="fnDropDown(this, 'Settings_sub');" onmouseout="fnHideDrop('Settings_sub');" align="center" nowrap=""><a href="">Thiết lập</a><img src="themes/softed/images/menuDnArrow.gif" border="0" style="padding-left:5px"></td>
                                     <td class="tabSeperator"><img src="themes/images/spacer.gif"></td>
@@ -200,7 +200,7 @@
         <div class="drop_mnu" id="My Home Page_sub" onmouseout="fnHideDrop('My Home Page_sub')" onmouseover="fnShowDrop('My Home Page_sub')">
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tbody>
-                    <tr><td><a href="/DMS" class="drop_down">Trang chủ</a></td></tr>
+                    <tr><td><a href="home" class="drop_down">Trang chủ</a></td></tr>
 
                 </tbody>
             </table>

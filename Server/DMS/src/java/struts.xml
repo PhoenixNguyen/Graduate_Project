@@ -545,14 +545,19 @@
             <result name="input" >index.jsp</result>
         </action>
         
+        <action name="home" method="home" class="com.hp.action.UserAction">
+            <result name="success" >home.jsp</result>
+            <result name="input" >index.jsp</result>
+        </action>
+        
         <action name="logout" method="logout" class="com.hp.action.UserAction">
             <result name="success" >index.jsp</result>
-            <result name="input" >home.jsp</result>
+            <result name="input" >index.jsp</result>
         </action>
         <!-- CUSTOMER  -->
         <action name="customer-list" method="displayCustomers" class="com.hp.action.CustomerAction">
             <result name="success">customer.jsp</result>
-            <result name="input" >home.jsp</result>
+            <result name="input" >customer.jsp</result>
             <result name="login" >index.jsp</result>
         </action>
         
@@ -565,7 +570,7 @@
         
         <action name="new-customer" method="redirect" class="com.hp.action.CustomerAction">
             <result name="success">customer-add.jsp</result>
-            <result name="input" >home.jsp</result>
+            <result name="input" >customer-add.jsp</result>
             <result name="login" >index.jsp</result>
         </action>
         
@@ -577,7 +582,7 @@
         
         <action name="edit-customer" method="editCustomer" class="com.hp.action.CustomerAction">
             <result name="success">customer-edit.jsp</result>
-            <result name="input" >home.jsp</result>
+            <result name="input" >customer-edit.jsp</result>
             <result name="login" >index.jsp</result>
         </action>
         

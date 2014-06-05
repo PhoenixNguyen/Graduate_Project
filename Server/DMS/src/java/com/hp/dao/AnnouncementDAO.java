@@ -7,6 +7,7 @@
 package com.hp.dao;
 
 import com.hp.domain.Announcement;
+import java.util.List;
 
 /**
  *
@@ -18,4 +19,7 @@ public interface AnnouncementDAO {
     public int updateStatus();
     
     public Announcement getAnnouncement();
+    
+    //List
+    public List<Announcement> loadAnnouncementList();
 }

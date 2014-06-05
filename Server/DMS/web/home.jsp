@@ -123,7 +123,7 @@
                                                             <!-- Table Headers -->
                                                             <tbody>
                                                                 <tr>
-                                                                    Hệ thống quản lý phân phối - Hướng dẫn sử dụng:
+                                                                    Hệ thống quản lý phân phối - Thông báo:
                                                                 </tr>
                                                                 
                                                                 <!-- Table Contents -->
@@ -133,27 +133,29 @@
                                                             </tbody>
                                                         </table>
                                                         <br>
+                                                        <s:iterator value="announcementList" status="index">
                                                         <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
                                                             <!-- Table Headers -->
                                                             <tbody>
                                                                 <tr>
-                                                            <b>1.</b> Chọn menu <b>Nhân viên</b> để quản lý nhân viên, các chức năng chính: <br>
-                                                                    <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
+                                                            <b><s:property value="%{#index.index + 1}"/>. </b> <span style="color: #0070BA"><s:property value="content" /></span><br>
+                                                            <span style="font-size: 13px"><s:property value="date" /> - Từ: <b><i><s:property value="creater" /></i></b> <br></span>
+                                                                
+<!--                                                                    Chọn menu <b>Nhân viên</b> để quản lý nhân viên, các chức năng chính: <br>-->
+<!--                                                                    <p style="margin-left: 20px;">1.1. Thêm, sửa xóa nhân viên, thêm nhân viên bằng file excel (số lượng lớn)<br>
                                                                        1.2. Xem kế hoạch dự kiến của nhân viên theo thời gian<br>
                                                                        1.3. Xem hành trình của nhân viên theo ngày (kiểm soát nhân viên)<br>
                                                                        1.4. Xem hình ảnh của nhân viên chụp tại cửa hàng của khách hàng<br>
                                                                        1.5. Xem lịch sử của nhân viên chăm sóc khách hàng<br>
-                                                                    </p>
+                                                                    </p>-->
                                                                 </tr>
                                                                 
-                                                                <!-- Table Contents -->
-                                                                
-
-
                                                             </tbody>
                                                         </table>
-                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
-                                                            <!-- Table Headers -->
+                                                        <br>
+                                                        </s:iterator>
+<!--                                                        <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
+                                                             Table Headers 
                                                             <tbody>
                                                                 <tr>
                                                             <b>2.</b> Chọn menu <b>khách hàng</b> để quản lý khách hàng, các chức năng chính: <br>
@@ -163,14 +165,14 @@
                                                                     </p>
                                                                 </tr>
                                                                 
-                                                                <!-- Table Contents -->
+                                                                 Table Contents 
                                                                 
 
 
                                                             </tbody>
                                                         </table>
                                                         <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
-                                                            <!-- Table Headers -->
+                                                             Table Headers 
                                                             <tbody>
                                                                 <tr>
                                                             <b>3.</b> Chọn menu <b>Tồn kho</b> để quản lý thông tin sản phẩm, các chức năng chính: <br>
@@ -180,7 +182,7 @@
                                                                     </p>
                                                                 </tr>
                                                                 
-                                                                <!-- Table Contents -->
+                                                                 Table Contents 
                                                                 
 
 
@@ -188,7 +190,7 @@
                                                         </table>
                                                         
                                                         <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
-                                                            <!-- Table Headers -->
+                                                             Table Headers 
                                                             <tbody>
                                                                 <tr>
                                                             <b>4.</b> Chọn menu <b>Bán hàng</b> để quản lý thông tin Bán hàng, các chức năng chính: <br>
@@ -198,14 +200,14 @@
                                                                     </p>
                                                                 </tr>
                                                                 
-                                                                <!-- Table Contents -->
+                                                                 Table Contents 
                                                                 
 
 
                                                             </tbody>
                                                         </table>
                                                         <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
-                                                            <!-- Table Headers -->
+                                                             Table Headers 
                                                             <tbody>
                                                                 <tr>
                                                             <b>5.</b> Chọn menu <b>Phân tích</b> để tạo báo cáo bán hàng, các chức năng chính: <br>
@@ -215,7 +217,7 @@
                                                                     </p>
                                                                 </tr>
                                                                 
-                                                                <!-- Table Contents -->
+                                                                 Table Contents 
                                                                 
 
 
@@ -223,7 +225,7 @@
                                                         </table>
                                                         
                                                         <table border="0" cellspacing="1" cellpadding="3" width="100%" class="lvt small">
-                                                            <!-- Table Headers -->
+                                                             Table Headers 
                                                             <tbody>
                                                                 <tr>
                                                             <b>6.</b> Chọn menu <b>Thiết lập</b> để quản lý thông tin quản trị viên, các chức năng chính: <br>
@@ -233,12 +235,12 @@
                                                                     </p>
                                                                 </tr>
                                                                 
-                                                                <!-- Table Contents -->
+                                                                 Table Contents 
                                                                 
 
 
                                                             </tbody>
-                                                        </table>
+                                                        </table>-->
                                                     </div>
 
                                                     <table border="0" cellspacing="0" cellpadding="2" width="100%">

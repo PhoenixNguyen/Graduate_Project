@@ -113,7 +113,7 @@
                                                     </table>
 
                                                     <br>
-                                                    <form action="user-notify-update" method="GET">
+                                                    <form action="user-notify-update" method="GET" id="sub_form">
                                                     <table border=0 cellspacing=0 cellpadding=10 width=100% >
                                                         <tr>
                                                             <td>
@@ -121,7 +121,18 @@
                                                                 <table border=0 cellspacing=0 cellpadding=5 width=100% class="tableHeading">
                                                                     <tr>
                                                                         <td class="big"><strong>Nội dung thông báo</strong></td>
-                                                                        <td class="small" align=right><input type="submit" class="crmButton small save" value="Cập nhật"></td>
+                                                                        <td class="small" align=right>
+                                                                            <input  class="crmButton small save" 
+                                                                                    onclick="
+                                                                                        if(validate(this.form)){
+                                                                                            //alert('hello');
+                                                                                            document.getElementById('sub_form').submit();
+                                                                                        }
+                                                                                        else {
+                                                                                            //alert('hello2');
+                                                                                            return false;
+                                                                                        }" type="submit" name="button" value="Cập nhật">
+                                                                        </td>
                                                                     </tr>
                                                                 </table>
 
@@ -130,7 +141,9 @@
                                                                         <td class="colHeader small" valign=top>Nhập thông báo vào ô bên dưới, và ấn nút Cập nhật</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td class="listTableRow small" valign=top><textarea class=small width=90% height=100px id="announcement" name="notify"><s:property value="notify"/></textarea></td>
+                                                                        <td class="listTableRow small" valign=top>
+                                                                            <textarea class=small width=90% height=100px id="announcement" name="notify"><s:property value="notify"/></textarea>
+                                                                        </td>
                                                                     </tr>
                                                                 </table>
                                                                 <!--table border=0 cellspacing=0 cellpadding=5 width=100% >
@@ -157,7 +170,22 @@
                 </tr>
             </tbody>
         </table>
+        <script type='text/javascript' language='JavaScript'>
 
+                function validate(form) {
+                    
+                   //1. after_tax
+                    var notify_length = form.notify.value.length;
+                    var notify_value = form.notify.value;
+                    
+                    if (trim(notify_value) == "") {
+                        alert("Hãy nhập thông báo.");
+                        return false;
+                    }
+                                        
+                    return true;
+                }
+            </script>                                                              
         <br><br><br>
 
         <!--    Footer-->

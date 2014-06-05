@@ -244,11 +244,13 @@
                                                                                                                     </s:if>
                                                                                                                     <s:else>
                                                                                                                         <s:if test="user.permission == 1">
-                                                                                                                            Quản lý cao cấp
+                                                                                                                            <input type="hidden" name="user.permission" value="<s:property value="user.permission"/>">
+                                                                                                                            Người dùng
                                                                                                                             
                                                                                                                         </s:if>
                                                                                                                         <s:else>
-                                                                                                                            Quản lý bán hàng
+                                                                                                                            <input type="hidden" name="user.permission" value="<s:property value="user.permission"/>">
+                                                                                                                            Nhóm kinh doanh
                                                                                                                         </s:else>
                                                                                                                     </s:else>
                                                                                                                     <!-- code added to pass Currency field value, if Disabled for nonadmin -->
@@ -277,11 +279,11 @@
                                                                                                                     </s:if>
                                                                                                                     <s:else>
                                                                                                                         <s:if test="user.status == true">
+                                                                                                                            <input type="hidden" name="user.status" value="<s:property value="user.status"/>">
                                                                                                                             Hoạt động
+                                                                                                                            
                                                                                                                         </s:if>
-                                                                                                                        <s:else>
-                                                                                                                            Dừng hoạt động
-                                                                                                                        </s:else>
+                                                                                                                        
                                                                                                                     </s:else>
                                                                                                                 </td>
 

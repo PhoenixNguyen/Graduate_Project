@@ -170,12 +170,11 @@
                                                                             <td class="listTableRow small" valign=top><a href="admin-detail?id_admin=<s:property value="stt"/>"><b><s:property value="id"/></b></a></td>
                                                                             <td class="listTableRow small" valign=top><s:property value="hoTen"/></td>
                                                                             <td class="listTableRow small" valign=top>
-                                                                                <s:if test="permission == 1">
-                                                                                Quản trị tổng
-                                                                                </s:if>
-                                                                                <s:else>
-                                                                                    Quản lý bán hàng
-                                                                                </s:else>
+                                                                                <s:if test="permission == 1">Người dùng</s:if>
+                                                                                <s:if test="permission == 2">Nhóm kinh doanh</s:if>
+                                                                                <s:if test="permission == 0">Quản trị hệ thống</s:if>
+                                                                                
+                                                                                
                                                                             </td>
                                                                             <td class="listTableRow small" valign=top>
                                                                                 <s:if test="status == true">

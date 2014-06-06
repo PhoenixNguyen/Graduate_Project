@@ -149,10 +149,10 @@ public class GenericResource {
     public String sayXMLHello() {
       return "<?xml version=\"1.0\"?> " + ""
               + "<root>"
-                + "<customer id=\"101\"> "
-                      + "<name>Tran Manh Hung</name> "
-                      + "<loc>101</loc> "
-                + "</customer> "
+                + "<student id=\"101\"> "
+                      + "<name>Nguyễn Hoàng Phượng</name> "
+                      + "<shsv>20092071</shsv> "
+                + "</student> "
               + "</root> ";
     }
 
@@ -201,6 +201,21 @@ public class GenericResource {
 //            return null;
 //    }
         
+    @GET
+    @Path("/getCustomerList")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Customer> getCustomerList() {
+
+        CustomerDAO customerDAO = new CustomerDAOImpl();
+        List<Customer> customerList = new ArrayList<Customer>();
+
+        //Check is Admin (manager)
+        StaffDAO staffDAO = new StaffDAOImpl();
+        
+        customerList = customerDAO.getListCustomer();
+        return customerList;
+    }
+    
     //Update journey
     @Path("/putJourney")
     @POST

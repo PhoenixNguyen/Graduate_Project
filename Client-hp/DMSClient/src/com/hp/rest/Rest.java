@@ -26,16 +26,14 @@ public class Rest {
 
 		ClientConfig config = new DefaultClientConfig();
 	    Client client = Client.create(config);
-	    //Set timeout
-	    //client.setReadTimeout(1000);
-	    //client.setConnectTimeout(1000);
+	    
 	    	
 	    mService = client.resource(getBaseURI());
 	    // Fluent interfaces
 //	    System.out.println(mService.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(ClientResponse.class).toString());
-//	    // Get plain text
+	    // Get plain text
 //	    System.out.println("________________ "+
-//	    		mService.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(String.class));
+//	    mService.path("webresources").path("getData").accept(MediaType.TEXT_PLAIN).get(String.class));
 	    
 	    
 	    // Get XML
@@ -46,7 +44,7 @@ public class Rest {
 	
 	private static URI getBaseURI() {
 	    //return UriBuilder.fromUri("http://192.168.169.3:8080/DMSProject").build();
-	    return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8080/DMS").build();
+	    return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8001/DMS").build();
 	    //return UriBuilder.fromUri("http://masterpro02.hosco.com.vn:8090/DMSProject").build();
 		//return UriBuilder.fromUri("http://192.168.0.105:8080/DMS").build();
 	  }

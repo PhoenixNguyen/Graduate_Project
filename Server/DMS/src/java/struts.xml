@@ -17,6 +17,13 @@
         <action name="getData" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">generic/getData</result>
         </action>
+        <action name="getCustomerList" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getCustomerList</result>
+        </action>
+        <action name="getXml" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
+            <result name="success">generic/getXml</result>
+        </action>
+        
         
         <action name="getStaff" method="getCustomerForStaff" class="com.hp.action.WebServicesAction">
             <result name="success">generic/getStaff</result>
